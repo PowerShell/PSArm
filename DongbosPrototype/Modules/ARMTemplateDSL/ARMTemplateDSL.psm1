@@ -280,13 +280,13 @@ function Resource
 function Property
 {
     [OutputType([hashtable])]
-    [CmdletBinding(DefaultParameterSetName = 'Complex')]
+    [CmdletBinding(DefaultParameterSetName = 'Simple')]
     param(
         [Parameter(Mandatory, Position = 0)]
         [string] $Name,
 
         [Parameter(Mandatory, Position = 1, ParameterSetName = 'Simple')]
-        [object] $Value,
+        [string] $Value,
 
         [Parameter(Mandatory, Position = 1, ParameterSetName = 'Complex')]
         [scriptblock] $Body
@@ -329,3 +329,6 @@ function Property
         $Script:contextStack.Pop() > $null
     }
 }
+
+## dot source the completion helpers.
+. $PSScriptRoot/ARMTemplateCompletion.ps1

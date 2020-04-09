@@ -147,6 +147,8 @@ function Get-CommandMetadata
     }
 }
 
+## TODO: Need to have helper methods to handle quotes for tab completion.
+
 Register-ArgumentCompleter -CommandName Property -ParameterName Name -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
 

@@ -7,7 +7,7 @@ Template -ContentVersion $contentVersion {
         [string]$namePrefix
     )
 
-    $mySubnet = (Concat 'myVnet/' $namePrefix '-subnet')
+    $mySubnet = Concat 'myVnet/' $namePrefix '-subnet'
     Resource -Name $mySubnet `
              -Location $rgLocation `
              -ApiVersion $apiVersion `
@@ -20,7 +20,7 @@ Template -ContentVersion $contentVersion {
             Property 'publicIPAllocationMethod' 'Dynamic'
         }
 
-    $myNic = (Concat $namePrefix '-nic')
+    $myNic = Concat $namePrefix '-nic'
     Resource -Name $myNic `
              -Location $rgLocation `
              -ApiVersion $apiVersion `

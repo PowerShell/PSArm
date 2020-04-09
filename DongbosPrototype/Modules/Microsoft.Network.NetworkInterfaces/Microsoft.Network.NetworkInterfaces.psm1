@@ -14,6 +14,7 @@ $networkInterface['enableIPForwarding'] = @{ Name = 'enableIPForwarding'; Type =
 $networkInterfaceIPConfiguration = @{}
 $networkInterfaceIPConfiguration['subnet'] = @{ Name = 'subnet'; Type = 'object'; Required = $false; Command = 'Subnet' }
 $networkInterfaceIPConfiguration['privateIPAddress'] = @{ Name = 'privateIPAddress'; Type = 'string'; Required = $false; }
+$networkInterfaceIPConfiguration['privateIPAllocationMethod'] = @{ Name = 'privateIPAllocationMethod'; Type = 'enum'; Required = $false; Values = 'Static','Dynamic' }
 
 $Script:schema[''] = $networkInterface
 $Script:schema['networkInterfaceIPConfiguration'] = $networkInterfaceIPConfiguration

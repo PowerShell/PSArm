@@ -55,7 +55,7 @@ function Build-Context
 
             'Template' {
                 $body = $metadata.Body
-                $resAsts = $body.FindAll({
+                $resAsts = $body.ScriptBlock.FindAll({
                     param($ast)
                     $cmdAst = $ast -as [CommandAst]
                     if ($null -eq $cmdAst) {
@@ -70,7 +70,13 @@ function Build-Context
 
                 foreach ($resAst in $resAsts) {
                     $resMetadata = Get-CommandMetadata $resAst
-                    $resources.Add($resMetadata.ResourceName)
+                    $resName = $resMetadata.ResourceName
+
+                    ## We may not be able to extract the names of some resources because
+                    ## they are passed in through the pipeline.
+                    if ($resName) {
+                        $resources.Add($resName)
+                    }
                 }
             }
         }
@@ -130,7 +136,7 @@ function Get-CommandMetadata
         }
 
         'Template' {
-            $bodyValue = $bindingResults.BoundParameters['Body']
+            $bodyValue = $bindingResults.BoundParameters['Body'].Value
             $bodyValue = $bodyValue -is [ScriptBlockExpressionAst] ? $bodyValue : $null
 
             return @{

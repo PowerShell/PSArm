@@ -1,0 +1,9 @@
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\bin\Debug\netstandard2.0\RobImpl.deps.json
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\bin\Debug\netstandard2.0\RobImpl.dll
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\bin\Debug\netstandard2.0\RobImpl.pdb
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\obj\Debug\netstandard2.0\RobImpl.csprojAssemblyReference.cache
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\obj\Debug\netstandard2.0\RobImpl.AssemblyInfoInputs.cache
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\obj\Debug\netstandard2.0\RobImpl.AssemblyInfo.cs
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\obj\Debug\netstandard2.0\RobImpl.csproj.CoreCompileInputs.cache
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\obj\Debug\netstandard2.0\RobImpl.dll
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\obj\Debug\netstandard2.0\RobImpl.pdb

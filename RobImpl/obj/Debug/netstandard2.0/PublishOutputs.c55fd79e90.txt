@@ -1,0 +1,4 @@
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\bin\Debug\netstandard2.0\publish\RobImpl.dll
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\bin\Debug\netstandard2.0\publish\RobImpl.deps.json
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\bin\Debug\netstandard2.0\publish\RobImpl.pdb
+C:\Users\Robert Holt\Documents\Dev\Microsoft\PSArm\RobImpl\bin\Debug\netstandard2.0\publish\Newtonsoft.Json.dll

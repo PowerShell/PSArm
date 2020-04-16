@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace RobImpl
@@ -39,7 +41,7 @@ namespace RobImpl
 
         public override object Clone()
         {
-            return new Bottom();
+            return Bottom.Value;
         }
     }
 
@@ -214,10 +216,12 @@ namespace RobImpl
         {
             if (right.Type == null || right.Type.Length == 0)
             {
+                return IntersectCommonFields(left, right);
             }
 
             if (left.Type == null || left.Type.Length == 0)
             {
+                return IntersectCommonFields((ArmConcreteSchema)right.Clone(), left);
             }
 
             if (left.Type.Length == 1
@@ -236,7 +240,7 @@ namespace RobImpl
                             return Bottom.Value;
                         }
 
-                        return lObj;
+                        return IntersectObjects(lObj, rObj);
 
                     case ArmStringSchema lStr:
                         if (!(right is ArmStringSchema rStr))
@@ -244,8 +248,7 @@ namespace RobImpl
                             return Bottom.Value;
                         }
 
-                        // TODO: Actually merge these, for now not an issue
-                        return lStr;
+                        return IntersectStrings(lStr, rStr);
 
                     case ArmListSchema lList:
                         if (!(right is ArmListSchema rList))
@@ -253,8 +256,7 @@ namespace RobImpl
                             return Bottom.Value;
                         }
 
-                        // TODO: Actually merge these, for now not an issue
-                        return lList;
+                        return IntersectLists(lList, rList);
 
                     case ArmTupleSchema lTuple:
                         if (!(right is ArmTupleSchema rTuple))
@@ -262,8 +264,7 @@ namespace RobImpl
                             return Bottom.Value;
                         }
 
-                        // TODO: Actually merge these, for now not an issue
-                        return lTuple;
+                        return IntersectTuples(lTuple, rTuple);
 
                     case ArmIntegerSchema lInt:
                         if (!(right is ArmIntegerSchema rInt))
@@ -271,8 +272,7 @@ namespace RobImpl
                             return Bottom.Value;
                         }
 
-                        // TODO: Actually merge these, for now not an issue
-                        return lInt;
+                        return IntersectIntegers(lInt, rInt);
 
                     case ArmNumberSchema lNum:
                         if (!(right is ArmNumberSchema rNum))
@@ -280,8 +280,7 @@ namespace RobImpl
                             return Bottom.Value;
                         }
 
-                        // TODO: Actually merge these, for now not an issue
-                        return lNum;
+                        return IntersectNumbers(lNum, rNum);
 
 
                     case ArmBooleanSchema _:
@@ -300,9 +299,161 @@ namespace RobImpl
                         return left;
                 }
             }
+
+            return IntersectMultitype(left, right);
         }
 
-        private static ArmConcreteSchema MergeCommonFields(ArmConcreteSchema left, ArmConcreteSchema right)
+        private static ArmJsonSchema IntersectObjects(ArmObjectSchema left, ArmObjectSchema right)
+        {
+            foreach (KeyValuePair<string, ArmJsonSchema> property in right.Properties)
+            {
+                if (left.Properties.TryGetValue(property.Key, out ArmJsonSchema lProperty))
+                {
+                    left.Properties[property.Key] = Intersect(new[] { property.Value, lProperty });
+                }
+                else
+                {
+                    left.Properties[property.Key] = (ArmJsonSchema)property.Value.Clone();
+                }
+            }
+
+            if (right.Required != null)
+            {
+                List<string> requiredProperties = null;
+                foreach (string rRequiredProperty in right.Required)
+                {
+                    if (left.Required != null && !left.Required.Contains(rRequiredProperty))
+                    {
+                        if (requiredProperties == null)
+                        {
+                            requiredProperties = new List<string>(left.Required);
+                        }
+
+                        requiredProperties.Add(rRequiredProperty);
+                    }
+                }
+
+                if (requiredProperties != null)
+                {
+                    left.Required = requiredProperties.ToArray();
+                }
+            }
+
+            left.MaxProperties = GetLesser(left.MaxProperties, right.MaxProperties);
+            left.MinProperties = GetLesser(left.MinProperties, right.MinProperties);
+
+            if (!TryIntersectUnions(
+                    left.AdditionalProperties,
+                    right.AdditionalProperties,
+                    boolean => boolean,
+                    schema => (ArmJsonSchema)schema.Clone(),
+                    (lBool, rBool) => lBool && rBool,
+                    (lSchema, rSchema) => Intersect(new[] { lSchema, rSchema }),
+                    out Union<bool, ArmJsonSchema> intersectedAdditionalProperties))
+            {
+                return Bottom.Value;
+            }
+            left.AdditionalProperties = intersectedAdditionalProperties;
+
+            return left;
+        }
+
+        private static bool TryIntersectUnions<T1, T2>(
+            Union<T1, T2> left,
+            Union<T1, T2> right,
+            Func<T1, T1> clone1,
+            Func<T2, T2> clone2,
+            Func<T1, T1, T1> intersect1,
+            Func<T2, T2, T2> intersect2,
+            out Union<T1, T2> result)
+        {
+            if (right == null)
+            {
+                result = left;
+                return true;
+            }
+
+            if (left == null)
+            {
+                result = right.Match<Union<T1, T2>>(
+                    case1 => new Union<T1, T2>.Case1(clone1(case1)),
+                    case2 => new Union<T1, T2>.Case2(clone2(case2)));
+
+                return true;
+            }
+
+            bool succeded = true;
+            result = left.Match(
+                lCase1 =>
+                    right.Match<Union<T1, T2>>(
+                        rCase1 => new Union<T1, T2>.Case1(intersect1(lCase1, rCase1)),
+                        rCase2 =>
+                        {
+                            succeded = false;
+                            return null;
+                        }),
+                lCase2 =>
+                    right.Match<Union<T1, T2>>(
+                        rCase1 =>
+                        {
+                            succeded = false;
+                            return null;
+                        },
+                        rCase2 => new Union<T1, T2>.Case2(intersect2(lCase2, rCase2))));
+            return succeded;
+        }
+
+        private static T GetLesser<T>(T left, T right)
+        {
+            if (right == null)
+            {
+                return left;
+            }
+
+            if (left == null || Comparer<T>.Default.Compare(right, left) < 0)
+            {
+                return right;
+            }
+
+            return left;
+        }
+
+        private static ArmStringSchema IntersectStrings(ArmStringSchema left, ArmStringSchema right)
+        {
+            // TODO: Actually intersect the fields
+            return IntersectCommonFields(left, right);
+        }
+
+        private static ArmListSchema IntersectLists(ArmListSchema left, ArmListSchema right)
+        {
+            // TODO: Actually intersect the fields
+            return IntersectCommonFields(left, right);
+        }
+
+        private static ArmTupleSchema IntersectTuples(ArmTupleSchema left, ArmTupleSchema right)
+        {
+            // TODO: Actually intersect the fields
+            return IntersectCommonFields(left, right);
+        }
+
+        private static ArmIntegerSchema IntersectIntegers(ArmIntegerSchema left, ArmIntegerSchema right)
+        {
+            // TODO: Actually intersect the fields
+            return IntersectCommonFields(left, right);
+        }
+
+        private static ArmNumberSchema IntersectNumbers(ArmNumberSchema left, ArmNumberSchema right)
+        {
+            // TODO: Actually intersect the fields
+            return IntersectCommonFields(left, right);
+        }
+
+        private static ArmConcreteSchema IntersectMultitype(ArmConcreteSchema left, ArmConcreteSchema right)
+        {
+            return IntersectCommonFields(left, right);
+        }
+
+        private static TSchema IntersectCommonFields<TSchema>(TSchema left, TSchema right) where TSchema : ArmConcreteSchema
         {
             if (left.Enum == null || right.Enum == null)
             {
@@ -313,12 +464,9 @@ namespace RobImpl
                 var enums = new List<object>();
                 foreach (object lItem in left.Enum)
                 {
-                    foreach (object rItem in right.Enum)
+                    if (right.Enum.Contains(lItem))
                     {
-                        if (object.Equals(lItem, rItem))
-                        {
-                            enums.Add(lItem);
-                        }
+                        enums.Add(lItem);
                     }
                 }
                 left.Enum = enums.ToArray();

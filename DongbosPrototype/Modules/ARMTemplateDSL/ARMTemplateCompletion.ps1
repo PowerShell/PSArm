@@ -147,10 +147,56 @@ function Get-CommandMetadata
     }
 }
 
+function HandleQuote
+{
+    param([string]$wordToComplete)
+
+    if ([string]::IsNullOrEmpty($wordToComplete)) {
+        return
+    }
+
+    $firstCharIsSingleQuote = $wordToComplete[0] -eq "'"
+    $firstCharIsDoubleQuote = $wordToComplete[0] -eq '"'
+
+    if ($firstCharIsSingleQuote -or $firstCharIsDoubleQuote) {
+        $quote = $firstCharIsSingleQuote ? "'" : '"'
+
+        $length = $wordToComplete.Length
+        if ($wordToComplete.Length -eq 1) {
+            return @{ WordToComplete = ''; Quote = $quote }
+        }
+
+        $lastCharIsSingleQuote = $wordToComplete[-1] -eq "'"
+        $lastCharIsDoubleQuote = $wordToComplete[-1] -eq '"'
+
+        if (($firstCharIsSingleQuote -and $lastCharIsSingleQuote) -or
+            ($firstCharIsDoubleQuote -and $lastCharIsDoubleQuote)) {
+            return @{
+                WordToComplete = $wordToComplete.Substring(1, $length - 2)
+                Quote = $quote
+            }
+        }
+
+        if (!$lastCharIsSingleQuote -and !$lastCharIsDoubleQuote) {
+            return @{
+                WordToComplete = $wordToComplete.Substring(1)
+                Quote = $quote
+            }
+        }
+    }
+}
+
 ## TODO: Need to have helper methods to handle quotes for tab completion.
 
 Register-ArgumentCompleter -CommandName Property -ParameterName Name -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
+
+    $quoteToUse = "'"
+    $handledWord = HandleQuote $wordToComplete
+    if ($handledWord -ne $null) {
+        $wordToComplete = $handledWord.WordToComplete
+        $quoteToUse = $handledWord.Quote
+    }
 
     $result = Build-Context $commandAst
     $context = $result.Context
@@ -158,12 +204,20 @@ Register-ArgumentCompleter -CommandName Property -ParameterName Name -ScriptBloc
     $moduleName = GetModuleName -ResourceType $context.ResourceType
     $schema = & "$moduleName\Get-Schema" -name $context.SchemaName
     $schema.Keys | Where-Object { $_ -like "$wordToComplete*" } | ForEach-Object {
-        [CompletionResult]::new($_, $_, 'ParameterValue', $_)
+        $completionText = $quoteToUse + $_ + $quoteToUse
+        [CompletionResult]::new($completionText, $_, 'ParameterValue', $_)
     }
 }
 
 Register-ArgumentCompleter -CommandName Property -ParameterName Value -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
+
+    $quoteToUse = "'"
+    $handledWord = HandleQuote $wordToComplete
+    if ($handledWord -ne $null) {
+        $wordToComplete = $handledWord.WordToComplete
+        $quoteToUse = $handledWord.Quote
+    }
 
     $result = Build-Context $commandAst
     $context = $result.Context
@@ -177,7 +231,8 @@ Register-ArgumentCompleter -CommandName Property -ParameterName Value -ScriptBlo
     $currentKeySchema = $schema[$propName]
     if ($currentKeySchema.Type -eq 'enum') {
         $currentKeySchema.Values | Where-Object { $_ -like "$wordToComplete*" } | ForEach-Object {
-            [CompletionResult]::new($_, $_, 'ParameterValue', $_)
+            $completionText = $quoteToUse + $_ + $quoteToUse
+            [CompletionResult]::new($completionText, $_, 'ParameterValue', $_)
         }
     }
 }
@@ -185,11 +240,19 @@ Register-ArgumentCompleter -CommandName Property -ParameterName Value -ScriptBlo
 Register-ArgumentCompleter -CommandName ResourceId -ParameterName ResourceName -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
 
+    $quoteToUse = "'"
+    $handledWord = HandleQuote $wordToComplete
+    if ($handledWord -ne $null) {
+        $wordToComplete = $handledWord.WordToComplete
+        $quoteToUse = $handledWord.Quote
+    }
+
     $result = Build-Context $commandAst
     $context = $result.Context
     $result.Resources |
         Where-Object { $_ -ne $context.ResourceName -and $_ -like "$wordToComplete*" } |
         ForEach-Object {
-            [CompletionResult]::new($_, $_, 'ParameterValue', $_)
+            $completionText = $_[0] -eq '$' ? $_ : $quoteToUse + $_ + $quoteToUse
+            [CompletionResult]::new($completionText, $_, 'ParameterValue', $_)
         }
 }

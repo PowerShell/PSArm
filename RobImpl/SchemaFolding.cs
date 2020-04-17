@@ -1,12 +1,8 @@
 ﻿using RobImpl.ArmSchema;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlTypes;
+using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 
 namespace RobImpl
 {
@@ -17,7 +13,7 @@ namespace RobImpl
     {
         public static Top Value { get; } = new Top();
 
-        private Top()
+        private Top() : base((JsonItem)null)
         {
         }
 
@@ -33,15 +29,22 @@ namespace RobImpl
     public class Bottom : ArmJsonSchema
     {
 
-        public static Bottom Value { get; } = new Bottom();
+        public static Bottom Value //{ get; } = new Bottom();
+        {
+            get
+            {
+                Debugger.Launch();
+                return new Bottom();
+            }
+        }
 
-        private Bottom()
+        private Bottom() : base((JsonItem)null)
         {
         }
 
         public override object Clone()
         {
-            return Bottom.Value;
+            return new Bottom();
         }
     }
 
@@ -52,19 +55,39 @@ namespace RobImpl
             switch (schema)
             {
                 case ArmAllOfCombinator allOf:
+                    /*
+                    if (allOf.AllOf.Length == 2
+                        && allOf.AllOf[0] is ArmObjectSchema subObj
+                        && subObj.Description != null && subObj.Description.StartsWith("Microsoft.Web/sites")
+                        && allOf.AllOf[1] is ArmOneOfCombinator subOneOf
+                        && subOneOf.OneOf.Length == 3)
+                    {
+                        Debugger.Launch();
+                    }
+                    */
                     return Intersect(allOf.AllOf.FoldAll());
 
                 case ArmAnyOfCombinator anyOf:
+                    if (anyOf.AnyOf.Length == 1)
+                    {
+                        return anyOf.AnyOf[0];
+                    }
+
                     return MergeAnyOf(anyOf.AnyOf.FoldAll(removeExpressions: true));
 
                 case ArmOneOfCombinator oneOf:
+                    if (oneOf.OneOf.Length == 1)
+                    {
+                        return oneOf.OneOf[0];
+                    }
+
                     return MergeOneOf(oneOf.OneOf.FoldAll(removeExpressions: true));
 
                 case ArmNotCombinator not:
-                    return new ArmNotCombinator { Not = not.Not.Fold() };
+                    return new ArmNotCombinator((JsonItem)null) { Not = not.Not.Fold() };
 
                 case ArmListSchema list:
-                    return new ArmListSchema
+                    return new ArmListSchema((JsonItem)null)
                     {
                         Items = list.Items.Fold(),
                         Length = list.Length,
@@ -72,7 +95,7 @@ namespace RobImpl
                     }.SetCommonFields(list);
 
                 case ArmObjectSchema obj:
-                    return new ArmObjectSchema
+                    return new ArmObjectSchema((JsonItem)null)
                     {
                         AdditionalProperties = obj.AdditionalProperties.Fold(),
                         MaxProperties = obj.MaxProperties,
@@ -156,7 +179,7 @@ namespace RobImpl
                     childSchemas.Add(IntersectConcrete((ArmConcreteSchema)combinedConcreteSchema, (ArmConcreteSchema)currentChild));
                 }
 
-                return new ArmAnyOfCombinator
+                return new ArmAnyOfCombinator((JsonItem)null)
                 {
                     AnyOf = childSchemas.ToArray(),
                 };
@@ -170,7 +193,7 @@ namespace RobImpl
                     childSchemas.Add(IntersectConcrete((ArmConcreteSchema)combinedConcreteSchema, (ArmConcreteSchema)currentChild));
                 }
 
-                return new ArmOneOfCombinator
+                return new ArmOneOfCombinator((JsonItem)null)
                 {
                     OneOf = childSchemas.ToArray(),
                 };
@@ -301,15 +324,23 @@ namespace RobImpl
 
         private static ArmJsonSchema IntersectObjects(ArmObjectSchema left, ArmObjectSchema right)
         {
-            foreach (KeyValuePair<string, ArmJsonSchema> property in right.Properties)
+            if (right.Properties != null)
             {
-                if (left.Properties.TryGetValue(property.Key, out ArmJsonSchema lProperty))
+                if (left.Properties == null)
                 {
-                    left.Properties[property.Key] = Intersect(new[] { property.Value, lProperty });
+                    left.Properties = new Dictionary<string, ArmJsonSchema>();
                 }
-                else
+
+                foreach (KeyValuePair<string, ArmJsonSchema> property in right.Properties)
                 {
-                    left.Properties[property.Key] = (ArmJsonSchema)property.Value.Clone();
+                    if (left.Properties.TryGetValue(property.Key, out ArmJsonSchema lProperty))
+                    {
+                        left.Properties[property.Key] = Intersect(new[] { property.Value, lProperty });
+                    }
+                    else
+                    {
+                        left.Properties[property.Key] = (ArmJsonSchema)property.Value.Clone();
+                    }
                 }
             }
 
@@ -506,7 +537,7 @@ namespace RobImpl
                 }
             }
 
-            return new ArmAnyOfCombinator
+            return new ArmAnyOfCombinator((JsonItem)null)
             {
                 AnyOf = anyOfList.ToArray(),
             };
@@ -514,6 +545,11 @@ namespace RobImpl
 
         private static ArmOneOfCombinator MergeOneOf(ArmJsonSchema[] schemas)
         {
+            if (schemas == null)
+            {
+                return null;
+            }
+
             var oneOfList = new List<ArmJsonSchema>(schemas.Length);
 
             for (int i = 0; i < schemas.Length; i++)
@@ -537,7 +573,7 @@ namespace RobImpl
                 }
             }
 
-            return new ArmOneOfCombinator
+            return new ArmOneOfCombinator((JsonItem)null)
             {
                 OneOf = oneOfList.ToArray(),
             };
@@ -545,6 +581,11 @@ namespace RobImpl
 
         private static ArmJsonSchema[] FoldAll(this ArmJsonSchema[] schemas, bool removeExpressions = false)
         {
+            if (schemas == null)
+            {
+                return null;
+            }
+
             var result = new List<ArmJsonSchema>();
             foreach (ArmJsonSchema schema in schemas)
             {
@@ -560,6 +601,11 @@ namespace RobImpl
 
         private static Dictionary<string, ArmJsonSchema> FoldAll(this Dictionary<string, ArmJsonSchema> propertySchemas)
         {
+            if (propertySchemas == null)
+            {
+                return null;
+            }
+
             var dict = new Dictionary<string, ArmJsonSchema>(propertySchemas.Count);
             foreach (KeyValuePair<string, ArmJsonSchema> propertySchema in propertySchemas)
             {
@@ -570,7 +616,7 @@ namespace RobImpl
 
         private static Union<bool, ArmJsonSchema> Fold(this Union<bool, ArmJsonSchema> union)
         {
-            return union.Match(
+            return union?.Match(
                 _ => union,
                 additionalSchema => new Union<bool, ArmJsonSchema>.Case2(additionalSchema.Fold()));
         }

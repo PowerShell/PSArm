@@ -53,7 +53,7 @@ namespace RobImpl
         {
             var document = new JsonDocument(documentPath);
 
-            document.Root = CreateJsonItemFromJToken(document, root);
+            document.Root = CreateJsonItemFromJToken(document, documentPath, root);
 
             return document;
         }
@@ -135,65 +135,71 @@ namespace RobImpl
             return item;
         }
 
-        private static JsonItem CreateJsonItemFromJToken(JsonDocument document, JToken currToken)
+        private static JsonItem CreateJsonItemFromJToken(JsonDocument document, string path, JToken currToken)
         {
+            JValue currVal;
             switch (currToken.Type)
             {
                 case JTokenType.Null:
-                    return JsonNull.Value;
+                    return new JsonNull((JValue)currToken, path);
 
                 case JTokenType.String:
-                    return new JsonString((string)((JValue)currToken).Value);
+                    currVal = (JValue)currToken;
+                    return new JsonString(currVal, path, (string)currVal.Value);
 
                 case JTokenType.Date:
-                    return new JsonString(((JValue)currToken).Value.ToString());
+                    currVal = (JValue)currToken;
+                    return new JsonString(currVal, path, currVal.Value.ToString());
 
                 case JTokenType.Integer:
-                    return new JsonInteger((long)((JValue)currToken).Value);
+                    currVal = (JValue)currToken;
+                    return new JsonInteger(currVal, path, (long)currVal.Value);
 
                 case JTokenType.Float:
-                    return new JsonNumber((double)((JValue)currToken).Value);
+                    currVal = (JValue)currToken;
+                    return new JsonNumber(currVal, path, (double)currVal.Value);
 
                 case JTokenType.Boolean:
-                    return new JsonBoolean((bool)((JValue)currToken).Value);
+                    currVal = (JValue)currToken;
+                    return new JsonBoolean(currVal, path, (bool)currVal.Value);
 
                 case JTokenType.Array:
-                    var jarray = (JArray)currToken;
-                    var arr = new JsonItem[jarray.Count];
+                    var jArray = (JArray)currToken;
+                    var arr = new JsonItem[jArray.Count];
 
-                    for (int i = 0; i < jarray.Count; i++)
+                    for (int i = 0; i < jArray.Count; i++)
                     {
-                        arr[i] = CreateJsonItemFromJToken(document, jarray[i]);
+                        arr[i] = CreateJsonItemFromJToken(document, $"{path}/{i}", jArray[i]);
                     }
 
-                    return new JsonArray
+                    return new JsonArray(jArray, path)
                     {
                         Items = arr,
                     };
 
                 case JTokenType.Object:
-                    var jobj = (IDictionary<string, JToken>)currToken;
+                    var jObj = (JObject)currToken;
 
                     // JSON pointer resolution
-                    if (jobj.Count == 1
-                        && jobj.TryGetValue("$ref", out JToken value)
+                    if (jObj.Count == 1
+                        && jObj.TryGetValue("$ref", out JToken value)
                         && value is JValue jValue
                         && jValue.Type == JTokenType.String)
                     {
-                        return new JsonPointer
+                        return new JsonPointer(jObj, path)
                         {
                             ReferenceUri = (string)jValue,
                             DocumentRoot = document,
                         };
                     }
 
-                    var objDict = new Dictionary<string, JsonItem>(jobj.Count);
-                    foreach (KeyValuePair<string, JToken> entry in jobj)
+                    var objDict = new Dictionary<string, JsonItem>(jObj.Count);
+                    foreach (KeyValuePair<string, JToken> entry in jObj)
                     {
-                        objDict[entry.Key] = CreateJsonItemFromJToken(document, entry.Value);
+                        objDict[entry.Key] = CreateJsonItemFromJToken(document, $"{path}/{entry.Key}", entry.Value);
                     }
 
-                    return new JsonObject
+                    return new JsonObject(jObj, path)
                     {
                         Fields = objDict,
                     };
@@ -206,6 +212,16 @@ namespace RobImpl
 
     public abstract class JsonItem
     {
+        public JsonItem(JToken json, string path)
+        {
+            Path = path;
+            Json = json;
+        }
+
+        public string Path { get; }
+
+        public JToken Json { get; }
+
         public abstract T Visit<T>(IJsonItemVisitor<T> visitor);
 
         public virtual void ResolveReferences()
@@ -219,11 +235,17 @@ namespace RobImpl
             }
             */
         }
+
+        public override string ToString()
+        {
+            return Json.ToString();
+        }
     }
 
     public class JsonObject : JsonItem
     {
-        public JsonObject()
+        public JsonObject(JObject jObj, string path)
+            : base(jObj, path)
         {
         }
 
@@ -247,7 +269,8 @@ namespace RobImpl
 
     public abstract class JsonValue<T> : JsonItem
     {
-        public JsonValue(T value)
+        public JsonValue(JValue jVal, string path, T value)
+            : base(jVal, path)
         {
             Value = value;
         }
@@ -257,7 +280,8 @@ namespace RobImpl
 
     public class JsonString : JsonValue<string>
     {
-        public JsonString(string value) : base(value)
+        public JsonString(JValue jVal, string path, string value)
+            : base(jVal, path, value)
         {
         }
 
@@ -269,7 +293,8 @@ namespace RobImpl
 
     public class JsonInteger : JsonValue<long>
     {
-        public JsonInteger(long value) : base(value)
+        public JsonInteger(JValue jVal, string path, long value)
+            : base(jVal, path, value)
         {
         }
 
@@ -281,7 +306,8 @@ namespace RobImpl
 
     public class JsonNumber : JsonValue<double>
     {
-        public JsonNumber(double value) : base(value)
+        public JsonNumber(JValue jVal, string path, double value)
+            : base(jVal, path, value)
         {
         }
 
@@ -293,7 +319,8 @@ namespace RobImpl
 
     public class JsonBoolean : JsonValue<bool>
     {
-        public JsonBoolean(bool value) : base(value)
+        public JsonBoolean(JValue jVal, string path, bool value)
+            : base(jVal, path, value)
         {
         }
 
@@ -305,9 +332,8 @@ namespace RobImpl
 
     public class JsonNull : JsonItem
     {
-        public static JsonNull Value { get; } = new JsonNull();
-
-        private JsonNull()
+        public JsonNull(JValue jVal, string path)
+            : base(jVal, path)
         {
         }
 
@@ -319,6 +345,11 @@ namespace RobImpl
 
     public class JsonArray : JsonItem
     {
+        public JsonArray(JArray jArr, string path)
+            : base(jArr, path)
+        {
+        }
+
         public JsonItem[] Items { get; set; }
 
         public override void ResolveReferences()
@@ -343,7 +374,8 @@ namespace RobImpl
 
         private bool _resolved = false;
 
-        public JsonPointer()
+        public JsonPointer(JObject jObj, string path)
+            : base(jObj, path)
         {
             _resolvedItem = new Lazy<JsonItem>(() => DocumentRoot.ResolveReference(ReferenceUri));
         }

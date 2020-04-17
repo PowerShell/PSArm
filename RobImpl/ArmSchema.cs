@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -71,16 +73,16 @@ namespace RobImpl.ArmSchema
                 switch (schemaTypes[0])
                 {
                     case JsonSchemaType.AllOf:
-                        return CreateAllOf(CoerceJson<JsonArray>(jObj.Fields["allOf"]));
+                        return CreateAllOf(jObj, CoerceJson<JsonArray>(jObj.Fields["allOf"]));
 
                     case JsonSchemaType.AnyOf:
-                        return CreateAnyOf(CoerceJson<JsonArray>(jObj.Fields["anyOf"]));
+                        return CreateAnyOf(jObj, CoerceJson<JsonArray>(jObj.Fields["anyOf"]));
 
                     case JsonSchemaType.OneOf:
-                        return CreateOneOf(CoerceJson<JsonArray>(jObj.Fields["oneOf"]));
+                        return CreateOneOf(jObj, CoerceJson<JsonArray>(jObj.Fields["oneOf"]));
 
                     case JsonSchemaType.Not:
-                        return CreateNot(CoerceJson<JsonObject>(jObj.Fields["not"]));
+                        return CreateNot(jObj, CoerceJson<JsonObject>(jObj.Fields["not"]));
 
                     case JsonSchemaType.Array:
                         schema = CreateArray(jObj);
@@ -95,11 +97,15 @@ namespace RobImpl.ArmSchema
                         break;
 
                     case JsonSchemaType.Number:
-                        schema = CreateNumeric<ArmNumberSchema, JsonNumber, double>(jObj);
+                        schema = CreateNumeric<ArmNumberSchema, JsonNumber, double>(
+                            jObj,
+                            (obj) => new ArmNumberSchema(obj));
                         break;
 
                     case JsonSchemaType.Integer:
-                        schema = CreateNumeric<ArmIntegerSchema, JsonInteger, long>(jObj);
+                        schema = CreateNumeric<ArmIntegerSchema, JsonInteger, long>(
+                            jObj,
+                            (obj) => new ArmIntegerSchema(obj));
                         break;
 
                     case JsonSchemaType.Object:
@@ -122,33 +128,33 @@ namespace RobImpl.ArmSchema
             return schema;
         }
 
-        private ArmAllOfCombinator CreateAllOf(JsonArray jArr)
+        private ArmAllOfCombinator CreateAllOf(JsonObject parent, JsonArray jArr)
         {
-            return new ArmAllOfCombinator
+            return new ArmAllOfCombinator(parent)
             {
                 AllOf = CreateSchemaArray(jArr.Items),
             };
         }
 
-        private ArmAnyOfCombinator CreateAnyOf(JsonArray jArr)
+        private ArmAnyOfCombinator CreateAnyOf(JsonObject parent, JsonArray jArr)
         {
-            return new ArmAnyOfCombinator
+            return new ArmAnyOfCombinator(parent)
             {
                 AnyOf = CreateSchemaArray(jArr.Items),
             };
         }
 
-        private ArmOneOfCombinator CreateOneOf(JsonArray jArr)
+        private ArmOneOfCombinator CreateOneOf(JsonObject parent, JsonArray jArr)
         {
-            return new ArmOneOfCombinator
+            return new ArmOneOfCombinator(parent)
             {
                 OneOf = CreateSchemaArray(jArr.Items),
             };
         }
 
-        private ArmNotCombinator CreateNot(JsonObject jObj)
+        private ArmNotCombinator CreateNot(JsonObject parent, JsonObject jObj)
         {
-            return new ArmNotCombinator
+            return new ArmNotCombinator(parent)
             {
                 Not = CreateSchema(jObj),
             };
@@ -170,7 +176,7 @@ namespace RobImpl.ArmSchema
 
             if (!jObj.Fields.TryGetValue("items", out JsonItem itemsField))
             {
-                return new ArmListSchema
+                return new ArmListSchema(jObj)
                 {
                     Length = length,
                     UniqueItems = unique,
@@ -179,7 +185,7 @@ namespace RobImpl.ArmSchema
 
             if (TryCoerceJson(itemsField, out JsonObject itemsSchemaObject))
             {
-                return new ArmListSchema
+                return new ArmListSchema(jObj)
                 {
                     Length = length,
                     UniqueItems = unique,
@@ -200,7 +206,7 @@ namespace RobImpl.ArmSchema
                 }
             }
 
-            return new ArmTupleSchema
+            return new ArmTupleSchema(jObj)
             {
                 Length = length,
                 UniqueItems = unique,
@@ -211,21 +217,23 @@ namespace RobImpl.ArmSchema
 
         private ArmBooleanSchema CreateBoolean(JsonObject jObj)
         {
-            return new ArmBooleanSchema();
+            return new ArmBooleanSchema(jObj);
         }
 
         private ArmNullSchema CreateNull(JsonObject jObj)
         {
-            return new ArmNullSchema();
+            return new ArmNullSchema(jObj);
         }
 
         private ArmUntypedSchema CreateUntyped(JsonObject jObj)
         {
-            return new ArmUntypedSchema();
+            return new ArmUntypedSchema(jObj);
         }
 
-        private TSchema CreateNumeric<TSchema, TJsonNumeric, TNumeric>(JsonObject jObj)
-            where TSchema : ArmNumericSchema<TNumeric>, new()
+        private TSchema CreateNumeric<TSchema, TJsonNumeric, TNumeric>(
+            JsonObject jObj,
+            Func<JsonObject, TSchema> factory)
+            where TSchema : ArmNumericSchema<TNumeric>
             where TJsonNumeric : JsonValue<TNumeric>
             where TNumeric : struct
         {
@@ -259,14 +267,13 @@ namespace RobImpl.ArmSchema
                 exclusiveMaximum = CoerceJson<JsonBoolean>(exclusiveMaximumField).Value;
             }
 
-            return new TSchema
-            {
-                MultipleOf = multipleOf,
-                Minimum = minimum,
-                Maximum = maximum,
-                ExclusiveMinimum = exclusiveMinimum,
-                ExclusiveMaximum = exclusiveMaximum,
-            };
+            TSchema result = factory(jObj);
+            result.MultipleOf = multipleOf;
+            result.Minimum = minimum;
+            result.Maximum = maximum;
+            result.ExclusiveMinimum = exclusiveMinimum;
+            result.ExclusiveMaximum = exclusiveMaximum;
+            return result;
         }
 
         private ArmStringSchema CreateString(JsonObject jObj)
@@ -297,7 +304,7 @@ namespace RobImpl.ArmSchema
                 format = GetFormatFromString(formatStr);
             }
 
-            return new ArmStringSchema
+            return new ArmStringSchema(jObj)
             {
                 MinLength = minLength,
                 MaxLength = maxLength,
@@ -355,7 +362,7 @@ namespace RobImpl.ArmSchema
                 maxProperties = CoerceJson<JsonInteger>(maxPropertiesField).Value;
             }
 
-            return new ArmObjectSchema
+            return new ArmObjectSchema(jObj)
             {
                 AdditionalProperties = additionalProperties,
                 MaxProperties = maxProperties,
@@ -619,23 +626,33 @@ namespace RobImpl.ArmSchema
     
     public abstract class ArmJsonSchema : ICloneable
     {
-        protected ArmJsonSchema()
+        protected ArmJsonSchema(JsonItem json)
         {
+            Json = json;
         }
 
         protected ArmJsonSchema(ArmJsonSchema original)
         {
             Type = original.Type;
+            Json = original.Json;
         }
 
         public JsonSchemaType[] Type { get; set; }
 
+        JsonItem Json { get; }
+
         public abstract object Clone();
+
+        public override string ToString()
+        {
+            return Json?.ToString() ?? "<null>";
+        }
     }
 
     public abstract class ArmConcreteSchema : ArmJsonSchema
     {
-        protected ArmConcreteSchema()
+        protected ArmConcreteSchema(JsonItem json)
+            : base(json)
         {
         }
 
@@ -665,7 +682,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmMultitypeSchema : ArmConcreteSchema
     {
-        public ArmMultitypeSchema()
+        public ArmMultitypeSchema(JsonItem json)
+            : base(json)
         {
         }
 
@@ -682,7 +700,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmUntypedSchema : ArmConcreteSchema
     {
-        public ArmUntypedSchema()
+        public ArmUntypedSchema(JsonItem json)
+            : base(json)
         {
             Type = Array.Empty<JsonSchemaType>();
         }
@@ -711,7 +730,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmStringSchema : ArmConcreteSchema
     {
-        public ArmStringSchema()
+        public ArmStringSchema(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.String };
         }
@@ -741,12 +761,14 @@ namespace RobImpl.ArmSchema
 
     public abstract class ArmNumericSchema<TNum> : ArmConcreteSchema where TNum : struct
     {
-        protected ArmNumericSchema()
+        protected ArmNumericSchema(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.Number };
         }
 
         protected ArmNumericSchema(ArmNumericSchema<TNum> original)
+            : base(original)
         {
             MultipleOf = original.MultipleOf;
             Minimum = original.Minimum;
@@ -768,8 +790,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmNumberSchema : ArmNumericSchema<double>
     {
-        public ArmNumberSchema()
-            : base()
+        public ArmNumberSchema(JsonItem json)
+            : base(json)
         {
         }
 
@@ -786,8 +808,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmIntegerSchema : ArmNumericSchema<long>
     {
-        public ArmIntegerSchema()
-            : base()
+        public ArmIntegerSchema(JsonItem json)
+            : base(json)
         {
         }
 
@@ -804,7 +826,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmObjectSchema : ArmConcreteSchema
     {
-        public ArmObjectSchema()
+        public ArmObjectSchema(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.Object };
         }
@@ -812,16 +835,21 @@ namespace RobImpl.ArmSchema
         public ArmObjectSchema(ArmObjectSchema original)
             : base(original)
         {
-            var properties = new Dictionary<string, ArmJsonSchema>(Properties.Count);
-            foreach (KeyValuePair<string, ArmJsonSchema> entry in Properties)
+            if (Properties != null)
             {
-                properties[entry.Key] = (ArmJsonSchema)entry.Value.Clone();
+                var properties = new Dictionary<string, ArmJsonSchema>(Properties.Count);
+                foreach (KeyValuePair<string, ArmJsonSchema> entry in Properties)
+                {
+                    properties[entry.Key] = (ArmJsonSchema)entry.Value.Clone();
+                }
+
+                Properties = properties;
             }
 
-            Properties = properties;
-            AdditionalProperties = AdditionalProperties.Match(
+            AdditionalProperties = AdditionalProperties?.Match(
                 _ => AdditionalProperties,
                 schema => new Union<bool, ArmJsonSchema>.Case2((ArmJsonSchema)schema.Clone()));
+
             Required = Required;
             MinProperties = MinProperties;
             MaxProperties = MaxProperties;
@@ -845,7 +873,8 @@ namespace RobImpl.ArmSchema
 
     public abstract class ArmArraySchema : ArmConcreteSchema
     {
-        protected ArmArraySchema()
+        protected ArmArraySchema(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.Array };
         }
@@ -864,8 +893,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmListSchema : ArmArraySchema
     {
-        public ArmListSchema()
-            : base()
+        public ArmListSchema(JsonItem json)
+            : base(json)
         {
         }
 
@@ -887,12 +916,13 @@ namespace RobImpl.ArmSchema
 
     public class ArmTupleSchema : ArmArraySchema
     {
-        public ArmTupleSchema()
-            : base()
+        public ArmTupleSchema(JsonItem json)
+            : base(json)
         {
         }
 
         public ArmTupleSchema(ArmTupleSchema original)
+            : base(original)
         {
             var items = new ArmJsonSchema[original.Items.Length];
             for (int i = 0; i < items.Length; i++)
@@ -918,7 +948,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmBooleanSchema : ArmConcreteSchema
     {
-        public ArmBooleanSchema()
+        public ArmBooleanSchema(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.Boolean };
         }
@@ -936,7 +967,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmNullSchema : ArmConcreteSchema
     {
-        public ArmNullSchema()
+        public ArmNullSchema(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.Null };
         }
@@ -954,8 +986,8 @@ namespace RobImpl.ArmSchema
 
     public abstract class ArmSchemaCombinator : ArmJsonSchema
     {
-        protected ArmSchemaCombinator()
-            : base()
+        protected ArmSchemaCombinator(JsonItem json)
+            : base(json)
         {
         }
 
@@ -967,8 +999,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmAnyOfCombinator : ArmSchemaCombinator
     {
-        public ArmAnyOfCombinator()
-            : base()
+        public ArmAnyOfCombinator(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.AnyOf };
         }
@@ -995,8 +1027,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmAllOfCombinator : ArmSchemaCombinator
     {
-        public ArmAllOfCombinator()
-            : base()
+        public ArmAllOfCombinator(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.AllOf };
         }
@@ -1023,8 +1055,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmOneOfCombinator : ArmSchemaCombinator
     {
-        public ArmOneOfCombinator()
-            : base()
+        public ArmOneOfCombinator(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.OneOf };
         }
@@ -1032,6 +1064,13 @@ namespace RobImpl.ArmSchema
         public ArmOneOfCombinator(ArmOneOfCombinator original)
             : base(original)
         {
+            var oneOf = new ArmJsonSchema[original.OneOf.Length];
+            for (int i = 0; i < oneOf.Length; i++)
+            {
+                oneOf[i] = (ArmJsonSchema)original.OneOf[i].Clone();
+            }
+
+            OneOf = oneOf;
         }
 
         public ArmJsonSchema[] OneOf { get; set; }
@@ -1044,8 +1083,8 @@ namespace RobImpl.ArmSchema
 
     public class ArmNotCombinator : ArmSchemaCombinator
     {
-        public ArmNotCombinator()
-            : base()
+        public ArmNotCombinator(JsonItem json)
+            : base(json)
         {
             Type = new[] { JsonSchemaType.Not };
         }

@@ -55,10 +55,10 @@ namespace RobImpl
                     return Intersect(allOf.AllOf.FoldAll());
 
                 case ArmAnyOfCombinator anyOf:
-                    return MergeAnyOf(anyOf.AnyOf.FoldAll());
+                    return MergeAnyOf(anyOf.AnyOf.FoldAll(removeExpressions: true));
 
                 case ArmOneOfCombinator oneOf:
-                    return MergeOneOf(oneOf.OneOf.FoldAll());
+                    return MergeOneOf(oneOf.OneOf.FoldAll(removeExpressions: true));
 
                 case ArmNotCombinator not:
                     return new ArmNotCombinator { Not = not.Not.Fold() };
@@ -132,7 +132,9 @@ namespace RobImpl
                 }
             }
 
-            if (anyOfs.Count > 0 && oneOfs.Count > 0)
+            if (anyOfs.Count > 1
+                || oneOfs.Count > 1
+                || anyOfs.Count > 0 && oneOfs.Count > 0)
             {
                 Console.WriteLine("Cannot combine anyofs and oneofs, returning bottom");
                 return Bottom.Value;
@@ -148,35 +150,29 @@ namespace RobImpl
 
             if (anyOfs.Count > 0)
             {
-                var newChildSchemas = new List<ArmJsonSchema>();
-                foreach (ArmAnyOfCombinator anyOf in anyOfs)
+                var childSchemas = new List<ArmJsonSchema>();
+                foreach (ArmJsonSchema currentChild in anyOfs[0].AnyOf)
                 {
-                    foreach (ArmJsonSchema childSchema in anyOf.AnyOf)
-                    {
-                        newChildSchemas.Add(IntersectConcrete((ArmConcreteSchema)combinedConcreteSchema, (ArmConcreteSchema)childSchema));
-                    }
+                    childSchemas.Add(IntersectConcrete((ArmConcreteSchema)combinedConcreteSchema, (ArmConcreteSchema)currentChild));
                 }
 
                 return new ArmAnyOfCombinator
                 {
-                    AnyOf = newChildSchemas.ToArray(),
+                    AnyOf = childSchemas.ToArray(),
                 };
             }
 
             if (oneOfs.Count > 0)
             {
-                var newChildSchemas = new List<ArmJsonSchema>();
-                foreach (ArmOneOfCombinator oneOf in oneOfs)
+                var childSchemas = new List<ArmJsonSchema>();
+                foreach (ArmJsonSchema currentChild in oneOfs[0].OneOf)
                 {
-                    foreach (ArmJsonSchema childSchema in oneOf.OneOf)
-                    {
-                        newChildSchemas.Add(IntersectConcrete((ArmConcreteSchema)combinedConcreteSchema, (ArmConcreteSchema)childSchema));
-                    }
+                    childSchemas.Add(IntersectConcrete((ArmConcreteSchema)combinedConcreteSchema, (ArmConcreteSchema)currentChild));
                 }
 
                 return new ArmOneOfCombinator
                 {
-                    OneOf = newChildSchemas.ToArray(),
+                    OneOf = childSchemas.ToArray(),
                 };
             }
 
@@ -418,6 +414,16 @@ namespace RobImpl
             return left;
         }
 
+        private static bool IsArmExpressionSchema(ArmJsonSchema schema)
+        {
+            if (!(schema is ArmStringSchema str))
+            {
+                return false;
+            }
+
+            return str.Description != null && str.Description.StartsWith("Deployment template expression");
+        }
+
         private static ArmStringSchema IntersectStrings(ArmStringSchema left, ArmStringSchema right)
         {
             // TODO: Actually intersect the fields
@@ -482,6 +488,12 @@ namespace RobImpl
             for (int i = 0; i < schemas.Length; i++)
             {
                 ArmJsonSchema child = schemas[i];
+
+                if (IsArmExpressionSchema(child))
+                {
+                    continue;
+                }
+
                 switch (child)
                 {
                     case ArmAnyOfCombinator childAnyOf:
@@ -507,6 +519,12 @@ namespace RobImpl
             for (int i = 0; i < schemas.Length; i++)
             {
                 ArmJsonSchema child = schemas[i];
+
+                if (IsArmExpressionSchema(child))
+                {
+                    continue;
+                }
+
                 switch (child)
                 {
                     case ArmOneOfCombinator childOneOf:
@@ -525,14 +543,19 @@ namespace RobImpl
             };
         }
 
-        private static ArmJsonSchema[] FoldAll(this ArmJsonSchema[] schemas)
+        private static ArmJsonSchema[] FoldAll(this ArmJsonSchema[] schemas, bool removeExpressions = false)
         {
-            var result = new ArmJsonSchema[schemas.Length];
-            for (int i = 0; i < result.Length; i++)
+            var result = new List<ArmJsonSchema>();
+            foreach (ArmJsonSchema schema in schemas)
             {
-                result[i] = schemas[i].Fold();
+                if (removeExpressions && IsArmExpressionSchema(schema))
+                {
+                    continue;
+                }
+
+                result.Add(schema.Fold());
             }
-            return result;
+            return result.ToArray(); ;
         }
 
         private static Dictionary<string, ArmJsonSchema> FoldAll(this Dictionary<string, ArmJsonSchema> propertySchemas)

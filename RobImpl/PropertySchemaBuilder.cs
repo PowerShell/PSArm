@@ -1,4 +1,5 @@
-﻿using RobImpl.ArmSchema;
+﻿using Newtonsoft.Json;
+using RobImpl.ArmSchema;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace RobImpl
 {
     public class Property
     {
-        public Property(string name, JsonSchemaType type, bool required)
+        public Property(string name, JsonSchemaType? type, bool required)
         {
             Name = name;
             Type = type;
@@ -20,7 +21,7 @@ namespace RobImpl
 
         public string Name { get; }
 
-        public JsonSchemaType Type { get; }
+        public JsonSchemaType? Type { get; }
 
         public bool Required { get; }
     }
@@ -118,21 +119,68 @@ namespace RobImpl
 
     public class PropertySchemaBuilder
     {
-        public Dictionary<string, PropertyTable> BuildPropertyHierarchy(ArmObjectSchema topLevelObject)
-        {
-            ArmJsonSchema[] resourceSchemas = ((ArmOneOfCombinator)((ArmListSchema)topLevelObject.Properties["resources"]).Items).OneOf;
+        private char[] s_propertyNameSeparator = new[] { '/' };
 
-            return new Dictionary<string, PropertyTable>();
+        public Dictionary<string, PropertyTable> BuildPropertyHierarchy(ArmJsonSchema topLevelObject)
+        {
+            var foldedSchema = (ArmObjectSchema)SchemaFolding.Fold(topLevelObject);
+
+            ArmJsonSchema[] resourceSchemas = ((ArmOneOfCombinator)((ArmListSchema)foldedSchema.Properties["resources"]).Items).OneOf;
+
+            var dict = new Dictionary<string, PropertyTable>();
+            foreach (ArmJsonSchema schema in resourceSchemas)
+            {
+                if (!(schema is ArmObjectSchema obj))
+                {
+                    continue;
+                }
+
+                string propertyFullName = (string)((ArmConcreteSchema)obj.Properties["type"]).Enum[0];
+                string[] propertyNameElements = propertyFullName.Split(s_propertyNameSeparator);
+                string propertyNamespace = propertyNameElements[0];
+                string propertyName = propertyNameElements[1];
+
+                if (!dict.TryGetValue(propertyNamespace, out PropertyTable table))
+                {
+                    table = new PropertyTable();
+                    dict[propertyNamespace] = table;
+                }
+
+                bool required = obj.Required != null && obj.Required.Contains(propertyFullName);
+
+                table[propertyName] = BuildPropertyEntry(propertyNamespace, propertyName, required, obj);
+            }
+
+            return dict;
         }
 
-        private PropertyTable GetPropertyTable(ArmObjectSchema obj)
+        public Property BuildPropertyEntry(string propertyNamespace, string propertyName, bool required, ArmJsonSchema schema)
         {
-            var pt = new PropertyTable();
-            foreach (KeyValuePair<string, ArmJsonSchema> entry in obj.Properties)
+            if (schema is ArmObjectSchema obj)
             {
-                pt[entry.Key] = GetProperty(entry.Value, entry.Key, required: obj.Required != null && obj.Required.Contains(entry.Key));
+                return BuildPropertyEntry(propertyNamespace, propertyName, required, obj);
             }
-            return pt;
+
+            return new Property(propertyName, schema.Type?[0], required);
+        }
+
+        public ObjectProperty BuildPropertyEntry(string propertyNamespace, string propertyName, bool required, ArmObjectSchema obj)
+        {
+            var table = new PropertyTable();
+
+            if (obj.Properties.TryGetValue("properties", out ArmJsonSchema propertiesSchema))
+            {
+                foreach (KeyValuePair<string, ArmJsonSchema> entry in ((ArmObjectSchema)propertiesSchema).Properties)
+                {
+                    bool propertyRequired = obj.Required != null && obj.Required.Contains(entry.Key);
+                    table[entry.Key] = BuildPropertyEntry(propertyNamespace, entry.Key, propertyRequired, entry.Value);
+                }
+            }
+
+            return new ObjectProperty(propertyName, required)
+            {
+                Body = table,
+            };
         }
     }
 }

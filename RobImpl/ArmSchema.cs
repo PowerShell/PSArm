@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 
 namespace RobImpl.ArmSchema
 {
@@ -60,7 +61,12 @@ namespace RobImpl.ArmSchema
             JsonSchemaType[] schemaTypes = GetSchemaTypeFromObject(jObj);
 
             ArmConcreteSchema schema = null;
-            if (schemaTypes != null && schemaTypes.Length == 1)
+
+            if (schemaTypes == null || schemaTypes.Length == 0)
+            {
+                schema = CreateUntyped(jObj);
+            }
+            else if (schemaTypes.Length == 1)
             {
                 switch (schemaTypes[0])
                 {
@@ -211,6 +217,11 @@ namespace RobImpl.ArmSchema
         private ArmNullSchema CreateNull(JsonObject jObj)
         {
             return new ArmNullSchema();
+        }
+
+        private ArmUntypedSchema CreateUntyped(JsonObject jObj)
+        {
+            return new ArmUntypedSchema();
         }
 
         private TSchema CreateNumeric<TSchema, TJsonNumeric, TNumeric>(JsonObject jObj)
@@ -608,6 +619,15 @@ namespace RobImpl.ArmSchema
     
     public abstract class ArmJsonSchema : ICloneable
     {
+        protected ArmJsonSchema()
+        {
+        }
+
+        protected ArmJsonSchema(ArmJsonSchema original)
+        {
+            Type = original.Type;
+        }
+
         public JsonSchemaType[] Type { get; set; }
 
         public abstract object Clone();
@@ -615,6 +635,21 @@ namespace RobImpl.ArmSchema
 
     public abstract class ArmConcreteSchema : ArmJsonSchema
     {
+        protected ArmConcreteSchema()
+        {
+        }
+
+        protected ArmConcreteSchema(ArmConcreteSchema original)
+            : base(original)
+        {
+            SchemaVersion = original.SchemaVersion;
+            Id = original.Id;
+            Title = original.Title;
+            Description = original.Description;
+            Enum = original.Enum;
+            Default = original.Default;
+        }
+
         public string SchemaVersion { get; set; }
 
         public string Id { get; set; }
@@ -630,9 +665,36 @@ namespace RobImpl.ArmSchema
 
     public class ArmMultitypeSchema : ArmConcreteSchema
     {
+        public ArmMultitypeSchema()
+        {
+        }
+
+        public ArmMultitypeSchema(ArmMultitypeSchema original)
+            : base(original)
+        {
+        }
+
         public override object Clone()
         {
-            return new ArmMultitypeSchema();
+            return new ArmMultitypeSchema(this);
+        }
+    }
+
+    public class ArmUntypedSchema : ArmConcreteSchema
+    {
+        public ArmUntypedSchema()
+        {
+            Type = Array.Empty<JsonSchemaType>();
+        }
+
+        public ArmUntypedSchema(ArmUntypedSchema original)
+            : base(original)
+        {
+        }
+
+        public override object Clone()
+        {
+            return new ArmUntypedSchema(this);
         }
     }
 
@@ -654,6 +716,15 @@ namespace RobImpl.ArmSchema
             Type = new[] { JsonSchemaType.String };
         }
 
+        public ArmStringSchema(ArmStringSchema original)
+            : base(original)
+        {
+            MinLength = original.MinLength;
+            MaxLength = original.MaxLength;
+            Pattern = original.Pattern;
+            Format = original.Format;
+        }
+
         public long? MinLength { get; set; }
 
         public long? MaxLength { get; set; }
@@ -664,21 +735,24 @@ namespace RobImpl.ArmSchema
 
         public override object Clone()
         {
-            return new ArmStringSchema
-            {
-                MinLength = MinLength,
-                MaxLength = MaxLength,
-                Pattern = Pattern,
-                Format = Format,
-            };
+            return new ArmStringSchema(this);
         }
     }
 
     public abstract class ArmNumericSchema<TNum> : ArmConcreteSchema where TNum : struct
     {
-        public ArmNumericSchema()
+        protected ArmNumericSchema()
         {
             Type = new[] { JsonSchemaType.Number };
+        }
+
+        protected ArmNumericSchema(ArmNumericSchema<TNum> original)
+        {
+            MultipleOf = original.MultipleOf;
+            Minimum = original.Minimum;
+            Maximum = original.Maximum;
+            ExclusiveMaximum = original.ExclusiveMaximum;
+            ExclusiveMinimum = original.ExclusiveMinimum;
         }
 
         public TNum? MultipleOf { get; set; }
@@ -694,31 +768,37 @@ namespace RobImpl.ArmSchema
 
     public class ArmNumberSchema : ArmNumericSchema<double>
     {
+        public ArmNumberSchema()
+            : base()
+        {
+        }
+
+        public ArmNumberSchema(ArmNumberSchema original)
+            : base(original)
+        {
+        }
+
         public override object Clone()
         {
-            return new ArmNumberSchema
-            {
-                MultipleOf = MultipleOf,
-                Minimum = Minimum,
-                Maximum = Maximum,
-                ExclusiveMinimum = ExclusiveMinimum,
-                ExclusiveMaximum = ExclusiveMaximum,
-            };
+            return new ArmNumberSchema(this);
         }
     }
 
     public class ArmIntegerSchema : ArmNumericSchema<long>
     {
+        public ArmIntegerSchema()
+            : base()
+        {
+        }
+
+        public ArmIntegerSchema(ArmIntegerSchema original)
+            : base(original)
+        {
+        }
+
         public override object Clone()
         {
-            return new ArmIntegerSchema
-            {
-                MultipleOf = MultipleOf,
-                Minimum = Minimum,
-                Maximum = Maximum,
-                ExclusiveMinimum = ExclusiveMinimum,
-                ExclusiveMaximum = ExclusiveMaximum,
-            };
+            return new ArmIntegerSchema(this);
         }
     }
 
@@ -727,6 +807,24 @@ namespace RobImpl.ArmSchema
         public ArmObjectSchema()
         {
             Type = new[] { JsonSchemaType.Object };
+        }
+
+        public ArmObjectSchema(ArmObjectSchema original)
+            : base(original)
+        {
+            var properties = new Dictionary<string, ArmJsonSchema>(Properties.Count);
+            foreach (KeyValuePair<string, ArmJsonSchema> entry in Properties)
+            {
+                properties[entry.Key] = (ArmJsonSchema)entry.Value.Clone();
+            }
+
+            Properties = properties;
+            AdditionalProperties = AdditionalProperties.Match(
+                _ => AdditionalProperties,
+                schema => new Union<bool, ArmJsonSchema>.Case2((ArmJsonSchema)schema.Clone()));
+            Required = Required;
+            MinProperties = MinProperties;
+            MaxProperties = MaxProperties;
         }
 
         public Dictionary<string, ArmJsonSchema> Properties { get; set; }
@@ -741,30 +839,22 @@ namespace RobImpl.ArmSchema
 
         public override object Clone()
         {
-            var properties = new Dictionary<string, ArmJsonSchema>(Properties.Count);
-            foreach (KeyValuePair<string, ArmJsonSchema> entry in Properties)
-            {
-                properties[entry.Key] = (ArmJsonSchema)entry.Value.Clone();
-            }
-
-            return new ArmObjectSchema
-            {
-                Properties = properties,
-                AdditionalProperties = AdditionalProperties.Match(
-                    _ => AdditionalProperties,
-                    schema => new Union<bool, ArmJsonSchema>.Case2((ArmJsonSchema)schema.Clone())),
-                Required = Required,
-                MinProperties = MinProperties,
-                MaxProperties = MaxProperties,
-            };
+            return new ArmObjectSchema(this);
         }
     }
 
     public abstract class ArmArraySchema : ArmConcreteSchema
     {
-        public ArmArraySchema()
+        protected ArmArraySchema()
         {
             Type = new[] { JsonSchemaType.Array };
+        }
+
+        protected ArmArraySchema(ArmArraySchema original)
+            : base(original)
+        {
+            Length = original.Length;
+            UniqueItems = original.UniqueItems;
         }
 
         public int? Length { get; set; }
@@ -774,40 +864,55 @@ namespace RobImpl.ArmSchema
 
     public class ArmListSchema : ArmArraySchema
     {
+        public ArmListSchema()
+            : base()
+        {
+        }
+
+        public ArmListSchema(ArmListSchema original)
+            : base(original)
+        {
+            Items = (ArmJsonSchema)original.Items.Clone();
+            Length = original.Length;
+            UniqueItems = original.UniqueItems;
+        }
+
         public ArmJsonSchema Items { get; set; }
 
         public override object Clone()
         {
-            return new ArmListSchema
-            {
-                Items = (ArmJsonSchema)Items.Clone(),
-                Length = Length,
-                UniqueItems = UniqueItems,
-            };
+            return new ArmListSchema(this);
         }
     }
 
     public class ArmTupleSchema : ArmArraySchema
     {
+        public ArmTupleSchema()
+            : base()
+        {
+        }
+
+        public ArmTupleSchema(ArmTupleSchema original)
+        {
+            var items = new ArmJsonSchema[original.Items.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                items[i] = (ArmJsonSchema)original.Items[i].Clone();
+            }
+
+            Items = items;
+            AdditionalItems = original.AdditionalItems.Match(
+                _ => AdditionalItems,
+                schema => new Union<bool, ArmJsonSchema>.Case2((ArmJsonSchema)schema.Clone()));
+        }
+
         public ArmJsonSchema[] Items { get; set; }
 
         public Union<bool, ArmJsonSchema> AdditionalItems { get; set; }
 
         public override object Clone()
         {
-            var items = new ArmJsonSchema[Items.Length];
-            for (int i = 0; i < items.Length; i++)
-            {
-                items[i] = (ArmJsonSchema)Items[i].Clone();
-            }
-
-            return new ArmTupleSchema
-            {
-                Items = items,
-                AdditionalItems = AdditionalItems.Match(
-                    _ => AdditionalItems,
-                    schema => new Union<bool, ArmJsonSchema>.Case2((ArmJsonSchema)schema.Clone())),
-            };
+            return new ArmTupleSchema(this);
         }
     }
 
@@ -818,9 +923,14 @@ namespace RobImpl.ArmSchema
             Type = new[] { JsonSchemaType.Boolean };
         }
 
+        public ArmBooleanSchema(ArmBooleanSchema original)
+            : base(original)
+        {
+        }
+
         public override object Clone()
         {
-            return new ArmBooleanSchema();
+            return new ArmBooleanSchema(this);
         }
     }
 
@@ -831,100 +941,126 @@ namespace RobImpl.ArmSchema
             Type = new[] { JsonSchemaType.Null };
         }
 
+        public ArmNullSchema(ArmNullSchema original)
+            : base(original)
+        {
+        }
+
         public override object Clone()
         {
-            return new ArmNullSchema();
+            return new ArmNullSchema(this);
         }
     }
 
     public abstract class ArmSchemaCombinator : ArmJsonSchema
     {
+        protected ArmSchemaCombinator()
+            : base()
+        {
+        }
+
+        protected ArmSchemaCombinator(ArmSchemaCombinator original)
+            : base(original)
+        {
+        }
     }
 
     public class ArmAnyOfCombinator : ArmSchemaCombinator
     {
         public ArmAnyOfCombinator()
+            : base()
         {
             Type = new[] { JsonSchemaType.AnyOf };
+        }
+
+        public ArmAnyOfCombinator(ArmAnyOfCombinator original)
+            : base(original)
+        {
+            var any = new ArmJsonSchema[original.AnyOf.Length];
+            for (int i = 0; i < any.Length; i++)
+            {
+                any[i] = (ArmJsonSchema)original.AnyOf[i].Clone();
+            }
+
+            AnyOf = any;
         }
 
         public ArmJsonSchema[] AnyOf { get; set; }
 
         public override object Clone()
         {
-            var any = new ArmJsonSchema[AnyOf.Length];
-            for (int i = 0; i < any.Length; i++)
-            {
-                any[i] = (ArmJsonSchema)AnyOf[i].Clone();
-            }
-            return new ArmAnyOfCombinator
-            {
-                AnyOf = any,
-            };
+            return new ArmAnyOfCombinator(this);
         }
     }
 
     public class ArmAllOfCombinator : ArmSchemaCombinator
     {
         public ArmAllOfCombinator()
+            : base()
         {
             Type = new[] { JsonSchemaType.AllOf };
+        }
+
+        public ArmAllOfCombinator(ArmAllOfCombinator original)
+            : base(original)
+        {
+            var all = new ArmJsonSchema[original.AllOf.Length];
+            for (int i = 0; i < all.Length; i++)
+            {
+                all[i] = (ArmJsonSchema)original.AllOf[i].Clone();
+            }
+
+            AllOf = all;
         }
 
         public ArmJsonSchema[] AllOf { get; set; }
 
         public override object Clone()
         {
-            var all = new ArmJsonSchema[AllOf.Length];
-            for (int i = 0; i < all.Length; i++)
-            {
-                all[i] = (ArmJsonSchema)AllOf[i].Clone();
-            }
-            return new ArmAllOfCombinator
-            {
-                AllOf = all,
-            };
+            return new ArmAllOfCombinator(this);
         }
     }
 
     public class ArmOneOfCombinator : ArmSchemaCombinator
     {
         public ArmOneOfCombinator()
+            : base()
         {
             Type = new[] { JsonSchemaType.OneOf };
+        }
+
+        public ArmOneOfCombinator(ArmOneOfCombinator original)
+            : base(original)
+        {
         }
 
         public ArmJsonSchema[] OneOf { get; set; }
 
         public override object Clone()
         {
-            var one = new ArmJsonSchema[OneOf.Length];
-            for (int i = 0; i < one.Length; i++)
-            {
-                one[i] = (ArmJsonSchema)OneOf[i].Clone();
-            }
-            return new ArmOneOfCombinator
-            {
-                OneOf = one,
-            };
+            return new ArmOneOfCombinator(this);
         }
     }
 
     public class ArmNotCombinator : ArmSchemaCombinator
     {
         public ArmNotCombinator()
+            : base()
         {
             Type = new[] { JsonSchemaType.Not };
+        }
+
+        public ArmNotCombinator(ArmNotCombinator original)
+            : base(original)
+        {
+            Not = (ArmJsonSchema)original.Not.Clone();
         }
 
         public ArmJsonSchema Not { get; set; }
 
         public override object Clone()
         {
-            return new ArmNotCombinator
-            {
-                Not = (ArmJsonSchema)Not.Clone(),
-            };
+            return new ArmNotCombinator(this);
         }
     }
 }

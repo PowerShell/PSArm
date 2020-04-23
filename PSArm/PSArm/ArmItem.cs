@@ -36,109 +36,137 @@ namespace PSArm
         }
     }
 
-    public class ArmPropertyArrayItem : ArmPropertyInstance
+    public abstract class ArmParameterizedItem : ArmPropertyInstance
     {
-        public ArmPropertyArrayItem(string propertyName, ArmPropertyInstance item)
+        public ArmParameterizedItem(string propertyName)
             : base(propertyName)
         {
-            Item = item;
+            Parameters = new Dictionary<string, object>();
         }
 
-        public ArmPropertyInstance Item { get; }
-
-        public override JToken ToJson()
-        {
-            return Item.ToJson();
-        }
+        public Dictionary<string, object> Parameters { get; }
     }
 
-    public class ArmPropertyArray : ArmPropertyInstance
+    public class ArmParameterizedProperty : ArmParameterizedItem
     {
-        internal ArmPropertyArray(string propertyName)
+        public ArmParameterizedProperty(string propertyName)
             : base(propertyName)
         {
-            Items = new List<ArmPropertyInstance>();
         }
-
-        public List<ArmPropertyInstance> Items { get; }
 
         public override JToken ToJson()
         {
-            var jArr = new JArray();
-            foreach (ArmPropertyInstance item in Items)
+            var jObj = new JObject();
+            foreach (KeyValuePair<string, object> parameter in Parameters)
             {
-                jArr.Add(item);
+                jObj[parameter.Key] = new JValue(parameter.Value);
             }
-            return jArr;
+            return jObj;
         }
     }
 
-    public class ArmPropertyObject : ArmPropertyInstance
+    public class ArmPropertyObject : ArmParameterizedItem
     {
         public ArmPropertyObject(string propertyName)
             : this(propertyName, new Dictionary<string, ArmPropertyInstance>())
         {
         }
 
-        internal ArmPropertyObject(string propertyName, Dictionary<string, ArmPropertyInstance> fields)
+        internal ArmPropertyObject(string propertyName, Dictionary<string, ArmPropertyInstance> properties)
             : base(propertyName)
         {
-            Fields = fields;
+            Properties = properties;
         }
 
-        public Dictionary<string, ArmPropertyInstance> Fields { get; }
+        public Dictionary<string, ArmPropertyInstance> Properties { get; }
 
         public override JToken ToJson()
         {
             var json = new JObject();
-            foreach (KeyValuePair<string, ArmPropertyInstance> field in Fields)
+            foreach (KeyValuePair<string, object> parameter in Parameters)
             {
-                json[field.Key] = field.Value.ToJson();
+                json[parameter.Key] = new JValue(parameter.Value);
             }
+
+            var properties = new JObject();
+            foreach (KeyValuePair<string, ArmPropertyInstance> property in Properties)
+            {
+                properties[property.Key] = property.Value.ToJson();
+            }
+            json["properties"] = properties;
+
             return json;
         }
     }
 
-    public class ArmPropertyObjectBuilder
+    public class ArmPropertyArrayItem : ArmPropertyObject
     {
-        private readonly Dictionary<string, ArmPropertyInstance> _fields;
-
-        private readonly string _propertyName;
-
-        public ArmPropertyObjectBuilder(string propertyName)
+        public ArmPropertyArrayItem(string propertyName) : base(propertyName)
         {
-            _propertyName = propertyName;
-            _fields = new Dictionary<string, ArmPropertyInstance>();
+        }
+    }
+
+    internal class ArmPropertyArray : ArmPropertyInstance
+    {
+        public static ArmPropertyArray FromArrayItems(List<ArmPropertyArrayItem> items)
+        {
+            string name = items[0].PropertyName + "s";
+            return new ArmPropertyArray(name, items);
         }
 
-        public void Add(ArmPropertyInstance propertyInstance)
+        private readonly List<ArmPropertyArrayItem> _items;
+
+        private ArmPropertyArray(string propertyName, List<ArmPropertyArrayItem> items) : base(propertyName)
         {
-            switch (propertyInstance)
+            _items = items;
+        }
+
+        public override JToken ToJson()
+        {
+            var jArr = new JArray();
+            foreach (ArmPropertyArrayItem item in _items)
             {
-                case ArmPropertyValue value:
-                    Add(value);
-                    return;
-
-                default:
-                    _fields[propertyInstance.PropertyName] = propertyInstance;
-                    return;
+                jArr.Add(item.ToJson());
             }
+            return jArr;
         }
+    }
 
-        public void Add(ArmPropertyArrayItem arrayItem)
+    public class ArmResource
+    {
+        public string ApiVersion { get; set; }
+
+        public string Type { get; set; }
+
+        public string Name { get; set; }
+
+        public string Location { get; set; }
+
+        public Dictionary<string, ArmPropertyInstance> Properties { get; set; }
+
+        public JObject ToJson()
         {
-            if (!_fields.TryGetValue(arrayItem.PropertyName, out ArmPropertyInstance propertyInstance))
+            var jObj = new JObject
             {
-                propertyInstance = new ArmPropertyArray(arrayItem.PropertyName);
-                _fields[arrayItem.PropertyName] = propertyInstance;
-            }
+                ["apiVersion"] = new JValue(ApiVersion),
+                ["type"] = new JValue(Type),
+                ["name"] = new JValue(Name),
+                ["location"] = new JValue(Location),
+            };
 
-            ((ArmPropertyArray)propertyInstance).Items.Add(arrayItem.Item);
+            var properties = new JObject();
+            foreach (KeyValuePair<string, ArmPropertyInstance> property in Properties)
+            {
+                properties[property.Key] = property.Value.ToJson();
+            }
+            jObj["properties"] = properties;
+
+            return jObj;
         }
 
-        public ArmPropertyObject GetObject()
+        public override string ToString()
         {
-            return new ArmPropertyObject(_propertyName, _fields);
+            return ToJson().ToString();
         }
     }
 }

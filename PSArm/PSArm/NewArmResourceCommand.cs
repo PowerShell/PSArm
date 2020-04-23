@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Management.Automation;
 
 namespace PSArm
@@ -20,5 +21,29 @@ namespace PSArm
 
         [Parameter(Mandatory = true, Position = 1)]
         public ScriptBlock Body { get; set; }
+
+        protected override void EndProcessing()
+        {
+            var dict = new Dictionary<string, ArmPropertyInstance>();
+
+            foreach (PSObject result in InvokeCommand.InvokeScript(SessionState, Body))
+            {
+                if (result.BaseObject is ArmPropertyInstance armProperty)
+                {
+                    dict[armProperty.PropertyName] = armProperty;
+                }
+            }
+
+            var resource = new ArmResource
+            {
+                ApiVersion = ApiVersion,
+                Location = Location,
+                Type = Type,
+                Name = Name,
+                Properties = dict,
+            };
+
+            WriteObject(resource);
+        }
     }
 }

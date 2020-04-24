@@ -73,8 +73,8 @@ public class DslArraySchema : DslSchemaItem
     [JsonProperty("kind")]
     public override DslSchemaKind Kind => DslSchemaKind.Array;
 
-    [JsonProperty("items")]
-    public DslSchemaItem Items { get; set; }
+    [JsonProperty("body")]
+    public Dictionary<string, DslSchemaItem> Body { get; set; }
 
     public override void Visit(string commandName, IDslSchemaVisitor visitor)
     {
@@ -103,6 +103,7 @@ public class DslBodyCommandSchema : DslSchemaItem
         visitor.VisitBodyCommandKeyword(commandName, this);
     }
 }
+
 
 public class DslSchemaConverter : JsonConverter
 {
@@ -152,9 +153,20 @@ public class DslSchemaConverter : JsonConverter
 
     private DslArraySchema ReadArraySchema(JObject jObj)
     {
+        Dictionary<string, DslSchemaItem> body = null;
+        if (jObj.TryGetValue("body", StringComparison.Ordinal, out JToken value))
+        {
+            body = new Dictionary<string, DslSchemaItem>();
+            var bodyValue = (JObject)value;
+            foreach (KeyValuePair<string, JToken> entry in bodyValue)
+            {
+                body[entry.Key] = ReadSchema((JObject)entry.Value);
+            }
+        }
+
         return new DslArraySchema
         {
-            Items = ReadSchema((JObject)jObj["items"]),
+            Body = body,
             Parameters = ReadParameters(jObj),
         };
     }
@@ -291,12 +303,12 @@ public class DslScriptWriter : IDslSchemaVisitor
     public void VisitCommandKeyword(string commandName, DslCommandSchema command)
     {
         WriteFunctionBeginning(commandName, command.Parameters);
-        _sb.Append("[PSArm.ArmPropertyValue]::new(");
+
+        _sb.Append("Value ");
         WriteLiteral(UnPascal(commandName));
-        _sb.Append(", ");
+        _sb.Append(' ');
         WriteVariable(command.Parameters[0].Name);
-        _sb.Append(')');
-        Newline();
+
         WriteFunctionEnd();
     }
 
@@ -304,39 +316,29 @@ public class DslScriptWriter : IDslSchemaVisitor
     {
         WriteFunctionBeginning(commandName, bodyCommand.Parameters);
 
-        _sb.Append("$acc = [PSArm.ArmPropertyObjectBuilder]::new(");
+        _sb.Append("Composite ");
         WriteLiteral(UnPascal(commandName));
-        _sb.Append(")");
-        Newline();
-        foreach (DslParameter parameter in bodyCommand.Parameters)
-        {
-            _sb.Append("$acc.Add(([PSArm.ArmPropertyObject]::new(");
-            WriteLiteral(UnPascal(parameter.Name));
-            _sb.Append(", ");
-            WriteVariable(parameter.Name);
-            _sb.Append(')');
-            Newline();
-        }
-        _sb.Append("$acc.GetObject()");
-        Newline();
+        _sb.Append(" $PSBoundParameters");
 
         WriteFunctionEnd();
     }
 
     public void VisitArrayKeyword(string commandName, DslArraySchema array)
     {
-        WriteFunctionBeginning(commandName, array.Parameters, writeBodyParameter: true);
+        WriteFunctionBeginning(commandName, array.Parameters, writeBodyParameter: array.Body != null);
 
-        // Define any required sub commands
-        if (array.Items is DslBlockSchema block)
+        if (array.Body != null)
         {
-            foreach (KeyValuePair<string, DslSchemaItem> subCommand in block.Body)
+            foreach (KeyValuePair<string, DslSchemaItem> subSchema in array.Body)
             {
-                subCommand.Value.Visit(subCommand.Key, this);
+                subSchema.Value.Visit(subSchema.Key, this);
+                Newline();
             }
-
-            WriteBodyCapture(Pluralise(UnPascal(commandName)));
         }
+
+        _sb.Append("ArrayItem ");
+        WriteLiteral(UnPascal(commandName));
+        _sb.Append(" $PSBoundParameters $Body");
 
         WriteFunctionEnd();
     }
@@ -345,26 +347,17 @@ public class DslScriptWriter : IDslSchemaVisitor
     {
         WriteFunctionBeginning(commandName, block.Parameters, writeBodyParameter: true);
 
-        foreach (KeyValuePair<string, DslSchemaItem> subItem in block.Body)
+        foreach (KeyValuePair<string, DslSchemaItem> subSchema in block.Body)
         {
-            subItem.Value.Visit(subItem.Key, this);
+            subSchema.Value.Visit(subSchema.Key, this);
+            Newline();
         }
 
-        WriteBodyCapture(UnPascal(commandName));
-        _sb.Append("$acc.GetObject()");
-        Newline();
+        _sb.Append("Block ");
+        WriteLiteral(UnPascal(commandName));
+        _sb.Append(" $PSBoundParameters $Body");
 
         WriteFunctionEnd();
-    }
-
-    private void WriteBodyCapture(string name)
-    {
-        _sb.Append("$acc = [PSArm.ArmPropertyObjectBuilder]::new(");
-        WriteLiteral(name);
-        _sb.Append(")");
-        Newline();
-        _sb.Append("& $Body | ForEach-Object { $acc.Add($_) }");
-        Newline();
     }
 
     private void WriteFunctionBeginning(string functionName, IReadOnlyList<DslParameter> parameters, bool writeBodyParameter = false)
@@ -379,31 +372,34 @@ public class DslScriptWriter : IDslSchemaVisitor
         Indent();
         Newline();
 
-        for (int i = 0; i < parameters.Count; i++)
+        if (parameters != null)
         {
-            DslParameter parameter = parameters[i];
-            WriteParameter(parameter, position: i);
-
-            if (i == parameters.Count - 1)
+            for (int i = 0; i < parameters.Count; i++)
             {
-                if (writeBodyParameter)
+                DslParameter parameter = parameters[i];
+                WriteParameter(parameter, position: i);
+
+                if (i < parameters.Count - 1)
                 {
+                    _sb.Append(',');
+                    Newline();
+                    Newline();
+                }
+                else if (writeBodyParameter)
+                {
+                    _sb.Append(',');
+                    Newline();
+                    Newline();
                     WriteParameter("Body", "scriptblock", position: i + 1, validationSet: null);
                 }
-
-                Dedent();
-                Newline();
-                _sb.Append(')');
-                Newline();
-                Newline();
-            }
-            else
-            {
-                _sb.Append(',');
-                Newline();
-                Newline();
             }
         }
+
+        Dedent();
+        Newline();
+        _sb.Append(')');
+        Newline();
+        Newline();
     }
 
     private void WriteParameter(DslParameter parameter, int position)
@@ -416,7 +412,7 @@ public class DslScriptWriter : IDslSchemaVisitor
         _sb.Append("[Parameter(Position = ").Append(position).Append(", Mandatory)]");
         Newline();
 
-        if (validationSet != null)
+        if (validationSet != null && validationSet.Count > 0)
         {
             _sb.Append("[ValidateSet(");
             WriteLiteral(validationSet[0]);
@@ -425,7 +421,7 @@ public class DslScriptWriter : IDslSchemaVisitor
                 _sb.Append(", ");
                 WriteLiteral(validationSet[j]);
             }
-            _sb.Append(']');
+            _sb.Append(")]");
             Newline();
         }
 

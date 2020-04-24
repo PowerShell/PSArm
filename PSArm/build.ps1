@@ -30,7 +30,7 @@ if (Test-Path $outDir)
 }
 
 New-Item -ItemType Directory -Path $outDir
-foreach ($path in "$binDir/*.dll", "$binDir/*.pdb", "$PSScriptRoot/$moduleName.psm1", "$PSScriptRoot/$moduleName.psd1")
+foreach ($path in "$binDir/*.dll", "$binDir/*.pdb", "$PSScriptRoot/$moduleName.psm1", "$PSScriptRoot/$moduleName.psd1", "$PSScriptRoot/dsls")
 {
-    Copy-Item -Path $path -Destination $outDir
+    Copy-Item -Recurse -Path $path -Destination $outDir
 }

@@ -7,6 +7,8 @@ namespace PSArm
     [Cmdlet(VerbsCommon.New, "ArmResource")]
     public class NewArmResourceCommand : PSCmdlet
     {
+        private readonly static char[] s_splitChar = new [] { '/' };
+
         [Parameter(Position = 0, Mandatory = true)]
         public string Name { get; set; }
 
@@ -24,6 +26,11 @@ namespace PSArm
 
         protected override void EndProcessing()
         {
+            string[] schemaNameParts = Name.Split(s_splitChar);
+            ArmDslInfo dsl = DslLoader.Instance.LoadDsl(schemaNameParts[0]);
+            var resourceDsl = ScriptBlock.Create(dsl.DslDefintions[schemaNameParts[1]]);
+            InvokeCommand.InvokeScript(SessionState, resourceDsl);
+
             var dict = new Dictionary<string, ArmPropertyInstance>();
 
             foreach (PSObject result in InvokeCommand.InvokeScript(SessionState, Body))

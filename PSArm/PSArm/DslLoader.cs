@@ -18,7 +18,22 @@ namespace PSArm
 
         public DslLoader(string dirPath)
         {
+            _dsls = new ConcurrentDictionary<string, ArmDslInfo>();
             _basePath = dirPath;
+        }
+
+        public bool TryLoadDsl(string schemaName, out ArmDslInfo dslInfo)
+        {
+            try
+            {
+                dslInfo = LoadDsl(schemaName);
+                return true;
+            }
+            catch
+            {
+                dslInfo = null;
+                return false;
+            }
         }
 
         public ArmDslInfo LoadDsl(string schemaName)

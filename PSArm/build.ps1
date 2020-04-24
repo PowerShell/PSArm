@@ -29,8 +29,17 @@ if (Test-Path $outDir)
     Remove-Item -Path $outDir -Recurse -Force
 }
 
+$assets = @(
+    "$binDir/*.dll",
+    "$binDir/*.pdb",
+    "$PSScriptRoot/$moduleName.psm1",
+    "$PSScriptRoot/$moduleName.psd1",
+    "$PSScriptRoot/dsls",
+    "$PSScriptRoot/OnImport.ps1"
+)
+
 New-Item -ItemType Directory -Path $outDir
-foreach ($path in "$binDir/*.dll", "$binDir/*.pdb", "$PSScriptRoot/$moduleName.psm1", "$PSScriptRoot/$moduleName.psd1", "$PSScriptRoot/dsls")
+foreach ($path in $assets)
 {
     Copy-Item -Recurse -Path $path -Destination $outDir
 }

@@ -1,0 +1,34 @@
+{
+    "networkInterfaces": {
+        "IpConfiguration": {
+            "kind": "array",
+            "parameters": [
+                {
+                    "name": "Name",
+                    "type": "string"
+                }
+            ],
+            "body": {
+                "Subnet": {
+                    "kind": "bodycommand",
+                    "parameters": [
+                        {
+                            "name": "Id",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "PrivateIPAllocationMethod": {
+                    "kind": "command",
+                    "parameters": [
+                        {
+                            "name": "Method",
+                            "type": "string",
+                            "enum": [ "Static", "Dynamic" ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

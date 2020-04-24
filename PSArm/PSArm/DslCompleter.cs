@@ -11,6 +11,12 @@ namespace PSArm
     {
         private static readonly char[] s_typeSplitChars = new [] { '/' };
 
+        private static readonly IReadOnlyList<string> s_topLevelKeywords = new []
+        {
+            "Resource",
+            "Output",
+        };
+
         public static CommandCompletion CompleteInput(string input, int cursorIndex, Hashtable options)
         {
             Tuple<Ast, Token[], IScriptPosition> parsedInput = CommandCompletion.MapStringInputToParsedInput(input, cursorIndex);
@@ -23,14 +29,36 @@ namespace PSArm
             IScriptPosition cursorPosition,
             Hashtable options)
         {
+            Collection<CompletionResult> completions = GetCompletions(ast, tokens, cursorPosition, options);
+
+            if (completions == null)
+            {
+                return null;
+            }
+
+            return new CommandCompletion(completions, currentMatchIndex: -1, replacementIndex: cursorPosition.ColumnNumber, replacementLength: 0);
+        }
+
+        private static Collection<CompletionResult> GetCompletions(
+            Ast ast,
+            IReadOnlyList<Token> tokens,
+            IScriptPosition cursorPosition,
+            Hashtable options)
+        {
             // Go backward through the tokens to determine if we're positioned where a new command should be
             Token lastToken = null;
             for (int i = tokens.Count - 1; i >= 0; i--)
             {
                 lastToken = tokens[i];
+
+                if (lastToken.Kind == TokenKind.NewLine)
+                {
+                    continue;
+                }
+
                 if (lastToken.Extent.EndScriptPosition.LineNumber < cursorPosition.LineNumber
                     || (lastToken.Extent.EndScriptPosition.LineNumber == cursorPosition.LineNumber
-                        && lastToken.Extent.EndScriptPosition.ColumnNumber == cursorPosition.ColumnNumber))
+                        && lastToken.Extent.EndScriptPosition.ColumnNumber <= cursorPosition.ColumnNumber))
                 {
                     break;
                 }
@@ -41,7 +69,7 @@ namespace PSArm
                 return null;
             }
 
-            IScriptPosition completionPosition = cursorPosition;
+            KeywordContext context;
             switch (lastToken.Kind)
             {
                 case TokenKind.NewLine:
@@ -53,39 +81,84 @@ namespace PSArm
                 case TokenKind.DollarParen:
                     // We need this trick to put us back into an incomplete scriptblock
                     // if we were asked for a completion at the end of an incomplete one
-                    completionPosition = lastToken.Extent.EndScriptPosition;
-                    break;
+                    context = GetKeywordContext(
+                        ast,
+                        lastToken,
+                        tokens,
+                        cursorPosition,
+                        lastToken.Extent.EndScriptPosition);
+                    return GetKeywordCompletions(context);
 
                 case TokenKind.Identifier:
                 case TokenKind.Command:
+                    context = GetKeywordContext(
+                        ast,
+                        lastToken,
+                        tokens,
+                        cursorPosition);
+                    return GetKeywordCompletions(context);
+
+                case TokenKind.Generic:
+                    if (lastToken.Text == "-"
+                        && lastToken.Extent.EndOffset == cursorPosition.Offset
+                        && ast.Parent is CommandElementAst)
+                    {
+                        context = GetKeywordContext(ast, lastToken, tokens, cursorPosition);
+                        return GetParameterCompletions(context);
+                    }
                     break;
 
-                default:
-                    return null;
+                case TokenKind.Parameter:
+                    context = GetKeywordContext(ast, lastToken, tokens, cursorPosition);
+                    return GetParameterCompletions(context);
             }
 
-            // Now find the AST we're in
-            var visitor = new FindAstFromPositionVisitor(completionPosition);
-            ast.Visit(visitor);
-            Ast containingAst = visitor.GetAst();
-
-            if (containingAst == null)
-            {
-                return null;
-            }
-
-            KeywordContext keywordContext = GetKeywordContext(containingAst, ast, lastToken, tokens, cursorPosition);
-
-            if (keywordContext == null
-                || !DslLoader.Instance.TryLoadDsl(keywordContext.ResourceNamespace, out ArmDslInfo dslInfo))
-            {
-                return null;
-            }
-
-            return GetCompletionsForContext(keywordContext, dslInfo);
+            return null;
         }
 
-        private static CommandCompletion GetCompletionsForContext(KeywordContext context, ArmDslInfo dslInfo)
+        private static Collection<CompletionResult> GetParameterCompletions(KeywordContext context)
+        {
+            return null;
+        }
+
+        private static Collection<CompletionResult> GetKeywordCompletions(KeywordContext context)
+        {
+            if (context == null)
+            {
+                return null;
+            }
+
+            // Top level keyword completions
+            if (context.ResourceNamespace == null)
+            {
+                var completions = new Collection<CompletionResult>();
+                string prefix = context.LastToken.Kind == TokenKind.Identifier
+                    ? context.LastToken.Text
+                    : null;
+
+                foreach (string keyword in s_topLevelKeywords)
+                {
+                    if (prefix != null && !keyword.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+
+                    completions.Add(new CompletionResult(keyword, keyword, CompletionResultType.Command, keyword));
+                }
+
+                return completions;
+            }
+
+
+            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, out ArmDslInfo dslInfo))
+            {
+                return null;
+            }
+
+            return GetKeywordCompletionsForContext(context, dslInfo);
+        }
+
+        private static Collection<CompletionResult> GetKeywordCompletionsForContext(KeywordContext context, ArmDslInfo dslInfo)
         {
             if (!dslInfo.Schema.Subschemas.TryGetValue(context.ResourceTypeName, out Dictionary<string, DslSchemaItem> schema))
             {
@@ -100,7 +173,7 @@ namespace PSArm
             return null;
         }
 
-        private static CommandCompletion GetCompletionForKeywordCommands(KeywordContext context, IEnumerable<string> keywords)
+        private static Collection<CompletionResult> GetCompletionForKeywordCommands(KeywordContext context, IEnumerable<string> keywords)
         {
             string keywordPrefix = context.LastToken.Kind == TokenKind.Command
                 ? context.LastToken.Text
@@ -117,7 +190,7 @@ namespace PSArm
                 completions.Add(new CompletionResult(keyword, keyword, CompletionResultType.Command, keyword));
             }
 
-            return new CommandCompletion(completions, currentMatchIndex: -1, replacementIndex: context.Position.ColumnNumber, replacementLength: 0);
+            return completions;
         }
 
         private static DslSchemaItem GetKeywordWithStack(IEnumerable<string> keywordStack, DslSchemaItem schemaItem)
@@ -149,18 +222,38 @@ namespace PSArm
             return currSchema;
         }
 
-        private static KeywordContext GetKeywordContext(Ast ast, Ast fullAst, Token preToken, IReadOnlyList<Token> tokens, IScriptPosition position)
+        private static KeywordContext GetKeywordContext(
+            Ast ast,
+            Token lastToken,
+            IReadOnlyList<Token> tokens,
+            IScriptPosition cursorPosition,
+            IScriptPosition completionPosition = null)
         {
+            if (completionPosition == null)
+            {
+                completionPosition = cursorPosition;
+            }
+
+            // Now find the AST we're in
+            var visitor = new FindAstFromPositionVisitor(completionPosition);
+            ast.Visit(visitor);
+            Ast containingAst = visitor.GetAst();
+
+            if (containingAst == null)
+            {
+                return null;
+            }
+
             var context = new KeywordContext
             {
-                ContainingAst = ast,
-                FullAst = fullAst,
-                LastToken = preToken,
+                ContainingAst = containingAst,
+                FullAst = ast,
+                LastToken = lastToken,
                 Tokens = tokens,
-                Position = position
+                Position = cursorPosition
             };
 
-            Ast currAst = ast;
+            Ast currAst = containingAst;
             bool foundArmKeyword = false;
             do
             {
@@ -195,7 +288,7 @@ namespace PSArm
             context.KeywordStack.Reverse();
 
             // If we're completing a keyword, remove it from the stack
-            if (preToken.Kind == TokenKind.Identifier)
+            if (lastToken.Kind == TokenKind.Identifier)
             {
                 context.KeywordStack.RemoveAt(context.KeywordStack.Count - 1);
             }

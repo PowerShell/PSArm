@@ -32,12 +32,9 @@ function TabExpansion2
         $positionOfCursor = $convertedInput.Item3
     }
 
-    $result = [PSArm.DslCompleter]::CompleteInput($ast, $tokens, $positionOfCursor, $options)
+    $result = __OldTabExpansion2 $ast $tokens $positionOfCursor $options
 
-    if (-not $result)
-    {
-        $result = __OldTabExpansion2 $ast $tokens $positionOfCursor $options
-    }
+    [PSArm.DslCompleter]::PrependDslCompletions($result, $ast, $tokens, $positionOfCursor, $options)
 
     return $result
 }

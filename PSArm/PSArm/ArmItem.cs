@@ -144,6 +144,8 @@ namespace PSArm
 
         public Dictionary<string, ArmPropertyInstance> Properties { get; set; }
 
+        public Dictionary<string, ArmResource> Subresources { get; set; }
+
         public JObject ToJson()
         {
             var jObj = new JObject

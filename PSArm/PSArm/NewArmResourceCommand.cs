@@ -12,12 +12,14 @@ namespace PSArm
         [Parameter(Position = 0, Mandatory = true)]
         public string Name { get; set; }
 
+        [ValidateSet("WestUS", "WestUS2")]
         [Parameter()]
         public string Location { get; set; }
 
         [Parameter()]
         public string ApiVersion { get; set; }
 
+        [ArgumentCompleter(typeof(ResourceArgumentCompleter))]
         [Parameter()]
         public string Type { get; set; }
 
@@ -31,13 +33,20 @@ namespace PSArm
             var resourceDsl = ScriptBlock.Create(dsl.DslDefintions[schemaNameParts[1]]);
             InvokeCommand.InvokeScript(SessionState, resourceDsl);
 
-            var dict = new Dictionary<string, ArmPropertyInstance>();
+            var properties = new Dictionary<string, ArmPropertyInstance>();
+            var subresources = new Dictionary<string, ArmResource>();
 
             foreach (PSObject result in InvokeCommand.InvokeScript(SessionState, Body))
             {
-                if (result.BaseObject is ArmPropertyInstance armProperty)
+                switch (result.BaseObject)
                 {
-                    dict[armProperty.PropertyName] = armProperty;
+                    case ArmPropertyInstance armProperty:
+                        properties[armProperty.PropertyName] = armProperty;
+                        continue;
+
+                    case ArmResource subresource:
+                        subresources[subresource.Name] = subresource;
+                        continue;
                 }
             }
 
@@ -47,7 +56,8 @@ namespace PSArm
                 Location = Location,
                 Type = Type,
                 Name = Name,
-                Properties = dict,
+                Properties = properties,
+                Subresources = subresources,
             };
 
             WriteObject(resource);

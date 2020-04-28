@@ -41,6 +41,16 @@ namespace PSArm
             return _dsls.GetOrAdd(schemaName, LoadSchemaFromFile);
         }
 
+        public IReadOnlyList<string> ListSchemas()
+        {
+            var schemas = new List<string>();
+            foreach (string entry in Directory.GetFiles(_basePath))
+            {
+                schemas.Add(Path.GetFileNameWithoutExtension(entry));
+            }
+            return schemas;
+        }
+
         private ArmDslInfo LoadSchemaFromFile(string schemaName)
         {
             string path = Path.Combine(_basePath, $"{schemaName}.json");

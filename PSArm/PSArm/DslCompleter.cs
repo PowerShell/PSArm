@@ -2,48 +2,70 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using System.Management.Automation;
 using System.Management.Automation.Language;
+using System.Reflection;
 
 namespace PSArm
 {
     public static class DslCompleter
     {
+        private static CmdletInfo s_armInfo = new CmdletInfo("New-ArmTemplate", typeof(NewArmTemplateCommand));
+
+        private static CmdletInfo s_resourceInfo = new CmdletInfo("New-ArmResource", typeof(NewArmResourceCommand));
+
         private static readonly char[] s_typeSplitChars = new [] { '/' };
 
-        private static readonly IReadOnlyList<string> s_topLevelKeywords = new []
+        private static readonly IReadOnlyDictionary<string, CmdletInfo> s_topLevelKeywords = new Dictionary<string, CmdletInfo>
         {
-            "Resource",
-            "Output",
+            { "Resource", s_resourceInfo },
         };
 
-        public static CommandCompletion CompleteInput(string input, int cursorIndex, Hashtable options)
-        {
-            Tuple<Ast, Token[], IScriptPosition> parsedInput = CommandCompletion.MapStringInputToParsedInput(input, cursorIndex);
-            return CompleteInput(parsedInput.Item1, parsedInput.Item2, parsedInput.Item3, options);
-        }
-
-        public static CommandCompletion CompleteInput(
+        public static void PrependDslCompletions(
+            CommandCompletion completion,
             Ast ast,
             IReadOnlyList<Token> tokens,
             IScriptPosition cursorPosition,
             Hashtable options)
         {
-            Collection<CompletionResult> completions = GetCompletions(ast, tokens, cursorPosition, options);
+            Collection<CompletionResult> completionResults = GetCompletions(ast, tokens, cursorPosition, options, out int replacementLength);
 
-            if (completions == null)
+            if (completionResults == null)
             {
-                return null;
+                return;
             }
 
-            return new CommandCompletion(completions, currentMatchIndex: -1, replacementIndex: cursorPosition.ColumnNumber, replacementLength: 0);
+            if (completion.ReplacementIndex < 0)
+            {
+                completion.ReplacementIndex = cursorPosition.Offset;
+            }
+
+            if (completion.ReplacementLength < 0)
+            {
+                completion.ReplacementLength = replacementLength;
+            }
+
+            if (completion.CompletionMatches == null || completion.CompletionMatches.Count > 0)
+            {
+                completion.CompletionMatches = completionResults;
+            }
+            else
+            {
+                foreach (CompletionResult existingCompletion in completion.CompletionMatches)
+                {
+                    completionResults.Add(existingCompletion);
+                }
+                completion.CompletionMatches = completionResults;
+            }
         }
 
         private static Collection<CompletionResult> GetCompletions(
             Ast ast,
             IReadOnlyList<Token> tokens,
             IScriptPosition cursorPosition,
-            Hashtable options)
+            Hashtable options,
+            out int replacementLength)
         {
             // Go backward through the tokens to determine if we're positioned where a new command should be
             Token lastToken = null;
@@ -66,6 +88,7 @@ namespace PSArm
 
             if (lastToken == null)
             {
+                replacementLength = -1;
                 return null;
             }
 
@@ -87,7 +110,8 @@ namespace PSArm
                         tokens,
                         cursorPosition,
                         lastToken.Extent.EndScriptPosition);
-                    return GetKeywordCompletions(context);
+                    replacementLength = 0;
+                    return CompleteKeywords(context);
 
                 case TokenKind.Identifier:
                 case TokenKind.Command:
@@ -96,7 +120,8 @@ namespace PSArm
                         lastToken,
                         tokens,
                         cursorPosition);
-                    return GetKeywordCompletions(context);
+                    replacementLength = 0;
+                    return CompleteKeywords(context);
 
                 case TokenKind.Generic:
                     if (lastToken.Text == "-"
@@ -104,24 +129,38 @@ namespace PSArm
                         && ast.Parent is CommandElementAst)
                     {
                         context = GetKeywordContext(ast, lastToken, tokens, cursorPosition);
-                        return GetParameterCompletions(context);
+                        replacementLength = 0;
+                        return CompleteParameters(context);
                     }
                     break;
 
                 case TokenKind.Parameter:
                     context = GetKeywordContext(ast, lastToken, tokens, cursorPosition);
-                    return GetParameterCompletions(context);
+                    replacementLength = lastToken.Text.Length;
+                    return CompleteParameters(context);
+            }
+
+            replacementLength = -1;
+            return null;
+        }
+
+        private static Collection<CompletionResult> CompleteParameters(KeywordContext context)
+        {
+            if (context == null)
+            {
+                return null;
+            }
+
+            if (context.ResourceNamespace == null)
+            {
+                // Fall back to the parameter completer
+                return null;
             }
 
             return null;
         }
 
-        private static Collection<CompletionResult> GetParameterCompletions(KeywordContext context)
-        {
-            return null;
-        }
-
-        private static Collection<CompletionResult> GetKeywordCompletions(KeywordContext context)
+        private static Collection<CompletionResult> CompleteKeywords(KeywordContext context)
         {
             if (context == null)
             {
@@ -131,21 +170,23 @@ namespace PSArm
             // Top level keyword completions
             if (context.ResourceNamespace == null)
             {
-                var completions = new Collection<CompletionResult>();
                 string prefix = context.LastToken.Kind == TokenKind.Identifier
                     ? context.LastToken.Text
                     : null;
 
-                foreach (string keyword in s_topLevelKeywords)
+                var completions = new Collection<CompletionResult>();
+                foreach (KeyValuePair<string, CmdletInfo> topLevelKeyword in s_topLevelKeywords)
                 {
-                    if (prefix != null && !keyword.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    if (prefix == null || topLevelKeyword.Key.StartsWith(prefix))
                     {
-                        continue;
+                        completions.Add(
+                            new CompletionResult(
+                                topLevelKeyword.Key,
+                                topLevelKeyword.Key,
+                                CompletionResultType.Command,
+                                topLevelKeyword.Value.Definition));
                     }
-
-                    completions.Add(new CompletionResult(keyword, keyword, CompletionResultType.Command, keyword));
                 }
-
                 return completions;
             }
 
@@ -155,11 +196,6 @@ namespace PSArm
                 return null;
             }
 
-            return GetKeywordCompletionsForContext(context, dslInfo);
-        }
-
-        private static Collection<CompletionResult> GetKeywordCompletionsForContext(KeywordContext context, ArmDslInfo dslInfo)
-        {
             if (!dslInfo.Schema.Subschemas.TryGetValue(context.ResourceTypeName, out Dictionary<string, DslSchemaItem> schema))
             {
                 return null;
@@ -167,15 +203,38 @@ namespace PSArm
 
             if (context.KeywordStack.Count == 0)
             {
-                return GetCompletionForKeywordCommands(context, schema.Keys);
+                return CompleteKeywordsFromList(context, schema.Keys);
             }
 
-            return null;
+            if (context.KeywordStack.Count < 2)
+            {
+                return null;
+            }
+
+            var immediateSchema = schema[context.KeywordStack[1]] as DslBlockSchema;
+            for (int i = 2; i < context.KeywordStack.Count; i++)
+            {
+                if (immediateSchema == null)
+                {
+                    return null;
+                }
+
+                string currKeyword = context.KeywordStack[i];
+                if (!immediateSchema.Body.TryGetValue(currKeyword, out DslSchemaItem subschema)
+                    || !(subschema is DslBlockSchema subBlock))
+                {
+                    return null;
+                }
+
+                immediateSchema = subBlock;
+            }
+
+            return CompleteKeywordsFromList(context, immediateSchema.Body.Keys);
         }
 
-        private static Collection<CompletionResult> GetCompletionForKeywordCommands(KeywordContext context, IEnumerable<string> keywords)
+        private static Collection<CompletionResult> CompleteKeywordsFromList(KeywordContext context, IEnumerable<string> keywords)
         {
-            string keywordPrefix = context.LastToken.Kind == TokenKind.Command
+            string keywordPrefix = context.LastToken.Kind == TokenKind.Identifier
                 ? context.LastToken.Text
                 : null;
 
@@ -283,6 +342,11 @@ namespace PSArm
             if (!foundArmKeyword)
             {
                 return null;
+            }
+
+            if (context.KeywordStack.Count == 0)
+            {
+                return context;
             }
 
             context.KeywordStack.Reverse();
@@ -527,6 +591,79 @@ namespace PSArm
         {
             return left.LineNumber < right.LineNumber
                 || (left.LineNumber == right.LineNumber && left.ColumnNumber <= right.ColumnNumber);
+        }
+    }
+
+    public class ResourceArgumentCompleter : IArgumentCompleter
+    {
+        private static string[] s_locations = new []
+        {
+            "WestUS",
+            "WestUS2",
+            "CentralUS"
+        };
+
+        private static char[] s_typeSeparator = new [] { '/' };
+
+        public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
+        {
+            if (IsString(parameterName, "Type"))
+            {
+                var completions = new List<CompletionResult>();
+                if (wordToComplete.Contains("/"))
+                {
+                    string[] completeParts = wordToComplete.Split(s_typeSeparator);
+                    if (DslLoader.Instance.TryLoadDsl(completeParts[0], out ArmDslInfo dslInfo))
+                    {
+                        foreach (string subschema in dslInfo.Schema.Subschemas.Keys)
+                        {
+                            if (subschema.StartsWith(completeParts[1]))
+                            {
+                                string fullCompletion = $"{completeParts[0]}/{subschema}";
+                                completions.Add(new CompletionResult(fullCompletion, fullCompletion, CompletionResultType.ParameterValue, fullCompletion));
+                            }
+                        }
+                    }
+
+                    return completions;
+                }
+
+                foreach (string schemaName in DslLoader.Instance.ListSchemas())
+                {
+                    if (schemaName.StartsWith(wordToComplete))
+                    {
+                        string completion = $"{schemaName}/";
+                        completions.Add(new CompletionResult(completion, completion, CompletionResultType.ParameterValue, completion));
+                    }
+                }
+
+                return completions;
+            }
+
+            if (IsString(parameterName, "Location"))
+            {
+                return GetCompletionsFromList(wordToComplete, s_locations);
+            }
+
+            return null;
+        }
+
+        private static IEnumerable<CompletionResult> GetCompletionsFromList(string prefix, IEnumerable<string> possibleValues)
+        {
+            foreach (string possibleValue in possibleValues)
+            {
+                if (!possibleValue.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                yield return new CompletionResult(possibleValue, possibleValue, CompletionResultType.ParameterValue, possibleValue);
+            }
+        }
+
+        private static bool IsString(string str, string expected)
+        {
+            return string.Equals(str, expected, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

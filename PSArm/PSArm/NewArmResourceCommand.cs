@@ -32,9 +32,9 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
 
         protected override void EndProcessing()
         {
-            string[] schemaNameParts = Name.Split(s_splitChar);
+            string[] schemaNameParts = Type.Split(s_splitChar);
             ArmDslInfo dsl = DslLoader.Instance.LoadDsl(schemaNameParts[0]);
-            var resourceDsl = ScriptBlock.Create(dsl.DslDefintions[schemaNameParts[1]]);
+            var resourceDsl = ScriptBlock.Create(dsl.DslDefintions[Type]);
             InvokeCommand.InvokeScript(SessionState, resourceDsl);
 
             var properties = new Dictionary<string, ArmPropertyInstance>();

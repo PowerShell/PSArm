@@ -171,4 +171,33 @@ namespace PSArm
             return ToJson().ToString();
         }
     }
+
+    public class ArmTemplate
+    {
+        public ArmTemplate()
+        {
+            Resources = new List<ArmResource>();
+        }
+
+        public List<ArmResource> Resources { get; set; }
+
+        public JObject ToJson()
+        {
+            var jObj = new JObject();
+
+            var resources = new JArray();
+            foreach (ArmResource resource in Resources)
+            {
+                resources.Add(resource.ToJson());
+            }
+            jObj["resources"] = resources;
+
+            return jObj;
+        }
+
+        public override string ToString()
+        {
+            return ToJson().ToString();
+        }
+    }
 }

@@ -8,7 +8,10 @@ namespace PSArm
 
         protected override void EndProcessing()
         {
-            InvokeCommand.InvokeScript(SessionState, Body);
+            foreach (PSObject result in InvokeCommand.InvokeScript(SessionState, Body))
+            {
+                WriteObject(result);
+            }
         }
     }
 

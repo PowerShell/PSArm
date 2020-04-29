@@ -9,6 +9,10 @@ namespace PSArm
     {
         private readonly static char[] s_splitChar = new [] { '/' };
 
+        internal static string SyntaxDescription = @"
+Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [-Body] <scriptblock>
+";
+
         [Parameter(Position = 0, Mandatory = true)]
         public string Name { get; set; }
 

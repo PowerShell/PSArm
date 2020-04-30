@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
@@ -172,18 +173,55 @@ namespace PSArm
         }
     }
 
+    public class ArmOutput
+    {
+        public string Name { get; set; }
+
+        public string Type { get; set; }
+
+        public object Value { get; set; }
+
+        public JToken ToJson()
+        {
+            return new JObject
+            {
+                ["name"] = Name,
+                ["type"] = Type,
+                ["value"] = Value.ToString(),
+            };
+        }
+    }
+
     public class ArmTemplate
     {
         public ArmTemplate()
         {
             Resources = new List<ArmResource>();
+            Outputs = new List<ArmOutput>();
         }
+
+        public string Schema { get; set; } = "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#";
+
+        public Version ContentVersion { get; set; } = new Version(1, 0, 0, 0);
 
         public List<ArmResource> Resources { get; set; }
 
+        public List<ArmOutput> Outputs { get; set; }
+
         public JObject ToJson()
         {
-            var jObj = new JObject();
+            var jObj = new JObject
+            {
+                ["$schema"] = Schema,
+                ["contentVersion"] = ContentVersion.ToString(),
+            };
+
+            var outputs = new JObject();
+            foreach (ArmOutput output in Outputs)
+            {
+                outputs[output.Name] = output.ToJson();
+            }
+            jObj["outputs"] = outputs;
 
             var resources = new JArray();
             foreach (ArmResource resource in Resources)

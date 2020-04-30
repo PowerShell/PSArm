@@ -15,6 +15,8 @@ namespace PSArm
 
         private static CmdletInfo s_resourceInfo = new CmdletInfo("New-ArmResource", typeof(NewArmResourceCommand));
 
+        private static CmdletInfo s_outputInfo = new CmdletInfo("New-ArmOutput", typeof(NewArmOutputCommand));
+
         private static CmdletInfo s_propertiesInfo = new CmdletInfo("New-ArmProperties", typeof(NewArmPropertiesCommand));
 
         private static readonly char[] s_typeSplitChars = new [] { '/' };
@@ -22,6 +24,7 @@ namespace PSArm
         private static readonly IReadOnlyDictionary<string, CmdletInfo> s_topLevelKeywords = new Dictionary<string, CmdletInfo>
         {
             { "Resource", s_resourceInfo },
+            { "Output", s_outputInfo },
         };
 
         private static readonly IReadOnlyDictionary<string, CmdletInfo> s_resourceKeywords = new Dictionary<string, CmdletInfo>

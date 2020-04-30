@@ -11,7 +11,7 @@ namespace PSArm
         public string Name { get; set; }
 
         [Parameter(Position = 1, Mandatory = true)]
-        public object Value { get; set; }
+        public IArmExpression Value { get; set; }
 
         protected override void EndProcessing()
         {
@@ -34,7 +34,7 @@ namespace PSArm
             var result = new ArmParameterizedProperty(Name);
             foreach (KeyValuePair<string, object> parameter in Parameters)
             {
-                result.Parameters[parameter.Key] = parameter.Value;
+                result.Parameters[parameter.Key] = ArmTypeConversion.Convert(parameter.Value);
             }
             WriteObject(result);
         }
@@ -64,7 +64,7 @@ namespace PSArm
                     continue;
                 }
 
-                result.Parameters[UnPascal(parameter.Key)] = parameter.Value;
+                result.Parameters[UnPascal(parameter.Key)] = ArmTypeConversion.Convert(parameter.Value);
             }
 
             Dictionary<string, List<ArmPropertyArrayItem>> arrayItems = null;

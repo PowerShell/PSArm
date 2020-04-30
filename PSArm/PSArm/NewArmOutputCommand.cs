@@ -7,13 +7,13 @@ namespace PSArm
     public class NewArmOutputCommand : PSCmdlet
     {
         [Parameter(Position = 0, Mandatory = true, ValueFromPipeline = true)]
-        public string Name { get; set; }
+        public IArmExpression Name { get; set; }
 
         [Parameter(Mandatory = true)]
-        public string Type { get; set; }
+        public IArmExpression Type { get; set; }
 
         [Parameter(Mandatory = true)]
-        public object Value { get; set; }
+        public IArmExpression Value { get; set; }
 
         protected override void ProcessRecord()
         {

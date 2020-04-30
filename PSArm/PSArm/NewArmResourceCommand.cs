@@ -14,7 +14,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
 ";
 
         [Parameter(Position = 0, Mandatory = true)]
-        public string Name { get; set; }
+        public IArmExpression Name { get; set; }
 
         [ValidateSet("WestUS", "WestUS2")]
         [Parameter()]
@@ -38,7 +38,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
             InvokeCommand.InvokeScript(SessionState, resourceDsl);
 
             var properties = new Dictionary<string, ArmPropertyInstance>();
-            var subresources = new Dictionary<string, ArmResource>();
+            var subresources = new Dictionary<IArmExpression, ArmResource>();
 
             foreach (PSObject result in InvokeCommand.InvokeScript(SessionState, Body))
             {

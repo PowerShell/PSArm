@@ -23,17 +23,17 @@ namespace PSArm
 
     public class ArmPropertyValue : ArmPropertyInstance
     {
-        public ArmPropertyValue(string propertyName, object value)
+        public ArmPropertyValue(string propertyName, IArmExpression value)
             : base(propertyName)
         {
             Value = value;
         }
 
-        public object Value { get; }
+        public IArmExpression Value { get; }
 
         public override JToken ToJson()
         {
-            return new JValue(Value);
+            return Value.ToExpressionString();
         }
     }
 
@@ -42,10 +42,10 @@ namespace PSArm
         public ArmParameterizedItem(string propertyName)
             : base(propertyName)
         {
-            Parameters = new Dictionary<string, object>();
+            Parameters = new Dictionary<string, IArmExpression>();
         }
 
-        public Dictionary<string, object> Parameters { get; }
+        public Dictionary<string, IArmExpression> Parameters { get; }
     }
 
     public class ArmParameterizedProperty : ArmParameterizedItem
@@ -58,9 +58,9 @@ namespace PSArm
         public override JToken ToJson()
         {
             var jObj = new JObject();
-            foreach (KeyValuePair<string, object> parameter in Parameters)
+            foreach (KeyValuePair<string, IArmExpression> parameter in Parameters)
             {
-                jObj[parameter.Key] = new JValue(parameter.Value);
+                jObj[parameter.Key] = parameter.Value.ToExpressionString();
             }
             return jObj;
         }
@@ -84,9 +84,9 @@ namespace PSArm
         public override JToken ToJson()
         {
             var json = new JObject();
-            foreach (KeyValuePair<string, object> parameter in Parameters)
+            foreach (KeyValuePair<string, IArmExpression> parameter in Parameters)
             {
-                json[parameter.Key] = new JValue(parameter.Value);
+                json[parameter.Key] = parameter.Value.ToExpressionString();
             }
 
             var properties = new JObject();
@@ -139,22 +139,22 @@ namespace PSArm
 
         public string Type { get; set; }
 
-        public string Name { get; set; }
+        public IArmExpression Name { get; set; }
 
         public string Location { get; set; }
 
         public Dictionary<string, ArmPropertyInstance> Properties { get; set; }
 
-        public Dictionary<string, ArmResource> Subresources { get; set; }
+        public Dictionary<IArmExpression, ArmResource> Subresources { get; set; }
 
         public JObject ToJson()
         {
             var jObj = new JObject
             {
-                ["apiVersion"] = new JValue(ApiVersion),
-                ["type"] = new JValue(Type),
-                ["name"] = new JValue(Name),
-                ["location"] = new JValue(Location),
+                ["apiVersion"] = ApiVersion,
+                ["type"] = Type,
+                ["name"] = Name.ToExpressionString(),
+                ["location"] = Location,
             };
 
             var properties = new JObject();
@@ -175,19 +175,19 @@ namespace PSArm
 
     public class ArmOutput
     {
-        public string Name { get; set; }
+        public IArmExpression Name { get; set; }
 
-        public string Type { get; set; }
+        public IArmExpression Type { get; set; }
 
-        public object Value { get; set; }
+        public IArmExpression Value { get; set; }
 
         public JToken ToJson()
         {
             return new JObject
             {
-                ["name"] = Name,
-                ["type"] = Type,
-                ["value"] = Value.ToString(),
+                ["name"] = Name.ToExpressionString(),
+                ["type"] = Type.ToExpressionString(),
+                ["value"] = Value.ToExpressionString(),
             };
         }
     }
@@ -208,6 +208,8 @@ namespace PSArm
 
         public List<ArmOutput> Outputs { get; set; }
 
+        public ArmParameter[] Parameters { get; set; }
+
         public JObject ToJson()
         {
             var jObj = new JObject
@@ -215,6 +217,16 @@ namespace PSArm
                 ["$schema"] = Schema,
                 ["contentVersion"] = ContentVersion.ToString(),
             };
+
+            if (Parameters != null)
+            {
+                var parameters = new JObject();
+                foreach (ArmParameter parameter in Parameters)
+                {
+                    parameters[parameter.Name] = parameter.ToJson();
+                }
+                jObj["parameters"] = parameters;
+            }
 
             var outputs = new JObject();
             foreach (ArmOutput output in Outputs)

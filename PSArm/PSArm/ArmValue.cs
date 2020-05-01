@@ -292,6 +292,35 @@ namespace PSArm
             : base("concat", arguments)
         {
         }
+
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            var args = new List<IArmExpression>(Arguments.Length);
+            bool canFlatten = true;
+            foreach (IArmExpression arg in Arguments)
+            {
+                IArmExpression resolved = arg.Instantiate(parameters);
+
+                if (!(resolved is ArmStringLiteral))
+                {
+                    canFlatten = false;
+                }
+
+                args.Add(resolved);
+            }
+
+            if (canFlatten)
+            {
+                var sb = new StringBuilder();
+                foreach (ArmStringLiteral strArg in args)
+                {
+                    sb.Append(strArg.Value);
+                }
+                return new ArmStringLiteral(sb.ToString());
+            }
+
+            return new ArmConcatCall(args.ToArray());
+        }
     }
 
     public class ArmParameter : ArmOperation
@@ -318,7 +347,7 @@ namespace PSArm
                 bool found = false;
                 foreach (object allowedValue in AllowedValues)
                 {
-                    if (value.GetValue() == allowedValue)
+                    if (object.Equals(value.GetValue(), allowedValue))
                     {
                         found = true;
                         break;
@@ -403,9 +432,9 @@ namespace PSArm
         [Parameter(ValueFromRemainingArguments = true)]
         public IArmExpression[] Arguments { get; set; }
 
-        protected override IArmExpression[] GetArguments()
+        protected override void EndProcessing()
         {
-            return Arguments;
+            WriteObject(new ArmConcatCall(Arguments));
         }
     }
 

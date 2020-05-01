@@ -19,6 +19,8 @@ namespace PSArm
         {
             return ToJson().ToString();
         }
+
+        public abstract ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters);
     }
 
     public class ArmPropertyValue : ArmPropertyInstance
@@ -30,6 +32,11 @@ namespace PSArm
         }
 
         public IArmExpression Value { get; }
+
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmPropertyValue(PropertyName, Value.Instantiate(parameters));
+        }
 
         public override JToken ToJson()
         {
@@ -45,7 +52,22 @@ namespace PSArm
             Parameters = new Dictionary<string, IArmExpression>();
         }
 
-        public Dictionary<string, IArmExpression> Parameters { get; }
+        public Dictionary<string, IArmExpression> Parameters { get; protected set; }
+
+        protected Dictionary<string, IArmExpression> InstantiateParameters(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            if (Parameters == null)
+            {
+                return null;
+            }
+
+            var dict = new Dictionary<string, IArmExpression>();
+            foreach (KeyValuePair<string, IArmExpression> parameter in Parameters)
+            {
+                dict[parameter.Key] = parameter.Value.Instantiate(parameters);
+            }
+            return dict;
+        }
     }
 
     public class ArmParameterizedProperty : ArmParameterizedItem
@@ -53,6 +75,14 @@ namespace PSArm
         public ArmParameterizedProperty(string propertyName)
             : base(propertyName)
         {
+        }
+
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmParameterizedProperty(PropertyName)
+            {
+                Parameters = InstantiateParameters(parameters),
+            };
         }
 
         public override JToken ToJson()
@@ -81,6 +111,14 @@ namespace PSArm
 
         public Dictionary<string, ArmPropertyInstance> Properties { get; }
 
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmPropertyObject(PropertyName, InstantiateProperties(parameters))
+            {
+                Parameters = InstantiateParameters(parameters),
+            };
+        }
+
         public override JToken ToJson()
         {
             var json = new JObject();
@@ -98,12 +136,40 @@ namespace PSArm
 
             return json;
         }
+
+        protected Dictionary<string, ArmPropertyInstance> InstantiateProperties(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            if (Properties == null)
+            {
+                return null;
+            }
+
+            var dict = new Dictionary<string, ArmPropertyInstance>();
+            foreach (KeyValuePair<string, ArmPropertyInstance> property in Properties)
+            {
+                dict[property.Key] = property.Value.Instantiate(parameters);
+            }
+            return dict;
+        }
     }
 
     public class ArmPropertyArrayItem : ArmPropertyObject
     {
         public ArmPropertyArrayItem(string propertyName) : base(propertyName)
         {
+        }
+
+        public ArmPropertyArrayItem(string propertyName, Dictionary<string, ArmPropertyInstance> properties)
+            : base(propertyName, properties)
+        {
+        }
+
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmPropertyArrayItem(PropertyName, InstantiateProperties(parameters))
+            {
+                Parameters = InstantiateParameters(parameters),
+            };
         }
     }
 
@@ -130,6 +196,16 @@ namespace PSArm
                 jArr.Add(item.ToJson());
             }
             return jArr;
+        }
+
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            var items = new List<ArmPropertyArrayItem>();
+            foreach (ArmPropertyArrayItem item in _items)
+            {
+                items.Add((ArmPropertyArrayItem)item.Instantiate(parameters));
+            }
+            return new ArmPropertyArray(PropertyName, items);
         }
     }
 
@@ -171,6 +247,39 @@ namespace PSArm
         {
             return ToJson().ToString();
         }
+
+        public ArmResource Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            Dictionary<string, ArmPropertyInstance> properties = null;
+            if (Properties != null)
+            {
+                properties = new Dictionary<string, ArmPropertyInstance>();
+                foreach (KeyValuePair<string, ArmPropertyInstance> property in Properties)
+                {
+                    properties[property.Key] = property.Value.Instantiate(parameters);
+                }
+            }
+
+            Dictionary<IArmExpression, ArmResource> subResources = null;
+            if (Subresources != null)
+            {
+                subResources = new Dictionary<IArmExpression, ArmResource>();
+                foreach (KeyValuePair<IArmExpression, ArmResource> resource in Subresources)
+                {
+                    subResources[resource.Key.Instantiate(parameters)] = resource.Value.Instantiate(parameters);
+                }
+            }
+
+            return new ArmResource
+            {
+                ApiVersion = ApiVersion,
+                Type = Type,
+                Name = Name.Instantiate(parameters),
+                Location = Location,
+                Properties = properties,
+                Subresources = subResources,
+            };
+        }
     }
 
     public class ArmOutput
@@ -188,6 +297,16 @@ namespace PSArm
                 ["name"] = Name.ToExpressionString(),
                 ["type"] = Type.ToExpressionString(),
                 ["value"] = Value.ToExpressionString(),
+            };
+        }
+
+        public ArmOutput Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmOutput
+            {
+                Name = Name.Instantiate(parameters),
+                Type = Type.Instantiate(parameters),
+                Value = Value.Instantiate(parameters),
             };
         }
     }
@@ -248,6 +367,29 @@ namespace PSArm
         public override string ToString()
         {
             return ToJson().ToString();
+        }
+
+        public ArmTemplate Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            var outputs = new List<ArmOutput>();
+            foreach (ArmOutput output in Outputs)
+            {
+                outputs.Add(output.Instantiate(parameters));
+            }
+
+            var resources = new List<ArmResource>();
+            foreach (ArmResource resource in Resources)
+            {
+                resources.Add(resource.Instantiate(parameters));
+            }
+
+            return new ArmTemplate
+            {
+                ContentVersion = ContentVersion,
+                Schema = Schema,
+                Outputs = outputs,
+                Resources = resources,
+            };
         }
     }
 }

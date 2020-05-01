@@ -68,6 +68,7 @@ namespace PSArm
                                         new TypeName(
                                             typeConstraint.TypeName.Extent,
                                             "PSArm.ArmParameter")));
+                                armParameter.Type = typeConstraint.TypeName.FullName;
                                 continue;
 
                             case AttributeAst attribute:

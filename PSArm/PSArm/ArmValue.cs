@@ -403,7 +403,9 @@ namespace PSArm
 
             if (DefaultValue != null)
             {
-                jObj["defaultValue"] = new JValue(DefaultValue);
+                jObj["defaultValue"] = DefaultValue is IArmExpression armExpr
+                    ? new JValue(armExpr.ToExpressionString())
+                    : new JValue(DefaultValue);
             }
 
             return jObj;

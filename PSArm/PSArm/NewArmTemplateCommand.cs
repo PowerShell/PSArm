@@ -105,7 +105,7 @@ namespace PSArm
 
                     if (parameter.DefaultValue != null)
                     {
-                        armParameter.DefaultValue = parameter.DefaultValue.SafeGetValue();
+                        armParameter.DefaultValue = GetDefaultValue(parameter.DefaultValue);
                     }
 
                     armParameters.Add(armParameter);
@@ -153,6 +153,16 @@ namespace PSArm
                 (NamedBlockAst)ast.DynamicParamBlock?.Copy());
 
             return (newScriptBlockAst.GetScriptBlock(), armParameters.ToArray(), armVariables);
+        }
+
+        private object GetDefaultValue(ExpressionAst defaultValue)
+        {
+            foreach (PSObject result in InvokeCommand.InvokeScript(defaultValue.Extent.Text))
+            {
+                return ArmTypeConversion.Convert(result);
+            }
+
+            return null;
         }
 
         private ArmVariable[] GatherVariables(Ast ast, IEnumerable<ParameterAst> parameters)

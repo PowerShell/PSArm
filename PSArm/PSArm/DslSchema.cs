@@ -284,11 +284,19 @@ public class DslScriptWriter : IDslSchemaVisitor
         var dict = new Dictionary<string, string>();
         foreach (KeyValuePair<string, Dictionary<string, DslSchemaItem>> entry in schema.Subschemas)
         {
+            string schemaName = $"{schema.Name}/{entry.Key}";
+
+            if (entry.Value.Count == 0)
+            {
+                dict[schemaName] = string.Empty;
+                continue;
+            }
+
             foreach (KeyValuePair<string, DslSchemaItem> topKeyword in entry.Value)
             {
                 Reset();
                 topKeyword.Value.Visit(topKeyword.Key, this);
-                dict[$"{schema.Name}/{entry.Key}"] = _sb.ToString();
+                dict[schemaName] = _sb.ToString();
             }
         }
         return dict;

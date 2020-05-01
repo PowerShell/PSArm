@@ -1,3 +1,5 @@
+New-Variable storageAccountName (Concat 'storage' (UniqueString (ResourceGroup).Id))
+
 $t = Arm {
     param(
         # Storage account type
@@ -8,8 +10,6 @@ $t = Arm {
         [string]
         $location = (ResourceGroup).Location
     )
-
-    $storageAccountName = Concat 'storage' (UniqueString (ResourceGroup).Id)
 
     Resource -Name $storageAccountName -Location $location -ApiVersion 2018-07-01 -Type Microsoft.Storage/storageAccounts -Kind 'StorageV2' {
         Sku -Name $storageAccountType

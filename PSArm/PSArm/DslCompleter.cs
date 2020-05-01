@@ -27,6 +27,8 @@ namespace PSArm
 
         private static CmdletInfo s_dependsOnInfo = new CmdletInfo("New-ArmDependsOn", typeof(NewArmDependsOnCommand));
 
+        private static CmdletInfo s_skuInfo = new CmdletInfo("New-ArmSku", typeof(NewArmSkuCommand));
+
         private static readonly char[] s_typeSplitChars = new [] { '/' };
 
         private static readonly IReadOnlyDictionary<string, CmdletInfo> s_topLevelKeywords = new Dictionary<string, CmdletInfo>
@@ -40,6 +42,7 @@ namespace PSArm
             { "Resource", s_resourceInfo },
             { "Properties", s_propertiesInfo },
             { "DependsOn", s_dependsOnInfo },
+            { "Sku", s_skuInfo },
         };
 
         public static void PrependDslCompletions(

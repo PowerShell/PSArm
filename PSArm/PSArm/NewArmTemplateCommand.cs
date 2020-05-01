@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Language;
 
@@ -10,6 +11,10 @@ namespace PSArm
     [Cmdlet(VerbsCommon.New, "ArmTemplate")]
     public class NewArmTemplateCommand : PSCmdlet
     {
+        private static ScriptPosition s_emptyPosition = new ScriptPosition(string.Empty, 0, 0, string.Empty);
+
+        private static IScriptExtent s_emptyExtent = new ScriptExtent(s_emptyPosition, s_emptyPosition);
+
         private static Version s_defaultVersion = new Version(1, 0, 0, 0);
 
         [Parameter()]
@@ -25,11 +30,16 @@ namespace PSArm
                 ContentVersion = ContentVersion,
             };
 
-            (ScriptBlock parameterizedBody, ArmParameter[] armParameters) = ParameterizeScriptBlock(Body);
+            (ScriptBlock parameterizedBody, ArmParameter[] armParameters, ArmVariable[] armVariables) = ParameterizeScriptBlock(Body);
 
             armTemplate.Parameters = armParameters;
+            armTemplate.Variables = armVariables;
 
-            foreach (PSObject item in InvokeCommand.InvokeScript(SessionState, parameterizedBody, armParameters))
+            var arguments = new List<object>();
+            arguments.AddRange(armParameters);
+            arguments.AddRange(armVariables);
+
+            foreach (PSObject item in InvokeCommand.InvokeScript(SessionState, parameterizedBody, arguments.ToArray()))
             {
                 switch (item.BaseObject)
                 {
@@ -45,71 +55,94 @@ namespace PSArm
             WriteObject(armTemplate);
         }
 
-        private (ScriptBlock, ArmParameter[]) ParameterizeScriptBlock(ScriptBlock sb)
+        private (ScriptBlock, ArmParameter[], ArmVariable[]) ParameterizeScriptBlock(ScriptBlock sb)
         {
+
             var ast = (ScriptBlockAst)sb.Ast;
-            if (ast.ParamBlock?.Parameters == null || ast.ParamBlock.Parameters.Count == 0)
-            {
-                return (sb, Array.Empty<ArmParameter>());
-            }
+            ArmVariable[] armVariables = GatherVariables(ast, ast.ParamBlock?.Parameters ?? Enumerable.Empty<ParameterAst>());
 
             var armParameters = new List<ArmParameter>();
             var parameterAsts = new List<ParameterAst>();
-            foreach (ParameterAst parameter in ast.ParamBlock.Parameters)
+
+            if (ast.ParamBlock?.Parameters != null)
             {
-                var armParameter = new ArmParameter(parameter.Name.VariablePath.UserPath);
-
-                // Go through attributes
-                var attributes = new List<AttributeBaseAst>();
-                if (parameter.Attributes != null && parameter.Attributes.Count > 0)
+                foreach (ParameterAst parameter in ast.ParamBlock.Parameters)
                 {
-                    foreach (AttributeBaseAst attributeBase in parameter.Attributes)
-                    {
-                        switch (attributeBase)
-                        {
-                            case TypeConstraintAst typeConstraint:
-                                attributes.Add(
-                                    new TypeConstraintAst(
-                                        typeConstraint.Extent,
-                                        new TypeName(
-                                            typeConstraint.TypeName.Extent,
-                                            "PSArm.ArmParameter")));
-                                armParameter.Type = typeConstraint.TypeName.FullName;
-                                continue;
+                    var armParameter = new ArmParameter(parameter.Name.VariablePath.UserPath);
 
-                            case AttributeAst attribute:
-                                if (string.Equals(attribute.TypeName.FullName, "ValidateSet", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    var allowedValues = new List<object>(attribute.PositionalArguments.Count);
-                                    foreach (ExpressionAst expr in attribute.PositionalArguments)
+                    // Go through attributes
+                    var attributes = new List<AttributeBaseAst>();
+                    if (parameter.Attributes != null && parameter.Attributes.Count > 0)
+                    {
+                        foreach (AttributeBaseAst attributeBase in parameter.Attributes)
+                        {
+                            switch (attributeBase)
+                            {
+                                case TypeConstraintAst typeConstraint:
+                                    attributes.Add(
+                                        new TypeConstraintAst(
+                                            typeConstraint.Extent,
+                                            new TypeName(
+                                                typeConstraint.TypeName.Extent,
+                                                "PSArm.ArmParameter")));
+                                    armParameter.Type = typeConstraint.TypeName.FullName;
+                                    continue;
+
+                                case AttributeAst attribute:
+                                    if (string.Equals(attribute.TypeName.FullName, "ValidateSet", StringComparison.OrdinalIgnoreCase))
                                     {
-                                        allowedValues.Add(expr.SafeGetValue());
+                                        var allowedValues = new List<object>(attribute.PositionalArguments.Count);
+                                        foreach (ExpressionAst expr in attribute.PositionalArguments)
+                                        {
+                                            allowedValues.Add(expr.SafeGetValue());
+                                        }
+                                        armParameter.AllowedValues = allowedValues.ToArray();
                                     }
-                                    armParameter.AllowedValues = allowedValues.ToArray();
-                                }
-                                continue;
+                                    continue;
+                            }
                         }
                     }
-                }
 
-                if (parameter.DefaultValue != null)
-                {
-                    armParameter.DefaultValue = parameter.DefaultValue.SafeGetValue();
-                }
+                    if (parameter.DefaultValue != null)
+                    {
+                        armParameter.DefaultValue = parameter.DefaultValue.SafeGetValue();
+                    }
 
-                armParameters.Add(armParameter);
+                    armParameters.Add(armParameter);
+                    parameterAsts.Add(
+                        new ParameterAst(
+                            parameter.Extent,
+                            (VariableExpressionAst)parameter.Name.Copy(),
+                            attributes,
+                            defaultValue: null));
+                }
+            }
+
+            foreach (ArmVariable variable in armVariables)
+            {
                 parameterAsts.Add(
                     new ParameterAst(
-                        parameter.Extent,
-                        (VariableExpressionAst)parameter.Name.Copy(),
-                        attributes,
+                        s_emptyExtent,
+                        new VariableExpressionAst(s_emptyExtent, variable.Name, splatted: false),
+                        Enumerable.Empty<AttributeBaseAst>(),
                         defaultValue: null));
             }
 
-            var newParamBlock = new ParamBlockAst(
-                ast.ParamBlock.Extent,
-                CopyAstCollection<AttributeAst>(ast.ParamBlock.Attributes),
-                parameterAsts);
+            ParamBlockAst newParamBlock;
+            if (ast.ParamBlock != null)
+            {
+                newParamBlock = new ParamBlockAst(
+                    s_emptyExtent,
+                    Enumerable.Empty<AttributeAst>(),
+                    parameterAsts);
+            }
+            else
+            {
+                newParamBlock = new ParamBlockAst(
+                    ast.ParamBlock.Extent,
+                    CopyAstCollection<AttributeAst>(ast.ParamBlock.Attributes),
+                    parameterAsts);
+             }
 
             var newScriptBlockAst = new ScriptBlockAst(
                 ast.Extent,
@@ -119,7 +152,39 @@ namespace PSArm
                 (NamedBlockAst)ast.EndBlock?.Copy(),
                 (NamedBlockAst)ast.DynamicParamBlock?.Copy());
 
-            return (newScriptBlockAst.GetScriptBlock(), armParameters.ToArray());
+            return (newScriptBlockAst.GetScriptBlock(), armParameters.ToArray(), armVariables);
+        }
+
+        private ArmVariable[] GatherVariables(Ast ast, IEnumerable<ParameterAst> parameters)
+        {
+            var exclude = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "_",
+                "psitem",
+                "psscriptroot",
+            };
+            foreach (ParameterAst parameter in parameters)
+            {
+                exclude.Add(parameter.Name.VariablePath.UserPath);
+            }
+
+            var vars = new Dictionary<string, VariableExpressionAst>();
+            foreach (VariableExpressionAst variable in ast.FindAll(subast => subast is VariableExpressionAst, searchNestedScriptBlocks: true))
+            {
+                if (!exclude.Contains(variable.VariablePath.UserPath))
+                {
+                    vars[variable.VariablePath.UserPath] = variable;
+                }
+            }
+
+            var armVars = new List<ArmVariable>();
+            foreach (string variableName in vars.Keys)
+            {
+                object value = SessionState.PSVariable.GetValue(variableName);
+                armVars.Add(new ArmVariable(variableName, ArmTypeConversion.Convert(value)));
+            }
+
+            return armVars.ToArray();
         }
 
         private List<TAst> CopyAstCollection<TAst>(IReadOnlyCollection<TAst> asts) where TAst : Ast

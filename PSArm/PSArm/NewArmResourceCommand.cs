@@ -20,6 +20,9 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
         public IArmExpression Location { get; set; }
 
         [Parameter()]
+        public IArmExpression Kind { get; set; }
+
+        [Parameter()]
         public string ApiVersion { get; set; }
 
         [ArgumentCompleter(typeof(ResourceArgumentCompleter))]
@@ -39,6 +42,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
             var properties = new Dictionary<string, ArmPropertyInstance>();
             var subresources = new Dictionary<IArmExpression, ArmResource>();
             var dependsOns = new List<IArmExpression>();
+            ArmSku armSku = null;
 
             foreach (PSObject result in InvokeCommand.InvokeScript(SessionState, Body))
             {
@@ -54,6 +58,10 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
 
                     case ArmDependsOn dependsOn:
                         dependsOns.Add(dependsOn.Value);
+                        continue;
+
+                    case ArmSku sku:
+                        armSku = sku;
                         continue;
                 }
             }

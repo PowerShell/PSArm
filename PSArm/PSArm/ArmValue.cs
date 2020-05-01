@@ -176,13 +176,20 @@ namespace PSArm
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            result = new ArmMemberAccess(this, binder.Name);
+            result = new ArmMemberAccess(this, UnPascal(binder.Name));
             return true;
         }
 
         public override string ToString() => ToExpressionString();
 
         public abstract IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters);
+
+        private string UnPascal(string s)
+        {
+            return char.IsUpper(s[0])
+                ? char.ToLower(s[0]) + s.Substring(1)
+                : s;
+        }
     }
 
     public class ArmFunctionCall : ArmOperation
@@ -225,7 +232,7 @@ namespace PSArm
                 for (int i = 1; i < Arguments.Length; i++)
                 {
                     sb.Append(", ")
-                        .Append(Arguments[1].ToInnerExpressionString());
+                        .Append(Arguments[i].ToInnerExpressionString());
                 }
             }
 
@@ -403,6 +410,38 @@ namespace PSArm
         }
     }
 
+    public class ArmVariable : ArmOperation
+    {
+        public ArmVariable(string name, IArmExpression value)
+        {
+            Name = name;
+            Value = value;
+        }
+
+        public string Name { get; }
+
+        public IArmExpression Value { get; }
+
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmVariable(Name, Value.Instantiate(parameters));
+        }
+
+        public override string ToInnerExpressionString()
+        {
+            return new StringBuilder()
+                .Append("variables('")
+                .Append(Name)
+                .Append("')")
+                .ToString();
+        }
+
+        public JValue ToJson()
+        {
+            return new JValue(Value.ToExpressionString());
+        }
+    }
+
     public abstract class ArmBuiltinCommand : Cmdlet
     {
         protected ArmBuiltinCommand(string function)
@@ -483,6 +522,32 @@ namespace PSArm
             args.AddRange(ResourceName);
 
             return args.ToArray();
+        }
+    }
+
+    [Alias("ResourceGroup")]
+    [Cmdlet(VerbsLifecycle.Invoke, "ArmBuiltinResourceGroup")]
+    public class InvokeArmBuiltinResourceGroupCommand : ArmBuiltinCommand
+    {
+        public InvokeArmBuiltinResourceGroupCommand() : base("resourceGroup")
+        {
+        }
+    }
+
+    [Alias("UniqueString")]
+    [Cmdlet(VerbsLifecycle.Invoke, "ArmBuiltinUniqueString")]
+    public class InvokeArmBuiltinUniqueString : ArmBuiltinCommand
+    {
+        public InvokeArmBuiltinUniqueString() : base("uniqueString")
+        {
+        }
+
+        [Parameter(Mandatory = true, Position = 0, ValueFromRemainingArguments = true)]
+        public IArmExpression[] Input { get; set; }
+
+        protected override IArmExpression[] GetArguments()
+        {
+            return Input;
         }
     }
 }

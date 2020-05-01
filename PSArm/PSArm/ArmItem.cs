@@ -217,6 +217,32 @@ namespace PSArm
         }
 
         public IArmExpression Value { get; }
+
+        public ArmDependsOn Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmDependsOn(Value.Instantiate(parameters));
+        }
+    }
+
+    public class ArmSku
+    {
+        public IArmExpression Name { get; set; }
+
+        public ArmSku Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        {
+            return new ArmSku
+            {
+                Name = Name.Instantiate(parameters),
+            };
+        }
+
+        public JObject ToJson()
+        {
+            return new JObject
+            {
+                ["name"] = Name.ToExpressionString(),
+            };
+        }
     }
 
     public class ArmResource
@@ -228,6 +254,10 @@ namespace PSArm
         public IArmExpression Name { get; set; }
 
         public IArmExpression Location { get; set; }
+
+        public IArmExpression Kind { get; set; }
+
+        public ArmSku Sku { get; set; }
 
         public Dictionary<string, ArmPropertyInstance> Properties { get; set; }
 
@@ -252,7 +282,7 @@ namespace PSArm
             }
             jObj["properties"] = properties;
 
-            if (Subresources != null)
+            if (Subresources != null && Subresources.Count > 0)
             {
                 var subresources = new JArray();
                 foreach (KeyValuePair<IArmExpression, ArmResource> subresource in Subresources)
@@ -262,7 +292,7 @@ namespace PSArm
                 jObj["resources"] = subresources;
             }
 
-            if (DependsOn != null)
+            if (DependsOn != null && DependsOn.Count > 0)
             {
                 var dependsOn = new JArray();
                 foreach (IArmExpression dependency in DependsOn)
@@ -270,6 +300,16 @@ namespace PSArm
                     dependsOn.Add(dependency.ToExpressionString());
                 }
                 jObj["dependsOn"] = dependsOn;
+            }
+
+            if (Kind != null)
+            {
+                jObj["kind"] = Kind.ToExpressionString();
+            }
+
+            if (Sku != null)
+            {
+                jObj["sku"] = Sku.ToJson();
             }
 
             return jObj;
@@ -302,14 +342,27 @@ namespace PSArm
                 }
             }
 
+            List<IArmExpression> dependsOn = null;
+            if (DependsOn != null)
+            {
+                dependsOn = new List<IArmExpression>();
+                foreach (IArmExpression dependency in DependsOn)
+                {
+                    dependsOn.Add(dependency.Instantiate(parameters));
+                }
+            }
+
             return new ArmResource
             {
                 ApiVersion = ApiVersion,
                 Type = Type,
                 Name = Name.Instantiate(parameters),
-                Location = Location.Instantiate(parameters),
+                Location = Location?.Instantiate(parameters),
                 Properties = properties,
                 Subresources = subResources,
+                Kind = Kind?.Instantiate(parameters),
+                Sku = Sku?.Instantiate(parameters),
+                DependsOn = dependsOn,
             };
         }
     }
@@ -360,6 +413,8 @@ namespace PSArm
 
         public ArmParameter[] Parameters { get; set; }
 
+        public ArmVariable[] Variables { get; set; }
+
         public JObject ToJson()
         {
             var jObj = new JObject
@@ -368,7 +423,7 @@ namespace PSArm
                 ["contentVersion"] = ContentVersion.ToString(),
             };
 
-            if (Parameters != null)
+            if (Parameters != null && Parameters.Length != 0)
             {
                 var parameters = new JObject();
                 foreach (ArmParameter parameter in Parameters)
@@ -378,12 +433,25 @@ namespace PSArm
                 jObj["parameters"] = parameters;
             }
 
-            var outputs = new JObject();
-            foreach (ArmOutput output in Outputs)
+            if (Variables != null && Variables.Length != 0)
             {
-                outputs[output.Name.ToExpressionString()] = output.ToJson();
+                var variables = new JObject();
+                foreach (ArmVariable variable in Variables)
+                {
+                    variables[variable.Name] = variable.ToJson();
+                }
+                jObj["variables"] = variables;
             }
-            jObj["outputs"] = outputs;
+
+            if (Outputs != null && Outputs.Count != 0)
+            {
+                var outputs = new JObject();
+                foreach (ArmOutput output in Outputs)
+                {
+                    outputs[output.Name.ToExpressionString()] = output.ToJson();
+                }
+                jObj["outputs"] = outputs;
+            }
 
             var resources = new JArray();
             foreach (ArmResource resource in Resources)
@@ -414,12 +482,23 @@ namespace PSArm
                 resources.Add(resource.Instantiate(parameters));
             }
 
+            List<ArmVariable> variables = null;
+            if (Variables != null)
+            {
+                variables = new List<ArmVariable>();
+                foreach (ArmVariable variable in Variables)
+                {
+                    variables.Add((ArmVariable)variable.Instantiate(parameters));
+                }
+            }
+
             return new ArmTemplate
             {
                 ContentVersion = ContentVersion,
                 Schema = Schema,
                 Outputs = outputs,
                 Resources = resources,
+                Variables = variables?.ToArray(),
             };
         }
     }

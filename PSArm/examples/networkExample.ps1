@@ -1,8 +1,9 @@
-$vnetNamespace = 'myVnet/'
+#$vnetNamespace = 'myVnet/'
+New-Variable vnetNamespace 'myVnet/'
 
 $template = Arm {
     param(
-        [string]$rgLocation,
+        [ValidateSet('WestUS2', 'CentralUS')][string]$rgLocation,
         [string]$namePrefix
     )
 

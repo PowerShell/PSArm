@@ -25,6 +25,8 @@ namespace PSArm
 
         private static CmdletInfo s_propertiesInfo = new CmdletInfo("New-ArmProperties", typeof(NewArmPropertiesCommand));
 
+        private static CmdletInfo s_dependsOnInfo = new CmdletInfo("New-ArmDependsOn", typeof(NewArmDependsOnCommand));
+
         private static readonly char[] s_typeSplitChars = new [] { '/' };
 
         private static readonly IReadOnlyDictionary<string, CmdletInfo> s_topLevelKeywords = new Dictionary<string, CmdletInfo>
@@ -37,6 +39,7 @@ namespace PSArm
         {
             { "Resource", s_resourceInfo },
             { "Properties", s_propertiesInfo },
+            { "DependsOn", s_dependsOnInfo },
         };
 
         public static void PrependDslCompletions(
@@ -437,9 +440,19 @@ namespace PSArm
             // When the cursor is at the end of an open scriptblock
             // it falls beyond that scriptblock's extent,
             // meaning we must backtrack to find the real context for a completion
-            IScriptPosition effectiveCompletionPosition = lastToken.Kind == TokenKind.NewLine || lastToken.Kind == TokenKind.Semi
-                ? cursorPosition
-                : lastToken.Extent.EndScriptPosition;
+            IScriptPosition effectiveCompletionPosition;
+            switch (lastNonNewlineToken.Kind)
+            {
+                case TokenKind.Identifier:
+                case TokenKind.Generic:
+                case TokenKind.Command:
+                    effectiveCompletionPosition = cursorPosition;
+                    break;
+
+                default:
+                    effectiveCompletionPosition = lastNonNewlineToken.Extent.EndScriptPosition;
+                    break;
+            }
 
             // Now find the AST we're in
             var visitor = new FindAstFromPositionVisitor(effectiveCompletionPosition);

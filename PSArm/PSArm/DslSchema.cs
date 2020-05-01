@@ -411,23 +411,6 @@ public class DslScriptWriter : IDslSchemaVisitor
     {
         _sb.Append("[Parameter(Position = ").Append(position).Append(", Mandatory)]");
         Newline();
-
-        if (validationSet != null && validationSet.Count > 0)
-        {
-            _sb.Append("[ValidateSet(");
-            WriteLiteral(validationSet[0]);
-            for (int j = 1; j < validationSet.Count; j++)
-            {
-                _sb.Append(", ");
-                WriteLiteral(validationSet[j]);
-            }
-            _sb.Append(")]");
-            Newline();
-        }
-
-        _sb.Append('[').Append(type).Append(']');
-        Newline();
-
         WriteVariable(name);
     }
 

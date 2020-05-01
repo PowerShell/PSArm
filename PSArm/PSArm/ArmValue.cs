@@ -21,6 +21,9 @@ namespace PSArm
                 case IArmExpression expression:
                     return expression;
 
+                case PSObject psObj:
+                    return Convert(psObj.BaseObject);
+
                 case string s:
                     return new ArmStringLiteral(s);
 

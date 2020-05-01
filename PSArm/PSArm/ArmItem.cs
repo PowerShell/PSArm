@@ -209,6 +209,16 @@ namespace PSArm
         }
     }
 
+    public class ArmDependsOn
+    {
+        public ArmDependsOn(IArmExpression value)
+        {
+            Value = value;
+        }
+
+        public IArmExpression Value { get; }
+    }
+
     public class ArmResource
     {
         public string ApiVersion { get; set; }
@@ -217,11 +227,13 @@ namespace PSArm
 
         public IArmExpression Name { get; set; }
 
-        public string Location { get; set; }
+        public IArmExpression Location { get; set; }
 
         public Dictionary<string, ArmPropertyInstance> Properties { get; set; }
 
         public Dictionary<IArmExpression, ArmResource> Subresources { get; set; }
+
+        public List<IArmExpression> DependsOn { get; set; }
 
         public JObject ToJson()
         {
@@ -230,7 +242,7 @@ namespace PSArm
                 ["apiVersion"] = ApiVersion,
                 ["type"] = Type,
                 ["name"] = Name.ToExpressionString(),
-                ["location"] = Location,
+                ["location"] = Location.ToExpressionString(),
             };
 
             var properties = new JObject();
@@ -239,6 +251,26 @@ namespace PSArm
                 properties[property.Key] = property.Value.ToJson();
             }
             jObj["properties"] = properties;
+
+            if (Subresources != null)
+            {
+                var subresources = new JArray();
+                foreach (KeyValuePair<IArmExpression, ArmResource> subresource in Subresources)
+                {
+                    subresources.Add(subresource.Value.ToJson());
+                }
+                jObj["resources"] = subresources;
+            }
+
+            if (DependsOn != null)
+            {
+                var dependsOn = new JArray();
+                foreach (IArmExpression dependency in DependsOn)
+                {
+                    dependsOn.Add(dependency.ToExpressionString());
+                }
+                jObj["dependsOn"] = dependsOn;
+            }
 
             return jObj;
         }
@@ -275,7 +307,7 @@ namespace PSArm
                 ApiVersion = ApiVersion,
                 Type = Type,
                 Name = Name.Instantiate(parameters),
-                Location = Location,
+                Location = Location.Instantiate(parameters),
                 Properties = properties,
                 Subresources = subResources,
             };
@@ -294,7 +326,6 @@ namespace PSArm
         {
             return new JObject
             {
-                ["name"] = Name.ToExpressionString(),
                 ["type"] = Type.ToExpressionString(),
                 ["value"] = Value.ToExpressionString(),
             };
@@ -350,7 +381,7 @@ namespace PSArm
             var outputs = new JObject();
             foreach (ArmOutput output in Outputs)
             {
-                outputs[output.Name] = output.ToJson();
+                outputs[output.Name.ToExpressionString()] = output.ToJson();
             }
             jObj["outputs"] = outputs;
 

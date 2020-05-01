@@ -31,9 +31,15 @@ namespace PSArm
 
             foreach (PSObject item in InvokeCommand.InvokeScript(SessionState, parameterizedBody, armParameters))
             {
-                if (item.BaseObject is ArmResource armResource)
+                switch (item.BaseObject)
                 {
-                    armTemplate.Resources.Add(armResource);
+                    case ArmResource resource:
+                        armTemplate.Resources.Add(resource);
+                        continue;
+
+                    case ArmOutput output:
+                        armTemplate.Outputs.Add(output);
+                        continue;
                 }
             }
             WriteObject(armTemplate);

@@ -11,6 +11,12 @@ namespace PSArm
 {
     public static class DslCompleter
     {
+        private static Dictionary<string, bool> s_ignoredCommands = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "ForEach-Object", true },
+            { "%", true },
+        };
+
         private static CmdletInfo s_armInfo = new CmdletInfo("New-ArmTemplate", typeof(NewArmTemplateCommand));
 
         private static CmdletInfo s_resourceInfo = new CmdletInfo("New-ArmResource", typeof(NewArmResourceCommand));
@@ -107,6 +113,12 @@ namespace PSArm
 
             KeywordContext context = GetKeywordContext(ast, tokens, lastTokenIndex, cursorPosition);
 
+            if (context == null)
+            {
+                clobberCompletions = false;
+                return null;
+            }
+
             switch (lastToken.Kind)
             {
                 case TokenKind.NewLine:
@@ -133,14 +145,8 @@ namespace PSArm
                     return CompleteParameters(context);
 
                 case TokenKind.Generic:
-                    if (lastToken.Text == "-"
-                        && lastToken.Extent.EndOffset == cursorPosition.Offset)
+                    if (lastToken.Extent.EndOffset == cursorPosition.Offset)
                     {
-                        if (!(context.ContainingAst.Parent is CommandAst))
-                        {
-                            break;
-                        }
-
                         clobberCompletions = true;
                         return CompleteParameters(context);
                     }
@@ -431,9 +437,9 @@ namespace PSArm
             // When the cursor is at the end of an open scriptblock
             // it falls beyond that scriptblock's extent,
             // meaning we must backtrack to find the real context for a completion
-            IScriptPosition effectiveCompletionPosition = tokens[lastTokenIndex + 1].Kind == TokenKind.EndOfInput
-                ? lastNonNewlineToken.Extent.EndScriptPosition
-                : cursorPosition;
+            IScriptPosition effectiveCompletionPosition = lastToken.Kind == TokenKind.NewLine || lastToken.Kind == TokenKind.Semi
+                ? cursorPosition
+                : lastToken.Extent.EndScriptPosition;
 
             // Now find the AST we're in
             var visitor = new FindAstFromPositionVisitor(effectiveCompletionPosition);
@@ -468,17 +474,20 @@ namespace PSArm
                 {
                     string commandName = commandAst.GetCommandName();
 
-                    context.KeywordStack.Add(commandName);
+                    if (!s_ignoredCommands.ContainsKey(commandName))
+                    {
+                        context.KeywordStack.Add(commandName);
 
-                    if (string.Equals(commandName, "Resource", StringComparison.OrdinalIgnoreCase))
-                    {
-                        SetContextResourceInfo(context, commandAst);
-                    }
-                    else if (string.Equals(commandName, "Arm", StringComparison.OrdinalIgnoreCase)
-                        || string.Equals(commandName, "New-ArmTemplate", StringComparison.OrdinalIgnoreCase))
-                    {
-                        foundArmKeyword = true;
-                        break;
+                        if (string.Equals(commandName, "Resource", StringComparison.OrdinalIgnoreCase))
+                        {
+                            SetContextResourceInfo(context, commandAst);
+                        }
+                        else if (string.Equals(commandName, "Arm", StringComparison.OrdinalIgnoreCase)
+                            || string.Equals(commandName, "New-ArmTemplate", StringComparison.OrdinalIgnoreCase))
+                        {
+                            foundArmKeyword = true;
+                            break;
+                        }
                     }
                 }
 
@@ -525,7 +534,7 @@ namespace PSArm
                     case 1:
                         if (element is StringConstantExpressionAst typeStrExpr)
                         {
-                            string[] typeParts = typeStrExpr.Value.Split(s_typeSplitChars);
+                            string[] typeParts = typeStrExpr.Value.Split(s_typeSplitChars, count: 2);
                             context.ResourceNamespace = typeParts[0];
                             context.ResourceTypeName = typeParts[1];
                         }
@@ -756,7 +765,7 @@ namespace PSArm
                 var completions = new List<CompletionResult>();
                 if (wordToComplete.Contains("/"))
                 {
-                    string[] completeParts = wordToComplete.Split(s_typeSeparator);
+                    string[] completeParts = wordToComplete.Split(s_typeSeparator, count: 2);
                     if (DslLoader.Instance.TryLoadDsl(completeParts[0], out ArmDslInfo dslInfo))
                     {
                         foreach (string subschema in dslInfo.Schema.Subschemas.Keys)

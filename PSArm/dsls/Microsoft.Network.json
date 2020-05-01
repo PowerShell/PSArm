@@ -30,5 +30,28 @@
                 }
             }
         }
+    },
+    "publicIpAddresses": {
+        "PublicIPAllocationMethod": {
+            "kind": "command",
+            "parameters": [
+                {
+                    "name": "Method",
+                    "type": "string",
+                    "enum": [ "Static", "Dynamic" ]
+                }
+            ]
+        }
+    },
+    "virtualNetworks/subnets": {
+        "AddressPrefix": {
+            "kind": "command",
+            "parameters": [
+                {
+                    "name": "Prefix",
+                    "type": "string"
+                }
+            ]
+        }
     }
 }

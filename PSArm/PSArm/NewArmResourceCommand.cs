@@ -16,9 +16,8 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
         [Parameter(Position = 0, Mandatory = true)]
         public IArmExpression Name { get; set; }
 
-        [ValidateSet("WestUS", "WestUS2")]
         [Parameter()]
-        public string Location { get; set; }
+        public IArmExpression Location { get; set; }
 
         [Parameter()]
         public string ApiVersion { get; set; }
@@ -39,6 +38,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
 
             var properties = new Dictionary<string, ArmPropertyInstance>();
             var subresources = new Dictionary<IArmExpression, ArmResource>();
+            var dependsOns = new List<IArmExpression>();
 
             foreach (PSObject result in InvokeCommand.InvokeScript(SessionState, Body))
             {
@@ -51,6 +51,10 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
                     case ArmResource subresource:
                         subresources[subresource.Name] = subresource;
                         continue;
+
+                    case ArmDependsOn dependsOn:
+                        dependsOns.Add(dependsOn.Value);
+                        continue;
                 }
             }
 
@@ -62,6 +66,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
                 Name = Name,
                 Properties = properties,
                 Subresources = subresources,
+                DependsOn = dependsOns,
             };
 
             WriteObject(resource);

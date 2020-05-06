@@ -1,0 +1,5 @@
+bin/
+obj/
+.vs/
+*.dtbcache.v2
+out/

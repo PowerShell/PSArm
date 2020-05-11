@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace PSArm
+namespace PSArm.Schema
 {
     public class DslLoader
     {
@@ -58,18 +58,5 @@ namespace PSArm
             IReadOnlyDictionary<string, string> dslDefinitions = new DslScriptWriter().WriteDslDefinitions(schema);
             return new ArmDslInfo(schema, dslDefinitions);
         }
-    }
-
-    public class ArmDslInfo
-    {
-        public ArmDslInfo(DslSchema schema, IReadOnlyDictionary<string, string> dslScripts)
-        {
-            Schema = schema;
-            DslDefintions = dslScripts;
-        }
-
-        public DslSchema Schema { get; }
-
-        public IReadOnlyDictionary<string, string> DslDefintions { get; }
     }
 }

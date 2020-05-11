@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Management.Automation;
 
-namespace PSArm
+namespace PSArm.Completion
 {
     public static class ArmTypeAccelerators
     {
         private static IReadOnlyDictionary<string, Type> s_armTypeAccelerators = new Dictionary<string, Type>
         {
-            { "armvar", typeof(ArmVariable) }
+            { "ArmVariable", typeof(ArmVariable) }
         };
 
         private static Lazy<Dictionary<string, Type>> s_psTypeAcceleratorTable = new Lazy<Dictionary<string, Type>>(GetPSTypeAcceleratorsDict);

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Management.Automation;
+using PSArm.Completion;
+using PSArm.Schema;
 
-namespace PSArm
+namespace PSArm.Commands
 {
     [Alias("Resource")]
     [Cmdlet(VerbsCommon.New, "ArmResource")]

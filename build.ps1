@@ -10,10 +10,11 @@ $netTarget = 'netstandard2.0'
 $moduleName = "PSArm"
 $dotnetLibName = $moduleName
 $outDir = "$PSScriptRoot/out/$moduleName"
-$srcDir = "$PSScriptRoot/$dotnetLibName"
+$srcDir = "$PSScriptRoot/src"
+$dotnetSrcDir = $srcDir
 $binDir = "$srcDir/bin/$Configuration/$netTarget"
 
-Push-Location $srcDir
+Push-Location $dotnetSrcDir
 try
 {
     dotnet restore
@@ -32,10 +33,10 @@ if (Test-Path $outDir)
 $assets = @(
     "$binDir/*.dll",
     "$binDir/*.pdb",
-    "$PSScriptRoot/$moduleName.psm1",
-    "$PSScriptRoot/$moduleName.psd1",
-    "$PSScriptRoot/dsls",
-    "$PSScriptRoot/OnImport.ps1"
+    "$srcDir/$moduleName.psm1",
+    "$srcDir/$moduleName.psd1",
+    "$srcDir/schemas",
+    "$srcDir/OnImport.ps1"
 )
 
 New-Item -ItemType Directory -Path $outDir

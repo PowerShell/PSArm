@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq.Expressions;
 using System.Management.Automation;
 using System.Management.Automation.Language;
-using System.Reflection;
+using PSArm.Commands;
+using PSArm.Schema;
 
-namespace PSArm
+namespace PSArm.Completion
 {
     public static class DslCompleter
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Language;
 
-namespace PSArm
+namespace PSArm.Commands
 {
     [Alias("Arm")]
     [Cmdlet(VerbsCommon.New, "ArmTemplate")]
@@ -59,16 +59,17 @@ namespace PSArm
         {
 
             var ast = (ScriptBlockAst)sb.Ast;
-            ArmVariable[] armVariables = GatherVariables(ast, ast.ParamBlock?.Parameters ?? Enumerable.Empty<ParameterAst>());
 
             var armParameters = new List<ArmParameter>();
+            var armVariables = new List<ArmVariable>();
             var parameterAsts = new List<ParameterAst>();
 
             if (ast.ParamBlock?.Parameters != null)
             {
                 foreach (ParameterAst parameter in ast.ParamBlock.Parameters)
                 {
-                    var armParameter = new ArmParameter(parameter.Name.VariablePath.UserPath);
+                    ArmParameter armParameter = null;
+                    object[] parameterAllowedValues = null;
 
                     // Go through attributes
                     var attributes = new List<AttributeBaseAst>();
@@ -79,13 +80,28 @@ namespace PSArm
                             switch (attributeBase)
                             {
                                 case TypeConstraintAst typeConstraint:
+                                    Type constraintType = typeConstraint.TypeName.GetReflectionType();
+
+                                    if (constraintType == typeof(ArmVariable))
+                                    {
+                                        armVariables.Add(new ArmVariable(
+                                            parameter.Name.VariablePath.UserPath,
+                                            ArmTypeConversion.Convert(GetDefaultValue(parameter.DefaultValue))));
+                                        continue;
+                                    }
+
+                                    armParameter = new ArmParameter(parameter.Name.VariablePath.UserPath)
+                                    {
+                                        Type = typeConstraint.TypeName.FullName,
+                                        AllowedValues = parameterAllowedValues,
+                                    };
+
                                     attributes.Add(
                                         new TypeConstraintAst(
                                             typeConstraint.Extent,
                                             new TypeName(
                                                 typeConstraint.TypeName.Extent,
                                                 "PSArm.ArmParameter")));
-                                    armParameter.Type = typeConstraint.TypeName.FullName;
                                     continue;
 
                                 case AttributeAst attribute:
@@ -96,7 +112,7 @@ namespace PSArm
                                         {
                                             allowedValues.Add(expr.SafeGetValue());
                                         }
-                                        armParameter.AllowedValues = allowedValues.ToArray();
+                                        parameterAllowedValues = allowedValues.ToArray();
                                     }
                                     continue;
                             }
@@ -152,7 +168,7 @@ namespace PSArm
                 (NamedBlockAst)ast.EndBlock?.Copy(),
                 (NamedBlockAst)ast.DynamicParamBlock?.Copy());
 
-            return (newScriptBlockAst.GetScriptBlock(), armParameters.ToArray(), armVariables);
+            return (newScriptBlockAst.GetScriptBlock(), armParameters.ToArray(), armVariables.ToArray());
         }
 
         private object GetDefaultValue(ExpressionAst defaultValue)

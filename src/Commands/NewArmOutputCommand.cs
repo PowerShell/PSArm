@@ -1,6 +1,6 @@
 using System.Management.Automation;
 
-namespace PSArm
+namespace PSArm.Commands
 {
     [Alias("Output")]
     [Cmdlet(VerbsCommon.New, "ArmOutput")]

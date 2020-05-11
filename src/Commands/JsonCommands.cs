@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Management.Automation;
 
-namespace PSArm
+namespace PSArm.Commands
 {
     [Alias("Value")]
     [Cmdlet(VerbsCommon.New, "ArmValue")]

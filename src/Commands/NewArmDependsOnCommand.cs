@@ -1,6 +1,6 @@
 using System.Management.Automation;
 
-namespace PSArm
+namespace PSArm.Commands
 {
     [Alias("DependsOn")]
     [Cmdlet(VerbsCommon.New, "ArmDependsOn", DefaultParameterSetName = "Value")]

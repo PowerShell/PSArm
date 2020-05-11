@@ -5,7 +5,9 @@ using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Language;
 using PSArm.ArmBuilding;
+using PSArm.Completion;
 using PSArm.Expression;
+using PSArm.Internal;
 
 namespace PSArm.Commands
 {
@@ -74,6 +76,7 @@ namespace PSArm.Commands
                     object[] parameterAllowedValues = null;
 
                     // Go through attributes
+                    bool isVariable = false;
                     var attributes = new List<AttributeBaseAst>();
                     if (parameter.Attributes != null && parameter.Attributes.Count > 0)
                     {
@@ -82,28 +85,44 @@ namespace PSArm.Commands
                             switch (attributeBase)
                             {
                                 case TypeConstraintAst typeConstraint:
-                                    Type constraintType = typeConstraint.TypeName.GetReflectionType();
 
-                                    if (constraintType == typeof(ArmVariable))
+                                    Type reflectedType = typeConstraint.TypeName.GetReflectionType();
+
+                                    if (reflectedType == typeof(ArmVariable)
+                                        || typeConstraint.TypeName.FullName.Is(ArmTypeAccelerators.ArmVariable))
                                     {
+                                        isVariable = true;
                                         armVariables.Add(new ArmVariable(
                                             parameter.Name.VariablePath.UserPath,
                                             ArmTypeConversion.Convert(GetDefaultValue(parameter.DefaultValue))));
+                                        parameterAsts.Add((ParameterAst)parameter.Copy());
                                         continue;
+                                    }
+
+                                    if (reflectedType != null && typeof(ArmParameter).IsAssignableFrom(reflectedType)
+                                        || typeConstraint.TypeName.FullName.Is(ArmTypeAccelerators.ArmParameter)
+                                        || typeConstraint.TypeName is GenericTypeName genericTypeName && genericTypeName.TypeName.FullName.Is(ArmTypeAccelerators.ArmParameter))
+                                    {
+                                    }
+
+                                    Type parameterType = null;
+                                    if (reflectedType != null && reflectedType.IsGenericType)
+                                    {
+                                        parameterType = reflectedType.GetGenericArguments()[0];
+                                        attributes.Add(
+                                            new TypeConstraintAst(
+                                                typeConstraint.Extent,
+                                                new TypeName(
+                                                    typeConstraint.TypeName.Extent,
+                                                    typeof(ArmParameter).FullName)));
                                     }
 
                                     armParameter = new ArmParameter(parameter.Name.VariablePath.UserPath)
                                     {
-                                        Type = typeConstraint.TypeName.FullName,
+                                        Type = parameterType, 
                                         AllowedValues = parameterAllowedValues,
                                     };
 
-                                    attributes.Add(
-                                        new TypeConstraintAst(
-                                            typeConstraint.Extent,
-                                            new TypeName(
-                                                typeConstraint.TypeName.Extent,
-                                                "PSArm.ArmParameter")));
                                     continue;
 
                                 case AttributeAst attribute:
@@ -121,6 +140,11 @@ namespace PSArm.Commands
                         }
                     }
 
+                    if (isVariable)
+                    {
+                        continue;
+                    }
+
                     if (parameter.DefaultValue != null)
                     {
                         armParameter.DefaultValue = GetDefaultValue(parameter.DefaultValue);
@@ -134,16 +158,6 @@ namespace PSArm.Commands
                             attributes,
                             defaultValue: null));
                 }
-            }
-
-            foreach (ArmVariable variable in armVariables)
-            {
-                parameterAsts.Add(
-                    new ParameterAst(
-                        s_emptyExtent,
-                        new VariableExpressionAst(s_emptyExtent, variable.Name, splatted: false),
-                        Enumerable.Empty<AttributeBaseAst>(),
-                        defaultValue: null));
             }
 
             ParamBlockAst newParamBlock;

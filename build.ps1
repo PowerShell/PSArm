@@ -33,7 +33,6 @@ if (Test-Path $outDir)
 $assets = @(
     "$binDir/*.dll",
     "$binDir/*.pdb",
-    "$srcDir/$moduleName.psm1",
     "$srcDir/$moduleName.psd1",
     "$srcDir/schemas",
     "$srcDir/OnImport.ps1"

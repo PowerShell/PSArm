@@ -1,42 +1,49 @@
 using System;
 using System.Collections.Generic;
 using System.Management.Automation;
+using System.Reflection;
 using PSArm.Expression;
 
 namespace PSArm.Completion
 {
     public static class ArmTypeAccelerators
     {
+        internal const string ArmVariable = "ArmVariable";
+
+        internal const string ArmParameter = "ArmParameter";
+
+        private static Type s_psTypeAcceleratorsType = typeof(PSObject).Assembly
+            .GetType("System.Management.Automation.TypeAccelerators");
+
+        private static MethodInfo s_psTypeAcceleratorsAddMethod = s_psTypeAcceleratorsType.GetMethod("Add");
+
+        private static MethodInfo s_psTypeAcceleratorsRemoveMethod = s_psTypeAcceleratorsType.GetMethod("Remove");
+
         private static IReadOnlyDictionary<string, Type> s_armTypeAccelerators = new Dictionary<string, Type>
         {
-            { "ArmVariable", typeof(ArmVariable) }
+            { ArmVariable, typeof(ArmVariable) },
+            { ArmParameter, typeof(ArmParameter<>) },
         };
-
-        private static Lazy<Dictionary<string, Type>> s_psTypeAcceleratorTable = new Lazy<Dictionary<string, Type>>(GetPSTypeAcceleratorsDict);
 
         public static void Load()
         {
-            foreach (KeyValuePair<string, Type> entry in s_armTypeAccelerators)
+            var paramArray = new object[2];
+            foreach (KeyValuePair<string, Type> armAccelerator in s_armTypeAccelerators)
             {
-                s_psTypeAcceleratorTable.Value[entry.Key] = entry.Value;
+                paramArray[0] = armAccelerator.Key;
+                paramArray[1] = armAccelerator.Value;
+                s_psTypeAcceleratorsAddMethod.Invoke(obj: null, paramArray);
             }
         }
 
         public static void Unload()
         {
-            foreach (KeyValuePair<string, Type> entry in s_armTypeAccelerators)
+            var paramArray = new object[1];
+            foreach (string accelerator in s_armTypeAccelerators.Keys)
             {
-                s_psTypeAcceleratorTable.Value.Remove(entry.Key);
+                paramArray[0] = accelerator;
+                s_psTypeAcceleratorsRemoveMethod.Invoke(obj: null, paramArray);
             }
-        }
-
-        private static Dictionary<string, Type> GetPSTypeAcceleratorsDict()
-        {
-            return (Dictionary<string, Type>)typeof(PSObject)
-                .Assembly
-                .GetType("System.Management.Automation.TypeAccelerators")
-                .GetMethod("get_Get")
-                .Invoke(obj: null, Array.Empty<object>());
         }
     }
 }

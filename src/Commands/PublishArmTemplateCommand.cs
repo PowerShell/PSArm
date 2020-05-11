@@ -76,7 +76,7 @@ namespace PSArm.Commands
 
                     parameters[armParameter.Name] = new RuntimeDefinedParameter(
                         armParameter.Name,
-                        GetTypeFromArmType(armParameter.Type),
+                        armParameter.Type,
                         attributes)
                     {
                         Value = armParameter.DefaultValue,
@@ -88,33 +88,13 @@ namespace PSArm.Commands
 
                     parameters[armParameter.Name] = new RuntimeDefinedParameter(
                         armParameter.Name,
-                        GetTypeFromArmType(armParameter.Type),
+                        armParameter.Type,
                         attributes);
                 }
 
             }
 
             return _dynamicParameters = parameters;
-        }
-
-        private Type GetTypeFromArmType(string armType)
-        {
-            if (string.Equals(armType, "string", StringComparison.OrdinalIgnoreCase))
-            {
-                return typeof(string);
-            }
-
-            if (string.Equals(armType, "int", StringComparison.OrdinalIgnoreCase))
-            {
-                return typeof(int);
-            }
-
-            if (string.Equals(armType, "bool", StringComparison.OrdinalIgnoreCase))
-            {
-                return typeof(bool);
-            }
-
-            throw new ArgumentException($"Cannot convert ARM type '{armType}'");
         }
     }
 }

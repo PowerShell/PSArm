@@ -10,7 +10,7 @@ namespace PSArm.Schema
         public static DslLoader Instance = new DslLoader(
             Path.Combine(
                 Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                "dsls"));
+                "schemas"));
 
         private readonly string _basePath;
 

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Management.Automation;
+using PSArm.ArmBuilding;
 using PSArm.Completion;
+using PSArm.Expression;
 using PSArm.Schema;
 
 namespace PSArm.Commands
@@ -27,7 +29,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
         [Parameter()]
         public string ApiVersion { get; set; }
 
-        [ArgumentCompleter(typeof(ResourceArgumentCompleter))]
+        [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
         [Parameter()]
         public string Type { get; set; }
 

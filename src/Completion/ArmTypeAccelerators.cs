@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Management.Automation;
+using PSArm.Expression;
 
 namespace PSArm.Completion
 {

@@ -1,4 +1,6 @@
 using System.Management.Automation;
+using PSArm.ArmBuilding;
+using PSArm.Expression;
 
 namespace PSArm.Commands
 {

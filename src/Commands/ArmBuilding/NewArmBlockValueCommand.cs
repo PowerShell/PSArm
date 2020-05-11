@@ -1,45 +1,10 @@
 using System.Collections.Generic;
 using System.Management.Automation;
+using PSArm.ArmBuilding;
+using PSArm.Expression;
 
-namespace PSArm.Commands
+namespace PSArm.Commands.ArmBuilding
 {
-    [Alias("Value")]
-    [Cmdlet(VerbsCommon.New, "ArmValue")]
-    public class NewArmValueCommand : PSCmdlet
-    {
-        [Parameter(Position = 0, Mandatory = true)]
-        public string Name { get; set; }
-
-        [Parameter(Position = 1, Mandatory = true)]
-        public IArmExpression Value { get; set; }
-
-        protected override void EndProcessing()
-        {
-            WriteObject(new ArmPropertyValue(Name, Value));
-        }
-    }
-
-    [Alias("Composite")]
-    [Cmdlet(VerbsCommon.New, "ArmCompositeValue")]
-    public class NewArmCompositeValue : PSCmdlet
-    {
-        [Parameter(Position = 0, Mandatory = true)]
-        public string Name { get; set; }
-
-        [Parameter(Position = 1, Mandatory = true)]
-        public Dictionary<string, object> Parameters { get; set; }
-
-        protected override void EndProcessing()
-        {
-            var result = new ArmParameterizedProperty(Name);
-            foreach (KeyValuePair<string, object> parameter in Parameters)
-            {
-                result.Parameters[parameter.Key] = ArmTypeConversion.Convert(parameter.Value);
-            }
-            WriteObject(result);
-        }
-    }
-
     [Alias("Block")]
     [Cmdlet(VerbsCommon.New, "ArmPropertyBlock")]
     public class NewArmPropertyBlockCommand : PSCmdlet
@@ -127,13 +92,4 @@ namespace PSArm.Commands
         }
     }
 
-    [Alias("ArrayItem")]
-    [Cmdlet(VerbsCommon.New, "ArmArrayItem")]
-    public class NewArmArrayItemCommand : NewArmPropertyBlockCommand
-    {
-        protected override ArmPropertyObject CreatePropertyObject()
-        {
-            return new ArmPropertyArrayItem(Name);
-        }
-    }
 }

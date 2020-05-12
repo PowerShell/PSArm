@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using PSArm.ArmBuilding;
 
 namespace PSArm.Expression
 {
-    public class ArmVariable : ArmOperation
+    public class ArmVariable : ArmOperation, IArmElement
     {
         public ArmVariable(string name, IArmExpression value)
         {
@@ -30,7 +31,7 @@ namespace PSArm.Expression
                 .ToString();
         }
 
-        public JValue ToJson()
+        public JToken ToJson()
         {
             return new JValue(Value.ToExpressionString());
         }

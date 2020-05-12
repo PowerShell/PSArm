@@ -4,7 +4,7 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
-    public class ArmSku
+    public class ArmSku : IArmElement
     {
         public IArmExpression Name { get; set; }
 
@@ -16,7 +16,7 @@ namespace PSArm.ArmBuilding
             };
         }
 
-        public JObject ToJson()
+        public JToken ToJson()
         {
             return new JObject
             {

@@ -12,13 +12,13 @@ $dotnetLibName = $moduleName
 $outDir = "$PSScriptRoot/out/$moduleName"
 $srcDir = "$PSScriptRoot/src"
 $dotnetSrcDir = $srcDir
-$binDir = "$srcDir/bin/$Configuration/$netTarget"
+$binDir = "$srcDir/bin/$Configuration/$netTarget/publish"
 
 Push-Location $dotnetSrcDir
 try
 {
     dotnet restore
-    dotnet build
+    dotnet publish -f $netTarget
 }
 finally
 {

@@ -4,7 +4,7 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
-    public abstract class ArmPropertyInstance
+    public abstract class ArmPropertyInstance : IArmElement
     {
         public ArmPropertyInstance(string propertyName)
         {

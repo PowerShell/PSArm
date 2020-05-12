@@ -4,7 +4,7 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
-    public class ArmOutput
+    public class ArmOutput : IArmElement
     {
         public IArmExpression Name { get; set; }
 

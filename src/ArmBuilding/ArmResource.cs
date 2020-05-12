@@ -4,7 +4,7 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
-    public class ArmResource
+    public class ArmResource : IArmElement
     {
         public string ApiVersion { get; set; }
 
@@ -24,7 +24,7 @@ namespace PSArm.ArmBuilding
 
         public List<IArmExpression> DependsOn { get; set; }
 
-        public JObject ToJson()
+        public JToken ToJson()
         {
             var jObj = new JObject
             {

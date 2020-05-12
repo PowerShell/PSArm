@@ -15,7 +15,7 @@ RootModule = 'PSArm.dll'
 ModuleVersion = '0.0.1'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = @('Core', 'Desktop')
 
 # ID used to uniquely identify this module
 GUID = '47a44863-243d-4d13-a20b-3e9b1eb66eae'
@@ -30,7 +30,10 @@ CompanyName = 'Microsoft Corporation'
 Copyright = '(c) Microsoft Corporation'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = @'
+An ARM template domain-specific language provider,
+allowing you to create ARM templates in pure PowerShell.
+'@
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -42,7 +45,7 @@ Copyright = '(c) Microsoft Corporation'
 # PowerShellHostVersion = ''
 
 # Minimum version of Microsoft .NET Framework required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
-# DotNetFrameworkVersion = ''
+DotNetFrameworkVersion = '4.7.1'
 
 # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
 # ClrVersion = ''
@@ -110,7 +113,7 @@ PrivateData = @{
         # ReleaseNotes = ''
 
         # Prerelease string of this module
-        # Prerelease = ''
+        Prerelease = 'alpha.1'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         # RequireLicenseAcceptance = $false

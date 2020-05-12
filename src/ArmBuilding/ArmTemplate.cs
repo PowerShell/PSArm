@@ -5,7 +5,7 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
-    public class ArmTemplate
+    public class ArmTemplate : IArmElement
     {
         public ArmTemplate()
         {
@@ -25,7 +25,7 @@ namespace PSArm.ArmBuilding
 
         public ArmVariable[] Variables { get; set; }
 
-        public JObject ToJson()
+        public JToken ToJson()
         {
             var jObj = new JObject
             {

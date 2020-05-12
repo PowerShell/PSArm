@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using PSArm.ArmBuilding;
 
 namespace PSArm.Expression
 {
@@ -14,7 +15,7 @@ namespace PSArm.Expression
         }
     }
 
-    public class ArmParameter : ArmOperation
+    public class ArmParameter : ArmOperation, IArmElement
     {
         internal ArmParameter(string name)
         {
@@ -23,7 +24,7 @@ namespace PSArm.Expression
 
         public string Name { get; }
 
-        public Type Type { get; internal set;  }
+        public Type Type { get; internal set; }
 
         public object[] AllowedValues { get; set; }
 
@@ -63,7 +64,7 @@ namespace PSArm.Expression
                 .ToString();
         }
 
-        public JObject ToJson()
+        public JToken ToJson()
         {
             var jObj = new JObject();
 

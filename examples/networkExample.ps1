@@ -1,10 +1,11 @@
-#$vnetNamespace = 'myVnet/'
-New-Variable vnetNamespace 'myVnet/'
-
 $template = Arm {
     param(
-        [ValidateSet('WestUS2', 'CentralUS')][string]$rgLocation,
-        [string]$namePrefix
+        [ValidateSet('WestUS2', 'CentralUS')]
+        [ArmParameter[string]]$rgLocation,
+
+        [ArmParameter]$namePrefix = 'my',
+
+        [ArmVariable]$vnetNamespace = 'myVnet/'
     )
 
     Resource (Concat $vnetNamespace $namePrefix '-subnet') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/virtualNetworks/subnets {

@@ -144,4 +144,26 @@ so that you can easily rebuild and reimport as you make changes.
 
 ## Implementation details
 
-TODO
+- High-level DSL keywords are implemented as cmdlets that implement logic by hand
+- Lower-level keywords within resources are described by JSON schemas and are converted to script on demand:
+  - When completions are asked for or an ARM template command is processed with resources, the required resource JSON schemas are read in
+  - A script writer visits these schemas and converts them to a series of simple PowerShell functions,
+    with inner keywords represented as inner functions
+  - These inner functions mainly declare their parameters and delegate back to cmdlets that turn these parameters into a named JSON element
+  - When each resource is invoked, the functions are converted to scriptblocks and the definitions invoked in the user scope (so that dynamic scope works properly)
+  - The fact of defining DSL functions in user scope is considered an implementation detail/bug and hopefully can be removed in later development
+- Each keyword invokes its scriptblock body in user scope and collects the output,
+  sifting through it based on object type and reconstructing an object hierarchy from it, like a complex builder pattern
+- These objects agglomerate together as they come up through the keywords,
+  with the `Arm` keyword capturing them all under one big object
+- The `Arm` keyword also looks at the AST of the scriptblock its given to build a list of ARM parameters and variables,
+  and remember any constraints applied to them like types or enums.
+  It also rewrites the scriptblock to remove any of the constraints on parameter values so that it can run the scriptblock
+- ARM expression functions like `Concat` and `ResourceId` are also written as cmdlets
+  and directly instantiate `ArmFunctionCall` instances to render properly in templates.
+  - These objects also extend `DynamicObject` so that member access and indexing turns such an expression into
+    the corresponding ARM expressions
+- The DSL also comes with completion logic:
+  - There's an argument completer for the `Resource` keyword to complete the `-Type` parameter to list resources for which schemas are available
+  - Most completions come from a from-scratch completer written to understand the hierarchical keyword context
+    to provide keywords within each schema that work for particular contexts, in particular keywords that work with each resource.

@@ -4,8 +4,17 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
+    /// <summary>
+    /// An ARM property that has an array of child elements.
+    /// Only intended to aggregate ArmPropertyArrayItems.
+    /// </summary>
     internal class ArmPropertyArray : ArmPropertyInstance
     {
+        /// <summary>
+        /// Create an ARM property array from a list of array items.
+        /// </summary>
+        /// <param name="items">The items to aggregrate.</param>
+        /// <returns>The items as an aggregated ARM property array object.</returns>
         public static ArmPropertyArray FromArrayItems(List<ArmPropertyArrayItem> items)
         {
             string name = items[0].PropertyName + "s";
@@ -19,6 +28,10 @@ namespace PSArm.ArmBuilding
             _items = items;
         }
 
+        /// <summary>
+        /// Render the ARM property array body as ARM template JSON.
+        /// </summary>
+        /// <returns>The JSON representation of the property array.</returns>
         public override JToken ToJson()
         {
             var jArr = new JArray();
@@ -29,6 +42,11 @@ namespace PSArm.ArmBuilding
             return jArr;
         }
 
+        /// <summary>
+        /// Instantiate any ARM parameters in this property with the given values.
+        /// </summary>
+        /// <param name="parameters">The values to instantiate with.</param>
+        /// <returns>A copy of the ARM property with the parameter values instantiated.</returns>
         public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
         {
             var items = new List<ArmPropertyArrayItem>();

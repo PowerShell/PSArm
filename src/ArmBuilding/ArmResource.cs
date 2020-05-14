@@ -4,27 +4,61 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
-    public class ArmResource
+    /// <summary>
+    /// An ARM template resource instance.
+    /// </summary>
+    public class ArmResource : IArmElement
     {
+        /// <summary>
+        /// The API version specified for this resource. May be null.
+        /// </summary>
         public string ApiVersion { get; set; }
 
+        /// <summary>
+        /// The resource type specified.
+        /// </summary>
         public string Type { get; set; }
 
+        /// <summary>
+        /// The name of this ARM resource.
+        /// </summary>
         public IArmExpression Name { get; set; }
 
+        /// <summary>
+        /// The Azure region or location of this ARM resource.
+        /// </summary>
         public IArmExpression Location { get; set; }
 
+        /// <summary>
+        /// The kind field of the ARM resource, with a resource-specific meaning.
+        /// </summary>
         public IArmExpression Kind { get; set; }
 
+        /// <summary>
+        /// The SKU of the resource, which may not apply to all resources.
+        /// </summary>
         public ArmSku Sku { get; set; }
 
+        /// <summary>
+        /// Any properties of the resource.
+        /// </summary>
         public Dictionary<string, ArmPropertyInstance> Properties { get; set; }
 
+        /// <summary>
+        /// Any subresources of this resource.
+        /// </summary>
         public Dictionary<IArmExpression, ArmResource> Subresources { get; set; }
 
+        /// <summary>
+        /// The other resources this resource depends on.
+        /// </summary>
         public List<IArmExpression> DependsOn { get; set; }
 
-        public JObject ToJson()
+        /// <summary>
+        /// Render this resource as ARM template JSON.
+        /// </summary>
+        /// <returns>A JSON object representation of the ARM template JSON expression of this resource.</returns>
+        public JToken ToJson()
         {
             var jObj = new JObject
             {
@@ -74,11 +108,20 @@ namespace PSArm.ArmBuilding
             return jObj;
         }
 
+        /// <summary>
+        /// Get an ARM template JSON string representation of this resource.
+        /// </summary>
+        /// <returns>A JSON string representing this ARM resource in ARM template JSON.</returns>
         public override string ToString()
         {
             return ToJson().ToString();
         }
 
+        /// <summary>
+        /// Instantiate all ARM parameters in this resource with the given values.
+        /// </summary>
+        /// <param name="parameters">The values to instantiate ARM parameters with.</param>
+        /// <returns>A copy of the resource with parameter values instantiated.</returns>
         public ArmResource Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
         {
             Dictionary<string, ArmPropertyInstance> properties = null;

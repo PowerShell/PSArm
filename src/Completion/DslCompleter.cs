@@ -9,6 +9,10 @@ using PSArm.Schema;
 
 namespace PSArm.Completion
 {
+    /// <summary>
+    /// Low-level completion provider for the ARM DSL,
+    /// designed to work with other completions, possibly overriding them.
+    /// </summary>
     public static class DslCompleter
     {
         private static Dictionary<string, bool> s_ignoredCommands = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
@@ -45,6 +49,15 @@ namespace PSArm.Completion
             { "Sku", s_skuInfo },
         };
 
+        /// <summary>
+        /// Add ARM DSL completions to the front of the completion result collection.
+        /// May clobber other results if DSL completions are determined to be of low relevance.
+        /// </summary>
+        /// <param name="completion">The existing command completion object.</param>
+        /// <param name="ast">The AST of the whole input as parsed.</param>
+        /// <param name="tokens">The tokens of the whole input as parsed.</param>
+        /// <param name="cursorPosition">The position of the cursor within the input.</param>
+        /// <param name="options">A completion options hashtable. This is currently ignored.</param>
         public static void PrependDslCompletions(
             CommandCompletion completion,
             Ast ast,
@@ -117,6 +130,7 @@ namespace PSArm.Completion
                 return null;
             }
 
+            // This is the clever magical bit where we get all the information we need to really provide a completion
             KeywordContext context = GetKeywordContext(ast, tokens, lastTokenIndex, cursorPosition);
 
             if (context == null)
@@ -428,6 +442,10 @@ namespace PSArm.Completion
             int lastTokenIndex,
             IScriptPosition cursorPosition)
         {
+            // Go through and find the first token before us that isn't a newline.
+            // When the cursor is at the end of an open scriptblock
+            // it falls beyond that scriptblock's extent,
+            // meaning we must backtrack to find the real context for a completion
             Token lastToken = tokens[lastTokenIndex];
             Token lastNonNewlineToken = null;
             for (int i = lastTokenIndex; i >= 0; i--)
@@ -440,9 +458,7 @@ namespace PSArm.Completion
                 }
             }
 
-            // When the cursor is at the end of an open scriptblock
-            // it falls beyond that scriptblock's extent,
-            // meaning we must backtrack to find the real context for a completion
+            // Set our effective position based on what came before us
             IScriptPosition effectiveCompletionPosition;
             switch (lastNonNewlineToken.Kind)
             {
@@ -467,6 +483,7 @@ namespace PSArm.Completion
                 return null;
             }
 
+            // Find the command AST that we're in
             CommandAst containingCommandAst = GetFirstParentCommandAst(containingAst);
 
             var context = new KeywordContext
@@ -481,6 +498,7 @@ namespace PSArm.Completion
                 Position = cursorPosition
             };
 
+            // Now build a stack of the keyword context we're in
             Ast currAst = containingAst;
             bool foundArmKeyword = false;
             do
@@ -490,6 +508,7 @@ namespace PSArm.Completion
                 {
                     string commandName = commandAst.GetCommandName();
 
+                    // This is error prone, instead we should build the stack and sift out commands after the fact
                     if (!s_ignoredCommands.ContainsKey(commandName))
                     {
                         context.KeywordStack.Add(commandName);

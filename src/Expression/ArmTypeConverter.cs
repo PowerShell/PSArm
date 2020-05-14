@@ -3,6 +3,10 @@ using System.Management.Automation;
 
 namespace PSArm.Expression
 {
+    /// <summary>
+    /// PowerShell type converter for ARM types,
+    /// allowing .NET values to be used in places expecting an IArmExpression in PowerShell.
+    /// </summary>
     public class ArmTypeConverter : PSTypeConverter
     {
         public override bool CanConvertFrom(object sourceValue, Type destinationType)

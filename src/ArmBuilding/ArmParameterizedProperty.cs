@@ -4,13 +4,25 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
+    /// <summary>
+    /// An ARM property with a parameters field.
+    /// </summary>
     public class ArmParameterizedProperty : ArmParameterizedItem
     {
+        /// <summary>
+        /// Create a new ARM property with a given name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property this element is keyed by in its parent.</param>
         public ArmParameterizedProperty(string propertyName)
             : base(propertyName)
         {
         }
 
+        /// <summary>
+        /// Instantiate any ARM parameters with the given literal values.
+        /// </summary>
+        /// <param name="parameters">The literal parameter values to instantiate with.</param>
+        /// <returns>The ARM property instance with parameters instantiated.</returns>
         public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
         {
             return new ArmParameterizedProperty(PropertyName)
@@ -19,6 +31,10 @@ namespace PSArm.ArmBuilding
             };
         }
 
+        /// <summary>
+        /// Render the ARM property instance as an ARM template JSON object.
+        /// </summary>
+        /// <returns>The ARM property instance in ARM template JSON form.</returns>
         public override JToken ToJson()
         {
             var jObj = new JObject();

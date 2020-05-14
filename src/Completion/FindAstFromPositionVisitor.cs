@@ -2,17 +2,29 @@ using System.Management.Automation.Language;
 
 namespace PSArm.Completion
 {
+    /// <summary>
+    /// An AST visitor to find the smallest AST containing a given IScriptPosition.
+    /// </summary>
     internal class FindAstFromPositionVisitor : AstVisitor2
     {
         private readonly IScriptPosition _position;
 
         private Ast _astAtPosition;
 
+        /// <summary>
+        /// Create a FindAstFromPositionVisitor around a given position,
+        /// ready to find the smallest AST containing that position.
+        /// </summary>
+        /// <param name="position">The position to find the containing AST of.</param>
         public FindAstFromPositionVisitor(IScriptPosition position)
         {
             _position = position;
         }
 
+        /// <summary>
+        /// Retrieve the computed smallest containing AST after a visit has been performed.
+        /// </summary>
+        /// <returns>The smallest AST containing the originally given position in the visited AST.</returns>
         public Ast GetAst()
         {
             return _astAtPosition;

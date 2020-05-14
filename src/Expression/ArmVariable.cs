@@ -1,10 +1,15 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using PSArm.ArmBuilding;
 
 namespace PSArm.Expression
 {
-    public class ArmVariable : ArmOperation
+    /// <summary>
+    /// An ARM variable expression.
+    /// Represents both the variable declaration and the ARM expression.
+    /// </summary>
+    public class ArmVariable : ArmOperation, IArmElement
     {
         public ArmVariable(string name, IArmExpression value)
         {
@@ -12,8 +17,14 @@ namespace PSArm.Expression
             Value = value;
         }
 
+        /// <summary>
+        /// The name of the ARM variable.
+        /// </summary>
         public string Name { get; }
 
+        /// <summary>
+        /// The given value of the variable.
+        /// </summary>
         public IArmExpression Value { get; }
 
         public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
@@ -30,7 +41,7 @@ namespace PSArm.Expression
                 .ToString();
         }
 
-        public JValue ToJson()
+        public JToken ToJson()
         {
             return new JValue(Value.ToExpressionString());
         }

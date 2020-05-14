@@ -5,27 +5,55 @@ using PSArm.Expression;
 
 namespace PSArm.ArmBuilding
 {
-    public class ArmTemplate
+    /// <summary>
+    /// A full ARM template. May be parameterized or instantiated.
+    /// </summary>
+    public class ArmTemplate : IArmElement
     {
+        /// <summary>
+        /// Create a new blank ARM template.
+        /// </summary>
         public ArmTemplate()
         {
             Resources = new List<ArmResource>();
             Outputs = new List<ArmOutput>();
         }
 
+        /// <summary>
+        /// The JSON schema path for this template.
+        /// </summary>
         public string Schema { get; set; } = "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#";
 
+        /// <summary>
+        /// The content version of this template.
+        /// </summary>
         public Version ContentVersion { get; set; } = new Version(1, 0, 0, 0);
 
+        /// <summary>
+        /// A list of resources used in the template.
+        /// </summary>
         public List<ArmResource> Resources { get; set; }
 
+        /// <summary>
+        /// A list of outputs expressed by the template.
+        /// </summary>
         public List<ArmOutput> Outputs { get; set; }
 
+        /// <summary>
+        /// ARM parameters on this template that must be passed in to instantiate it.
+        /// </summary>
         public ArmParameter[] Parameters { get; set; }
 
+        /// <summary>
+        /// ARM variables on this template.
+        /// </summary>
         public ArmVariable[] Variables { get; set; }
 
-        public JObject ToJson()
+        /// <summary>
+        /// Render the template as ARM template JSON.
+        /// </summary>
+        /// <returns>A JSON object representing the JSON form of this template.</returns>
+        public JToken ToJson()
         {
             var jObj = new JObject
             {
@@ -73,11 +101,20 @@ namespace PSArm.ArmBuilding
             return jObj;
         }
 
+        /// <summary>
+        /// Show this template as an ARM template JSON string.
+        /// </summary>
+        /// <returns>A string capturing the ARM template in ARM template JSON.</returns>
         public override string ToString()
         {
             return ToJson().ToString();
         }
 
+        /// <summary>
+        /// Instantiate parameters on the ARM template with the given ARM template values.
+        /// </summary>
+        /// <param name="parameters">Values to instantiate ARM parameters with.</param>
+        /// <returns>A copy of the ARM template with all given parameter values instantiated.</returns>
         public ArmTemplate Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
         {
             var outputs = new List<ArmOutput>();

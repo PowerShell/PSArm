@@ -7,6 +7,10 @@ using System.Management.Automation.Language;
 
 namespace PSArm.Completion
 {
+    /// <summary>
+    /// Argument completer for cmdlet arguments that take an ARM resource type,
+    /// such as 'Microsoft.Network/publicIpAddresses'.
+    /// </summary>
     public class ArmResourceArgumentCompleter : IArgumentCompleter
     {
         private static string[] s_locations = new []
@@ -18,6 +22,15 @@ namespace PSArm.Completion
 
         private static char[] s_typeSeparator = new [] { '/' };
 
+        /// <summary>
+        /// Complete an ARM resource "type" argument.
+        /// </summary>
+        /// <param name="commandName">The name of the invoked command whose argument this is.</param>
+        /// <param name="parameterName">The name of the parameter for the argument, if any.</param>
+        /// <param name="wordToComplete">The argument so far.</param>
+        /// <param name="commandAst">The entirety of command AST in which this argument is being provided.</param>
+        /// <param name="fakeBoundParameters">The attempted parameter binding, for providing something similar to $PSBoundParameters.</param>
+        /// <returns></returns>
         public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
             if (IsString(parameterName, "Type"))

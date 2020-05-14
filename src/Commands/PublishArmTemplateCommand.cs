@@ -41,14 +41,14 @@ namespace PSArm.Commands
             {
                 foreach (DictionaryEntry entry in Parameters)
                 {
-                    parameterValues[entry.Key.ToString()] = (ArmLiteral)ArmTypeConversion.Convert(entry.Value);
+                    parameterValues[entry.Key.ToString()] = ArmTypeConversion.Convert(entry.Value);
                 }
             }
             else if (_dynamicParameters != null)
             {
                 foreach (KeyValuePair<string, RuntimeDefinedParameter> entry in _dynamicParameters)
                 {
-                    parameterValues[entry.Key] = (ArmLiteral)ArmTypeConversion.Convert(entry.Value.Value);
+                    parameterValues[entry.Key] = ArmTypeConversion.Convert(entry.Value.Value);
                 }
             }
 

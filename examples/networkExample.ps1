@@ -37,6 +37,6 @@ $template = Arm {
     Output 'nicResourceId' -Type 'string' -Value (ResourceId 'Microsoft.Network/networkInterfaces' (Concat $namePrefix '-nic'))
 }
 
-Publish-ArmTemplate -Template $template -OutFile ./template.json -Parameters @{
+Publish-ArmTemplate -Template $template -OutFile ./networkExampleTemplate.json -Parameters @{
     rgLocation = 'WestUS2'
 }

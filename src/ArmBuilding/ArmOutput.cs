@@ -42,7 +42,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">Given ARM parameter values.</param>
         /// <returns>The instantiated output template.</returns>
-        public ArmOutput Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public ArmOutput Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             return new ArmOutput
             {

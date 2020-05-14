@@ -28,7 +28,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">Parameters provided for template instantiation.</param>
         /// <returns>A new DependsOn element instantiated with the given parameters.</returns>
-        public ArmDependsOn Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public ArmDependsOn Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             return new ArmDependsOn(Value.Instantiate(parameters));
         }

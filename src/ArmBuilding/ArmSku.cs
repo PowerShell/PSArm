@@ -19,7 +19,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The parameter values to instantiate with.</param>
         /// <returns>A copy of this SKU with ARM parameters instantiated.</returns>
-        public ArmSku Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public ArmSku Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             return new ArmSku
             {

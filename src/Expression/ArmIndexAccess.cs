@@ -34,7 +34,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The values to instantiate ARM parameters with.</param>
         /// <returns>A copy of the index expression with ARM parameters instantiated.</returns>
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             return new ArmIndexAccess((ArmOperation)Expression.Instantiate(parameters), Index);
         }

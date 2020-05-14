@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Language;
+using System.Security;
 using PSArm.ArmBuilding;
 using PSArm.Completion;
 using PSArm.Expression;
@@ -72,109 +73,50 @@ namespace PSArm.Commands
             {
                 foreach (ParameterAst parameter in ast.ParamBlock.Parameters)
                 {
-                    ArmParameter armParameter = null;
-                    object[] parameterAllowedValues = null;
-
-                    // Go through attributes
-                    bool isVariable = false;
-                    var attributes = new List<AttributeBaseAst>();
+                    TypeConstraintAst typeConstraintAst = null;
                     if (parameter.Attributes != null && parameter.Attributes.Count > 0)
                     {
-                        foreach (AttributeBaseAst attributeBase in parameter.Attributes)
+                        foreach (AttributeBaseAst attributeBaseAst in parameter.Attributes)
                         {
-                            switch (attributeBase)
+                            if (attributeBaseAst is TypeConstraintAst foundTypeConstraint)
                             {
-                                case TypeConstraintAst typeConstraint:
-
-                                    Type reflectedType = typeConstraint.TypeName.GetReflectionType();
-
-                                    if (reflectedType == typeof(ArmVariable)
-                                        || typeConstraint.TypeName.FullName.Is(ArmTypeAccelerators.ArmVariable))
-                                    {
-                                        isVariable = true;
-                                        armVariables.Add(new ArmVariable(
-                                            parameter.Name.VariablePath.UserPath,
-                                            ArmTypeConversion.Convert(GetDefaultValue(parameter.DefaultValue))));
-                                        parameterAsts.Add((ParameterAst)parameter.Copy());
-                                        continue;
-                                    }
-
-                                    if (reflectedType != null && typeof(ArmParameter).IsAssignableFrom(reflectedType)
-                                        || typeConstraint.TypeName.FullName.Is(ArmTypeAccelerators.ArmParameter)
-                                        || typeConstraint.TypeName is GenericTypeName genericTypeName && genericTypeName.TypeName.FullName.Is(ArmTypeAccelerators.ArmParameter))
-                                    {
-                                    }
-
-                                    Type parameterType = null;
-                                    if (reflectedType != null && reflectedType.IsGenericType)
-                                    {
-                                        parameterType = reflectedType.GetGenericArguments()[0];
-                                        attributes.Add(
-                                            new TypeConstraintAst(
-                                                typeConstraint.Extent,
-                                                new TypeName(
-                                                    typeConstraint.TypeName.Extent,
-                                                    typeof(ArmParameter).FullName)));
-                                    }
-
-                                    armParameter = new ArmParameter(parameter.Name.VariablePath.UserPath)
-                                    {
-                                        Type = parameterType, 
-                                        AllowedValues = parameterAllowedValues,
-                                    };
-
-                                    continue;
-
-                                case AttributeAst attribute:
-                                    if (string.Equals(attribute.TypeName.FullName, "ValidateSet", StringComparison.OrdinalIgnoreCase))
-                                    {
-                                        var allowedValues = new List<object>(attribute.PositionalArguments.Count);
-                                        foreach (ExpressionAst expr in attribute.PositionalArguments)
-                                        {
-                                            allowedValues.Add(expr.SafeGetValue());
-                                        }
-                                        parameterAllowedValues = allowedValues.ToArray();
-                                    }
-                                    continue;
+                                typeConstraintAst = foundTypeConstraint;
+                                break;
                             }
                         }
                     }
 
-                    if (isVariable)
+                    if (typeConstraintAst != null)
                     {
-                        continue;
+                        ParameterAst newParameterAst = null;
+
+                        if (TryGetArmVariableFromPSParameter(typeConstraintAst, parameter, out ArmVariable armVariable, out newParameterAst))
+                        {
+                            armVariables.Add(armVariable);
+                            parameterAsts.Add(newParameterAst);
+                            continue;
+                        }
+
+                        if (TryGetArmParameterFromPSParameter(typeConstraintAst, parameter, out ArmParameter armParameter, out newParameterAst))
+                        {
+                            armParameters.Add(armParameter);
+                            parameterAsts.Add(newParameterAst);
+                            continue;
+                        }
                     }
 
-                    if (parameter.DefaultValue != null)
-                    {
-                        armParameter.DefaultValue = GetDefaultValue(parameter.DefaultValue);
-                    }
-
-                    armParameters.Add(armParameter);
-                    parameterAsts.Add(
-                        new ParameterAst(
-                            parameter.Extent,
-                            (VariableExpressionAst)parameter.Name.Copy(),
-                            attributes,
-                            defaultValue: null));
+                    throw new ArgumentException($"Unable to convert parameter '{parameter.Name}' to ARM parameter or variable");
                 }
             }
 
-            ParamBlockAst newParamBlock;
+            ParamBlockAst newParamBlock = null;
             if (ast.ParamBlock != null)
             {
                 newParamBlock = new ParamBlockAst(
-                    s_emptyExtent,
-                    Enumerable.Empty<AttributeAst>(),
+                    ast.ParamBlock.Extent,
+                    CopyAstCollection(ast.ParamBlock.Attributes),
                     parameterAsts);
             }
-            else
-            {
-                newParamBlock = new ParamBlockAst(
-                    ast.ParamBlock.Extent,
-                    CopyAstCollection<AttributeAst>(ast.ParamBlock.Attributes),
-                    parameterAsts);
-             }
 
             var newScriptBlockAst = new ScriptBlockAst(
                 ast.Extent,
@@ -187,8 +129,150 @@ namespace PSArm.Commands
             return (newScriptBlockAst.GetScriptBlock(), armParameters.ToArray(), armVariables.ToArray());
         }
 
-        private object GetDefaultValue(ExpressionAst defaultValue)
+        private bool TryGetArmParameterFromPSParameter(
+            TypeConstraintAst typeConstraintAst,
+            ParameterAst parameterAst,
+            out ArmParameter armParameter,
+            out ParameterAst newParameterAst)
         {
+            Type reflectionType = typeConstraintAst.TypeName.GetReflectionType();
+
+            // Non-generic ARM parameter: no type constraint
+            armParameter = null;
+            if (reflectionType == typeof(ArmParameter)
+                || typeConstraintAst.TypeName.FullName.Is(ArmTypeAccelerators.ArmParameter))
+            {
+                armParameter = new ArmParameter(parameterAst.Name.VariablePath.UserPath);
+            }
+            else if (typeConstraintAst.TypeName is GenericTypeName genericTypeName
+                    && (genericTypeName.TypeName.GetReflectionType() == typeof(ArmParameter)
+                        || genericTypeName.TypeName.FullName.Is(ArmTypeAccelerators.ArmParameter)))
+            {
+                armParameter = new ArmParameter(parameterAst.Name.VariablePath.UserPath)
+                {
+                    Type = GetArmParameterTypeFromPSTypeName(typeConstraintAst.TypeName),
+                };
+            }
+
+            if (armParameter == null)
+            {
+                newParameterAst = null;
+                return false;
+            }
+
+            foreach (AttributeBaseAst parameterAttribute in parameterAst.Attributes)
+            {
+                if (!(parameterAttribute is AttributeAst attribute))
+                {
+                    continue;
+                }
+
+                Type attributeType = attribute.TypeName.GetReflectionAttributeType();
+
+                if (attributeType == typeof(ValidateSetAttribute)
+                    || attribute.TypeName.FullName.Is("ValidateSetAttribute"))
+                {
+                    var allowedValues = new List<object>();
+                    foreach (ExpressionAst allowedExpression in attribute.PositionalArguments)
+                    {
+                        allowedValues.Add(allowedExpression.SafeGetValue());
+                    }
+                }
+            }
+
+            armParameter.DefaultValue = GetDefaultValue(parameterAst.DefaultValue);
+
+            // Construct a new parameter AST that will accept the ARM parameter placeholder object we will give it
+            newParameterAst = new ParameterAst(
+                parameterAst.Extent,
+                (VariableExpressionAst)parameterAst.Name.Copy(),
+                Enumerable.Empty<AttributeAst>(), // TODO: Add a type constraint here
+                defaultValue: null);
+
+            return true;
+        }
+
+        private bool TryGetArmVariableFromPSParameter(
+            TypeConstraintAst typeConstraintAst,
+            ParameterAst parameterAst,
+            out ArmVariable armVariable,
+            out ParameterAst newParameterAst)
+        {
+            if (typeConstraintAst.TypeName.GetReflectionType() != typeof(ArmVariable)
+                && !typeConstraintAst.TypeName.FullName.Is(ArmTypeAccelerators.ArmVariable))
+            {
+                armVariable = null;
+                newParameterAst = null;
+                return false;
+            }
+
+            armVariable = new ArmVariable(
+                parameterAst.Name.VariablePath.UserPath,
+                GetDefaultValue(parameterAst.DefaultValue));
+            newParameterAst = (ParameterAst)parameterAst.Copy();
+            return true;
+        }
+
+        private Type GetArmParameterTypeFromPSTypeName(ITypeName typeName)
+        {
+            if (!(typeName is GenericTypeName genericTypeName
+                && genericTypeName.GenericArguments.Count == 1
+                && genericTypeName.GenericArguments[0] is TypeName typeParameterName))
+            {
+                throw new ArgumentException($"Cannot convert typename '{typeName}' to ARM parameter type");
+            }
+
+            Type reflectionType = typeParameterName.GetReflectionType();
+            if (reflectionType != null)
+            {
+                return reflectionType;
+            }
+
+            if (typeParameterName.FullName.Is("string"))
+            {
+                return typeof(string);
+            }
+
+            if (typeParameterName.FullName.Is("object"))
+            {
+                return typeof(object);
+            }
+
+            if (typeParameterName.FullName.Is("array"))
+            {
+                return typeof(Array);
+            }
+
+            if (typeParameterName.FullName.Is("securestring"))
+            {
+                return typeof(SecureString);
+            }
+
+            if (typeParameterName.FullName.Is("int"))
+            {
+                return typeof(int);
+            }
+
+            if (typeParameterName.FullName.Is("secureobject"))
+            {
+                return typeof(SecureObject);
+            }
+
+            if (typeParameterName.FullName.Is("bool"))
+            {
+                return typeof(bool);
+            }
+
+            throw new ArgumentException($"Cannot convert typename '{typeName}' to ARM parameter type");
+        }
+
+        private IArmExpression GetDefaultValue(ExpressionAst defaultValue)
+        {
+            if (defaultValue == null)
+            {
+                return null;
+            }
+
             foreach (PSObject result in InvokeCommand.InvokeScript(defaultValue.Extent.Text))
             {
                 return ArmTypeConversion.Convert(result);

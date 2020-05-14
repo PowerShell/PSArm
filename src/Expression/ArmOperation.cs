@@ -54,7 +54,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">Values to instantiate parameters with.</param>
         /// <returns></returns>
-        public abstract IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters);
+        public abstract IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters);
 
         private string UnPascal(string s)
         {

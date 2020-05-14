@@ -2,55 +2,79 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Management.Automation;
+using Newtonsoft.Json;
 using PSArm.ArmBuilding;
 using PSArm.Expression;
+using PSArm.Internal;
 
 namespace PSArm.Commands
 {
 
-    [Cmdlet(VerbsData.Publish, "ArmTemplate")]
+    [Cmdlet(VerbsData.Publish, "ArmTemplate", DefaultParameterSetName = "OutFile")]
     public class PublishArmTemplateCommand : PSCmdlet, IDynamicParameters
     {
+        private const string ParamSet_Hashtable = "ParamsAsHashtable";
+        private const string ParamSet_DynamicParams = "ParamsAsDynamicParams";
+
         private RuntimeDefinedParameterDictionary _dynamicParameters;
 
         [Parameter(Position = 0, Mandatory = true)]
         public ArmTemplate Template { get; set; }
 
-        [Parameter(Position = 1, Mandatory = true, ParameterSetName = "PassByHashtable")]
-        public Hashtable[] Parameters { get; set; }
+        [Parameter(Position = 1)]
+        [ValidateNotNullOrEmpty()]
+        public string OutFile { get; set; }
+
+        [Parameter(Position = 2, ParameterSetName = ParamSet_Hashtable)]
+        public Hashtable Parameters { get; set; }
+
+        [Parameter()]
+        public SwitchParameter PassThru { get; set; }
 
         protected override void EndProcessing()
         {
-            Dictionary<string, ArmLiteral> parameterValues = null;
+            var parameterValues = new Dictionary<string, IArmExpression>();
 
             if (Parameters != null)
             {
-                foreach (Hashtable parameterSetting in Parameters)
+                foreach (DictionaryEntry entry in Parameters)
                 {
-                    parameterValues = new Dictionary<string, ArmLiteral>();
-                    foreach (DictionaryEntry entry in parameterSetting)
-                    {
-                        parameterValues[entry.Key.ToString()] = (ArmLiteral)ArmTypeConversion.Convert(entry.Value);
-                    }
-                    WriteObject(Template.Instantiate(parameterValues));
+                    parameterValues[entry.Key.ToString()] = (ArmLiteral)ArmTypeConversion.Convert(entry.Value);
                 }
-                return;
+            }
+            else if (_dynamicParameters != null)
+            {
+                foreach (KeyValuePair<string, RuntimeDefinedParameter> entry in _dynamicParameters)
+                {
+                    parameterValues[entry.Key] = (ArmLiteral)ArmTypeConversion.Convert(entry.Value.Value);
+                }
             }
 
-            parameterValues = new Dictionary<string, ArmLiteral>();
-            foreach (KeyValuePair<string, RuntimeDefinedParameter> entry in _dynamicParameters)
+            ArmTemplate instantiatedTemplate = Template.Instantiate(parameterValues);
+
+            if (OutFile != null)
             {
-                parameterValues[entry.Key] = (ArmLiteral)ArmTypeConversion.Convert(entry.Value.Value);
+                using (FileStream fileStream = File.Open(OutFile, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (var textWriter = new StreamWriter(fileStream))
+                using (var jsonWriter = new JsonTextWriter(textWriter){ Formatting = Formatting.Indented })
+                {
+                    instantiatedTemplate.ToJson().WriteTo(jsonWriter);
+                }
             }
-            WriteObject(Template.Instantiate(parameterValues));
+
+            if (PassThru)
+            {
+                WriteObject(instantiatedTemplate);
+            }
         }
 
         public object GetDynamicParameters()
         {
             if (Template.Parameters == null
                 || Template.Parameters.Length == 0
-                || string.Equals(ParameterSetName, "PassByHashtable", StringComparison.OrdinalIgnoreCase))
+                || ParameterSetName.Is(ParamSet_Hashtable))
             {
                 return null;
             }
@@ -72,7 +96,7 @@ namespace PSArm.Commands
 
                 if (armParameter.DefaultValue != null)
                 {
-                    attributes.Add(new ParameterAttribute{ ParameterSetName = "PassByDynamicParams" });
+                    attributes.Add(new ParameterAttribute{ ParameterSetName = ParamSet_DynamicParams });
 
                     parameters[armParameter.Name] = new RuntimeDefinedParameter(
                         armParameter.Name,
@@ -84,7 +108,7 @@ namespace PSArm.Commands
                 }
                 else
                 {
-                    attributes.Add(new ParameterAttribute{ Mandatory = true, ParameterSetName = "PassByDynamicParams" });
+                    attributes.Add(new ParameterAttribute{ Mandatory = true, ParameterSetName = ParamSet_DynamicParams });
 
                     parameters[armParameter.Name] = new RuntimeDefinedParameter(
                         armParameter.Name,

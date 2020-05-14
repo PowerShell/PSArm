@@ -24,7 +24,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The values to instantiate parameters with.</param>
         /// <returns>A fully instantiated concat expression, or possibly a constant expression.</returns>
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             var args = new List<IArmExpression>(Arguments.Length);
             bool canFlatten = true;

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "variables": {
+    "vnetNamespace": "myVnet/"
+  },
+  "outputs": {
+    "nicResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/networkInterfaces', 'my-nic')]"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "[concat(variables('vnetNamespace'), 'my', '-subnet')]",
+      "location": "WestUS2",
+      "properties": {
+        "addressPrefix": "10.0.0.0/24"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/publicIpAddresses",
+      "name": "my-pip1",
+      "location": "WestUS2",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/publicIpAddresses",
+      "name": "my-pip2",
+      "location": "WestUS2",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "my-nic",
+      "location": "WestUS2",
+      "properties": {
+        "ipConfiguration": {
+          "name": "myConfig",
+          "properties": {
+            "subnet": {
+              "Id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat(variables('vnetNamespace'), 'my', '-subnet'))]"
+            },
+            "privateIPAllocationMethod": "Dynamic"
+          }
+        }
+      }
+    }
+  ]
+}

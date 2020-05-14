@@ -39,7 +39,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The parameter values to use for instantiation, keyed by parameter name.</param>
         /// <returns>A copy of the property element with parameter values instantiated.</returns>
-        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             return new ArmPropertyObject(PropertyName, InstantiateProperties(parameters))
             {
@@ -74,7 +74,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The parameter values to use for instantiation.</param>
         /// <returns>Copies of all properties with ARM parameters instantiated.</returns>
-        protected Dictionary<string, ArmPropertyInstance> InstantiateProperties(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        protected Dictionary<string, ArmPropertyInstance> InstantiateProperties(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             if (Properties == null)
             {

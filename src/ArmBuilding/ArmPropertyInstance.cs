@@ -45,6 +45,6 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The parameter values to use for instantiation.</param>
         /// <returns>A copy of the original element with ARM parameters instantiated with the given values.</returns>
-        public abstract ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters);
+        public abstract ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters);
     }
 }

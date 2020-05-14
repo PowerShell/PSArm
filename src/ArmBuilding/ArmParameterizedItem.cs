@@ -28,7 +28,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The ARM parameter values to instantiate the parameters field values with.</param>
         /// <returns>A fully instantiated set of parameters.</returns>
-        protected Dictionary<string, IArmExpression> InstantiateParameters(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        protected Dictionary<string, IArmExpression> InstantiateParameters(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             if (Parameters == null)
             {

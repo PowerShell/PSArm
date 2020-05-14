@@ -150,7 +150,8 @@ so that you can easily rebuild and reimport as you make changes.
   - A script writer visits these schemas and converts them to a series of simple PowerShell functions,
     with inner keywords represented as inner functions
   - These inner functions mainly declare their parameters and delegate back to cmdlets that turn these parameters into a named JSON element
-  - When each resource is invoked, the functions are converted to scriptblocks and the definitions invoked in the user scope (so that dynamic scope works properly)
+  - When each resource is invoked, the functions are converted to scriptblocks and the definitions dot-sourced in the user scope
+    (so that dynamic scope works properly for resolving inner functions in user-defined scriptblocks)
   - The fact of defining DSL functions in user scope is considered an implementation detail/bug and hopefully can be removed in later development
 - Each keyword invokes its scriptblock body in user scope and collects the output,
   sifting through it based on object type and reconstructing an object hierarchy from it, like a complex builder pattern

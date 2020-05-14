@@ -122,7 +122,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The values to instantiate ARM parameters with.</param>
         /// <returns>A copy of the resource with parameter values instantiated.</returns>
-        public ArmResource Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public ArmResource Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             Dictionary<string, ArmPropertyInstance> properties = null;
             if (Properties != null)

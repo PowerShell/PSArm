@@ -115,8 +115,43 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">Values to instantiate ARM parameters with.</param>
         /// <returns>A copy of the ARM template with all given parameter values instantiated.</returns>
-        public ArmTemplate Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public ArmTemplate Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
+            // No parameters to instantiate, so save the trouble
+            if (Parameters == null)
+            {
+                return this;
+            }
+
+            // Go through given parameters and add any that require default values
+            Dictionary<string, IArmExpression> defaultParametersToUse = null;
+            foreach (ArmParameter parameter in Parameters)
+            {
+                if (!parameters.ContainsKey(parameter.Name)
+                    && parameter.DefaultValue != null)
+                {
+                    if (defaultParametersToUse == null)
+                    {
+                        defaultParametersToUse = new Dictionary<string, IArmExpression>();
+                    }
+
+                    defaultParametersToUse[parameter.Name] = parameter.DefaultValue;
+                }
+            }
+
+            // If we need to use default parameters,
+            // add the existing parameters to the dictionary
+            // and use that instead
+            if (defaultParametersToUse != null)
+            {
+                foreach (KeyValuePair<string, IArmExpression> givenParameter in parameters)
+                {
+                    defaultParametersToUse[givenParameter.Key] = givenParameter.Value;
+                }
+
+                parameters = defaultParametersToUse;
+            }
+
             var outputs = new List<ArmOutput>();
             foreach (ArmOutput output in Outputs)
             {

@@ -1,5 +1,5 @@
 
-$t = Arm {
+$template = Arm {
     param(
         # Storage account type
         [ValidateSet('Standard_LRS', 'Standard_GRS', 'Standard_ZRS', 'Premium_LRS')]
@@ -20,4 +20,4 @@ $t = Arm {
     Output 'storageAccountName' -Type 'string' -Value $storageAccountName
 }
 
-$t.ToString()
+Publish-ArmTemplate -Template $template -OutFile ./storageExampleTemplate.json -StorageAccountType 'Standard_GRS' -PassThru

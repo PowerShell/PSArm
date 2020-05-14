@@ -52,18 +52,18 @@ namespace PSArm.Expression
         /// <summary>
         /// The default value for this parameter, if any.
         /// </summary>
-        public object DefaultValue { get; set; }
+        public IArmExpression DefaultValue { get; set; }
 
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
-            ArmLiteral value = parameters[Name];
+            IArmExpression value = parameters[Name];
 
-            if (AllowedValues != null)
+            if (value is ArmLiteral literal && AllowedValues != null)
             {
                 bool found = false;
                 foreach (object allowedValue in AllowedValues)
                 {
-                    if (object.Equals(value.GetValue(), allowedValue))
+                    if (object.Equals(literal.GetValue(), allowedValue))
                     {
                         found = true;
                         break;
@@ -72,7 +72,7 @@ namespace PSArm.Expression
 
                 if (!found)
                 {
-                    throw new InvalidOperationException($"Parameter '{Name}' does not have '{value.GetValue()}' as an allowed value");
+                    throw new InvalidOperationException($"Parameter '{Name}' does not have '{literal.GetValue()}' as an allowed value");
                 }
             }
 
@@ -119,6 +119,11 @@ namespace PSArm.Expression
 
         private string GetArmTypeNameFromType(Type type)
         {
+            if (type == null)
+            {
+                return null;
+            }
+
             if (type == typeof(string))
             {
                 return "string";

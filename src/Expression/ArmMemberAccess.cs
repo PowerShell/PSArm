@@ -34,7 +34,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The values of ARM parameters to instantiate.</param>
         /// <returns>A copy of the member access expression with parameters instantiated to the given values.</returns>
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             return new ArmMemberAccess((ArmOperation)Expression.Instantiate(parameters), Member);
         }

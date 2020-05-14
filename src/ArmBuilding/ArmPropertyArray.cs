@@ -47,7 +47,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The values to instantiate with.</param>
         /// <returns>A copy of the ARM property with the parameter values instantiated.</returns>
-        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             var items = new List<ArmPropertyArrayItem>();
             foreach (ArmPropertyArrayItem item in _items)

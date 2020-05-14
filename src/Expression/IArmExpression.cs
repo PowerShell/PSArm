@@ -27,6 +27,6 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The values to instantiate parameters with.</param>
         /// <returns></returns>
-        IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters);
+        IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters);
     }
 }

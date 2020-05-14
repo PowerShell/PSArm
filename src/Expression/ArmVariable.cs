@@ -27,7 +27,7 @@ namespace PSArm.Expression
         /// </summary>
         public IArmExpression Value { get; }
 
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             return new ArmVariable(Name, Value.Instantiate(parameters));
         }

@@ -15,7 +15,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The parameters to instantiate with.</param>
         /// <returns>Itself.</returns>
-        public IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters) => this;
+        public IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> _) => this;
 
         /// <summary>
         /// Render the ARM literal as an ARM expression string.

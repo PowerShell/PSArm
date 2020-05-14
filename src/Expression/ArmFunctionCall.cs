@@ -34,7 +34,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The values to instantiate parameters with.</param>
         /// <returns>A copy of the function call expression with ARM parameters instantiated.</returns>
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)
+        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             if (Arguments == null)
             {

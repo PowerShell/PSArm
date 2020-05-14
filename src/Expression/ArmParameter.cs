@@ -7,27 +7,51 @@ using PSArm.ArmBuilding;
 
 namespace PSArm.Expression
 {
+    /// <summary>
+    /// An ARM parameter, parameterized by its ARM type.
+    /// </summary>
+    /// <typeparam name="T">The type of the parameter.</typeparam>
     public class ArmParameter<T> : ArmParameter
     {
+        /// <summary>
+        /// Create a new ARM parameter.
+        /// </summary>
+        /// <param name="name">The name of the ARM parameter.</param>
         public ArmParameter(string name) : base(name)
         {
             Type = typeof(T);
         }
     }
 
+    /// <summary>
+    /// An ARM parameter placeholder within a template,
+    /// for later instantiation.
+    /// </summary>
     public class ArmParameter : ArmOperation, IArmElement
     {
-        internal ArmParameter(string name)
+        public ArmParameter(string name)
         {
             Name = name;
         }
 
+        /// <summary>
+        /// The name of the ARM parameter.
+        /// </summary>
         public string Name { get; }
 
+        /// <summary>
+        /// The type of the ARM parameter. Must only be a valid ARM parameter type.
+        /// </summary>
         public Type Type { get; internal set; }
 
+        /// <summary>
+        /// Allowed values for this parameter, if any.
+        /// </summary>
         public object[] AllowedValues { get; set; }
 
+        /// <summary>
+        /// The default value for this parameter, if any.
+        /// </summary>
         public object DefaultValue { get; set; }
 
         public override IArmExpression Instantiate(IReadOnlyDictionary<string, ArmLiteral> parameters)

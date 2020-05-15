@@ -31,10 +31,11 @@ In particular, high level goals are:
 
 A simple example for creating a network interface:
 
-**TODO: Reference original JSON, show how to deploy...**
+**TODO: Reference original JSON**
 
 ```powershell
-Arm {
+# Specify the ARM template purely within PowerShell
+$template = Arm {
     param(
         [ValidateSet('WestUS2', 'CentralUS')]
         [ArmParameter[string]]$rgLocation,
@@ -46,10 +47,12 @@ Arm {
 
     Resource (Concat $vnetNamespace $namePrefix '-subnet') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/virtualNetworks/subnets {
         Properties {
+            # Each resource defines its properties as commands within its own body
             AddressPrefix -Prefix 10.0.0.0/24
         }
     }
 
+    # Piping, looping and commands like ForEach-Object all work
     '-pip1','-pip2' | ForEach-Object {
         Resource (Concat $namePrefix $_) -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/publicIpAddresses {
             Properties {
@@ -61,14 +64,25 @@ Arm {
     Resource (Concat $namePrefix '-nic') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/networkInterfaces {
         Properties {
             IpConfiguration -Name 'myConfig' {
-                Subnet -Id (ResourceId 'Microsoft.Network/virtualNetworks/subnets' (Concat $vnetNamespace $namePrefix '-subnet'))
+                # Sub-properties also appear as commands within property contexts
                 PrivateIPAllocationMethod -Method Dynamic
+
+                # ARM expressions can be expressed in PowerShell
+                # The subnet ID here is: [resourceId('Microsoft.Network/virtualNetworks/subnets', concat(variables('vnetNamespace'), variables('namePrefix'), '-subnet'))]
+                Subnet -Id (ResourceId 'Microsoft.Network/virtualNetworks/subnets' (Concat $vnetNamespace $namePrefix '-subnet'))
             }
         }
     }
 
     Output 'nicResourceId' -Type 'string' -Value (ResourceId 'Microsoft.Network/networkInterfaces' (Concat $namePrefix '-nic'))
 }
+
+# Publish the template using the default value for $namePrefix
+# If a bad value is given for $rgLocation here, a helpful error will be thrown
+Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json -Parameters @{ rgLocation = 'WestUS2' }
+
+# Deploy the template to a resource group using the Az.Resources command
+New-AzResourceGroupDeployment -ResourceGroupName MyResourceGroup -TemplateFile ./networkTemplate.json
 ```
 
 A full list of examples can be found under `examples/` in the repository root.

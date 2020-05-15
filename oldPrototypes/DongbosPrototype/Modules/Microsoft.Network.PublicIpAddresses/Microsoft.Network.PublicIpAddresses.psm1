@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 $Script:schema = [Dictionary[string, object]]::new([StringComparer]::OrdinalIgnoreCase)
 
 $publicIPAddress = @{}

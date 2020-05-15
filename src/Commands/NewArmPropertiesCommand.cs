@@ -1,4 +1,8 @@
-﻿using System.Management.Automation;
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
+using System.Management.Automation;
 
 namespace PSArm.Commands
 {

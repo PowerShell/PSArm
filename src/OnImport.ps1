@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 Set-Item function:\__OldTabExpansion2 (Get-Content -Raw Function:\TabExpansion2)
 
 function TabExpansion2

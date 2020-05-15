@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 function NewExpression
 {
     param([Parameter(Position=0)][PsArm.ArmExpression]$Expression)

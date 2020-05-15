@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 using namespace System.Collections.Generic
 
 ## what data structure should be used to hold schema?

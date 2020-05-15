@@ -81,6 +81,9 @@ $template = Arm {
 # If a bad value is given for $rgLocation here, a helpful error will be thrown
 Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json -Parameters @{ rgLocation = 'WestUS2' }
 
+# Publish-ArmTemplate also supports ARM parameters as dynamic parameters on the template you pass to it
+Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json -rgLocation WestUS2
+
 # Deploy the template to a resource group using the Az.Resources command
 New-AzResourceGroupDeployment -ResourceGroupName MyResourceGroup -TemplateFile ./networkTemplate.json
 ```

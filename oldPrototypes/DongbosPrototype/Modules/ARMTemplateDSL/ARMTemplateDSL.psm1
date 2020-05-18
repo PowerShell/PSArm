@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 using namespace System.Text
 using namespace System.Collections.Generic
 using namespace System.Reflection;

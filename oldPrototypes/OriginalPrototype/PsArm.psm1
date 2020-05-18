@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 Import-Module "$PSScriptRoot\PsArm\bin\Debug\netstandard2.0\PsArm.dll"
 
 Import-Module "$PSScriptRoot\ArmFunctions.psm1" -Force

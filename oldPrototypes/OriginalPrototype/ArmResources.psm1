@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 $script:defaultApiVersion = '2018-11-01'
 
 function BuildResource

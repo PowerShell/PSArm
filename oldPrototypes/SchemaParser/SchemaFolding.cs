@@ -1,4 +1,8 @@
-﻿using RobImpl.ArmSchema;
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
+using RobImpl.ArmSchema;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

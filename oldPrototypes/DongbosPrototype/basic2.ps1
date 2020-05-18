@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 $contentVersion = '1.0.0.0'
 $apiVersion = '2019-11-01'
 

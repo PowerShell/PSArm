@@ -1,0 +1,51 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master 
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    # ensure latest npm is installed
+    npm install -g npm 
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+
+    # make sure the versions are all synchronized and pull in dependencies
+    npx @microsoft/rush sync-versions
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+    npx @microsoft/rush update 
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+
+    # set the actual package versions and update again
+    npx @microsoft/rush set-versions
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+    npx @microsoft/rush sync-versions
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+    npx @microsoft/rush update 
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+
+    # compile the code
+    npx @microsoft/rush rebuild 
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+
+    # build the packages
+    npx @microsoft/rush publish --publish --pack --include-all --tag latest
+    rc=$?; if [ $rc -ne 0 ]; then exit $rc ; fi 
+
+    # publish the packages (tag as preview by default)
+    echo "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" > ./.npmrc 
+    for file in common/temp/artifacts/packages/*.tgz 
+    do
+     common/temp/pnpm-local/node_modules/.bin/pnpm publish $file --tag latest --access public || echo no-worries 
+    done
+

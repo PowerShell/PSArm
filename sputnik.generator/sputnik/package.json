@@ -1,0 +1,67 @@
+{
+  "name": "@autorest/sputnik",
+  "version": "2.1.0",
+  "description": "AutoRest sputnik Generator",
+  "main": "dist/exports.js",
+  "typings": "dist/exports.d.ts",
+  "directories": {
+    "doc": "docs"
+  },
+  "engines": {
+    "node": ">=10.12.0"
+  },
+  "scripts": {
+    "start": "node --max_old_space_size=4096 ./dist/main.js",
+    "debug": "node --max_old_space_size=4096 --inspect-brk ./dist/main.js",
+    "eslint-fix": "eslint  . --fix --ext .ts",
+    "eslint": "eslint  . --ext .ts",
+    "build": "tsc -p .",
+    "start-testserver": "./node_modules/.bin/start-autorest-testserver",
+    "stop-testserver": "./node_modules/.bin/stop-autorest-testserver",
+    "watch": "tsc -p . --watch",
+    "prepare": "npm run build",
+    "test": "npm run build && mocha dist/test",
+    "clean": "ver > nul 2>&1 nul && npm run --silent clean-cmd || npm run --silent clean-bash",
+    "clean-cmd": "if exist dist rmdir /s /q dist && exit 0 || exit 0 ",
+    "clean-bash": "rm nul && rm -rf dist && exit 0 || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/autorest.sputnik.git"
+  },
+  "keywords": [
+    "AutoRest",
+    "sputnik",
+    "Cmdlet"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Azure/autorest.sputnik/issues"
+  },
+  "homepage": "https://github.com/Azure/autorest.sputnik#readme",
+  "readme": "https://github.com/Azure/autorest.sputnik/blob/master/readme.md",
+  "devDependencies": {
+    "@types/js-yaml": "3.12.1",
+    "@types/mocha": "5.2.5",
+    "@types/node": "12.7.2",
+    "mocha": "5.2.0",
+    "mocha-typescript": "1.1.17",
+    "typescript": "~3.7.2",
+    "@typescript-eslint/eslint-plugin": "~2.6.0",
+    "@typescript-eslint/parser": "~2.6.0",
+    "@microsoft.azure/autorest.testserver": "~2.10.10",
+    "@autorest/autorest": "~3.0.6118",
+    "eslint": "~6.6.0"
+  },
+  "dependencies": {
+    "@azure-tools/codegen": "~2.4.0",
+    "@azure-tools/codemodel": "~4.13.0",
+    "@azure-tools/autorest-extension-base": "~3.1.0",
+    "@azure-tools/linq": "~3.1.0",
+    "@azure-tools/tasks": "~3.0.0",
+    "@azure-tools/async-io": "~3.0.0",
+    "source-map-support": "0.5.13",
+    "js-yaml": "3.13.1"
+  }
+}

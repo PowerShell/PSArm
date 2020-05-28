@@ -26,17 +26,19 @@ import {
 import { values } from "@azure-tools/linq";
 import * as path from "path";
 import { promises as fsPromises } from "fs";
+import { ParseOptions } from "querystring";
+import { dir } from "console";
 
-type ResourceProviderCollection = Record<string, ResourceProvider>;
-type ResourceProvider = Record<string, ResourceVersions>;
-type ResourceVersions = Record<string, Resource>;
-type Resource = Record<string, IResourceKeyword>
+interface IResourceProvider {
+  $keywords: Record<string, IKeyword>,
+  $resources: Record<string, Record<string, KeywordPointer>>,
+}
 
-interface IResourceKeyword {
+interface IKeyword {
   array?: boolean,
   parameters?: Record<string, IParameter>,
   propertyParameters?: Record<string, IParameter>,
-  body?: Record<string, IResourceKeyword>,
+  body?: Record<string, KeywordPointer>,
 }
 
 interface IParameter {
@@ -55,213 +57,290 @@ interface IIntParameter extends IParameter {
   enum?: number[],
 }
 
-class Lazy<T> {
-  private isCreated: boolean;
-  private factory: () => T;
-  private result: T | undefined;
-
-  constructor(factory: () => T) {
-    this.factory = factory;
-    this.isCreated = false;
-    this.result = undefined;
-  }
-
-  get isValueCreated(): boolean {
-    return this.isCreated;
-  }
-
-  get value(): T {
-    if (!this.isCreated) {
-      this.result = this.factory();
-    }
-
-    return <T>this.result;
-  }
-}
-
-class SchemaContext {
-  private scopeStack: Set<Schema>[];
-
-  constructor() {
-    this.scopeStack = [];
-  }
-
-  public pushScope() {
-    this.scopeStack.push(new Set());
-  }
-
-  public popScope() {
-    this.scopeStack.pop();
-  }
-
-  public checkDuplicate(schema: Schema): boolean {
-    for (let i = this.scopeStack.length - 1; i >= 0; i--) {
-      if (this.scopeStack[i].has(schema)) {
-        return true;
-      }
-    }
-
-    this.scopeStack[this.scopeStack.length - 1].add(schema);
-    return false;
-  }
-}
-
-class ResourceSchemaCollectionBuilder {
-  private schemas: ResourceProviderCollection;
-  private schemaContextTracker: SchemaContext;
+class KeywordPointer {
+  public ref: IKeyword;
+  private path: string | undefined;
 
   constructor(
-    private debug: boolean) {
-    this.schemas = {};
-    this.schemaContextTracker = new SchemaContext();
+    public readonly builder: KeywordBuilder) {
+    this.ref = builder.getKeyword();
+    this.path = undefined;
   }
 
-  public async writeToDir(dirPath: string) {
-    dirPath = await this.ensureDirExists(dirPath);
+  public setPath(prefix: string) {
+    const escapedRefName = this.builder.keywordRefKey?.replace(/~/g, '~0').replace(/\//g, '~1');
+    this.path = `${prefix}/${escapedRefName}`;
+  }
 
-    for (const provider of Object.keys(this.schemas)) {
-      const providerPath = await this.ensureDirExists(path.join(dirPath, provider));
-      const providerResouces = this.schemas[provider];
-      for (const resourceType of Object.keys(providerResouces)) {
-        const resourceVersions = providerResouces[resourceType];
-        for (const resourceVersion of Object.keys(resourceVersions)) {
-          const fileName = `${resourceType.replace(/\//g, '+')}_${resourceVersion}.json`
-          const filePath = path.join(providerPath, fileName);
-          if (this.debug) {
-            console.error(`Writing ${fileName}`);
-          }
-          await fsPromises.writeFile(filePath, JSON.stringify(resourceVersions[resourceVersion], null, 2));
-        }
-      }
+  public toJSON(): object {
+    return {
+      $ref: this.path,
+    };
+  }
+}
+
+class KeywordBuilder {
+  private keyword: IKeyword;
+  private pointer: KeywordPointer;
+  private refKey: string | undefined;
+
+  constructor(public readonly keywordName: string) {
+    this.keyword = {};
+    this.pointer = new KeywordPointer(this);
+    this.refKey = undefined;
+  }
+
+  public addParameter(parameterName: string, parameter: IParameter) {
+    if (!this.keyword.parameters) {
+      this.keyword.parameters = {};
+    }
+
+    this.keyword.parameters[parameterName] = parameter;
+  }
+
+  public addPropertyParameter(parameterName: string, parameter: IParameter) {
+    if (!this.keyword.propertyParameters) {
+      this.keyword.propertyParameters = {};
+    }
+
+    this.keyword.propertyParameters[parameterName] = parameter;
+  }
+
+  public addBody(body: Record<string, KeywordPointer>) {
+    this.keyword.body = body;
+  }
+
+  public makeArray() {
+    this.keyword.array = true;
+  }
+
+  public getKeyword(): IKeyword {
+    return this.keyword;
+  }
+
+  public getKeywordPointer(): KeywordPointer {
+    return this.pointer;
+  }
+
+  public addToKeywordTable(refKey: string, table: Record<string, IKeyword>) {
+    this.refKey = refKey;
+    table[refKey] = this.keyword;
+  }
+
+  public get keywordRefKey() {
+    return this.refKey;
+  }
+}
+
+class KeywordTable {
+  private duplicateMap: Map<Schema, KeywordBuilder>;
+  private keywords: Record<string, IKeyword>;
+
+  constructor() {
+    this.duplicateMap = new Map<Schema, KeywordBuilder>();
+    this.keywords = {};
+  }
+
+  public get(schema: Schema): KeywordPointer | undefined {
+    const result = this.duplicateMap.get(schema);
+    return result && result.getKeywordPointer();
+  }
+
+  public add(schema: Schema, keywordBuilder: KeywordBuilder) {
+    this.duplicateMap.set(schema, keywordBuilder);
+
+    let keywordRefKey: string = keywordBuilder.keywordName;
+    let i: number = 1;
+    while (hasKey(this.keywords, keywordRefKey)) {
+      keywordRefKey = `${keywordBuilder.keywordName}_${i}`;
+      i++;
+    }
+
+    keywordBuilder.addToKeywordTable(keywordRefKey, this.keywords);
+  }
+
+  public getKeywords(): Record<string, IKeyword> {
+    return this.keywords;
+  }
+
+  public getPointers(): KeywordPointer[] {
+    const result = [];
+    for (const builder of this.duplicateMap.values()) {
+      result.push(builder.getKeywordPointer());
+    }
+    return result;
+  }
+}
+
+class ResourceProviderBuilder {
+  private resources: Record<string, Record<string, KeywordPointer>>;
+  private keywordTable: KeywordTable;
+
+  constructor(
+    private providerName: string,
+    private apiVersion: string) {
+
+    this.resources = {};
+    this.keywordTable = new KeywordTable();
+  }
+
+  public writeToDir(dirPath: string): Promise<void> {
+    const providerObject: IResourceProvider = {
+      $keywords: this.keywordTable.getKeywords(),
+      $resources: this.resources,
+    };
+
+    this.setReferencePaths(providerObject);
+
+    // Set the file name and write out to file
+    const filePath = path.join(dirPath, `${this.providerName}_${this.apiVersion}.json`);
+    return fsPromises.writeFile(filePath, JSON.stringify(providerObject, null, ' '));
+  }
+
+  public addResource(resourceType: string, schema: ObjectSchema) {
+    // Ensure the resource itself is there to add keywords to
+    if (!hasKey(this.resources, resourceType)) {
+      this.resources[resourceType] = {};
+    }
+
+    // Add top level keywords to the resource's keyword table
+    // Accumulating those keywords and their children as we go for the keyword definition table
+    this.addTopLevelKeywordsToTable(this.resources[resourceType], schema);
+  }
+
+  private setReferencePaths(providerObject: IResourceProvider) {
+    const pathPrefix = "#/$keywords";
+
+    for (const kwPtr of this.keywordTable.getPointers()) {
+      kwPtr.setPath(pathPrefix);
     }
   }
 
-  private async ensureDirExists(dirPath: string): Promise<string> {
-    if (!path.isAbsolute(dirPath)) {
-      dirPath = path.join(process.cwd(), dirPath);
+  private addTopLevelKeywordsToTable(table: Record<string, KeywordPointer>, schema: ObjectSchema) {
+    const propertiesField: ObjectSchema | undefined = <ObjectSchema>schema.properties?.find(p => p.serializedName === "properties")?.schema;
+
+    if (!propertiesField?.properties) {
+      return;
     }
 
-    if (!await this.fileExists(dirPath)) {
-      console.error(`Creating directory '${dirPath}'`)
-      await fsPromises.mkdir(dirPath);
-    }
-
-    return dirPath;
+    this.addKeywordsToTable(table, propertiesField.properties);
   }
 
-  private async fileExists(filePath: string): Promise<boolean> {
-    try {
-      await fsPromises.access(filePath);
-      return true;
-    } catch {
-      return false;
+  private addKeywordsToTable(table: Record<string, KeywordPointer>, properties: Property[]) {
+    // Each keyword is a property of the "properties" property
+    for (const property of properties) {
+      const keywordName = property.serializedName;
+      const keywordRef: KeywordPointer = this.getKeywordFromProperty(keywordName, property);
+      table[keywordName] = keywordRef;
     }
   }
 
-  public addResourceSchema(
-    namespace: string,
-    type: string,
-    apiVersion: string,
-    resourceSchema: ObjectSchema) {
+  private getKeywordFromProperty(keywordName: string, property: Property): KeywordPointer {
+    const schema = property.schema;
 
-    if (!hasKey(this.schemas, namespace)) {
-      this.schemas[namespace] = {};
+    // Return early from the cache to prevent unbounded recursion
+    const existingKeyword = this.keywordTable.get(schema);
+    if (existingKeyword) {
+      return existingKeyword;
     }
 
-    if (!hasKey(this.schemas[namespace], type)) {
-      this.schemas[namespace][type] = {};
-    }
+    // Create holders for the keyword
+    const keywordBuilder = new KeywordBuilder(keywordName);
 
-    this.schemas[namespace][type][apiVersion] = this.getResourceSchema(resourceSchema);
+    // Set the keyword value before recursing
+    this.keywordTable.add(schema, keywordBuilder);
+
+    // Actually populate keyword
+    this.buildKeywordFromSchema(keywordBuilder, property.schema);
+
+    // Return a pointer to the keyword
+    return keywordBuilder.getKeywordPointer();
   }
 
-  private getResourceSchema(schema: ObjectSchema): Resource {
-    const resource: Resource = {};
-
-    const properties = this.getInnerProperties(schema);
-
-    if (!properties) {
-      return resource;
-    }
-
-    for (const keywordProperty of properties) {
-      this.schemaContextTracker.pushScope();
-      const result = this.getKeywordSchema(keywordProperty.language.default.name, keywordProperty.schema);
-      this.schemaContextTracker.popScope();
-      resource[result.name] = result.keyword;
-    }
-
-    return resource;
-  }
-
-  private getKeywordSchema(propertyName: string, schema: Schema): { name: string, keyword: IResourceKeyword } {
+  private buildKeywordFromSchema(keyword: KeywordBuilder, schema: Schema) {
     switch (schema.type) {
-      case SchemaType.Object:
-        return {
-          name: propertyName,
-          keyword: this.getObjectKeywordSchema(<ObjectSchema>schema),
-        };
-
       case SchemaType.Array:
-        const arrayResult = this.getKeywordSchema(propertyName, (<ArraySchema>schema).elementType);
-        arrayResult.keyword.array = true;
-        return arrayResult;
+        this.buildKeywordFromSchema(keyword, (<ArraySchema>schema).elementType);
+        keyword.makeArray();
+        return;
+
+      case SchemaType.Object:
+        this.buildKeywordFromObjectSchema(keyword, <ObjectSchema>schema);
+        return;
 
       default:
-        return {
-          name: propertyName,
-          keyword: this.getOtherKeywordSchema(schema),
-        };
+        this.buildKeywordFromOtherSchema(keyword, schema);
+        return;
     }
   }
 
-  private getObjectKeywordSchema(schema: ObjectSchema): IResourceKeyword {
+  private buildKeywordFromOtherSchema(keyword: KeywordBuilder, schema: Schema) {
+    // Implement a keyword with a single -Value parameter
+    keyword.addPropertyParameter('value', this.getParameterFromSchema(schema));
+  }
+
+  private buildKeywordFromObjectSchema(keyword: KeywordBuilder, schema: ObjectSchema) {
     if (!schema.properties) {
-      return {};
+      return;
     }
 
-    const parameters: Record<string, IParameter> = {};
-    const body: Record<string, IResourceKeyword> = {};
-    const propertyParameters: Record<string, IParameter> = {};
+    let propertiesProperty: Property | undefined;
+    let canFlatten: boolean = true;
     for (const property of schema.properties) {
-      switch (property.serializedName) {
-        case "properties":
-          const subproperties = (<ObjectSchema>property.schema).properties;
-          if (subproperties) {
-            if (subproperties.every(subproperty => this.canFlattenProperty(subproperty))) {
-              for (const subproperty of subproperties) {
-                propertyParameters[subproperty.language.default.name] = this.getParameterFromProperty(subproperty);
-              }
-              continue;
-            }
-
-            for (const subproperty of subproperties) {
-              if (this.schemaContextTracker.checkDuplicate(subproperty.schema)) {
-                continue;
-              }
-              this.schemaContextTracker.pushScope();
-              const result = this.getKeywordSchema(subproperty.language.default.name, subproperty.schema);
-              this.schemaContextTracker.popScope();
-              body[result.name] = result.keyword;
-            }
-          }
-          continue;
-
-        default:
-          parameters[property.language.default.name] = this.getParameterFromProperty(property);
-          continue;
+      if (property.serializedName === "properties") {
+        propertiesProperty = property;
+        canFlatten = false;
+        continue;
       }
+
+      canFlatten = canFlatten && this.canFlatten(property.schema);
     }
 
-    return {
-      parameters: Object.keys(parameters).length > 0 ? parameters : undefined,
-      body: Object.keys(body).length > 0 ? body : undefined,
-      propertyParameters: Object.keys(propertyParameters).length > 0 ? propertyParameters : undefined,
+    // Schemas where all properties are non-objects can be flattened into multi-parameter commands
+    if (canFlatten) {
+      for (const property of schema.properties) {
+        keyword.addPropertyParameter(property.serializedName, this.getParameterFromSchema(property.schema));
+      }
+
+      return;
     }
+
+    // Otherwise, we begin our recursive descent into the keyword structure
+
+    // Most schemas have a "properties" property that contains all the subelements
+    if (propertiesProperty) {
+      // Add all other properties as parameters
+      for (const property of schema.properties) {
+        if (property === propertiesProperty) {
+          continue;
+        }
+
+        keyword.addParameter(property.serializedName, this.getParameterFromSchema(property.schema));
+      }
+
+      // Create the body with sub keywords
+      const propertiesSchema = <ObjectSchema>propertiesProperty.schema;
+      this.addKeywordBodyFromSchema(keyword, propertiesSchema.properties);
+
+      return;
+    }
+
+    // We have no "properties" property, but build a body keyword anyway
+    this.addKeywordBodyFromSchema(keyword, schema.properties);
   }
 
-  private canFlattenProperty(property: Property): boolean {
-    switch (property.schema.type) {
+  private addKeywordBodyFromSchema(keyword: KeywordBuilder, properties: Property[] | undefined) {
+    if (!properties) {
+      return;
+    }
+
+    const body: Record<string, KeywordPointer> = {};
+    this.addKeywordsToTable(body, properties);
+    keyword.addBody(body);
+  }
+
+  private canFlatten(schema: Schema): boolean {
+    switch (schema.type) {
       case SchemaType.Object:
       case SchemaType.Array:
         return false;
@@ -271,24 +350,7 @@ class ResourceSchemaCollectionBuilder {
     }
   }
 
-  private getInnerProperties(schema: ObjectSchema): Property[] | undefined {
-    return (<ObjectSchema>schema.properties?.find(property => property.serializedName == 'properties')?.schema)?.properties;
-  }
-
-  private getOtherKeywordSchema(schema: Schema): IResourceKeyword {
-    const keyword: IResourceKeyword = {
-      propertyParameters: {
-        value: this.getParameterFromSchema(schema),
-      }
-    };
-    return keyword;
-  }
-
-  private getParameterFromProperty(property: Property): IParameter {
-    return this.getParameterFromSchema(property.schema);
-  }
-
-  private getParameterFromSchema(schema: Schema) {
+  private getParameterFromSchema(schema: Schema): IParameter {
     switch (schema.type) {
       case SchemaType.String:
         return this.getStringParameter(<StringSchema>schema);
@@ -332,8 +394,44 @@ class ResourceSchemaCollectionBuilder {
   }
 }
 
-function hasKey(obj: Object, key: string): boolean {
-  return Object.prototype.hasOwnProperty.call(obj, key);
+class ResourceSchemaCollectionBuilder {
+  private resourceProviders: Record<string, Record<string, ResourceProviderBuilder>>;
+
+  constructor(private debug: boolean) {
+    this.resourceProviders = {};
+  }
+
+  public async writeToDir(dirPath: string): Promise<void> {
+    dirPath = await ensureDirExists(dirPath);
+    const fileWrites: Promise<void>[] = [];
+    for (const providerVersion of Object.values(this.resourceProviders)) {
+      for (const provider of Object.values(providerVersion)) {
+        fileWrites.push(provider.writeToDir(dirPath));
+      }
+    }
+    await Promise.all(fileWrites);
+  }
+
+  public addResourceSchema(
+    providerName: string,
+    apiVersion: string,
+    resourceType: string,
+    resourceSchema: ObjectSchema) {
+
+    if (!hasKey(this.resourceProviders, providerName)) {
+      this.resourceProviders[providerName] = {};
+    }
+
+    if (!hasKey(this.resourceProviders[providerName], apiVersion)) {
+      this.resourceProviders[providerName][apiVersion] = new ResourceProviderBuilder(providerName, apiVersion);
+    }
+
+    this.resourceProviders[providerName][apiVersion].addResource(resourceType, resourceSchema);
+  }
+}
+
+function hasKey(obj: object, key: string): boolean {
+  return Object.prototype.hasOwnProperty(key);
 }
 
 export async function generator(host: Host) {
@@ -360,7 +458,7 @@ export async function generator(host: Host) {
             const resourceType = getResourceTypeFromPath(request.protocol.http.path);
             const apiVersion: string = schema.apiVersions && schema.apiVersions[0].version || '*';
 
-            resources.addResourceSchema(resourceType.namespace, resourceType.name, apiVersion, schema);
+            resources.addResourceSchema(resourceType.namespace, apiVersion, resourceType.name, schema);
 
             for (const parent of values(schema.parents?.all)) {
               // parent is one of the parent schemas
@@ -371,7 +469,7 @@ export async function generator(host: Host) {
       }
     }
 
-    await resources.writeToDir('./out');
+    await resources.writeToDir("./out");
 
     /*
     for (const each of values(session.model.schemas.objects)) {
@@ -391,6 +489,28 @@ export async function generator(host: Host) {
       console.error(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);
     }
     throw E;
+  }
+}
+
+async function ensureDirExists(dirPath: string): Promise<string> {
+  if (!path.isAbsolute(dirPath)) {
+    dirPath = path.join(process.cwd(), dirPath);
+  }
+
+  if (!await fileExists(dirPath)) {
+    console.error(`Creating directory '${dirPath}'`);
+    await fsPromises.mkdir(dirPath);
+  }
+
+  return dirPath;
+}
+
+async function fileExists(path: string): Promise<boolean> {
+  try {
+    await fsPromises.access(path);
+    return true;
+  } catch {
+    return false;
   }
 }
 

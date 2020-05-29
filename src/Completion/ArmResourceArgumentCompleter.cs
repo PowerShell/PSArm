@@ -55,13 +55,13 @@ namespace PSArm.Completion
                     }
 
                     string[] completeParts = wordToComplete.Split(s_typeSeparator, count: 2);
-                    if (DslLoader.Instance.TryLoadDsl(completeParts[0], apiVersion, out ArmDslInfo dslInfo))
+                    if (DslLoader.Instance.TryLoadDsl(completeParts[0], apiVersion, out ArmProviderDslInfo dslInfo))
                     {
-                        foreach (string subschema in dslInfo.Schema.Subschemas.Keys)
+                        foreach (string resourceType in dslInfo.ProviderSchema.Resources.Keys)
                         {
-                            if (subschema.StartsWith(completeParts[1], StringComparison.OrdinalIgnoreCase))
+                            if (resourceType.StartsWith(completeParts[1], StringComparison.OrdinalIgnoreCase))
                             {
-                                string fullCompletion = $"{completeParts[0]}/{subschema}";
+                                string fullCompletion = $"{completeParts[0]}/{resourceType}";
                                 completions.Add(new CompletionResult(fullCompletion, fullCompletion, CompletionResultType.ParameterValue, fullCompletion));
                             }
                         }

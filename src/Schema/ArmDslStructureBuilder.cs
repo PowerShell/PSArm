@@ -16,13 +16,6 @@ namespace PSArm.Schema
 
     public class ArmDslStructureBuilder
     {
-        private readonly HashSet<ArmDslKeywordSchema> _seenKeywords;
-
-        public ArmDslStructureBuilder()
-        {
-            _seenKeywords = new HashSet<ArmDslKeywordSchema>();
-        }
-
         public IReadOnlyDictionary<string, ArmDslKeywordDefinitionScope> GatherKeywordDefinitionStructure(ArmDslProviderSchema providerSchema)
         {
             var resourceDslStructures = new Dictionary<string, ArmDslKeywordDefinitionScope>();

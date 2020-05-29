@@ -27,7 +27,7 @@ namespace PSArm.Schema
 
         private readonly string _basePath;
 
-        private readonly ConcurrentDictionary<ArmSchemaName, ArmDslInfo> _dsls;
+        private readonly ConcurrentDictionary<ArmSchemaName, ArmProviderDslInfo> _dsls;
 
         /// <summary>
         /// Create a new DSL loader around a given schema directory.
@@ -35,7 +35,7 @@ namespace PSArm.Schema
         /// <param name="dirPath">The path to the directory where schema descriptions are stored.</param>
         public DslLoader(string dirPath)
         {
-            _dsls = new ConcurrentDictionary<ArmSchemaName, ArmDslInfo>();
+            _dsls = new ConcurrentDictionary<ArmSchemaName, ArmProviderDslInfo>();
             _basePath = dirPath;
         }
 
@@ -46,7 +46,7 @@ namespace PSArm.Schema
         /// <param name="apiVersion">The API version of the resource provider to load.</param>
         /// <param name="dslInfo">The loaded DSL description object.</param>
         /// <returns>True when loading succeeded, false otherwise.</returns>
-        public bool TryLoadDsl(string schemaName, string apiVersion, out ArmDslInfo dslInfo)
+        public bool TryLoadDsl(string schemaName, string apiVersion, out ArmProviderDslInfo dslInfo)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace PSArm.Schema
         /// </summary>
         /// <param name="schemaName">The resource namespace of the DSL to load.</param>
         /// <returns>The DSL description object of the resource namespace.</returns>
-        public ArmDslInfo LoadDsl(string schemaName, string apiVersion)
+        public ArmProviderDslInfo LoadDsl(string schemaName, string apiVersion)
         {
             var schemaKey = new ArmSchemaName
             {
@@ -119,11 +119,11 @@ namespace PSArm.Schema
             return versions;
         }
 
-        private ArmDslInfo LoadSchemaFromFile(ArmSchemaName schemaName)
+        private ArmProviderDslInfo LoadSchemaFromFile(ArmSchemaName schemaName)
         {
             string path = Path.Combine(_basePath, $"{schemaName.ProviderName}_{schemaName.ApiVersion}.json");
             ArmDslProviderSchema schema = new DslSchemaReader().ReadProviderSchema(path);
-            return null;
+            return new ArmProviderDslInfo(schema);
         }
 
         private class ArmSchemaName

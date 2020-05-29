@@ -214,16 +214,16 @@ namespace PSArm.Completion
                 return null;
             }
 
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmDslInfo dslInfo)
-                || !dslInfo.Schema.Subschemas.TryGetValue(context.ResourceTypeName, out Dictionary<string, DslSchemaItem> schema))
+            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmProviderDslInfo dslInfo)
+                || !dslInfo.ProviderSchema.Resources.TryGetValue(context.ResourceTypeName, out ArmDslResourceSchema resource))
             {
                 return null;
             }
 
-            IReadOnlyDictionary<string, DslSchemaItem> immediateSchema = GetCurrentKeywordSchema(context, schema, forParameter: true);
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resource.Keywords, forParameter: true);
 
             if (immediateSchema == null
-                || !immediateSchema.TryGetValue(commandName, out DslSchemaItem keywordSchemaItem))
+                || !immediateSchema.TryGetValue(commandName, out ArmDslKeywordSchema keywordForContext))
             {
                 return null;
             }
@@ -238,17 +238,17 @@ namespace PSArm.Completion
             }
 
             return beforeToken.Kind == TokenKind.Parameter
-                ? CompleteParameterValues(context, keywordSchemaItem.Parameters, beforeToken)
-                : CompleteParameterNames(context, keywordSchemaItem.Parameters);
+                ? CompleteParameterValues(context, keywordForContext.Parameters.Values, beforeToken)
+                : CompleteParameterNames(context, keywordForContext.Parameters.Values);
         }
 
         private static Collection<CompletionResult> CompleteParameterValues(
             KeywordContext context,
-            IReadOnlyList<DslParameter> parameters,
+            IReadOnlyCollection<ArmDslParameterSchema> parameters,
             Token precedingToken)
         {
             string parameterName = precedingToken.Text.Substring(1);
-            foreach (DslParameter parameter in parameters)
+            foreach (ArmDslParameterSchema parameter in parameters)
             {
                 if (string.Equals(parameter.Name, parameterName, StringComparison.OrdinalIgnoreCase)
                     && parameter.Enum != null)
@@ -272,13 +272,13 @@ namespace PSArm.Completion
 
         private static Collection<CompletionResult> CompleteParameterNames(
             KeywordContext context,
-            IReadOnlyList<DslParameter> parameters)
+            IReadOnlyCollection<ArmDslParameterSchema> parameters)
         {
             string prefix = context.LastToken.Kind == TokenKind.Parameter
                 ? context.LastToken.Text.Substring(1)
                 : null;
             var completions = new Collection<CompletionResult>();
-            foreach (DslParameter parameter in parameters)
+            foreach (ArmDslParameterSchema parameter in parameters)
             {
                 if (prefix != null
                     && !parameter.Name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
@@ -345,12 +345,12 @@ namespace PSArm.Completion
 
             // Now within a resource DSL
 
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmDslInfo dslInfo))
+            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmProviderDslInfo provider))
             {
                 return null;
             }
 
-            if (!dslInfo.Schema.Subschemas.TryGetValue(context.ResourceTypeName, out Dictionary<string, DslSchemaItem> schema))
+            if (!provider.ProviderSchema.Resources.TryGetValue(context.ResourceTypeName, out ArmDslResourceSchema resourceSchema))
             {
                 return null;
             }
@@ -358,11 +358,11 @@ namespace PSArm.Completion
             // Top level resource keywords
             if (context.KeywordStack.Count == 3)
             {
-                return CompleteKeywordsFromList(context, schema.Keys);
+                return CompleteKeywordsFromList(context, resourceSchema.Keywords.Keys);
             }
 
             // Deeper keywords
-            IReadOnlyDictionary<string, DslSchemaItem> immediateSchema = GetCurrentKeywordSchema(context, schema);
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resourceSchema.Keywords);
             return CompleteKeywordsFromList(context, immediateSchema.Keys);
         }
 
@@ -386,9 +386,9 @@ namespace PSArm.Completion
             return completions;
         }
 
-        private static IReadOnlyDictionary<string, DslSchemaItem> GetCurrentKeywordSchema(
+        private static IReadOnlyDictionary<string, ArmDslKeywordSchema> GetCurrentKeywordSchema(
             KeywordContext context,
-            IReadOnlyDictionary<string, DslSchemaItem> schema,
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> initialKeywordSchema,
             bool forParameter = false)
         {
             string immediateKeyword = null;
@@ -401,7 +401,7 @@ namespace PSArm.Completion
                 }
             }
 
-            IReadOnlyDictionary<string, DslSchemaItem> currSchema = schema;
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> currSchema = initialKeywordSchema;
             for (int i = 3; i < context.KeywordStack.Count; i++)
             {
                 if (currSchema == null)
@@ -417,24 +417,17 @@ namespace PSArm.Completion
                     break;
                 }
 
-                if (!currSchema.TryGetValue(keyword, out DslSchemaItem schemaItem))
+                if (!currSchema.TryGetValue(keyword, out ArmDslKeywordSchema schemaItem))
                 {
                     return null;
                 }
 
-                switch (schemaItem)
+                if (schemaItem.Body == null)
                 {
-                    case DslBlockSchema block:
-                        currSchema = block.Body;
-                        break;
-
-                    case DslArraySchema array:
-                        currSchema = array.Body;
-                        break;
-
-                    default:
-                        return null;
+                    return null;
                 }
+
+                currSchema = schemaItem.Body;
             }
 
             return currSchema;

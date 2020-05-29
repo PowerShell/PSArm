@@ -16,18 +16,21 @@ namespace PSArm.Schema
         /// <summary>
         /// Create a new ARM resource DSL schema.
         /// </summary>
-        /// <param name="name">The ARM resource namespace this schema provides a DSL for.</param>
+        /// <param name="name">The ARM resource provider this schema provides a DSL for.</param>
         /// <param name="subschemas">Schemas of constituent keywords of this schema.</param>
-        public DslSchema(string name, Dictionary<string, Dictionary<string, DslSchemaItem>> subschemas)
+        public DslSchema(string providerName, string apiVersion, Dictionary<string, Dictionary<string, DslSchemaItem>> subschemas)
         {
-            Name = name;
+            ProviderName = providerName;
+            ApiVersion = apiVersion;
             Subschemas = subschemas;
         }
 
         /// <summary>
         /// The ARM resource namespace this schema provides a DSL for.
         /// </summary>
-        public string Name { get; }
+        public string ProviderName { get; }
+
+        public string ApiVersion { get;  }
 
         /// <summary>
         /// Schemas of constituent keywords of this schema.

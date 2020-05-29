@@ -4,6 +4,7 @@
 
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Reflection;
 
@@ -26,7 +27,7 @@ namespace PSArm.Schema
 
         private readonly string _basePath;
 
-        private readonly ConcurrentDictionary<string, ArmDslInfo> _dsls;
+        private readonly ConcurrentDictionary<ArmSchemaName, ArmDslInfo> _dsls;
 
         /// <summary>
         /// Create a new DSL loader around a given schema directory.
@@ -34,21 +35,22 @@ namespace PSArm.Schema
         /// <param name="dirPath">The path to the directory where schema descriptions are stored.</param>
         public DslLoader(string dirPath)
         {
-            _dsls = new ConcurrentDictionary<string, ArmDslInfo>();
+            _dsls = new ConcurrentDictionary<ArmSchemaName, ArmDslInfo>();
             _basePath = dirPath;
         }
 
         /// <summary>
         /// Try to load a DSL schema by resource namespace.
         /// </summary>
-        /// <param name="schemaName">The resource namespace to load.</param>
+        /// <param name="schemaName">The resource provider schema to load.</param>
+        /// <param name="apiVersion">The API version of the resource provider to load.</param>
         /// <param name="dslInfo">The loaded DSL description object.</param>
         /// <returns>True when loading succeeded, false otherwise.</returns>
-        public bool TryLoadDsl(string schemaName, out ArmDslInfo dslInfo)
+        public bool TryLoadDsl(string schemaName, string apiVersion, out ArmDslInfo dslInfo)
         {
             try
             {
-                dslInfo = LoadDsl(schemaName);
+                dslInfo = LoadDsl(schemaName, apiVersion);
                 return true;
             }
             catch
@@ -63,31 +65,102 @@ namespace PSArm.Schema
         /// </summary>
         /// <param name="schemaName">The resource namespace of the DSL to load.</param>
         /// <returns>The DSL description object of the resource namespace.</returns>
-        public ArmDslInfo LoadDsl(string schemaName)
+        public ArmDslInfo LoadDsl(string schemaName, string apiVersion)
         {
-            return _dsls.GetOrAdd(schemaName, LoadSchemaFromFile);
-        }
-
-        /// <summary>
-        /// List available schema names (resource namespaces).
-        /// </summary>
-        /// <returns>A list of ARM resource namespaces that have schemas available in the DSL.</returns>
-        public IReadOnlyList<string> ListSchemas()
-        {
-            var schemas = new List<string>();
-            foreach (string entry in Directory.GetFiles(_basePath))
+            var schemaKey = new ArmSchemaName
             {
-                schemas.Add(Path.GetFileNameWithoutExtension(entry));
-            }
-            return schemas;
+                ProviderName = schemaName,
+                ApiVersion = apiVersion,
+            };
+            return _dsls.GetOrAdd(schemaKey, LoadSchemaFromFile);
         }
 
-        private ArmDslInfo LoadSchemaFromFile(string schemaName)
+        public IReadOnlyList<string> ListSchemaProviders() => ListSchemaProviders(apiVersion: null);
+
+        public IReadOnlyList<string> ListSchemaProviders(string apiVersion)
         {
-            string path = Path.Combine(_basePath, $"{schemaName}.json");
-            DslSchema schema = new DslSchemaReader().ReadSchema(path);
-            IReadOnlyDictionary<string, string> dslDefinitions = new DslScriptWriter().WriteDslDefinitions(schema);
-            return new ArmDslInfo(schema, dslDefinitions);
+            var providers = new List<string>();
+            foreach (string schemaFilePath in Directory.GetFiles(_basePath))
+            {
+                string schemaFileName = Path.GetFileNameWithoutExtension(schemaFilePath);
+
+                int underscoreIdx = schemaFileName.IndexOf('_');
+
+                if (!string.IsNullOrEmpty(apiVersion) && schemaFileName.IndexOf(apiVersion, underscoreIdx + 1) < 0)
+                {
+                    if (schemaFileName.IndexOf(apiVersion, underscoreIdx + 1) < 0)
+                    {
+                        continue;
+                    }
+                }
+
+                providers.Add(schemaFileName.Substring(0, underscoreIdx));
+            }
+            return providers;
+        }
+
+        public IReadOnlyList<string> ListSchemaVersions() => ListSchemaVersions(providerName: null);
+
+        public IReadOnlyList<string> ListSchemaVersions(string providerName)
+        {
+            var versions = new List<string>();
+            foreach (string schemaFilePath in Directory.GetFiles(_basePath))
+            {
+                string schemaFileName = Path.GetFileNameWithoutExtension(schemaFilePath);
+
+                if (!string.IsNullOrEmpty(providerName) && schemaFileName.StartsWith(providerName))
+                {
+                    continue;
+                }
+
+                int versionIdx = schemaFileName.IndexOf('_') + 1;
+                versions.Add(schemaFileName.Substring(versionIdx));
+            }
+            return versions;
+        }
+
+        private ArmDslInfo LoadSchemaFromFile(ArmSchemaName schemaName)
+        {
+            string path = Path.Combine(_basePath, $"{schemaName.ProviderName}_{schemaName.ApiVersion}.json");
+            ArmDslProviderSchema schema = new DslSchemaReader().ReadProviderSchema(path);
+            return null;
+        }
+
+        private class ArmSchemaName
+        {
+            public string ProviderName { get; set; }
+
+            public string ApiVersion { get; set;  }
+
+            public override bool Equals(object obj)
+            {
+                if (object.ReferenceEquals(this, obj))
+                {
+                    return true;
+                }
+
+                if (obj is null
+                    || !(obj is ArmSchemaName that))
+                {
+                    return false;
+                }
+
+                return string.Equals(ProviderName, that.ProviderName)
+                    && string.Equals(ApiVersion, that.ApiVersion);
+            }
+
+            public override int GetHashCode()
+            {
+                // From https://stackoverflow.com/a/34006336
+                unchecked
+                {
+                    int factor = 9176;
+                    int hash = 1009;
+                    hash = hash * factor + (ProviderName != null ? ProviderName.GetHashCode() : 0);
+                    hash = hash * factor + (ApiVersion != null ? ApiVersion.GetHashCode() : 0);
+                    return hash;
+                }
+            }
         }
     }
 }

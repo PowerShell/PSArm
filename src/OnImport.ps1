@@ -27,7 +27,7 @@ function TabExpansion2
         [Parameter(ParameterSetName = 'AstInputSet', Position = 3)]
         [Hashtable] $options = $null
     )
-
+    
     if ($PSCmdlet.ParameterSetName -eq 'ScriptInputSet')
     {
         $convertedInput = [System.Management.Automation.CommandCompletion]::MapStringInputToParsedInput($inputScript, $cursorColumn)
@@ -38,7 +38,7 @@ function TabExpansion2
 
     $result = __OldTabExpansion2 $ast $tokens $positionOfCursor $options
 
-    [PSArm.DslCompleter]::PrependDslCompletions($result, $ast, $tokens, $positionOfCursor, $options)
+    [PSArm.Completion.DslCompleter]::PrependDslCompletions($result, $ast, $tokens, $positionOfCursor, $options)
 
     return $result
 }

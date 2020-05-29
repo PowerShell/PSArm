@@ -37,7 +37,8 @@ namespace PSArm.Schema
             var dict = new Dictionary<string, string>();
             foreach (KeyValuePair<string, Dictionary<string, DslSchemaItem>> entry in schema.Subschemas)
             {
-                string schemaName = $"{schema.Name}/{entry.Key}";
+                throw new NotImplementedException();
+                string schemaName = "banana"; // $"{schema.Name}/{entry.Key}";
 
                 if (entry.Value.Count == 0)
                 {

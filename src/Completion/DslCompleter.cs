@@ -214,7 +214,7 @@ namespace PSArm.Completion
                 return null;
             }
 
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, out ArmDslInfo dslInfo)
+            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmDslInfo dslInfo)
                 || !dslInfo.Schema.Subschemas.TryGetValue(context.ResourceTypeName, out Dictionary<string, DslSchemaItem> schema))
             {
                 return null;
@@ -345,7 +345,7 @@ namespace PSArm.Completion
 
             // Now within a resource DSL
 
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, out ArmDslInfo dslInfo))
+            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmDslInfo dslInfo))
             {
                 return null;
             }

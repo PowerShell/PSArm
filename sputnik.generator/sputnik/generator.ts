@@ -150,8 +150,8 @@ class KeywordTable {
     this.duplicateMap.set(schema, keywordBuilder);
 
     let keywordRefKey: string = keywordBuilder.keywordName;
-    let i: number = 1;
-    while (hasKey(this.keywords, keywordRefKey)) {
+    let i: number = 2;
+    while (this.keywords.hasOwnProperty(keywordRefKey)) {
       keywordRefKey = `${keywordBuilder.keywordName}_${i}`;
       i++;
     }
@@ -194,12 +194,12 @@ class ResourceProviderBuilder {
 
     // Set the file name and write out to file
     const filePath = path.join(dirPath, `${this.providerName}_${this.apiVersion}.json`);
-    return fsPromises.writeFile(filePath, JSON.stringify(providerObject, null, ' '));
+    return fsPromises.writeFile(filePath, JSON.stringify(providerObject, null, '    '));
   }
 
   public addResource(resourceType: string, schema: ObjectSchema) {
     // Ensure the resource itself is there to add keywords to
-    if (!hasKey(this.resources, resourceType)) {
+    if (!this.resources.hasOwnProperty(resourceType)) {
       this.resources[resourceType] = {};
     }
 
@@ -418,20 +418,16 @@ class ResourceSchemaCollectionBuilder {
     resourceType: string,
     resourceSchema: ObjectSchema) {
 
-    if (!hasKey(this.resourceProviders, providerName)) {
+    if (!this.resourceProviders.hasOwnProperty(providerName)) {
       this.resourceProviders[providerName] = {};
     }
 
-    if (!hasKey(this.resourceProviders[providerName], apiVersion)) {
+    if (!this.resourceProviders[providerName].hasOwnProperty(apiVersion)) {
       this.resourceProviders[providerName][apiVersion] = new ResourceProviderBuilder(providerName, apiVersion);
     }
 
     this.resourceProviders[providerName][apiVersion].addResource(resourceType, resourceSchema);
   }
-}
-
-function hasKey(obj: object, key: string): boolean {
-  return Object.prototype.hasOwnProperty(key);
 }
 
 export async function generator(host: Host) {

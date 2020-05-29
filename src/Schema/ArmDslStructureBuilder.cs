@@ -79,6 +79,7 @@ namespace PSArm.Schema
                 if (parent == null)
                 {
                     topLevelKeywords.Add(keyword);
+                    continue;
                 }
 
                 if (!keywordChildTable.TryGetValue(parent, out List<ArmDslKeywordSchema> children))

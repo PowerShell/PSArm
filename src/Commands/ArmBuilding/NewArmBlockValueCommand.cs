@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Management.Automation;
 using PSArm.ArmBuilding;
@@ -16,57 +17,75 @@ namespace PSArm.Commands.ArmBuilding
         [Parameter(Position = 0, Mandatory = true)]
         public string Name { get; set; }
 
-        [Parameter(Position = 1)]
-        public Dictionary<string, object> Parameters { get; set; }
+        [Parameter()]
+        public Hashtable Parameters { get; set; }
 
-        [Parameter(Position = 2, Mandatory = true)]
+        [Parameter()]
+        public Hashtable Properties { get; set; }
+
+        [Parameter(Position = 1)]
         public ScriptBlock Body { get; set; }
 
         protected override void EndProcessing()
         {
             var result = CreatePropertyObject();
 
-            foreach (KeyValuePair<string, object> parameter in Parameters)
+            if (Parameters != null)
             {
-                if (parameter.Key == "Body")
+                foreach (DictionaryEntry parameter in Parameters)
                 {
-                    continue;
+                    if (parameter.Value != null)
+                    {
+                        result.Parameters[parameter.Key.ToString()] = ArmTypeConversion.Convert(parameter.Value);
+                    }
                 }
+            }
 
-                result.Parameters[UnPascal(parameter.Key)] = ArmTypeConversion.Convert(parameter.Value);
+            if (Properties != null)
+            {
+                foreach (DictionaryEntry property in Properties)
+                {
+                    if (property.Value != null)
+                    {
+                        result.Properties[property.Key.ToString()] = new ArmPropertyValue(property.Key.ToString(), ArmTypeConversion.Convert(property.Value));
+                    }
+                }
             }
 
             Dictionary<string, List<ArmPropertyArrayItem>> arrayItems = null;
-            foreach (PSObject bodyOutput in InvokeCommand.InvokeScript(SessionState, Body))
+            if (Body != null)
             {
-                switch (bodyOutput.BaseObject)
+                foreach (PSObject bodyOutput in InvokeCommand.InvokeScript(SessionState, Body))
                 {
-                    case ArmPropertyValue propertyValue:
-                        result.Properties[propertyValue.PropertyName] = propertyValue;
-                        continue;
+                    switch (bodyOutput.BaseObject)
+                    {
+                        case ArmPropertyValue propertyValue:
+                            result.Properties[propertyValue.PropertyName] = propertyValue;
+                            continue;
 
-                    case ArmParameterizedProperty parameterizedProperty:
-                        result.Properties[parameterizedProperty.PropertyName] = parameterizedProperty;
-                        continue;
+                        case ArmParameterizedProperty parameterizedProperty:
+                            result.Properties[parameterizedProperty.PropertyName] = parameterizedProperty;
+                            continue;
 
-                    case ArmPropertyArrayItem arrayItem:
-                        if (arrayItems == null)
-                        {
-                            arrayItems = new Dictionary<string, List<ArmPropertyArrayItem>>();
-                        }
+                        case ArmPropertyArrayItem arrayItem:
+                            if (arrayItems == null)
+                            {
+                                arrayItems = new Dictionary<string, List<ArmPropertyArrayItem>>();
+                            }
 
-                        if (!arrayItems.TryGetValue(arrayItem.PropertyName, out List<ArmPropertyArrayItem> list))
-                        {
-                            list = new List<ArmPropertyArrayItem>();
-                            arrayItems[arrayItem.PropertyName] = list;
-                        }
+                            if (!arrayItems.TryGetValue(arrayItem.PropertyName, out List<ArmPropertyArrayItem> list))
+                            {
+                                list = new List<ArmPropertyArrayItem>();
+                                arrayItems[arrayItem.PropertyName] = list;
+                            }
 
-                        list.Add(arrayItem);
-                        continue;
+                            list.Add(arrayItem);
+                            continue;
 
-                    case ArmPropertyObject propertyObject:
-                        result.Properties[propertyObject.PropertyName] = propertyObject;
-                        continue;
+                        case ArmPropertyObject propertyObject:
+                            result.Properties[propertyObject.PropertyName] = propertyObject;
+                            continue;
+                    }
                 }
             }
 

@@ -1,3 +1,7 @@
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
 using System.Management.Automation.Language;
 
 namespace PSArm.Completion

@@ -1,4 +1,8 @@
-﻿namespace PSArm.Schema
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
+namespace PSArm.Schema
 {
     public interface IDslSchemaVisitor
     {

@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json;
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
+using Newtonsoft.Json;
 using RobImpl.ArmSchema;
 using System;
 using System.Collections.Generic;

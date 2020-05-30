@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 function IPConfigurations
 {
     param([Parameter(Position=0)][scriptblock]$Body)

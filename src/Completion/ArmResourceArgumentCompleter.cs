@@ -1,3 +1,7 @@
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
 using PSArm.Schema;
 using System;
 using System.Collections;

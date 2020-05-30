@@ -1,4 +1,8 @@
-﻿
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
+
 namespace PSArm.Expression
 {
     /// <summary>

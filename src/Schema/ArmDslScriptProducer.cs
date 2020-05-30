@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json.Converters;
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

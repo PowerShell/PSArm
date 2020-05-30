@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+
+// Copyright (c) Microsoft Corporation.
+// All rights reserved.
+
+using System.Collections.Generic;
 
 // This file is not used, but I kept it since it might be useful.
 // It turns out visiting JSON isn't as simple as we'd like it to be,

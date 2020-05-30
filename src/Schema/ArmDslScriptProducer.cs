@@ -137,7 +137,7 @@ namespace PSArm.Schema
                 }
 
                 // Body written with position 0 since no other parameters are mandatory for body keywords
-                WriteParameter("Body", "scriptblock", enums: null, position: 0, mandatory: true);
+                WriteParameter("Body", "scriptblock", enums: null, position: 0, mandatory: false);
             }
 
             _indent--;
@@ -162,10 +162,11 @@ namespace PSArm.Schema
 
             if (keyword.Array)
             {
+                WriteParameterAssignments(keyword, out string parameterVar, out string propertyVar);
                 _sb.Append("ArrayItem ");
                 WriteLiteral(keyword.Name);
-                _sb.Append(' ');
-                WriteVariable("PSBoundParameters");
+
+                WriteParameterPassingParameters(parameterVar, propertyVar);
 
                 if (keyword.Body != null)
                 {
@@ -178,10 +179,13 @@ namespace PSArm.Schema
 
             if (keyword.Body != null)
             {
+                WriteParameterAssignments(keyword, out string parameterVar, out string propertyVar);
+
                 _sb.Append("Block ");
                 WriteLiteral(keyword.Name);
-                _sb.Append(' ');
-                WriteVariable("PSBoundParameters");
+
+                WriteParameterPassingParameters(parameterVar, propertyVar);
+
                 _sb.Append(' ');
                 WriteVariable("Body");
                 return;
@@ -196,10 +200,76 @@ namespace PSArm.Schema
                 return;
             }
 
+            WriteParameterAssignments(keyword, out string paramsVar, out string propsVar);
+
             _sb.Append("Composite ");
             WriteLiteral(keyword.Name);
-            _sb.Append(' ');
-            WriteVariable("PSBoundParameters");
+
+            WriteParameterPassingParameters(paramsVar, propsVar);
+        }
+
+        private void WriteParameterPassingParameters(string parametersVariable, string propertyParametersVariable)
+        {
+            if (parametersVariable != null)
+            {
+                _sb.Append(" -Parameters ");
+                WriteVariable(parametersVariable);
+            }
+
+            if (propertyParametersVariable != null)
+            {
+                _sb.Append(" -Properties ");
+                WriteVariable(propertyParametersVariable);
+            }
+        }
+
+        private void WriteParameterAssignments(ArmDslKeywordSchema keyword, out string parametersVariable, out string propertyParametersVariable)
+        {
+            parametersVariable = null;
+            propertyParametersVariable = null;
+
+            if (keyword.Parameters != null && keyword.Parameters.Count > 0)
+            {
+                parametersVariable = "KwParameters";
+                WriteVariable(parametersVariable);
+                _sb.Append(" = ");
+                WriteParameterHashtable(keyword.Parameters);
+            }
+
+            if (keyword.PropertyParameters != null && keyword.PropertyParameters.Count > 0)
+            {
+                propertyParametersVariable = "KwProperties";
+                WriteVariable(propertyParametersVariable);
+                _sb.Append(" = ");
+                WriteParameterHashtable(keyword.PropertyParameters);
+            }
+        }
+
+        private void WriteParameterHashtable(Dictionary<string, ArmDslParameterSchema> parameters)
+        {
+            _sb.Append("@{");
+            _indent++;
+            Newline();
+
+            Intersperse(Newline, WriteParameterHashtableEntry, parameters);
+
+            _indent--;
+            Newline();
+            _sb.Append('}');
+            Newline();
+            Newline();
+        }
+
+        private void WriteParameterHashtableEntry(KeyValuePair<string, ArmDslParameterSchema> parameter)
+        {
+            _sb.Append(parameter.Key).Append(" = ");
+            _sb.Append("if ($PSBoundParameters.ContainsKey(");
+            WriteLiteral(parameter.Key);
+            _sb.Append(")) { ");
+            WriteVariable(parameter.Key);
+            _sb.Append(" } else { ");
+            WriteLiteral(null);
+            _sb.Append(" }");
         }
 
         private void Newline()
@@ -260,6 +330,10 @@ namespace PSArm.Schema
         {
             switch (value)
             {
+                case null:
+                    _sb.Append("$null");
+                    return;
+
                 case string s:
                     _sb.Append('\'').Append(s.Replace("'", "''")).Append('\'');
                     return;

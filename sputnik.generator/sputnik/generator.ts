@@ -217,13 +217,46 @@ class ResourceProviderBuilder {
   }
 
   private addTopLevelKeywordsToTable(table: Record<string, KeywordPointer>, schema: ObjectSchema) {
-    const propertiesField: ObjectSchema | undefined = <ObjectSchema>schema.properties?.find(p => p.serializedName === "properties")?.schema;
+    const properties = this.getAllProperties(schema);
 
-    if (!propertiesField?.properties) {
+    if (!properties) {
       return;
     }
 
-    this.addKeywordsToTable(table, propertiesField.properties);
+    this.addKeywordsToTable(table, properties);
+  }
+
+  private getAllProperties(schema: ObjectSchema): Property[] | undefined {
+    const ownProperties: Property[] | undefined = this.getPropertiesPropertyProperties(schema);
+    const parentProperties: Property[] | undefined = schema.parents?.all
+      .map(p => {
+        if (p.type !== SchemaType.Object) {
+          return undefined;
+        }
+
+        return this.getPropertiesPropertyProperties(<ObjectSchema>p);
+      })
+      .reduce((acc, ps) => ps ? acc?.concat(ps) : acc, []);
+
+    if (!ownProperties) {
+      return parentProperties;
+    }
+
+    if (parentProperties) {
+      ownProperties.concat(parentProperties);
+    }
+
+    return ownProperties;
+  }
+
+  private getPropertiesPropertyProperties(schema: ObjectSchema): Property[] | undefined {
+    const propertySchema = schema.properties?.find(p => p.serializedName === "properties")?.schema;
+
+    if (!propertySchema || propertySchema.type !== SchemaType.Object) {
+      return undefined;
+    }
+
+    return (<ObjectSchema>propertySchema).properties;
   }
 
   private addKeywordsToTable(table: Record<string, KeywordPointer>, properties: Property[]) {
@@ -280,53 +313,68 @@ class ResourceProviderBuilder {
   }
 
   private buildKeywordFromObjectSchema(keyword: KeywordBuilder, schema: ObjectSchema) {
-    if (!schema.properties) {
+    const { properties, propertyProperties } = this.collectProperties(schema);
+
+    const bodyProperties: Property[] = [];
+
+    for (const property of (properties || [])) {
+      if (this.canFlatten(property.schema)) {
+        keyword.addParameter(this.getPropertyNameForDsl(property), this.getParameterFromSchema(property.schema));
+        continue;
+      }
+      bodyProperties.push(property);
+    }
+
+    for (const pProperty of (propertyProperties || [])) {
+      if (this.canFlatten(pProperty.schema)) {
+        keyword.addPropertyParameter(this.getPropertyNameForDsl(pProperty), this.getParameterFromSchema(pProperty.schema));
+        continue;
+      }
+      bodyProperties.push(pProperty);
+    }
+
+    if (bodyProperties.length > 0) {
+      this.addKeywordBodyFromSchema(keyword, bodyProperties);
+    }
+  }
+
+  private collectProperties(schema: ObjectSchema): { properties?: Property[], propertyProperties?: Property[] } {
+    const properties: Property[] = [];
+    const propertyProperties: Property[] = [];
+
+    this.collectPropertiesFromPropertyList(properties, propertyProperties, schema.properties);
+
+    if (schema.parents) {
+      for (const parent of schema.parents.all) {
+        this.collectPropertiesFromPropertyList(properties, propertyProperties, (<ObjectSchema>parent).properties);
+      }
+    }
+
+    return {
+      properties: properties.length > 0 ? properties : undefined,
+      propertyProperties: propertyProperties.length > 0 ? propertyProperties : undefined,
+    };
+  }
+
+  private collectPropertiesFromPropertyList(acc: Property[], ppAcc: Property[], properties?: Property[]) {
+    if (!properties) {
       return;
     }
 
-    let propertiesProperty: Property | undefined;
-    let canFlatten: boolean = true;
-    for (const property of schema.properties) {
+    for (const property of properties) {
+      // "properties" handling
       if (property.serializedName === "properties") {
-        propertiesProperty = property;
-        canFlatten = false;
+        const pProperties = (<ObjectSchema>property.schema).properties;
+        if (pProperties) {
+          for (const pProperty of pProperties) {
+            ppAcc.push(pProperty);
+          }
+        }
         continue;
       }
 
-      canFlatten = canFlatten && this.canFlatten(property.schema);
+      acc.push(property);
     }
-
-    // Schemas where all properties are non-objects can be flattened into multi-parameter commands
-    if (canFlatten) {
-      for (const property of schema.properties) {
-        keyword.addPropertyParameter(property.serializedName, this.getParameterFromSchema(property.schema));
-      }
-
-      return;
-    }
-
-    // Otherwise, we begin our recursive descent into the keyword structure
-
-    // Most schemas have a "properties" property that contains all the subelements
-    if (propertiesProperty) {
-      // Add all other properties as parameters
-      for (const property of schema.properties) {
-        if (property === propertiesProperty) {
-          continue;
-        }
-
-        keyword.addParameter(property.serializedName, this.getParameterFromSchema(property.schema));
-      }
-
-      // Create the body with sub keywords
-      const propertiesSchema = <ObjectSchema>propertiesProperty.schema;
-      this.addKeywordBodyFromSchema(keyword, propertiesSchema.properties);
-
-      return;
-    }
-
-    // We have no "properties" property, but build a body keyword anyway
-    this.addKeywordBodyFromSchema(keyword, schema.properties);
   }
 
   private addKeywordBodyFromSchema(keyword: KeywordBuilder, properties: Property[] | undefined) {
@@ -337,6 +385,10 @@ class ResourceProviderBuilder {
     const body: Record<string, KeywordPointer> = {};
     this.addKeywordsToTable(body, properties);
     keyword.addBody(body);
+  }
+
+  private getPropertyNameForDsl(property: Property): string {
+    return property.serializedName;
   }
 
   private canFlatten(schema: Schema): boolean {
@@ -455,11 +507,6 @@ export async function generator(host: Host) {
             const apiVersion: string = schema.apiVersions && schema.apiVersions[0].version || '*';
 
             resources.addResourceSchema(resourceType.namespace, apiVersion, resourceType.name, schema);
-
-            for (const parent of values(schema.parents?.all)) {
-              // parent is one of the parent schemas
-              // parent.language.default.name
-            }
           }
         }
       }

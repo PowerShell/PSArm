@@ -130,7 +130,6 @@ namespace PSArm.Schema
                     if (childCount > max)
                     {
                         max = childCount;
-                        parent = suggestedParent;
                     }
                 }
             }

@@ -31,11 +31,14 @@ namespace PSArm.Schema
 
     public class ArmDslKeywordSchema : ArmDslSchema
     {
+        private Lazy<PSDslKeyword> _psKeywordLazy;
+
         public ArmDslKeywordSchema(string name)
         {
             Name = name;
             Parameters = new Dictionary<string, ArmDslParameterSchema>();
             PropertyParameters = new Dictionary<string, ArmDslParameterSchema>();
+            _psKeywordLazy = new Lazy<PSDslKeyword>(() => PSDslKeyword.FromSchema(this));
         }
 
         public string Name { get; }
@@ -47,6 +50,10 @@ namespace PSArm.Schema
         public bool Array { get; set; } = false;
 
         public Dictionary<string, ArmDslKeywordSchema> Body { get; set; }
+
+        public PSDslKeyword PSKeyword => _psKeywordLazy.Value;
+
+        public Dictionary<string, ArmDslKeywordSchema> PSKeywordSchema { get; set; }
     }
 
     public class ArmDslParameterSchema : ArmDslSchema
@@ -69,11 +76,14 @@ namespace PSArm.Schema
         {
             ResourceType = resourceType;
             Keywords = new Dictionary<string, ArmDslKeywordSchema>();
+            PSKeywordSchema = new Dictionary<string, ArmDslKeywordSchema>();
         }
 
         public string ResourceType { get; }
 
         public Dictionary<string, ArmDslKeywordSchema> Keywords { get; }
+
+        public Dictionary<string, ArmDslKeywordSchema> PSKeywordSchema { get; }
     }
 }
 

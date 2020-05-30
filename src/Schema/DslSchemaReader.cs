@@ -80,7 +80,9 @@ namespace PSArm.Schema
 
             foreach (KeyValuePair<string, JsonItem> keywordEntry in resourceObject.Fields)
             {
-                resource.Keywords.Add(keywordEntry.Key, ReadKeywordSchema(keywordEntry.Key, (JsonPointer)keywordEntry.Value));
+                ArmDslKeywordSchema keyword = ReadKeywordSchema(keywordEntry.Key, (JsonPointer)keywordEntry.Value);
+                resource.Keywords[keywordEntry.Key] = keyword;
+                resource.PSKeywordSchema[keyword.PSKeyword.Name] = keyword;
             }
 
             return resource;
@@ -122,11 +124,15 @@ namespace PSArm.Schema
             if (keywordSchema.Fields.TryGetValue(Key_Body, out JsonItem body))
             {
                 var bodyKeywords = new Dictionary<string, ArmDslKeywordSchema>();
+                var psKeywords = new Dictionary<string, ArmDslKeywordSchema>();
                 foreach (KeyValuePair<string, JsonItem> nestedKeyword in ((JsonObject)body).Fields)
                 {
-                    bodyKeywords.Add(nestedKeyword.Key, ReadKeywordSchema(nestedKeyword.Key, (JsonPointer)nestedKeyword.Value));
+                    ArmDslKeywordSchema kw = ReadKeywordSchema(nestedKeyword.Key, (JsonPointer)nestedKeyword.Value);
+                    bodyKeywords[nestedKeyword.Key] = kw;
+                    psKeywords[kw.PSKeyword.Name] = kw;
                 }
                 keyword.Body = bodyKeywords;
+                keyword.PSKeywordSchema = psKeywords;
             }
 
             return keyword;

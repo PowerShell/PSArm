@@ -94,7 +94,7 @@ namespace PSArm.Schema
 
         private void BeginKeywordDefinition(ArmDslKeywordSchema keyword)
         {
-            _sb.Append("function ").Append(keyword.Name);
+            _sb.Append("function ").Append(keyword.PSKeyword.Name);
             Newline();
             _sb.Append('{');
             _indent++;
@@ -162,7 +162,7 @@ namespace PSArm.Schema
 
             if (keyword.Array)
             {
-                WriteParameterAssignments(keyword, out string parameterVar, out string propertyVar);
+                WriteParameterAssignments(keyword.PSKeyword, out string parameterVar, out string propertyVar);
                 _sb.Append("ArrayItem ");
                 WriteLiteral(keyword.Name);
 
@@ -179,7 +179,7 @@ namespace PSArm.Schema
 
             if (keyword.Body != null)
             {
-                WriteParameterAssignments(keyword, out string parameterVar, out string propertyVar);
+                WriteParameterAssignments(keyword.PSKeyword, out string parameterVar, out string propertyVar);
 
                 _sb.Append("Block ");
                 WriteLiteral(keyword.Name);
@@ -200,7 +200,7 @@ namespace PSArm.Schema
                 return;
             }
 
-            WriteParameterAssignments(keyword, out string paramsVar, out string propsVar);
+            WriteParameterAssignments(keyword.PSKeyword, out string paramsVar, out string propsVar);
 
             _sb.Append("Composite ");
             WriteLiteral(keyword.Name);
@@ -223,12 +223,12 @@ namespace PSArm.Schema
             }
         }
 
-        private void WriteParameterAssignments(ArmDslKeywordSchema keyword, out string parametersVariable, out string propertyParametersVariable)
+        private void WriteParameterAssignments(PSDslKeyword keyword, out string parametersVariable, out string propertyParametersVariable)
         {
             parametersVariable = null;
             propertyParametersVariable = null;
 
-            if (keyword.Parameters != null && keyword.Parameters.Count > 0)
+            if (keyword.HasParameters)
             {
                 parametersVariable = "KwParameters";
                 WriteVariable(parametersVariable);
@@ -236,22 +236,37 @@ namespace PSArm.Schema
                 WriteParameterHashtable(keyword.Parameters);
             }
 
-            if (keyword.PropertyParameters != null && keyword.PropertyParameters.Count > 0)
+            if (keyword.HasProperties)
             {
                 propertyParametersVariable = "KwProperties";
                 WriteVariable(propertyParametersVariable);
                 _sb.Append(" = ");
-                WriteParameterHashtable(keyword.PropertyParameters);
+                WriteParameterHashtable(keyword.Parameters, isPropertyParameter: true);
             }
         }
 
-        private void WriteParameterHashtable(Dictionary<string, ArmDslParameterSchema> parameters)
+        private void WriteParameterHashtable(IReadOnlyDictionary<string, PSDslParameterInfo> parameters, bool isPropertyParameter = false)
         {
             _sb.Append("@{");
             _indent++;
             Newline();
 
-            Intersperse(Newline, WriteParameterHashtableEntry, parameters);
+            bool needNewline = false;
+            foreach (KeyValuePair<string, PSDslParameterInfo> parameter in parameters)
+            {
+                if (parameter.Value.IsPropertyParameter != isPropertyParameter)
+                {
+                    continue;
+                }
+
+                if (needNewline)
+                {
+                    Newline();
+                }
+
+                WriteParameterHashtableEntry(parameter);
+                needNewline = true;
+            }
 
             _indent--;
             Newline();
@@ -260,9 +275,9 @@ namespace PSArm.Schema
             Newline();
         }
 
-        private void WriteParameterHashtableEntry(KeyValuePair<string, ArmDslParameterSchema> parameter)
+        private void WriteParameterHashtableEntry(KeyValuePair<string, PSDslParameterInfo> parameter)
         {
-            _sb.Append(parameter.Key).Append(" = ");
+            _sb.Append(parameter.Value.Parameter.Name).Append(" = ");
             _sb.Append("if ($PSBoundParameters.ContainsKey(");
             WriteLiteral(parameter.Key);
             _sb.Append(")) { ");

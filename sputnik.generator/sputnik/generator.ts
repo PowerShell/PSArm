@@ -571,7 +571,7 @@ function getResourceTypeFromPath(path: string): IResourceType {
   // Now get the first part of the resource type
   const nameParts: string[] = [];
   start = end + 1;
-  end = path.indexOf('/', start) - 1;
+  end = path.indexOf('/', start);
   nameParts.push(path.substring(start, end));
 
   let nextTemplateEnd = path.indexOf('}/', end);
@@ -590,4 +590,3 @@ function getResourceTypeFromPath(path: string): IResourceType {
     name: nameParts.join('/'),
   };
 }
-

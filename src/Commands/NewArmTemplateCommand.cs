@@ -181,6 +181,7 @@ namespace PSArm.Commands
                     {
                         allowedValues.Add(allowedExpression.SafeGetValue());
                     }
+                    armParameter.AllowedValues = allowedValues.ToArray();
                 }
             }
 

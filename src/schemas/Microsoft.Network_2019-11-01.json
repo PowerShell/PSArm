@@ -9273,7 +9273,7 @@
         }
     },
     "$resources": {
-        "applicationGateway": {
+        "applicationGateways": {
             "sku": {
                 "$ref": "#/$keywords/sku"
             },
@@ -9350,7 +9350,7 @@
                 "$ref": "#/$keywords/customErrorConfigurations_2"
             }
         },
-        "applicationSecurityGroup": {
+        "applicationSecurityGroups": {
             "resourceGuid": {
                 "$ref": "#/$keywords/resourceGuid_2"
             },
@@ -9358,7 +9358,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "azureFirewall": {
+        "azureFirewalls": {
             "applicationRuleCollections": {
                 "$ref": "#/$keywords/applicationRuleCollections"
             },
@@ -9399,7 +9399,7 @@
                 "$ref": "#/$keywords/additionalProperties"
             }
         },
-        "bastionHost": {
+        "bastionHosts": {
             "ipConfigurations": {
                 "$ref": "#/$keywords/ipConfigurations_4"
             },
@@ -9410,7 +9410,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "ddosCustomPolicie": {
+        "ddosCustomPolicies": {
             "resourceGuid": {
                 "$ref": "#/$keywords/resourceGuid_3"
             },
@@ -9424,7 +9424,7 @@
                 "$ref": "#/$keywords/protocolCustomSettings"
             }
         },
-        "ddosProtectionPlan": {
+        "ddosProtectionPlans": {
             "resourceGuid": {
                 "$ref": "#/$keywords/resourceGuid_4"
             },
@@ -9435,7 +9435,7 @@
                 "$ref": "#/$keywords/virtualNetworks"
             }
         },
-        "expressRouteCircuit/authorizations": {
+        "expressRouteCircuits/authorizations": {
             "authorizationKey": {
                 "$ref": "#/$keywords/authorizationKey"
             },
@@ -9446,7 +9446,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "expressRouteCircuit/peerings": {
+        "expressRouteCircuits/peerings": {
             "peeringType": {
                 "$ref": "#/$keywords/peeringType"
             },
@@ -9508,7 +9508,7 @@
                 "$ref": "#/$keywords/peeredConnections"
             }
         },
-        "expressRouteCircuit/peerings/connections": {
+        "expressRouteCircuits/peerings/connections": {
             "expressRouteCircuitPeering": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -9528,7 +9528,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "expressRouteCircuit": {
+        "expressRouteCircuits": {
             "allowClassicOperations": {
                 "$ref": "#/$keywords/allowClassicOperations"
             },
@@ -9572,7 +9572,7 @@
                 "$ref": "#/$keywords/globalReachEnabled"
             }
         },
-        "expressRouteCrossConnection": {
+        "expressRouteCrossConnections": {
             "primaryAzurePort": {
                 "$ref": "#/$keywords/primaryAzurePort_2"
             },
@@ -9604,7 +9604,7 @@
                 "$ref": "#/$keywords/peerings_2"
             }
         },
-        "expressRouteCrossConnection/peerings": {
+        "expressRouteCrossConnections/peerings": {
             "peeringType": {
                 "$ref": "#/$keywords/peeringType"
             },
@@ -9651,7 +9651,7 @@
                 "$ref": "#/$keywords/ipv6PeeringConfig"
             }
         },
-        "expressRouteGateway": {
+        "expressRouteGateways": {
             "autoScaleConfiguration": {
                 "$ref": "#/$keywords/autoScaleConfiguration"
             },
@@ -9665,7 +9665,7 @@
                 "$ref": "#/$keywords/virtualHub"
             }
         },
-        "expressRouteGateway/expressRouteConnections": {
+        "expressRouteGateways/expressRouteConnections": {
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
             },
@@ -9682,7 +9682,7 @@
                 "$ref": "#/$keywords/enableInternetSecurity"
             }
         },
-        "ExpressRoutePort": {
+        "ExpressRoutePorts": {
             "peeringLocation": {
                 "$ref": "#/$keywords/peeringLocation_2"
             },
@@ -9717,7 +9717,7 @@
                 "$ref": "#/$keywords/resourceGuid_5"
             }
         },
-        "firewallPolicie": {
+        "firewallPolicies": {
             "ruleGroups": {
                 "$ref": "#/$keywords/ruleGroups"
             },
@@ -9737,7 +9737,7 @@
                 "$ref": "#/$keywords/threatIntelMode"
             }
         },
-        "firewallPolicie/ruleGroups": {
+        "firewallPolicies/ruleGroups": {
             "priority": {
                 "$ref": "#/$keywords/priority"
             },
@@ -9748,7 +9748,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "ipGroup": {
+        "ipGroups": {
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
             },
@@ -9759,7 +9759,7 @@
                 "$ref": "#/$keywords/firewalls_2"
             }
         },
-        "loadBalancer": {
+        "loadBalancers": {
             "frontendIPConfigurations": {
                 "$ref": "#/$keywords/frontendIPConfigurations_2"
             },
@@ -9788,7 +9788,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "loadBalancer/inboundNatRules": {
+        "loadBalancers/inboundNatRules": {
             "frontendIPConfiguration": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -9817,7 +9817,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "natGateway": {
+        "natGateways": {
             "idleTimeoutInMinutes": {
                 "$ref": "#/$keywords/idleTimeoutInMinutes_2"
             },
@@ -9837,7 +9837,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "networkInterface": {
+        "networkInterfaces": {
             "virtualMachine": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -9878,7 +9878,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "networkInterface/tapConfigurations": {
+        "networkInterfaces/tapConfigurations": {
             "virtualNetworkTap": {
                 "$ref": "#/$keywords/virtualNetworkTap"
             },
@@ -9886,7 +9886,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "networkProfile": {
+        "networkProfiles": {
             "containerNetworkInterfaces": {
                 "$ref": "#/$keywords/containerNetworkInterfaces"
             },
@@ -9900,7 +9900,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "networkSecurityGroup": {
+        "networkSecurityGroups": {
             "securityRules": {
                 "$ref": "#/$keywords/securityRules"
             },
@@ -9920,7 +9920,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "networkSecurityGroup/securityRules": {
+        "networkSecurityGroups/securityRules": {
             "description": {
                 "$ref": "#/$keywords/description"
             },
@@ -9970,12 +9970,12 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "networkWatcher": {
+        "networkWatchers": {
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "networkWatcher/packetCaptures": {
+        "networkWatchers/packetCaptures": {
             "target": {
                 "$ref": "#/$keywords/target"
             },
@@ -9995,7 +9995,7 @@
                 "$ref": "#/$keywords/filters"
             }
         },
-        "networkWatcher/connectionMonitors": {
+        "networkWatchers/connectionMonitors": {
             "source": {
                 "$ref": "#/$keywords/source"
             },
@@ -10024,7 +10024,7 @@
                 "$ref": "#/$keywords/notes"
             }
         },
-        "networkWatcher/flowLogs": {
+        "networkWatchers/flowLogs": {
             "targetResourceId": {
                 "$ref": "#/$keywords/targetResourceId"
             },
@@ -10050,7 +10050,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "privateEndpoint": {
+        "privateEndpoints": {
             "subnet": {
                 "$ref": "#/$keywords/subnet_2"
             },
@@ -10067,7 +10067,7 @@
                 "$ref": "#/$keywords/manualPrivateLinkServiceConnections"
             }
         },
-        "privateLinkService": {
+        "privateLinkServices": {
             "loadBalancerFrontendIpConfigurations": {
                 "$ref": "#/$keywords/loadBalancerFrontendIpConfigurations"
             },
@@ -10099,7 +10099,7 @@
                 "$ref": "#/$keywords/enableProxyProtocol"
             }
         },
-        "privateLinkService/privateEndpointConnections": {
+        "privateLinkServices/privateEndpointConnections": {
             "privateEndpoint": {
                 "$ref": "#/$keywords/privateEndpoint"
             },
@@ -10113,7 +10113,7 @@
                 "$ref": "#/$keywords/linkIdentifier"
             }
         },
-        "publicIPAddresse": {
+        "publicIPAddresses": {
             "publicIPAllocationMethod": {
                 "$ref": "#/$keywords/publicIPAllocationMethod"
             },
@@ -10148,7 +10148,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "publicIPPrefixe": {
+        "publicIPPrefixes": {
             "publicIPAddressVersion": {
                 "$ref": "#/$keywords/publicIPAddressVersion"
             },
@@ -10174,7 +10174,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "routeFilter": {
+        "routeFilters": {
             "rules": {
                 "$ref": "#/$keywords/rules_6"
             },
@@ -10188,7 +10188,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "routeFilter/routeFilterRules": {
+        "routeFilters/routeFilterRules": {
             "access": {
                 "$ref": "#/$keywords/access_2"
             },
@@ -10202,7 +10202,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "routeTable": {
+        "routeTables": {
             "routes": {
                 "$ref": "#/$keywords/routes"
             },
@@ -10216,7 +10216,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "routeTable/routes": {
+        "routeTables/routes": {
             "addressPrefix": {
                 "$ref": "#/$keywords/addressPrefix_2"
             },
@@ -10230,7 +10230,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "serviceEndpointPolicie": {
+        "serviceEndpointPolicies": {
             "serviceEndpointPolicyDefinitions": {
                 "$ref": "#/$keywords/serviceEndpointPolicyDefinitions"
             },
@@ -10244,7 +10244,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "serviceEndpointPolicie/serviceEndpointPolicyDefinitions": {
+        "serviceEndpointPolicies/serviceEndpointPolicyDefinitions": {
             "description": {
                 "$ref": "#/$keywords/description_2"
             },
@@ -10258,7 +10258,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "virtualNetwork": {
+        "virtualNetworks": {
             "addressSpace": {
                 "$ref": "#/$keywords/addressSpace"
             },
@@ -10290,7 +10290,7 @@
                 "$ref": "#/$keywords/bgpCommunities"
             }
         },
-        "virtualNetwork/subnets": {
+        "virtualNetworks/subnets": {
             "addressPrefix": {
                 "$ref": "#/$keywords/addressPrefix_3"
             },
@@ -10343,7 +10343,7 @@
                 "$ref": "#/$keywords/privateLinkServiceNetworkPolicies"
             }
         },
-        "virtualNetwork/virtualNetworkPeerings": {
+        "virtualNetworks/virtualNetworkPeerings": {
             "allowVirtualNetworkAccess": {
                 "$ref": "#/$keywords/allowVirtualNetworkAccess"
             },
@@ -10369,7 +10369,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "virtualNetworkGateway": {
+        "virtualNetworkGateways": {
             "ipConfigurations": {
                 "$ref": "#/$keywords/ipConfigurations_8"
             },
@@ -10416,7 +10416,7 @@
                 "$ref": "#/$keywords/inboundDnsForwardingEndpoint"
             }
         },
-        "connection": {
+        "connections": {
             "authorizationKey": {
                 "$ref": "#/$keywords/authorizationKey_4"
             },
@@ -10478,8 +10478,8 @@
                 "$ref": "#/$keywords/expressRouteGatewayBypass"
             }
         },
-        "connection/sharedkey": {},
-        "localNetworkGateway": {
+        "connections/sharedkey": {},
+        "localNetworkGateways": {
             "localNetworkAddressSpace": {
                 "$ref": "#/$keywords/addressSpace"
             },
@@ -10496,7 +10496,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "virtualNetworkTap": {
+        "virtualNetworkTaps": {
             "networkInterfaceTapConfigurations": {
                 "$ref": "#/$keywords/networkInterfaceTapConfigurations"
             },
@@ -10516,7 +10516,7 @@
                 "$ref": "#/$keywords/destinationPort"
             }
         },
-        "virtualRouter": {
+        "virtualRouters": {
             "virtualRouterAsn": {
                 "$ref": "#/$keywords/virtualRouterAsn"
             },
@@ -10536,7 +10536,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "virtualRouter/peerings": {
+        "virtualRouters/peerings": {
             "peerAsn": {
                 "$ref": "#/$keywords/peerAsn"
             },
@@ -10547,7 +10547,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "virtualWan": {
+        "virtualWans": {
             "disableVpnEncryption": {
                 "$ref": "#/$keywords/disableVpnEncryption"
             },
@@ -10573,7 +10573,7 @@
                 "$ref": "#/$keywords/type"
             }
         },
-        "vpnSite": {
+        "vpnSites": {
             "virtualWan": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -10602,7 +10602,7 @@
                 "$ref": "#/$keywords/vpnSiteLinks"
             }
         },
-        "vpnServerConfiguration": {
+        "vpnServerConfigurations": {
             "name": {
                 "$ref": "#/$keywords/name"
             },
@@ -10646,7 +10646,7 @@
                 "$ref": "#/$keywords/etag"
             }
         },
-        "virtualHub": {
+        "virtualHubs": {
             "virtualWan": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -10684,7 +10684,7 @@
                 "$ref": "#/$keywords/sku_5"
             }
         },
-        "vpnGateway": {
+        "vpnGateways": {
             "virtualHub": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -10701,7 +10701,7 @@
                 "$ref": "#/$keywords/vpnGatewayScaleUnit"
             }
         },
-        "vpnGateway/vpnConnections": {
+        "vpnGateways/vpnConnections": {
             "remoteVpnSite": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -10751,7 +10751,7 @@
                 "$ref": "#/$keywords/vpnLinkConnections"
             }
         },
-        "p2svpnGateway": {
+        "p2svpnGateways": {
             "virtualHub": {
                 "$ref": "#/$keywords/subnet"
             },
@@ -10771,7 +10771,7 @@
                 "$ref": "#/$keywords/vpnClientConnectionHealth"
             }
         },
-        "virtualHub/routeTables": {
+        "virtualHubs/routeTables": {
             "routes": {
                 "$ref": "#/$keywords/routes_3"
             },
@@ -10782,7 +10782,7 @@
                 "$ref": "#/$keywords/provisioningState"
             }
         },
-        "ApplicationGatewayWebApplicationFirewallPolicie": {
+        "ApplicationGatewayWebApplicationFirewallPolicies": {
             "policySettings": {
                 "$ref": "#/$keywords/policySettings"
             },

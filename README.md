@@ -31,41 +31,48 @@ In particular, high level goals are:
 
 A simple example for creating a network interface:
 
-**TODO: Reference original JSON**
-
 ```powershell
 # Specify the ARM template purely within PowerShell
 $template = Arm {
     param(
+        # ValidateSet is turned into "allowedValues"
         [ValidateSet('WestUS2', 'CentralUS')]
         [ArmParameter[string]]$rgLocation,
 
-        [ArmParameter]$namePrefix = 'my',
+        [ArmParameter[string]]$namePrefix = 'my',
 
         [ArmVariable]$vnetNamespace = 'myVnet/'
     )
 
-    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/virtualNetworks/subnets {
+    # Use existing PowerShell concepts to make ARM easier
+    $PSDefaultParameterValues['Resource:Location'] = $rgLocation
+
+    # Resources types, rather than being <Provider>/<Type> have this broken into -Provider <Provider> -Type <Type>
+    # Completions are available for Provider and ApiVersion, and once these are specified, also for Type
+    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
         Properties {
             # Each resource defines its properties as commands within its own body
-            AddressPrefix -Prefix 10.0.0.0/24
+            AddressPrefix 10.0.0.0/24
         }
     }
 
     # Piping, looping and commands like ForEach-Object all work
     '-pip1','-pip2' | ForEach-Object {
-        Resource (Concat $namePrefix $_) -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/publicIpAddresses {
+        Resource (Concat $namePrefix $_) -ApiVersion 2019-11-01 -Type Microsoft.Network/publicIpAddresses {
             Properties {
-                PublicIPAllocationMethod -Method Dynamic
+                PublicIPAllocationMethod Dynamic
             }
         }
     }
 
-    Resource (Concat $namePrefix '-nic') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/networkInterfaces {
+    Resource (Concat $namePrefix '-nic') -ApiVersion 2019-11-01 -Type Microsoft.Network/networkInterfaces {
         Properties {
-            IpConfiguration -Name 'myConfig' {
-                # Sub-properties also appear as commands within property contexts
-                PrivateIPAllocationMethod -Method Dynamic
+            # IpConfiguration is an array property, but PSArm knows this
+            # All occurences of array properties will be collected into an array when the template is published
+            #
+            # Sub-properties that simply encode a key-value pair are parameters on their parents (so you can splat)
+            IpConfiguration -Name 'myConfig' -PrivateIPAllocationMethod Dynamic {
+                # More complex subproperties, like JSON blocks and arrays, are keywords within their parent property's body
 
                 # ARM expressions can be expressed in PowerShell
                 # The subnet ID here is: [resourceId('Microsoft.Network/virtualNetworks/subnets', concat(variables('vnetNamespace'), variables('namePrefix'), '-subnet'))]
@@ -84,11 +91,99 @@ Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json -Paramet
 # Publish-ArmTemplate also supports ARM parameters as dynamic parameters on the template you pass to it
 Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json -rgLocation WestUS2
 
+# If no parameters are provided, Publish-ArmTemplate will publish the template with no parameter substitutions
+Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json
+
 # Deploy the template to a resource group using the Az.Resources command
 New-AzResourceGroupDeployment -ResourceGroupName MyResourceGroup -TemplateFile ./networkTemplate.json
 ```
 
-A full list of examples can be found under `examples/` in the repository root.
+This initial template is equivalent to the following ARM JSON template:
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "rgLocation": {
+      "type": "string",
+      "allowedValues": [
+        "WestUS2",
+        "CentralUS"
+      ]
+    },
+    "namePrefix": {
+      "type": "string",
+      "defaultValue": "my"
+    }
+  },
+  "variables": {
+    "vnetNamespace": "myVnet/"
+  },
+  "outputs": {
+    "nicResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('namePrefix'), '-nic'))]"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "[concat(variables('vnetNamespace'), parameters('namePrefix'), '-subnet')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "addressPrefix": "10.0.0.0/24"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat(parameters('namePrefix'), '-pip1')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat(parameters('namePrefix'), '-pip2')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[concat(parameters('namePrefix'), '-nic')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "myConfig",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnets": [
+                {
+                  "id": "[[resourceId('Microsoft.Network/virtualNetworks/subnets', concat(variables('vnetNamespace'), parameters('namePrefix'), '-subnet'))]",
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+## Completions
+
+PSArm offers contextual completions on keywords and parameters:
+
+![Completion example GIF](./completions.gif)
 
 ## Concepts
 
@@ -158,6 +253,45 @@ PSArm comes with a build script that tries to keep things simple and minimal. To
 This will output the built module to `out/PSArm`, which can be imported with `Import-Module ./out/PSArm`.
 Keep in mind that this is a binary module, so you'll likely want to start a new process before importing it
 so that you can easily rebuild and reimport as you make changes.
+
+## Getting more schemas
+
+The PSArm project also has a schema generating autorest plugin.
+This is currently a TypeScript autorest plugin based on [an example autorest plugin](https://github.com/fearthecowboy/autorest.sputnik/tree/simple).
+However, in future, this will likely be rewritten in C#.
+
+Currently, to generate a new schema, use the following steps:
+
+```powershell
+# Move to the generator project root
+cd $repoRoot/sputnik.generator
+
+# Rush must be installed to build the project:
+#   npm install -g @microsoft/rush
+rush rebuild
+
+# Autorest must also be installed:
+#   npm install -g autorest
+#
+# Autorest will run the schema generator plugin on the target Azure OpenAPI schema.
+# Schema URLs tend to be to the GitHub README of the provider
+# --debug provides debugging output to show progress and any error stack trace
+# --sputnik.debugger will wait for a debugger to attach to proceed (VSCode plugs and plays with this)
+autorest <schema-url> --use:.  --tag=package-<api-version> [--debug] [--sputnik.debugger]
+
+# An example autorest run:
+autorest https://github.com/Azure/azure-rest-api-specs/tree/master/specification/network/resource-manager/readme.md --use:.  --tag=package-2019-11 --debug
+
+# Now copy the generated schemas to PSArm's source
+Copy-Item ./out/* ../src/schemas -Force
+
+# Now rebuild PSArm
+cd ..
+./build.ps1
+
+# Now you can use the module as needed
+Import-Module ./out/PSArm
+```
 
 ## Implementation details
 

@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Management.Automation;
 using PSArm.ArmBuilding;
@@ -15,27 +16,29 @@ namespace PSArm.Commands
     [Cmdlet(VerbsCommon.New, "ArmResource")]
     public class NewArmResourceCommand : PSCmdlet
     {
-        private readonly static char[] s_splitChar = new [] { '/' };
-
         internal static string SyntaxDescription = @"
-Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [-Body] <scriptblock>
+Resource -Name <string> -Location <string> -ApiVersion <string> -Provider <string> -Type <string> [-Body] <scriptblock>
 ";
 
         [Parameter(Position = 0, Mandatory = true)]
         public IArmExpression Name { get; set; }
 
-        [Parameter()]
+        [Parameter]
         public IArmExpression Location { get; set; }
 
-        [Parameter()]
+        [Parameter]
         public IArmExpression Kind { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
-        [Parameter()]
+        [Parameter]
         public string ApiVersion { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
-        [Parameter()]
+        [Parameter]
+        public string Provider { get; set; }
+
+        [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
+        [Parameter]
         public string Type { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
@@ -43,9 +46,8 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
 
         protected override void EndProcessing()
         {
-            string[] schemaNameParts = Type.Split(s_splitChar, count: 2);
-            ArmProviderDslInfo dsl = DslLoader.Instance.LoadDsl(schemaNameParts[0], ApiVersion);
-            var resourceDsl = ScriptBlock.Create(dsl.ScriptProducer.GetResourceScriptDefintion(schemaNameParts[1]));
+            ArmProviderDslInfo dsl = DslLoader.Instance.LoadDsl(Provider, ApiVersion);
+            var resourceDsl = ScriptBlock.Create(dsl.ScriptProducer.GetResourceScriptDefintion(Type));
             InvokeCommand.InvokeScript(SessionState, resourceDsl);
 
             var properties = new Dictionary<string, ArmPropertyInstance>();
@@ -57,6 +59,17 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
             {
                 switch (result.BaseObject)
                 {
+                    case ArmPropertyArrayItem arrayItem:
+                        if (!properties.TryGetValue(arrayItem.PropertyName, out ArmPropertyInstance arrayProperties))
+                        {
+                            arrayProperties = new ArmPropertyArray(arrayItem.PropertyName);
+                            properties[arrayItem.PropertyName] = arrayProperties;
+                        }
+
+                        var arrayCollector = (ArmPropertyArray)arrayProperties;
+                        arrayCollector.Items.Add(arrayItem);
+                        continue;
+
                     case ArmPropertyInstance armProperty:
                         properties[armProperty.PropertyName] = armProperty;
                         continue;
@@ -79,11 +92,12 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
             {
                 ApiVersion = ApiVersion,
                 Location = Location,
-                Type = Type,
+                Type = $"{Provider}/{Type}",
                 Name = Name,
                 Properties = properties,
                 Subresources = subresources,
                 DependsOn = dependsOns,
+                Sku = armSku,
             };
 
             WriteObject(resource);

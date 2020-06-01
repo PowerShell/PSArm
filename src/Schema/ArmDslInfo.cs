@@ -9,27 +9,19 @@ namespace PSArm.Schema
     /// <summary>
     /// Describes a complete ARM DSL schema loaded from a description file.
     /// </summary>
-    public class ArmDslInfo
+    public class ArmProviderDslInfo
     {
-        /// <summary>
-        /// Create a new ARM DSL info object.
-        /// </summary>
-        /// <param name="schema">The keyword schema for the DSL segment.</param>
-        /// <param name="dslScripts">The PowerShell scripts for the DSL, keyed by resource type name.</param>
-        public ArmDslInfo(DslSchema schema, IReadOnlyDictionary<string, string> dslScripts)
+        public ArmProviderDslInfo(ArmDslProviderSchema providerSchema)
         {
-            Schema = schema;
-            DslDefintions = dslScripts;
+            ProviderSchema = providerSchema;
+            ScriptProducer = new ArmDslProviderScriptProducer(providerSchema);
         }
 
         /// <summary>
         /// The keyword schema for this DSL component.
         /// </summary>
-        public DslSchema Schema { get; }
+        public ArmDslProviderSchema ProviderSchema { get; }
 
-        /// <summary>
-        /// The PowerShell scripts for the DSL, keyed by resource type name.
-        /// </summary>
-        public IReadOnlyDictionary<string, string> DslDefintions { get; }
+        public ArmDslProviderScriptProducer ScriptProducer { get; }
     }
 }

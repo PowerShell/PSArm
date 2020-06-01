@@ -6,8 +6,10 @@ using PSArm.Schema;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Language;
+using System.Threading.Tasks;
 
 namespace PSArm.Completion
 {
@@ -39,17 +41,27 @@ namespace PSArm.Completion
         {
             if (IsString(parameterName, "Type"))
             {
+                string apiVersion = fakeBoundParameters.Contains("ApiVersion")
+                    ? (string)fakeBoundParameters["ApiVersion"]
+                    : null;
+
                 var completions = new List<CompletionResult>();
                 if (wordToComplete.Contains("/"))
                 {
-                    string[] completeParts = wordToComplete.Split(s_typeSeparator, count: 2);
-                    if (DslLoader.Instance.TryLoadDsl(completeParts[0], out ArmDslInfo dslInfo))
+                    // We can't hope to load all schemas, if we have no version
+                    if (apiVersion == null)
                     {
-                        foreach (string subschema in dslInfo.Schema.Subschemas.Keys)
+                        return Enumerable.Empty<CompletionResult>();
+                    }
+
+                    string[] completeParts = wordToComplete.Split(s_typeSeparator, count: 2);
+                    if (DslLoader.Instance.TryLoadDsl(completeParts[0], apiVersion, out ArmProviderDslInfo dslInfo))
+                    {
+                        foreach (string resourceType in dslInfo.ProviderSchema.Resources.Keys)
                         {
-                            if (subschema.StartsWith(completeParts[1], StringComparison.OrdinalIgnoreCase))
+                            if (resourceType.StartsWith(completeParts[1], StringComparison.OrdinalIgnoreCase))
                             {
-                                string fullCompletion = $"{completeParts[0]}/{subschema}";
+                                string fullCompletion = $"{completeParts[0]}/{resourceType}";
                                 completions.Add(new CompletionResult(fullCompletion, fullCompletion, CompletionResultType.ParameterValue, fullCompletion));
                             }
                         }
@@ -58,7 +70,7 @@ namespace PSArm.Completion
                     return completions;
                 }
 
-                foreach (string schemaName in DslLoader.Instance.ListSchemas())
+                foreach (string schemaName in DslLoader.Instance.ListSchemaProviders(apiVersion))
                 {
                     if (schemaName.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
                     {
@@ -70,25 +82,25 @@ namespace PSArm.Completion
                 return completions;
             }
 
-            if (IsString(parameterName, "Location"))
+            if (IsString(parameterName, "ApiVersion"))
             {
-                return GetCompletionsFromList(wordToComplete, s_locations);
+                string providerName = fakeBoundParameters.Contains("Type")
+                    ? (string)fakeBoundParameters["Type"]
+                    : null;
+
+                var completions = new List<CompletionResult>();
+                foreach (string apiVersion in DslLoader.Instance.ListSchemaVersions(providerName))
+                {
+                    if (apiVersion.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
+                    {
+                        completions.Add(new CompletionResult(apiVersion, apiVersion, CompletionResultType.ParameterValue, apiVersion));
+                    }
+                }
+
+                return completions;
             }
 
             return null;
-        }
-
-        private static IEnumerable<CompletionResult> GetCompletionsFromList(string prefix, IEnumerable<string> possibleValues)
-        {
-            foreach (string possibleValue in possibleValues)
-            {
-                if (!possibleValue.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
-
-                yield return new CompletionResult(possibleValue, possibleValue, CompletionResultType.ParameterValue, possibleValue);
-            }
         }
 
         private static bool IsString(string str, string expected)

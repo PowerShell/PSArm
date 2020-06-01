@@ -68,8 +68,8 @@ namespace PSArm.ArmBuilding
             {
                 ["apiVersion"] = ApiVersion,
                 ["type"] = Type,
-                ["name"] = Name.ToExpressionString(),
-                ["location"] = Location.ToExpressionString(),
+                ["name"] = Name?.ToExpressionString(),
+                ["location"] = Location?.ToExpressionString(),
             };
 
             var properties = new JObject();

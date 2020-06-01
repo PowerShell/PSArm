@@ -30,6 +30,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
         [Parameter()]
         public IArmExpression Kind { get; set; }
 
+        [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
         [Parameter()]
         public string ApiVersion { get; set; }
 
@@ -42,9 +43,9 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
 
         protected override void EndProcessing()
         {
-            string[] schemaNameParts = Type.Split(s_splitChar);
-            ArmDslInfo dsl = DslLoader.Instance.LoadDsl(schemaNameParts[0]);
-            var resourceDsl = ScriptBlock.Create(dsl.DslDefintions[Type]);
+            string[] schemaNameParts = Type.Split(s_splitChar, count: 2);
+            ArmProviderDslInfo dsl = DslLoader.Instance.LoadDsl(schemaNameParts[0], ApiVersion);
+            var resourceDsl = ScriptBlock.Create(dsl.ScriptProducer.GetResourceScriptDefintion(schemaNameParts[1]));
             InvokeCommand.InvokeScript(SessionState, resourceDsl);
 
             var properties = new Dictionary<string, ArmPropertyInstance>();

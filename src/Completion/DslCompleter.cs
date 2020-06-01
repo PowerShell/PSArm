@@ -214,47 +214,46 @@ namespace PSArm.Completion
                 return null;
             }
 
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, out ArmDslInfo dslInfo)
-                || !dslInfo.Schema.Subschemas.TryGetValue(context.ResourceTypeName, out Dictionary<string, DslSchemaItem> schema))
+            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmProviderDslInfo dslInfo)
+                || !dslInfo.ProviderSchema.Resources.TryGetValue(context.ResourceTypeName, out ArmDslResourceSchema resource))
             {
                 return null;
             }
 
-            IReadOnlyDictionary<string, DslSchemaItem> immediateSchema = GetCurrentKeywordSchema(context, schema, forParameter: true);
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resource.PSKeywordSchema, forParameter: true);
 
             if (immediateSchema == null
-                || !immediateSchema.TryGetValue(commandName, out DslSchemaItem keywordSchemaItem))
+                || !immediateSchema.TryGetValue(commandName, out ArmDslKeywordSchema keywordForContext))
             {
                 return null;
             }
 
             // If we're still on the last token, we need to look further back
             Token beforeToken = context.LastToken;
-            string prefix = null;
             if (context.Position.Offset == context.LastToken.Extent.EndOffset)
             {
                 beforeToken = context.Tokens[context.LastTokenIndex - 1];
-                prefix = context.LastToken.Text;
             }
 
             return beforeToken.Kind == TokenKind.Parameter
-                ? CompleteParameterValues(context, keywordSchemaItem.Parameters, beforeToken)
-                : CompleteParameterNames(context, keywordSchemaItem.Parameters);
+                ? CompleteParameterValues(context, keywordForContext.PSKeyword.Parameters, beforeToken)
+                : CompleteParameterNames(context, keywordForContext.PSKeyword.Parameters, keywordForContext.Body != null);
         }
 
         private static Collection<CompletionResult> CompleteParameterValues(
             KeywordContext context,
-            IReadOnlyList<DslParameter> parameters,
+            IReadOnlyDictionary<string, PSDslParameterInfo> parameters,
             Token precedingToken)
         {
             string parameterName = precedingToken.Text.Substring(1);
-            foreach (DslParameter parameter in parameters)
+
+            foreach (KeyValuePair<string, PSDslParameterInfo> parameter in parameters)
             {
-                if (string.Equals(parameter.Name, parameterName, StringComparison.OrdinalIgnoreCase)
-                    && parameter.Enum != null)
+                if (string.Equals(parameter.Key, parameterName, StringComparison.OrdinalIgnoreCase)
+                    && parameter.Value.Parameter.Enum != null)
                 {
                     var completions = new Collection<CompletionResult>();
-                    foreach (object enumOption in parameter.Enum)
+                    foreach (object enumOption in parameter.Value.Parameter.Enum)
                     {
                         string str = enumOption.ToString();
                         completions.Add(
@@ -267,34 +266,49 @@ namespace PSArm.Completion
                     return completions;
                 }
             }
+
             return null;
         }
 
         private static Collection<CompletionResult> CompleteParameterNames(
             KeywordContext context,
-            IReadOnlyList<DslParameter> parameters)
+            IReadOnlyDictionary<string, PSDslParameterInfo> parameters,
+            bool hasBody)
         {
             string prefix = context.LastToken.Kind == TokenKind.Parameter
                 ? context.LastToken.Text.Substring(1)
                 : null;
+
             var completions = new Collection<CompletionResult>();
-            foreach (DslParameter parameter in parameters)
+
+            foreach (KeyValuePair<string, PSDslParameterInfo> parameter in parameters)
             {
                 if (prefix != null
-                    && !parameter.Name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    && !parameter.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
 
-                string completionText = $"-{parameter.Name}";
-                string completionToolTip = $"[{parameter.Type}] {parameter.Name}";
+                string completionText = $"-{parameter.Key}";
+                string completionToolTip = $"[{parameter.Value.Parameter.Type}] {parameter.Key}";
                 completions.Add(
                     new CompletionResult(
                         completionText,
-                        parameter.Name,
+                        parameter.Key,
                         CompletionResultType.ParameterName,
                         completionToolTip));
             }
+
+            if (hasBody && (prefix == null || "Body".StartsWith(prefix)))
+            {
+                completions.Add(
+                    new CompletionResult(
+                        "-Body",
+                        "Body",
+                        CompletionResultType.ParameterName,
+                        "[scriptblock] Body"));
+            }
+
             return completions;
         }
 
@@ -345,12 +359,12 @@ namespace PSArm.Completion
 
             // Now within a resource DSL
 
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, out ArmDslInfo dslInfo))
+            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmProviderDslInfo provider))
             {
                 return null;
             }
 
-            if (!dslInfo.Schema.Subschemas.TryGetValue(context.ResourceTypeName, out Dictionary<string, DslSchemaItem> schema))
+            if (!provider.ProviderSchema.Resources.TryGetValue(context.ResourceTypeName, out ArmDslResourceSchema resourceSchema))
             {
                 return null;
             }
@@ -358,37 +372,38 @@ namespace PSArm.Completion
             // Top level resource keywords
             if (context.KeywordStack.Count == 3)
             {
-                return CompleteKeywordsFromList(context, schema.Keys);
+                return CompleteKeywordsFromList(context, resourceSchema.Keywords.Values);
             }
 
             // Deeper keywords
-            IReadOnlyDictionary<string, DslSchemaItem> immediateSchema = GetCurrentKeywordSchema(context, schema);
-            return CompleteKeywordsFromList(context, immediateSchema.Keys);
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resourceSchema.Keywords);
+            return CompleteKeywordsFromList(context, immediateSchema.Values);
         }
 
-        private static Collection<CompletionResult> CompleteKeywordsFromList(KeywordContext context, IEnumerable<string> keywords)
+        private static Collection<CompletionResult> CompleteKeywordsFromList(KeywordContext context, IEnumerable<ArmDslKeywordSchema> keywords)
         {
             string keywordPrefix = context.LastToken.Kind == TokenKind.Identifier
                 ? context.LastToken.Text
                 : null;
 
             var completions = new Collection<CompletionResult>();
-            foreach (string keyword in keywords)
+            foreach (ArmDslKeywordSchema keyword in keywords)
             {
-                if (keywordPrefix != null && !keyword.StartsWith(keywordPrefix, StringComparison.OrdinalIgnoreCase))
+                string keywordName = keyword.PSKeyword.Name;
+                if (keywordPrefix != null && !keywordName.StartsWith(keywordPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
 
-                completions.Add(new CompletionResult(keyword, keyword, CompletionResultType.Command, keyword));
+                completions.Add(new CompletionResult(keywordName, keywordName, CompletionResultType.Command, keywordName));
             }
 
             return completions;
         }
 
-        private static IReadOnlyDictionary<string, DslSchemaItem> GetCurrentKeywordSchema(
+        private static IReadOnlyDictionary<string, ArmDslKeywordSchema> GetCurrentKeywordSchema(
             KeywordContext context,
-            IReadOnlyDictionary<string, DslSchemaItem> schema,
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> initialKeywordSchema,
             bool forParameter = false)
         {
             string immediateKeyword = null;
@@ -401,7 +416,7 @@ namespace PSArm.Completion
                 }
             }
 
-            IReadOnlyDictionary<string, DslSchemaItem> currSchema = schema;
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> currSchema = initialKeywordSchema;
             for (int i = 3; i < context.KeywordStack.Count; i++)
             {
                 if (currSchema == null)
@@ -417,24 +432,17 @@ namespace PSArm.Completion
                     break;
                 }
 
-                if (!currSchema.TryGetValue(keyword, out DslSchemaItem schemaItem))
+                if (!currSchema.TryGetValue(keyword, out ArmDslKeywordSchema schemaItem))
                 {
                     return null;
                 }
 
-                switch (schemaItem)
+                if (schemaItem.Body == null)
                 {
-                    case DslBlockSchema block:
-                        currSchema = block.Body;
-                        break;
-
-                    case DslArraySchema array:
-                        currSchema = array.Body;
-                        break;
-
-                    default:
-                        return null;
+                    return null;
                 }
+
+                currSchema = schemaItem.PSKeywordSchema;
             }
 
             return currSchema;

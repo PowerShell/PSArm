@@ -31,11 +31,15 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
         public IArmExpression Kind { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
-        [Parameter()]
+        [Parameter]
         public string ApiVersion { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
-        [Parameter()]
+        [Parameter]
+        public string Provider { get; set; }
+
+        [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
+        [Parameter]
         public string Type { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
@@ -43,9 +47,8 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
 
         protected override void EndProcessing()
         {
-            string[] schemaNameParts = Type.Split(s_splitChar, count: 2);
-            ArmProviderDslInfo dsl = DslLoader.Instance.LoadDsl(schemaNameParts[0], ApiVersion);
-            var resourceDsl = ScriptBlock.Create(dsl.ScriptProducer.GetResourceScriptDefintion(schemaNameParts[1]));
+            ArmProviderDslInfo dsl = DslLoader.Instance.LoadDsl(Provider, ApiVersion);
+            var resourceDsl = ScriptBlock.Create(dsl.ScriptProducer.GetResourceScriptDefintion(Type));
             InvokeCommand.InvokeScript(SessionState, resourceDsl);
 
             var properties = new Dictionary<string, ArmPropertyInstance>();
@@ -79,7 +82,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
             {
                 ApiVersion = ApiVersion,
                 Location = Location,
-                Type = Type,
+                Type = $"{Provider}/{Type}",
                 Name = Name,
                 Properties = properties,
                 Subresources = subresources,

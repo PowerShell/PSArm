@@ -45,10 +45,12 @@ $template = Arm {
         [ArmVariable]$vnetNamespace = 'myVnet/'
     )
 
-    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/virtualNetworks/subnets {
+    # Resources types, rather than being <Provider>/<Type> have this broken into -Provider <Provider> -Type <Type>
+    # Completions are available for Provider and ApiVersion, and once these are specified, also for Type
+    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Location $rgLocation -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
         Properties {
             # Each resource defines its properties as commands within its own body
-            AddressPrefix -Prefix 10.0.0.0/24
+            AddressPrefix 10.0.0.0/24
         }
     }
 
@@ -56,16 +58,16 @@ $template = Arm {
     '-pip1','-pip2' | ForEach-Object {
         Resource (Concat $namePrefix $_) -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/publicIpAddresses {
             Properties {
-                PublicIPAllocationMethod -Method Dynamic
+                PublicIPAllocationMethod Dynamic
             }
         }
     }
 
     Resource (Concat $namePrefix '-nic') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/networkInterfaces {
         Properties {
-            IpConfiguration -Name 'myConfig' {
-                # Sub-properties also appear as commands within property contexts
-                PrivateIPAllocationMethod -Method Dynamic
+            # Sub-properties that simply encode a key-value pair are parameters on their parents (so you can splat)
+            IpConfiguration -Name 'myConfig' -PrivateIPAllocationMethod Dynamic {
+                # More complex subproperties, like JSON blocks and arrays, are keywords within their parent property's body
 
                 # ARM expressions can be expressed in PowerShell
                 # The subnet ID here is: [resourceId('Microsoft.Network/virtualNetworks/subnets', concat(variables('vnetNamespace'), variables('namePrefix'), '-subnet'))]
@@ -158,6 +160,45 @@ PSArm comes with a build script that tries to keep things simple and minimal. To
 This will output the built module to `out/PSArm`, which can be imported with `Import-Module ./out/PSArm`.
 Keep in mind that this is a binary module, so you'll likely want to start a new process before importing it
 so that you can easily rebuild and reimport as you make changes.
+
+## Getting more schemas
+
+The PSArm project also has a schema generating autorest plugin.
+This is currently a TypeScript autorest plugin based on [an example autorest plugin](https://github.com/fearthecowboy/autorest.sputnik/tree/simple).
+However, in future, this will likely be rewritten in C#.
+
+Currently, to generate a new schema, use the following steps:
+
+```powershell
+# Move to the generator project root
+cd $repoRoot/sputnik.generator
+
+# Rush must be installed to build the project:
+#   npm install -g @microsoft/rush
+rush rebuild
+
+# Autorest must also be installed:
+#   npm install -g autorest
+#
+# Autorest will run the schema generator plugin on the target Azure OpenAPI schema.
+# Schema URLs tend to be to the GitHub README of the provider
+# --debug provides debugging output to show progress and any error stack trace
+# --sputnik.debugger will wait for a debugger to attach to proceed (VSCode plugs and plays with this)
+autorest <schema-url> --use:.  --tag=package-<api-version> [--debug] [--sputnik.debugger]
+
+# An example autorest run:
+autorest https://github.com/Azure/azure-rest-api-specs/tree/master/specification/network/resource-manager/readme.md --use:.  --tag=package-2019-11 --debug
+
+# Now copy the generated schemas to PSArm's source
+Copy-Item ./out/* ../src/schemas -Force
+
+# Now rebuild PSArm
+cd ..
+./build.ps1
+
+# Now you can use the module as needed
+Import-Module ./out/PSArm
+```
 
 ## Implementation details
 

@@ -21,16 +21,20 @@ namespace PSArm.ArmBuilding
         /// <returns>The items as an aggregated ARM property array object.</returns>
         public static ArmPropertyArray FromArrayItems(List<ArmPropertyArrayItem> items)
         {
-            string name = items[0].PropertyName + "s";
+            string name = items[0].PropertyName;
             return new ArmPropertyArray(name, items);
         }
 
-        private readonly List<ArmPropertyArrayItem> _items;
-
         private ArmPropertyArray(string propertyName, List<ArmPropertyArrayItem> items) : base(propertyName)
         {
-            _items = items;
+            Items = items;
         }
+
+        public ArmPropertyArray(string propertyName) : this(propertyName, new List<ArmPropertyArrayItem>())
+        {
+        }
+
+        public List<ArmPropertyArrayItem> Items { get; }
 
         /// <summary>
         /// Render the ARM property array body as ARM template JSON.
@@ -39,7 +43,7 @@ namespace PSArm.ArmBuilding
         public override JToken ToJson()
         {
             var jArr = new JArray();
-            foreach (ArmPropertyArrayItem item in _items)
+            foreach (ArmPropertyArrayItem item in Items)
             {
                 jArr.Add(item.ToJson());
             }
@@ -54,7 +58,7 @@ namespace PSArm.ArmBuilding
         public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
         {
             var items = new List<ArmPropertyArrayItem>();
-            foreach (ArmPropertyArrayItem item in _items)
+            foreach (ArmPropertyArrayItem item in Items)
             {
                 items.Add((ArmPropertyArrayItem)item.Instantiate(parameters));
             }

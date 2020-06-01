@@ -31,23 +31,25 @@ In particular, high level goals are:
 
 A simple example for creating a network interface:
 
-**TODO: Reference original JSON**
-
 ```powershell
 # Specify the ARM template purely within PowerShell
 $template = Arm {
     param(
+        # ValidateSet is turned into "allowedValues"
         [ValidateSet('WestUS2', 'CentralUS')]
         [ArmParameter[string]]$rgLocation,
 
-        [ArmParameter]$namePrefix = 'my',
+        [ArmParameter[string]]$namePrefix = 'my',
 
         [ArmVariable]$vnetNamespace = 'myVnet/'
     )
 
+    # Use existing PowerShell concepts to make ARM easier
+    $PSDefaultParameterValues['Resource:Location'] = $rgLocation
+
     # Resources types, rather than being <Provider>/<Type> have this broken into -Provider <Provider> -Type <Type>
     # Completions are available for Provider and ApiVersion, and once these are specified, also for Type
-    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Location $rgLocation -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
+    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
         Properties {
             # Each resource defines its properties as commands within its own body
             AddressPrefix 10.0.0.0/24
@@ -56,15 +58,18 @@ $template = Arm {
 
     # Piping, looping and commands like ForEach-Object all work
     '-pip1','-pip2' | ForEach-Object {
-        Resource (Concat $namePrefix $_) -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/publicIpAddresses {
+        Resource (Concat $namePrefix $_) -ApiVersion 2019-11-01 -Type Microsoft.Network/publicIpAddresses {
             Properties {
                 PublicIPAllocationMethod Dynamic
             }
         }
     }
 
-    Resource (Concat $namePrefix '-nic') -Location $rgLocation -ApiVersion 2019-11-01 -Type Microsoft.Network/networkInterfaces {
+    Resource (Concat $namePrefix '-nic') -ApiVersion 2019-11-01 -Type Microsoft.Network/networkInterfaces {
         Properties {
+            # IpConfiguration is an array property, but PSArm knows this
+            # All occurences of array properties will be collected into an array when the template is published
+            #
             # Sub-properties that simply encode a key-value pair are parameters on their parents (so you can splat)
             IpConfiguration -Name 'myConfig' -PrivateIPAllocationMethod Dynamic {
                 # More complex subproperties, like JSON blocks and arrays, are keywords within their parent property's body
@@ -86,11 +91,99 @@ Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json -Paramet
 # Publish-ArmTemplate also supports ARM parameters as dynamic parameters on the template you pass to it
 Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json -rgLocation WestUS2
 
+# If no parameters are provided, Publish-ArmTemplate will publish the template with no parameter substitutions
+Publish-ArmTemplate -Template $template -OutFile ./networkTemplate.json
+
 # Deploy the template to a resource group using the Az.Resources command
 New-AzResourceGroupDeployment -ResourceGroupName MyResourceGroup -TemplateFile ./networkTemplate.json
 ```
 
-A full list of examples can be found under `examples/` in the repository root.
+This initial template is equivalent to the following ARM JSON template:
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "rgLocation": {
+      "type": "string",
+      "allowedValues": [
+        "WestUS2",
+        "CentralUS"
+      ]
+    },
+    "namePrefix": {
+      "type": "string",
+      "defaultValue": "my"
+    }
+  },
+  "variables": {
+    "vnetNamespace": "myVnet/"
+  },
+  "outputs": {
+    "nicResourceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('namePrefix'), '-nic'))]"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "[concat(variables('vnetNamespace'), parameters('namePrefix'), '-subnet')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "addressPrefix": "10.0.0.0/24"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat(parameters('namePrefix'), '-pip1')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[concat(parameters('namePrefix'), '-pip2')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[concat(parameters('namePrefix'), '-nic')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "myConfig",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnets": [
+                {
+                  "id": "[[resourceId('Microsoft.Network/virtualNetworks/subnets', concat(variables('vnetNamespace'), parameters('namePrefix'), '-subnet'))]",
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+## Completions
+
+PSArm offers contextual completions on keywords and parameters:
+
+![Completion example GIF](./completions.gif)
 
 ## Concepts
 

@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using System;
 using System.Collections.Generic;
 using System.Management.Automation;
 using PSArm.ArmBuilding;
@@ -15,19 +16,17 @@ namespace PSArm.Commands
     [Cmdlet(VerbsCommon.New, "ArmResource")]
     public class NewArmResourceCommand : PSCmdlet
     {
-        private readonly static char[] s_splitChar = new [] { '/' };
-
         internal static string SyntaxDescription = @"
-Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [-Body] <scriptblock>
+Resource -Name <string> -Location <string> -ApiVersion <string> -Provider <string> -Type <string> [-Body] <scriptblock>
 ";
 
         [Parameter(Position = 0, Mandatory = true)]
         public IArmExpression Name { get; set; }
 
-        [Parameter()]
+        [Parameter]
         public IArmExpression Location { get; set; }
 
-        [Parameter()]
+        [Parameter]
         public IArmExpression Kind { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
@@ -60,6 +59,17 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
             {
                 switch (result.BaseObject)
                 {
+                    case ArmPropertyArrayItem arrayItem:
+                        if (!properties.TryGetValue(arrayItem.PropertyName, out ArmPropertyInstance arrayProperties))
+                        {
+                            arrayProperties = new ArmPropertyArray(arrayItem.PropertyName);
+                            properties[arrayItem.PropertyName] = arrayProperties;
+                        }
+
+                        var arrayCollector = (ArmPropertyArray)arrayProperties;
+                        arrayCollector.Items.Add(arrayItem);
+                        continue;
+
                     case ArmPropertyInstance armProperty:
                         properties[armProperty.PropertyName] = armProperty;
                         continue;
@@ -87,6 +97,7 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Type <string> [
                 Properties = properties,
                 Subresources = subresources,
                 DependsOn = dependsOns,
+                Sku = armSku,
             };
 
             WriteObject(resource);

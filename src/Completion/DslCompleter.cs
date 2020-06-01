@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Language;
 using PSArm.Commands;
+using PSArm.Internal;
 using PSArm.Schema;
 
 namespace PSArm.Completion
@@ -376,7 +377,7 @@ namespace PSArm.Completion
             }
 
             // Deeper keywords
-            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resourceSchema.Keywords);
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resourceSchema.PSKeywordSchema);
             return CompleteKeywordsFromList(context, immediateSchema.Values);
         }
 
@@ -564,13 +565,17 @@ namespace PSArm.Completion
                 if (element is CommandParameterAst parameterAst)
                 {
                     expect = 0;
-                    if (string.Equals(parameterAst.ParameterName, "Type", StringComparison.OrdinalIgnoreCase))
+                    if (parameterAst.ParameterName.Is("Type"))
                     {
                         expect = 1;
                     }
-                    else if (string.Equals(parameterAst.ParameterName, "ApiVersion", StringComparison.OrdinalIgnoreCase))
+                    else if (parameterAst.ParameterName.Is("ApiVersion"))
                     {
                         expect = 2;
+                    }
+                    else if (parameterAst.ParameterName.Is("Provider"))
+                    {
+                        expect = 3;
                     }
 
                     continue;
@@ -581,9 +586,7 @@ namespace PSArm.Completion
                     case 1:
                         if (element is StringConstantExpressionAst typeStrExpr)
                         {
-                            string[] typeParts = typeStrExpr.Value.Split(s_typeSplitChars, count: 2);
-                            context.ResourceNamespace = typeParts[0];
-                            context.ResourceTypeName = typeParts[1];
+                            context.ResourceTypeName = typeStrExpr.Value;
                         }
                         break;
 
@@ -591,6 +594,13 @@ namespace PSArm.Completion
                         if (element is StringConstantExpressionAst apiVersionStrExpr)
                         {
                             context.ResourceApiVersion = apiVersionStrExpr.Value;
+                        }
+                        break;
+
+                    case 3:
+                        if (element is StringConstantExpressionAst providerStrExpr)
+                        {
+                            context.ResourceNamespace = providerStrExpr.Value;
                         }
                         break;
                 }

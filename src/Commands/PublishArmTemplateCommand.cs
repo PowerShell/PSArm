@@ -52,11 +52,16 @@ namespace PSArm.Commands
             {
                 foreach (KeyValuePair<string, RuntimeDefinedParameter> entry in _dynamicParameters)
                 {
-                    parameterValues[entry.Key] = ArmTypeConversion.Convert(entry.Value.Value);
+                    if (MyInvocation.BoundParameters.ContainsKey(entry.Key))
+                    {
+                        parameterValues[entry.Key] = ArmTypeConversion.Convert(entry.Value.Value);
+                    }
                 }
             }
 
-            ArmTemplate instantiatedTemplate = Template.Instantiate(parameterValues);
+            ArmTemplate templateToWrite = parameterValues.Count > 0
+                ? Template.Instantiate(parameterValues)
+                : Template;
 
             if (OutFile != null)
             {
@@ -64,13 +69,13 @@ namespace PSArm.Commands
                 using (var textWriter = new StreamWriter(fileStream))
                 using (var jsonWriter = new JsonTextWriter(textWriter){ Formatting = Formatting.Indented })
                 {
-                    instantiatedTemplate.ToJson().WriteTo(jsonWriter);
+                    templateToWrite.ToJson().WriteTo(jsonWriter);
                 }
             }
 
             if (PassThru)
             {
-                WriteObject(instantiatedTemplate);
+                WriteObject(templateToWrite);
             }
         }
 
@@ -104,7 +109,7 @@ namespace PSArm.Commands
 
                     parameters[armParameter.Name] = new RuntimeDefinedParameter(
                         armParameter.Name,
-                        armParameter.Type,
+                        armParameter.Type ?? typeof(object),
                         attributes)
                     {
                         Value = armParameter.DefaultValue,
@@ -116,7 +121,7 @@ namespace PSArm.Commands
 
                     parameters[armParameter.Name] = new RuntimeDefinedParameter(
                         armParameter.Name,
-                        armParameter.Type,
+                        armParameter.Type ?? typeof(object),
                         attributes);
                 }
 

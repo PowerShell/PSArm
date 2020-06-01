@@ -26,8 +26,6 @@ namespace PSArm.Completion
             "CentralUS"
         };
 
-        private static char[] s_typeSeparator = new [] { '/' };
-
         /// <summary>
         /// Complete an ARM resource "type" argument.
         /// </summary>
@@ -39,43 +37,45 @@ namespace PSArm.Completion
         /// <returns></returns>
         public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
-            if (IsString(parameterName, "Type"))
+            if (IsString(parameterName, "Provider"))
             {
+                var completions = new List<CompletionResult>();
                 string apiVersion = fakeBoundParameters.Contains("ApiVersion")
                     ? (string)fakeBoundParameters["ApiVersion"]
                     : null;
 
-                var completions = new List<CompletionResult>();
-                if (wordToComplete.Contains("/"))
+                foreach (string providerName in DslLoader.Instance.ListSchemaProviders(apiVersion))
                 {
-                    // We can't hope to load all schemas, if we have no version
-                    if (apiVersion == null)
+                    if (providerName.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
                     {
-                        return Enumerable.Empty<CompletionResult>();
+                        completions.Add(new CompletionResult(providerName, providerName, CompletionResultType.ParameterValue, providerName));
                     }
-
-                    string[] completeParts = wordToComplete.Split(s_typeSeparator, count: 2);
-                    if (DslLoader.Instance.TryLoadDsl(completeParts[0], apiVersion, out ArmProviderDslInfo dslInfo))
-                    {
-                        foreach (string resourceType in dslInfo.ProviderSchema.Resources.Keys)
-                        {
-                            if (resourceType.StartsWith(completeParts[1], StringComparison.OrdinalIgnoreCase))
-                            {
-                                string fullCompletion = $"{completeParts[0]}/{resourceType}";
-                                completions.Add(new CompletionResult(fullCompletion, fullCompletion, CompletionResultType.ParameterValue, fullCompletion));
-                            }
-                        }
-                    }
-
-                    return completions;
                 }
 
-                foreach (string schemaName in DslLoader.Instance.ListSchemaProviders(apiVersion))
+                return completions;
+            }
+
+            if (IsString(parameterName, "Type"))
+            {
+                var completions = new List<CompletionResult>();
+
+                string apiVersion = (string)fakeBoundParameters["ApiVersion"];
+                string provider = (string)fakeBoundParameters["Provider"];
+
+                // We can't hope to load all schemas, if we have no version
+                if (apiVersion == null || provider == null)
                 {
-                    if (schemaName.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
+                    return Enumerable.Empty<CompletionResult>();
+                }
+
+                if (DslLoader.Instance.TryLoadDsl(provider, apiVersion, out ArmProviderDslInfo dslInfo))
+                {
+                    foreach (string resourceType in dslInfo.ProviderSchema.Resources.Keys)
                     {
-                        string completion = $"{schemaName}/";
-                        completions.Add(new CompletionResult(completion, completion, CompletionResultType.ParameterValue, completion));
+                        if (resourceType.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
+                        {
+                            completions.Add(new CompletionResult(resourceType, resourceType, CompletionResultType.ParameterValue, resourceType));
+                        }
                     }
                 }
 

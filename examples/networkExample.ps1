@@ -2,6 +2,11 @@
 # Copyright (c) Microsoft Corporation.
 # All rights reserved.
 
+param(
+  [string]
+  $OutTemplatePath = './networkExampleTemplate.json'
+)
+
 $template = Arm {
     param(
         [ValidateSet('WestUS2', 'CentralUS')]
@@ -15,25 +20,24 @@ $template = Arm {
     $PSDefaultParameterValues['Resource:Location'] = $rgLocation
     $PSDefaultParameterValues['Resource:ApiVersion'] = '2019-11-01'
 
-    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Type Microsoft.Network/virtualNetworks/subnets {
+    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Provider Microsoft.Network -Type virtualNetworks/subnets {
         Properties {
-            AddressPrefix -Prefix 10.0.0.0/24
+            AddressPrefix 10.0.0.0/24
         }
     }
 
     '-pip1','-pip2' | ForEach-Object {
-        Resource (Concat $namePrefix $_) -Type Microsoft.Network/publicIpAddresses {
+        Resource (Concat $namePrefix $_) -Provider Microsoft.Network -Type publicIPAddresses {
             Properties {
-                PublicIPAllocationMethod -Method Dynamic
+                PublicIPAllocationMethod Dynamic
             }
         }
     }
 
-    Resource (Concat $namePrefix '-nic') -Type Microsoft.Network/networkInterfaces {
+    Resource (Concat $namePrefix '-nic') -Provider Microsoft.Network -Type networkInterfaces {
         Properties {
-            IpConfiguration -Name 'myConfig' {
+            IpConfiguration -Name 'myConfig' -PrivateIPAllocationMethod Dynamic {
                 Subnet -Id (ResourceId 'Microsoft.Network/virtualNetworks/subnets' (Concat $vnetNamespace $namePrefix '-subnet'))
-                PrivateIPAllocationMethod -Method Dynamic
             }
         }
     }
@@ -41,6 +45,6 @@ $template = Arm {
     Output 'nicResourceId' -Type 'string' -Value (ResourceId 'Microsoft.Network/networkInterfaces' (Concat $namePrefix '-nic'))
 }
 
-Publish-ArmTemplate -Template $template -OutFile ./networkExampleTemplate.json -Parameters @{
+Publish-ArmTemplate -Template $template -OutFile $OutTemplatePath -Parameters @{
     rgLocation = 'WestUS2'
 }

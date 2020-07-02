@@ -6,8 +6,9 @@ for Azure Resource Manager (ARM) templates,
 allowing you to use PowerShell constructs
 to build ARM templates.
 
-This is currently an experimental project,
-meaning it may make breaking changes as development continues.
+Because this is currently an experimental project,
+it's not, at present, planned for official support or maintenance,
+and may make breaking changes as development continues.
 If a functionality is missing or seems to not work correctly,
 please open an issue!
 

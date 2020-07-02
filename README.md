@@ -1,6 +1,6 @@
 # PSArm
 
-PSArm is a PowerShell module that provides a
+PSArm is an experimental PowerShell module that provides a
 domain-specific language (DSL) embedded in PowerShell
 for Azure Resource Manager (ARM) templates,
 allowing you to use PowerShell constructs
@@ -14,13 +14,12 @@ please open an issue!
 #### Note
 
 This project is unrelated to Project Bicep,
-Microsoft's announced standalone ARM DSL.
+Microsoft's [announced standalone ARM DSL](https://mybuild.microsoft.com/sessions/82984db4-37a4-4ed3-bf8b-13298841ed18?source=sessions).
 
-## NDA
+## Confidential
 
-This project is currently subject to NDA terms.
-Please do not publicly disclose information about it
-without authorization.
+This project is currently an internal experiment subject to NDA terms.
+Please do not publicly disclose any information about it.
 
 ## Goals
 

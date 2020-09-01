@@ -2,8 +2,10 @@
 # Copyright (c) Microsoft Corporation.
 # All rights reserved.
 
+[CmdletBinding(DefaultParameterSetName = "Build")]
 param(
-    [Parameter()]
+    [Parameter(ParameterSetName = "Build")]
+    [Parameter(ParameterSetName = "Test")]
     [ValidateSet('Debug', 'Release')]
     $Configuration = 'Debug',
 

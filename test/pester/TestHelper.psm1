@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# All rights reserved.
+
 function Assert-StructurallyEqual
 {
     param(
@@ -38,7 +41,11 @@ function Assert-StructurallyEqual
         foreach ($entry in $JsonObject.GetEnumerator())
         {
             $key = $entry.Key
-            Assert-StructurallyEqual -JsonObject $entry.Value -ComparisonObject $ComparisonObject.$key -Path "$Path.$key"
+            $subObject = $ComparisonObject.$key
+
+            $subObject | Should -Not -BeNullOrEmpty -Because "Property '$key' is present in the JSON object at '$Path.$key'"
+
+            Assert-StructurallyEqual -JsonObject $entry.Value -ComparisonObject $subObject -Path "$Path.$key"
         }
 
         return

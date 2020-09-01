@@ -5,7 +5,15 @@
 param(
     [Parameter()]
     [ValidateSet('Debug', 'Release')]
-    $Configuration = 'Debug'
+    $Configuration = 'Debug',
+
+    [Parameter(Mandatory, ParameterSetName="Test")]
+    [switch]
+    $Test,
+
+    [Parameter(ParameterSetName="Test")]
+    [switch]
+    $SkipBuild
 )
 
 $ErrorActionPreference = 'Stop'
@@ -18,32 +26,42 @@ $srcDir = "$PSScriptRoot/src"
 $dotnetSrcDir = $srcDir
 $binDir = "$srcDir/bin/$Configuration/$netTarget/publish"
 
-Push-Location $dotnetSrcDir
-try
+if (-not $SkipBuild)
 {
-    dotnet restore
-    dotnet publish -f $netTarget
-}
-finally
-{
-    Pop-Location
+
+    Push-Location $dotnetSrcDir
+    try
+    {
+        dotnet restore
+        dotnet publish -f $netTarget
+    }
+    finally
+    {
+        Pop-Location
+    }
+
+    if (Test-Path $outDir)
+    {
+        Remove-Item -Path $outDir -Recurse -Force
+    }
+
+    $assets = @(
+        "$binDir/*.dll",
+        "$binDir/*.pdb",
+        "$srcDir/$moduleName.psd1",
+        "$srcDir/schemas",
+        "$srcDir/OnImport.ps1"
+    )
+
+    New-Item -ItemType Directory -Path $outDir
+    foreach ($path in $assets)
+    {
+        Copy-Item -Recurse -Path $path -Destination $outDir
+    }
 }
 
-if (Test-Path $outDir)
+if ($Test)
 {
-    Remove-Item -Path $outDir -Recurse -Force
-}
-
-$assets = @(
-    "$binDir/*.dll",
-    "$binDir/*.pdb",
-    "$srcDir/$moduleName.psd1",
-    "$srcDir/schemas",
-    "$srcDir/OnImport.ps1"
-)
-
-New-Item -ItemType Directory -Path $outDir
-foreach ($path in $assets)
-{
-    Copy-Item -Recurse -Path $path -Destination $outDir
+    $pwsh = (Get-Process -Id $PID).Path
+    & $pwsh -Command "Import-Module '$outDir'; Import-Module '$PSScriptRoot/test/pester/TestHelper.psm1'; Invoke-Pester -Path '$PSScriptRoot/test/pester'"
 }

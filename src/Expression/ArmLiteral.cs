@@ -95,9 +95,11 @@ namespace PSArm.Expression
         /// <returns>The string literal in ARM JSON string form.</returns>
         public override string ToExpressionString()
         {
-            return Value.StartsWith("[") && Value.EndsWith("]")
+            string val = Value.StartsWith("[") && Value.EndsWith("]")
                 ? "[" + Value
                 : Value;
+
+            return val.Replace("\"", "\\\"");
         }
 
         /// <summary>

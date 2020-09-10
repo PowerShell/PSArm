@@ -9,21 +9,22 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$script:RequiredTestModules = @(
+$RequiredTestModules = @(
     @{ ModuleName = 'Pester'; ModuleVersion = '5.0' }
 )
-$script:TargetFrameworks = 'net452','netstandard2.0'
-$script:NetTarget = 'netstandard2.0'
-$script:ModuleName = "PSArm"
-$script:DotnetLibName = $moduleName
-$script:OutDir = "$PSScriptRoot/out/$moduleName"
-$script:SrcDir = "$PSScriptRoot/src"
-$script:DotnetSrcDir = $srcDir
-$script:BinDir = "$srcDir/bin/$Configuration/$netTarget/publish"
-$script:TempDependenciesLocation = Join-Path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
-$script:TempModulesLocation = Join-Path $script:TempDependenciesLocation 'Modules'
+$TargetFrameworks = 'net452','netstandard2.0'
+$NetTarget = 'netstandard2.0'
+$ModuleName = "PSArm"
+$DotnetLibName = $moduleName
+$OutDir = "$PSScriptRoot/out/$moduleName"
+$SrcDir = "$PSScriptRoot/src"
+$DotnetSrcDir = $srcDir
+$BinDir = "$srcDir/bin/$Configuration/$netTarget/publish"
+$TempDependenciesLocation = Join-Path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
+$TempModulesLocation = Join-Path $TempDependenciesLocation 'Modules'
 
-$script:OldModulePath = $env:PSModulePath
+Write-Host "TempDepsDir: '$TempDependenciesLocation'"
+Write-Host "TempModDir: '$TempModulesLocation'"
 
 function Get-PwshPath
 {
@@ -32,9 +33,9 @@ function Get-PwshPath
 
 function Remove-ModuleDependencies
 {
-    if (Test-Path -Path $script:TempDependenciesLocation)
+    if (Test-Path -Path $TempDependenciesLocation)
     {
-        Remove-Item -Force -Recurse -LiteralPath $script:TempDependenciesLocation
+        Remove-Item -Force -Recurse -LiteralPath $TempDependenciesLocation
     }
 }
 
@@ -43,50 +44,50 @@ task InstallTestDependencies InstallRequiredTestModules
 task InstallRequiredTestModules {
     Remove-ModuleDependencies
 
-    $alreadyInstalled = Get-Module -ListAvailable -FullyQualifiedName $script:RequiredModules
-    $needToInstall = $script:RequiredModules | Where-Object { $_.ModuleName -notin $alreadyInstalled.Name }
+    $alreadyInstalled = Get-Module -ListAvailable -FullyQualifiedName $RequiredModules
+    $needToInstall = $RequiredModules | Where-Object { $_.ModuleName -notin $alreadyInstalled.Name }
 
     foreach ($module in $needToInstall)
     {
-        if (-not (Test-Path $script:TempModulesLocation))
+        if (-not (Test-Path $TempModulesLocation))
         {
-            New-Item -Path $script:TempModulesLocation -ItemType Directory
+            New-Item -Path $TempModulesLocation -ItemType Directory
         }
 
-        Write-Host "Installing module '$($module.ModuleName)' to '$script:TempModulesLocation'"
-        Save-Module -LiteralPath $script:TempModulesLocation -Name $module.ModuleName -MinimumVersion $module.ModuleVersion
+        Write-Host "Installing module '$($module.ModuleName)' to '$TempModulesLocation'"
+        Save-Module -LiteralPath $TempModulesLocation -Name $module.ModuleName -MinimumVersion $module.ModuleVersion
     }
 }
 
 task Build {
-    Push-Location $script:DotnetSrcDir
+    Push-Location $DotnetSrcDir
     try
     {
         dotnet restore
-        dotnet publish -f $script:NetTarget
+        dotnet publish -f $NetTarget
     }
     finally
     {
         Pop-Location
     }
 
-    if (Test-Path $script:OutDir)
+    if (Test-Path $OutDir)
     {
-        Remove-Item -Path $script:OutDir -Recurse -Force
+        Remove-Item -Path $OutDir -Recurse -Force
     }
 
     $assets = @(
-        "$script:BinDir/*.dll",
-        "$script:BinDir/*.pdb",
-        "$script:SrcDir/$script:ModuleName.psd1",
-        "$script:SrcDir/schemas",
-        "$script:SrcDir/OnImport.ps1"
+        "$BinDir/*.dll",
+        "$BinDir/*.pdb",
+        "$SrcDir/$ModuleName.psd1",
+        "$SrcDir/schemas",
+        "$SrcDir/OnImport.ps1"
     )
 
-    New-Item -ItemType Directory -Path $script:OutDir
+    New-Item -ItemType Directory -Path $OutDir
     foreach ($path in $assets)
     {
-        Copy-Item -Recurse -Path $path -Destination $script:OutDir
+        Copy-Item -Recurse -Path $path -Destination $OutDir
     }
 }
 
@@ -105,7 +106,6 @@ task TestPester InstallRequiredTestModules,{
     $env:PSModulePath = "${$script:TempModulesLocation}${sep}${env:PSModulePath}"
     try
     {
-        Write-Host "PSModulePath set to '$env:PSModulePath'"
         exec { & (Get-PwshPath) @pwshArgs }
     }
     finally

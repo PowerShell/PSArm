@@ -87,9 +87,9 @@ task Build {
     }
 }
 
-task Test InstallRequiredTestModules,TestPester
+task Test TestPester
 
-task TestPester {
+task TestPester InstallRequiredTestModules,{
     # Run tests in a new process so that the built module isn't stuck in the calling process
     $pwshArgs = @('-File', "$PSScriptRoot/test/tools/runPesterTests.ps1")
     if ($env:TF_BUILD)

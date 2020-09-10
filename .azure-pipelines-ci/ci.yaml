@@ -5,7 +5,7 @@ variables:
 stages:
   - stage: Build
     jobs:
-      - job: Module Build
+      - job: Build
         pool:
           vmImage: windows-latest
         steps:

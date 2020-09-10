@@ -1,0 +1,15 @@
+parameters:
+# If true, uses Windows PowerShell 5.1, otherwise uses PowerShell 7
+- name: useWinPS
+  type: boolean
+  default: false
+
+steps:
+- task: PowerShell@2
+  displayName: 'Pester Tests'
+  inputs:
+    targetType: inline
+    pwsh: ${{ not(parameters.useWinPS) }}
+    script: |
+      ./tools/ensureInvokeBuildInstalled.ps1
+      Invoke-Build TestPester

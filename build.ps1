@@ -2,48 +2,42 @@
 # Copyright (c) Microsoft Corporation.
 # All rights reserved.
 
+[CmdletBinding(DefaultParameterSetName = "Build")]
 param(
-    [Parameter()]
+    [Parameter(ParameterSetName = "Build")]
+    [Parameter(ParameterSetName = "Test")]
     [ValidateSet('Debug', 'Release')]
-    $Configuration = 'Debug'
+    $Configuration = 'Debug',
+
+    [Parameter(Mandatory, ParameterSetName="Test")]
+    [switch]
+    $Test,
+
+    [Parameter(ParameterSetName="Test")]
+    [switch]
+    $SkipBuild
 )
 
-$ErrorActionPreference = 'Stop'
+if (-not (Get-Command Invoke-Build -ErrorAction Ignore))
+{
+    Install-Module InvokeBuild -Scope CurrentUser
+}
 
-$netTarget = 'netstandard2.0'
-$moduleName = "PSArm"
-$dotnetLibName = $moduleName
-$outDir = "$PSScriptRoot/out/$moduleName"
-$srcDir = "$PSScriptRoot/src"
-$dotnetSrcDir = $srcDir
-$binDir = "$srcDir/bin/$Configuration/$netTarget/publish"
+Push-Location $PSScriptRoot
 
-Push-Location $dotnetSrcDir
 try
 {
-    dotnet restore
-    dotnet publish -f $netTarget
+    if (-not $SkipBuild)
+    {
+        Invoke-Build Build -Configuration $Configuration
+    }
+
+    if ($Test)
+    {
+        Invoke-Build Test
+    }
 }
 finally
 {
     Pop-Location
-}
-
-if (Test-Path $outDir)
-{
-    Remove-Item -Path $outDir -Recurse -Force
-}
-
-$assets = @(
-    "$binDir/*.dll",
-    "$binDir/*.pdb",
-    "$srcDir/$moduleName.psd1",
-    "$srcDir/schemas",
-    "$srcDir/OnImport.ps1"
-)
-
-New-Item -ItemType Directory -Path $outDir
-foreach ($path in $assets)
-{
-    Copy-Item -Recurse -Path $path -Destination $outDir
 }

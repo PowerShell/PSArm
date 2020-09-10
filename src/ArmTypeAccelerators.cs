@@ -13,7 +13,7 @@ namespace PSArm.Completion
     /// <summary>
     /// Lists and loads/unloads type accelerators for ARM.
     /// </summary>
-    public static class ArmTypeAccelerators
+    public class ArmTypeAccelerators : IModuleAssemblyInitializer, IModuleAssemblyCleanup
     {
         /// <summary>
         /// Type accelerator for an ARM variable.
@@ -41,7 +41,7 @@ namespace PSArm.Completion
         /// <summary>
         /// Install the ARM type accelerators into PowerShell's type accelerator dictionary.
         /// </summary>
-        public static void Load()
+        public void OnImport()
         {
             var paramArray = new object[2];
             foreach (KeyValuePair<string, Type> armAccelerator in s_armTypeAccelerators)
@@ -55,7 +55,7 @@ namespace PSArm.Completion
         /// <summary>
         /// Remove the ARM type accelerators from PowerShell's type accelerator dictionary.
         /// </summary>
-        public static void Unload()
+        public void OnRemove(PSModuleInfo module)
         {
             var paramArray = new object[1];
             foreach (string accelerator in s_armTypeAccelerators.Keys)

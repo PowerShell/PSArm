@@ -4,6 +4,11 @@ parameters:
   default: false
 
 steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download Pipeline Artifact: out Folder'
+    inputs:
+      artifactName: out
+      targetPath: '$(Build.SourcesDirectory)/out'
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}

@@ -103,7 +103,7 @@ task TestPester InstallRequiredTestModules,{
 
     $oldPSModulePath = $env:PSModulePath
     $sep = [System.IO.Path]::PathSeparator
-    $env:PSModulePath = "${$script:TempModulesLocation}${sep}${env:PSModulePath}"
+    $env:PSModulePath = "${$TempModulesLocation}${sep}${env:PSModulePath}"
     try
     {
         exec { & (Get-PwshPath) @pwshArgs }

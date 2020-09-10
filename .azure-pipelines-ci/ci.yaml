@@ -24,7 +24,7 @@ stages:
         pool:
           vmImage: $[variables['vmImage']]
         steps:
-        - template: templates/test.yaml
+        - template: templates/tests.yaml
       - job:
         strategy:
           matrix:

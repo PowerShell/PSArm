@@ -90,7 +90,8 @@ task Build {
 task Test TestPester
 
 task TestPester {
-    & (Get-PwshPath) -File "$PSScriptRoot/test/tools/runPesterTests.ps1"
+    # Run tests in a new process so that the built module isn't stuck in the calling process
+    exec { & (Get-PwshPath) -File "$PSScriptRoot/test/tools/runPesterTests.ps1" }
 }
 
 task . Build,Test

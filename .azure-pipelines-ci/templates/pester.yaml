@@ -13,3 +13,8 @@ steps:
     script: |
       ./tools/ensureInvokeBuildInstalled.ps1
       Invoke-Build TestPester
+- task: PublishTestResults@2
+  inputs:
+    testRunner: NUnit
+    testResultsFiles: 'testResults.xml'
+  condition: succeededOrFailed()

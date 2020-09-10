@@ -5,21 +5,21 @@ variables:
 stages:
   - stage: Build
     jobs:
-      - job: Full_Build
+      - job: Module Build
         pool:
           vmImage: windows-latest
         steps:
         - template: templates/build.yaml
-  - stage: Test
+  - stage: Tests
     jobs:
       - job:
         strategy:
           matrix:
-            Ubuntu:
+            'Ubuntu | PowerShell 7':
               vmImage: ubuntu-18.04
-            macOS:
+            'macOS | PowerShell 7':
               vmImage: macOS-10.15
-            Windows_PS7:
+            'Windows | PowerShell 7':
               vmImage: windows-latest
         pool:
           vmImage: $[variables['vmImage']]
@@ -28,7 +28,7 @@ stages:
       - job:
         strategy:
           matrix:
-            Windows_WinPS:
+            'Windows | PowerShell 5.1':
               vmImage: windows-latest
               useWinPS: true
         pool:

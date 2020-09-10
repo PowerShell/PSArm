@@ -8,22 +8,28 @@ $ErrorActionPreference = 'Stop'
 Import-Module -Name $PSArmPath
 Import-Module -Name "$PSScriptRoot/TestHelper.psm1"
 
-Push-Location $PSScriptRoot
+Push-Location "$PSScriptRoot/../../"
 try
 {
     $armDepsDir = join-path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
-    Write-Host "PSModulePath: '$env:PSModulePath'"
+    Write-Verbose "PSModulePath: '$env:PSModulePath'"
     if (Test-Path $armDepsDir)
     {
-        Write-Host "PSArmDeps: '$(gci $armDepsDir)'"
+        Write-Verbose "PSArmDeps: '$(Get-ChildItem $armDepsDir)'"
     }
     else
     {
-        Write-Host "PSArmDeps directory not found"
+        Write-Verbose "PSArmDeps directory not found"
     }
 
-    $results = Invoke-Pester -Path "$PSScriptRoot/../pester" -CI:$CI -PassThru
-    if ($results.Failed)
+    if ($CI)
+    {
+        Invoke-Pester -Path "./test/pester" -CI
+        return
+    }
+
+    $testResults = Invoke-Pester -Path "./test/pester" -PassThru
+    if ($testResults.Failed)
     {
         throw "Pester tests failed. See output for details"
     }

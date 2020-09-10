@@ -4,7 +4,13 @@
 
 param(
     [ValidateSet('Debug', 'Release')]
-    $Configuration = 'Debug'
+    $Configuration = 'Debug',
+
+    [switch]
+    $RunTestsInProcess,
+
+    [switch]
+    $RunTestsInCIMode
 )
 
 $ErrorActionPreference = 'Stop'
@@ -96,18 +102,28 @@ task Test TestPester
 
 task TestPester InstallRequiredTestModules,{
     # Run tests in a new process so that the built module isn't stuck in the calling process
-    $pwshArgs = @('-File', "$PSScriptRoot/test/tools/runPesterTests.ps1")
-    if ($env:TF_BUILD)
-    {
-        $pwshArgs += @('-CI')
-    }
+    $testScriptPath = "$PSScriptRoot/test/tools/runPesterTests.ps1"
+    $runAsCI = $RunTestsInCIMode -or $env:TF_BUILD
 
     $oldPSModulePath = $env:PSModulePath
     $sep = [System.IO.Path]::PathSeparator
     $env:PSModulePath = "${TempModulesLocation}${sep}${env:PSModulePath}"
     try
     {
-        exec { & (Get-PwshPath) @pwshArgs }
+        if ($RunTestsInProcess)
+        {
+            & $testScriptPath -CI:$runAsCI
+        }
+        else
+        {
+            $pwshArgs = @('-File', $testScriptPath)
+            if ($runAsCI)
+            {
+                $pwshArgs += @('-CI')
+            }
+
+            exec { & (Get-PwshPath) @pwshArgs }
+        }
     }
     finally
     {

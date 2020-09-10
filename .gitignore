@@ -3,3 +3,5 @@ obj/
 .vs/
 *.dtbcache.v2
 out/
+testResults.xml
+coverage.xml

@@ -12,14 +12,14 @@ Push-Location $PSScriptRoot
 try
 {
     $armDepsDir = join-path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
-    Write-Verbose "PSModulePath: '$env:PSModulePath'"
+    Write-Host "PSModulePath: '$env:PSModulePath'"
     if (Test-Path $armDepsDir)
     {
-        Write-Verbose "PSArmDeps: '$(gci $armDepsDir)'"
+        Write-Host "PSArmDeps: '$(gci $armDepsDir)'"
     }
     else
     {
-        Write-Verbose "PSArmDeps directory not found"
+        Write-Host "PSArmDeps directory not found"
     }
 
     $results = Invoke-Pester -Path "$PSScriptRoot/../pester" -CI:$CI -PassThru

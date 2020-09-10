@@ -48,7 +48,7 @@ task InstallRequiredTestModules {
 
     foreach ($module in $needToInstall)
     {
-        Write-Verbose "Installing module: '$($module.ModuleName)'"
+        Write-Host "Installing module: '$($module.ModuleName)'"
         Save-Module -LiteralPath $script:TempDependenciesLocation -Name $module.ModuleName -MinimumVersion $module.ModuleVersion
     }
 

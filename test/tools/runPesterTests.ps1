@@ -13,7 +13,14 @@ try
 {
     $armDepsDir = join-path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
     Write-Verbose "PSModulePath: '$env:PSModulePath'"
-    Write-Verbose "PSArmDeps: '$(gci $armDepsDir)'"
+    if (Test-Path $armDepsDir)
+    {
+        Write-Verbose "PSArmDeps: '$(gci $armDepsDir)'"
+    }
+    else
+    {
+        Write-Verbose "PSArmDeps directory not found"
+    }
 
     $results = Invoke-Pester -Path "$PSScriptRoot/../pester" -CI:$CI -PassThru
     if ($results.Failed)

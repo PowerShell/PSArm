@@ -95,12 +95,15 @@ namespace PSArm.ArmBuilding
                 jObj["outputs"] = outputs;
             }
 
-            var resources = new JArray();
-            foreach (ArmResource resource in Resources)
+            if (Resources != null && Resources.Count != 0)
             {
-                resources.Add(resource.ToJson());
+                var resources = new JArray();
+                foreach (ArmResource resource in Resources)
+                {
+                    resources.Add(resource.ToJson());
+                }
+                jObj["resources"] = resources;
             }
-            jObj["resources"] = resources;
 
             return jObj;
         }

@@ -6,6 +6,13 @@ for Azure Resource Manager (ARM) templates,
 allowing you to use PowerShell constructs
 to build ARM templates.
 
+We're using this project both
+to better understand how PowerShell could boost ARM authoring,
+but also as test case for improving DSL support in PowerShell more generally.
+We hope that work here can help us build an inventory of PowerShell DSL patterns,
+and from those determine what could be implemented at PowerShell or tooling layers
+to make DSL creation and maintenance easier and more "featureful".
+
 Because this is currently an experimental project,
 it is not, at present, planned for official support or maintenance,
 and may make breaking changes as development continues.

@@ -45,10 +45,7 @@ function TabExpansion2
 
 # Use an event to set the OnRemove script
 $null = Register-EngineEvent -SourceIdentifier PowerShell.OnIdle -MaxTriggerCount 1 -Action {
-    [PSArm.Completion.ArmTypeAccelerators]::Load()
-
     (Get-Module PSArm).OnRemove = {
-        [PSArm.Completion.ArmTypeAccelerators]::Unload()
         Set-Item Function:\TabExpansion2 (Get-Content -Raw Function:__OldTabExpansion2)
         Remove-Item Function:__OldTabExpansion2
     }

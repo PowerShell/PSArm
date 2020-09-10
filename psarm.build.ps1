@@ -44,14 +44,15 @@ task InstallTestDependencies InstallRequiredTestModules
 task InstallRequiredTestModules {
     Remove-ModuleDependencies
 
-    $alreadyInstalled = Get-Module -ListAvailable -FullyQualifiedName $RequiredModules
-    $needToInstall = $RequiredModules | Where-Object { $_.ModuleName -notin $alreadyInstalled.Name }
+    $alreadyInstalled = Get-Module -ListAvailable -FullyQualifiedName $RequiredTestModules
+    $needToInstall = $RequiredTestModules | Where-Object { $_.ModuleName -notin $alreadyInstalled.Name }
 
     foreach ($module in $needToInstall)
     {
         if (-not (Test-Path $TempModulesLocation))
         {
             New-Item -Path $TempModulesLocation -ItemType Directory
+            Write-Host "Created directory '$TempModulesLocation'"
         }
 
         Write-Host "Installing module '$($module.ModuleName)' to '$TempModulesLocation'"

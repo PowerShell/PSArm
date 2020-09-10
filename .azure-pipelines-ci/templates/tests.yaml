@@ -1,0 +1,9 @@
+parameters:
+- name: useWinPS
+  type: boolean
+  default: false
+
+steps:
+  - template: pester.yaml
+    parameters:
+      useWinPS: ${{ parameters.useWinPS }}

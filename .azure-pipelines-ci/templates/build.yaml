@@ -1,0 +1,4 @@
+steps:
+  - pwsh: |
+      ./tools/ensureInvokeBuildInstalled.ps1
+      Invoke-Build Build

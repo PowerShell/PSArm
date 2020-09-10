@@ -56,9 +56,6 @@ task InstallRequiredTestModules {
         Write-Host "Installing module '$($module.ModuleName)' to '$script:TempModulesLocation'"
         Save-Module -LiteralPath $script:TempModulesLocation -Name $module.ModuleName -MinimumVersion $module.ModuleVersion
     }
-
-    $sep = [System.IO.Path]::PathSeparator
-    $env:PSModulePath = "${env:PSModulePath}${sep}${$script:TempModulesLocation}"
 }
 
 task Build {
@@ -102,7 +99,19 @@ task TestPester InstallRequiredTestModules,{
     {
         $pwshArgs += @('-CI')
     }
-    exec { & (Get-PwshPath) @pwshArgs }
+
+    $oldPSModulePath = $env:PSModulePath
+    $sep = [System.IO.Path]::PathSeparator
+    $env:PSModulePath = "${$script:TempModulesLocation}${sep}${env:PSModulePath}"
+    try
+    {
+        Write-Host "PSModulePath set to '$env:PSModulePath'"
+        exec { & (Get-PwshPath) @pwshArgs }
+    }
+    finally
+    {
+        $env:PSModulePath = $oldPSModulePath
+    }
 }
 
 task . Build,Test

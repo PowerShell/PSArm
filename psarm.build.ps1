@@ -91,7 +91,12 @@ task Test TestPester
 
 task TestPester {
     # Run tests in a new process so that the built module isn't stuck in the calling process
-    exec { & (Get-PwshPath) -File "$PSScriptRoot/test/tools/runPesterTests.ps1" }
+    $pwshArgs = @('-File', "$PSScriptRoot/test/tools/runPesterTests.ps1")
+    if ($env:TF_BUILD)
+    {
+        $pwshArgs += @('-CI')
+    }
+    exec { & (Get-PwshPath) @pwshArgs }
 }
 
 task . Build,Test

@@ -87,7 +87,7 @@ task Build {
     }
 }
 
-task Test TestPester
+task Test InstallRequiredTestModules,TestPester
 
 task TestPester {
     # Run tests in a new process so that the built module isn't stuck in the calling process

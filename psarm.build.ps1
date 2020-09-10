@@ -48,8 +48,13 @@ task InstallRequiredTestModules {
 
     foreach ($module in $needToInstall)
     {
-        Write-Host "Installing module: '$($module.ModuleName)'"
-        Save-Module -LiteralPath $script:TempDependenciesLocation -Name $module.ModuleName -MinimumVersion $module.ModuleVersion
+        if (-not (Test-Path $script:TempModulesLocation))
+        {
+            New-Item -Path $script:TempModulesLocation -ItemType Directory
+        }
+
+        Write-Host "Installing module '$($module.ModuleName)' to '$script:TempModulesLocation'"
+        Save-Module -LiteralPath $script:TempModulesLocation -Name $module.ModuleName -MinimumVersion $module.ModuleVersion
     }
 
     $sep = [System.IO.Path]::PathSeparator

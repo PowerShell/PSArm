@@ -108,7 +108,6 @@ task Test TestPester
 task TestPester InstallRequiredTestModules,{
     # Run tests in a new process so that the built module isn't stuck in the calling process
     $testScriptPath = "$PSScriptRoot/test/tools/runPesterTests.ps1"
-    $runAsCI = $RunTestsInCIMode -or $env:TF_BUILD
 
     $oldPSModulePath = $env:PSModulePath
     $sep = [System.IO.Path]::PathSeparator
@@ -118,7 +117,7 @@ task TestPester InstallRequiredTestModules,{
         if ($RunTestsInProcess)
         {
             $testParams = @{}
-            if ($runAsCI) { $testParams['CI'] = $true }
+            if ($RunTestsInCIMode) { $testParams['CI'] = $true }
             if ($TestPSArmPath) { $testParams['PSArmPath'] = $TestPSArmPath }
 
             Write-Log "Invoking in process: '$testScriptPath $(Unsplat $testParams)'"
@@ -128,7 +127,7 @@ task TestPester InstallRequiredTestModules,{
         else
         {
             $pwshArgs = @('-File', $testScriptPath)
-            if ($runAsCI)
+            if ($RunTestsInCIMode)
             {
                 $pwshArgs += @('-CI')
             }

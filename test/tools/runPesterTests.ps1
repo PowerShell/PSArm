@@ -5,21 +5,24 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+Import-Module "$PSScriptRoot/../../tools/BuildHelper.psm1"
 Import-Module -Name $PSArmPath
 Import-Module -Name "$PSScriptRoot/TestHelper.psm1"
 
 Push-Location "$PSScriptRoot/../../"
 try
 {
+    Write-Log "PSModulePath: '$env:PSModulePath'"
+    Write-Log "PSArmPath: '$PSArmPath'"
+
     $armDepsDir = join-path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
-    Write-Verbose "PSModulePath: '$env:PSModulePath'"
     if (Test-Path $armDepsDir)
     {
-        Write-Verbose "PSArmDeps: '$(Get-ChildItem $armDepsDir)'"
+        Write-Log "PSArmDeps: '$(Get-ChildItem $armDepsDir)'"
     }
     else
     {
-        Write-Verbose "PSArmDeps directory not found"
+        Write-Log "PSArmDeps directory not found"
     }
 
     if ($CI)

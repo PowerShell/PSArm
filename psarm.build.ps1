@@ -16,6 +16,8 @@ param(
     $TestPSArmPath
 )
 
+Import-Module "$PSScriptRoot/tools/BuildHelper.psm1"
+
 $ErrorActionPreference = 'Stop'
 
 $RequiredTestModules = @(
@@ -32,8 +34,8 @@ $BinDir = "$srcDir/bin/$Configuration/$netTarget/publish"
 $TempDependenciesLocation = Join-Path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
 $TempModulesLocation = Join-Path $TempDependenciesLocation 'Modules'
 
-Write-Host "TempDepsDir: '$TempDependenciesLocation'"
-Write-Host "TempModDir: '$TempModulesLocation'"
+Write-Log "TempDepsDir: '$TempDependenciesLocation'"
+Write-Log "TempModDir: '$TempModulesLocation'"
 
 function Get-PwshPath
 {
@@ -61,10 +63,10 @@ task InstallRequiredTestModules {
         if (-not (Test-Path $TempModulesLocation))
         {
             New-Item -Path $TempModulesLocation -ItemType Directory
-            Write-Host "Created directory '$TempModulesLocation'"
+            Write-Log "Created directory '$TempModulesLocation'"
         }
 
-        Write-Host "Installing module '$($module.ModuleName)' to '$TempModulesLocation'"
+        Write-Log "Installing module '$($module.ModuleName)' to '$TempModulesLocation'"
         Save-Module -LiteralPath $TempModulesLocation -Name $module.ModuleName -MinimumVersion $module.ModuleVersion
     }
 }
@@ -116,8 +118,10 @@ task TestPester InstallRequiredTestModules,{
         if ($RunTestsInProcess)
         {
             $testParams = @{}
-            if ($runAsCI) { $testParams.CI = $true }
-            if ($TestPSArmPath) { $testParams.PSArmPath = $TestPSArmPath }
+            if ($runAsCI) { $testParams['CI'] = $true }
+            if ($TestPSArmPath) { $testParams['PSArmPath'] = $TestPSArmPath }
+
+            Write-Log "Invoking in process: '$testScriptPath $(Unsplat $testParams)'"
 
             & $testScriptPath @testParams
         }
@@ -132,6 +136,8 @@ task TestPester InstallRequiredTestModules,{
             {
                 $pwshArgs += @('-PSArmPath', $TestPSArmPath)
             }
+
+            Write-Log "Invoking in subprocess: 'pwsh $pwshArgs'"
 
             exec { & (Get-PwshPath) @pwshArgs }
         }

@@ -10,7 +10,10 @@ param(
     $RunTestsInProcess,
 
     [switch]
-    $RunTestsInCIMode
+    $RunTestsInCIMode,
+
+    [string]
+    $TestPSArmPath
 )
 
 $ErrorActionPreference = 'Stop'
@@ -112,7 +115,11 @@ task TestPester InstallRequiredTestModules,{
     {
         if ($RunTestsInProcess)
         {
-            & $testScriptPath -CI:$runAsCI
+            $testParams = @{}
+            if ($runAsCI) { $testParams.CI = $true }
+            if ($TestPSArmPath) { $testParams.PSArmPath = $TestPSArmPath }
+
+            & $testScriptPath @testParams
         }
         else
         {
@@ -120,6 +127,10 @@ task TestPester InstallRequiredTestModules,{
             if ($runAsCI)
             {
                 $pwshArgs += @('-CI')
+            }
+            if ($TestPSArmPath)
+            {
+                $pwshArgs += @('-PSArmPath', $TestPSArmPath)
             }
 
             exec { & (Get-PwshPath) @pwshArgs }

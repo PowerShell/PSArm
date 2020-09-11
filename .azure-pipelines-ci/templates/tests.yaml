@@ -12,3 +12,4 @@ steps:
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}
+      psArmPath: '$(Build.SourcesDirectory)/out/PSArm'

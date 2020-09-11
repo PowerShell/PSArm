@@ -1,4 +1,7 @@
 parameters:
+# Location of PSArm module
+- name: psArmPath
+  type: string
 # If true, uses Windows PowerShell 5.1, otherwise uses PowerShell 7
 - name: useWinPS
   type: boolean
@@ -12,7 +15,7 @@ steps:
     pwsh: ${{ not(parameters.useWinPS) }}
     script: |
       ./tools/ensureInvokeBuildInstalled.ps1
-      Invoke-Build TestPester
+      Invoke-Build TestPester -RunTestsInProcess -RunTestsInCIMode -TestPSArmPath '${{ parameters.psArmPath }}'
 - task: PublishTestResults@2
   inputs:
     testRunner: NUnit

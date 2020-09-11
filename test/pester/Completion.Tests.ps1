@@ -117,13 +117,13 @@ Describe "PSArm completions" {
                 Arm {
                     Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
                         Properties {
-                            IPConfiguration -'
+                            IpConfiguration -'
             Type = 'ParameterName'
             ExpectedCompletions = @(
-                @{ Completion = 'Name'; ListItem = '-Name' }
-                @{ Completion = 'Id'; ListItem = '-Id' }
-                @{ Completion = 'PrivateIPAddress'; ListItem = '-PrivateIPAddress' }
-                @{ Completion = 'PrivateIPAllocationMethod'; ListItem = '-PrivateIPAllocationMethod' }
+                @{ Completion = '-Name'; ListItem = 'Name' }
+                @{ Completion = '-Id'; ListItem = 'Id' }
+                @{ Completion = '-PrivateIPAddress'; ListItem = 'PrivateIPAddress' }
+                @{ Completion = '-PrivateIPAllocationMethod'; ListItem = 'PrivateIPAllocationMethod' }
             )
         }
         @{
@@ -131,7 +131,7 @@ Describe "PSArm completions" {
                 Arm {
                     Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
                         Properties {
-                            IPConfiguration -PrivateIPAllocationMethod '
+                            IpConfiguration -PrivateIPAllocationMethod '
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = 'Static' }

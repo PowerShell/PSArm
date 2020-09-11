@@ -8,8 +8,7 @@ steps:
     displayName: 'Download Build Artifacts: out Folder'
     inputs:
       artifactName: out
-      targetPath: '$(Build.SourcesDirectory)/out'
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}
-      psArmPath: '$(Build.SourcesDirectory)/out/PSArm'
+      psArmPath: '$(System.ArtifactsDirectory)/out/PSArm'

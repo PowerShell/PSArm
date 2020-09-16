@@ -8,19 +8,22 @@ steps:
     outPathRoot: '$(System.ArtifactsDirectory)\signed'
 
 - task: PowerShell@2
-  pwsh: true
-  filePath: tools/release/copySignedFiles
-  arguments: >
-    -SignedDirPath "$(System.ArtifactsDirectory)\signed"
-    -Destination "$(System.ArtifactsDirectory)\out"
   displayName: 'Copy signed files into place'
+  inputs:
+    pwsh: true
+    filePath: tools/release/copySignedFiles
+    arguments: >
+      -SignedDirPath "$(System.ArtifactsDirectory)\signed"
+      -Destination "$(System.ArtifactsDirectory)\out"
 
 - task: PowerShell@2
-  pwsh: true
-  filePath: tools/release/newCatalog.ps1
-  arguments: >
-    -Path "$(System.ArtifactsDirectory)\out"
-    -OutputPath "$(System.ArtifactsDirectory)\out\PSArm.cat"
+  displayName: 'Copy catalog into place'
+  inputs:
+    pwsh: true
+    filePath: tools/release/newCatalog.ps1
+    arguments: >
+      -Path "$(System.ArtifactsDirectory)\out"
+      -OutputPath "$(System.ArtifactsDirectory)\out\PSArm.cat"
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: PSArm'

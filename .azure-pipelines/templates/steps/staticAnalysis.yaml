@@ -1,0 +1,3 @@
+steps:
+
+- task: RoslynAnalyzers@3

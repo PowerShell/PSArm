@@ -9,6 +9,8 @@ stages:
         - template: steps/build.yaml
 
   - stage: Static_Analysis
+    displayName: Static Analysis
+    dependsOn: []
     jobs:
       - job: Static_Analysis
         steps:

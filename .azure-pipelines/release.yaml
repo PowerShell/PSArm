@@ -28,7 +28,6 @@ stages:
 
   - stage: Publish
     dependsOn:
-      - StaticAnalysis
       - Tests
       - Compliance
       - Signing

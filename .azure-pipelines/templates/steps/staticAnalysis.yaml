@@ -1,3 +1,10 @@
+# Not currently used; seems to error in the same way no matter how it's called
+# > /usr/bin/env: ‘bash\r’: No such file or directory
+# > (node:3250) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Failed while detecting machine OS platform with error: "Failed to get machine platform details. Error: /usr/bin/env: ‘bash\\r’: No such file or directory\n."
+# > Version 3.1.201 was not found in cache.
+# > Getting URL to download .NET Core sdk version: 3.1.201.
+# > Detecting OS platform to find correct download package for the OS.
+
 steps:
 
 - task: PowerShell@2

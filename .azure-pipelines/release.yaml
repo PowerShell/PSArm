@@ -13,10 +13,7 @@ stages:
         pool:
           vmImage: windows-latest
         steps:
-          - task: DownloadBuildArtifacts@0
-            displayName: 'Download Build Artifacts: out Folder'
-            inputs:
-              artifactName: out
+          - template: templates/steps/download.yaml
           - template: templates/steps/compliance.yaml
 
   - stage: Signing
@@ -26,8 +23,16 @@ stages:
         pool:
           vmImage: windows-latest
         steps:
-          - task: DownloadBuildArtifacts@0
-            displayName: 'Download Build Artifacts: out Folder'
-            inputs:
-              artifactName: out
+          - template: templates/steps/download.yaml
           - template: templates/steps/signing.yaml
+
+  - stage: Publish
+    dependsOn:
+      - Tests
+      - Compliance
+      - Signing
+    jobs:
+      - job: Publish
+        steps:
+          - template: templates/steps/download.yaml
+          - template: templates/steps/publish.yaml

@@ -3,7 +3,7 @@ steps:
 - task: PkgESCodeSign@10
   displayName: Sign Assemblies
   inputs:
-    signConfigXml: tools/release/signing.xml
+    signConfigXml: tools/release/codeSigning.xml
     inPathRoot: '$(System.ArtifactsDirectory)\out'
     outPathRoot: '$(System.ArtifactsDirectory)\signed'
 
@@ -17,13 +17,20 @@ steps:
       -Destination "$(System.ArtifactsDirectory)\out"
 
 - task: PowerShell@2
-  displayName: 'Copy catalog into place'
+  displayName: 'Create file catalog'
   inputs:
     pwsh: true
     filePath: tools/release/newCatalog.ps1
     arguments: >
       -Path "$(System.ArtifactsDirectory)\out"
-      -OutputPath "$(System.ArtifactsDirectory)\out\PSArm.cat"
+      -OutputPath "$(System.ArtifactsDirectory)\catalog\PSArm.cat"
+
+- task: PkgESCodeSign@10
+  displayName: 'Sign file catalog'
+  inputs:
+    signConfigXml: PSArm.cat
+    inPathRoot: '$(System.ArtifactsDirectory)\catalog'
+    outPathRoot: '$(System.ArtifactsDirectory)\out'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: PSArm'

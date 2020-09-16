@@ -10,9 +10,10 @@ stages:
 
   - stage: Static_Analysis
     displayName: Static Analysis
-    dependsOn: []
+    dependsOn: Build
     jobs:
       - job: Static_Analysis
+        displayName: Static Analysis
         steps:
         - template: steps/staticAnalysis.yaml
 

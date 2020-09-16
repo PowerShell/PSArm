@@ -15,6 +15,3 @@ stages:
             inputs:
               artifactName: out
           - template: templates/steps/compliance.yaml
-            parameters:
-              sourceLocation: $(Build.SourceDirectory)
-              binaryLocation: $(System.ArtifactsDirectory)/out/PSArm

@@ -1,3 +1,15 @@
 steps:
 
+- task: PowerShell@2
+  displayName: 'Ensure Invoke-Build installed'
+  inputs:
+    pwsh: true
+    filePath: tools/ensureInvokeBuildInstalled.ps1
+
 - task: RoslynAnalyzers@3
+  displayName: 'Run Roslyn analyzers'
+  inputs:
+    userProvideBuildInfo: true
+    msBuildArchitecture: DotNetCore
+    msBuildCommandLine: >
+      pwsh -Command 'Invoke-Build Build'

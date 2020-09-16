@@ -7,14 +7,16 @@ steps:
     inPathRoot: '$(System.ArtifactsDirectory)\out'
     outPathRoot: '$(System.ArtifactsDirectory)\signed'
 
-- pwsh:
+- task: PowerShell@2
+  pwsh: true
   filePath: tools/release/copySignedFiles
   arguments: >
     -SignedDirPath "$(System.ArtifactsDirectory)\signed"
     -Destination "$(System.ArtifactsDirectory)\out"
   displayName: 'Copy signed files into place'
 
-- pwsh:
+- task: PowerShell@2
+  pwsh: true
   filePath: tools/release/newCatalog.ps1
   arguments: >
     -Path "$(System.ArtifactsDirectory)\out"

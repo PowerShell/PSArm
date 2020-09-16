@@ -5,9 +5,13 @@ steps:
   inputs:
     snapshotForceEnabled: true
     failOnAlert: true
+  continueOnError: true
 
 - task: securedevelopmentteam.vss-secure-development-tools.build-task-antimalware.AntiMalware@3
   displayName: 'Run Defender Scan'
+  inputs:
+    EnableServices: true
+  continueOnError: true
 
 - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
   displayName: 'Run CredScan'
@@ -54,6 +58,7 @@ steps:
     uploadRoslyn: false
     uploadTSLint: false
     uploadAPIScan: false
+  continueOnError: true
 
 - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
   displayName: 'Create Security Analysis Report'
@@ -64,3 +69,4 @@ steps:
     CredScan: true
     PoliCheck: true
     PoliCheckBreakOn: Severity2Above
+  continueOnError: true

@@ -9,7 +9,7 @@ stages:
   - stage: Compliance
     dependsOn: Build
     jobs:
-      - job:
+      - job: Compliance
         pool:
           vmImage: windows-latest
         steps:

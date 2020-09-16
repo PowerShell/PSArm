@@ -17,6 +17,7 @@ steps:
       -Destination "$(System.ArtifactsDirectory)\out"
 
 - task: PowerShell@2
+  condition: succeededOrFailed()
   displayName: 'Create file catalog'
   inputs:
     pwsh: true

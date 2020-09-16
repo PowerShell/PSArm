@@ -1,15 +1,13 @@
-variables:
-  # Avoid expensive initialization of dotnet cli, see: https://donovanbrown.com/post/Stop-wasting-time-during-NET-Core-builds
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-
 stages:
+
   - stage: Build
     jobs:
       - job: Build
         pool:
           vmImage: windows-latest
         steps:
-        - template: templates/build.yaml
+        - template: steps/build.yaml
+
   - stage: Tests
     jobs:
       - job:
@@ -24,7 +22,7 @@ stages:
         pool:
           vmImage: $[variables['vmImage']]
         steps:
-        - template: templates/tests.yaml
+        - template: steps/tests.yaml
       - job:
         strategy:
           matrix:
@@ -34,6 +32,6 @@ stages:
         pool:
           vmImage: $[ variables['vmImage'] ]
         steps:
-        - template: templates/tests.yaml
+        - template: steps/tests.yaml
           parameters:
             useWinPS: true

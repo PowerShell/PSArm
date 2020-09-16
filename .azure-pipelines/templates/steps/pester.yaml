@@ -8,6 +8,7 @@ parameters:
   default: false
 
 steps:
+
 - task: PowerShell@2
   displayName: 'Pester Tests'
   inputs:
@@ -16,6 +17,7 @@ steps:
     script: |
       ./tools/ensureInvokeBuildInstalled.ps1
       Invoke-Build TestPester -RunTestsInProcess -RunTestsInCIMode -TestPSArmPath '${{ parameters.psArmPath }}'
+
 - task: PublishTestResults@2
   inputs:
     testRunner: NUnit

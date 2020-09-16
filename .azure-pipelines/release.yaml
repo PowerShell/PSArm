@@ -1,0 +1,20 @@
+variables:
+  # Avoid expensive initialization of dotnet cli, see: https://donovanbrown.com/post/Stop-wasting-time-during-NET-Core-builds
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+
+stages:
+
+  - template: templates/buildAndTest.yaml
+
+  - stage: Compliance
+    jobs:
+      - job:
+        steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Build Artifacts: out Folder'
+            inputs:
+              artifactName: out
+          - template: templates/steps/compliance.yaml
+            parameters:
+              sourceLocation: '$(Build.SourceDirectory)'
+              binaryLocation: '$(System.ArtifactsDirectory)/out/PSArm'

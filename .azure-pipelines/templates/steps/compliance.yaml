@@ -1,5 +1,7 @@
 steps:
 
+# See https://docs.microsoft.com/en-us/azure/security/develop/yaml-configuration for configuration of these tasks
+
 - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
   displayName: 'Component Detection'
   inputs:

@@ -8,11 +8,11 @@ stages:
         steps:
         - template: steps/build.yaml
 
-  - stage: Static_Analysis
+  - stage: StaticAnalysis
     displayName: Static Analysis
     dependsOn: Build
     jobs:
-      - job: Static_Analysis
+      - job: StaticAnalysis
         displayName: Static Analysis
         steps:
         - template: steps/staticAnalysis.yaml

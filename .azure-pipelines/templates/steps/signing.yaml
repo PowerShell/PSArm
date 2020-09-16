@@ -14,6 +14,12 @@ steps:
     -Destination "$(System.ArtifactsDirectory)\out"
   displayName: 'Copy signed files into place'
 
+- pwsh:
+  filePath: tools/release/newCatalog.ps1
+  arguments: >
+    -Path "$(System.ArtifactsDirectory)\out"
+    -OutputPath "$(System.ArtifactsDirectory)\out\PSArm.cat"
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: PSArm'
   inputs:

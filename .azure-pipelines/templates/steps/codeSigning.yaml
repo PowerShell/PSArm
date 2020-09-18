@@ -1,9 +1,7 @@
 steps:
 
 - pwsh: |
-    tree /f "$(System.ArtifactsDirectory)" > temp.txt
-    Get-Content -Raw temp.txt | Out-Host
-    rm temp.txt
+    tree /f /a "$(System.ArtifactsDirectory)"
   displayName: Show artifacts directory
 
 - pwsh: |

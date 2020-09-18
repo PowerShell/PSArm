@@ -50,13 +50,13 @@ steps:
   continueOnError: true
 
 - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
-  displayName: 'TSA upload to Codebase: PSArm_master Stamp: Azure'
+  displayName: 'TSA upload to Codebase: PSArm_202009 Stamp: Azure'
   inputs:
-    codebase: NewOrUpdate
-    codeBaseName: PSArm_master
+    codebase: Existing
+    codeBaseName: PSArm_202009
     tsaVersion: TsaV2
-    uploadAPIScan: false
-    uploadBinSkim: false
+    uploadAPIScan: true
+    uploadBinSkim: true
     uploadCredScan: true
     uploadFortifySCA: false
     uploadFxCop: false

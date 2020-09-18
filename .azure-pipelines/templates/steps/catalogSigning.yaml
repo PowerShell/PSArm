@@ -1,12 +1,12 @@
 steps:
 
 - pwsh: |
-    if ("$(System.ArtifactsDirectory)" -ne "$(Build.ArtifactsStagingDirectory)")
+    if ("$(System.ArtifactsDirectory)" -ne "$(Build.ArtifactStagingDirectory)")
     {
-        Copy-Item -Recurse -Force -LiteralPath "$(System.ArtifactsDirectory)" -Destination "$(Build.ArtifactsStagingDirectory)"
+        Copy-Item -Recurse -Force -LiteralPath "$(System.ArtifactsDirectory)" -Destination "$(Build.ArtifactStagingDirectory)"
     }
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    New-Catalog -Path "$(Build.ArtifactsStagingDirectory)/out" -OutputPath "$(Build.ArtifactsStagingDirectory)/catalog/PSArm.cat"
+    New-Catalog -Path "$(Build.ArtifactStagingDirectory)/out" -OutputPath "$(Build.ArtifactStagingDirectory)/catalog/PSArm.cat"
   displayName: 'Create file catalog'
 
 - task: PkgESCodeSign@10
@@ -15,11 +15,11 @@ steps:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   inputs:
     signConfigXml: PSArm.cat
-    inPathRoot: '$(Build.ArtifactsStagingDirectory)\catalog'
-    outPathRoot: '$(Build.ArtifactsStagingDirectory)\out\PSArm'
+    inPathRoot: '$(Build.ArtifactStagingDirectory)\catalog'
+    outPathRoot: '$(Build.ArtifactStagingDirectory)\out\PSArm'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: PSArm'
   inputs:
     artifactName: signed
-    pathToPublish: '$(Build.ArtifactsStagingDirectory)\out'
+    pathToPublish: '$(Build.ArtifactStagingDirectory)\out'

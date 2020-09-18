@@ -35,10 +35,15 @@ stages:
   - stage: Publish
     dependsOn:
       - Tests
-      - Compliance
       - Signing
     jobs:
-      - job: Publish
+      - job: PublishToGallery
+        displayName: Publish to PSGallery
         steps:
           - template: templates/steps/download.yaml
-          - template: templates/steps/publish.yaml
+          - template: templates/steps/publishToGallery.yaml
+      - job: PublishToGitHub
+        displayName: Publish GitHub release
+        steps:
+          - template: templates/steps/download.yaml
+          - template: templates/steps/publishToGitHub.yaml

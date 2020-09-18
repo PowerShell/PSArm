@@ -1,0 +1,6 @@
+steps:
+
+- pwsh: |
+    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
+    Publish-Module -ModulePath "$(System.ArtifactsDirectory)/out/PSArm"
+  displayName: 'Publish to PSGallery'

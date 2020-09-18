@@ -1,7 +1,0 @@
-steps:
-
-- task: PowerShell@2
-  displayName: 'Publish to PSGallery'
-  inputs:
-    pwsh: true
-    filePath: tools/release/publishModule.ps1

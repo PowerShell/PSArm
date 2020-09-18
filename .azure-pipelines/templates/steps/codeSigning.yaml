@@ -1,0 +1,22 @@
+steps:
+
+- pwsh: |
+    $signedPath = "$(System.ArtifactsDirectory)\signed"
+    if (-not (Test-Path $signedPath))
+    {
+        New-Item $signedPath -ItemType Directory
+    }
+
+- task: PkgESCodeSign@10
+  displayName: Sign Assemblies
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  inputs:
+    signConfigXml: '$(Build.SourcesDirectory)\tools\release\codeSigning.xml'
+    inPathRoot: '$(System.ArtifactsDirectory)\out'
+    outPathRoot: '$(System.ArtifactsDirectory)\signed'
+
+- pwsh: |
+    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
+    Copy-SignedFiles -SignedDirPath "$(System.ArtifactsDirectory)/signed" -Destination "$(System.ArtifactsDirectory)/out"
+  displayName: 'Copy signed files into place'

@@ -1,0 +1,21 @@
+steps:
+
+- pwsh: |
+    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
+    New-Catalog -Path "$(System.ArtifactsDirectory)/out" -OutputPath "$(System.ArtifactsDirectory)/catalog/PSArm.cat"
+  displayName: 'Create file catalog'
+
+- task: PkgESCodeSign@10
+  displayName: 'Sign file catalog'
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  inputs:
+    signConfigXml: PSArm.cat
+    inPathRoot: '$(System.ArtifactsDirectory)\catalog'
+    outPathRoot: '$(System.ArtifactsDirectory)\out\PSArm'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: PSArm'
+  inputs:
+    artifactName: signed
+    pathToPublish: '$(System.ArtifactsDirectory)\out'

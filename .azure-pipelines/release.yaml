@@ -19,12 +19,21 @@ stages:
   - stage: Signing
     dependsOn: Build
     jobs:
-      - job: Signing
+      - job: CodeSigning
+        displayName: Code Signing
         pool:
           vmImage: windows-latest
         steps:
           - template: templates/steps/download.yaml
-          - template: templates/steps/signing.yaml
+          - template: templates/steps/codeSigning.yaml
+      - job: CatalogSigning
+        dependsOn: CodeSigning
+        displayName: Catalog Signing
+        pool:
+          vmImage: windows-latest
+        steps:
+          - template: templates/steps/download.yaml
+          - template: templates/steps/catalogSigning.yaml
 
   - stage: Publish
     dependsOn:

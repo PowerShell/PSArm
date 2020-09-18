@@ -20,5 +20,5 @@ if (-not (Test-Path $tempDir))
 }
 
 $tempPath = Join-Path -Path $tempDir -ChildPath "temp.cat"
-New-FileCatalog -Path $OutputPath -CatalogFilePath $tempPath
+New-FileCatalog -Path $Path -CatalogFilePath $tempPath
 Copy-Item -LiteralPath $tempPath -Destination $OutputPath -Force

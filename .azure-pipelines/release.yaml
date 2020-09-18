@@ -17,7 +17,7 @@ stages:
           - template: templates/steps/compliance.yaml
 
   - stage: Signing
-    dependsOn: Build
+    dependsOn: Compliance
     jobs:
       - job: CodeSigning
         displayName: Code Signing

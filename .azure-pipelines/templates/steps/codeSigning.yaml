@@ -1,11 +1,16 @@
 steps:
 
 - pwsh: |
+    tree "$(System.ArtifactsDirectory)"
+  displayName: Show artifacts directory
+
+- pwsh: |
     $signedPath = "$(Build.ArtifactStagingDirectory)\signed"
     if (-not (Test-Path $signedPath))
     {
         New-Item $signedPath -ItemType Directory -Verbose
     }
+  displayName: Ensure signed directory exists
 
 - task: PkgESCodeSign@10
   displayName: Sign Assemblies

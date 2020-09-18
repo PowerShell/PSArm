@@ -7,6 +7,8 @@ steps:
     }
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
     New-Catalog -Path "$(Build.ArtifactStagingDirectory)/out" -OutputPath "$(Build.ArtifactStagingDirectory)/catalog/PSArm.cat"
+    Write-Host "Created catalog directory:"
+    tree /a /f "$(Build.ArtifactStagingDirectory)/catalog"
   displayName: 'Create file catalog'
 
 - task: PkgESCodeSign@10
@@ -14,7 +16,7 @@ steps:
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   inputs:
-    signConfigXml: PSArm.cat
+    signConfigXml: tools/release/catalogSigning.xml
     inPathRoot: '$(Build.ArtifactStagingDirectory)\catalog'
     outPathRoot: '$(Build.ArtifactStagingDirectory)\out\PSArm'
 

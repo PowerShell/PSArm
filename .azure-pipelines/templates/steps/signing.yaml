@@ -2,6 +2,8 @@ steps:
 
 - task: PkgESCodeSign@10
   displayName: Sign Assemblies
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   inputs:
     signConfigXml: tools/release/codeSigning.xml
     inPathRoot: '$(System.ArtifactsDirectory)\out'

@@ -5,6 +5,8 @@ steps:
 - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
   displayName: 'Component Detection'
   inputs:
+    sourcesScanPath: ..\..\..
+    ignoreDirectories: '..\..\..\out'
     snapshotForceEnabled: true
     failOnAlert: true
   continueOnError: true
@@ -49,9 +51,10 @@ steps:
   continueOnError: true
 
 - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
-  displayName: 'TSA upload to Codebase: PSArm_202009 Stamp: Azure'
+  displayName: 'TSA upload to Codebase: PSArm_master Stamp: Azure'
   inputs:
-    codeBaseName: PSArm_20209
+    codebase: NewOrUpdate
+    codeBaseName: PSArm_master
     tsaVersion: TsaV2
     uploadAPIScan: false
     uploadBinSkim: false

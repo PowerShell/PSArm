@@ -28,6 +28,8 @@ steps:
 
 - task: PkgESCodeSign@10
   displayName: 'Sign file catalog'
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   inputs:
     signConfigXml: PSArm.cat
     inPathRoot: '$(System.ArtifactsDirectory)\catalog'

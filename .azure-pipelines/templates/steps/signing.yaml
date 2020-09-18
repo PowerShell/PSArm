@@ -9,24 +9,16 @@ steps:
     inPathRoot: '$(System.ArtifactsDirectory)\out'
     outPathRoot: '$(System.ArtifactsDirectory)\signed'
 
-- task: PowerShell@2
+- pwsh: |
+    Import-Module tools/release/ReleaseTools.psm1
+    Copy-SignedFiles -SignedDirPath "$(System.ArtifactsDirectory)\signed" -Destination "$(System.ArtifactsDirectory)\out"
   displayName: 'Copy signed files into place'
-  inputs:
-    pwsh: true
-    filePath: tools/release/copySignedFiles
-    arguments: >
-      -SignedDirPath "$(System.ArtifactsDirectory)\signed"
-      -Destination "$(System.ArtifactsDirectory)\out"
 
-- task: PowerShell@2
+- pwsh: |
+    Import-Module tools/release/ReleaseTools.psm1
+    New-Catalog -Path "$(System.ArtifactsDirectory)\out" -OutputPath "$(System.ArtifactsDirectory)\catalog\PSArm.cat"
   condition: succeededOrFailed()
   displayName: 'Create file catalog'
-  inputs:
-    pwsh: true
-    filePath: tools/release/newCatalog.ps1
-    arguments: >
-      -Path "$(System.ArtifactsDirectory)\out"
-      -OutputPath "$(System.ArtifactsDirectory)\catalog\PSArm.cat"
 
 - task: PkgESCodeSign@10
   displayName: 'Sign file catalog'

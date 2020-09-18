@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SignConfigXML>
-  <job platform="" configuration="" dest="__OUTPATHROOT__" jobname="PowerShell PSArm" approvers="vigarg;gstolt">
+  <job platform="AnyCPU" configuration="Release" dest="__OUTPATHROOT__" jobname="PowerShell PSArm" approvers="">
     <file src="__INPATHROOT__\PSArm\PSArm.dll" signType="400" dest="__OUTPATHROOT__\PSArm\PSArm.dll" />
     <file src="__INPATHROOT__\PSArm\PSArm.psd1" signType="400" dest="__OUTPATHROOT__\PSArm\PSArm.psd1" />
     <file src="__INPATHROOT__\PSArm\OnImport.ps1" signType="400" dest="__OUTPATHROOT__\PSArm\OnImport.ps1" />

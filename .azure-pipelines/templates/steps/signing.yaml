@@ -5,17 +5,17 @@ steps:
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   inputs:
-    signConfigXml: tools/release/codeSigning.xml
+    signConfigXml: '$(Build.SourceDirectory)\tools\release\codeSigning.xml'
     inPathRoot: '$(System.ArtifactsDirectory)\out'
     outPathRoot: '$(System.ArtifactsDirectory)\signed'
 
 - pwsh: |
-    Import-Module tools/release/ReleaseTools.psm1
+    Import-Module "$(Build.SourceDirectory)/tools/release/ReleaseTools.psm1"
     Copy-SignedFiles -SignedDirPath "$(System.ArtifactsDirectory)\signed" -Destination "$(System.ArtifactsDirectory)\out"
   displayName: 'Copy signed files into place'
 
 - pwsh: |
-    Import-Module tools/release/ReleaseTools.psm1
+    Import-Module "$(Build.SourceDirectory)/tools/release/ReleaseTools.psm1"
     New-Catalog -Path "$(System.ArtifactsDirectory)\out" -OutputPath "$(System.ArtifactsDirectory)\catalog\PSArm.cat"
   condition: succeededOrFailed()
   displayName: 'Create file catalog'

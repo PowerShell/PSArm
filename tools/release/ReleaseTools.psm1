@@ -59,6 +59,9 @@ function Copy-SignedFiles
         $Destination
     )
 
+    Write-Log "Files in OriginalDir '$OriginalDirPath':`n$(tree /f /a $OriginalDirPath)"
+    Write-Log "Files in SignedDir '$SignedDirPath':`n$(tree /f /a $SignedDirPath)"
+
     Write-Log "Copying signed files from path '$SignedDirPath' to path '$Destination'"
 
     foreach ($file in Get-ChildItem -LiteralPath $SignedDirPath -Recurse)
@@ -96,10 +99,15 @@ function Assert-FilesAreSigned
     )
 
     $allSigned = $true
+    $count = 0
+    $signableCount = 0
     foreach ($file in Get-ChildItem -LiteralPath $Path -Recurse)
     {
+        $count++
+
         if ([System.IO.Path]::GetExtension($file.Name) -in '.dll','.ps1','.psd1','.psm1')
         {
+            $signableCount++
             Write-Log "Validating signature on '$($file.FullName)'"
             $sig = Get-AuthenticodeSignature -FilePath $file.FullName
 
@@ -110,6 +118,8 @@ function Assert-FilesAreSigned
             }
         }
     }
+
+    Write-Log "Found $count files and $signableCount signable files"
 
     if (-not $allSigned)
     {

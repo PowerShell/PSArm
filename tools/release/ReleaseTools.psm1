@@ -63,3 +63,33 @@ function Copy-SignedFiles
         Copy-Item -Force -LiteralPath $file.FullName -Destination $newPath
     }
 }
+
+function Assert-FilesAreSigned
+{
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string]
+        $Path
+    )
+
+    $allSigned = $true
+    foreach ($file in Get-ChildItem -LiteralPath $Path -Recurse)
+    {
+        if ([System.IO.Path]::GetExtension($file.Name) -in '.dll','.ps1','.psd1','.psm1')
+        {
+            $sig = Get-AuthenticodeSignature -FilePath $file.FullName
+
+            if ($sig.Status -ne 'Valid')
+            {
+                $allSigned = $false
+                Write-Error "File '$($file.FullName)' is not signed"
+            }
+        }
+    }
+
+    if (-not $allSigned)
+    {
+        throw "Some files were not signed. See above errors for details"
+    }
+}

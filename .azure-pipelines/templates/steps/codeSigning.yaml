@@ -5,7 +5,7 @@ steps:
   displayName: Show artifacts directory
 
 - pwsh: |
-    $signedPath = "$(Build.ArtifactStagingDirectory)\signed"
+    $signedPath = "$(Build.ArtifactStagingDirectory)\temp"
     if (-not (Test-Path $signedPath))
     {
         New-Item $signedPath -ItemType Directory -Verbose
@@ -19,15 +19,19 @@ steps:
   inputs:
     signConfigXml: '$(Build.SourcesDirectory)\tools\release\codeSigning.xml'
     inPathRoot: '$(System.ArtifactsDirectory)\out'
-    outPathRoot: '$(Build.ArtifactStagingDirectory)\signed'
+    outPathRoot: '$(Build.ArtifactStagingDirectory)\temp'
 
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Copy-SignedFiles -SignedDirPath "$(Build.ArtifactStagingDirectory)/signed" -Destination "$(Build.ArtifactStagingDirectory)/out"
+    Assert-FilesAreSigned -Path "$(Build.ArtifactStagingDirectory)/temp"
+
+- pwsh: |
+    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
+    Copy-SignedFiles -SignedDirPath "$(Build.ArtifactStagingDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
   displayName: 'Copy signed files into place'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: PSArm'
   inputs:
     artifactName: signed
-    pathToPublish: '$(Build.ArtifactStagingDirectory)\out'
+    pathToPublish: '$(Build.ArtifactStagingDirectory)\signed'

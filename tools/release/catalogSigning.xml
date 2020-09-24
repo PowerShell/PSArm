@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SignConfigXML>
-  <job platform="AnyCPU" configuration="Release" dest="__OUTPATHROOT__" jobname="PowerShell PSArm File Catalog" approvers="">
-    <file src="__INPATHROOT__\PSArm.cat" signType="400" dest="__OUTPATHROOT__\PSArm\PSArm.cat" />
-  </job>
-</SignConfigXML>

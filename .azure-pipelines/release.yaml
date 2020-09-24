@@ -24,13 +24,6 @@ stages:
         steps:
           - template: templates/steps/download.yaml
           - template: templates/steps/codeSigning.yaml
-      - job: CatalogSigning
-        dependsOn: CodeSigning
-        displayName: Catalog Signing
-        pool: 'Package ES CodeHub Lab E'
-        steps:
-          - template: templates/steps/download.yaml
-          - template: templates/steps/catalogSigning.yaml
 
   - stage: Publish
     dependsOn:

@@ -5,12 +5,12 @@ steps:
   displayName: Show artifacts directory
 
 - pwsh: |
-    $signedPath = "$(Build.ArtifactStagingDirectory)\temp"
+    $signedPath = "$(Build.ArtifactStagingDirectory)\temp\PSArm"
     if (-not (Test-Path $signedPath))
     {
         New-Item $signedPath -ItemType Directory -Verbose
     }
-  displayName: Ensure signed directory exists
+  displayName: Ensure signing temp directory exists
 
 - task: PkgESCodeSign@10
   displayName: Sign Assemblies
@@ -24,10 +24,11 @@ steps:
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
     Assert-FilesAreSigned -Path "$(Build.ArtifactStagingDirectory)/temp"
+  displayName: Validate that files are signed
 
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Copy-SignedFiles -SignedDirPath "$(Build.ArtifactStagingDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
+    Copy-SignedFiles -OriginalDirPath "$(Build.ArtifactStagingDirectory)/out" -SignedDirPath "$(Build.ArtifactStagingDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
   displayName: 'Copy signed files into place'
 
 - task: PublishBuildArtifacts@1

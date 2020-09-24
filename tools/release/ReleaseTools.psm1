@@ -44,11 +44,17 @@ function Publish-Module
 function Copy-SignedFiles
 {
     param(
-        [Parameter()]
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        $OriginalDirPath,
+
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [string]
         $SignedDirPath,
 
-        [Parameter()]
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [string]
         $Destination
     )
@@ -58,9 +64,25 @@ function Copy-SignedFiles
     foreach ($file in Get-ChildItem -LiteralPath $SignedDirPath -Recurse)
     {
         $newPath = $file.FullName.Substring($SignedDirPath.Length).TrimStart(@('\', '/'))
-        $newPath = Join-Path -Path $Destination  -ChildPath $newPath
+        $newPath = Join-Path -Path $Destination -ChildPath $newPath
         Write-Log "Copying '$($file.FullName)' to '$newPath'"
         Copy-Item -Force -LiteralPath $file.FullName -Destination $newPath
+    }
+
+    Write-Log "Copying remaning files from path '$OriginalDirPath' to '$Destination'"
+    
+    foreach ($file in Get-ChildItem -LiteralPath $OriginalDirPath -Recurse)
+    {
+        $newPath = $file.FullName.Substring($OriginalDirPath.Length).TrimStart(@('\','/'))
+        $newPath = Join-Path -Path $Destination -ChildPath $newPath
+
+        if (Test-Path -LiteralPath $newPath)
+        {
+            continue
+        }
+
+        Write-Log "Copying '$($file.FullName)' to '$newPath'"
+        Copy-Item -LiteralPath $file.FullName -Destination $newPath
     }
 }
 
@@ -78,6 +100,7 @@ function Assert-FilesAreSigned
     {
         if ([System.IO.Path]::GetExtension($file.Name) -in '.dll','.ps1','.psd1','.psm1')
         {
+            Write-Log "Validating signature on '$($file.FullName)'"
             $sig = Get-AuthenticodeSignature -FilePath $file.FullName
 
             if ($sig.Status -ne 'Valid')
@@ -91,5 +114,9 @@ function Assert-FilesAreSigned
     if (-not $allSigned)
     {
         throw "Some files were not signed. See above errors for details"
+    }
+    else
+    {
+        Write-Log "All file signatures are valid"
     }
 }

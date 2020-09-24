@@ -59,7 +59,7 @@ function Copy-SignedFiles
     {
         $newPath = $file.FullName.Substring($SignedDirPath.Length).TrimStart(@('\', '/'))
         $newPath = Join-Path -Path $Destination  -ChildPath $newPath
-
+        Write-Log "Copying '$($file.FullName)' to '$newPath'"
         Copy-Item -Force -LiteralPath $file.FullName -Destination $newPath
     }
 }

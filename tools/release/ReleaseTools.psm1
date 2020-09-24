@@ -59,8 +59,10 @@ function Copy-SignedFiles
         $Destination
     )
 
-    Write-Log "Files in OriginalDir '$OriginalDirPath':`n$(tree /f /a $OriginalDirPath)"
-    Write-Log "Files in SignedDir '$SignedDirPath':`n$(tree /f /a $SignedDirPath)"
+    Write-Log "Files in OriginalDir '$OriginalDirPath':"
+    tree /f /a $OriginalDirPath | Write-Log
+    Write-Log "Files in SignedDir '$SignedDirPath':"
+    tree /f /a $SignedDirPath | Write-Log
 
     Write-Log "Copying signed files from path '$SignedDirPath' to path '$Destination'"
 

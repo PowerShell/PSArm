@@ -42,7 +42,7 @@ steps:
     optionsXS: 0
     optionsPE: '1|2|3|4'
     optionsHMENABLE: 0
-    toolVersion: 5.8.2.1
+    toolVersion: Latest
   continueOnError: true
 
 - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2

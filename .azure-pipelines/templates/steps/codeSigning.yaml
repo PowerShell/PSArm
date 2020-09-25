@@ -18,17 +18,17 @@ steps:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   inputs:
     signConfigXml: '$(Build.SourcesDirectory)\tools\release\codeSigning.xml'
-    inPathRoot: '$(System.ArtifactsDirectory)\out'
-    outPathRoot: '$(Build.ArtifactStagingDirectory)\temp'
+    inPathRoot: '$(System.ArtifactsDirectory)'
+    outPathRoot: '$(System.ArtifactsDirectory)\temp'
 
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Assert-FilesAreSigned -Path "$(Build.ArtifactStagingDirectory)/temp"
+    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/temp"
   displayName: Validate that files are signed
 
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Copy-SignedFiles -OriginalDirPath "$(Build.ArtifactStagingDirectory)/out" -SignedDirPath "$(Build.ArtifactStagingDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
+    Copy-SignedFiles -OriginalDirPath "$(Build.ArtifactStagingDirectory)/out" -SignedDirPath "$(System.ArtifactsDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
   displayName: 'Copy signed files into place'
 
 - task: PublishBuildArtifacts@1

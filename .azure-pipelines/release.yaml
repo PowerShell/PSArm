@@ -26,6 +26,7 @@ stages:
           - template: templates/steps/codeSigning.yaml
 
   - stage: Publish
+    environment: PSArm release approval
     dependsOn:
       - Tests
       - Signing

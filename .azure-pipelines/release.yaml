@@ -30,14 +30,17 @@ stages:
       - Tests
       - Signing
     jobs:
-      - job: PublishToGitHub
+      - deployment: PublishToGitHub
+        displayName: Publish to GitHub
         environment: PSArm release approval
-        displayName: Publish GitHub release
-        steps:
-          - template: templates/steps/download.yaml
-          - template: templates/steps/publishToGitHub.yaml
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: templates/steps/download.yaml
+                - template: templates/steps/publishToGitHub.yaml
       - job: PublishToGallery
         displayName: Publish to PSGallery
         steps:
           - template: templates/steps/download.yaml
-          - template: templates/steps/publishToGallery.yaml
+          - template: templates/steps/download.yaml

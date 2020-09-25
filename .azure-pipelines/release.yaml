@@ -26,18 +26,18 @@ stages:
           - template: templates/steps/codeSigning.yaml
 
   - stage: Publish
-    environment: PSArm release approval
     dependsOn:
       - Tests
       - Signing
     jobs:
+      - job: PublishToGitHub
+        environment: PSArm release approval
+        displayName: Publish GitHub release
+        steps:
+          - template: templates/steps/download.yaml
+          - template: templates/steps/publishToGitHub.yaml
       - job: PublishToGallery
         displayName: Publish to PSGallery
         steps:
           - template: templates/steps/download.yaml
           - template: templates/steps/publishToGallery.yaml
-      - job: PublishToGitHub
-        displayName: Publish GitHub release
-        steps:
-          - template: templates/steps/download.yaml
-          - template: templates/steps/publishToGitHub.yaml

@@ -123,6 +123,11 @@ function Assert-FilesAreSigned
 
     Write-Log "Found $count files and $signableCount signable files"
 
+    if ($signableCount -eq 0)
+    {
+        throw "No files were signed"
+    }
+
     if (-not $allSigned)
     {
         throw "Some files were not signed. See above errors for details"

@@ -25,22 +25,23 @@ stages:
           - template: templates/steps/download.yaml
           - template: templates/steps/codeSigning.yaml
 
-  - stage: Publish
-    dependsOn:
-      - Tests
-      - Signing
-    jobs:
-      - deployment: PublishToGitHub
-        displayName: Publish to GitHub
-        environment: PSArm release approval
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - template: templates/steps/download.yaml
-                - template: templates/steps/publishToGitHub.yaml
-      - job: PublishToGallery
-        displayName: Publish to PSGallery
-        steps:
-          - template: templates/steps/download.yaml
-          - template: templates/steps/download.yaml
+  # TODO: Automate release publication by implementing the template steps
+  # - stage: Publish
+  #   dependsOn:
+  #     - Tests
+  #     - Signing
+  #   jobs:
+  #     - deployment: PublishToGitHub
+  #       displayName: Publish to GitHub
+  #       environment: PSArm release approval
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - template: templates/steps/download.yaml
+  #               - template: templates/steps/publishToGitHub.yaml
+  #     - job: PublishToGallery
+  #       displayName: Publish to PSGallery
+  #       steps:
+  #         - template: templates/steps/download.yaml
+  #         - template: templates/steps/download.yaml

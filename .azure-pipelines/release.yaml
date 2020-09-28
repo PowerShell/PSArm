@@ -7,14 +7,41 @@ stages:
   - template: templates/buildAndTest.yaml
 
   - stage: Compliance
+    dependsOn: Build
     jobs:
-      - job:
+      - job: Compliance
+        pool: 'Package ES CodeHub Lab E'
         steps:
-          - task: DownloadBuildArtifacts@0
-            displayName: 'Download Build Artifacts: out Folder'
-            inputs:
-              artifactName: out
+          - template: templates/steps/download.yaml
           - template: templates/steps/compliance.yaml
-            parameters:
-              sourceLocation: '$(Build.SourceDirectory)'
-              binaryLocation: '$(System.ArtifactsDirectory)/out/PSArm'
+
+  - stage: Signing
+    dependsOn: Compliance
+    jobs:
+      - job: CodeSigning
+        displayName: Code Signing
+        pool: 'Package ES CodeHub Lab E'
+        steps:
+          - template: templates/steps/download.yaml
+          - template: templates/steps/codeSigning.yaml
+
+  # TODO: Automate release publication by implementing the template steps
+  # - stage: Publish
+  #   dependsOn:
+  #     - Tests
+  #     - Signing
+  #   jobs:
+  #     - deployment: PublishToGitHub
+  #       displayName: Publish to GitHub
+  #       environment: PSArm release approval
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - template: templates/steps/download.yaml
+  #               - template: templates/steps/publishToGitHub.yaml
+  #     - job: PublishToGallery
+  #       displayName: Publish to PSGallery
+  #       steps:
+  #         - template: templates/steps/download.yaml
+  #         - template: templates/steps/download.yaml

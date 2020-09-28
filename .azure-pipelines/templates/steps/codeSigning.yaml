@@ -1,0 +1,38 @@
+steps:
+
+- pwsh: |
+    tree /f /a "$(System.ArtifactsDirectory)"
+  displayName: Show artifacts directory
+
+- pwsh: |
+    $signedPath = "$(Build.ArtifactStagingDirectory)\temp\PSArm"
+    if (-not (Test-Path $signedPath))
+    {
+        New-Item $signedPath -ItemType Directory -Verbose
+    }
+  displayName: Ensure signing temp directory exists
+
+- task: PkgESCodeSign@10
+  displayName: Sign Assemblies
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  inputs:
+    signConfigXml: '$(Build.SourcesDirectory)\tools\release\codeSigning.xml'
+    inPathRoot: '$(System.ArtifactsDirectory)'
+    outPathRoot: '$(System.ArtifactsDirectory)\temp'
+
+- pwsh: |
+    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
+    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/temp"
+  displayName: Validate that files are signed
+
+- pwsh: |
+    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
+    Copy-SignedFiles -OriginalDirPath "$(Build.ArtifactStagingDirectory)/out" -SignedDirPath "$(System.ArtifactsDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
+  displayName: 'Copy signed files into place'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: PSArm'
+  inputs:
+    artifactName: signed
+    pathToPublish: '$(Build.ArtifactStagingDirectory)\signed'

@@ -1,8 +1,12 @@
-function Write-Log
+filter Write-Log
 {
-    param([string]$Message)
+    param(
+        [Parameter(ValueFromPipeline)]
+        [string[]]
+        $Message
+    )
 
-    Write-Host $Message
+    $Message | Write-Host
 }
 
 function Unsplat

@@ -1,0 +1,6 @@
+steps:
+
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Build Artifacts: out Folder'
+    inputs:
+      artifactName: out

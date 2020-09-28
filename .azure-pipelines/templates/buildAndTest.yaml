@@ -9,6 +9,7 @@ stages:
         - template: steps/build.yaml
 
   - stage: Tests
+    dependsOn: Build
     jobs:
       - job:
         strategy:

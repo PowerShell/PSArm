@@ -26,8 +26,6 @@ import {
 import { values } from "@azure-tools/linq";
 import * as path from "path";
 import { promises as fsPromises } from "fs";
-import { ParseOptions } from "querystring";
-import { dir } from "console";
 
 interface IResourceProvider {
   $keywords: Record<string, IKeyword>,
@@ -178,7 +176,8 @@ class ResourceProviderBuilder {
 
   constructor(
     private providerName: string,
-    private apiVersion: string) {
+    private apiVersion: string,
+    private debug: boolean) {
 
     this.resources = {};
     this.keywordTable = new KeywordTable();
@@ -194,6 +193,9 @@ class ResourceProviderBuilder {
 
     // Set the file name and write out to file
     const filePath = path.join(dirPath, `${this.providerName}_${this.apiVersion}.json`);
+    if (this.debug) {
+      log(`Writing schema to '${filePath}'`);
+    }
     return fsPromises.writeFile(filePath, JSON.stringify(providerObject, null, '    '));
   }
 
@@ -250,13 +252,32 @@ class ResourceProviderBuilder {
   }
 
   private getPropertiesPropertyProperties(schema: ObjectSchema): Property[] | undefined {
-    const propertySchema = schema.properties?.find(p => p.serializedName === "properties")?.schema;
-
-    if (!propertySchema || propertySchema.type !== SchemaType.Object) {
+    if (!schema.properties) {
       return undefined;
     }
 
-    return (<ObjectSchema>propertySchema).properties;
+    const propertiesProperties: Property[] = [];
+    for (const property of schema.properties) {
+      // Get the actual "properties" properties
+      if (property.serializedName === "properties") {
+        if (property.schema.type !== SchemaType.Object) {
+          log(`WARNING: Expected "properties" property to be an object schema, but instead got '${property.schema.type}'`);
+          continue;
+        }
+        const properties = (<ObjectSchema>property.schema).properties;
+        if (properties) {
+          propertiesProperties.push(...properties);
+        }
+        continue;
+      }
+
+      // Now look for flattened properties.
+      // These will be inlined into the containing object, so we add them directly
+      if (property.flattenedNames && property.flattenedNames.find(e => e === "properties")) {
+        propertiesProperties.push(property);
+      }
+    }
+    return propertiesProperties;
   }
 
   private addKeywordsToTable(table: Record<string, KeywordPointer>, properties: Property[]) {
@@ -475,15 +496,57 @@ class ResourceSchemaCollectionBuilder {
     }
 
     if (!this.resourceProviders[providerName].hasOwnProperty(apiVersion)) {
-      this.resourceProviders[providerName][apiVersion] = new ResourceProviderBuilder(providerName, apiVersion);
+      this.resourceProviders[providerName][apiVersion] = new ResourceProviderBuilder(providerName, apiVersion, this.debug);
     }
 
     this.resourceProviders[providerName][apiVersion].addResource(resourceType, resourceSchema);
   }
 }
 
+function log(message: string) {
+  console.error(`PSARM-GEN: ${message}`);
+}
+
+async function getTagVersion(host: Host): Promise<string | undefined> {
+  const tag: string | undefined = (await host.GetValue("tag")) || undefined;
+
+  if (!tag) {
+    return undefined;
+  }
+
+  return fixVersion(tag.substr(8));
+}
+
+function fixVersion(givenVersion: string | undefined): string | undefined {
+  if (!givenVersion) {
+    return undefined;
+  }
+
+  const result = /^\d{4}-\d{2}(-\d{2})?(-preview)?$/.exec(givenVersion);
+
+  // No match
+  if (!result) {
+    return undefined;
+  }
+
+  const fullVersion = result[0];
+
+  // Second group matches, so we have a full date
+  if (result[1]) {
+    return fullVersion;
+  }
+
+  // There's a preview tag, so we need to add the 01 before that
+  if (result[2]) {
+    return `${fullVersion.substr(0, 7)}-01-preview`;
+  }
+
+  return `${fullVersion}-01`;
+}
+
 export async function generator(host: Host) {
   const debug = (await host.GetValue("debug")) || false;
+  const tagVersion = await getTagVersion(host);
 
   try {
     // get the code model from the core
@@ -503,8 +566,18 @@ export async function generator(host: Host) {
           if (request.protocol.http?.method === "put") {
             const schema = <ObjectSchema>request?.parameters?.[0].schema;
 
+            if (!schema) {
+              continue;
+            }
+
             const resourceType = getResourceTypeFromPath(request.protocol.http.path);
-            const apiVersion: string = schema.apiVersions && schema.apiVersions[0].version || '*';
+            const givenVersion = schema.apiVersions && schema.apiVersions[0].version;
+
+            const apiVersion = fixVersion(givenVersion) || tagVersion || '*';
+
+            if (debug) {
+              log(`Generating schema for '${resourceType.namespace}/${resourceType.name}-${apiVersion}'`);
+            }
 
             resources.addResourceSchema(resourceType.namespace, apiVersion, resourceType.name, schema);
           }
@@ -512,7 +585,11 @@ export async function generator(host: Host) {
       }
     }
 
-    await resources.writeToDir("./out");
+    const outputDir = await host.GetValue("output-file") || "./out";
+    if (debug) {
+      log(`Writing generated files to ${outputDir}`);
+    }
+    await resources.writeToDir(outputDir);
 
     /*
     for (const each of values(session.model.schemas.objects)) {
@@ -529,7 +606,7 @@ export async function generator(host: Host) {
     */
   } catch (E) {
     if (debug) {
-      console.error(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);
+      log(`${__filename} - FAILURE  ${JSON.stringify(E)} ${E.stack}`);
     }
     throw E;
   }
@@ -541,7 +618,7 @@ async function ensureDirExists(dirPath: string): Promise<string> {
   }
 
   if (!await fileExists(dirPath)) {
-    console.error(`Creating directory '${dirPath}'`);
+    log(`Creating directory '${dirPath}'`);
     await fsPromises.mkdir(dirPath);
   }
 

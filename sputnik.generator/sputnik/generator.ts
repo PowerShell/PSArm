@@ -585,7 +585,7 @@ export async function generator(host: Host) {
       }
     }
 
-    const outputDir = await host.GetValue("output-file") || "./out";
+    const outputDir = await host.GetValue("output-folder") || "./out";
     if (debug) {
       log(`Writing generated files to ${outputDir}`);
     }

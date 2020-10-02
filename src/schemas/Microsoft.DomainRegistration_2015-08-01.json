@@ -1,0 +1,225 @@
+{
+    "$keywords": {
+        "contactAdmin": {
+            "parameters": {
+                "email": {
+                    "type": "string"
+                },
+                "fax": {
+                    "type": "string"
+                },
+                "jobTitle": {
+                    "type": "string"
+                },
+                "nameFirst": {
+                    "type": "string"
+                },
+                "nameLast": {
+                    "type": "string"
+                },
+                "nameMiddle": {
+                    "type": "string"
+                },
+                "organization": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "addressMailing": {
+                    "$ref": "#/$keywords/addressMailing"
+                }
+            }
+        },
+        "addressMailing": {
+            "parameters": {
+                "address1": {
+                    "type": "string"
+                },
+                "address2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            }
+        },
+        "registrationStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "nameServers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "privacy": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "createdTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "expirationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastRenewedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "autoRenew": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "readyForDnsRecordManagement": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "managedHostNames": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "azureResourceName": {
+                    "type": "string"
+                },
+                "azureResourceType": {},
+                "customHostNameDnsRecordType": {},
+                "hostNameType": {}
+            },
+            "body": {
+                "siteNames": {
+                    "$ref": "#/$keywords/siteNames"
+                }
+            },
+            "array": true
+        },
+        "siteNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "consent": {
+            "parameters": {
+                "agreedBy": {
+                    "type": "string"
+                },
+                "agreedAt": {}
+            },
+            "body": {
+                "agreementKeys": {
+                    "$ref": "#/$keywords/agreementKeys"
+                }
+            }
+        },
+        "agreementKeys": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "domainNotRenewableReasons": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "RegistrationStatusNotSupportedForRenewal",
+                        "ExpirationNotInRenewalTimeRange",
+                        "SubscriptionNotActive"
+                    ]
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "domains": {
+            "contactAdmin": {
+                "$ref": "#/$keywords/contactAdmin"
+            },
+            "contactBilling": {
+                "$ref": "#/$keywords/contactAdmin"
+            },
+            "contactRegistrant": {
+                "$ref": "#/$keywords/contactAdmin"
+            },
+            "contactTech": {
+                "$ref": "#/$keywords/contactAdmin"
+            },
+            "registrationStatus": {
+                "$ref": "#/$keywords/registrationStatus"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "nameServers": {
+                "$ref": "#/$keywords/nameServers"
+            },
+            "privacy": {
+                "$ref": "#/$keywords/privacy"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime"
+            },
+            "expirationTime": {
+                "$ref": "#/$keywords/expirationTime"
+            },
+            "lastRenewedTime": {
+                "$ref": "#/$keywords/lastRenewedTime"
+            },
+            "autoRenew": {
+                "$ref": "#/$keywords/autoRenew"
+            },
+            "readyForDnsRecordManagement": {
+                "$ref": "#/$keywords/readyForDnsRecordManagement"
+            },
+            "managedHostNames": {
+                "$ref": "#/$keywords/managedHostNames"
+            },
+            "consent": {
+                "$ref": "#/$keywords/consent"
+            },
+            "domainNotRenewableReasons": {
+                "$ref": "#/$keywords/domainNotRenewableReasons"
+            }
+        }
+    }
+}

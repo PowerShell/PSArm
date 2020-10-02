@@ -1,0 +1,280 @@
+{
+    "$keywords": {
+        "tenantId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "sku": {
+            "parameters": {
+                "family": {},
+                "name": {}
+            }
+        },
+        "accessPolicies": {
+            "parameters": {
+                "tenantId": {},
+                "objectId": {
+                    "type": "string"
+                },
+                "applicationId": {}
+            },
+            "body": {
+                "permissions": {
+                    "$ref": "#/$keywords/permissions"
+                }
+            },
+            "array": true
+        },
+        "permissions": {
+            "body": {
+                "keys": {
+                    "$ref": "#/$keywords/keys"
+                },
+                "secrets": {
+                    "$ref": "#/$keywords/secrets"
+                },
+                "certificates": {
+                    "$ref": "#/$keywords/certificates"
+                },
+                "storage": {
+                    "$ref": "#/$keywords/storage"
+                }
+            }
+        },
+        "keys": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "encrypt",
+                        "decrypt",
+                        "wrapKey",
+                        "unwrapKey",
+                        "sign",
+                        "verify",
+                        "get",
+                        "list",
+                        "create",
+                        "update",
+                        "import",
+                        "delete",
+                        "backup",
+                        "restore",
+                        "recover",
+                        "purge"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "secrets": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "get",
+                        "list",
+                        "set",
+                        "delete",
+                        "backup",
+                        "restore",
+                        "recover",
+                        "purge"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "certificates": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "get",
+                        "list",
+                        "delete",
+                        "create",
+                        "import",
+                        "update",
+                        "managecontacts",
+                        "getissuers",
+                        "listissuers",
+                        "setissuers",
+                        "deleteissuers",
+                        "manageissuers",
+                        "recover",
+                        "purge",
+                        "backup",
+                        "restore"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "storage": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "get",
+                        "list",
+                        "delete",
+                        "set",
+                        "update",
+                        "regeneratekey",
+                        "recover",
+                        "purge",
+                        "backup",
+                        "restore",
+                        "setsas",
+                        "listsas",
+                        "getsas",
+                        "deletesas"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "vaultUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabledForDeployment": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enabledForDiskEncryption": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enabledForTemplateDeployment": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enableSoftDelete": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "createMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "enablePurgeProtection": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "networkAcls": {
+            "parameters": {
+                "bypass": {
+                    "enum": [
+                        "AzureServices",
+                        "None"
+                    ]
+                },
+                "defaultAction": {
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ]
+                }
+            },
+            "body": {
+                "ipRules": {
+                    "$ref": "#/$keywords/ipRules"
+                },
+                "virtualNetworkRules": {
+                    "$ref": "#/$keywords/virtualNetworkRules"
+                }
+            }
+        },
+        "ipRules": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualNetworkRules": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "accessPolicies_2": {
+            "parameters": {
+                "tenantId": {},
+                "objectId": {
+                    "type": "string"
+                },
+                "applicationId": {}
+            },
+            "body": {
+                "permissions": {
+                    "$ref": "#/$keywords/permissions"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "vaults": {
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "accessPolicies": {
+                "$ref": "#/$keywords/accessPolicies"
+            },
+            "vaultUri": {
+                "$ref": "#/$keywords/vaultUri"
+            },
+            "enabledForDeployment": {
+                "$ref": "#/$keywords/enabledForDeployment"
+            },
+            "enabledForDiskEncryption": {
+                "$ref": "#/$keywords/enabledForDiskEncryption"
+            },
+            "enabledForTemplateDeployment": {
+                "$ref": "#/$keywords/enabledForTemplateDeployment"
+            },
+            "enableSoftDelete": {
+                "$ref": "#/$keywords/enableSoftDelete"
+            },
+            "createMode": {
+                "$ref": "#/$keywords/createMode"
+            },
+            "enablePurgeProtection": {
+                "$ref": "#/$keywords/enablePurgeProtection"
+            },
+            "networkAcls": {
+                "$ref": "#/$keywords/networkAcls"
+            }
+        },
+        "vaults/accessPolicies": {
+            "accessPolicies": {
+                "$ref": "#/$keywords/accessPolicies_2"
+            }
+        }
+    }
+}

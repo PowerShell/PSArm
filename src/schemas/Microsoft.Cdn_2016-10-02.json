@@ -1,0 +1,214 @@
+{
+    "$keywords": {
+        "resourceState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Active",
+                        "Deleting",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "originHostHeader": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "originPath": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentTypesToCompress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "isCompressionEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isHttpAllowed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isHttpsAllowed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "queryStringCachingBehavior": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "optimizationType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "GeneralWebDelivery",
+                        "GeneralMediaStreaming",
+                        "VideoOnDemandMediaStreaming",
+                        "LargeFileDownload",
+                        "DynamicSiteAcceleration"
+                    ]
+                }
+            }
+        },
+        "geoFilters": {
+            "parameters": {
+                "relativePath": {
+                    "type": "string"
+                },
+                "action": {}
+            },
+            "body": {
+                "countryCodes": {
+                    "$ref": "#/$keywords/countryCodes"
+                }
+            },
+            "array": true
+        },
+        "countryCodes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "hostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "origins": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "hostName": {
+                    "type": "string"
+                },
+                "httpPort": {
+                    "type": "int"
+                },
+                "httpsPort": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "resourceState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Deleting",
+                        "Running",
+                        "Starting",
+                        "Stopped",
+                        "Stopping"
+                    ]
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "profiles": {
+            "resourceState": {
+                "$ref": "#/$keywords/resourceState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "profiles/endpoints": {
+            "originHostHeader": {
+                "$ref": "#/$keywords/originHostHeader"
+            },
+            "originPath": {
+                "$ref": "#/$keywords/originPath"
+            },
+            "contentTypesToCompress": {
+                "$ref": "#/$keywords/contentTypesToCompress"
+            },
+            "isCompressionEnabled": {
+                "$ref": "#/$keywords/isCompressionEnabled"
+            },
+            "isHttpAllowed": {
+                "$ref": "#/$keywords/isHttpAllowed"
+            },
+            "isHttpsAllowed": {
+                "$ref": "#/$keywords/isHttpsAllowed"
+            },
+            "queryStringCachingBehavior": {
+                "$ref": "#/$keywords/queryStringCachingBehavior"
+            },
+            "optimizationType": {
+                "$ref": "#/$keywords/optimizationType"
+            },
+            "geoFilters": {
+                "$ref": "#/$keywords/geoFilters"
+            },
+            "hostName": {
+                "$ref": "#/$keywords/hostName"
+            },
+            "origins": {
+                "$ref": "#/$keywords/origins"
+            },
+            "resourceState": {
+                "$ref": "#/$keywords/resourceState_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            }
+        },
+        "profiles/endpoints/customDomains": {
+            "hostName": {
+                "$ref": "#/$keywords/hostName_2"
+            }
+        }
+    }
+}

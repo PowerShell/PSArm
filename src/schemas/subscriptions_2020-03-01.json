@@ -1,0 +1,28 @@
+{
+    "$keywords": {
+        "linkedWorkspaceResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userAssignedIdentityResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "{subscriptionId}/Microsoft.MachineLearningServices/linkedWorkspaces": {
+            "linkedWorkspaceResourceId": {
+                "$ref": "#/$keywords/linkedWorkspaceResourceId"
+            },
+            "userAssignedIdentityResourceId": {
+                "$ref": "#/$keywords/userAssignedIdentityResourceId"
+            }
+        }
+    }
+}

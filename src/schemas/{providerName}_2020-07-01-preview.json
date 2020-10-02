@@ -1,0 +1,36 @@
+{
+    "$keywords": {
+        "maintenanceConfigurationId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "{resourceParentType}/{resourceType}/providers": {
+            "maintenanceConfigurationId": {
+                "$ref": "#/$keywords/maintenanceConfigurationId"
+            },
+            "resourceId": {
+                "$ref": "#/$keywords/resourceId"
+            }
+        },
+        "{resourceType}/providers": {
+            "maintenanceConfigurationId": {
+                "$ref": "#/$keywords/maintenanceConfigurationId"
+            },
+            "resourceId": {
+                "$ref": "#/$keywords/resourceId"
+            }
+        }
+    }
+}

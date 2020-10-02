@@ -1,0 +1,72 @@
+{
+    "$keywords": {
+        "storageAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceBusRuleId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "eventHubAuthorizationRuleId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "eventHubName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "logs": {
+            "parameters": {
+                "category": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "workspaceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "managementGroups/providers": {
+            "storageAccountId": {
+                "$ref": "#/$keywords/storageAccountId"
+            },
+            "serviceBusRuleId": {
+                "$ref": "#/$keywords/serviceBusRuleId"
+            },
+            "eventHubAuthorizationRuleId": {
+                "$ref": "#/$keywords/eventHubAuthorizationRuleId"
+            },
+            "eventHubName": {
+                "$ref": "#/$keywords/eventHubName"
+            },
+            "logs": {
+                "$ref": "#/$keywords/logs"
+            },
+            "workspaceId": {
+                "$ref": "#/$keywords/workspaceId"
+            }
+        }
+    }
+}

@@ -1,0 +1,482 @@
+{
+    "$keywords": {
+        "sendToOwners": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "customEmailAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "locale": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "customDetails": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "recoveryFabricName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "recoveryNetworkId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "fabricSpecificDetails": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerSpecificInput": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "policyId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerSpecificDetails": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "protectableItemId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerSpecificDetails_2": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetProtectionContainerId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyId_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerSpecificInput_2": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "machineName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "machineId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authenticationIdentityInput": {
+            "parameters": {
+                "tenantId": {
+                    "type": "string"
+                },
+                "applicationId": {
+                    "type": "string"
+                },
+                "objectId": {
+                    "type": "string"
+                },
+                "audience": {
+                    "type": "string"
+                },
+                "aadAuthority": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetStorageClassificationId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "friendlyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "ipAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "processServerId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "port": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "runAsAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerSpecificInput_3": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "primaryFabricId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "recoveryFabricId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "failoverDeploymentModel": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotApplicable",
+                        "Classic",
+                        "ResourceManager"
+                    ]
+                }
+            }
+        },
+        "groups": {
+            "parameters": {
+                "groupType": {
+                    "enum": [
+                        "Shutdown",
+                        "Boot",
+                        "Failover"
+                    ]
+                }
+            },
+            "body": {
+                "replicationProtectedItems": {
+                    "$ref": "#/$keywords/replicationProtectedItems"
+                },
+                "startGroupActions": {
+                    "$ref": "#/$keywords/startGroupActions"
+                },
+                "endGroupActions": {
+                    "$ref": "#/$keywords/endGroupActions"
+                }
+            },
+            "array": true
+        },
+        "replicationProtectedItems": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "virtualMachineId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "startGroupActions": {
+            "parameters": {
+                "actionName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "failoverTypes": {
+                    "$ref": "#/$keywords/failoverTypes"
+                },
+                "failoverDirections": {
+                    "$ref": "#/$keywords/failoverDirections"
+                },
+                "customDetails": {
+                    "$ref": "#/$keywords/customDetails_2"
+                }
+            },
+            "array": true
+        },
+        "failoverTypes": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ReverseReplicate",
+                        "Commit",
+                        "PlannedFailover",
+                        "UnplannedFailover",
+                        "DisableProtection",
+                        "TestFailover",
+                        "TestFailoverCleanup",
+                        "Failback",
+                        "FinalizeFailback",
+                        "ChangePit",
+                        "RepairReplication",
+                        "SwitchProtection",
+                        "CompleteMigration"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "failoverDirections": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "PrimaryToRecovery",
+                        "RecoveryToPrimary"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "customDetails_2": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "endGroupActions": {
+            "parameters": {
+                "actionName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "failoverTypes": {
+                    "$ref": "#/$keywords/failoverTypes"
+                },
+                "failoverDirections": {
+                    "$ref": "#/$keywords/failoverDirections"
+                },
+                "customDetails": {
+                    "$ref": "#/$keywords/customDetails_2"
+                }
+            },
+            "array": true
+        },
+        "providerSpecificInput_4": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "migrationSolutionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "vaults/replicationAlertSettings": {
+            "sendToOwners": {
+                "$ref": "#/$keywords/sendToOwners"
+            },
+            "customEmailAddresses": {
+                "$ref": "#/$keywords/customEmailAddresses"
+            },
+            "locale": {
+                "$ref": "#/$keywords/locale"
+            }
+        },
+        "vaults/replicationFabrics": {
+            "customDetails": {
+                "$ref": "#/$keywords/customDetails"
+            }
+        },
+        "vaults/replicationFabrics/replicationNetworks/replicationNetworkMappings": {
+            "recoveryFabricName": {
+                "$ref": "#/$keywords/recoveryFabricName"
+            },
+            "recoveryNetworkId": {
+                "$ref": "#/$keywords/recoveryNetworkId"
+            },
+            "fabricSpecificDetails": {
+                "$ref": "#/$keywords/fabricSpecificDetails"
+            }
+        },
+        "vaults/replicationFabrics/replicationProtectionContainers": {
+            "providerSpecificInput": {
+                "$ref": "#/$keywords/providerSpecificInput"
+            }
+        },
+        "vaults/replicationFabrics/replicationProtectionContainers/replicationMigrationItems": {
+            "policyId": {
+                "$ref": "#/$keywords/policyId"
+            },
+            "providerSpecificDetails": {
+                "$ref": "#/$keywords/providerSpecificDetails"
+            }
+        },
+        "vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems": {
+            "policyId": {
+                "$ref": "#/$keywords/policyId_2"
+            },
+            "protectableItemId": {
+                "$ref": "#/$keywords/protectableItemId"
+            },
+            "providerSpecificDetails": {
+                "$ref": "#/$keywords/providerSpecificDetails_2"
+            }
+        },
+        "vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings": {
+            "targetProtectionContainerId": {
+                "$ref": "#/$keywords/targetProtectionContainerId"
+            },
+            "policyId": {
+                "$ref": "#/$keywords/policyId_3"
+            },
+            "providerSpecificInput": {
+                "$ref": "#/$keywords/providerSpecificInput_2"
+            }
+        },
+        "vaults/replicationFabrics/replicationRecoveryServicesProviders": {
+            "machineName": {
+                "$ref": "#/$keywords/machineName"
+            },
+            "machineId": {
+                "$ref": "#/$keywords/machineId"
+            },
+            "authenticationIdentityInput": {
+                "$ref": "#/$keywords/authenticationIdentityInput"
+            },
+            "resourceAccessIdentityInput": {
+                "$ref": "#/$keywords/authenticationIdentityInput"
+            },
+            "dataPlaneAuthenticationIdentityInput": {
+                "$ref": "#/$keywords/authenticationIdentityInput"
+            }
+        },
+        "vaults/replicationFabrics/replicationStorageClassifications/replicationStorageClassificationMappings": {
+            "targetStorageClassificationId": {
+                "$ref": "#/$keywords/targetStorageClassificationId"
+            }
+        },
+        "vaults/replicationFabrics/replicationvCenters": {
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName"
+            },
+            "ipAddress": {
+                "$ref": "#/$keywords/ipAddress"
+            },
+            "processServerId": {
+                "$ref": "#/$keywords/processServerId"
+            },
+            "port": {
+                "$ref": "#/$keywords/port"
+            },
+            "runAsAccountId": {
+                "$ref": "#/$keywords/runAsAccountId"
+            }
+        },
+        "vaults/replicationPolicies": {
+            "providerSpecificInput": {
+                "$ref": "#/$keywords/providerSpecificInput_3"
+            }
+        },
+        "vaults/replicationRecoveryPlans": {
+            "primaryFabricId": {
+                "$ref": "#/$keywords/primaryFabricId"
+            },
+            "recoveryFabricId": {
+                "$ref": "#/$keywords/recoveryFabricId"
+            },
+            "failoverDeploymentModel": {
+                "$ref": "#/$keywords/failoverDeploymentModel"
+            },
+            "groups": {
+                "$ref": "#/$keywords/groups"
+            },
+            "providerSpecificInput": {
+                "$ref": "#/$keywords/providerSpecificInput_4"
+            }
+        },
+        "vaults/replicationVaultSettings": {
+            "migrationSolutionId": {
+                "$ref": "#/$keywords/migrationSolutionId"
+            }
+        }
+    }
+}

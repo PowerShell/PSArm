@@ -1,0 +1,914 @@
+{
+    "$keywords": {
+        "defaultStorageAccount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "artifactsStorageAccount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageAccounts": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "vaultName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "labStorageType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Standard",
+                        "Premium"
+                    ]
+                }
+            }
+        },
+        "defaultVirtualNetworkId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sourceType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "VsoGit",
+                        "GitHub"
+                    ]
+                }
+            }
+        },
+        "folderPath": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "branchRef": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "securityToken": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vm": {
+            "parameters": {
+                "sourceVmId": {
+                    "type": "string"
+                },
+                "sysPrep": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "windowsOsInfo": {
+                    "$ref": "#/$keywords/windowsOsInfo"
+                },
+                "linuxOsInfo": {
+                    "$ref": "#/$keywords/linuxOsInfo"
+                }
+            }
+        },
+        "windowsOsInfo": {
+            "parameters": {
+                "windowsOsState": {
+                    "enum": [
+                        "NonSysprepped",
+                        "SysprepRequested",
+                        "SysprepApplied"
+                    ]
+                }
+            }
+        },
+        "linuxOsInfo": {
+            "parameters": {
+                "linuxOsState": {
+                    "enum": [
+                        "NonDeprovisioned",
+                        "DeprovisionRequested",
+                        "DeprovisionApplied"
+                    ]
+                }
+            }
+        },
+        "vhd": {
+            "parameters": {
+                "imageName": {
+                    "type": "string"
+                },
+                "sysPrep": {
+                    "type": "bool"
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "osType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Windows",
+                        "Linux",
+                        "None"
+                    ]
+                }
+            }
+        },
+        "author": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "author_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "osType_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "formulaContent": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "tags": {},
+                "notes": {
+                    "type": "string"
+                },
+                "ownerObjectId": {
+                    "type": "string"
+                },
+                "createdByUserId": {
+                    "type": "string"
+                },
+                "createdByUser": {
+                    "type": "string"
+                },
+                "computeId": {
+                    "type": "string"
+                },
+                "customImageId": {
+                    "type": "string"
+                },
+                "osType": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "sshKey": {
+                    "type": "string"
+                },
+                "isAuthenticationWithSshKey": {
+                    "type": "bool"
+                },
+                "fqdn": {
+                    "type": "string"
+                },
+                "labSubnetName": {
+                    "type": "string"
+                },
+                "labVirtualNetworkId": {
+                    "type": "string"
+                },
+                "disallowPublicIpAddress": {
+                    "type": "bool"
+                },
+                "provisioningState": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "artifacts": {
+                    "$ref": "#/$keywords/artifacts"
+                },
+                "artifactDeploymentStatus": {
+                    "$ref": "#/$keywords/artifactDeploymentStatus"
+                },
+                "galleryImageReference": {
+                    "$ref": "#/$keywords/galleryImageReference"
+                }
+            }
+        },
+        "artifacts": {
+            "parameters": {
+                "artifactId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "parameters": {
+                    "$ref": "#/$keywords/parameters"
+                }
+            },
+            "array": true
+        },
+        "parameters": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "artifactDeploymentStatus": {
+            "parameters": {
+                "deploymentStatus": {
+                    "type": "string"
+                },
+                "artifactsApplied": {
+                    "type": "int"
+                },
+                "totalArtifacts": {
+                    "type": "int"
+                }
+            }
+        },
+        "galleryImageReference": {
+            "parameters": {
+                "offer": {
+                    "type": "string"
+                },
+                "publisher": {
+                    "type": "string"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "osType": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "vm_2": {
+            "parameters": {
+                "labVmId": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "factName": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "UserOwnedLabVmCount",
+                        "LabVmCount",
+                        "LabVmSize",
+                        "GalleryImage",
+                        "UserOwnedLabVmCountInSubnet"
+                    ]
+                }
+            }
+        },
+        "factData": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "threshold": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "evaluatorType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "AllowedValuesPolicy",
+                        "MaxValuePolicy"
+                    ]
+                }
+            }
+        },
+        "provisioningState_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "taskType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "LabVmsShutdownTask",
+                        "LabVmsStartupTask",
+                        "LabBillingTask"
+                    ]
+                }
+            }
+        },
+        "weeklyRecurrence": {
+            "parameters": {
+                "time": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "weekdays": {
+                    "$ref": "#/$keywords/weekdays"
+                }
+            }
+        },
+        "weekdays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "dailyRecurrence": {
+            "parameters": {
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "hourlyRecurrence": {
+            "parameters": {
+                "minute": {
+                    "type": "int"
+                }
+            }
+        },
+        "timeZoneId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "notes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "ownerObjectId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdByUserId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdByUser": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "computeId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "customImageId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "osType_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "size": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "password": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sshKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isAuthenticationWithSshKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "fqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "labSubnetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "labVirtualNetworkId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "disallowPublicIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "provisioningState_7": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "allowedSubnets": {
+            "parameters": {
+                "resourceId": {
+                    "type": "string"
+                },
+                "labSubnetName": {
+                    "type": "string"
+                },
+                "allowPublicIp": {
+                    "enum": [
+                        "Default",
+                        "Deny",
+                        "Allow"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "description_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "externalProviderResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subnetOverrides": {
+            "parameters": {
+                "resourceId": {
+                    "type": "string"
+                },
+                "labSubnetName": {
+                    "type": "string"
+                },
+                "useInVmCreationPermission": {
+                    "enum": [
+                        "Default",
+                        "Deny",
+                        "Allow"
+                    ]
+                },
+                "usePublicIpAddressPermission": {
+                    "enum": [
+                        "Default",
+                        "Deny",
+                        "Allow"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "provisioningState_8": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "labs": {
+            "defaultStorageAccount": {
+                "$ref": "#/$keywords/defaultStorageAccount"
+            },
+            "artifactsStorageAccount": {
+                "$ref": "#/$keywords/artifactsStorageAccount"
+            },
+            "storageAccounts": {
+                "$ref": "#/$keywords/storageAccounts"
+            },
+            "vaultName": {
+                "$ref": "#/$keywords/vaultName"
+            },
+            "labStorageType": {
+                "$ref": "#/$keywords/labStorageType"
+            },
+            "defaultVirtualNetworkId": {
+                "$ref": "#/$keywords/defaultVirtualNetworkId"
+            },
+            "createdDate": {
+                "$ref": "#/$keywords/createdDate"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "labs/artifactsources": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "uri": {
+                "$ref": "#/$keywords/uri"
+            },
+            "sourceType": {
+                "$ref": "#/$keywords/sourceType"
+            },
+            "folderPath": {
+                "$ref": "#/$keywords/folderPath"
+            },
+            "branchRef": {
+                "$ref": "#/$keywords/branchRef"
+            },
+            "securityToken": {
+                "$ref": "#/$keywords/securityToken"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            }
+        },
+        "labs/customimages": {
+            "vm": {
+                "$ref": "#/$keywords/vm"
+            },
+            "vhd": {
+                "$ref": "#/$keywords/vhd"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "osType": {
+                "$ref": "#/$keywords/osType"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            }
+        },
+        "labs/formulas": {
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            },
+            "author": {
+                "$ref": "#/$keywords/author_2"
+            },
+            "osType": {
+                "$ref": "#/$keywords/osType_2"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate_2"
+            },
+            "formulaContent": {
+                "$ref": "#/$keywords/formulaContent"
+            },
+            "vm": {
+                "$ref": "#/$keywords/vm_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_4"
+            }
+        },
+        "labs/policysets/policies": {
+            "description": {
+                "$ref": "#/$keywords/description_3"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_2"
+            },
+            "factName": {
+                "$ref": "#/$keywords/factName"
+            },
+            "factData": {
+                "$ref": "#/$keywords/factData"
+            },
+            "threshold": {
+                "$ref": "#/$keywords/threshold"
+            },
+            "evaluatorType": {
+                "$ref": "#/$keywords/evaluatorType"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_5"
+            }
+        },
+        "labs/schedules": {
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "taskType": {
+                "$ref": "#/$keywords/taskType"
+            },
+            "weeklyRecurrence": {
+                "$ref": "#/$keywords/weeklyRecurrence"
+            },
+            "dailyRecurrence": {
+                "$ref": "#/$keywords/dailyRecurrence"
+            },
+            "hourlyRecurrence": {
+                "$ref": "#/$keywords/hourlyRecurrence"
+            },
+            "timeZoneId": {
+                "$ref": "#/$keywords/timeZoneId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_6"
+            }
+        },
+        "labs/virtualmachines": {
+            "notes": {
+                "$ref": "#/$keywords/notes"
+            },
+            "ownerObjectId": {
+                "$ref": "#/$keywords/ownerObjectId"
+            },
+            "createdByUserId": {
+                "$ref": "#/$keywords/createdByUserId"
+            },
+            "createdByUser": {
+                "$ref": "#/$keywords/createdByUser"
+            },
+            "computeId": {
+                "$ref": "#/$keywords/computeId"
+            },
+            "customImageId": {
+                "$ref": "#/$keywords/customImageId"
+            },
+            "osType": {
+                "$ref": "#/$keywords/osType_3"
+            },
+            "size": {
+                "$ref": "#/$keywords/size"
+            },
+            "userName": {
+                "$ref": "#/$keywords/userName"
+            },
+            "password": {
+                "$ref": "#/$keywords/password"
+            },
+            "sshKey": {
+                "$ref": "#/$keywords/sshKey"
+            },
+            "isAuthenticationWithSshKey": {
+                "$ref": "#/$keywords/isAuthenticationWithSshKey"
+            },
+            "fqdn": {
+                "$ref": "#/$keywords/fqdn"
+            },
+            "labSubnetName": {
+                "$ref": "#/$keywords/labSubnetName"
+            },
+            "labVirtualNetworkId": {
+                "$ref": "#/$keywords/labVirtualNetworkId"
+            },
+            "disallowPublicIpAddress": {
+                "$ref": "#/$keywords/disallowPublicIpAddress"
+            },
+            "artifacts": {
+                "$ref": "#/$keywords/artifacts"
+            },
+            "artifactDeploymentStatus": {
+                "$ref": "#/$keywords/artifactDeploymentStatus"
+            },
+            "galleryImageReference": {
+                "$ref": "#/$keywords/galleryImageReference"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_7"
+            }
+        },
+        "labs/virtualnetworks": {
+            "allowedSubnets": {
+                "$ref": "#/$keywords/allowedSubnets"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_4"
+            },
+            "externalProviderResourceId": {
+                "$ref": "#/$keywords/externalProviderResourceId"
+            },
+            "subnetOverrides": {
+                "$ref": "#/$keywords/subnetOverrides"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_8"
+            }
+        }
+    }
+}

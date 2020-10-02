@@ -1,0 +1,196 @@
+{
+    "$keywords": {
+        "protectedItemType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupManagementType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Invalid",
+                        "AzureIaasVM",
+                        "MAB",
+                        "DPM",
+                        "AzureBackupServer",
+                        "AzureSql",
+                        "AzureStorage",
+                        "AzureWorkload",
+                        "DefaultBackup"
+                    ]
+                }
+            }
+        },
+        "workloadType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Invalid",
+                        "VM",
+                        "FileFolder",
+                        "AzureSqlDb",
+                        "SQLDB",
+                        "Exchange",
+                        "Sharepoint",
+                        "VMwareVM",
+                        "SystemState",
+                        "Client",
+                        "GenericDataSource",
+                        "SQLDataBase",
+                        "AzureFileShare",
+                        "SAPHanaDatabase",
+                        "SAPAseDatabase"
+                    ]
+                }
+            }
+        },
+        "containerName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sourceResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastRecoveryPoint": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "backupSetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createMode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Invalid",
+                        "Default",
+                        "Recover"
+                    ]
+                }
+            }
+        },
+        "deferredDeleteTimeInUTC": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "isScheduledForDeferredDelete": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "deferredDeleteTimeRemaining": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isDeferredDeleteScheduleUpcoming": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isRehydrate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "protectedItemsCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "backupManagementType_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "vaults/backupFabrics/protectionContainers/protectedItems": {
+            "protectedItemType": {
+                "$ref": "#/$keywords/protectedItemType"
+            },
+            "backupManagementType": {
+                "$ref": "#/$keywords/backupManagementType"
+            },
+            "workloadType": {
+                "$ref": "#/$keywords/workloadType"
+            },
+            "containerName": {
+                "$ref": "#/$keywords/containerName"
+            },
+            "sourceResourceId": {
+                "$ref": "#/$keywords/sourceResourceId"
+            },
+            "policyId": {
+                "$ref": "#/$keywords/policyId"
+            },
+            "lastRecoveryPoint": {
+                "$ref": "#/$keywords/lastRecoveryPoint"
+            },
+            "backupSetName": {
+                "$ref": "#/$keywords/backupSetName"
+            },
+            "createMode": {
+                "$ref": "#/$keywords/createMode"
+            },
+            "deferredDeleteTimeInUTC": {
+                "$ref": "#/$keywords/deferredDeleteTimeInUTC"
+            },
+            "isScheduledForDeferredDelete": {
+                "$ref": "#/$keywords/isScheduledForDeferredDelete"
+            },
+            "deferredDeleteTimeRemaining": {
+                "$ref": "#/$keywords/deferredDeleteTimeRemaining"
+            },
+            "isDeferredDeleteScheduleUpcoming": {
+                "$ref": "#/$keywords/isDeferredDeleteScheduleUpcoming"
+            },
+            "isRehydrate": {
+                "$ref": "#/$keywords/isRehydrate"
+            }
+        },
+        "vaults/backupPolicies": {
+            "protectedItemsCount": {
+                "$ref": "#/$keywords/protectedItemsCount"
+            },
+            "backupManagementType": {
+                "$ref": "#/$keywords/backupManagementType_2"
+            }
+        }
+    }
+}

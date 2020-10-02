@@ -1,0 +1,724 @@
+{
+    "$keywords": {
+        "schedulingPriority": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "low",
+                        "normal",
+                        "high"
+                    ]
+                }
+            }
+        },
+        "cluster": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "mountVolumes": {
+            "body": {
+                "azureFileShares": {
+                    "$ref": "#/$keywords/azureFileShares"
+                },
+                "azureBlobFileSystems": {
+                    "$ref": "#/$keywords/azureBlobFileSystems"
+                },
+                "fileServers": {
+                    "$ref": "#/$keywords/fileServers"
+                },
+                "unmanagedFileSystems": {
+                    "$ref": "#/$keywords/unmanagedFileSystems"
+                }
+            }
+        },
+        "azureFileShares": {
+            "parameters": {
+                "accountName": {
+                    "type": "string"
+                },
+                "azureFileUrl": {
+                    "type": "string"
+                },
+                "relativeMountPath": {
+                    "type": "string"
+                },
+                "fileMode": {
+                    "type": "string"
+                },
+                "directoryMode": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "credentials": {
+                    "$ref": "#/$keywords/credentials"
+                }
+            },
+            "array": true
+        },
+        "credentials": {
+            "parameters": {
+                "accountKey": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "accountKeySecretReference": {
+                    "$ref": "#/$keywords/accountKeySecretReference"
+                }
+            }
+        },
+        "accountKeySecretReference": {
+            "parameters": {
+                "secretUrl": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/cluster"
+                }
+            }
+        },
+        "azureBlobFileSystems": {
+            "parameters": {
+                "accountName": {
+                    "type": "string"
+                },
+                "containerName": {
+                    "type": "string"
+                },
+                "relativeMountPath": {
+                    "type": "string"
+                },
+                "mountOptions": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "credentials": {
+                    "$ref": "#/$keywords/credentials"
+                }
+            },
+            "array": true
+        },
+        "fileServers": {
+            "parameters": {
+                "sourceDirectory": {
+                    "type": "string"
+                },
+                "relativeMountPath": {
+                    "type": "string"
+                },
+                "mountOptions": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "fileServer": {
+                    "$ref": "#/$keywords/cluster"
+                }
+            },
+            "array": true
+        },
+        "unmanagedFileSystems": {
+            "parameters": {
+                "mountCommand": {
+                    "type": "string"
+                },
+                "relativeMountPath": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "nodeCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "containerSettings": {
+            "parameters": {
+                "shmSize": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "imageSourceRegistry": {
+                    "$ref": "#/$keywords/imageSourceRegistry"
+                }
+            }
+        },
+        "imageSourceRegistry": {
+            "parameters": {
+                "serverUrl": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "credentials": {
+                    "$ref": "#/$keywords/credentials_2"
+                }
+            }
+        },
+        "credentials_2": {
+            "parameters": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "passwordSecretReference": {
+                    "$ref": "#/$keywords/accountKeySecretReference"
+                }
+            }
+        },
+        "cntkSettings": {
+            "parameters": {
+                "languageType": {
+                    "type": "string"
+                },
+                "configFilePath": {
+                    "type": "string"
+                },
+                "pythonScriptFilePath": {
+                    "type": "string"
+                },
+                "pythonInterpreterPath": {
+                    "type": "string"
+                },
+                "commandLineArgs": {
+                    "type": "string"
+                },
+                "processCount": {
+                    "type": "int"
+                }
+            }
+        },
+        "pyTorchSettings": {
+            "parameters": {
+                "pythonScriptFilePath": {
+                    "type": "string"
+                },
+                "pythonInterpreterPath": {
+                    "type": "string"
+                },
+                "commandLineArgs": {
+                    "type": "string"
+                },
+                "processCount": {
+                    "type": "int"
+                },
+                "communicationBackend": {
+                    "type": "string"
+                }
+            }
+        },
+        "tensorFlowSettings": {
+            "parameters": {
+                "pythonScriptFilePath": {
+                    "type": "string"
+                },
+                "pythonInterpreterPath": {
+                    "type": "string"
+                },
+                "masterCommandLineArgs": {
+                    "type": "string"
+                },
+                "workerCommandLineArgs": {
+                    "type": "string"
+                },
+                "parameterServerCommandLineArgs": {
+                    "type": "string"
+                },
+                "workerCount": {
+                    "type": "int"
+                },
+                "parameterServerCount": {
+                    "type": "int"
+                }
+            }
+        },
+        "caffeSettings": {
+            "parameters": {
+                "configFilePath": {
+                    "type": "string"
+                },
+                "pythonScriptFilePath": {
+                    "type": "string"
+                },
+                "pythonInterpreterPath": {
+                    "type": "string"
+                },
+                "commandLineArgs": {
+                    "type": "string"
+                },
+                "processCount": {
+                    "type": "int"
+                }
+            }
+        },
+        "caffe2Settings": {
+            "parameters": {
+                "pythonScriptFilePath": {
+                    "type": "string"
+                },
+                "pythonInterpreterPath": {
+                    "type": "string"
+                },
+                "commandLineArgs": {
+                    "type": "string"
+                }
+            }
+        },
+        "chainerSettings": {
+            "parameters": {
+                "pythonScriptFilePath": {
+                    "type": "string"
+                },
+                "pythonInterpreterPath": {
+                    "type": "string"
+                },
+                "commandLineArgs": {
+                    "type": "string"
+                },
+                "processCount": {
+                    "type": "int"
+                }
+            }
+        },
+        "customToolkitSettings": {
+            "parameters": {
+                "commandLine": {
+                    "type": "string"
+                }
+            }
+        },
+        "customMpiSettings": {
+            "parameters": {
+                "commandLine": {
+                    "type": "string"
+                },
+                "processCount": {
+                    "type": "int"
+                }
+            }
+        },
+        "horovodSettings": {
+            "parameters": {
+                "pythonScriptFilePath": {
+                    "type": "string"
+                },
+                "pythonInterpreterPath": {
+                    "type": "string"
+                },
+                "commandLineArgs": {
+                    "type": "string"
+                },
+                "processCount": {
+                    "type": "int"
+                }
+            }
+        },
+        "jobPreparation": {
+            "parameters": {
+                "commandLine": {
+                    "type": "string"
+                }
+            }
+        },
+        "stdOutErrPathPrefix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "inputDirectories": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "outputDirectories": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "pathPrefix": {
+                    "type": "string"
+                },
+                "pathSuffix": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "environmentVariables": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "secrets": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "valueSecretReference": {
+                    "$ref": "#/$keywords/accountKeySecretReference"
+                }
+            },
+            "array": true
+        },
+        "constraints": {
+            "parameters": {
+                "maxWallClockTime": {}
+            }
+        },
+        "vmSize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sshConfiguration": {
+            "body": {
+                "publicIPsToAllow": {
+                    "$ref": "#/$keywords/publicIPsToAllow"
+                },
+                "userAccountSettings": {
+                    "$ref": "#/$keywords/userAccountSettings"
+                }
+            }
+        },
+        "publicIPsToAllow": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "userAccountSettings": {
+            "parameters": {
+                "adminUserName": {
+                    "type": "string"
+                },
+                "adminUserSshPublicKey": {
+                    "type": "string"
+                },
+                "adminUserPassword": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataDisks": {
+            "parameters": {
+                "diskSizeInGB": {
+                    "type": "int"
+                },
+                "cachingType": {},
+                "diskCount": {
+                    "type": "int"
+                },
+                "storageAccountType": {
+                    "enum": [
+                        "Standard_LRS",
+                        "Premium_LRS"
+                    ]
+                }
+            }
+        },
+        "vmSize_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vmPriority": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "scaleSettings": {
+            "body": {
+                "manual": {
+                    "$ref": "#/$keywords/manual"
+                },
+                "autoScale": {
+                    "$ref": "#/$keywords/autoScale"
+                }
+            }
+        },
+        "manual": {
+            "parameters": {
+                "targetNodeCount": {
+                    "type": "int"
+                },
+                "nodeDeallocationOption": {
+                    "enum": [
+                        "requeue",
+                        "terminate",
+                        "waitforjobcompletion"
+                    ]
+                }
+            }
+        },
+        "autoScale": {
+            "parameters": {
+                "minimumNodeCount": {
+                    "type": "int"
+                },
+                "maximumNodeCount": {
+                    "type": "int"
+                },
+                "initialNodeCount": {
+                    "type": "int"
+                }
+            }
+        },
+        "virtualMachineConfiguration": {
+            "body": {
+                "imageReference": {
+                    "$ref": "#/$keywords/imageReference"
+                }
+            }
+        },
+        "imageReference": {
+            "parameters": {
+                "publisher": {
+                    "type": "string"
+                },
+                "offer": {
+                    "type": "string"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "virtualMachineImageId": {
+                    "type": "string"
+                }
+            }
+        },
+        "nodeSetup": {
+            "body": {
+                "setupTask": {
+                    "$ref": "#/$keywords/setupTask"
+                },
+                "mountVolumes": {
+                    "$ref": "#/$keywords/mountVolumes"
+                },
+                "performanceCountersSettings": {
+                    "$ref": "#/$keywords/performanceCountersSettings"
+                }
+            }
+        },
+        "setupTask": {
+            "parameters": {
+                "commandLine": {
+                    "type": "string"
+                },
+                "stdOutErrPathPrefix": {
+                    "type": "string"
+                },
+                "stdOutErrPathSuffix": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "environmentVariables": {
+                    "$ref": "#/$keywords/environmentVariables_2"
+                },
+                "secrets": {
+                    "$ref": "#/$keywords/secrets_2"
+                }
+            }
+        },
+        "environmentVariables_2": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "secrets_2": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "valueSecretReference": {
+                    "$ref": "#/$keywords/accountKeySecretReference"
+                }
+            },
+            "array": true
+        },
+        "performanceCountersSettings": {
+            "body": {
+                "appInsightsReference": {
+                    "$ref": "#/$keywords/appInsightsReference"
+                }
+            }
+        },
+        "appInsightsReference": {
+            "parameters": {
+                "instrumentationKey": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "component": {
+                    "$ref": "#/$keywords/cluster"
+                },
+                "instrumentationKeySecretReference": {
+                    "$ref": "#/$keywords/accountKeySecretReference"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "workspaces": {},
+        "workspaces/experiments/jobs": {
+            "schedulingPriority": {
+                "$ref": "#/$keywords/schedulingPriority"
+            },
+            "cluster": {
+                "$ref": "#/$keywords/cluster"
+            },
+            "mountVolumes": {
+                "$ref": "#/$keywords/mountVolumes"
+            },
+            "nodeCount": {
+                "$ref": "#/$keywords/nodeCount"
+            },
+            "containerSettings": {
+                "$ref": "#/$keywords/containerSettings"
+            },
+            "cntkSettings": {
+                "$ref": "#/$keywords/cntkSettings"
+            },
+            "pyTorchSettings": {
+                "$ref": "#/$keywords/pyTorchSettings"
+            },
+            "tensorFlowSettings": {
+                "$ref": "#/$keywords/tensorFlowSettings"
+            },
+            "caffeSettings": {
+                "$ref": "#/$keywords/caffeSettings"
+            },
+            "caffe2Settings": {
+                "$ref": "#/$keywords/caffe2Settings"
+            },
+            "chainerSettings": {
+                "$ref": "#/$keywords/chainerSettings"
+            },
+            "customToolkitSettings": {
+                "$ref": "#/$keywords/customToolkitSettings"
+            },
+            "customMpiSettings": {
+                "$ref": "#/$keywords/customMpiSettings"
+            },
+            "horovodSettings": {
+                "$ref": "#/$keywords/horovodSettings"
+            },
+            "jobPreparation": {
+                "$ref": "#/$keywords/jobPreparation"
+            },
+            "stdOutErrPathPrefix": {
+                "$ref": "#/$keywords/stdOutErrPathPrefix"
+            },
+            "inputDirectories": {
+                "$ref": "#/$keywords/inputDirectories"
+            },
+            "outputDirectories": {
+                "$ref": "#/$keywords/outputDirectories"
+            },
+            "environmentVariables": {
+                "$ref": "#/$keywords/environmentVariables"
+            },
+            "secrets": {
+                "$ref": "#/$keywords/secrets"
+            },
+            "constraints": {
+                "$ref": "#/$keywords/constraints"
+            }
+        },
+        "workspaces/fileServers": {
+            "vmSize": {
+                "$ref": "#/$keywords/vmSize"
+            },
+            "sshConfiguration": {
+                "$ref": "#/$keywords/sshConfiguration"
+            },
+            "dataDisks": {
+                "$ref": "#/$keywords/dataDisks"
+            },
+            "subnet": {
+                "$ref": "#/$keywords/cluster"
+            }
+        },
+        "workspaces/clusters": {
+            "vmSize": {
+                "$ref": "#/$keywords/vmSize_2"
+            },
+            "vmPriority": {
+                "$ref": "#/$keywords/vmPriority"
+            },
+            "scaleSettings": {
+                "$ref": "#/$keywords/scaleSettings"
+            },
+            "virtualMachineConfiguration": {
+                "$ref": "#/$keywords/virtualMachineConfiguration"
+            },
+            "nodeSetup": {
+                "$ref": "#/$keywords/nodeSetup"
+            },
+            "userAccountSettings": {
+                "$ref": "#/$keywords/userAccountSettings"
+            },
+            "subnet": {
+                "$ref": "#/$keywords/cluster"
+            }
+        }
+    }
+}

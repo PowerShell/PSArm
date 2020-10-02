@@ -1,0 +1,51 @@
+{
+    "$keywords": {
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workload": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Production",
+                        "DevTest"
+                    ]
+                }
+            }
+        },
+        "billingScope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "aliases": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "workload": {
+                "$ref": "#/$keywords/workload"
+            },
+            "billingScope": {
+                "$ref": "#/$keywords/billingScope"
+            },
+            "subscriptionId": {
+                "$ref": "#/$keywords/subscriptionId"
+            }
+        }
+    }
+}

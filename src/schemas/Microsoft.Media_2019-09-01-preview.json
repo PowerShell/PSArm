@@ -1,0 +1,90 @@
+{
+    "$keywords": {
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Running",
+                        "Starting",
+                        "Stopped",
+                        "Stopping"
+                    ]
+                }
+            }
+        },
+        "created": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "sources": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "sinks": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "inputs": {
+                    "$ref": "#/$keywords/inputs"
+                }
+            },
+            "array": true
+        },
+        "inputs": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "mediaServices/mediaGraphs": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "created": {
+                "$ref": "#/$keywords/created"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified"
+            },
+            "sources": {
+                "$ref": "#/$keywords/sources"
+            },
+            "sinks": {
+                "$ref": "#/$keywords/sinks"
+            }
+        }
+    }
+}

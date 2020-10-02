@@ -1,0 +1,418 @@
+{
+    "$keywords": {
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "statuses": {
+            "parameters": {
+                "status": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "body": {
+                "error": {
+                    "$ref": "#/$keywords/error"
+                }
+            },
+            "array": true
+        },
+        "error": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            }
+        },
+        "customParameterValues": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "tenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "parameterValues": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "nonSecretParameterValues": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "firstExpirationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "keywords": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "createdTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "api": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "body": {
+                "entity": {
+                    "$ref": "#/$keywords/entity"
+                }
+            }
+        },
+        "entity": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "propertyParameters": {
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "apiDefinitionUrl": {
+                    "type": "string"
+                },
+                "metadata": {},
+                "connectionParameters": {},
+                "createdTime": {},
+                "changedTime": {}
+            },
+            "body": {
+                "plan": {
+                    "$ref": "#/$keywords/plan"
+                },
+                "sku": {
+                    "$ref": "#/$keywords/sku"
+                },
+                "generalInformation": {
+                    "$ref": "#/$keywords/generalInformation"
+                },
+                "runtimeUrls": {
+                    "$ref": "#/$keywords/runtimeUrls"
+                },
+                "protocols": {
+                    "$ref": "#/$keywords/protocols"
+                },
+                "policies": {
+                    "$ref": "#/$keywords/policies"
+                },
+                "backendService": {
+                    "$ref": "#/$keywords/backendService"
+                },
+                "capabilities": {
+                    "$ref": "#/$keywords/capabilities"
+                }
+            }
+        },
+        "plan": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "publisher": {
+                    "type": "string"
+                },
+                "product": {
+                    "type": "string"
+                },
+                "promotionCode": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "sku": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "tier": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "family": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "int"
+                }
+            }
+        },
+        "generalInformation": {
+            "parameters": {
+                "iconUrl": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "termsOfUseUrl": {
+                    "type": "string"
+                },
+                "connectionDisplayName": {
+                    "type": "string"
+                },
+                "connectionPortalUrl": {},
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            }
+        },
+        "runtimeUrls": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "protocols": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "policies": {
+            "parameters": {
+                "content": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            }
+        },
+        "backendService": {
+            "parameters": {
+                "serviceUrl": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "body": {
+                "hostingEnvironmentServiceUrls": {
+                    "$ref": "#/$keywords/hostingEnvironmentServiceUrls"
+                }
+            }
+        },
+        "hostingEnvironmentServiceUrls": {
+            "parameters": {
+                "hostingEnvironmentId": {
+                    "type": "string"
+                },
+                "hostId": {
+                    "type": "string"
+                },
+                "serviceUrl": {
+                    "type": "string"
+                },
+                "useInternalRouting": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "capabilities": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "connections": {
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "statuses": {
+                "$ref": "#/$keywords/statuses"
+            },
+            "customParameterValues": {
+                "$ref": "#/$keywords/customParameterValues"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "parameterValues": {
+                "$ref": "#/$keywords/parameterValues"
+            },
+            "nonSecretParameterValues": {
+                "$ref": "#/$keywords/nonSecretParameterValues"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "firstExpirationTime": {
+                "$ref": "#/$keywords/firstExpirationTime"
+            },
+            "keywords": {
+                "$ref": "#/$keywords/keywords"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime"
+            },
+            "api": {
+                "$ref": "#/$keywords/api"
+            }
+        }
+    }
+}

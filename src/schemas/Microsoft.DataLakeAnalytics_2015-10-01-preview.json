@@ -1,0 +1,149 @@
+{
+    "$keywords": {
+        "accessKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "suffix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "suffix_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "defaultDataLakeStoreAccount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "maxDegreeOfParallelism": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "maxJobCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "dataLakeStoreAccounts": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "propertyParameters": {
+                "suffix": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "storageAccounts": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "propertyParameters": {
+                "accessKey": {
+                    "type": "string"
+                },
+                "suffix": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "creationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModifiedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "endpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "accounts/StorageAccounts": {
+            "accessKey": {
+                "$ref": "#/$keywords/accessKey"
+            },
+            "suffix": {
+                "$ref": "#/$keywords/suffix"
+            }
+        },
+        "accounts/DataLakeStoreAccounts": {
+            "suffix": {
+                "$ref": "#/$keywords/suffix_2"
+            }
+        },
+        "accounts": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "defaultDataLakeStoreAccount": {
+                "$ref": "#/$keywords/defaultDataLakeStoreAccount"
+            },
+            "maxDegreeOfParallelism": {
+                "$ref": "#/$keywords/maxDegreeOfParallelism"
+            },
+            "maxJobCount": {
+                "$ref": "#/$keywords/maxJobCount"
+            },
+            "dataLakeStoreAccounts": {
+                "$ref": "#/$keywords/dataLakeStoreAccounts"
+            },
+            "storageAccounts": {
+                "$ref": "#/$keywords/storageAccounts"
+            },
+            "creationTime": {
+                "$ref": "#/$keywords/creationTime"
+            },
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint"
+            }
+        }
+    }
+}

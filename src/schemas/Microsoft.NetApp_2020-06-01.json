@@ -1,0 +1,752 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "activeDirectories": {
+            "parameters": {
+                "activeDirectoryId": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "dns": {
+                    "type": "string",
+                    "pattern": "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((, ?)(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))*$"
+                },
+                "status": {
+                    "enum": [
+                        "Created",
+                        "InUse",
+                        "Deleted",
+                        "Error",
+                        "Updating"
+                    ]
+                },
+                "statusDetails": {
+                    "type": "string"
+                },
+                "smbServerName": {
+                    "type": "string"
+                },
+                "organizationalUnit": {
+                    "type": "string"
+                },
+                "site": {
+                    "type": "string"
+                },
+                "kdcIP": {
+                    "type": "string",
+                    "pattern": "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)((, ?)(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))*$"
+                },
+                "adName": {
+                    "type": "string"
+                },
+                "serverRootCACertificate": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "backupOperators": {
+                    "$ref": "#/$keywords/backupOperators"
+                }
+            },
+            "array": true
+        },
+        "backupOperators": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "poolId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+            }
+        },
+        "size": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "serviceLevel": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Standard",
+                        "Premium",
+                        "Ultra"
+                    ]
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "totalThroughputMibps": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "utilizedThroughputMibps": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "qosType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Auto",
+                        "Manual"
+                    ]
+                }
+            }
+        },
+        "fileSystemId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+            }
+        },
+        "creationToken": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z][a-zA-Z0-9\\-]{0,79}$"
+                }
+            }
+        },
+        "usageThreshold": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "exportPolicy": {
+            "body": {
+                "rules": {
+                    "$ref": "#/$keywords/rules"
+                }
+            }
+        },
+        "rules": {
+            "parameters": {
+                "ruleIndex": {
+                    "type": "int"
+                },
+                "unixReadOnly": {
+                    "type": "bool"
+                },
+                "unixReadWrite": {
+                    "type": "bool"
+                },
+                "kerberos5ReadOnly": {
+                    "type": "bool"
+                },
+                "kerberos5ReadWrite": {
+                    "type": "bool"
+                },
+                "kerberos5iReadOnly": {
+                    "type": "bool"
+                },
+                "kerberos5iReadWrite": {
+                    "type": "bool"
+                },
+                "kerberos5pReadOnly": {
+                    "type": "bool"
+                },
+                "kerberos5pReadWrite": {
+                    "type": "bool"
+                },
+                "cifs": {
+                    "type": "bool"
+                },
+                "nfsv3": {
+                    "type": "bool"
+                },
+                "nfsv41": {
+                    "type": "bool"
+                },
+                "allowedClients": {
+                    "type": "string"
+                },
+                "hasRootAccess": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "protocolTypes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "snapshotId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}|(\\\\?([^\\/]*[\\/])*)([^\\/]+)$"
+                }
+            }
+        },
+        "backupId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}|(\\\\?([^\\/]*[\\/])*)([^\\/]+)$"
+                }
+            }
+        },
+        "baremetalTenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+            }
+        },
+        "subnetId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "mountTargets": {
+            "parameters": {
+                "mountTargetId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                },
+                "fileSystemId": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                },
+                "ipAddress": {
+                    "type": "string"
+                },
+                "smbServerFqdn": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "volumeType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataProtection": {
+            "body": {
+                "backup": {
+                    "$ref": "#/$keywords/backup"
+                },
+                "replication": {
+                    "$ref": "#/$keywords/replication"
+                },
+                "snapshot": {
+                    "$ref": "#/$keywords/snapshot"
+                }
+            }
+        },
+        "backup": {
+            "parameters": {
+                "backupPolicyId": {
+                    "type": "string"
+                },
+                "policyEnforced": {
+                    "type": "bool"
+                },
+                "vaultId": {
+                    "type": "string"
+                },
+                "backupEnabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "replication": {
+            "parameters": {
+                "replicationId": {
+                    "type": "string"
+                },
+                "endpointType": {
+                    "enum": [
+                        "src",
+                        "dst"
+                    ]
+                },
+                "replicationSchedule": {
+                    "enum": [
+                        "_10minutely",
+                        "hourly",
+                        "daily"
+                    ]
+                },
+                "remoteVolumeResourceId": {
+                    "type": "string"
+                },
+                "remoteVolumeRegion": {
+                    "type": "string"
+                }
+            }
+        },
+        "snapshot": {
+            "parameters": {
+                "snapshotPolicyId": {
+                    "type": "string"
+                }
+            }
+        },
+        "isRestoring": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "snapshotDirectoryVisible": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "kerberosEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "securityStyle": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ntfs",
+                        "unix"
+                    ]
+                }
+            }
+        },
+        "throughputMibps": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "snapshotId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+            }
+        },
+        "created": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hourlySchedule": {
+            "parameters": {
+                "snapshotsToKeep": {
+                    "type": "int"
+                },
+                "minute": {
+                    "type": "int"
+                },
+                "usedBytes": {
+                    "type": "int"
+                }
+            }
+        },
+        "dailySchedule": {
+            "parameters": {
+                "snapshotsToKeep": {
+                    "type": "int"
+                },
+                "hour": {
+                    "type": "int"
+                },
+                "minute": {
+                    "type": "int"
+                },
+                "usedBytes": {
+                    "type": "int"
+                }
+            }
+        },
+        "weeklySchedule": {
+            "parameters": {
+                "snapshotsToKeep": {
+                    "type": "int"
+                },
+                "day": {
+                    "type": "string"
+                },
+                "hour": {
+                    "type": "int"
+                },
+                "minute": {
+                    "type": "int"
+                },
+                "usedBytes": {
+                    "type": "int"
+                }
+            }
+        },
+        "monthlySchedule": {
+            "parameters": {
+                "snapshotsToKeep": {
+                    "type": "int"
+                },
+                "daysOfMonth": {
+                    "type": "string"
+                },
+                "hour": {
+                    "type": "int"
+                },
+                "minute": {
+                    "type": "int"
+                },
+                "usedBytes": {
+                    "type": "int"
+                }
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "provisioningState_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "size_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "label": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_7": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dailyBackupsToKeep": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "weeklyBackupsToKeep": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "monthlyBackupsToKeep": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "yearlyBackupsToKeep": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "volumesAssigned": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "volumeBackups": {
+            "parameters": {
+                "volumeName": {
+                    "type": "string"
+                },
+                "backupsCount": {
+                    "type": "int"
+                },
+                "policyEnabled": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "netAppAccounts": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "activeDirectories": {
+                "$ref": "#/$keywords/activeDirectories"
+            }
+        },
+        "netAppAccounts/capacityPools": {
+            "poolId": {
+                "$ref": "#/$keywords/poolId"
+            },
+            "size": {
+                "$ref": "#/$keywords/size"
+            },
+            "serviceLevel": {
+                "$ref": "#/$keywords/serviceLevel"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "totalThroughputMibps": {
+                "$ref": "#/$keywords/totalThroughputMibps"
+            },
+            "utilizedThroughputMibps": {
+                "$ref": "#/$keywords/utilizedThroughputMibps"
+            },
+            "qosType": {
+                "$ref": "#/$keywords/qosType"
+            }
+        },
+        "netAppAccounts/capacityPools/volumes": {
+            "fileSystemId": {
+                "$ref": "#/$keywords/fileSystemId"
+            },
+            "creationToken": {
+                "$ref": "#/$keywords/creationToken"
+            },
+            "serviceLevel": {
+                "$ref": "#/$keywords/serviceLevel"
+            },
+            "usageThreshold": {
+                "$ref": "#/$keywords/usageThreshold"
+            },
+            "exportPolicy": {
+                "$ref": "#/$keywords/exportPolicy"
+            },
+            "protocolTypes": {
+                "$ref": "#/$keywords/protocolTypes"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "snapshotId": {
+                "$ref": "#/$keywords/snapshotId"
+            },
+            "backupId": {
+                "$ref": "#/$keywords/backupId"
+            },
+            "baremetalTenantId": {
+                "$ref": "#/$keywords/baremetalTenantId"
+            },
+            "subnetId": {
+                "$ref": "#/$keywords/subnetId"
+            },
+            "mountTargets": {
+                "$ref": "#/$keywords/mountTargets"
+            },
+            "volumeType": {
+                "$ref": "#/$keywords/volumeType"
+            },
+            "dataProtection": {
+                "$ref": "#/$keywords/dataProtection"
+            },
+            "isRestoring": {
+                "$ref": "#/$keywords/isRestoring"
+            },
+            "snapshotDirectoryVisible": {
+                "$ref": "#/$keywords/snapshotDirectoryVisible"
+            },
+            "kerberosEnabled": {
+                "$ref": "#/$keywords/kerberosEnabled"
+            },
+            "securityStyle": {
+                "$ref": "#/$keywords/securityStyle"
+            },
+            "throughputMibps": {
+                "$ref": "#/$keywords/throughputMibps"
+            }
+        },
+        "netAppAccounts/capacityPools/volumes/snapshots": {
+            "snapshotId": {
+                "$ref": "#/$keywords/snapshotId_2"
+            },
+            "created": {
+                "$ref": "#/$keywords/created"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_4"
+            }
+        },
+        "netAppAccounts/snapshotPolicies": {
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "hourlySchedule": {
+                "$ref": "#/$keywords/hourlySchedule"
+            },
+            "dailySchedule": {
+                "$ref": "#/$keywords/dailySchedule"
+            },
+            "weeklySchedule": {
+                "$ref": "#/$keywords/weeklySchedule"
+            },
+            "monthlySchedule": {
+                "$ref": "#/$keywords/monthlySchedule"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_5"
+            }
+        },
+        "netAppAccounts/capacityPools/volumes/backups": {
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_6"
+            },
+            "size": {
+                "$ref": "#/$keywords/size_2"
+            },
+            "label": {
+                "$ref": "#/$keywords/label"
+            },
+            "backupType": {
+                "$ref": "#/$keywords/backupType"
+            }
+        },
+        "netAppAccounts/backupPolicies": {
+            "name": {
+                "$ref": "#/$keywords/name_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_7"
+            },
+            "dailyBackupsToKeep": {
+                "$ref": "#/$keywords/dailyBackupsToKeep"
+            },
+            "weeklyBackupsToKeep": {
+                "$ref": "#/$keywords/weeklyBackupsToKeep"
+            },
+            "monthlyBackupsToKeep": {
+                "$ref": "#/$keywords/monthlyBackupsToKeep"
+            },
+            "yearlyBackupsToKeep": {
+                "$ref": "#/$keywords/yearlyBackupsToKeep"
+            },
+            "volumesAssigned": {
+                "$ref": "#/$keywords/volumesAssigned"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "volumeBackups": {
+                "$ref": "#/$keywords/volumeBackups"
+            }
+        }
+    }
+}

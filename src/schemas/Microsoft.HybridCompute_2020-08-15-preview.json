@@ -1,0 +1,491 @@
+{
+    "$keywords": {
+        "locationData": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "countryOrRegion": {
+                    "type": "string"
+                }
+            }
+        },
+        "osProfile": {
+            "parameters": {
+                "computerName": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Connected",
+                        "Disconnected",
+                        "Error"
+                    ]
+                }
+            }
+        },
+        "lastStatusChange": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "errorDetails": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details"
+                }
+            },
+            "array": true
+        },
+        "details": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details"
+                }
+            },
+            "array": true
+        },
+        "agentVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vmId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "machineFqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientPublicKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "osName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "osVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vmUuid": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "extensions": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeHandlerVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "status": {
+                    "$ref": "#/$keywords/status_2"
+                }
+            },
+            "array": true
+        },
+        "status_2": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {
+                    "enum": [
+                        "Info",
+                        "Warning",
+                        "Error"
+                    ]
+                },
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            }
+        },
+        "osSku": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "domainName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "adFqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dnsFqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkScopedResources": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "forceUpdateTag": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publisher": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "typeHandlerVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "autoUpgradeMinorVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "settings": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "instanceView": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeHandlerVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "status": {
+                    "$ref": "#/$keywords/status_2"
+                }
+            }
+        },
+        "publicNetworkAccess": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateEndpointConnections": {
+            "parameters": {
+                "provisioningState": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "privateEndpoint": {
+                    "$ref": "#/$keywords/privateEndpoint"
+                },
+                "privateLinkServiceConnectionState": {
+                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionsRequired": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "linkedResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "machines": {
+            "locationData": {
+                "$ref": "#/$keywords/locationData"
+            },
+            "osProfile": {
+                "$ref": "#/$keywords/osProfile"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "lastStatusChange": {
+                "$ref": "#/$keywords/lastStatusChange"
+            },
+            "errorDetails": {
+                "$ref": "#/$keywords/errorDetails"
+            },
+            "agentVersion": {
+                "$ref": "#/$keywords/agentVersion"
+            },
+            "vmId": {
+                "$ref": "#/$keywords/vmId"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "machineFqdn": {
+                "$ref": "#/$keywords/machineFqdn"
+            },
+            "clientPublicKey": {
+                "$ref": "#/$keywords/clientPublicKey"
+            },
+            "osName": {
+                "$ref": "#/$keywords/osName"
+            },
+            "osVersion": {
+                "$ref": "#/$keywords/osVersion"
+            },
+            "vmUuid": {
+                "$ref": "#/$keywords/vmUuid"
+            },
+            "extensions": {
+                "$ref": "#/$keywords/extensions"
+            },
+            "osSku": {
+                "$ref": "#/$keywords/osSku"
+            },
+            "domainName": {
+                "$ref": "#/$keywords/domainName"
+            },
+            "adFqdn": {
+                "$ref": "#/$keywords/adFqdn"
+            },
+            "dnsFqdn": {
+                "$ref": "#/$keywords/dnsFqdn"
+            },
+            "privateLinkScopedResources": {
+                "$ref": "#/$keywords/privateLinkScopedResources"
+            }
+        },
+        "machines/extensions": {
+            "forceUpdateTag": {
+                "$ref": "#/$keywords/forceUpdateTag"
+            },
+            "publisher": {
+                "$ref": "#/$keywords/publisher"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            },
+            "typeHandlerVersion": {
+                "$ref": "#/$keywords/typeHandlerVersion"
+            },
+            "autoUpgradeMinorVersion": {
+                "$ref": "#/$keywords/autoUpgradeMinorVersion"
+            },
+            "settings": {
+                "$ref": "#/$keywords/settings"
+            },
+            "protectedSettings": {
+                "$ref": "#/$keywords/settings"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "instanceView": {
+                "$ref": "#/$keywords/instanceView"
+            }
+        },
+        "privateLinkScopes": {
+            "publicNetworkAccess": {
+                "$ref": "#/$keywords/publicNetworkAccess"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "privateEndpointConnections": {
+                "$ref": "#/$keywords/privateEndpointConnections"
+            }
+        },
+        "privateLinkScopes/privateEndpointConnections": {
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_4"
+            }
+        },
+        "privateLinkScopes/scopedResources": {
+            "linkedResourceId": {
+                "$ref": "#/$keywords/linkedResourceId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_5"
+            }
+        }
+    }
+}

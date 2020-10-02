@@ -1,0 +1,160 @@
+{
+    "$keywords": {
+        "tenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "roles": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "details": {
+            "parameters": {
+                "version": {
+                    "type": "int"
+                },
+                "updatedTime": {},
+                "updatedBy": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "parent": {
+                    "$ref": "#/$keywords/parent"
+                }
+            }
+        },
+        "parent": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                }
+            }
+        },
+        "children": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Microsoft.Management/managementGroups",
+                        "/subscriptions"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "roles": {
+                    "$ref": "#/$keywords/roles_2"
+                },
+                "children": {
+                    "$ref": "#/$keywords/children_2"
+                }
+            },
+            "array": true
+        },
+        "roles_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "children_2": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Microsoft.Management/managementGroups",
+                        "/subscriptions"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "roles": {
+                    "$ref": "#/$keywords/roles_2"
+                },
+                "children": {
+                    "$ref": "#/$keywords/children_2"
+                }
+            },
+            "array": true
+        },
+        "requireAuthorizationForGroupCreation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "defaultManagementGroup": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "managementGroups": {
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "roles": {
+                "$ref": "#/$keywords/roles"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            },
+            "children": {
+                "$ref": "#/$keywords/children"
+            }
+        },
+        "managementGroups/settings": {
+            "requireAuthorizationForGroupCreation": {
+                "$ref": "#/$keywords/requireAuthorizationForGroupCreation"
+            },
+            "defaultManagementGroup": {
+                "$ref": "#/$keywords/defaultManagementGroup"
+            }
+        }
+    }
+}

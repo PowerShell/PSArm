@@ -1,0 +1,380 @@
+{
+    "$keywords": {
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdOn": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "modifiedOn": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "chart": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Area",
+                        "Line",
+                        "StackedColumn",
+                        "GroupedColumn",
+                        "Table"
+                    ]
+                }
+            }
+        },
+        "accumulated": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "true",
+                        "false"
+                    ]
+                }
+            }
+        },
+        "metric": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ActualCost",
+                        "AmortizedCost",
+                        "AHUB"
+                    ]
+                }
+            }
+        },
+        "kpis": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Forecast",
+                        "Budget"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "pivots": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Dimension",
+                        "TagKey"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "timeframe": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "WeekToDate",
+                        "MonthToDate",
+                        "YearToDate",
+                        "Custom"
+                    ]
+                }
+            }
+        },
+        "timePeriod": {
+            "parameters": {
+                "from": {},
+                "to": {}
+            }
+        },
+        "dataset": {
+            "parameters": {
+                "granularity": {
+                    "enum": [
+                        "Daily",
+                        "Monthly"
+                    ]
+                },
+                "aggregation": {}
+            },
+            "body": {
+                "configuration": {
+                    "$ref": "#/$keywords/configuration"
+                },
+                "grouping": {
+                    "$ref": "#/$keywords/grouping"
+                },
+                "sorting": {
+                    "$ref": "#/$keywords/sorting"
+                },
+                "filter": {
+                    "$ref": "#/$keywords/filter"
+                }
+            }
+        },
+        "configuration": {
+            "body": {
+                "columns": {
+                    "$ref": "#/$keywords/columns"
+                }
+            }
+        },
+        "columns": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "grouping": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Tag",
+                        "Dimension"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "sorting": {
+            "parameters": {
+                "direction": {
+                    "enum": [
+                        "Ascending",
+                        "Descending"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "filter": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            }
+        },
+        "and": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            },
+            "array": true
+        },
+        "or": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            },
+            "array": true
+        },
+        "dimension": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "operator": {
+                    "enum": [
+                        "In",
+                        "Contains"
+                    ]
+                }
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            }
+        },
+        "values": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "category": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Cost",
+                        "Usage"
+                    ]
+                }
+            }
+        },
+        "amount": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "timeGrain": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Monthly",
+                        "Quarterly",
+                        "Annually"
+                    ]
+                }
+            }
+        },
+        "timePeriod_2": {
+            "parameters": {
+                "startDate": {},
+                "endDate": {}
+            }
+        },
+        "currentSpend": {
+            "parameters": {
+                "amount": {},
+                "unit": {
+                    "type": "string"
+                }
+            }
+        },
+        "notifications": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "views": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "createdOn": {
+                "$ref": "#/$keywords/createdOn"
+            },
+            "modifiedOn": {
+                "$ref": "#/$keywords/modifiedOn"
+            },
+            "chart": {
+                "$ref": "#/$keywords/chart"
+            },
+            "accumulated": {
+                "$ref": "#/$keywords/accumulated"
+            },
+            "metric": {
+                "$ref": "#/$keywords/metric"
+            },
+            "kpis": {
+                "$ref": "#/$keywords/kpis"
+            },
+            "pivots": {
+                "$ref": "#/$keywords/pivots"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            },
+            "timeframe": {
+                "$ref": "#/$keywords/timeframe"
+            },
+            "timePeriod": {
+                "$ref": "#/$keywords/timePeriod"
+            },
+            "dataset": {
+                "$ref": "#/$keywords/dataset"
+            }
+        },
+        "budgets": {
+            "category": {
+                "$ref": "#/$keywords/category"
+            },
+            "amount": {
+                "$ref": "#/$keywords/amount"
+            },
+            "timeGrain": {
+                "$ref": "#/$keywords/timeGrain"
+            },
+            "timePeriod": {
+                "$ref": "#/$keywords/timePeriod_2"
+            },
+            "filter": {
+                "$ref": "#/$keywords/filter"
+            },
+            "currentSpend": {
+                "$ref": "#/$keywords/currentSpend"
+            },
+            "notifications": {
+                "$ref": "#/$keywords/notifications"
+            }
+        }
+    }
+}

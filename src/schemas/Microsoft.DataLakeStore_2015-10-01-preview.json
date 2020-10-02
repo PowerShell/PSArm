@@ -1,0 +1,124 @@
+{
+    "$keywords": {
+        "startIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "creationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "encryptionState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "encryptionProvisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "encryptionConfig": {
+            "parameters": {
+                "type": {}
+            },
+            "body": {
+                "keyVaultMetaInfo": {
+                    "$ref": "#/$keywords/keyVaultMetaInfo"
+                }
+            }
+        },
+        "keyVaultMetaInfo": {
+            "parameters": {
+                "keyVaultResourceId": {
+                    "type": "string"
+                },
+                "encryptionKeyName": {
+                    "type": "string"
+                },
+                "encryptionKeyVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastModifiedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "endpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "defaultGroup": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "accounts/firewallRules": {
+            "startIpAddress": {
+                "$ref": "#/$keywords/startIpAddress"
+            },
+            "endIpAddress": {
+                "$ref": "#/$keywords/endIpAddress"
+            }
+        },
+        "accounts": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "creationTime": {
+                "$ref": "#/$keywords/creationTime"
+            },
+            "encryptionState": {
+                "$ref": "#/$keywords/encryptionState"
+            },
+            "encryptionProvisioningState": {
+                "$ref": "#/$keywords/encryptionProvisioningState"
+            },
+            "encryptionConfig": {
+                "$ref": "#/$keywords/encryptionConfig"
+            },
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint"
+            },
+            "defaultGroup": {
+                "$ref": "#/$keywords/defaultGroup"
+            }
+        }
+    }
+}

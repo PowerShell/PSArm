@@ -1,0 +1,336 @@
+{
+    "$keywords": {
+        "createdAt": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Creating",
+                        "Deleting",
+                        "Moving",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "userEmail": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "invitationId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "invitationStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Pending",
+                        "Accepted",
+                        "Rejected",
+                        "Withdrawn"
+                    ]
+                }
+            }
+        },
+        "respondedAt": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "sentAt": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "targetActiveDirectoryId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetEmail": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetObjectId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userEmail_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdAt_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "shareKind": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "CopyBased",
+                        "InPlace"
+                    ]
+                }
+            }
+        },
+        "terms": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userEmail_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userName_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdAt_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "invitationId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerEmail": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerTenantName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "shareDescription": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "shareName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "shareSubscriptionStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Active",
+                        "Revoked",
+                        "SourceDeleted",
+                        "Revoking"
+                    ]
+                }
+            }
+        },
+        "shareTerms": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userEmail_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userName_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "accounts": {
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "userEmail": {
+                "$ref": "#/$keywords/userEmail"
+            },
+            "userName": {
+                "$ref": "#/$keywords/userName"
+            }
+        },
+        "accounts/shares/dataSets": {},
+        "accounts/shareSubscriptions/dataSetMappings": {},
+        "accounts/shares/invitations": {
+            "invitationId": {
+                "$ref": "#/$keywords/invitationId"
+            },
+            "invitationStatus": {
+                "$ref": "#/$keywords/invitationStatus"
+            },
+            "respondedAt": {
+                "$ref": "#/$keywords/respondedAt"
+            },
+            "sentAt": {
+                "$ref": "#/$keywords/sentAt"
+            },
+            "targetActiveDirectoryId": {
+                "$ref": "#/$keywords/targetActiveDirectoryId"
+            },
+            "targetEmail": {
+                "$ref": "#/$keywords/targetEmail"
+            },
+            "targetObjectId": {
+                "$ref": "#/$keywords/targetObjectId"
+            },
+            "userEmail": {
+                "$ref": "#/$keywords/userEmail_2"
+            },
+            "userName": {
+                "$ref": "#/$keywords/userName_2"
+            }
+        },
+        "accounts/shares": {
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt_2"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "shareKind": {
+                "$ref": "#/$keywords/shareKind"
+            },
+            "terms": {
+                "$ref": "#/$keywords/terms"
+            },
+            "userEmail": {
+                "$ref": "#/$keywords/userEmail_3"
+            },
+            "userName": {
+                "$ref": "#/$keywords/userName_3"
+            }
+        },
+        "accounts/shareSubscriptions": {
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt_3"
+            },
+            "invitationId": {
+                "$ref": "#/$keywords/invitationId_2"
+            },
+            "providerEmail": {
+                "$ref": "#/$keywords/providerEmail"
+            },
+            "providerName": {
+                "$ref": "#/$keywords/providerName"
+            },
+            "providerTenantName": {
+                "$ref": "#/$keywords/providerTenantName"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "shareDescription": {
+                "$ref": "#/$keywords/shareDescription"
+            },
+            "shareKind": {
+                "$ref": "#/$keywords/shareKind"
+            },
+            "shareName": {
+                "$ref": "#/$keywords/shareName"
+            },
+            "shareSubscriptionStatus": {
+                "$ref": "#/$keywords/shareSubscriptionStatus"
+            },
+            "shareTerms": {
+                "$ref": "#/$keywords/shareTerms"
+            },
+            "userEmail": {
+                "$ref": "#/$keywords/userEmail_4"
+            },
+            "userName": {
+                "$ref": "#/$keywords/userName_4"
+            }
+        },
+        "accounts/shares/synchronizationSettings": {},
+        "accounts/shareSubscriptions/triggers": {}
+    }
+}

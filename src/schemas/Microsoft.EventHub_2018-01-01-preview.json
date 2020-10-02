@@ -1,0 +1,33 @@
+{
+    "$keywords": {
+        "defaultAction": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ]
+                }
+            }
+        },
+        "ipRules": {
+            "parameters": {
+                "ipMask": {
+                    "type": "string"
+                },
+                "action": {}
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "namespaces/networkRuleSets": {
+            "defaultAction": {
+                "$ref": "#/$keywords/defaultAction"
+            },
+            "ipRules": {
+                "$ref": "#/$keywords/ipRules"
+            }
+        }
+    }
+}

@@ -1,0 +1,150 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "endpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryption": {
+            "body": {
+                "keyVaultProperties": {
+                    "$ref": "#/$keywords/keyVaultProperties"
+                }
+            }
+        },
+        "keyVaultProperties": {
+            "parameters": {
+                "keyIdentifier": {
+                    "type": "string"
+                },
+                "identityClientId": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateEndpointConnections": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            },
+            "body": {
+                "privateEndpoint": {
+                    "$ref": "#/$keywords/privateEndpoint"
+                },
+                "privateLinkServiceConnectionState": {
+                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Pending",
+                        "Approved",
+                        "Rejected",
+                        "Disconnected"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionsRequired": {
+                    "enum": [
+                        "None",
+                        "Recreate"
+                    ]
+                }
+            }
+        },
+        "publicNetworkAccess": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "configurationStores": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "privateEndpointConnections": {
+                "$ref": "#/$keywords/privateEndpointConnections"
+            },
+            "publicNetworkAccess": {
+                "$ref": "#/$keywords/publicNetworkAccess"
+            }
+        },
+        "configurationStores/privateEndpointConnections": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            }
+        }
+    }
+}

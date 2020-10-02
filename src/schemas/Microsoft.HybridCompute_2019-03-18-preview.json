@@ -1,0 +1,165 @@
+{
+    "$keywords": {
+        "osProfile": {
+            "parameters": {
+                "computerName": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastStatusChange": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "errorDetails": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details"
+                }
+            },
+            "array": true
+        },
+        "details": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details"
+                }
+            },
+            "array": true
+        },
+        "agentVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vmId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "machineFqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "physicalLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientPublicKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "osName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "osVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "machines": {
+            "osProfile": {
+                "$ref": "#/$keywords/osProfile"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "lastStatusChange": {
+                "$ref": "#/$keywords/lastStatusChange"
+            },
+            "errorDetails": {
+                "$ref": "#/$keywords/errorDetails"
+            },
+            "agentVersion": {
+                "$ref": "#/$keywords/agentVersion"
+            },
+            "vmId": {
+                "$ref": "#/$keywords/vmId"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "machineFqdn": {
+                "$ref": "#/$keywords/machineFqdn"
+            },
+            "physicalLocation": {
+                "$ref": "#/$keywords/physicalLocation"
+            },
+            "clientPublicKey": {
+                "$ref": "#/$keywords/clientPublicKey"
+            },
+            "osName": {
+                "$ref": "#/$keywords/osName"
+            },
+            "osVersion": {
+                "$ref": "#/$keywords/osVersion"
+            }
+        }
+    }
+}

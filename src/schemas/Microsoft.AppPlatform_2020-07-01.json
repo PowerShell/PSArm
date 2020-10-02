@@ -1,0 +1,726 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Deleted",
+                        "Succeeded",
+                        "Failed",
+                        "Moving",
+                        "Moved",
+                        "MoveFailed"
+                    ]
+                }
+            }
+        },
+        "networkProfile": {
+            "parameters": {
+                "serviceRuntimeSubnetId": {
+                    "type": "string"
+                },
+                "appSubnetId": {
+                    "type": "string"
+                },
+                "serviceCidr": {
+                    "type": "string"
+                },
+                "serviceRuntimeNetworkResourceGroup": {
+                    "type": "string"
+                },
+                "appNetworkResourceGroup": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "outboundIPs": {
+                    "$ref": "#/$keywords/outboundIPs"
+                }
+            }
+        },
+        "outboundIPs": {
+            "body": {
+                "publicIPs": {
+                    "$ref": "#/$keywords/publicIPs"
+                }
+            }
+        },
+        "publicIPs": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "serviceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotAvailable",
+                        "Deleted",
+                        "Failed",
+                        "Succeeded",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "error": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "configServer": {
+            "body": {
+                "gitProperty": {
+                    "$ref": "#/$keywords/gitProperty"
+                }
+            }
+        },
+        "gitProperty": {
+            "parameters": {
+                "uri": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "hostKey": {
+                    "type": "string"
+                },
+                "hostKeyAlgorithm": {
+                    "type": "string"
+                },
+                "privateKey": {
+                    "type": "string"
+                },
+                "strictHostKeyChecking": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "repositories": {
+                    "$ref": "#/$keywords/repositories"
+                },
+                "searchPaths": {
+                    "$ref": "#/$keywords/searchPaths_2"
+                }
+            }
+        },
+        "repositories": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "uri": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "hostKey": {
+                    "type": "string"
+                },
+                "hostKeyAlgorithm": {
+                    "type": "string"
+                },
+                "privateKey": {
+                    "type": "string"
+                },
+                "strictHostKeyChecking": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "pattern": {
+                    "$ref": "#/$keywords/pattern"
+                },
+                "searchPaths": {
+                    "$ref": "#/$keywords/searchPaths"
+                }
+            },
+            "array": true
+        },
+        "pattern": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "searchPaths": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "searchPaths_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotAvailable",
+                        "Failed",
+                        "Succeeded",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "traceEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "appInsightsInstrumentationKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "public": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "url": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_4": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Failed",
+                        "Creating",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "activeDeploymentName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "fqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "httpsOnly": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "createdTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "temporaryDisk": {
+            "parameters": {
+                "sizeInGB": {
+                    "type": "int"
+                },
+                "mountPath": {
+                    "type": "string"
+                }
+            }
+        },
+        "persistentDisk": {
+            "parameters": {
+                "sizeInGB": {
+                    "type": "int"
+                },
+                "usedInGB": {
+                    "type": "int"
+                },
+                "mountPath": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "key": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "bindingParameters": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "generatedProperties": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdAt": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "updatedAt": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "thumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vaultUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyVaultCertName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "certVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "issuer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "issuedDate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "expirationDate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "activateDate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subjectName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dnsNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "thumbprint_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "appName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "certName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "source": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Jar",
+                        "NetCoreZip",
+                        "Source"
+                    ]
+                },
+                "relativePath": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "artifactSelector": {
+                    "type": "string"
+                }
+            }
+        },
+        "appName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deploymentSettings": {
+            "parameters": {
+                "cpu": {
+                    "type": "int"
+                },
+                "memoryInGB": {
+                    "type": "int"
+                },
+                "jvmOptions": {
+                    "type": "string"
+                },
+                "netCoreMainEntryPath": {
+                    "type": "string"
+                },
+                "environmentVariables": {},
+                "runtimeVersion": {
+                    "enum": [
+                        "Java_8",
+                        "Java_11",
+                        "NetCore_31"
+                    ]
+                }
+            }
+        },
+        "provisioningState_5": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Succeeded",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Unknown",
+                        "Stopped",
+                        "Running",
+                        "Failed",
+                        "Allocating",
+                        "Upgrading",
+                        "Compiling"
+                    ]
+                }
+            }
+        },
+        "active": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "createdTime_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "instances": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "discoveryStatus": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "Spring": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "networkProfile": {
+                "$ref": "#/$keywords/networkProfile"
+            },
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "serviceId": {
+                "$ref": "#/$keywords/serviceId"
+            }
+        },
+        "Spring/configServers": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "error": {
+                "$ref": "#/$keywords/error"
+            },
+            "configServer": {
+                "$ref": "#/$keywords/configServer"
+            }
+        },
+        "Spring/monitoringSettings": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "error": {
+                "$ref": "#/$keywords/error"
+            },
+            "traceEnabled": {
+                "$ref": "#/$keywords/traceEnabled"
+            },
+            "appInsightsInstrumentationKey": {
+                "$ref": "#/$keywords/appInsightsInstrumentationKey"
+            }
+        },
+        "Spring/apps": {
+            "public": {
+                "$ref": "#/$keywords/public"
+            },
+            "url": {
+                "$ref": "#/$keywords/url"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_4"
+            },
+            "activeDeploymentName": {
+                "$ref": "#/$keywords/activeDeploymentName"
+            },
+            "fqdn": {
+                "$ref": "#/$keywords/fqdn"
+            },
+            "httpsOnly": {
+                "$ref": "#/$keywords/httpsOnly"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime"
+            },
+            "temporaryDisk": {
+                "$ref": "#/$keywords/temporaryDisk"
+            },
+            "persistentDisk": {
+                "$ref": "#/$keywords/persistentDisk"
+            }
+        },
+        "Spring/apps/bindings": {
+            "resourceName": {
+                "$ref": "#/$keywords/resourceName"
+            },
+            "resourceType": {
+                "$ref": "#/$keywords/resourceType"
+            },
+            "resourceId": {
+                "$ref": "#/$keywords/resourceId"
+            },
+            "key": {
+                "$ref": "#/$keywords/key"
+            },
+            "bindingParameters": {
+                "$ref": "#/$keywords/bindingParameters"
+            },
+            "generatedProperties": {
+                "$ref": "#/$keywords/generatedProperties"
+            },
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt"
+            },
+            "updatedAt": {
+                "$ref": "#/$keywords/updatedAt"
+            }
+        },
+        "Spring/certificates": {
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint"
+            },
+            "vaultUri": {
+                "$ref": "#/$keywords/vaultUri"
+            },
+            "keyVaultCertName": {
+                "$ref": "#/$keywords/keyVaultCertName"
+            },
+            "certVersion": {
+                "$ref": "#/$keywords/certVersion"
+            },
+            "issuer": {
+                "$ref": "#/$keywords/issuer"
+            },
+            "issuedDate": {
+                "$ref": "#/$keywords/issuedDate"
+            },
+            "expirationDate": {
+                "$ref": "#/$keywords/expirationDate"
+            },
+            "activateDate": {
+                "$ref": "#/$keywords/activateDate"
+            },
+            "subjectName": {
+                "$ref": "#/$keywords/subjectName"
+            },
+            "dnsNames": {
+                "$ref": "#/$keywords/dnsNames"
+            }
+        },
+        "Spring/apps/domains": {
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint_2"
+            },
+            "appName": {
+                "$ref": "#/$keywords/appName"
+            },
+            "certName": {
+                "$ref": "#/$keywords/certName"
+            }
+        },
+        "Spring/apps/deployments": {
+            "source": {
+                "$ref": "#/$keywords/source"
+            },
+            "appName": {
+                "$ref": "#/$keywords/appName_2"
+            },
+            "deploymentSettings": {
+                "$ref": "#/$keywords/deploymentSettings"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_5"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "active": {
+                "$ref": "#/$keywords/active"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_2"
+            },
+            "instances": {
+                "$ref": "#/$keywords/instances"
+            }
+        }
+    }
+}

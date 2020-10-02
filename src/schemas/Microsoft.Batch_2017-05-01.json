@@ -1,0 +1,40 @@
+{
+    "$keywords": {
+        "autoStorage": {
+            "parameters": {
+                "storageAccountId": {
+                    "type": "string"
+                }
+            }
+        },
+        "poolAllocationMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "keyVaultReference": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "batchAccounts": {
+            "autoStorage": {
+                "$ref": "#/$keywords/autoStorage"
+            },
+            "poolAllocationMode": {
+                "$ref": "#/$keywords/poolAllocationMode"
+            },
+            "keyVaultReference": {
+                "$ref": "#/$keywords/keyVaultReference"
+            }
+        },
+        "batchAccounts/applications": {}
+    }
+}

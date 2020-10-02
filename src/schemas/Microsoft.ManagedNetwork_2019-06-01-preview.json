@@ -1,0 +1,293 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Updating",
+                        "Deleting",
+                        "Failed",
+                        "Succeeded"
+                    ]
+                }
+            }
+        },
+        "etag": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scope": {
+            "body": {
+                "managementGroups": {
+                    "$ref": "#/$keywords/managementGroups"
+                },
+                "subscriptions": {
+                    "$ref": "#/$keywords/subscriptions"
+                },
+                "virtualNetworks": {
+                    "$ref": "#/$keywords/virtualNetworks"
+                },
+                "subnets": {
+                    "$ref": "#/$keywords/subnets"
+                }
+            }
+        },
+        "managementGroups": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "subscriptions": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualNetworks": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "subnets": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "connectivity": {
+            "body": {
+                "groups": {
+                    "$ref": "#/$keywords/groups"
+                },
+                "peerings": {
+                    "$ref": "#/$keywords/peerings"
+                }
+            }
+        },
+        "groups": {
+            "parameters": {
+                "kind": {},
+                "provisioningState": {
+                    "enum": [
+                        "Updating",
+                        "Deleting",
+                        "Failed",
+                        "Succeeded"
+                    ]
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "managementGroups": {
+                    "$ref": "#/$keywords/managementGroups_2"
+                },
+                "subscriptions": {
+                    "$ref": "#/$keywords/subscriptions_2"
+                },
+                "virtualNetworks": {
+                    "$ref": "#/$keywords/virtualNetworks_2"
+                },
+                "subnets": {
+                    "$ref": "#/$keywords/subnets_2"
+                }
+            },
+            "array": true
+        },
+        "managementGroups_2": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "subscriptions_2": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualNetworks_2": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "subnets_2": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "peerings": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            },
+            "propertyParameters": {
+                "type": {
+                    "enum": [
+                        "HubAndSpokeTopology",
+                        "MeshTopology"
+                    ]
+                }
+            },
+            "body": {
+                "hub": {
+                    "$ref": "#/$keywords/hub"
+                },
+                "spokes": {
+                    "$ref": "#/$keywords/spokes"
+                },
+                "mesh": {
+                    "$ref": "#/$keywords/mesh"
+                }
+            },
+            "array": true
+        },
+        "hub": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "spokes": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "mesh": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "assignedManagedNetwork": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "HubAndSpokeTopology",
+                        "MeshTopology"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "managedNetworks": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "etag": {
+                "$ref": "#/$keywords/etag"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "connectivity": {
+                "$ref": "#/$keywords/connectivity"
+            }
+        },
+        "scopeAssignments": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "etag": {
+                "$ref": "#/$keywords/etag"
+            },
+            "assignedManagedNetwork": {
+                "$ref": "#/$keywords/assignedManagedNetwork"
+            }
+        },
+        "managedNetworks/managedNetworkGroups": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "etag": {
+                "$ref": "#/$keywords/etag"
+            },
+            "managementGroups": {
+                "$ref": "#/$keywords/managementGroups_2"
+            },
+            "subscriptions": {
+                "$ref": "#/$keywords/subscriptions_2"
+            },
+            "virtualNetworks": {
+                "$ref": "#/$keywords/virtualNetworks_2"
+            },
+            "subnets": {
+                "$ref": "#/$keywords/subnets_2"
+            }
+        },
+        "managedNetworks/managedNetworkPeeringPolicies": {
+            "type": {
+                "$ref": "#/$keywords/type"
+            },
+            "hub": {
+                "$ref": "#/$keywords/hub"
+            },
+            "spokes": {
+                "$ref": "#/$keywords/spokes"
+            },
+            "mesh": {
+                "$ref": "#/$keywords/mesh"
+            }
+        }
+    }
+}

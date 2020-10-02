@@ -1,0 +1,62 @@
+{
+    "$keywords": {
+        "replicaCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "partitionCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "hostingMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "statusDetails": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "searchServices": {
+            "replicaCount": {
+                "$ref": "#/$keywords/replicaCount"
+            },
+            "partitionCount": {
+                "$ref": "#/$keywords/partitionCount"
+            },
+            "hostingMode": {
+                "$ref": "#/$keywords/hostingMode"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "statusDetails": {
+                "$ref": "#/$keywords/statusDetails"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

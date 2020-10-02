@@ -1,0 +1,345 @@
+{
+    "$keywords": {
+        "policySettings": {
+            "parameters": {
+                "enabledState": {
+                    "enum": [
+                        "Disabled",
+                        "Enabled"
+                    ]
+                },
+                "mode": {
+                    "enum": [
+                        "Prevention",
+                        "Detection"
+                    ]
+                },
+                "redirectUrl": {
+                    "type": "string"
+                },
+                "customBlockResponseStatusCode": {
+                    "type": "int"
+                },
+                "customBlockResponseBody": {
+                    "type": "string",
+                    "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"
+                }
+            }
+        },
+        "customRules": {
+            "body": {
+                "rules": {
+                    "$ref": "#/$keywords/rules"
+                }
+            }
+        },
+        "rules": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "int"
+                },
+                "enabledState": {
+                    "enum": [
+                        "Disabled",
+                        "Enabled"
+                    ]
+                },
+                "ruleType": {
+                    "enum": [
+                        "MatchRule",
+                        "RateLimitRule"
+                    ]
+                },
+                "rateLimitDurationInMinutes": {
+                    "type": "int"
+                },
+                "rateLimitThreshold": {
+                    "type": "int"
+                },
+                "action": {
+                    "enum": [
+                        "Allow",
+                        "Block",
+                        "Log",
+                        "Redirect"
+                    ]
+                }
+            },
+            "body": {
+                "matchConditions": {
+                    "$ref": "#/$keywords/matchConditions"
+                }
+            },
+            "array": true
+        },
+        "matchConditions": {
+            "parameters": {
+                "matchVariable": {
+                    "enum": [
+                        "RemoteAddr",
+                        "RequestMethod",
+                        "QueryString",
+                        "PostArgs",
+                        "RequestUri",
+                        "RequestHeader",
+                        "RequestBody",
+                        "Cookies",
+                        "SocketAddr"
+                    ]
+                },
+                "selector": {
+                    "type": "string"
+                },
+                "operator": {
+                    "enum": [
+                        "Any",
+                        "IPMatch",
+                        "GeoMatch",
+                        "Equal",
+                        "Contains",
+                        "LessThan",
+                        "GreaterThan",
+                        "LessThanOrEqual",
+                        "GreaterThanOrEqual",
+                        "BeginsWith",
+                        "EndsWith",
+                        "RegEx"
+                    ]
+                },
+                "negateCondition": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "matchValue": {
+                    "$ref": "#/$keywords/matchValue"
+                },
+                "transforms": {
+                    "$ref": "#/$keywords/transforms"
+                }
+            },
+            "array": true
+        },
+        "matchValue": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "transforms": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Lowercase",
+                        "Uppercase",
+                        "Trim",
+                        "UrlDecode",
+                        "UrlEncode",
+                        "RemoveNulls"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "managedRules": {
+            "body": {
+                "managedRuleSets": {
+                    "$ref": "#/$keywords/managedRuleSets"
+                }
+            }
+        },
+        "managedRuleSets": {
+            "parameters": {
+                "ruleSetType": {
+                    "type": "string"
+                },
+                "ruleSetVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "exclusions": {
+                    "$ref": "#/$keywords/exclusions"
+                },
+                "ruleGroupOverrides": {
+                    "$ref": "#/$keywords/ruleGroupOverrides"
+                }
+            },
+            "array": true
+        },
+        "exclusions": {
+            "parameters": {
+                "matchVariable": {
+                    "enum": [
+                        "RequestHeaderNames",
+                        "RequestCookieNames",
+                        "QueryStringArgNames",
+                        "RequestBodyPostArgNames"
+                    ]
+                },
+                "selectorMatchOperator": {
+                    "enum": [
+                        "Equals",
+                        "Contains",
+                        "StartsWith",
+                        "EndsWith",
+                        "EqualsAny"
+                    ]
+                },
+                "selector": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ruleGroupOverrides": {
+            "parameters": {
+                "ruleGroupName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "exclusions": {
+                    "$ref": "#/$keywords/exclusions_2"
+                },
+                "rules": {
+                    "$ref": "#/$keywords/rules_2"
+                }
+            },
+            "array": true
+        },
+        "exclusions_2": {
+            "parameters": {
+                "matchVariable": {
+                    "enum": [
+                        "RequestHeaderNames",
+                        "RequestCookieNames",
+                        "QueryStringArgNames",
+                        "RequestBodyPostArgNames"
+                    ]
+                },
+                "selectorMatchOperator": {
+                    "enum": [
+                        "Equals",
+                        "Contains",
+                        "StartsWith",
+                        "EndsWith",
+                        "EqualsAny"
+                    ]
+                },
+                "selector": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "rules_2": {
+            "parameters": {
+                "ruleId": {
+                    "type": "string"
+                },
+                "enabledState": {
+                    "enum": [
+                        "Disabled",
+                        "Enabled"
+                    ]
+                },
+                "action": {
+                    "enum": [
+                        "Allow",
+                        "Block",
+                        "Log",
+                        "Redirect"
+                    ]
+                }
+            },
+            "body": {
+                "exclusions": {
+                    "$ref": "#/$keywords/exclusions_3"
+                }
+            },
+            "array": true
+        },
+        "exclusions_3": {
+            "parameters": {
+                "matchVariable": {
+                    "enum": [
+                        "RequestHeaderNames",
+                        "RequestCookieNames",
+                        "QueryStringArgNames",
+                        "RequestBodyPostArgNames"
+                    ]
+                },
+                "selectorMatchOperator": {
+                    "enum": [
+                        "Equals",
+                        "Contains",
+                        "StartsWith",
+                        "EndsWith",
+                        "EqualsAny"
+                    ]
+                },
+                "selector": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "frontendEndpointLinks": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Deleting"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "FrontDoorWebApplicationFirewallPolicies": {
+            "policySettings": {
+                "$ref": "#/$keywords/policySettings"
+            },
+            "customRules": {
+                "$ref": "#/$keywords/customRules"
+            },
+            "managedRules": {
+                "$ref": "#/$keywords/managedRules"
+            },
+            "frontendEndpointLinks": {
+                "$ref": "#/$keywords/frontendEndpointLinks"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "resourceState": {
+                "$ref": "#/$keywords/resourceState"
+            }
+        }
+    }
+}

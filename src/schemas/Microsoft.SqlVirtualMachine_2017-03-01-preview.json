@@ -1,0 +1,497 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "availabilityGroupName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "loadBalancerConfigurations": {
+            "parameters": {
+                "publicIpAddressResourceId": {
+                    "type": "string"
+                },
+                "loadBalancerResourceId": {
+                    "type": "string"
+                },
+                "probePort": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "privateIpAddress": {
+                    "$ref": "#/$keywords/privateIpAddress"
+                },
+                "sqlVirtualMachineInstances": {
+                    "$ref": "#/$keywords/sqlVirtualMachineInstances"
+                }
+            },
+            "array": true
+        },
+        "privateIpAddress": {
+            "parameters": {
+                "ipAddress": {
+                    "type": "string"
+                },
+                "subnetResourceId": {
+                    "type": "string"
+                }
+            }
+        },
+        "sqlVirtualMachineInstances": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "createDefaultAvailabilityGroupIfNotExist": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "port": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sqlImageOffer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sqlImageSku": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Developer",
+                        "Enterprise"
+                    ]
+                }
+            }
+        },
+        "scaleType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "clusterManagerType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "clusterConfiguration": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "wsfcDomainProfile": {
+            "parameters": {
+                "domainFqdn": {
+                    "type": "string"
+                },
+                "ouPath": {
+                    "type": "string"
+                },
+                "clusterBootstrapAccount": {
+                    "type": "string"
+                },
+                "clusterOperatorAccount": {
+                    "type": "string"
+                },
+                "sqlServiceAccount": {
+                    "type": "string"
+                },
+                "fileShareWitnessPath": {
+                    "type": "string"
+                },
+                "storageAccountUrl": {
+                    "type": "string"
+                },
+                "storageAccountPrimaryKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "virtualMachineResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sqlImageOffer_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sqlServerLicenseType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "PAYG",
+                        "AHUB",
+                        "DR"
+                    ]
+                }
+            }
+        },
+        "sqlManagement": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Full",
+                        "LightWeight",
+                        "NoAgent"
+                    ]
+                }
+            }
+        },
+        "sqlImageSku_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Developer",
+                        "Express",
+                        "Standard",
+                        "Enterprise",
+                        "Web"
+                    ]
+                }
+            }
+        },
+        "sqlVirtualMachineGroupResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "wsfcDomainCredentials": {
+            "parameters": {
+                "clusterBootstrapAccountPassword": {
+                    "type": "string"
+                },
+                "clusterOperatorAccountPassword": {
+                    "type": "string"
+                },
+                "sqlServiceAccountPassword": {
+                    "type": "string"
+                }
+            }
+        },
+        "autoPatchingSettings": {
+            "parameters": {
+                "enable": {
+                    "type": "bool"
+                },
+                "dayOfWeek": {},
+                "maintenanceWindowStartingHour": {
+                    "type": "int"
+                },
+                "maintenanceWindowDuration": {
+                    "type": "int"
+                }
+            }
+        },
+        "autoBackupSettings": {
+            "parameters": {
+                "enable": {
+                    "type": "bool"
+                },
+                "enableEncryption": {
+                    "type": "bool"
+                },
+                "retentionPeriod": {
+                    "type": "int"
+                },
+                "storageAccountUrl": {
+                    "type": "string"
+                },
+                "storageAccessKey": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "backupSystemDbs": {
+                    "type": "bool"
+                },
+                "backupScheduleType": {
+                    "enum": [
+                        "Manual",
+                        "Automated"
+                    ]
+                },
+                "fullBackupFrequency": {
+                    "enum": [
+                        "Daily",
+                        "Weekly"
+                    ]
+                },
+                "fullBackupStartTime": {
+                    "type": "int"
+                },
+                "fullBackupWindowHours": {
+                    "type": "int"
+                },
+                "logBackupFrequency": {
+                    "type": "int"
+                }
+            }
+        },
+        "keyVaultCredentialSettings": {
+            "parameters": {
+                "enable": {
+                    "type": "bool"
+                },
+                "credentialName": {
+                    "type": "string"
+                },
+                "azureKeyVaultUrl": {
+                    "type": "string"
+                },
+                "servicePrincipalName": {
+                    "type": "string"
+                },
+                "servicePrincipalSecret": {
+                    "type": "string"
+                }
+            }
+        },
+        "serverConfigurationsManagementSettings": {
+            "body": {
+                "sqlConnectivityUpdateSettings": {
+                    "$ref": "#/$keywords/sqlConnectivityUpdateSettings"
+                },
+                "sqlWorkloadTypeUpdateSettings": {
+                    "$ref": "#/$keywords/sqlWorkloadTypeUpdateSettings"
+                },
+                "sqlStorageUpdateSettings": {
+                    "$ref": "#/$keywords/sqlStorageUpdateSettings"
+                },
+                "additionalFeaturesServerConfigurations": {
+                    "$ref": "#/$keywords/additionalFeaturesServerConfigurations"
+                }
+            }
+        },
+        "sqlConnectivityUpdateSettings": {
+            "parameters": {
+                "connectivityType": {
+                    "enum": [
+                        "LOCAL",
+                        "PRIVATE",
+                        "PUBLIC"
+                    ]
+                },
+                "port": {
+                    "type": "int"
+                },
+                "sqlAuthUpdateUserName": {
+                    "type": "string"
+                },
+                "sqlAuthUpdatePassword": {
+                    "type": "string"
+                }
+            }
+        },
+        "sqlWorkloadTypeUpdateSettings": {
+            "parameters": {
+                "sqlWorkloadType": {
+                    "enum": [
+                        "GENERAL",
+                        "OLTP",
+                        "DW"
+                    ]
+                }
+            }
+        },
+        "sqlStorageUpdateSettings": {
+            "parameters": {
+                "diskCount": {
+                    "type": "int"
+                },
+                "startingDeviceId": {
+                    "type": "int"
+                },
+                "diskConfigurationType": {
+                    "enum": [
+                        "NEW",
+                        "EXTEND",
+                        "ADD"
+                    ]
+                }
+            }
+        },
+        "additionalFeaturesServerConfigurations": {
+            "parameters": {
+                "isRServicesEnabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "storageConfigurationSettings": {
+            "parameters": {
+                "diskConfigurationType": {
+                    "enum": [
+                        "NEW",
+                        "EXTEND",
+                        "ADD"
+                    ]
+                },
+                "storageWorkloadType": {
+                    "enum": [
+                        "GENERAL",
+                        "OLTP",
+                        "DW"
+                    ]
+                }
+            },
+            "body": {
+                "sqlDataSettings": {
+                    "$ref": "#/$keywords/sqlDataSettings"
+                },
+                "sqlLogSettings": {
+                    "$ref": "#/$keywords/sqlDataSettings"
+                },
+                "sqlTempDbSettings": {
+                    "$ref": "#/$keywords/sqlDataSettings"
+                }
+            }
+        },
+        "sqlDataSettings": {
+            "parameters": {
+                "defaultFilePath": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "luns": {
+                    "$ref": "#/$keywords/luns"
+                }
+            }
+        },
+        "luns": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "sqlVirtualMachineGroups/availabilityGroupListeners": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "availabilityGroupName": {
+                "$ref": "#/$keywords/availabilityGroupName"
+            },
+            "loadBalancerConfigurations": {
+                "$ref": "#/$keywords/loadBalancerConfigurations"
+            },
+            "createDefaultAvailabilityGroupIfNotExist": {
+                "$ref": "#/$keywords/createDefaultAvailabilityGroupIfNotExist"
+            },
+            "port": {
+                "$ref": "#/$keywords/port"
+            }
+        },
+        "sqlVirtualMachineGroups": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "sqlImageOffer": {
+                "$ref": "#/$keywords/sqlImageOffer"
+            },
+            "sqlImageSku": {
+                "$ref": "#/$keywords/sqlImageSku"
+            },
+            "scaleType": {
+                "$ref": "#/$keywords/scaleType"
+            },
+            "clusterManagerType": {
+                "$ref": "#/$keywords/clusterManagerType"
+            },
+            "clusterConfiguration": {
+                "$ref": "#/$keywords/clusterConfiguration"
+            },
+            "wsfcDomainProfile": {
+                "$ref": "#/$keywords/wsfcDomainProfile"
+            }
+        },
+        "sqlVirtualMachines": {
+            "virtualMachineResourceId": {
+                "$ref": "#/$keywords/virtualMachineResourceId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "sqlImageOffer": {
+                "$ref": "#/$keywords/sqlImageOffer_2"
+            },
+            "sqlServerLicenseType": {
+                "$ref": "#/$keywords/sqlServerLicenseType"
+            },
+            "sqlManagement": {
+                "$ref": "#/$keywords/sqlManagement"
+            },
+            "sqlImageSku": {
+                "$ref": "#/$keywords/sqlImageSku_2"
+            },
+            "sqlVirtualMachineGroupResourceId": {
+                "$ref": "#/$keywords/sqlVirtualMachineGroupResourceId"
+            },
+            "wsfcDomainCredentials": {
+                "$ref": "#/$keywords/wsfcDomainCredentials"
+            },
+            "autoPatchingSettings": {
+                "$ref": "#/$keywords/autoPatchingSettings"
+            },
+            "autoBackupSettings": {
+                "$ref": "#/$keywords/autoBackupSettings"
+            },
+            "keyVaultCredentialSettings": {
+                "$ref": "#/$keywords/keyVaultCredentialSettings"
+            },
+            "serverConfigurationsManagementSettings": {
+                "$ref": "#/$keywords/serverConfigurationsManagementSettings"
+            },
+            "storageConfigurationSettings": {
+                "$ref": "#/$keywords/storageConfigurationSettings"
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "$keywords": {
+        "roleDefinitionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "principalId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "": {
+            "roleDefinitionId": {
+                "$ref": "#/$keywords/roleDefinitionId"
+            },
+            "principalId": {
+                "$ref": "#/$keywords/principalId"
+            }
+        }
+    }
+}

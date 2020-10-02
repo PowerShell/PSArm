@@ -1,0 +1,381 @@
+{
+    "$keywords": {
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "region": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdAt": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "serviceBusEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scaleUnit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "critical": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "namespaceType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "primaryKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "secondaryKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "claimType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "claimValue": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "rights": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "createdTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "modifiedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "revision": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "name_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "registrationTtl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizationRules": {
+            "parameters": {
+                "primaryKey": {
+                    "type": "string"
+                },
+                "secondaryKey": {
+                    "type": "string"
+                },
+                "keyName": {
+                    "type": "string"
+                },
+                "claimType": {
+                    "type": "string"
+                },
+                "claimValue": {
+                    "type": "string"
+                },
+                "createdTime": {},
+                "modifiedTime": {},
+                "revision": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "rights": {
+                    "$ref": "#/$keywords/rights"
+                }
+            },
+            "array": true
+        },
+        "apnsCredential": {
+            "propertyParameters": {
+                "apnsCertificate": {
+                    "type": "string"
+                },
+                "certificateKey": {
+                    "type": "string"
+                },
+                "endpoint": {
+                    "type": "string"
+                },
+                "thumbprint": {
+                    "type": "string"
+                }
+            }
+        },
+        "wnsCredential": {
+            "propertyParameters": {
+                "packageSid": {
+                    "type": "string"
+                },
+                "secretKey": {
+                    "type": "string"
+                },
+                "windowsLiveEndpoint": {
+                    "type": "string"
+                }
+            }
+        },
+        "gcmCredential": {
+            "propertyParameters": {
+                "gcmEndpoint": {
+                    "type": "string"
+                },
+                "googleApiKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "mpnsCredential": {
+            "propertyParameters": {
+                "mpnsCertificate": {
+                    "type": "string"
+                },
+                "certificateKey": {
+                    "type": "string"
+                },
+                "thumbprint": {
+                    "type": "string"
+                }
+            }
+        },
+        "admCredential": {
+            "propertyParameters": {
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "authTokenUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "baiduCredential": {
+            "propertyParameters": {
+                "baiduApiKey": {
+                    "type": "string"
+                },
+                "baiduEndPoint": {
+                    "type": "string"
+                },
+                "baiduSecretKey": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "namespaces": {
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "region": {
+                "$ref": "#/$keywords/region"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt"
+            },
+            "serviceBusEndpoint": {
+                "$ref": "#/$keywords/serviceBusEndpoint"
+            },
+            "subscriptionId": {
+                "$ref": "#/$keywords/subscriptionId"
+            },
+            "scaleUnit": {
+                "$ref": "#/$keywords/scaleUnit"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "critical": {
+                "$ref": "#/$keywords/critical"
+            },
+            "namespaceType": {
+                "$ref": "#/$keywords/namespaceType"
+            }
+        },
+        "namespaces/AuthorizationRules": {
+            "primaryKey": {
+                "$ref": "#/$keywords/primaryKey"
+            },
+            "secondaryKey": {
+                "$ref": "#/$keywords/secondaryKey"
+            },
+            "keyName": {
+                "$ref": "#/$keywords/keyName"
+            },
+            "claimType": {
+                "$ref": "#/$keywords/claimType"
+            },
+            "claimValue": {
+                "$ref": "#/$keywords/claimValue"
+            },
+            "rights": {
+                "$ref": "#/$keywords/rights"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime"
+            },
+            "modifiedTime": {
+                "$ref": "#/$keywords/modifiedTime"
+            },
+            "revision": {
+                "$ref": "#/$keywords/revision"
+            }
+        },
+        "namespaces/notificationHubs": {
+            "name": {
+                "$ref": "#/$keywords/name_2"
+            },
+            "registrationTtl": {
+                "$ref": "#/$keywords/registrationTtl"
+            },
+            "authorizationRules": {
+                "$ref": "#/$keywords/authorizationRules"
+            },
+            "apnsCredential": {
+                "$ref": "#/$keywords/apnsCredential"
+            },
+            "wnsCredential": {
+                "$ref": "#/$keywords/wnsCredential"
+            },
+            "gcmCredential": {
+                "$ref": "#/$keywords/gcmCredential"
+            },
+            "mpnsCredential": {
+                "$ref": "#/$keywords/mpnsCredential"
+            },
+            "admCredential": {
+                "$ref": "#/$keywords/admCredential"
+            },
+            "baiduCredential": {
+                "$ref": "#/$keywords/baiduCredential"
+            }
+        },
+        "namespaces/notificationHubs/AuthorizationRules": {
+            "primaryKey": {
+                "$ref": "#/$keywords/primaryKey"
+            },
+            "secondaryKey": {
+                "$ref": "#/$keywords/secondaryKey"
+            },
+            "keyName": {
+                "$ref": "#/$keywords/keyName"
+            },
+            "claimType": {
+                "$ref": "#/$keywords/claimType"
+            },
+            "claimValue": {
+                "$ref": "#/$keywords/claimValue"
+            },
+            "rights": {
+                "$ref": "#/$keywords/rights"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime"
+            },
+            "modifiedTime": {
+                "$ref": "#/$keywords/modifiedTime"
+            },
+            "revision": {
+                "$ref": "#/$keywords/revision"
+            }
+        }
+    }
+}

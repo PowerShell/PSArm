@@ -1,0 +1,18 @@
+{
+    "$keywords": {
+        "tenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "guestUsages": {
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            }
+        }
+    }
+}

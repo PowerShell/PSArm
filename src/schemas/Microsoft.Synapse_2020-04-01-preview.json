@@ -1,0 +1,89 @@
+{
+    "$keywords": {
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Invisible",
+                        "Online",
+                        "Offline",
+                        "Creating",
+                        "Inaccessible",
+                        "Pausing",
+                        "Paused",
+                        "Resuming",
+                        "Scaling",
+                        "Dropping",
+                        "Error",
+                        "Unknown"
+                    ]
+                }
+            }
+        },
+        "sqlPoolGuid": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "currentServiceObjectiveName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestedServiceObjectiveName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "collation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "maxSizeBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "databaseGuid": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "workspaces/sqlPools": {
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "sqlPoolGuid": {
+                "$ref": "#/$keywords/sqlPoolGuid"
+            },
+            "currentServiceObjectiveName": {
+                "$ref": "#/$keywords/currentServiceObjectiveName"
+            },
+            "requestedServiceObjectiveName": {
+                "$ref": "#/$keywords/requestedServiceObjectiveName"
+            }
+        },
+        "workspaces/sqlDatabases": {
+            "collation": {
+                "$ref": "#/$keywords/collation"
+            },
+            "maxSizeBytes": {
+                "$ref": "#/$keywords/maxSizeBytes"
+            },
+            "databaseGuid": {
+                "$ref": "#/$keywords/databaseGuid"
+            }
+        }
+    }
+}

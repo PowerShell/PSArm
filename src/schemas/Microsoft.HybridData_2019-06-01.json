@@ -1,0 +1,151 @@
+{
+    "$keywords": {
+        "dataSourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataSinkId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "schedules": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "policyList": {
+                    "$ref": "#/$keywords/policyList"
+                }
+            },
+            "array": true
+        },
+        "policyList": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModifiedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "runLocation": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "userConfirmation": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "dataServiceInput": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "customerSecrets": {
+            "parameters": {
+                "keyIdentifier": {
+                    "type": "string"
+                },
+                "keyValue": {
+                    "type": "string"
+                },
+                "algorithm": {}
+            },
+            "array": true
+        },
+        "repositoryId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataStoreTypeId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "customerSecrets_2": {
+            "parameters": {
+                "keyIdentifier": {
+                    "type": "string"
+                },
+                "keyValue": {
+                    "type": "string"
+                },
+                "algorithm": {}
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "dataManagers": {},
+        "dataManagers/dataServices/jobDefinitions": {
+            "dataSourceId": {
+                "$ref": "#/$keywords/dataSourceId"
+            },
+            "dataSinkId": {
+                "$ref": "#/$keywords/dataSinkId"
+            },
+            "schedules": {
+                "$ref": "#/$keywords/schedules"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime"
+            },
+            "runLocation": {
+                "$ref": "#/$keywords/runLocation"
+            },
+            "userConfirmation": {
+                "$ref": "#/$keywords/userConfirmation"
+            },
+            "dataServiceInput": {
+                "$ref": "#/$keywords/dataServiceInput"
+            },
+            "customerSecrets": {
+                "$ref": "#/$keywords/customerSecrets"
+            }
+        },
+        "dataManagers/dataStores": {
+            "repositoryId": {
+                "$ref": "#/$keywords/repositoryId"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "extendedProperties": {
+                "$ref": "#/$keywords/dataServiceInput"
+            },
+            "dataStoreTypeId": {
+                "$ref": "#/$keywords/dataStoreTypeId"
+            },
+            "customerSecrets": {
+                "$ref": "#/$keywords/customerSecrets_2"
+            }
+        }
+    }
+}

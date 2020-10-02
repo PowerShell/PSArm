@@ -1,0 +1,88 @@
+{
+    "$keywords": {
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyDefinitionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "notScopes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "parameters": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "enforcementMode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Default",
+                        "DoNotEnforce"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "policyDefinitionId": {
+                "$ref": "#/$keywords/policyDefinitionId"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "notScopes": {
+                "$ref": "#/$keywords/notScopes"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "enforcementMode": {
+                "$ref": "#/$keywords/enforcementMode"
+            }
+        }
+    }
+}

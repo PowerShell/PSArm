@@ -1,0 +1,291 @@
+{
+    "$keywords": {
+        "ApplicationId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "AppId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "Application_Type": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "web",
+                        "other"
+                    ]
+                }
+            }
+        },
+        "Flow_Type": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "Request_Source": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "InstrumentationKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "CreationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "TenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "HockeyAppId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "HockeyAppToken": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "SamplingPercentage": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "ConnectionString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "RetentionInDays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "DisableIpMasking": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "ImmediatePurgeDataOn30Days": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "PrivateLinkScopedResources": {
+            "parameters": {
+                "ResourceId": {
+                    "type": "string"
+                },
+                "ScopeId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "publicNetworkAccessForIngestion": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "IngestionMode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ApplicationInsights",
+                        "ApplicationInsightsWithDiagnosticSettings",
+                        "LogAnalytics"
+                    ]
+                }
+            }
+        },
+        "Name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "Enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "SendEmailsToSubscriptionOwners": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "CustomEmails": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "LastUpdatedTime": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "RuleDefinitions": {
+            "parameters": {
+                "Name": {
+                    "type": "string"
+                },
+                "DisplayName": {
+                    "type": "string"
+                },
+                "Description": {
+                    "type": "string"
+                },
+                "HelpUrl": {
+                    "type": "string"
+                },
+                "IsHidden": {
+                    "type": "bool"
+                },
+                "IsEnabledByDefault": {
+                    "type": "bool"
+                },
+                "IsInPreview": {
+                    "type": "bool"
+                },
+                "SupportsEmailNotifications": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "components": {
+            "ApplicationId": {
+                "$ref": "#/$keywords/ApplicationId"
+            },
+            "AppId": {
+                "$ref": "#/$keywords/AppId"
+            },
+            "Application_Type": {
+                "$ref": "#/$keywords/Application_Type"
+            },
+            "Flow_Type": {
+                "$ref": "#/$keywords/Flow_Type"
+            },
+            "Request_Source": {
+                "$ref": "#/$keywords/Request_Source"
+            },
+            "InstrumentationKey": {
+                "$ref": "#/$keywords/InstrumentationKey"
+            },
+            "CreationDate": {
+                "$ref": "#/$keywords/CreationDate"
+            },
+            "TenantId": {
+                "$ref": "#/$keywords/TenantId"
+            },
+            "HockeyAppId": {
+                "$ref": "#/$keywords/HockeyAppId"
+            },
+            "HockeyAppToken": {
+                "$ref": "#/$keywords/HockeyAppToken"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "SamplingPercentage": {
+                "$ref": "#/$keywords/SamplingPercentage"
+            },
+            "ConnectionString": {
+                "$ref": "#/$keywords/ConnectionString"
+            },
+            "RetentionInDays": {
+                "$ref": "#/$keywords/RetentionInDays"
+            },
+            "DisableIpMasking": {
+                "$ref": "#/$keywords/DisableIpMasking"
+            },
+            "ImmediatePurgeDataOn30Days": {
+                "$ref": "#/$keywords/ImmediatePurgeDataOn30Days"
+            },
+            "PrivateLinkScopedResources": {
+                "$ref": "#/$keywords/PrivateLinkScopedResources"
+            },
+            "publicNetworkAccessForIngestion": {
+                "$ref": "#/$keywords/publicNetworkAccessForIngestion"
+            },
+            "publicNetworkAccessForQuery": {
+                "$ref": "#/$keywords/publicNetworkAccessForIngestion"
+            },
+            "IngestionMode": {
+                "$ref": "#/$keywords/IngestionMode"
+            }
+        },
+        "components/ProactiveDetectionConfigs": {
+            "Name": {
+                "$ref": "#/$keywords/Name"
+            },
+            "Enabled": {
+                "$ref": "#/$keywords/Enabled"
+            },
+            "SendEmailsToSubscriptionOwners": {
+                "$ref": "#/$keywords/SendEmailsToSubscriptionOwners"
+            },
+            "CustomEmails": {
+                "$ref": "#/$keywords/CustomEmails"
+            },
+            "LastUpdatedTime": {
+                "$ref": "#/$keywords/LastUpdatedTime"
+            },
+            "RuleDefinitions": {
+                "$ref": "#/$keywords/RuleDefinitions"
+            }
+        }
+    }
+}

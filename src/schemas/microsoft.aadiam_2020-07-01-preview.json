@@ -1,0 +1,22 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Created",
+                        "Failed"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "azureADMetrics": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

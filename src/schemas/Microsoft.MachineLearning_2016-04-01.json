@@ -1,0 +1,84 @@
+{
+    "$keywords": {
+        "userStorageAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "ownerEmail": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workspaceType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "workspaceState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "workspaceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationTime": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "studioEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyVaultIdentifierId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "workspaces": {
+            "userStorageAccountId": {
+                "$ref": "#/$keywords/userStorageAccountId"
+            },
+            "ownerEmail": {
+                "$ref": "#/$keywords/ownerEmail"
+            },
+            "workspaceType": {
+                "$ref": "#/$keywords/workspaceType"
+            },
+            "workspaceState": {
+                "$ref": "#/$keywords/workspaceState"
+            },
+            "workspaceId": {
+                "$ref": "#/$keywords/workspaceId"
+            },
+            "creationTime": {
+                "$ref": "#/$keywords/creationTime"
+            },
+            "studioEndpoint": {
+                "$ref": "#/$keywords/studioEndpoint"
+            },
+            "keyVaultIdentifierId": {
+                "$ref": "#/$keywords/keyVaultIdentifierId"
+            }
+        }
+    }
+}

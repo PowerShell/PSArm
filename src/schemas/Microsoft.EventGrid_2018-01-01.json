@@ -1,0 +1,117 @@
+{
+    "$keywords": {
+        "topic": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "destination": {
+            "parameters": {
+                "endpointType": {
+                    "enum": [
+                        "WebHook",
+                        "EventHub"
+                    ]
+                }
+            }
+        },
+        "filter": {
+            "parameters": {
+                "subjectBeginsWith": {
+                    "type": "string"
+                },
+                "subjectEndsWith": {
+                    "type": "string"
+                },
+                "isSubjectCaseSensitive": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "includedEventTypes": {
+                    "$ref": "#/$keywords/includedEventTypes"
+                }
+            }
+        },
+        "includedEventTypes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "labels": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "endpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "eventSubscriptions": {
+            "topic": {
+                "$ref": "#/$keywords/topic"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "destination": {
+                "$ref": "#/$keywords/destination"
+            },
+            "filter": {
+                "$ref": "#/$keywords/filter"
+            },
+            "labels": {
+                "$ref": "#/$keywords/labels"
+            }
+        },
+        "topics": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint"
+            }
+        }
+    }
+}

@@ -1,0 +1,270 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "endpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "inputSchema": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "EventGridSchema",
+                        "CustomEventSchema",
+                        "CloudEventSchemaV1_0"
+                    ]
+                }
+            }
+        },
+        "inputSchemaMapping": {
+            "parameters": {
+                "inputSchemaMappingType": {}
+            }
+        },
+        "metricResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "topic": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed",
+                        "AwaitingManualAction"
+                    ]
+                }
+            }
+        },
+        "destination": {
+            "parameters": {
+                "endpointType": {
+                    "enum": [
+                        "WebHook",
+                        "EventHub",
+                        "StorageQueue",
+                        "HybridConnection",
+                        "ServiceBusQueue",
+                        "ServiceBusTopic",
+                        "AzureFunction"
+                    ]
+                }
+            }
+        },
+        "filter": {
+            "parameters": {
+                "subjectBeginsWith": {
+                    "type": "string"
+                },
+                "subjectEndsWith": {
+                    "type": "string"
+                },
+                "isSubjectCaseSensitive": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "includedEventTypes": {
+                    "$ref": "#/$keywords/includedEventTypes"
+                },
+                "advancedFilters": {
+                    "$ref": "#/$keywords/advancedFilters"
+                }
+            }
+        },
+        "includedEventTypes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "advancedFilters": {
+            "parameters": {
+                "operatorType": {
+                    "enum": [
+                        "NumberIn",
+                        "NumberNotIn",
+                        "NumberLessThan",
+                        "NumberGreaterThan",
+                        "NumberLessThanOrEquals",
+                        "NumberGreaterThanOrEquals",
+                        "BoolEquals",
+                        "StringIn",
+                        "StringNotIn",
+                        "StringBeginsWith",
+                        "StringEndsWith",
+                        "StringContains"
+                    ]
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "labels": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "expirationTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "eventDeliverySchema": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "EventGridSchema",
+                        "CustomInputSchema",
+                        "CloudEventSchemaV1_0"
+                    ]
+                }
+            }
+        },
+        "retryPolicy": {
+            "parameters": {
+                "maxDeliveryAttempts": {
+                    "type": "int"
+                },
+                "eventTimeToLiveInMinutes": {
+                    "type": "int"
+                }
+            }
+        },
+        "deadLetterDestination": {
+            "parameters": {
+                "endpointType": {}
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "endpoint_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "metricResourceId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "domains": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint"
+            },
+            "inputSchema": {
+                "$ref": "#/$keywords/inputSchema"
+            },
+            "inputSchemaMapping": {
+                "$ref": "#/$keywords/inputSchemaMapping"
+            },
+            "metricResourceId": {
+                "$ref": "#/$keywords/metricResourceId"
+            }
+        },
+        "eventSubscriptions": {
+            "topic": {
+                "$ref": "#/$keywords/topic"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "destination": {
+                "$ref": "#/$keywords/destination"
+            },
+            "filter": {
+                "$ref": "#/$keywords/filter"
+            },
+            "labels": {
+                "$ref": "#/$keywords/labels"
+            },
+            "expirationTimeUtc": {
+                "$ref": "#/$keywords/expirationTimeUtc"
+            },
+            "eventDeliverySchema": {
+                "$ref": "#/$keywords/eventDeliverySchema"
+            },
+            "retryPolicy": {
+                "$ref": "#/$keywords/retryPolicy"
+            },
+            "deadLetterDestination": {
+                "$ref": "#/$keywords/deadLetterDestination"
+            }
+        },
+        "topics": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint_2"
+            },
+            "inputSchema": {
+                "$ref": "#/$keywords/inputSchema"
+            },
+            "inputSchemaMapping": {
+                "$ref": "#/$keywords/inputSchemaMapping"
+            },
+            "metricResourceId": {
+                "$ref": "#/$keywords/metricResourceId_2"
+            }
+        }
+    }
+}

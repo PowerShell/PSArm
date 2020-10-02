@@ -1,0 +1,185 @@
+{
+    "$keywords": {
+        "registeredTools": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ServerDiscovery",
+                        "ServerAssessment",
+                        "ServerMigration",
+                        "Cloudamize",
+                        "Turbonomic",
+                        "Zerto",
+                        "CorentTech",
+                        "ServerAssessmentV1",
+                        "ServerMigration_Replication",
+                        "Carbonite",
+                        "DataMigrationAssistant",
+                        "DatabaseMigrationService"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "summary": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastSummaryRefreshedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "refreshSummaryState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Started",
+                        "InProgress",
+                        "Completed",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Accepted",
+                        "Creating",
+                        "Deleting",
+                        "Failed",
+                        "Moving",
+                        "Succeeded"
+                    ]
+                }
+            }
+        },
+        "tool": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ServerDiscovery",
+                        "ServerAssessment",
+                        "ServerMigration",
+                        "Cloudamize",
+                        "Turbonomic",
+                        "Zerto",
+                        "CorentTech",
+                        "ServerAssessmentV1",
+                        "ServerMigration_Replication",
+                        "Carbonite",
+                        "DataMigrationAssistant",
+                        "DatabaseMigrationService"
+                    ]
+                }
+            }
+        },
+        "purpose": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Discovery",
+                        "Assessment",
+                        "Migration"
+                    ]
+                }
+            }
+        },
+        "goal": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Servers",
+                        "Databases"
+                    ]
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Inactive",
+                        "Active"
+                    ]
+                }
+            }
+        },
+        "cleanupState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "Started",
+                        "InProgress",
+                        "Completed",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "summary_2": {
+            "parameters": {
+                "instanceType": {
+                    "type": "string"
+                }
+            }
+        },
+        "details": {
+            "parameters": {
+                "groupCount": {
+                    "type": "int"
+                },
+                "assessmentCount": {
+                    "type": "int"
+                },
+                "extendedDetails": {}
+            }
+        }
+    },
+    "$resources": {
+        "migrateProjects": {
+            "registeredTools": {
+                "$ref": "#/$keywords/registeredTools"
+            },
+            "summary": {
+                "$ref": "#/$keywords/summary"
+            },
+            "lastSummaryRefreshedTime": {
+                "$ref": "#/$keywords/lastSummaryRefreshedTime"
+            },
+            "refreshSummaryState": {
+                "$ref": "#/$keywords/refreshSummaryState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "migrateProjects/solutions": {
+            "tool": {
+                "$ref": "#/$keywords/tool"
+            },
+            "purpose": {
+                "$ref": "#/$keywords/purpose"
+            },
+            "goal": {
+                "$ref": "#/$keywords/goal"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "cleanupState": {
+                "$ref": "#/$keywords/cleanupState"
+            },
+            "summary": {
+                "$ref": "#/$keywords/summary_2"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            }
+        }
+    }
+}

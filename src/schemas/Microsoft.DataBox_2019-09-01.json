@@ -1,0 +1,327 @@
+{
+    "$keywords": {
+        "isCancellable": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isDeletable": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isShippingAddressEditable": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "startTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "error": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "details": {
+            "parameters": {
+                "expectedDataSizeInTerabytes": {
+                    "type": "int"
+                },
+                "jobDetailsType": {},
+                "reverseShipmentLabelSasKey": {
+                    "type": "string"
+                },
+                "chainOfCustodySasKey": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "jobStages": {
+                    "$ref": "#/$keywords/jobStages"
+                },
+                "contactDetails": {
+                    "$ref": "#/$keywords/contactDetails"
+                },
+                "shippingAddress": {
+                    "$ref": "#/$keywords/shippingAddress"
+                },
+                "deliveryPackage": {
+                    "$ref": "#/$keywords/deliveryPackage"
+                },
+                "returnPackage": {
+                    "$ref": "#/$keywords/deliveryPackage"
+                },
+                "destinationAccountDetails": {
+                    "$ref": "#/$keywords/destinationAccountDetails"
+                },
+                "errorDetails": {
+                    "$ref": "#/$keywords/errorDetails_2"
+                },
+                "preferences": {
+                    "$ref": "#/$keywords/preferences"
+                },
+                "copyLogDetails": {
+                    "$ref": "#/$keywords/copyLogDetails"
+                }
+            }
+        },
+        "jobStages": {
+            "parameters": {
+                "stageName": {},
+                "displayName": {
+                    "type": "string"
+                },
+                "stageStatus": {},
+                "stageTime": {},
+                "jobStageDetails": {}
+            },
+            "body": {
+                "errorDetails": {
+                    "$ref": "#/$keywords/errorDetails"
+                }
+            },
+            "array": true
+        },
+        "errorDetails": {
+            "parameters": {
+                "errorMessage": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "int"
+                },
+                "recommendedAction": {
+                    "type": "string"
+                },
+                "exceptionMessage": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "contactDetails": {
+            "parameters": {
+                "contactName": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "phoneExtension": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "emailList": {
+                    "$ref": "#/$keywords/emailList"
+                },
+                "notificationPreference": {
+                    "$ref": "#/$keywords/notificationPreference"
+                }
+            }
+        },
+        "emailList": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "notificationPreference": {
+            "parameters": {
+                "stageName": {},
+                "sendNotification": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "shippingAddress": {
+            "parameters": {
+                "streetAddress1": {
+                    "type": "string"
+                },
+                "streetAddress2": {
+                    "type": "string"
+                },
+                "streetAddress3": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "stateOrProvince": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "zipExtendedCode": {
+                    "type": "string"
+                },
+                "companyName": {
+                    "type": "string"
+                },
+                "addressType": {}
+            }
+        },
+        "deliveryPackage": {
+            "parameters": {
+                "carrierName": {
+                    "type": "string"
+                },
+                "trackingId": {
+                    "type": "string"
+                },
+                "trackingUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "destinationAccountDetails": {
+            "parameters": {
+                "dataDestinationType": {},
+                "accountId": {
+                    "type": "string"
+                },
+                "sharePassword": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "errorDetails_2": {
+            "parameters": {
+                "errorMessage": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "int"
+                },
+                "recommendedAction": {
+                    "type": "string"
+                },
+                "exceptionMessage": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "preferences": {
+            "body": {
+                "preferredDataCenterRegion": {
+                    "$ref": "#/$keywords/preferredDataCenterRegion"
+                },
+                "transportPreferences": {
+                    "$ref": "#/$keywords/transportPreferences"
+                }
+            }
+        },
+        "preferredDataCenterRegion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "transportPreferences": {
+            "parameters": {
+                "preferredShipmentType": {}
+            }
+        },
+        "copyLogDetails": {
+            "parameters": {
+                "copyLogDetailsType": {}
+            },
+            "array": true
+        },
+        "cancellationReason": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deliveryType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "deliveryInfo": {
+            "parameters": {
+                "scheduledDateTime": {}
+            }
+        },
+        "isCancellableWithoutFee": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "jobs": {
+            "isCancellable": {
+                "$ref": "#/$keywords/isCancellable"
+            },
+            "isDeletable": {
+                "$ref": "#/$keywords/isDeletable"
+            },
+            "isShippingAddressEditable": {
+                "$ref": "#/$keywords/isShippingAddressEditable"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "startTime": {
+                "$ref": "#/$keywords/startTime"
+            },
+            "error": {
+                "$ref": "#/$keywords/error"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            },
+            "cancellationReason": {
+                "$ref": "#/$keywords/cancellationReason"
+            },
+            "deliveryType": {
+                "$ref": "#/$keywords/deliveryType"
+            },
+            "deliveryInfo": {
+                "$ref": "#/$keywords/deliveryInfo"
+            },
+            "isCancellableWithoutFee": {
+                "$ref": "#/$keywords/isCancellableWithoutFee"
+            }
+        }
+    }
+}

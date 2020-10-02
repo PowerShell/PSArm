@@ -1,0 +1,89 @@
+{
+    "$keywords": {
+        "actions": {
+            "parameters": {
+                "routingType": {},
+                "name": {
+                    "type": "string"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "pattern": "^https://.+"
+                }
+            },
+            "array": true
+        },
+        "resourceTypes": {
+            "parameters": {
+                "routingType": {
+                    "enum": [
+                        "Proxy",
+                        "Proxy,Cache"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "pattern": "^https://.+"
+                }
+            },
+            "array": true
+        },
+        "validations": {
+            "parameters": {
+                "validationType": {},
+                "specification": {
+                    "type": "string",
+                    "pattern": "^https://raw.githubusercontent.com/.+"
+                }
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Accepted",
+                        "Deleting",
+                        "Running",
+                        "Succeeded",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "targetResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "resourceProviders": {
+            "actions": {
+                "$ref": "#/$keywords/actions"
+            },
+            "resourceTypes": {
+                "$ref": "#/$keywords/resourceTypes"
+            },
+            "validations": {
+                "$ref": "#/$keywords/validations"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "associations": {
+            "targetResourceId": {
+                "$ref": "#/$keywords/targetResourceId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

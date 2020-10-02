@@ -1,0 +1,273 @@
+{
+    "$keywords": {
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "poNumber": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "address": {
+            "parameters": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "companyName": {
+                    "type": "string"
+                },
+                "addressLine1": {
+                    "type": "string"
+                },
+                "addressLine2": {
+                    "type": "string"
+                },
+                "addressLine3": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "invoiceEmailOptIn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isClassic": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "invoiceDay": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "currency": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabledAzureSKUs": {
+            "parameters": {
+                "skuId": {
+                    "type": "string"
+                },
+                "skuDescription": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "invoiceSections": {
+            "parameters": {
+                "displayName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "billingProfiles": {
+                    "$ref": "#/$keywords/billingProfiles"
+                }
+            },
+            "array": true
+        },
+        "billingProfiles": {
+            "parameters": {
+                "displayName": {
+                    "type": "string"
+                },
+                "poNumber": {
+                    "type": "string"
+                },
+                "invoiceEmailOptIn": {
+                    "type": "bool"
+                },
+                "isClassic": {
+                    "type": "bool"
+                },
+                "invoiceDay": {
+                    "type": "int"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "address": {
+                    "$ref": "#/$keywords/address"
+                },
+                "enabledAzureSKUs": {
+                    "$ref": "#/$keywords/enabledAzureSKUs"
+                },
+                "invoiceSections": {
+                    "$ref": "#/$keywords/invoiceSections"
+                }
+            },
+            "array": true
+        },
+        "displayName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "marketplacePurchasesAllowed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "reservationPurchasesAllowed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "subscriptionOwnerCanViewCharges": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "creditLimit": {
+            "parameters": {
+                "currency": {
+                    "type": "string"
+                },
+                "value": {}
+            }
+        },
+        "reason": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Approved",
+                        "Rejected"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "billingAccounts/billingProfiles": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "poNumber": {
+                "$ref": "#/$keywords/poNumber"
+            },
+            "address": {
+                "$ref": "#/$keywords/address"
+            },
+            "invoiceEmailOptIn": {
+                "$ref": "#/$keywords/invoiceEmailOptIn"
+            },
+            "isClassic": {
+                "$ref": "#/$keywords/isClassic"
+            },
+            "invoiceDay": {
+                "$ref": "#/$keywords/invoiceDay"
+            },
+            "currency": {
+                "$ref": "#/$keywords/currency"
+            },
+            "enabledAzureSKUs": {
+                "$ref": "#/$keywords/enabledAzureSKUs"
+            },
+            "invoiceSections": {
+                "$ref": "#/$keywords/invoiceSections"
+            }
+        },
+        "billingAccounts/invoiceSections": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName_2"
+            },
+            "billingProfiles": {
+                "$ref": "#/$keywords/billingProfiles"
+            }
+        },
+        "billingAccounts/billingProfiles/policies": {
+            "marketplacePurchasesAllowed": {
+                "$ref": "#/$keywords/marketplacePurchasesAllowed"
+            },
+            "reservationPurchasesAllowed": {
+                "$ref": "#/$keywords/reservationPurchasesAllowed"
+            },
+            "subscriptionOwnerCanViewCharges": {
+                "$ref": "#/$keywords/subscriptionOwnerCanViewCharges"
+            }
+        },
+        "billingAccounts": {
+            "creditLimit": {
+                "$ref": "#/$keywords/creditLimit"
+            },
+            "reason": {
+                "$ref": "#/$keywords/reason"
+            },
+            "remainingBalance": {
+                "$ref": "#/$keywords/creditLimit"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            }
+        }
+    }
+}

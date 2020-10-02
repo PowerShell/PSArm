@@ -1,0 +1,24 @@
+{
+    "$keywords": {
+        "lenses": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "dashboards": {
+            "lenses": {
+                "$ref": "#/$keywords/lenses"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            }
+        }
+    }
+}

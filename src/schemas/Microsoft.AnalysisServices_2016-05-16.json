@@ -1,0 +1,92 @@
+{
+    "$keywords": {
+        "asAdministrators": {
+            "body": {
+                "members": {
+                    "$ref": "#/$keywords/members"
+                }
+            }
+        },
+        "members": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "backupBlobContainerUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Paused",
+                        "Suspended",
+                        "Provisioning",
+                        "Updating",
+                        "Suspending",
+                        "Pausing",
+                        "Resuming",
+                        "Preparing",
+                        "Scaling"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Paused",
+                        "Suspended",
+                        "Provisioning",
+                        "Updating",
+                        "Suspending",
+                        "Pausing",
+                        "Resuming",
+                        "Preparing",
+                        "Scaling"
+                    ]
+                }
+            }
+        },
+        "serverFullName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "servers": {
+            "asAdministrators": {
+                "$ref": "#/$keywords/asAdministrators"
+            },
+            "backupBlobContainerUri": {
+                "$ref": "#/$keywords/backupBlobContainerUri"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "serverFullName": {
+                "$ref": "#/$keywords/serverFullName"
+            }
+        }
+    }
+}

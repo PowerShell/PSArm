@@ -1,0 +1,574 @@
+{
+    "$keywords": {
+        "availabilityZoneId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "availabilityZoneName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cloudRackName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "created": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "nodesCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "placementGroupId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "placementGroupName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateCloudId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateCloudName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "purchaseId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "vmwareClusterName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "id": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "gatewaySubnet": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isAccountOnboarded": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "nodes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "serviceURL": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "amountOfRam": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "controllers": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "subType": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "customization": {
+            "parameters": {
+                "hostName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "policyId": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "dnsServers": {
+                    "$ref": "#/$keywords/dnsServers"
+                }
+            }
+        },
+        "dnsServers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+                }
+            },
+            "array": true
+        },
+        "disks": {
+            "parameters": {
+                "controllerId": {
+                    "type": "string"
+                },
+                "independenceMode": {},
+                "totalSize": {
+                    "type": "int"
+                },
+                "virtualDiskId": {
+                    "type": "string"
+                },
+                "virtualDiskName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "dnsname": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "exposeToGuestVM": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "folder": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "guestOS": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "guestOSType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "nics": {
+            "parameters": {
+                "macAddress": {
+                    "type": "string"
+                },
+                "nicType": {},
+                "powerOnBoot": {
+                    "type": "bool"
+                },
+                "virtualNicId": {
+                    "type": "string"
+                },
+                "virtualNicName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "customization": {
+                    "$ref": "#/$keywords/customization_2"
+                },
+                "ipAddresses": {
+                    "$ref": "#/$keywords/ipAddresses"
+                },
+                "network": {
+                    "$ref": "#/$keywords/network"
+                }
+            },
+            "array": true
+        },
+        "customization_2": {
+            "parameters": {
+                "allocation": {
+                    "enum": [
+                        "static",
+                        "dynamic"
+                    ]
+                },
+                "ipAddress": {
+                    "type": "string",
+                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+                },
+                "mask": {
+                    "type": "string",
+                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+                },
+                "primaryWinsServer": {
+                    "type": "string",
+                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+                },
+                "secondaryWinsServer": {
+                    "type": "string",
+                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+                }
+            },
+            "body": {
+                "dnsServers": {
+                    "$ref": "#/$keywords/dnsServers_2"
+                },
+                "gateway": {
+                    "$ref": "#/$keywords/gateway"
+                }
+            }
+        },
+        "dnsServers_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+                }
+            },
+            "array": true
+        },
+        "gateway": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[.]){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+                }
+            },
+            "array": true
+        },
+        "ipAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "network": {
+            "parameters": {
+                "assignable": {
+                    "type": "bool"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "privateCloudId": {
+                    "type": "string"
+                }
+            }
+        },
+        "numberOfCores": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "password": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateCloudId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publicIP": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourcePool": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "privateCloudId": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "fullName": {
+                    "type": "string"
+                }
+            }
+        },
+        "status_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "templateId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "username": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vSphereNetworks": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "vmId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vmwaretools": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "dedicatedCloudNodes": {
+            "availabilityZoneId": {
+                "$ref": "#/$keywords/availabilityZoneId"
+            },
+            "availabilityZoneName": {
+                "$ref": "#/$keywords/availabilityZoneName"
+            },
+            "cloudRackName": {
+                "$ref": "#/$keywords/cloudRackName"
+            },
+            "created": {
+                "$ref": "#/$keywords/created"
+            },
+            "nodesCount": {
+                "$ref": "#/$keywords/nodesCount"
+            },
+            "placementGroupId": {
+                "$ref": "#/$keywords/placementGroupId"
+            },
+            "placementGroupName": {
+                "$ref": "#/$keywords/placementGroupName"
+            },
+            "privateCloudId": {
+                "$ref": "#/$keywords/privateCloudId"
+            },
+            "privateCloudName": {
+                "$ref": "#/$keywords/privateCloudName"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "purchaseId": {
+                "$ref": "#/$keywords/purchaseId"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "vmwareClusterName": {
+                "$ref": "#/$keywords/vmwareClusterName"
+            },
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "name": {
+                "$ref": "#/$keywords/name"
+            }
+        },
+        "dedicatedCloudServices": {
+            "gatewaySubnet": {
+                "$ref": "#/$keywords/gatewaySubnet"
+            },
+            "isAccountOnboarded": {
+                "$ref": "#/$keywords/isAccountOnboarded"
+            },
+            "nodes": {
+                "$ref": "#/$keywords/nodes"
+            },
+            "serviceURL": {
+                "$ref": "#/$keywords/serviceURL"
+            }
+        },
+        "virtualMachines": {
+            "amountOfRam": {
+                "$ref": "#/$keywords/amountOfRam"
+            },
+            "controllers": {
+                "$ref": "#/$keywords/controllers"
+            },
+            "customization": {
+                "$ref": "#/$keywords/customization"
+            },
+            "disks": {
+                "$ref": "#/$keywords/disks"
+            },
+            "dnsname": {
+                "$ref": "#/$keywords/dnsname"
+            },
+            "exposeToGuestVM": {
+                "$ref": "#/$keywords/exposeToGuestVM"
+            },
+            "folder": {
+                "$ref": "#/$keywords/folder"
+            },
+            "guestOS": {
+                "$ref": "#/$keywords/guestOS"
+            },
+            "guestOSType": {
+                "$ref": "#/$keywords/guestOSType"
+            },
+            "nics": {
+                "$ref": "#/$keywords/nics"
+            },
+            "numberOfCores": {
+                "$ref": "#/$keywords/numberOfCores"
+            },
+            "password": {
+                "$ref": "#/$keywords/password"
+            },
+            "privateCloudId": {
+                "$ref": "#/$keywords/privateCloudId_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "publicIP": {
+                "$ref": "#/$keywords/publicIP"
+            },
+            "resourcePool": {
+                "$ref": "#/$keywords/resourcePool"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_2"
+            },
+            "templateId": {
+                "$ref": "#/$keywords/templateId"
+            },
+            "username": {
+                "$ref": "#/$keywords/username"
+            },
+            "vSphereNetworks": {
+                "$ref": "#/$keywords/vSphereNetworks"
+            },
+            "vmId": {
+                "$ref": "#/$keywords/vmId"
+            },
+            "vmwaretools": {
+                "$ref": "#/$keywords/vmwaretools"
+            }
+        }
+    }
+}

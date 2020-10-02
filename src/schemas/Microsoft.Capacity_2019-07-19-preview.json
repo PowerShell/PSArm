@@ -1,0 +1,179 @@
+{
+    "$keywords": {
+        "limit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "currentValue": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "unit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                },
+                "localizedValue": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "standard",
+                        "dedicated",
+                        "lowPriority",
+                        "shared",
+                        "serviceSpecific"
+                    ]
+                }
+            }
+        },
+        "quotaPeriod": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "properties": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "settings": {
+            "parameters": {
+                "autoQuotaIncreaseState": {
+                    "enum": [
+                        "enabled",
+                        "disabled"
+                    ]
+                }
+            }
+        },
+        "onFailure": {
+            "body": {
+                "emailActions": {
+                    "$ref": "#/$keywords/emailActions"
+                }
+            }
+        },
+        "emailActions": {
+            "body": {
+                "emailAddresses": {
+                    "$ref": "#/$keywords/emailAddresses"
+                }
+            }
+        },
+        "emailAddresses": {
+            "parameters": {
+                "emailAddress": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "supportTicketAction": {
+            "parameters": {
+                "severity": {
+                    "enum": [
+                        "Critical",
+                        "Moderate",
+                        "Minimal"
+                    ]
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "primaryEmailAddress": {
+                    "type": "string"
+                },
+                "supportLanguage": {
+                    "type": "string"
+                },
+                "preferredContactMethod": {
+                    "enum": [
+                        "Email",
+                        "Phone"
+                    ]
+                }
+            },
+            "body": {
+                "alternateEmailAddresses": {
+                    "$ref": "#/$keywords/alternateEmailAddresses"
+                }
+            }
+        },
+        "alternateEmailAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "resourceProviders/locations/serviceLimits": {
+            "limit": {
+                "$ref": "#/$keywords/limit"
+            },
+            "currentValue": {
+                "$ref": "#/$keywords/currentValue"
+            },
+            "unit": {
+                "$ref": "#/$keywords/unit"
+            },
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "resourceType": {
+                "$ref": "#/$keywords/resourceType"
+            },
+            "quotaPeriod": {
+                "$ref": "#/$keywords/quotaPeriod"
+            },
+            "properties": {
+                "$ref": "#/$keywords/properties"
+            }
+        },
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Capacity//providers": {
+            "settings": {
+                "$ref": "#/$keywords/settings"
+            },
+            "onFailure": {
+                "$ref": "#/$keywords/onFailure"
+            },
+            "onSuccess": {
+                "$ref": "#/$keywords/onFailure"
+            },
+            "supportTicketAction": {
+                "$ref": "#/$keywords/supportTicketAction"
+            }
+        }
+    }
+}

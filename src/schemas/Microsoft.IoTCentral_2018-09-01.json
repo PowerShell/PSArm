@@ -1,0 +1,48 @@
+{
+    "$keywords": {
+        "applicationId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subdomain": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "template": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "IoTApps": {
+            "applicationId": {
+                "$ref": "#/$keywords/applicationId"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "subdomain": {
+                "$ref": "#/$keywords/subdomain"
+            },
+            "template": {
+                "$ref": "#/$keywords/template"
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "$keywords": {
+        "autoStorage": {
+            "parameters": {
+                "storageAccountId": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "batchAccounts": {
+            "autoStorage": {
+                "$ref": "#/$keywords/autoStorage"
+            }
+        },
+        "batchAccounts/applications": {}
+    }
+}

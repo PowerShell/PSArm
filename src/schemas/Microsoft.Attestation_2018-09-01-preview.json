@@ -1,0 +1,94 @@
+{
+    "$keywords": {
+        "attestationPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policySigningCertificates": {
+            "body": {
+                "keys": {
+                    "$ref": "#/$keywords/keys"
+                }
+            }
+        },
+        "keys": {
+            "parameters": {
+                "alg": {
+                    "type": "string"
+                },
+                "crv": {
+                    "type": "string"
+                },
+                "d": {
+                    "type": "string"
+                },
+                "dp": {
+                    "type": "string"
+                },
+                "dq": {
+                    "type": "string"
+                },
+                "e": {
+                    "type": "string"
+                },
+                "k": {
+                    "type": "string"
+                },
+                "kid": {
+                    "type": "string"
+                },
+                "kty": {
+                    "type": "string"
+                },
+                "n": {
+                    "type": "string"
+                },
+                "p": {
+                    "type": "string"
+                },
+                "q": {
+                    "type": "string"
+                },
+                "qi": {
+                    "type": "string"
+                },
+                "use": {
+                    "type": "string"
+                },
+                "x": {
+                    "type": "string"
+                },
+                "y": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "x5c": {
+                    "$ref": "#/$keywords/x5c"
+                }
+            },
+            "array": true
+        },
+        "x5c": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "attestationProviders": {
+            "attestationPolicy": {
+                "$ref": "#/$keywords/attestationPolicy"
+            },
+            "policySigningCertificates": {
+                "$ref": "#/$keywords/policySigningCertificates"
+            }
+        }
+    }
+}

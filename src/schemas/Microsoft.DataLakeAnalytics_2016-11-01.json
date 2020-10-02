@@ -1,0 +1,265 @@
+{
+    "$keywords": {
+        "defaultDataLakeStoreAccount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataLakeStoreAccounts": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "suffix": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "storageAccounts": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "accessKey": {
+                    "type": "string"
+                },
+                "suffix": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "computePolicies": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "objectId": {},
+                "objectType": {
+                    "enum": [
+                        "User",
+                        "Group",
+                        "ServicePrincipal"
+                    ]
+                },
+                "maxDegreeOfParallelismPerJob": {
+                    "type": "int"
+                },
+                "minPriorityPerJob": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "firewallRules": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "startIpAddress": {
+                    "type": "string"
+                },
+                "endIpAddress": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "firewallState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "firewallAllowAzureIps": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "newTier": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "maxJobCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "maxDegreeOfParallelism": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "maxDegreeOfParallelismPerJob": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "minPriorityPerJob": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "queryStoreRetention": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "suffix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accessKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "suffix_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "objectId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "objectType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "User",
+                        "Group",
+                        "ServicePrincipal"
+                    ]
+                }
+            }
+        },
+        "maxDegreeOfParallelismPerJob_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "minPriorityPerJob_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "startIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "accounts": {
+            "defaultDataLakeStoreAccount": {
+                "$ref": "#/$keywords/defaultDataLakeStoreAccount"
+            },
+            "dataLakeStoreAccounts": {
+                "$ref": "#/$keywords/dataLakeStoreAccounts"
+            },
+            "storageAccounts": {
+                "$ref": "#/$keywords/storageAccounts"
+            },
+            "computePolicies": {
+                "$ref": "#/$keywords/computePolicies"
+            },
+            "firewallRules": {
+                "$ref": "#/$keywords/firewallRules"
+            },
+            "firewallState": {
+                "$ref": "#/$keywords/firewallState"
+            },
+            "firewallAllowAzureIps": {
+                "$ref": "#/$keywords/firewallAllowAzureIps"
+            },
+            "newTier": {
+                "$ref": "#/$keywords/newTier"
+            },
+            "maxJobCount": {
+                "$ref": "#/$keywords/maxJobCount"
+            },
+            "maxDegreeOfParallelism": {
+                "$ref": "#/$keywords/maxDegreeOfParallelism"
+            },
+            "maxDegreeOfParallelismPerJob": {
+                "$ref": "#/$keywords/maxDegreeOfParallelismPerJob"
+            },
+            "minPriorityPerJob": {
+                "$ref": "#/$keywords/minPriorityPerJob"
+            },
+            "queryStoreRetention": {
+                "$ref": "#/$keywords/queryStoreRetention"
+            }
+        },
+        "accounts/dataLakeStoreAccounts": {
+            "suffix": {
+                "$ref": "#/$keywords/suffix"
+            }
+        },
+        "accounts/storageAccounts": {
+            "accessKey": {
+                "$ref": "#/$keywords/accessKey"
+            },
+            "suffix": {
+                "$ref": "#/$keywords/suffix_2"
+            }
+        },
+        "accounts/computePolicies": {
+            "objectId": {
+                "$ref": "#/$keywords/objectId"
+            },
+            "objectType": {
+                "$ref": "#/$keywords/objectType"
+            },
+            "maxDegreeOfParallelismPerJob": {
+                "$ref": "#/$keywords/maxDegreeOfParallelismPerJob_2"
+            },
+            "minPriorityPerJob": {
+                "$ref": "#/$keywords/minPriorityPerJob_2"
+            }
+        },
+        "accounts/firewallRules": {
+            "startIpAddress": {
+                "$ref": "#/$keywords/startIpAddress"
+            },
+            "endIpAddress": {
+                "$ref": "#/$keywords/endIpAddress"
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "$keywords": {
+        "sku": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Free",
+                        "Standard"
+                    ]
+                }
+            }
+        },
+        "units": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "admins": {
+            "parameters": {
+                "upn": {
+                    "type": "string"
+                },
+                "objectId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "users": {
+            "parameters": {
+                "upn": {
+                    "type": "string"
+                },
+                "objectId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "successfullyProvisioned": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enableAutomaticUnitAdjustment": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "catalogs": {
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "units": {
+                "$ref": "#/$keywords/units"
+            },
+            "admins": {
+                "$ref": "#/$keywords/admins"
+            },
+            "users": {
+                "$ref": "#/$keywords/users"
+            },
+            "successfullyProvisioned": {
+                "$ref": "#/$keywords/successfullyProvisioned"
+            },
+            "enableAutomaticUnitAdjustment": {
+                "$ref": "#/$keywords/enableAutomaticUnitAdjustment"
+            }
+        }
+    }
+}

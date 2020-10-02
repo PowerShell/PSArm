@@ -1,0 +1,321 @@
+{
+    "$keywords": {
+        "managedResourceGroupId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "parameters": {
+            "body": {
+                "amlWorkspaceId": {
+                    "$ref": "#/$keywords/amlWorkspaceId"
+                },
+                "customVirtualNetworkId": {
+                    "$ref": "#/$keywords/amlWorkspaceId"
+                },
+                "customPublicSubnetName": {
+                    "$ref": "#/$keywords/amlWorkspaceId"
+                },
+                "customPrivateSubnetName": {
+                    "$ref": "#/$keywords/amlWorkspaceId"
+                },
+                "enableNoPublicIp": {
+                    "$ref": "#/$keywords/enableNoPublicIp"
+                },
+                "prepareEncryption": {
+                    "$ref": "#/$keywords/enableNoPublicIp"
+                },
+                "encryption": {
+                    "$ref": "#/$keywords/encryption"
+                },
+                "requireInfrastructureEncryption": {
+                    "$ref": "#/$keywords/enableNoPublicIp"
+                }
+            }
+        },
+        "amlWorkspaceId": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Bool",
+                        "Object",
+                        "String"
+                    ]
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enableNoPublicIp": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Bool",
+                        "Object",
+                        "String"
+                    ]
+                },
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Bool",
+                        "Object",
+                        "String"
+                    ]
+                }
+            },
+            "body": {
+                "value": {
+                    "$ref": "#/$keywords/value"
+                }
+            }
+        },
+        "value": {
+            "parameters": {
+                "keySource": {
+                    "enum": [
+                        "Default",
+                        "Microsoft.Keyvault"
+                    ]
+                },
+                "KeyName": {
+                    "type": "string"
+                },
+                "keyversion": {
+                    "type": "string"
+                },
+                "keyvaulturi": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Accepted",
+                        "Running",
+                        "Ready",
+                        "Creating",
+                        "Created",
+                        "Deleting",
+                        "Deleted",
+                        "Canceled",
+                        "Failed",
+                        "Succeeded",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "uiDefinitionUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizations": {
+            "parameters": {
+                "principalId": {},
+                "roleDefinitionId": {}
+            },
+            "array": true
+        },
+        "createdBy": {
+            "parameters": {
+                "oid": {},
+                "puid": {
+                    "type": "string"
+                },
+                "applicationId": {}
+            }
+        },
+        "createdDateTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "workspaceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workspaceUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageAccountIdentity": {
+            "parameters": {
+                "principalId": {},
+                "tenantId": {},
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "allowVirtualNetworkAccess": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "allowForwardedTraffic": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "allowGatewayTransit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "useRemoteGateways": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "databricksVirtualNetwork": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "databricksAddressSpace": {
+            "body": {
+                "addressPrefixes": {
+                    "$ref": "#/$keywords/addressPrefixes"
+                }
+            }
+        },
+        "addressPrefixes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "remoteVirtualNetwork": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "peeringState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Initiated",
+                        "Connected",
+                        "Disconnected"
+                    ]
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "workspaces": {
+            "managedResourceGroupId": {
+                "$ref": "#/$keywords/managedResourceGroupId"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "uiDefinitionUri": {
+                "$ref": "#/$keywords/uiDefinitionUri"
+            },
+            "authorizations": {
+                "$ref": "#/$keywords/authorizations"
+            },
+            "createdBy": {
+                "$ref": "#/$keywords/createdBy"
+            },
+            "updatedBy": {
+                "$ref": "#/$keywords/createdBy"
+            },
+            "createdDateTime": {
+                "$ref": "#/$keywords/createdDateTime"
+            },
+            "workspaceId": {
+                "$ref": "#/$keywords/workspaceId"
+            },
+            "workspaceUrl": {
+                "$ref": "#/$keywords/workspaceUrl"
+            },
+            "storageAccountIdentity": {
+                "$ref": "#/$keywords/storageAccountIdentity"
+            }
+        },
+        "workspaces/virtualNetworkPeerings": {
+            "allowVirtualNetworkAccess": {
+                "$ref": "#/$keywords/allowVirtualNetworkAccess"
+            },
+            "allowForwardedTraffic": {
+                "$ref": "#/$keywords/allowForwardedTraffic"
+            },
+            "allowGatewayTransit": {
+                "$ref": "#/$keywords/allowGatewayTransit"
+            },
+            "useRemoteGateways": {
+                "$ref": "#/$keywords/useRemoteGateways"
+            },
+            "databricksVirtualNetwork": {
+                "$ref": "#/$keywords/databricksVirtualNetwork"
+            },
+            "databricksAddressSpace": {
+                "$ref": "#/$keywords/databricksAddressSpace"
+            },
+            "remoteVirtualNetwork": {
+                "$ref": "#/$keywords/remoteVirtualNetwork"
+            },
+            "remoteAddressSpace": {
+                "$ref": "#/$keywords/databricksAddressSpace"
+            },
+            "peeringState": {
+                "$ref": "#/$keywords/peeringState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            }
+        }
+    }
+}

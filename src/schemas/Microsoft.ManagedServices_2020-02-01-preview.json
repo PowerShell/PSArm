@@ -1,0 +1,264 @@
+{
+    "$keywords": {
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizations": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "principalIdDisplayName": {
+                    "type": "string"
+                },
+                "roleDefinitionId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "delegatedRoleDefinitionIds": {
+                    "$ref": "#/$keywords/delegatedRoleDefinitionIds"
+                }
+            },
+            "array": true
+        },
+        "delegatedRoleDefinitionIds": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "eligibleAuthorizations": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "principalIdDisplayName": {
+                    "type": "string"
+                },
+                "roleDefinitionId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "justInTimeAccessPolicy": {
+                    "$ref": "#/$keywords/justInTimeAccessPolicy"
+                }
+            },
+            "array": true
+        },
+        "justInTimeAccessPolicy": {
+            "parameters": {
+                "multiFactorAuthProvider": {
+                    "enum": [
+                        "Azure",
+                        "None"
+                    ]
+                },
+                "maximumActivationDuration": {}
+            }
+        },
+        "registrationDefinitionName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "managedByTenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "Accepted",
+                        "Running",
+                        "Ready",
+                        "Creating",
+                        "Created",
+                        "Deleting",
+                        "Deleted",
+                        "Canceled",
+                        "Failed",
+                        "Succeeded",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "managedByTenantName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "registrationDefinitionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "registrationDefinition": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "propertyParameters": {
+                "description": {
+                    "type": "string"
+                },
+                "registrationDefinitionName": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "NotSpecified",
+                        "Accepted",
+                        "Running",
+                        "Ready",
+                        "Creating",
+                        "Created",
+                        "Deleting",
+                        "Deleted",
+                        "Canceled",
+                        "Failed",
+                        "Succeeded",
+                        "Updating"
+                    ]
+                },
+                "manageeTenantId": {
+                    "type": "string"
+                },
+                "manageeTenantName": {
+                    "type": "string"
+                },
+                "managedByTenantId": {
+                    "type": "string"
+                },
+                "managedByTenantName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "plan": {
+                    "$ref": "#/$keywords/plan"
+                },
+                "authorizations": {
+                    "$ref": "#/$keywords/authorizations_2"
+                },
+                "eligibleAuthorizations": {
+                    "$ref": "#/$keywords/eligibleAuthorizations_2"
+                }
+            }
+        },
+        "plan": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "publisher": {
+                    "type": "string"
+                },
+                "product": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizations_2": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "principalIdDisplayName": {
+                    "type": "string"
+                },
+                "roleDefinitionId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "delegatedRoleDefinitionIds": {
+                    "$ref": "#/$keywords/delegatedRoleDefinitionIds"
+                }
+            },
+            "array": true
+        },
+        "eligibleAuthorizations_2": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "principalIdDisplayName": {
+                    "type": "string"
+                },
+                "roleDefinitionId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "justInTimeAccessPolicy": {
+                    "$ref": "#/$keywords/justInTimeAccessPolicy"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "registrationDefinitions": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "authorizations": {
+                "$ref": "#/$keywords/authorizations"
+            },
+            "eligibleAuthorizations": {
+                "$ref": "#/$keywords/eligibleAuthorizations"
+            },
+            "registrationDefinitionName": {
+                "$ref": "#/$keywords/registrationDefinitionName"
+            },
+            "managedByTenantId": {
+                "$ref": "#/$keywords/managedByTenantId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "managedByTenantName": {
+                "$ref": "#/$keywords/managedByTenantName"
+            }
+        },
+        "registrationAssignments": {
+            "registrationDefinitionId": {
+                "$ref": "#/$keywords/registrationDefinitionId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "registrationDefinition": {
+                "$ref": "#/$keywords/registrationDefinition"
+            }
+        }
+    }
+}

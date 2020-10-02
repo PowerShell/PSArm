@@ -1,0 +1,38 @@
+{
+    "$keywords": {
+        "roleDefinitionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "principalId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "canDelegate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "roleAssignments": {
+            "roleDefinitionId": {
+                "$ref": "#/$keywords/roleDefinitionId"
+            },
+            "principalId": {
+                "$ref": "#/$keywords/principalId"
+            },
+            "canDelegate": {
+                "$ref": "#/$keywords/canDelegate"
+            }
+        }
+    }
+}

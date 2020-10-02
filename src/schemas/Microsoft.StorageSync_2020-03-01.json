@@ -1,0 +1,261 @@
+{
+    "$keywords": {
+        "incomingTrafficPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "AllowAllTraffic",
+                        "AllowVirtualNetworksOnly"
+                    ]
+                }
+            }
+        },
+        "storageAccountResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "azureFileShareName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageAccountTenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "friendlyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serverLocalPath": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cloudTiering": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "on",
+                        "off"
+                    ]
+                }
+            }
+        },
+        "volumeFreeSpacePercent": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "tierFilesOlderThanDays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "friendlyName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serverResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "offlineDataTransferShareName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "initialDownloadPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NamespaceOnly",
+                        "NamespaceThenModifiedFiles",
+                        "AvoidTieredFiles"
+                    ]
+                }
+            }
+        },
+        "localCacheMode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "DownloadNewAndModifiedFiles",
+                        "UpdateLocallyCachedFiles"
+                    ]
+                }
+            }
+        },
+        "serverCertificate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "agentVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serverOSVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastHeartBeat": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serverRole": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serverId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "friendlyName_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "storageSyncServices": {
+            "incomingTrafficPolicy": {
+                "$ref": "#/$keywords/incomingTrafficPolicy"
+            }
+        },
+        "storageSyncServices/syncGroups": {},
+        "storageSyncServices/syncGroups/cloudEndpoints": {
+            "storageAccountResourceId": {
+                "$ref": "#/$keywords/storageAccountResourceId"
+            },
+            "azureFileShareName": {
+                "$ref": "#/$keywords/azureFileShareName"
+            },
+            "storageAccountTenantId": {
+                "$ref": "#/$keywords/storageAccountTenantId"
+            },
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName"
+            }
+        },
+        "storageSyncServices/syncGroups/serverEndpoints": {
+            "serverLocalPath": {
+                "$ref": "#/$keywords/serverLocalPath"
+            },
+            "cloudTiering": {
+                "$ref": "#/$keywords/cloudTiering"
+            },
+            "volumeFreeSpacePercent": {
+                "$ref": "#/$keywords/volumeFreeSpacePercent"
+            },
+            "tierFilesOlderThanDays": {
+                "$ref": "#/$keywords/tierFilesOlderThanDays"
+            },
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName_2"
+            },
+            "serverResourceId": {
+                "$ref": "#/$keywords/serverResourceId"
+            },
+            "offlineDataTransfer": {
+                "$ref": "#/$keywords/cloudTiering"
+            },
+            "offlineDataTransferShareName": {
+                "$ref": "#/$keywords/offlineDataTransferShareName"
+            },
+            "initialDownloadPolicy": {
+                "$ref": "#/$keywords/initialDownloadPolicy"
+            },
+            "localCacheMode": {
+                "$ref": "#/$keywords/localCacheMode"
+            }
+        },
+        "storageSyncServices/registeredServers": {
+            "serverCertificate": {
+                "$ref": "#/$keywords/serverCertificate"
+            },
+            "agentVersion": {
+                "$ref": "#/$keywords/agentVersion"
+            },
+            "serverOSVersion": {
+                "$ref": "#/$keywords/serverOSVersion"
+            },
+            "lastHeartBeat": {
+                "$ref": "#/$keywords/lastHeartBeat"
+            },
+            "serverRole": {
+                "$ref": "#/$keywords/serverRole"
+            },
+            "clusterId": {
+                "$ref": "#/$keywords/clusterId"
+            },
+            "clusterName": {
+                "$ref": "#/$keywords/clusterName"
+            },
+            "serverId": {
+                "$ref": "#/$keywords/serverId"
+            },
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName_3"
+            }
+        }
+    }
+}

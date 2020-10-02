@@ -1,0 +1,152 @@
+{
+    "$keywords": {
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Activating",
+                        "Active",
+                        "Deleting",
+                        "Deleted",
+                        "ActivationFailed",
+                        "DeletionFailed",
+                        "Transitioning",
+                        "Suspending",
+                        "Suspended",
+                        "Resuming",
+                        "FailingOver",
+                        "FailoverFailed"
+                    ]
+                }
+            }
+        },
+        "ipFilterRules": {
+            "parameters": {
+                "filterName": {
+                    "type": "string"
+                },
+                "action": {},
+                "ipMask": {
+                    "type": "string"
+                },
+                "target": {}
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "iotHubs": {
+            "parameters": {
+                "applyAllocationPolicy": {
+                    "type": "bool"
+                },
+                "allocationWeight": {
+                    "type": "int"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "allocationPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Hashed",
+                        "GeoLatency",
+                        "Static"
+                    ]
+                }
+            }
+        },
+        "serviceOperationsHostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deviceProvisioningHostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "idScope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizationPolicies": {
+            "parameters": {
+                "keyName": {
+                    "type": "string"
+                },
+                "primaryKey": {
+                    "type": "string"
+                },
+                "secondaryKey": {
+                    "type": "string"
+                },
+                "rights": {
+                    "enum": [
+                        "ServiceConfig",
+                        "EnrollmentRead",
+                        "EnrollmentWrite",
+                        "DeviceConnect",
+                        "RegistrationStatusRead",
+                        "RegistrationStatusWrite"
+                    ]
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "provisioningServices/certificates": {},
+        "provisioningServices": {
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "ipFilterRules": {
+                "$ref": "#/$keywords/ipFilterRules"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "iotHubs": {
+                "$ref": "#/$keywords/iotHubs"
+            },
+            "allocationPolicy": {
+                "$ref": "#/$keywords/allocationPolicy"
+            },
+            "serviceOperationsHostName": {
+                "$ref": "#/$keywords/serviceOperationsHostName"
+            },
+            "deviceProvisioningHostName": {
+                "$ref": "#/$keywords/deviceProvisioningHostName"
+            },
+            "idScope": {
+                "$ref": "#/$keywords/idScope"
+            },
+            "authorizationPolicies": {
+                "$ref": "#/$keywords/authorizationPolicies"
+            }
+        }
+    }
+}

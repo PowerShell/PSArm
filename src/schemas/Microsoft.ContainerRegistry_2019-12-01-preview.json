@@ -1,0 +1,601 @@
+{
+    "$keywords": {
+        "target": {
+            "parameters": {
+                "type": {
+                    "type": "string"
+                },
+                "uri": {
+                    "type": "string"
+                },
+                "keyVaultUri": {
+                    "type": "string"
+                }
+            }
+        },
+        "options": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "OverwriteTags",
+                        "OverwriteBlobs",
+                        "DeleteSourceBlobOnSuccess",
+                        "ContinueOnErrors"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            }
+        },
+        "loginServer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "parameters": {
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "timestamp": {}
+            }
+        },
+        "adminUserEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "storageAccount": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "networkRuleSet": {
+            "parameters": {
+                "defaultAction": {
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ]
+                }
+            },
+            "body": {
+                "virtualNetworkRules": {
+                    "$ref": "#/$keywords/virtualNetworkRules"
+                },
+                "ipRules": {
+                    "$ref": "#/$keywords/ipRules"
+                }
+            }
+        },
+        "virtualNetworkRules": {
+            "parameters": {
+                "action": {},
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ipRules": {
+            "parameters": {
+                "action": {},
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "policies": {
+            "body": {
+                "quarantinePolicy": {
+                    "$ref": "#/$keywords/quarantinePolicy"
+                },
+                "trustPolicy": {
+                    "$ref": "#/$keywords/trustPolicy"
+                },
+                "retentionPolicy": {
+                    "$ref": "#/$keywords/retentionPolicy"
+                }
+            }
+        },
+        "quarantinePolicy": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "enabled",
+                        "disabled"
+                    ]
+                }
+            }
+        },
+        "trustPolicy": {
+            "parameters": {
+                "type": {},
+                "status": {
+                    "enum": [
+                        "enabled",
+                        "disabled"
+                    ]
+                }
+            }
+        },
+        "retentionPolicy": {
+            "parameters": {
+                "days": {
+                    "type": "int"
+                },
+                "lastUpdatedTime": {},
+                "status": {
+                    "enum": [
+                        "enabled",
+                        "disabled"
+                    ]
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "enabled",
+                        "disabled"
+                    ]
+                }
+            },
+            "body": {
+                "keyVaultProperties": {
+                    "$ref": "#/$keywords/keyVaultProperties"
+                }
+            }
+        },
+        "keyVaultProperties": {
+            "parameters": {
+                "keyIdentifier": {
+                    "type": "string"
+                },
+                "versionedKeyIdentifier": {
+                    "type": "string"
+                },
+                "identity": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataEndpointEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "dataEndpointHostNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "privateEndpointConnections": {
+            "parameters": {
+                "provisioningState": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "privateEndpoint": {
+                    "$ref": "#/$keywords/privateEndpoint"
+                },
+                "privateLinkServiceConnectionState": {
+                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Approved",
+                        "Pending",
+                        "Rejected",
+                        "Disconnected"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionsRequired": {
+                    "enum": [
+                        "None",
+                        "Recreate"
+                    ]
+                }
+            }
+        },
+        "publicNetworkAccess": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "source": {
+            "parameters": {
+                "type": {},
+                "uri": {
+                    "type": "string"
+                },
+                "keyVaultUri": {
+                    "type": "string"
+                }
+            }
+        },
+        "trigger": {
+            "body": {
+                "sourceTrigger": {
+                    "$ref": "#/$keywords/sourceTrigger"
+                }
+            }
+        },
+        "sourceTrigger": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "options_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "OverwriteTags",
+                        "OverwriteBlobs",
+                        "DeleteSourceBlobOnSuccess",
+                        "ContinueOnErrors"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "request": {
+            "parameters": {
+                "pipelineResourceId": {
+                    "type": "string"
+                },
+                "catalogDigest": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "artifacts": {
+                    "$ref": "#/$keywords/artifacts"
+                },
+                "source": {
+                    "$ref": "#/$keywords/source_2"
+                },
+                "target": {
+                    "$ref": "#/$keywords/target_2"
+                }
+            }
+        },
+        "artifacts": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "source_2": {
+            "parameters": {
+                "type": {},
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "target_2": {
+            "parameters": {
+                "type": {},
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "response": {
+            "parameters": {
+                "status": {
+                    "type": "string"
+                },
+                "startTime": {},
+                "finishTime": {},
+                "catalogDigest": {
+                    "type": "string"
+                },
+                "pipelineRunErrorMessage": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "importedArtifacts": {
+                    "$ref": "#/$keywords/importedArtifacts"
+                },
+                "progress": {
+                    "$ref": "#/$keywords/progress"
+                },
+                "source": {
+                    "$ref": "#/$keywords/source"
+                },
+                "target": {
+                    "$ref": "#/$keywords/target"
+                },
+                "trigger": {
+                    "$ref": "#/$keywords/trigger_2"
+                }
+            }
+        },
+        "importedArtifacts": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "progress": {
+            "parameters": {
+                "percentage": {
+                    "type": "string"
+                }
+            }
+        },
+        "trigger_2": {
+            "body": {
+                "sourceTrigger": {
+                    "$ref": "#/$keywords/sourceTrigger_2"
+                }
+            }
+        },
+        "sourceTrigger_2": {
+            "parameters": {
+                "timestamp": {}
+            }
+        },
+        "forceUpdateTag": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "regionEndpointEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "serviceUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "customHeaders": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "enabled",
+                        "disabled"
+                    ]
+                }
+            }
+        },
+        "scope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "actions": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "push",
+                        "delete",
+                        "quarantine",
+                        "chart_push",
+                        "chart_delete"
+                    ]
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "registries/exportPipelines": {
+            "target": {
+                "$ref": "#/$keywords/target"
+            },
+            "options": {
+                "$ref": "#/$keywords/options"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "registries": {
+            "loginServer": {
+                "$ref": "#/$keywords/loginServer"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "adminUserEnabled": {
+                "$ref": "#/$keywords/adminUserEnabled"
+            },
+            "storageAccount": {
+                "$ref": "#/$keywords/storageAccount"
+            },
+            "networkRuleSet": {
+                "$ref": "#/$keywords/networkRuleSet"
+            },
+            "policies": {
+                "$ref": "#/$keywords/policies"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "dataEndpointEnabled": {
+                "$ref": "#/$keywords/dataEndpointEnabled"
+            },
+            "dataEndpointHostNames": {
+                "$ref": "#/$keywords/dataEndpointHostNames"
+            },
+            "privateEndpointConnections": {
+                "$ref": "#/$keywords/privateEndpointConnections"
+            },
+            "publicNetworkAccess": {
+                "$ref": "#/$keywords/publicNetworkAccess"
+            }
+        },
+        "registries/importPipelines": {
+            "source": {
+                "$ref": "#/$keywords/source"
+            },
+            "trigger": {
+                "$ref": "#/$keywords/trigger"
+            },
+            "options": {
+                "$ref": "#/$keywords/options_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "registries/pipelineRuns": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "request": {
+                "$ref": "#/$keywords/request"
+            },
+            "response": {
+                "$ref": "#/$keywords/response"
+            },
+            "forceUpdateTag": {
+                "$ref": "#/$keywords/forceUpdateTag"
+            }
+        },
+        "registries/privateEndpointConnections": {
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "registries/replications": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "regionEndpointEnabled": {
+                "$ref": "#/$keywords/regionEndpointEnabled"
+            }
+        },
+        "registries/webhooks": {
+            "serviceUri": {
+                "$ref": "#/$keywords/serviceUri"
+            },
+            "customHeaders": {
+                "$ref": "#/$keywords/customHeaders"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_2"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "actions": {
+                "$ref": "#/$keywords/actions"
+            }
+        }
+    }
+}

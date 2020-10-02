@@ -1,0 +1,49 @@
+{
+    "$keywords": {
+        "loginServer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "adminUserEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "storageAccount": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "accessKey": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "registries": {
+            "loginServer": {
+                "$ref": "#/$keywords/loginServer"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "adminUserEnabled": {
+                "$ref": "#/$keywords/adminUserEnabled"
+            },
+            "storageAccount": {
+                "$ref": "#/$keywords/storageAccount"
+            }
+        }
+    }
+}

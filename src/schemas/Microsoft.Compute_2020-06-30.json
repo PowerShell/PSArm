@@ -1,0 +1,518 @@
+{
+    "$keywords": {
+        "timeCreated": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "osType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "hyperVGeneration": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "V1",
+                        "V2"
+                    ]
+                }
+            }
+        },
+        "creationData": {
+            "parameters": {
+                "createOption": {
+                    "enum": [
+                        "Empty",
+                        "Attach",
+                        "FromImage",
+                        "Import",
+                        "Copy",
+                        "Restore",
+                        "Upload"
+                    ]
+                },
+                "storageAccountId": {
+                    "type": "string"
+                },
+                "sourceUri": {
+                    "type": "string"
+                },
+                "sourceResourceId": {
+                    "type": "string"
+                },
+                "sourceUniqueId": {
+                    "type": "string"
+                },
+                "uploadSizeBytes": {
+                    "type": "int"
+                },
+                "logicalSectorSize": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "imageReference": {
+                    "$ref": "#/$keywords/imageReference"
+                },
+                "galleryImageReference": {
+                    "$ref": "#/$keywords/imageReference"
+                }
+            }
+        },
+        "imageReference": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "lun": {
+                    "type": "int"
+                }
+            }
+        },
+        "diskSizeGB": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "diskSizeBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "uniqueId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionSettingsCollection": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "encryptionSettingsVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "encryptionSettings": {
+                    "$ref": "#/$keywords/encryptionSettings"
+                }
+            }
+        },
+        "encryptionSettings": {
+            "body": {
+                "diskEncryptionKey": {
+                    "$ref": "#/$keywords/diskEncryptionKey"
+                },
+                "keyEncryptionKey": {
+                    "$ref": "#/$keywords/keyEncryptionKey"
+                }
+            },
+            "array": true
+        },
+        "diskEncryptionKey": {
+            "parameters": {
+                "secretUrl": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/sourceVault"
+                }
+            }
+        },
+        "sourceVault": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyEncryptionKey": {
+            "parameters": {
+                "keyUrl": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/sourceVault"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "diskIOPSReadWrite": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "diskMBpsReadWrite": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "diskIOPSReadOnly": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "diskMBpsReadOnly": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "diskState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Unattached",
+                        "Attached",
+                        "Reserved",
+                        "ActiveSAS",
+                        "ReadyToUpload",
+                        "ActiveUpload"
+                    ]
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "diskEncryptionSetId": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "EncryptionAtRestWithPlatformKey",
+                        "EncryptionAtRestWithCustomerKey",
+                        "EncryptionAtRestWithPlatformAndCustomerKeys"
+                    ]
+                }
+            }
+        },
+        "maxShares": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "shareInfo": {
+            "parameters": {
+                "vmUri": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "networkAccessPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "AllowAll",
+                        "AllowPrivate",
+                        "DenyAll"
+                    ]
+                }
+            }
+        },
+        "diskAccessId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tier": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "timeCreated_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "uniqueId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "incremental": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "diskAccessId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "EncryptionAtRestWithCustomerKey",
+                        "EncryptionAtRestWithPlatformAndCustomerKeys"
+                    ]
+                }
+            }
+        },
+        "previousKeys": {
+            "parameters": {
+                "keyUrl": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/sourceVault"
+                }
+            },
+            "array": true
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateEndpointConnections": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Succeeded",
+                        "Creating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                }
+            },
+            "body": {
+                "privateEndpoint": {
+                    "$ref": "#/$keywords/privateEndpoint"
+                },
+                "privateLinkServiceConnectionState": {
+                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Pending",
+                        "Approved",
+                        "Rejected"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionsRequired": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "timeCreated_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "disks": {
+            "timeCreated": {
+                "$ref": "#/$keywords/timeCreated"
+            },
+            "osType": {
+                "$ref": "#/$keywords/osType"
+            },
+            "hyperVGeneration": {
+                "$ref": "#/$keywords/hyperVGeneration"
+            },
+            "creationData": {
+                "$ref": "#/$keywords/creationData"
+            },
+            "diskSizeGB": {
+                "$ref": "#/$keywords/diskSizeGB"
+            },
+            "diskSizeBytes": {
+                "$ref": "#/$keywords/diskSizeBytes"
+            },
+            "uniqueId": {
+                "$ref": "#/$keywords/uniqueId"
+            },
+            "encryptionSettingsCollection": {
+                "$ref": "#/$keywords/encryptionSettingsCollection"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "diskIOPSReadWrite": {
+                "$ref": "#/$keywords/diskIOPSReadWrite"
+            },
+            "diskMBpsReadWrite": {
+                "$ref": "#/$keywords/diskMBpsReadWrite"
+            },
+            "diskIOPSReadOnly": {
+                "$ref": "#/$keywords/diskIOPSReadOnly"
+            },
+            "diskMBpsReadOnly": {
+                "$ref": "#/$keywords/diskMBpsReadOnly"
+            },
+            "diskState": {
+                "$ref": "#/$keywords/diskState"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "maxShares": {
+                "$ref": "#/$keywords/maxShares"
+            },
+            "shareInfo": {
+                "$ref": "#/$keywords/shareInfo"
+            },
+            "networkAccessPolicy": {
+                "$ref": "#/$keywords/networkAccessPolicy"
+            },
+            "diskAccessId": {
+                "$ref": "#/$keywords/diskAccessId"
+            },
+            "tier": {
+                "$ref": "#/$keywords/tier"
+            }
+        },
+        "snapshots": {
+            "timeCreated": {
+                "$ref": "#/$keywords/timeCreated_2"
+            },
+            "osType": {
+                "$ref": "#/$keywords/osType"
+            },
+            "hyperVGeneration": {
+                "$ref": "#/$keywords/hyperVGeneration"
+            },
+            "creationData": {
+                "$ref": "#/$keywords/creationData"
+            },
+            "diskSizeGB": {
+                "$ref": "#/$keywords/diskSizeGB"
+            },
+            "diskSizeBytes": {
+                "$ref": "#/$keywords/diskSizeBytes"
+            },
+            "diskState": {
+                "$ref": "#/$keywords/diskState"
+            },
+            "uniqueId": {
+                "$ref": "#/$keywords/uniqueId_2"
+            },
+            "encryptionSettingsCollection": {
+                "$ref": "#/$keywords/encryptionSettingsCollection"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "incremental": {
+                "$ref": "#/$keywords/incremental"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "networkAccessPolicy": {
+                "$ref": "#/$keywords/networkAccessPolicy"
+            },
+            "diskAccessId": {
+                "$ref": "#/$keywords/diskAccessId_2"
+            }
+        },
+        "diskEncryptionSets": {
+            "encryptionType": {
+                "$ref": "#/$keywords/encryptionType"
+            },
+            "activeKey": {
+                "$ref": "#/$keywords/keyEncryptionKey"
+            },
+            "previousKeys": {
+                "$ref": "#/$keywords/previousKeys"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            }
+        },
+        "diskAccesses": {
+            "privateEndpointConnections": {
+                "$ref": "#/$keywords/privateEndpointConnections"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_4"
+            },
+            "timeCreated": {
+                "$ref": "#/$keywords/timeCreated_3"
+            }
+        }
+    }
+}

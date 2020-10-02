@@ -1,0 +1,151 @@
+{
+    "$keywords": {
+        "sku": {
+            "parameters": {
+                "name": {}
+            }
+        },
+        "originHostHeader": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "originPath": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentTypesToCompress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "isCompressionEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isHttpAllowed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isHttpsAllowed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "queryStringCachingBehavior": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "origins": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "hostName": {
+                    "type": "string"
+                },
+                "httpPort": {
+                    "type": "int"
+                },
+                "httpsPort": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "hostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "httpPort": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "httpsPort": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "hostName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "profiles": {
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            }
+        },
+        "profiles/endpoints": {
+            "originHostHeader": {
+                "$ref": "#/$keywords/originHostHeader"
+            },
+            "originPath": {
+                "$ref": "#/$keywords/originPath"
+            },
+            "contentTypesToCompress": {
+                "$ref": "#/$keywords/contentTypesToCompress"
+            },
+            "isCompressionEnabled": {
+                "$ref": "#/$keywords/isCompressionEnabled"
+            },
+            "isHttpAllowed": {
+                "$ref": "#/$keywords/isHttpAllowed"
+            },
+            "isHttpsAllowed": {
+                "$ref": "#/$keywords/isHttpsAllowed"
+            },
+            "queryStringCachingBehavior": {
+                "$ref": "#/$keywords/queryStringCachingBehavior"
+            },
+            "origins": {
+                "$ref": "#/$keywords/origins"
+            }
+        },
+        "profiles/endpoints/origins": {
+            "hostName": {
+                "$ref": "#/$keywords/hostName"
+            },
+            "httpPort": {
+                "$ref": "#/$keywords/httpPort"
+            },
+            "httpsPort": {
+                "$ref": "#/$keywords/httpsPort"
+            }
+        },
+        "profiles/endpoints/customDomains": {
+            "hostName": {
+                "$ref": "#/$keywords/hostName_2"
+            }
+        }
+    }
+}

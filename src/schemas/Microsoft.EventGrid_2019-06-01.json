@@ -1,0 +1,206 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "endpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "topic": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed",
+                        "AwaitingManualAction"
+                    ]
+                }
+            }
+        },
+        "destination": {
+            "parameters": {
+                "endpointType": {
+                    "enum": [
+                        "WebHook",
+                        "EventHub",
+                        "StorageQueue",
+                        "HybridConnection",
+                        "ServiceBusQueue"
+                    ]
+                }
+            }
+        },
+        "filter": {
+            "parameters": {
+                "subjectBeginsWith": {
+                    "type": "string"
+                },
+                "subjectEndsWith": {
+                    "type": "string"
+                },
+                "isSubjectCaseSensitive": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "includedEventTypes": {
+                    "$ref": "#/$keywords/includedEventTypes"
+                },
+                "advancedFilters": {
+                    "$ref": "#/$keywords/advancedFilters"
+                }
+            }
+        },
+        "includedEventTypes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "advancedFilters": {
+            "parameters": {
+                "operatorType": {
+                    "enum": [
+                        "NumberIn",
+                        "NumberNotIn",
+                        "NumberLessThan",
+                        "NumberGreaterThan",
+                        "NumberLessThanOrEquals",
+                        "NumberGreaterThanOrEquals",
+                        "BoolEquals",
+                        "StringIn",
+                        "StringNotIn",
+                        "StringBeginsWith",
+                        "StringEndsWith",
+                        "StringContains"
+                    ]
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "labels": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "expirationTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "retryPolicy": {
+            "parameters": {
+                "maxDeliveryAttempts": {
+                    "type": "int"
+                },
+                "eventTimeToLiveInMinutes": {
+                    "type": "int"
+                }
+            }
+        },
+        "deadLetterDestination": {
+            "parameters": {
+                "endpointType": {}
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Canceled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "endpoint_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "domains": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint"
+            }
+        },
+        "eventSubscriptions": {
+            "topic": {
+                "$ref": "#/$keywords/topic"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "destination": {
+                "$ref": "#/$keywords/destination"
+            },
+            "filter": {
+                "$ref": "#/$keywords/filter"
+            },
+            "labels": {
+                "$ref": "#/$keywords/labels"
+            },
+            "expirationTimeUtc": {
+                "$ref": "#/$keywords/expirationTimeUtc"
+            },
+            "retryPolicy": {
+                "$ref": "#/$keywords/retryPolicy"
+            },
+            "deadLetterDestination": {
+                "$ref": "#/$keywords/deadLetterDestination"
+            }
+        },
+        "topics": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "endpoint": {
+                "$ref": "#/$keywords/endpoint_2"
+            }
+        }
+    }
+}

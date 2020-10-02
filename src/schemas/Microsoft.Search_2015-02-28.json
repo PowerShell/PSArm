@@ -1,0 +1,36 @@
+{
+    "$keywords": {
+        "sku": {
+            "parameters": {
+                "name": {}
+            }
+        },
+        "replicaCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "partitionCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "searchServices": {
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "replicaCount": {
+                "$ref": "#/$keywords/replicaCount"
+            },
+            "partitionCount": {
+                "$ref": "#/$keywords/partitionCount"
+            }
+        }
+    }
+}

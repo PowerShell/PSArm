@@ -1,0 +1,271 @@
+{
+    "$keywords": {
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "TTL": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "fqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetResource": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "ARecords": {
+            "parameters": {
+                "ipv4Address": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "AAAARecords": {
+            "parameters": {
+                "ipv6Address": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "MXRecords": {
+            "parameters": {
+                "preference": {
+                    "type": "int"
+                },
+                "exchange": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "NSRecords": {
+            "parameters": {
+                "nsdname": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "PTRRecords": {
+            "parameters": {
+                "ptrdname": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "SRVRecords": {
+            "parameters": {
+                "priority": {
+                    "type": "int"
+                },
+                "weight": {
+                    "type": "int"
+                },
+                "port": {
+                    "type": "int"
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "TXTRecords": {
+            "body": {
+                "value": {
+                    "$ref": "#/$keywords/value"
+                }
+            },
+            "array": true
+        },
+        "value": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "CNAMERecord": {
+            "parameters": {
+                "cname": {
+                    "type": "string"
+                }
+            }
+        },
+        "SOARecord": {
+            "parameters": {
+                "host": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "serialNumber": {
+                    "type": "int"
+                },
+                "refreshTime": {
+                    "type": "int"
+                },
+                "retryTime": {
+                    "type": "int"
+                },
+                "expireTime": {
+                    "type": "int"
+                },
+                "minimumTTL": {
+                    "type": "int"
+                }
+            }
+        },
+        "caaRecords": {
+            "parameters": {
+                "flags": {
+                    "type": "int"
+                },
+                "tag": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "maxNumberOfRecordSets": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "numberOfRecordSets": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "nameServers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "zoneType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "registrationVirtualNetworks": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "resolutionVirtualNetworks": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "dnsZones/{recordType}": {
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "TTL": {
+                "$ref": "#/$keywords/TTL"
+            },
+            "fqdn": {
+                "$ref": "#/$keywords/fqdn"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "targetResource": {
+                "$ref": "#/$keywords/targetResource"
+            },
+            "ARecords": {
+                "$ref": "#/$keywords/ARecords"
+            },
+            "AAAARecords": {
+                "$ref": "#/$keywords/AAAARecords"
+            },
+            "MXRecords": {
+                "$ref": "#/$keywords/MXRecords"
+            },
+            "NSRecords": {
+                "$ref": "#/$keywords/NSRecords"
+            },
+            "PTRRecords": {
+                "$ref": "#/$keywords/PTRRecords"
+            },
+            "SRVRecords": {
+                "$ref": "#/$keywords/SRVRecords"
+            },
+            "TXTRecords": {
+                "$ref": "#/$keywords/TXTRecords"
+            },
+            "CNAMERecord": {
+                "$ref": "#/$keywords/CNAMERecord"
+            },
+            "SOARecord": {
+                "$ref": "#/$keywords/SOARecord"
+            },
+            "caaRecords": {
+                "$ref": "#/$keywords/caaRecords"
+            }
+        },
+        "dnsZones": {
+            "maxNumberOfRecordSets": {
+                "$ref": "#/$keywords/maxNumberOfRecordSets"
+            },
+            "numberOfRecordSets": {
+                "$ref": "#/$keywords/numberOfRecordSets"
+            },
+            "nameServers": {
+                "$ref": "#/$keywords/nameServers"
+            },
+            "zoneType": {
+                "$ref": "#/$keywords/zoneType"
+            },
+            "registrationVirtualNetworks": {
+                "$ref": "#/$keywords/registrationVirtualNetworks"
+            },
+            "resolutionVirtualNetworks": {
+                "$ref": "#/$keywords/resolutionVirtualNetworks"
+            }
+        }
+    }
+}

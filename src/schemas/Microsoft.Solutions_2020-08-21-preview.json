@@ -1,0 +1,481 @@
+{
+    "$keywords": {
+        "managedResourceGroupId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "applicationDefinitionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "parameters": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "Accepted",
+                        "Running",
+                        "Ready",
+                        "Creating",
+                        "Created",
+                        "Deleting",
+                        "Deleted",
+                        "Canceled",
+                        "Failed",
+                        "Succeeded",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "billingDetails": {
+            "parameters": {
+                "resourceUsageId": {
+                    "type": "string"
+                }
+            }
+        },
+        "jitAccessPolicy": {
+            "parameters": {
+                "jitAccessEnabled": {
+                    "type": "bool"
+                },
+                "jitApprovalMode": {
+                    "enum": [
+                        "NotSpecified",
+                        "AutoApprove",
+                        "ManualApprove"
+                    ]
+                },
+                "maximumJitAccessDuration": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "jitApprovers": {
+                    "$ref": "#/$keywords/jitApprovers"
+                }
+            }
+        },
+        "jitApprovers": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "user",
+                        "group"
+                    ]
+                },
+                "displayName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "publisherTenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizations": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "roleDefinitionId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "managementMode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "Unmanaged",
+                        "Managed"
+                    ]
+                }
+            }
+        },
+        "customerSupport": {
+            "parameters": {
+                "contactName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "supportUrls": {
+            "parameters": {
+                "publicAzure": {
+                    "type": "string"
+                },
+                "governmentCloud": {
+                    "type": "string"
+                }
+            }
+        },
+        "artifacts": {
+            "parameters": {
+                "name": {
+                    "enum": [
+                        "NotSpecified",
+                        "ViewDefinition",
+                        "Authorizations",
+                        "CustomRoleDefinition"
+                    ]
+                },
+                "uri": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "createdBy": {
+            "parameters": {
+                "oid": {
+                    "type": "string"
+                },
+                "puid": {
+                    "type": "string"
+                },
+                "applicationId": {
+                    "type": "string"
+                }
+            }
+        },
+        "lockLevel": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "authorizations_2": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "roleDefinitionId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "artifacts_2": {
+            "parameters": {
+                "name": {
+                    "enum": [
+                        "NotSpecified",
+                        "ApplicationResourceTemplate",
+                        "CreateUiDefinition",
+                        "MainTemplateParameters"
+                    ]
+                },
+                "uri": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "packageFileUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "notificationPolicy": {
+            "body": {
+                "notificationEndpoints": {
+                    "$ref": "#/$keywords/notificationEndpoints"
+                }
+            }
+        },
+        "notificationEndpoints": {
+            "parameters": {
+                "uri": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "lockingPolicy": {
+            "body": {
+                "allowedActions": {
+                    "$ref": "#/$keywords/allowedActions"
+                }
+            }
+        },
+        "allowedActions": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "deploymentPolicy": {
+            "parameters": {
+                "deploymentMode": {
+                    "enum": [
+                        "NotSpecified",
+                        "Incremental",
+                        "Complete"
+                    ]
+                }
+            }
+        },
+        "managementPolicy": {
+            "parameters": {
+                "mode": {
+                    "enum": [
+                        "NotSpecified",
+                        "Unmanaged",
+                        "Managed"
+                    ]
+                }
+            }
+        },
+        "policies": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "policyDefinitionId": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "applicationResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publisherTenantId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "jitAuthorizationPolicies": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "roleDefinitionId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "jitSchedulingPolicy": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "NotSpecified",
+                        "Once",
+                        "Recurring"
+                    ]
+                },
+                "duration": {},
+                "startTime": {}
+            }
+        },
+        "jitRequestState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "Pending",
+                        "Approved",
+                        "Denied",
+                        "Failed",
+                        "Canceled",
+                        "Expired",
+                        "Timeout"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "applications": {
+            "managedResourceGroupId": {
+                "$ref": "#/$keywords/managedResourceGroupId"
+            },
+            "applicationDefinitionId": {
+                "$ref": "#/$keywords/applicationDefinitionId"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "outputs": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "billingDetails": {
+                "$ref": "#/$keywords/billingDetails"
+            },
+            "jitAccessPolicy": {
+                "$ref": "#/$keywords/jitAccessPolicy"
+            },
+            "publisherTenantId": {
+                "$ref": "#/$keywords/publisherTenantId"
+            },
+            "authorizations": {
+                "$ref": "#/$keywords/authorizations"
+            },
+            "managementMode": {
+                "$ref": "#/$keywords/managementMode"
+            },
+            "customerSupport": {
+                "$ref": "#/$keywords/customerSupport"
+            },
+            "supportUrls": {
+                "$ref": "#/$keywords/supportUrls"
+            },
+            "artifacts": {
+                "$ref": "#/$keywords/artifacts"
+            },
+            "createdBy": {
+                "$ref": "#/$keywords/createdBy"
+            },
+            "updatedBy": {
+                "$ref": "#/$keywords/createdBy"
+            }
+        },
+        "applicationDefinitions": {
+            "lockLevel": {
+                "$ref": "#/$keywords/lockLevel"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "isEnabled": {
+                "$ref": "#/$keywords/isEnabled"
+            },
+            "authorizations": {
+                "$ref": "#/$keywords/authorizations_2"
+            },
+            "artifacts": {
+                "$ref": "#/$keywords/artifacts_2"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "packageFileUri": {
+                "$ref": "#/$keywords/packageFileUri"
+            },
+            "storageAccountId": {
+                "$ref": "#/$keywords/storageAccountId"
+            },
+            "mainTemplate": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "createUiDefinition": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "notificationPolicy": {
+                "$ref": "#/$keywords/notificationPolicy"
+            },
+            "lockingPolicy": {
+                "$ref": "#/$keywords/lockingPolicy"
+            },
+            "deploymentPolicy": {
+                "$ref": "#/$keywords/deploymentPolicy"
+            },
+            "managementPolicy": {
+                "$ref": "#/$keywords/managementPolicy"
+            },
+            "policies": {
+                "$ref": "#/$keywords/policies"
+            }
+        },
+        "jitRequests": {
+            "applicationResourceId": {
+                "$ref": "#/$keywords/applicationResourceId"
+            },
+            "publisherTenantId": {
+                "$ref": "#/$keywords/publisherTenantId_2"
+            },
+            "jitAuthorizationPolicies": {
+                "$ref": "#/$keywords/jitAuthorizationPolicies"
+            },
+            "jitSchedulingPolicy": {
+                "$ref": "#/$keywords/jitSchedulingPolicy"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "jitRequestState": {
+                "$ref": "#/$keywords/jitRequestState"
+            },
+            "createdBy": {
+                "$ref": "#/$keywords/createdBy"
+            },
+            "updatedBy": {
+                "$ref": "#/$keywords/createdBy"
+            }
+        }
+    }
+}

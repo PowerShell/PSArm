@@ -1,0 +1,287 @@
+{
+    "$keywords": {
+        "maxNumberOfRecordSets": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "numberOfRecordSets": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "maxNumberOfVirtualNetworkLinks": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "numberOfVirtualNetworkLinks": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "maxNumberOfVirtualNetworkLinksWithRegistration": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "numberOfVirtualNetworkLinksWithRegistration": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            }
+        },
+        "virtualNetwork": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "registrationEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "virtualNetworkLinkState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "InProgress",
+                        "Completed"
+                    ]
+                }
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "ttl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "fqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isAutoRegistered": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "aRecords": {
+            "parameters": {
+                "ipv4Address": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "aaaaRecords": {
+            "parameters": {
+                "ipv6Address": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "cnameRecord": {
+            "parameters": {
+                "cname": {
+                    "type": "string"
+                }
+            }
+        },
+        "mxRecords": {
+            "parameters": {
+                "preference": {
+                    "type": "int"
+                },
+                "exchange": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ptrRecords": {
+            "parameters": {
+                "ptrdname": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "soaRecord": {
+            "parameters": {
+                "host": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "serialNumber": {
+                    "type": "int"
+                },
+                "refreshTime": {
+                    "type": "int"
+                },
+                "retryTime": {
+                    "type": "int"
+                },
+                "expireTime": {
+                    "type": "int"
+                },
+                "minimumTtl": {
+                    "type": "int"
+                }
+            }
+        },
+        "srvRecords": {
+            "parameters": {
+                "priority": {
+                    "type": "int"
+                },
+                "weight": {
+                    "type": "int"
+                },
+                "port": {
+                    "type": "int"
+                },
+                "target": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "txtRecords": {
+            "body": {
+                "value": {
+                    "$ref": "#/$keywords/value"
+                }
+            },
+            "array": true
+        },
+        "value": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "privateDnsZones": {
+            "maxNumberOfRecordSets": {
+                "$ref": "#/$keywords/maxNumberOfRecordSets"
+            },
+            "numberOfRecordSets": {
+                "$ref": "#/$keywords/numberOfRecordSets"
+            },
+            "maxNumberOfVirtualNetworkLinks": {
+                "$ref": "#/$keywords/maxNumberOfVirtualNetworkLinks"
+            },
+            "numberOfVirtualNetworkLinks": {
+                "$ref": "#/$keywords/numberOfVirtualNetworkLinks"
+            },
+            "maxNumberOfVirtualNetworkLinksWithRegistration": {
+                "$ref": "#/$keywords/maxNumberOfVirtualNetworkLinksWithRegistration"
+            },
+            "numberOfVirtualNetworkLinksWithRegistration": {
+                "$ref": "#/$keywords/numberOfVirtualNetworkLinksWithRegistration"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "privateDnsZones/virtualNetworkLinks": {
+            "virtualNetwork": {
+                "$ref": "#/$keywords/virtualNetwork"
+            },
+            "registrationEnabled": {
+                "$ref": "#/$keywords/registrationEnabled"
+            },
+            "virtualNetworkLinkState": {
+                "$ref": "#/$keywords/virtualNetworkLinkState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "privateDnsZones/{recordType}": {
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "ttl": {
+                "$ref": "#/$keywords/ttl"
+            },
+            "fqdn": {
+                "$ref": "#/$keywords/fqdn"
+            },
+            "isAutoRegistered": {
+                "$ref": "#/$keywords/isAutoRegistered"
+            },
+            "aRecords": {
+                "$ref": "#/$keywords/aRecords"
+            },
+            "aaaaRecords": {
+                "$ref": "#/$keywords/aaaaRecords"
+            },
+            "cnameRecord": {
+                "$ref": "#/$keywords/cnameRecord"
+            },
+            "mxRecords": {
+                "$ref": "#/$keywords/mxRecords"
+            },
+            "ptrRecords": {
+                "$ref": "#/$keywords/ptrRecords"
+            },
+            "soaRecord": {
+                "$ref": "#/$keywords/soaRecord"
+            },
+            "srvRecords": {
+                "$ref": "#/$keywords/srvRecords"
+            },
+            "txtRecords": {
+                "$ref": "#/$keywords/txtRecords"
+            }
+        }
+    }
+}

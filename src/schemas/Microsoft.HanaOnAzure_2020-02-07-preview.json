@@ -1,0 +1,121 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Accepted",
+                        "Creating",
+                        "Updating",
+                        "Failed",
+                        "Succeeded",
+                        "Deleting",
+                        "Migrating"
+                    ]
+                }
+            }
+        },
+        "managedResourceGroupName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "logAnalyticsWorkspaceArmId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enableCustomerAnalytics": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "logAnalyticsWorkspaceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "logAnalyticsWorkspaceSharedKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sapMonitorCollectorVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "monitorSubnet": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "sapMonitors": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "managedResourceGroupName": {
+                "$ref": "#/$keywords/managedResourceGroupName"
+            },
+            "logAnalyticsWorkspaceArmId": {
+                "$ref": "#/$keywords/logAnalyticsWorkspaceArmId"
+            },
+            "enableCustomerAnalytics": {
+                "$ref": "#/$keywords/enableCustomerAnalytics"
+            },
+            "logAnalyticsWorkspaceId": {
+                "$ref": "#/$keywords/logAnalyticsWorkspaceId"
+            },
+            "logAnalyticsWorkspaceSharedKey": {
+                "$ref": "#/$keywords/logAnalyticsWorkspaceSharedKey"
+            },
+            "sapMonitorCollectorVersion": {
+                "$ref": "#/$keywords/sapMonitorCollectorVersion"
+            },
+            "monitorSubnet": {
+                "$ref": "#/$keywords/monitorSubnet"
+            }
+        },
+        "sapMonitors/providerInstances": {
+            "type": {
+                "$ref": "#/$keywords/type"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

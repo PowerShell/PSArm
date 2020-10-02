@@ -1,0 +1,210 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdAt": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "updatedAt": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "serviceBusEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "metricId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "rights": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Manage",
+                        "Send",
+                        "Listen"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "createdAt_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "updatedAt_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "listenerCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "requiresClientAuthorization": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "userMetadata": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "relayType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NetTcp",
+                        "Http"
+                    ]
+                }
+            }
+        },
+        "createdAt_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "updatedAt_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "listenerCount_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "requiresClientAuthorization_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "requiresTransportSecurity": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isDynamic": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "userMetadata_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "namespaces": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt"
+            },
+            "updatedAt": {
+                "$ref": "#/$keywords/updatedAt"
+            },
+            "serviceBusEndpoint": {
+                "$ref": "#/$keywords/serviceBusEndpoint"
+            },
+            "metricId": {
+                "$ref": "#/$keywords/metricId"
+            }
+        },
+        "namespaces/AuthorizationRules": {
+            "rights": {
+                "$ref": "#/$keywords/rights"
+            }
+        },
+        "namespaces/HybridConnections": {
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt_2"
+            },
+            "updatedAt": {
+                "$ref": "#/$keywords/updatedAt_2"
+            },
+            "listenerCount": {
+                "$ref": "#/$keywords/listenerCount"
+            },
+            "requiresClientAuthorization": {
+                "$ref": "#/$keywords/requiresClientAuthorization"
+            },
+            "userMetadata": {
+                "$ref": "#/$keywords/userMetadata"
+            }
+        },
+        "namespaces/HybridConnections/authorizationRules": {
+            "rights": {
+                "$ref": "#/$keywords/rights"
+            }
+        },
+        "namespaces/WcfRelays": {
+            "relayType": {
+                "$ref": "#/$keywords/relayType"
+            },
+            "createdAt": {
+                "$ref": "#/$keywords/createdAt_3"
+            },
+            "updatedAt": {
+                "$ref": "#/$keywords/updatedAt_3"
+            },
+            "listenerCount": {
+                "$ref": "#/$keywords/listenerCount_2"
+            },
+            "requiresClientAuthorization": {
+                "$ref": "#/$keywords/requiresClientAuthorization_2"
+            },
+            "requiresTransportSecurity": {
+                "$ref": "#/$keywords/requiresTransportSecurity"
+            },
+            "isDynamic": {
+                "$ref": "#/$keywords/isDynamic"
+            },
+            "userMetadata": {
+                "$ref": "#/$keywords/userMetadata_2"
+            }
+        },
+        "namespaces/WcfRelays/authorizationRules": {
+            "rights": {
+                "$ref": "#/$keywords/rights"
+            }
+        }
+    }
+}

@@ -1,0 +1,104 @@
+{
+    "$keywords": {
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "true",
+                        "false"
+                    ]
+                }
+            }
+        },
+        "lastUpdatedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Deploying",
+                        "Canceled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "source": {
+            "parameters": {
+                "query": {
+                    "type": "string"
+                },
+                "dataSourceId": {
+                    "type": "string"
+                },
+                "queryType": {}
+            },
+            "body": {
+                "authorizedResources": {
+                    "$ref": "#/$keywords/authorizedResources"
+                }
+            }
+        },
+        "authorizedResources": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "schedule": {
+            "parameters": {
+                "frequencyInMinutes": {
+                    "type": "int"
+                },
+                "timeWindowInMinutes": {
+                    "type": "int"
+                }
+            }
+        },
+        "action": {
+            "parameters": {
+                "odata.type": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "scheduledQueryRules": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "lastUpdatedTime": {
+                "$ref": "#/$keywords/lastUpdatedTime"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "source": {
+                "$ref": "#/$keywords/source"
+            },
+            "schedule": {
+                "$ref": "#/$keywords/schedule"
+            },
+            "action": {
+                "$ref": "#/$keywords/action"
+            }
+        }
+    }
+}

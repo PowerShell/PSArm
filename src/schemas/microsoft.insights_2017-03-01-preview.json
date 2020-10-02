@@ -1,0 +1,79 @@
+{
+    "$keywords": {
+        "scopes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "condition": {
+            "body": {
+                "allOf": {
+                    "$ref": "#/$keywords/allOf"
+                }
+            }
+        },
+        "allOf": {
+            "parameters": {
+                "field": {
+                    "type": "string"
+                },
+                "equals": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "actions": {
+            "body": {
+                "actionGroups": {
+                    "$ref": "#/$keywords/actionGroups"
+                }
+            }
+        },
+        "actionGroups": {
+            "parameters": {
+                "actionGroupId": {
+                    "type": "string"
+                },
+                "webhookProperties": {}
+            },
+            "array": true
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "activityLogAlerts": {
+            "scopes": {
+                "$ref": "#/$keywords/scopes"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "condition": {
+                "$ref": "#/$keywords/condition"
+            },
+            "actions": {
+                "$ref": "#/$keywords/actions"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            }
+        }
+    }
+}

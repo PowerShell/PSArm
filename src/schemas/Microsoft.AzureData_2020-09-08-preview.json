@@ -1,0 +1,216 @@
+{
+    "$keywords": {
+        "dataControllerId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "instanceEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "admin": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "startTime": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endTime": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vCore": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "k8sRaw": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastUploadedDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "edition": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "containerResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createTime": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "updateTime": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vCore_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataControllerId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "admin_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastUploadedDate_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "onPremiseProperty": {
+            "parameters": {
+                "id": {},
+                "publicSigningKey": {
+                    "type": "string"
+                },
+                "signingCertificateThumbprint": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastUploadedDate_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "sqlManagedInstances": {
+            "dataControllerId": {
+                "$ref": "#/$keywords/dataControllerId"
+            },
+            "instanceEndpoint": {
+                "$ref": "#/$keywords/instanceEndpoint"
+            },
+            "admin": {
+                "$ref": "#/$keywords/admin"
+            },
+            "startTime": {
+                "$ref": "#/$keywords/startTime"
+            },
+            "endTime": {
+                "$ref": "#/$keywords/endTime"
+            },
+            "vCore": {
+                "$ref": "#/$keywords/vCore"
+            },
+            "k8sRaw": {
+                "$ref": "#/$keywords/k8sRaw"
+            },
+            "lastUploadedDate": {
+                "$ref": "#/$keywords/lastUploadedDate"
+            }
+        },
+        "sqlServerInstances": {
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "edition": {
+                "$ref": "#/$keywords/edition"
+            },
+            "containerResourceId": {
+                "$ref": "#/$keywords/containerResourceId"
+            },
+            "createTime": {
+                "$ref": "#/$keywords/createTime"
+            },
+            "updateTime": {
+                "$ref": "#/$keywords/updateTime"
+            },
+            "vCore": {
+                "$ref": "#/$keywords/vCore_2"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            }
+        },
+        "postgresInstances": {
+            "dataControllerId": {
+                "$ref": "#/$keywords/dataControllerId_2"
+            },
+            "admin": {
+                "$ref": "#/$keywords/admin_2"
+            },
+            "k8sRaw": {
+                "$ref": "#/$keywords/k8sRaw"
+            },
+            "lastUploadedDate": {
+                "$ref": "#/$keywords/lastUploadedDate_2"
+            }
+        },
+        "dataControllers": {
+            "onPremiseProperty": {
+                "$ref": "#/$keywords/onPremiseProperty"
+            },
+            "k8sRaw": {
+                "$ref": "#/$keywords/k8sRaw"
+            },
+            "lastUploadedDate": {
+                "$ref": "#/$keywords/lastUploadedDate_3"
+            }
+        }
+    }
+}

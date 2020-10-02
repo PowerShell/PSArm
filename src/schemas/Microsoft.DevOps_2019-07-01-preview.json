@@ -1,0 +1,92 @@
+{
+    "$keywords": {
+        "pipelineId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "organization": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "project": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "bootstrapConfiguration": {
+            "body": {
+                "repository": {
+                    "$ref": "#/$keywords/repository"
+                },
+                "template": {
+                    "$ref": "#/$keywords/template"
+                }
+            }
+        },
+        "repository": {
+            "parameters": {
+                "repositoryType": {
+                    "enum": [
+                        "gitHub",
+                        "vstsGit"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "defaultBranch": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "authorization": {
+                    "$ref": "#/$keywords/authorization"
+                }
+            }
+        },
+        "authorization": {
+            "parameters": {
+                "authorizationType": {},
+                "parameters": {}
+            }
+        },
+        "template": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "parameters": {}
+            }
+        }
+    },
+    "$resources": {
+        "pipelines": {
+            "pipelineId": {
+                "$ref": "#/$keywords/pipelineId"
+            },
+            "organization": {
+                "$ref": "#/$keywords/organization"
+            },
+            "project": {
+                "$ref": "#/$keywords/project"
+            },
+            "bootstrapConfiguration": {
+                "$ref": "#/$keywords/bootstrapConfiguration"
+            }
+        }
+    }
+}

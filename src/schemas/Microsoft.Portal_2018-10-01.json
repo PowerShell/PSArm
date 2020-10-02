@@ -1,0 +1,135 @@
+{
+    "$keywords": {
+        "preferredOsType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Linux",
+                        "Windows"
+                    ]
+                }
+            }
+        },
+        "preferredLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageProfile": {
+            "parameters": {
+                "storageAccountResourceId": {
+                    "type": "string"
+                },
+                "fileShareName": {
+                    "type": "string"
+                },
+                "diskSizeInGB": {
+                    "type": "int"
+                }
+            }
+        },
+        "terminalSettings": {
+            "parameters": {
+                "fontSize": {
+                    "enum": [
+                        "NotSpecified",
+                        "Small",
+                        "Medium",
+                        "Large"
+                    ]
+                },
+                "fontStyle": {
+                    "enum": [
+                        "NotSpecified",
+                        "Monospace",
+                        "Courier"
+                    ]
+                }
+            }
+        },
+        "preferredShellType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "bash",
+                        "pwsh",
+                        "powershell"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "Accepted",
+                        "Pending",
+                        "Updating",
+                        "Creating",
+                        "Repairing",
+                        "Failed",
+                        "Canceled",
+                        "Succeeded"
+                    ]
+                }
+            }
+        },
+        "uri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "locations/userSettings": {
+            "preferredOsType": {
+                "$ref": "#/$keywords/preferredOsType"
+            },
+            "preferredLocation": {
+                "$ref": "#/$keywords/preferredLocation"
+            },
+            "storageProfile": {
+                "$ref": "#/$keywords/storageProfile"
+            },
+            "terminalSettings": {
+                "$ref": "#/$keywords/terminalSettings"
+            },
+            "preferredShellType": {
+                "$ref": "#/$keywords/preferredShellType"
+            }
+        },
+        "userSettings": {
+            "preferredOsType": {
+                "$ref": "#/$keywords/preferredOsType"
+            },
+            "preferredLocation": {
+                "$ref": "#/$keywords/preferredLocation"
+            },
+            "storageProfile": {
+                "$ref": "#/$keywords/storageProfile"
+            },
+            "terminalSettings": {
+                "$ref": "#/$keywords/terminalSettings"
+            },
+            "preferredShellType": {
+                "$ref": "#/$keywords/preferredShellType"
+            }
+        },
+        "consoles": {
+            "osType": {
+                "$ref": "#/$keywords/preferredOsType"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "uri": {
+                "$ref": "#/$keywords/uri"
+            }
+        }
+    }
+}

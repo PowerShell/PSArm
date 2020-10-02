@@ -1,0 +1,77 @@
+{
+    "$keywords": {
+        "networkProfile": {
+            "body": {
+                "subnet": {
+                    "$ref": "#/$keywords/subnet"
+                },
+                "networkInterfaces": {
+                    "$ref": "#/$keywords/networkInterfaces"
+                }
+            }
+        },
+        "subnet": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "networkInterfaces": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "privateIpAddress": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "stampId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "statusMessage": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Provisioning",
+                        "Allocating",
+                        "Connecting",
+                        "Failed",
+                        "CheckingQuota",
+                        "Deleting"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "dedicatedHSMs": {
+            "networkProfile": {
+                "$ref": "#/$keywords/networkProfile"
+            },
+            "stampId": {
+                "$ref": "#/$keywords/stampId"
+            },
+            "statusMessage": {
+                "$ref": "#/$keywords/statusMessage"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

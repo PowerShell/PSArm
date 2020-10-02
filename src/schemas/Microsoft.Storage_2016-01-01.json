@@ -1,0 +1,57 @@
+{
+    "$keywords": {
+        "customDomain": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "useSubDomainName": {
+                    "type": "bool"
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "keySource": {}
+            },
+            "body": {
+                "services": {
+                    "$ref": "#/$keywords/services"
+                }
+            }
+        },
+        "services": {
+            "body": {
+                "blob": {
+                    "$ref": "#/$keywords/blob"
+                }
+            }
+        },
+        "blob": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "lastEnabledTime": {}
+            }
+        },
+        "accessTier": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "storageAccounts": {
+            "customDomain": {
+                "$ref": "#/$keywords/customDomain"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "accessTier": {
+                "$ref": "#/$keywords/accessTier"
+            }
+        }
+    }
+}

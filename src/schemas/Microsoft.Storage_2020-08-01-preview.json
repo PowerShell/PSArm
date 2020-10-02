@@ -1,0 +1,1166 @@
+{
+    "$keywords": {
+        "customDomain": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "useSubDomainName": {
+                    "type": "bool"
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "keySource": {
+                    "enum": [
+                        "Microsoft.Storage",
+                        "Microsoft.Keyvault"
+                    ]
+                },
+                "requireInfrastructureEncryption": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "services": {
+                    "$ref": "#/$keywords/services"
+                },
+                "keyvaultproperties": {
+                    "$ref": "#/$keywords/keyvaultproperties"
+                }
+            }
+        },
+        "services": {
+            "body": {
+                "blob": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "file": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "table": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "queue": {
+                    "$ref": "#/$keywords/blob"
+                }
+            }
+        },
+        "blob": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "lastEnabledTime": {},
+                "keyType": {
+                    "enum": [
+                        "Service",
+                        "Account"
+                    ]
+                }
+            }
+        },
+        "keyvaultproperties": {
+            "parameters": {
+                "keyname": {
+                    "type": "string"
+                },
+                "keyversion": {
+                    "type": "string"
+                },
+                "keyvaulturi": {
+                    "type": "string"
+                },
+                "currentVersionedKeyIdentifier": {
+                    "type": "string"
+                },
+                "lastKeyRotationTimestamp": {}
+            }
+        },
+        "networkAcls": {
+            "parameters": {
+                "bypass": {
+                    "enum": [
+                        "None",
+                        "Logging",
+                        "Metrics",
+                        "AzureServices"
+                    ]
+                },
+                "defaultAction": {}
+            },
+            "body": {
+                "resourceAccessRules": {
+                    "$ref": "#/$keywords/resourceAccessRules"
+                },
+                "virtualNetworkRules": {
+                    "$ref": "#/$keywords/virtualNetworkRules"
+                },
+                "ipRules": {
+                    "$ref": "#/$keywords/ipRules"
+                }
+            }
+        },
+        "resourceAccessRules": {
+            "parameters": {
+                "tenantId": {
+                    "type": "string"
+                },
+                "resourceId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualNetworkRules": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "action": {},
+                "state": {}
+            },
+            "array": true
+        },
+        "ipRules": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                },
+                "action": {}
+            },
+            "array": true
+        },
+        "accessTier": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "azureFilesIdentityBasedAuthentication": {
+            "parameters": {
+                "directoryServiceOptions": {
+                    "enum": [
+                        "None",
+                        "AADDS",
+                        "AD"
+                    ]
+                }
+            },
+            "body": {
+                "activeDirectoryProperties": {
+                    "$ref": "#/$keywords/activeDirectoryProperties"
+                }
+            }
+        },
+        "activeDirectoryProperties": {
+            "parameters": {
+                "domainName": {
+                    "type": "string"
+                },
+                "netBiosDomainName": {
+                    "type": "string"
+                },
+                "forestName": {
+                    "type": "string"
+                },
+                "domainGuid": {
+                    "type": "string"
+                },
+                "domainSid": {
+                    "type": "string"
+                },
+                "azureStorageSid": {
+                    "type": "string"
+                }
+            }
+        },
+        "supportsHttpsTrafficOnly": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isHnsEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "largeFileSharesState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Disabled",
+                        "Enabled"
+                    ]
+                }
+            }
+        },
+        "routingPreference": {
+            "parameters": {
+                "routingChoice": {
+                    "enum": [
+                        "MicrosoftRouting",
+                        "InternetRouting"
+                    ]
+                },
+                "publishMicrosoftEndpoints": {
+                    "type": "bool"
+                },
+                "publishInternetEndpoints": {
+                    "type": "bool"
+                }
+            }
+        },
+        "allowBlobPublicAccess": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "minimumTlsVersion": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "TLS1_0",
+                        "TLS1_1",
+                        "TLS1_2"
+                    ]
+                }
+            }
+        },
+        "lastModifiedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "policy": {
+            "body": {
+                "rules": {
+                    "$ref": "#/$keywords/rules"
+                }
+            }
+        },
+        "rules": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "body": {
+                "definition": {
+                    "$ref": "#/$keywords/definition"
+                }
+            },
+            "array": true
+        },
+        "definition": {
+            "body": {
+                "actions": {
+                    "$ref": "#/$keywords/actions"
+                },
+                "filters": {
+                    "$ref": "#/$keywords/filters"
+                }
+            }
+        },
+        "actions": {
+            "body": {
+                "baseBlob": {
+                    "$ref": "#/$keywords/baseBlob"
+                },
+                "snapshot": {
+                    "$ref": "#/$keywords/snapshot"
+                }
+            }
+        },
+        "baseBlob": {
+            "body": {
+                "tierToCool": {
+                    "$ref": "#/$keywords/tierToCool"
+                },
+                "tierToArchive": {
+                    "$ref": "#/$keywords/tierToCool"
+                },
+                "delete": {
+                    "$ref": "#/$keywords/tierToCool"
+                }
+            }
+        },
+        "tierToCool": {
+            "parameters": {
+                "daysAfterModificationGreaterThan": {}
+            }
+        },
+        "snapshot": {
+            "body": {
+                "delete": {
+                    "$ref": "#/$keywords/delete"
+                }
+            }
+        },
+        "delete": {
+            "parameters": {
+                "daysAfterCreationGreaterThan": {}
+            }
+        },
+        "filters": {
+            "body": {
+                "prefixMatch": {
+                    "$ref": "#/$keywords/prefixMatch"
+                },
+                "blobTypes": {
+                    "$ref": "#/$keywords/blobTypes"
+                },
+                "blobIndexMatch": {
+                    "$ref": "#/$keywords/blobIndexMatch"
+                }
+            }
+        },
+        "prefixMatch": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "blobTypes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "blobIndexMatch": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "op": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Pending",
+                        "Approved",
+                        "Rejected"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionRequired": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Creating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "policyId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabledTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "sourceAccount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "destinationAccount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "rules_2": {
+            "parameters": {
+                "ruleId": {
+                    "type": "string"
+                },
+                "sourceContainer": {
+                    "type": "string"
+                },
+                "destinationContainer": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "filters": {
+                    "$ref": "#/$keywords/filters_2"
+                }
+            },
+            "array": true
+        },
+        "filters_2": {
+            "parameters": {
+                "minCreationTime": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "prefixMatch": {
+                    "$ref": "#/$keywords/prefixMatch_2"
+                }
+            }
+        },
+        "prefixMatch_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "source": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Microsoft.Storage",
+                        "Microsoft.KeyVault"
+                    ]
+                }
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "creationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModifiedTime_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "keyVaultProperties": {
+            "parameters": {
+                "keyUri": {
+                    "type": "string"
+                }
+            }
+        },
+        "cors": {
+            "body": {
+                "corsRules": {
+                    "$ref": "#/$keywords/corsRules"
+                }
+            }
+        },
+        "corsRules": {
+            "parameters": {
+                "maxAgeInSeconds": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "allowedOrigins": {
+                    "$ref": "#/$keywords/allowedOrigins"
+                },
+                "allowedMethods": {
+                    "$ref": "#/$keywords/allowedMethods"
+                },
+                "exposedHeaders": {
+                    "$ref": "#/$keywords/exposedHeaders"
+                },
+                "allowedHeaders": {
+                    "$ref": "#/$keywords/allowedHeaders"
+                }
+            },
+            "array": true
+        },
+        "allowedOrigins": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "allowedMethods": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "DELETE",
+                        "GET",
+                        "HEAD",
+                        "MERGE",
+                        "POST",
+                        "OPTIONS",
+                        "PUT"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "exposedHeaders": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "allowedHeaders": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "defaultServiceVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deleteRetentionPolicy": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "days": {
+                    "type": "int"
+                }
+            }
+        },
+        "isVersioningEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "automaticSnapshotPolicyEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "changeFeed": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "restorePolicy": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "days": {
+                    "type": "int"
+                },
+                "lastEnabledTime": {},
+                "minRestoreTime": {}
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deleted": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "deletedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "remainingRetentionDays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "defaultEncryptionScope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "denyEncryptionScopeOverride": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "publicAccess": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModifiedTime_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "leaseStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Locked",
+                        "Unlocked"
+                    ]
+                }
+            }
+        },
+        "leaseState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Available",
+                        "Leased",
+                        "Expired",
+                        "Breaking",
+                        "Broken"
+                    ]
+                }
+            }
+        },
+        "leaseDuration": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Infinite",
+                        "Fixed"
+                    ]
+                }
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "immutabilityPolicy": {
+            "parameters": {
+                "etag": {
+                    "type": "string"
+                },
+                "immutabilityPeriodSinceCreationInDays": {
+                    "type": "int"
+                },
+                "state": {
+                    "enum": [
+                        "Locked",
+                        "Unlocked"
+                    ]
+                },
+                "allowProtectedAppendWrites": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "updateHistory": {
+                    "$ref": "#/$keywords/updateHistory"
+                }
+            }
+        },
+        "updateHistory": {
+            "parameters": {
+                "update": {
+                    "enum": [
+                        "put",
+                        "lock",
+                        "extend"
+                    ]
+                },
+                "immutabilityPeriodSinceCreationInDays": {
+                    "type": "int"
+                },
+                "timestamp": {},
+                "objectIdentifier": {
+                    "type": "string"
+                },
+                "tenantId": {
+                    "type": "string"
+                },
+                "upn": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "legalHold": {
+            "parameters": {
+                "hasLegalHold": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "tags": {
+                    "$ref": "#/$keywords/tags"
+                }
+            }
+        },
+        "tags": {
+            "parameters": {
+                "tag": {
+                    "type": "string"
+                },
+                "timestamp": {},
+                "objectIdentifier": {
+                    "type": "string"
+                },
+                "tenantId": {
+                    "type": "string"
+                },
+                "upn": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "hasLegalHold": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "hasImmutabilityPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "immutabilityPeriodSinceCreationInDays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "state_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Locked",
+                        "Unlocked"
+                    ]
+                }
+            }
+        },
+        "allowProtectedAppendWrites": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "lastModifiedTime_4": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "metadata_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "shareQuota": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "enabledProtocols": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "SMB",
+                        "NFS"
+                    ]
+                }
+            }
+        },
+        "rootSquash": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NoRootSquash",
+                        "RootSquash",
+                        "AllSquash"
+                    ]
+                }
+            }
+        },
+        "version_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deleted_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "deletedTime_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "remainingRetentionDays_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "accessTier_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "TransactionOptimized",
+                        "Hot",
+                        "Cool",
+                        "Premium"
+                    ]
+                }
+            }
+        },
+        "accessTierChangeTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "accessTierStatus": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "shareUsageBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "metadata_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "approximateMessageCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "storageAccounts": {
+            "customDomain": {
+                "$ref": "#/$keywords/customDomain"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "networkAcls": {
+                "$ref": "#/$keywords/networkAcls"
+            },
+            "accessTier": {
+                "$ref": "#/$keywords/accessTier"
+            },
+            "azureFilesIdentityBasedAuthentication": {
+                "$ref": "#/$keywords/azureFilesIdentityBasedAuthentication"
+            },
+            "supportsHttpsTrafficOnly": {
+                "$ref": "#/$keywords/supportsHttpsTrafficOnly"
+            },
+            "isHnsEnabled": {
+                "$ref": "#/$keywords/isHnsEnabled"
+            },
+            "largeFileSharesState": {
+                "$ref": "#/$keywords/largeFileSharesState"
+            },
+            "routingPreference": {
+                "$ref": "#/$keywords/routingPreference"
+            },
+            "allowBlobPublicAccess": {
+                "$ref": "#/$keywords/allowBlobPublicAccess"
+            },
+            "minimumTlsVersion": {
+                "$ref": "#/$keywords/minimumTlsVersion"
+            }
+        },
+        "storageAccounts/managementPolicies": {
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime"
+            },
+            "policy": {
+                "$ref": "#/$keywords/policy"
+            }
+        },
+        "storageAccounts/privateEndpointConnections": {
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "storageAccounts/objectReplicationPolicies": {
+            "policyId": {
+                "$ref": "#/$keywords/policyId"
+            },
+            "enabledTime": {
+                "$ref": "#/$keywords/enabledTime"
+            },
+            "sourceAccount": {
+                "$ref": "#/$keywords/sourceAccount"
+            },
+            "destinationAccount": {
+                "$ref": "#/$keywords/destinationAccount"
+            },
+            "rules": {
+                "$ref": "#/$keywords/rules_2"
+            }
+        },
+        "storageAccounts/encryptionScopes": {
+            "source": {
+                "$ref": "#/$keywords/source"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "creationTime": {
+                "$ref": "#/$keywords/creationTime"
+            },
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime_2"
+            },
+            "keyVaultProperties": {
+                "$ref": "#/$keywords/keyVaultProperties"
+            }
+        },
+        "storageAccounts/blobServices": {
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "defaultServiceVersion": {
+                "$ref": "#/$keywords/defaultServiceVersion"
+            },
+            "deleteRetentionPolicy": {
+                "$ref": "#/$keywords/deleteRetentionPolicy"
+            },
+            "isVersioningEnabled": {
+                "$ref": "#/$keywords/isVersioningEnabled"
+            },
+            "automaticSnapshotPolicyEnabled": {
+                "$ref": "#/$keywords/automaticSnapshotPolicyEnabled"
+            },
+            "changeFeed": {
+                "$ref": "#/$keywords/changeFeed"
+            },
+            "restorePolicy": {
+                "$ref": "#/$keywords/restorePolicy"
+            },
+            "containerDeleteRetentionPolicy": {
+                "$ref": "#/$keywords/deleteRetentionPolicy"
+            },
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "deleted": {
+                "$ref": "#/$keywords/deleted"
+            },
+            "deletedTime": {
+                "$ref": "#/$keywords/deletedTime"
+            },
+            "remainingRetentionDays": {
+                "$ref": "#/$keywords/remainingRetentionDays"
+            },
+            "defaultEncryptionScope": {
+                "$ref": "#/$keywords/defaultEncryptionScope"
+            },
+            "denyEncryptionScopeOverride": {
+                "$ref": "#/$keywords/denyEncryptionScopeOverride"
+            },
+            "publicAccess": {
+                "$ref": "#/$keywords/publicAccess"
+            },
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime_3"
+            },
+            "leaseStatus": {
+                "$ref": "#/$keywords/leaseStatus"
+            },
+            "leaseState": {
+                "$ref": "#/$keywords/leaseState"
+            },
+            "leaseDuration": {
+                "$ref": "#/$keywords/leaseDuration"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "immutabilityPolicy": {
+                "$ref": "#/$keywords/immutabilityPolicy"
+            },
+            "legalHold": {
+                "$ref": "#/$keywords/legalHold"
+            },
+            "hasLegalHold": {
+                "$ref": "#/$keywords/hasLegalHold"
+            },
+            "hasImmutabilityPolicy": {
+                "$ref": "#/$keywords/hasImmutabilityPolicy"
+            }
+        },
+        "storageAccounts/blobServices/immutabilityPolicies": {
+            "immutabilityPeriodSinceCreationInDays": {
+                "$ref": "#/$keywords/immutabilityPeriodSinceCreationInDays"
+            },
+            "state": {
+                "$ref": "#/$keywords/state_2"
+            },
+            "allowProtectedAppendWrites": {
+                "$ref": "#/$keywords/allowProtectedAppendWrites"
+            }
+        },
+        "storageAccounts/fileServices": {
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "shareDeleteRetentionPolicy": {
+                "$ref": "#/$keywords/deleteRetentionPolicy"
+            },
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime_4"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata_2"
+            },
+            "shareQuota": {
+                "$ref": "#/$keywords/shareQuota"
+            },
+            "enabledProtocols": {
+                "$ref": "#/$keywords/enabledProtocols"
+            },
+            "rootSquash": {
+                "$ref": "#/$keywords/rootSquash"
+            },
+            "version": {
+                "$ref": "#/$keywords/version_2"
+            },
+            "deleted": {
+                "$ref": "#/$keywords/deleted_2"
+            },
+            "deletedTime": {
+                "$ref": "#/$keywords/deletedTime_2"
+            },
+            "remainingRetentionDays": {
+                "$ref": "#/$keywords/remainingRetentionDays_2"
+            },
+            "accessTier": {
+                "$ref": "#/$keywords/accessTier_2"
+            },
+            "accessTierChangeTime": {
+                "$ref": "#/$keywords/accessTierChangeTime"
+            },
+            "accessTierStatus": {
+                "$ref": "#/$keywords/accessTierStatus"
+            },
+            "shareUsageBytes": {
+                "$ref": "#/$keywords/shareUsageBytes"
+            }
+        },
+        "storageAccounts/queueServices": {
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata_3"
+            },
+            "approximateMessageCount": {
+                "$ref": "#/$keywords/approximateMessageCount"
+            }
+        },
+        "storageAccounts/tableServices": {
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            }
+        }
+    }
+}

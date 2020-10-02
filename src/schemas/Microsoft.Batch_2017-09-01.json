@@ -1,0 +1,658 @@
+{
+    "$keywords": {
+        "autoStorage": {
+            "parameters": {
+                "storageAccountId": {
+                    "type": "string"
+                }
+            }
+        },
+        "poolAllocationMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "keyVaultReference": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "thumbprintAlgorithm": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "thumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "format": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "data": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "password": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastModified": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "creationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningStateTransitionTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "allocationState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "allocationStateTransitionTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "vmSize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deploymentConfiguration": {
+            "body": {
+                "cloudServiceConfiguration": {
+                    "$ref": "#/$keywords/cloudServiceConfiguration"
+                },
+                "virtualMachineConfiguration": {
+                    "$ref": "#/$keywords/virtualMachineConfiguration"
+                }
+            }
+        },
+        "cloudServiceConfiguration": {
+            "parameters": {
+                "osFamily": {
+                    "type": "string"
+                },
+                "targetOSVersion": {
+                    "type": "string"
+                },
+                "currentOSVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "virtualMachineConfiguration": {
+            "parameters": {
+                "nodeAgentSkuId": {
+                    "type": "string"
+                },
+                "licenseType": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "imageReference": {
+                    "$ref": "#/$keywords/imageReference"
+                },
+                "osDisk": {
+                    "$ref": "#/$keywords/osDisk"
+                },
+                "windowsConfiguration": {
+                    "$ref": "#/$keywords/windowsConfiguration"
+                },
+                "dataDisks": {
+                    "$ref": "#/$keywords/dataDisks"
+                }
+            }
+        },
+        "imageReference": {
+            "parameters": {
+                "publisher": {
+                    "type": "string"
+                },
+                "offer": {
+                    "type": "string"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "osDisk": {
+            "parameters": {
+                "caching": {}
+            }
+        },
+        "windowsConfiguration": {
+            "parameters": {
+                "enableAutomaticUpdates": {
+                    "type": "bool"
+                }
+            }
+        },
+        "dataDisks": {
+            "parameters": {
+                "lun": {
+                    "type": "int"
+                },
+                "caching": {},
+                "diskSizeGB": {
+                    "type": "int"
+                },
+                "storageAccountType": {}
+            },
+            "array": true
+        },
+        "currentDedicatedNodes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "currentLowPriorityNodes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "scaleSettings": {
+            "body": {
+                "fixedScale": {
+                    "$ref": "#/$keywords/fixedScale"
+                },
+                "autoScale": {
+                    "$ref": "#/$keywords/autoScale"
+                }
+            }
+        },
+        "fixedScale": {
+            "parameters": {
+                "resizeTimeout": {},
+                "targetDedicatedNodes": {
+                    "type": "int"
+                },
+                "targetLowPriorityNodes": {
+                    "type": "int"
+                },
+                "nodeDeallocationOption": {}
+            }
+        },
+        "autoScale": {
+            "parameters": {
+                "formula": {
+                    "type": "string"
+                },
+                "evaluationInterval": {}
+            }
+        },
+        "autoScaleRun": {
+            "parameters": {
+                "evaluationTime": {},
+                "results": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "error": {
+                    "$ref": "#/$keywords/error"
+                }
+            }
+        },
+        "error": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details"
+                }
+            }
+        },
+        "details": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details"
+                }
+            },
+            "array": true
+        },
+        "interNodeCommunication": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "networkConfiguration": {
+            "parameters": {
+                "subnetId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "endpointConfiguration": {
+                    "$ref": "#/$keywords/endpointConfiguration"
+                }
+            }
+        },
+        "endpointConfiguration": {
+            "body": {
+                "inboundNatPools": {
+                    "$ref": "#/$keywords/inboundNatPools"
+                }
+            }
+        },
+        "inboundNatPools": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "protocol": {},
+                "backendPort": {
+                    "type": "int"
+                },
+                "frontendPortRangeStart": {
+                    "type": "int"
+                },
+                "frontendPortRangeEnd": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "networkSecurityGroupRules": {
+                    "$ref": "#/$keywords/networkSecurityGroupRules"
+                }
+            },
+            "array": true
+        },
+        "networkSecurityGroupRules": {
+            "parameters": {
+                "priority": {
+                    "type": "int"
+                },
+                "access": {},
+                "sourceAddressPrefix": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "maxTasksPerNode": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "taskSchedulingPolicy": {
+            "parameters": {
+                "nodeFillType": {}
+            }
+        },
+        "userAccounts": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "elevationLevel": {}
+            },
+            "body": {
+                "linuxUserConfiguration": {
+                    "$ref": "#/$keywords/linuxUserConfiguration"
+                }
+            },
+            "array": true
+        },
+        "linuxUserConfiguration": {
+            "parameters": {
+                "uid": {
+                    "type": "int"
+                },
+                "gid": {
+                    "type": "int"
+                },
+                "sshPrivateKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "metadata": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "startTask": {
+            "parameters": {
+                "commandLine": {
+                    "type": "string"
+                },
+                "maxTaskRetryCount": {
+                    "type": "int"
+                },
+                "waitForSuccess": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "resourceFiles": {
+                    "$ref": "#/$keywords/resourceFiles"
+                },
+                "environmentSettings": {
+                    "$ref": "#/$keywords/environmentSettings"
+                },
+                "userIdentity": {
+                    "$ref": "#/$keywords/userIdentity"
+                }
+            }
+        },
+        "resourceFiles": {
+            "parameters": {
+                "blobSource": {
+                    "type": "string"
+                },
+                "filePath": {
+                    "type": "string"
+                },
+                "fileMode": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "environmentSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "userIdentity": {
+            "parameters": {
+                "userName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "autoUser": {
+                    "$ref": "#/$keywords/autoUser"
+                }
+            }
+        },
+        "autoUser": {
+            "parameters": {
+                "scope": {},
+                "elevationLevel": {}
+            }
+        },
+        "certificates": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "storeLocation": {},
+                "storeName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "visibility": {
+                    "$ref": "#/$keywords/visibility"
+                }
+            },
+            "array": true
+        },
+        "visibility": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "applicationPackages": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "applicationLicenses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "resizeOperationStatus": {
+            "parameters": {
+                "targetDedicatedNodes": {
+                    "type": "int"
+                },
+                "targetLowPriorityNodes": {
+                    "type": "int"
+                },
+                "resizeTimeout": {},
+                "nodeDeallocationOption": {},
+                "startTime": {}
+            },
+            "body": {
+                "errors": {
+                    "$ref": "#/$keywords/errors"
+                }
+            }
+        },
+        "errors": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details_2"
+                }
+            },
+            "array": true
+        },
+        "details_2": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details_2"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "batchAccounts": {
+            "autoStorage": {
+                "$ref": "#/$keywords/autoStorage"
+            },
+            "poolAllocationMode": {
+                "$ref": "#/$keywords/poolAllocationMode"
+            },
+            "keyVaultReference": {
+                "$ref": "#/$keywords/keyVaultReference"
+            }
+        },
+        "batchAccounts/applications": {},
+        "batchAccounts/certificates": {
+            "thumbprintAlgorithm": {
+                "$ref": "#/$keywords/thumbprintAlgorithm"
+            },
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint"
+            },
+            "format": {
+                "$ref": "#/$keywords/format"
+            },
+            "data": {
+                "$ref": "#/$keywords/data"
+            },
+            "password": {
+                "$ref": "#/$keywords/password"
+            }
+        },
+        "batchAccounts/pools": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified"
+            },
+            "creationTime": {
+                "$ref": "#/$keywords/creationTime"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "provisioningStateTransitionTime": {
+                "$ref": "#/$keywords/provisioningStateTransitionTime"
+            },
+            "allocationState": {
+                "$ref": "#/$keywords/allocationState"
+            },
+            "allocationStateTransitionTime": {
+                "$ref": "#/$keywords/allocationStateTransitionTime"
+            },
+            "vmSize": {
+                "$ref": "#/$keywords/vmSize"
+            },
+            "deploymentConfiguration": {
+                "$ref": "#/$keywords/deploymentConfiguration"
+            },
+            "currentDedicatedNodes": {
+                "$ref": "#/$keywords/currentDedicatedNodes"
+            },
+            "currentLowPriorityNodes": {
+                "$ref": "#/$keywords/currentLowPriorityNodes"
+            },
+            "scaleSettings": {
+                "$ref": "#/$keywords/scaleSettings"
+            },
+            "autoScaleRun": {
+                "$ref": "#/$keywords/autoScaleRun"
+            },
+            "interNodeCommunication": {
+                "$ref": "#/$keywords/interNodeCommunication"
+            },
+            "networkConfiguration": {
+                "$ref": "#/$keywords/networkConfiguration"
+            },
+            "maxTasksPerNode": {
+                "$ref": "#/$keywords/maxTasksPerNode"
+            },
+            "taskSchedulingPolicy": {
+                "$ref": "#/$keywords/taskSchedulingPolicy"
+            },
+            "userAccounts": {
+                "$ref": "#/$keywords/userAccounts"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "startTask": {
+                "$ref": "#/$keywords/startTask"
+            },
+            "certificates": {
+                "$ref": "#/$keywords/certificates"
+            },
+            "applicationPackages": {
+                "$ref": "#/$keywords/applicationPackages"
+            },
+            "applicationLicenses": {
+                "$ref": "#/$keywords/applicationLicenses"
+            },
+            "resizeOperationStatus": {
+                "$ref": "#/$keywords/resizeOperationStatus"
+            }
+        }
+    }
+}

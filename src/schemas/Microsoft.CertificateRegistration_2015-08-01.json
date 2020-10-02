@@ -1,0 +1,208 @@
+{
+    "$keywords": {
+        "keyVaultId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyVaultSecretName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "certificates": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "distinguishedName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "domainVerificationToken": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "validityInYears": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "keySize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "productType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "autoRenew": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "signedCertificate": {
+            "parameters": {
+                "version": {
+                    "type": "int"
+                },
+                "serialNumber": {
+                    "type": "string"
+                },
+                "thumbprint": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "notBefore": {},
+                "notAfter": {},
+                "signatureAlgorithm": {
+                    "type": "string"
+                },
+                "issuer": {
+                    "type": "string"
+                },
+                "rawData": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            }
+        },
+        "csr": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serialNumber": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastCertificateIssuanceTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "expirationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "certificateOrders/certificates": {
+            "keyVaultId": {
+                "$ref": "#/$keywords/keyVaultId"
+            },
+            "keyVaultSecretName": {
+                "$ref": "#/$keywords/keyVaultSecretName"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "certificateOrders": {
+            "certificates": {
+                "$ref": "#/$keywords/certificates"
+            },
+            "distinguishedName": {
+                "$ref": "#/$keywords/distinguishedName"
+            },
+            "domainVerificationToken": {
+                "$ref": "#/$keywords/domainVerificationToken"
+            },
+            "validityInYears": {
+                "$ref": "#/$keywords/validityInYears"
+            },
+            "keySize": {
+                "$ref": "#/$keywords/keySize"
+            },
+            "productType": {
+                "$ref": "#/$keywords/productType"
+            },
+            "autoRenew": {
+                "$ref": "#/$keywords/autoRenew"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "signedCertificate": {
+                "$ref": "#/$keywords/signedCertificate"
+            },
+            "csr": {
+                "$ref": "#/$keywords/csr"
+            },
+            "intermediate": {
+                "$ref": "#/$keywords/signedCertificate"
+            },
+            "root": {
+                "$ref": "#/$keywords/signedCertificate"
+            },
+            "serialNumber": {
+                "$ref": "#/$keywords/serialNumber"
+            },
+            "lastCertificateIssuanceTime": {
+                "$ref": "#/$keywords/lastCertificateIssuanceTime"
+            },
+            "expirationTime": {
+                "$ref": "#/$keywords/expirationTime"
+            }
+        }
+    }
+}

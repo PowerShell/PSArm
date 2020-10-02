@@ -1,0 +1,36 @@
+{
+    "$keywords": {
+        "apiEndpoints": {
+            "parameters": {
+                "endpoint": {
+                    "type": "string"
+                },
+                "majorVersion": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "storageAccounts": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "isPrimary": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "mediaservices": {
+            "apiEndpoints": {
+                "$ref": "#/$keywords/apiEndpoints"
+            },
+            "storageAccounts": {
+                "$ref": "#/$keywords/storageAccounts"
+            }
+        }
+    }
+}

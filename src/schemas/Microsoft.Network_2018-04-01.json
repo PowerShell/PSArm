@@ -1,0 +1,341 @@
+{
+    "$keywords": {
+        "targetResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "target": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpointStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "weight": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "priority": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "endpointLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpointMonitorStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "CheckingEndpoint",
+                        "Online",
+                        "Degraded",
+                        "Disabled",
+                        "Inactive",
+                        "Stopped"
+                    ]
+                }
+            }
+        },
+        "minChildEndpoints": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "geoMapping": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "subnets": {
+            "parameters": {
+                "first": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "customHeaders": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "profileStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "trafficRoutingMethod": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Performance",
+                        "Priority",
+                        "Weighted",
+                        "Geographic",
+                        "MultiValue",
+                        "Subnet"
+                    ]
+                }
+            }
+        },
+        "dnsConfig": {
+            "parameters": {
+                "relativeName": {
+                    "type": "string"
+                },
+                "fqdn": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "int"
+                }
+            }
+        },
+        "monitorConfig": {
+            "parameters": {
+                "profileMonitorStatus": {
+                    "enum": [
+                        "CheckingEndpoints",
+                        "Online",
+                        "Degraded",
+                        "Disabled",
+                        "Inactive"
+                    ]
+                },
+                "protocol": {
+                    "enum": [
+                        "HTTP",
+                        "HTTPS",
+                        "TCP"
+                    ]
+                },
+                "port": {
+                    "type": "int"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "intervalInSeconds": {
+                    "type": "int"
+                },
+                "timeoutInSeconds": {
+                    "type": "int"
+                },
+                "toleratedNumberOfFailures": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "customHeaders": {
+                    "$ref": "#/$keywords/customHeaders_2"
+                },
+                "expectedStatusCodeRanges": {
+                    "$ref": "#/$keywords/expectedStatusCodeRanges"
+                }
+            }
+        },
+        "customHeaders_2": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "expectedStatusCodeRanges": {
+            "parameters": {
+                "min": {
+                    "type": "int"
+                },
+                "max": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "endpoints": {
+            "parameters": {
+                "targetResourceId": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                },
+                "endpointStatus": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                },
+                "weight": {
+                    "type": "int"
+                },
+                "priority": {
+                    "type": "int"
+                },
+                "endpointLocation": {
+                    "type": "string"
+                },
+                "endpointMonitorStatus": {
+                    "enum": [
+                        "CheckingEndpoint",
+                        "Online",
+                        "Degraded",
+                        "Disabled",
+                        "Inactive",
+                        "Stopped"
+                    ]
+                },
+                "minChildEndpoints": {
+                    "type": "int"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "geoMapping": {
+                    "$ref": "#/$keywords/geoMapping"
+                },
+                "subnets": {
+                    "$ref": "#/$keywords/subnets"
+                },
+                "customHeaders": {
+                    "$ref": "#/$keywords/customHeaders"
+                }
+            },
+            "array": true
+        },
+        "trafficViewEnrollmentStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "maxReturn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "trafficmanagerprofiles/{endpointType}": {
+            "targetResourceId": {
+                "$ref": "#/$keywords/targetResourceId"
+            },
+            "target": {
+                "$ref": "#/$keywords/target"
+            },
+            "endpointStatus": {
+                "$ref": "#/$keywords/endpointStatus"
+            },
+            "weight": {
+                "$ref": "#/$keywords/weight"
+            },
+            "priority": {
+                "$ref": "#/$keywords/priority"
+            },
+            "endpointLocation": {
+                "$ref": "#/$keywords/endpointLocation"
+            },
+            "endpointMonitorStatus": {
+                "$ref": "#/$keywords/endpointMonitorStatus"
+            },
+            "minChildEndpoints": {
+                "$ref": "#/$keywords/minChildEndpoints"
+            },
+            "geoMapping": {
+                "$ref": "#/$keywords/geoMapping"
+            },
+            "subnets": {
+                "$ref": "#/$keywords/subnets"
+            },
+            "customHeaders": {
+                "$ref": "#/$keywords/customHeaders"
+            }
+        },
+        "trafficmanagerprofiles": {
+            "profileStatus": {
+                "$ref": "#/$keywords/profileStatus"
+            },
+            "trafficRoutingMethod": {
+                "$ref": "#/$keywords/trafficRoutingMethod"
+            },
+            "dnsConfig": {
+                "$ref": "#/$keywords/dnsConfig"
+            },
+            "monitorConfig": {
+                "$ref": "#/$keywords/monitorConfig"
+            },
+            "endpoints": {
+                "$ref": "#/$keywords/endpoints"
+            },
+            "trafficViewEnrollmentStatus": {
+                "$ref": "#/$keywords/trafficViewEnrollmentStatus"
+            },
+            "maxReturn": {
+                "$ref": "#/$keywords/maxReturn"
+            }
+        }
+    }
+}

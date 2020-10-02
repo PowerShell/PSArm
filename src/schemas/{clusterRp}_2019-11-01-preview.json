@@ -1,0 +1,148 @@
+{
+    "$keywords": {
+        "repositoryUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "operatorNamespace": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "operatorInstanceName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "operatorType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "operatorParams": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "operatorScope": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "cluster",
+                        "namespace"
+                    ]
+                }
+            }
+        },
+        "repositoryPublicKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enableHelmOperator": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "true",
+                        "false"
+                    ]
+                }
+            }
+        },
+        "helmOperatorProperties": {
+            "parameters": {
+                "chartVersion": {
+                    "type": "string"
+                },
+                "chartValues": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Accepted",
+                        "Deleting",
+                        "Running",
+                        "Succeeded",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "complianceStatus": {
+            "parameters": {
+                "complianceState": {
+                    "enum": [
+                        "Pending",
+                        "Compliant",
+                        "Noncompliant",
+                        "Installed",
+                        "Failed"
+                    ]
+                },
+                "lastConfigApplied": {},
+                "message": {
+                    "type": "string"
+                },
+                "messageLevel": {
+                    "enum": [
+                        "Error",
+                        "Warning",
+                        "Information"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "{clusterResourceName}/providers": {
+            "repositoryUrl": {
+                "$ref": "#/$keywords/repositoryUrl"
+            },
+            "operatorNamespace": {
+                "$ref": "#/$keywords/operatorNamespace"
+            },
+            "operatorInstanceName": {
+                "$ref": "#/$keywords/operatorInstanceName"
+            },
+            "operatorType": {
+                "$ref": "#/$keywords/operatorType"
+            },
+            "operatorParams": {
+                "$ref": "#/$keywords/operatorParams"
+            },
+            "operatorScope": {
+                "$ref": "#/$keywords/operatorScope"
+            },
+            "repositoryPublicKey": {
+                "$ref": "#/$keywords/repositoryPublicKey"
+            },
+            "enableHelmOperator": {
+                "$ref": "#/$keywords/enableHelmOperator"
+            },
+            "helmOperatorProperties": {
+                "$ref": "#/$keywords/helmOperatorProperties"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "complianceStatus": {
+                "$ref": "#/$keywords/complianceStatus"
+            }
+        }
+    }
+}

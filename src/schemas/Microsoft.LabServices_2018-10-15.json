@@ -1,0 +1,688 @@
+{
+    "$keywords": {
+        "sizeConfiguration": {
+            "body": {
+                "environmentSizes": {
+                    "$ref": "#/$keywords/environmentSizes"
+                }
+            }
+        },
+        "environmentSizes": {
+            "parameters": {
+                "name": {
+                    "enum": [
+                        "Basic",
+                        "Standard",
+                        "Performance"
+                    ]
+                },
+                "maxPrice": {},
+                "minNumberOfCores": {
+                    "type": "int"
+                },
+                "minMemory": {}
+            },
+            "body": {
+                "vmSizes": {
+                    "$ref": "#/$keywords/vmSizes"
+                }
+            },
+            "array": true
+        },
+        "vmSizes": {
+            "parameters": {
+                "computeSize": {
+                    "type": "string"
+                },
+                "price": {},
+                "numberOfCores": {
+                    "type": "int"
+                },
+                "memory": {}
+            },
+            "array": true
+        },
+        "enabledRegionSelection": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uniqueIdentifier": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "latestOperationResult": {
+            "parameters": {
+                "status": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "type": "string"
+                },
+                "requestUri": {
+                    "type": "string"
+                },
+                "httpMethod": {
+                    "type": "string"
+                },
+                "operationUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "author": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "imageReference": {
+            "parameters": {
+                "offer": {
+                    "type": "string"
+                },
+                "publisher": {
+                    "type": "string"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "osType": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "icon": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isOverride": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "planId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isPlanAuthorized": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uniqueIdentifier_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "maxUsersInLab": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "userQuota": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "invitationCode": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdByObjectId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "usageQuota": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "userAccessMode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Restricted",
+                        "Open"
+                    ]
+                }
+            }
+        },
+        "createdByUserPrincipalName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdDate_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uniqueIdentifier_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publishingState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Draft",
+                        "Publishing",
+                        "Published",
+                        "PublishFailed",
+                        "Scaling"
+                    ]
+                }
+            }
+        },
+        "configurationState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotApplicable",
+                        "Completed"
+                    ]
+                }
+            }
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "title": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceSettings": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "galleryImageResourceId": {
+                    "type": "string"
+                },
+                "imageName": {
+                    "type": "string"
+                },
+                "size": {
+                    "enum": [
+                        "Basic",
+                        "Standard",
+                        "Performance"
+                    ]
+                },
+                "cores": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "referenceVm": {
+                    "$ref": "#/$keywords/referenceVm"
+                }
+            }
+        },
+        "referenceVm": {
+            "parameters": {
+                "userName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "vmResourceId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "vmStateDetails": {
+                    "$ref": "#/$keywords/vmStateDetails"
+                }
+            }
+        },
+        "vmStateDetails": {
+            "parameters": {
+                "rdpAuthority": {
+                    "type": "string"
+                },
+                "sshAuthority": {
+                    "type": "string"
+                },
+                "powerState": {
+                    "type": "string"
+                },
+                "lastKnownPowerState": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastChanged": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastPublished": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uniqueIdentifier_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceSets": {
+            "parameters": {
+                "vmResourceId": {
+                    "type": "string"
+                },
+                "resourceSettingId": {
+                    "type": "string"
+                }
+            }
+        },
+        "claimedByUserObjectId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "claimedByUserPrincipalId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "claimedByUserName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isClaimed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "lastKnownPowerState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "networkInterface": {
+            "parameters": {
+                "privateIpAddress": {
+                    "type": "string"
+                },
+                "sshAuthority": {
+                    "type": "string"
+                },
+                "rdpAuthority": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "totalUsage": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "passwordLastReset": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uniqueIdentifier_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "email": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "familyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "givenName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "totalUsage_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "uniqueIdentifier_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "labaccounts": {
+            "sizeConfiguration": {
+                "$ref": "#/$keywords/sizeConfiguration"
+            },
+            "enabledRegionSelection": {
+                "$ref": "#/$keywords/enabledRegionSelection"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "uniqueIdentifier": {
+                "$ref": "#/$keywords/uniqueIdentifier"
+            },
+            "latestOperationResult": {
+                "$ref": "#/$keywords/latestOperationResult"
+            }
+        },
+        "labaccounts/galleryimages": {
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "createdDate": {
+                "$ref": "#/$keywords/createdDate"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "imageReference": {
+                "$ref": "#/$keywords/imageReference"
+            },
+            "icon": {
+                "$ref": "#/$keywords/icon"
+            },
+            "isEnabled": {
+                "$ref": "#/$keywords/isEnabled"
+            },
+            "isOverride": {
+                "$ref": "#/$keywords/isOverride"
+            },
+            "planId": {
+                "$ref": "#/$keywords/planId"
+            },
+            "isPlanAuthorized": {
+                "$ref": "#/$keywords/isPlanAuthorized"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "uniqueIdentifier": {
+                "$ref": "#/$keywords/uniqueIdentifier_2"
+            },
+            "latestOperationResult": {
+                "$ref": "#/$keywords/latestOperationResult"
+            }
+        },
+        "labaccounts/labs": {
+            "maxUsersInLab": {
+                "$ref": "#/$keywords/maxUsersInLab"
+            },
+            "userQuota": {
+                "$ref": "#/$keywords/userQuota"
+            },
+            "invitationCode": {
+                "$ref": "#/$keywords/invitationCode"
+            },
+            "createdByObjectId": {
+                "$ref": "#/$keywords/createdByObjectId"
+            },
+            "usageQuota": {
+                "$ref": "#/$keywords/usageQuota"
+            },
+            "userAccessMode": {
+                "$ref": "#/$keywords/userAccessMode"
+            },
+            "createdByUserPrincipalName": {
+                "$ref": "#/$keywords/createdByUserPrincipalName"
+            },
+            "createdDate": {
+                "$ref": "#/$keywords/createdDate_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "uniqueIdentifier": {
+                "$ref": "#/$keywords/uniqueIdentifier_3"
+            },
+            "latestOperationResult": {
+                "$ref": "#/$keywords/latestOperationResult"
+            }
+        },
+        "labaccounts/labs/environmentsettings": {
+            "publishingState": {
+                "$ref": "#/$keywords/publishingState"
+            },
+            "configurationState": {
+                "$ref": "#/$keywords/configurationState"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            },
+            "title": {
+                "$ref": "#/$keywords/title"
+            },
+            "resourceSettings": {
+                "$ref": "#/$keywords/resourceSettings"
+            },
+            "lastChanged": {
+                "$ref": "#/$keywords/lastChanged"
+            },
+            "lastPublished": {
+                "$ref": "#/$keywords/lastPublished"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_4"
+            },
+            "uniqueIdentifier": {
+                "$ref": "#/$keywords/uniqueIdentifier_4"
+            },
+            "latestOperationResult": {
+                "$ref": "#/$keywords/latestOperationResult"
+            }
+        },
+        "labaccounts/labs/environmentsettings/environments": {
+            "resourceSets": {
+                "$ref": "#/$keywords/resourceSets"
+            },
+            "claimedByUserObjectId": {
+                "$ref": "#/$keywords/claimedByUserObjectId"
+            },
+            "claimedByUserPrincipalId": {
+                "$ref": "#/$keywords/claimedByUserPrincipalId"
+            },
+            "claimedByUserName": {
+                "$ref": "#/$keywords/claimedByUserName"
+            },
+            "isClaimed": {
+                "$ref": "#/$keywords/isClaimed"
+            },
+            "lastKnownPowerState": {
+                "$ref": "#/$keywords/lastKnownPowerState"
+            },
+            "networkInterface": {
+                "$ref": "#/$keywords/networkInterface"
+            },
+            "totalUsage": {
+                "$ref": "#/$keywords/totalUsage"
+            },
+            "passwordLastReset": {
+                "$ref": "#/$keywords/passwordLastReset"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_5"
+            },
+            "uniqueIdentifier": {
+                "$ref": "#/$keywords/uniqueIdentifier_5"
+            },
+            "latestOperationResult": {
+                "$ref": "#/$keywords/latestOperationResult"
+            }
+        },
+        "labaccounts/labs/users": {
+            "email": {
+                "$ref": "#/$keywords/email"
+            },
+            "familyName": {
+                "$ref": "#/$keywords/familyName"
+            },
+            "givenName": {
+                "$ref": "#/$keywords/givenName"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "totalUsage": {
+                "$ref": "#/$keywords/totalUsage_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_6"
+            },
+            "uniqueIdentifier": {
+                "$ref": "#/$keywords/uniqueIdentifier_6"
+            },
+            "latestOperationResult": {
+                "$ref": "#/$keywords/latestOperationResult"
+            }
+        }
+    }
+}

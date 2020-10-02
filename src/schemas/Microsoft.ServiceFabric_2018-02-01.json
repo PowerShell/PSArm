@@ -1,0 +1,435 @@
+{
+    "$keywords": {
+        "addOnFeatures": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "RepairManager",
+                        "DnsService",
+                        "BackupRestoreService",
+                        "ResourceMonitorService"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "availableClusterVersions": {
+            "parameters": {
+                "codeVersion": {
+                    "type": "string"
+                },
+                "supportExpiryUtc": {
+                    "type": "string"
+                },
+                "environment": {
+                    "enum": [
+                        "Windows",
+                        "Linux"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "azureActiveDirectory": {
+            "parameters": {
+                "tenantId": {
+                    "type": "string"
+                },
+                "clusterApplication": {
+                    "type": "string"
+                },
+                "clientApplication": {
+                    "type": "string"
+                }
+            }
+        },
+        "certificate": {
+            "parameters": {
+                "thumbprint": {
+                    "type": "string"
+                },
+                "thumbprintSecondary": {
+                    "type": "string"
+                },
+                "x509StoreName": {
+                    "enum": [
+                        "AddressBook",
+                        "AuthRoot",
+                        "CertificateAuthority",
+                        "Disallowed",
+                        "My",
+                        "Root",
+                        "TrustedPeople",
+                        "TrustedPublisher"
+                    ]
+                }
+            }
+        },
+        "certificateCommonNames": {
+            "parameters": {
+                "x509StoreName": {
+                    "enum": [
+                        "AddressBook",
+                        "AuthRoot",
+                        "CertificateAuthority",
+                        "Disallowed",
+                        "My",
+                        "Root",
+                        "TrustedPeople",
+                        "TrustedPublisher"
+                    ]
+                }
+            },
+            "body": {
+                "commonNames": {
+                    "$ref": "#/$keywords/commonNames"
+                }
+            }
+        },
+        "commonNames": {
+            "parameters": {
+                "certificateCommonName": {
+                    "type": "string"
+                },
+                "certificateIssuerThumbprint": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "clientCertificateCommonNames": {
+            "parameters": {
+                "isAdmin": {
+                    "type": "bool"
+                },
+                "certificateCommonName": {
+                    "type": "string"
+                },
+                "certificateIssuerThumbprint": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "clientCertificateThumbprints": {
+            "parameters": {
+                "isAdmin": {
+                    "type": "bool"
+                },
+                "certificateThumbprint": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "clusterCodeVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "WaitingForNodes",
+                        "Deploying",
+                        "BaselineUpgrade",
+                        "UpdatingUserConfiguration",
+                        "UpdatingUserCertificate",
+                        "UpdatingInfrastructure",
+                        "EnforcingClusterVersion",
+                        "UpgradeServiceUnreachable",
+                        "AutoScale",
+                        "Ready"
+                    ]
+                }
+            }
+        },
+        "diagnosticsStorageAccountConfig": {
+            "parameters": {
+                "storageAccountName": {
+                    "type": "string"
+                },
+                "protectedAccountKeyName": {
+                    "type": "string"
+                },
+                "blobEndpoint": {
+                    "type": "string"
+                },
+                "queueEndpoint": {
+                    "type": "string"
+                },
+                "tableEndpoint": {
+                    "type": "string"
+                }
+            }
+        },
+        "fabricSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "parameters": {
+                    "$ref": "#/$keywords/parameters"
+                }
+            },
+            "array": true
+        },
+        "parameters": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "managementEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "nodeTypes": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "placementProperties": {},
+                "capacities": {},
+                "clientConnectionEndpointPort": {
+                    "type": "int"
+                },
+                "httpGatewayEndpointPort": {
+                    "type": "int"
+                },
+                "durabilityLevel": {
+                    "enum": [
+                        "Bronze",
+                        "Silver",
+                        "Gold"
+                    ]
+                },
+                "isPrimary": {
+                    "type": "bool"
+                },
+                "vmInstanceCount": {
+                    "type": "int"
+                },
+                "reverseProxyEndpointPort": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "applicationPorts": {
+                    "$ref": "#/$keywords/applicationPorts"
+                },
+                "ephemeralPorts": {
+                    "$ref": "#/$keywords/applicationPorts"
+                }
+            },
+            "array": true
+        },
+        "applicationPorts": {
+            "parameters": {
+                "startPort": {
+                    "type": "int"
+                },
+                "endPort": {
+                    "type": "int"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Updating",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            }
+        },
+        "reliabilityLevel": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "Bronze",
+                        "Silver",
+                        "Gold",
+                        "Platinum"
+                    ]
+                }
+            }
+        },
+        "upgradeDescription": {
+            "parameters": {
+                "forceRestart": {
+                    "type": "bool"
+                },
+                "upgradeReplicaSetCheckTimeout": {
+                    "type": "string"
+                },
+                "healthCheckWaitDuration": {
+                    "type": "string"
+                },
+                "healthCheckStableDuration": {
+                    "type": "string"
+                },
+                "healthCheckRetryTimeout": {
+                    "type": "string"
+                },
+                "upgradeTimeout": {
+                    "type": "string"
+                },
+                "upgradeDomainTimeout": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "healthPolicy": {
+                    "$ref": "#/$keywords/healthPolicy"
+                },
+                "deltaHealthPolicy": {
+                    "$ref": "#/$keywords/deltaHealthPolicy"
+                }
+            }
+        },
+        "healthPolicy": {
+            "parameters": {
+                "maxPercentUnhealthyNodes": {
+                    "type": "int"
+                },
+                "maxPercentUnhealthyApplications": {
+                    "type": "int"
+                },
+                "applicationHealthPolicies": {}
+            }
+        },
+        "deltaHealthPolicy": {
+            "parameters": {
+                "maxPercentDeltaUnhealthyNodes": {
+                    "type": "int"
+                },
+                "maxPercentUpgradeDomainDeltaUnhealthyNodes": {
+                    "type": "int"
+                },
+                "maxPercentDeltaUnhealthyApplications": {
+                    "type": "int"
+                },
+                "applicationDeltaHealthPolicies": {}
+            }
+        },
+        "upgradeMode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Automatic",
+                        "Manual"
+                    ]
+                }
+            }
+        },
+        "vmImage": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "clusters": {
+            "addOnFeatures": {
+                "$ref": "#/$keywords/addOnFeatures"
+            },
+            "availableClusterVersions": {
+                "$ref": "#/$keywords/availableClusterVersions"
+            },
+            "azureActiveDirectory": {
+                "$ref": "#/$keywords/azureActiveDirectory"
+            },
+            "certificate": {
+                "$ref": "#/$keywords/certificate"
+            },
+            "certificateCommonNames": {
+                "$ref": "#/$keywords/certificateCommonNames"
+            },
+            "clientCertificateCommonNames": {
+                "$ref": "#/$keywords/clientCertificateCommonNames"
+            },
+            "clientCertificateThumbprints": {
+                "$ref": "#/$keywords/clientCertificateThumbprints"
+            },
+            "clusterCodeVersion": {
+                "$ref": "#/$keywords/clusterCodeVersion"
+            },
+            "clusterEndpoint": {
+                "$ref": "#/$keywords/clusterEndpoint"
+            },
+            "clusterId": {
+                "$ref": "#/$keywords/clusterId"
+            },
+            "clusterState": {
+                "$ref": "#/$keywords/clusterState"
+            },
+            "diagnosticsStorageAccountConfig": {
+                "$ref": "#/$keywords/diagnosticsStorageAccountConfig"
+            },
+            "fabricSettings": {
+                "$ref": "#/$keywords/fabricSettings"
+            },
+            "managementEndpoint": {
+                "$ref": "#/$keywords/managementEndpoint"
+            },
+            "nodeTypes": {
+                "$ref": "#/$keywords/nodeTypes"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "reliabilityLevel": {
+                "$ref": "#/$keywords/reliabilityLevel"
+            },
+            "reverseProxyCertificate": {
+                "$ref": "#/$keywords/certificate"
+            },
+            "reverseProxyCertificateCommonNames": {
+                "$ref": "#/$keywords/certificateCommonNames"
+            },
+            "upgradeDescription": {
+                "$ref": "#/$keywords/upgradeDescription"
+            },
+            "upgradeMode": {
+                "$ref": "#/$keywords/upgradeMode"
+            },
+            "vmImage": {
+                "$ref": "#/$keywords/vmImage"
+            }
+        }
+    }
+}

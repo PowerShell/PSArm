@@ -142,9 +142,16 @@ function Invoke-Autorest
         $WaitDebugger
     )
 
+    begin
+    {
+        $failed = [System.Collections.Generic.List[string]]::new()
+    }
+
     process
     {
-        Write-Host "Generating output for '$ResourceName' ($ApiVersion)"
+        $tag = "$ResourceName|$ApiVersion"
+
+        Write-Host "Generating output for '$tag'"
         Write-Verbose "Running autorest with config:`n$YamlConfig"
 
         try
@@ -158,10 +165,23 @@ function Invoke-Autorest
                 if ($WaitDebugger) { '--sputnik.debugger' }
             )
             autorest @params
+
+            if ($LASTEXITCODE -ne 0)
+            {
+                $failed.Add($tag)
+            }
         }
         finally
         {
             Remove-Item -LiteralPath $configPath -Force
+        }
+    }
+
+    end
+    {
+        foreach ($tag in $failed)
+        {
+            Write-Warning "FAILED: '$tag'"
         }
     }
 }

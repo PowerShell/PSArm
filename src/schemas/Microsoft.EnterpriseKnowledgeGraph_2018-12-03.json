@@ -1,0 +1,41 @@
+{
+    "$keywords": {
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Deleting",
+                        "Failed",
+                        "Succeeded"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "services": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

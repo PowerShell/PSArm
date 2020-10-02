@@ -1,0 +1,58 @@
+{
+    "$keywords": {
+        "exclude": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "low_cpu_threshold": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "suppressionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "ttl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Advisor//providers": {
+            "exclude": {
+                "$ref": "#/$keywords/exclude"
+            },
+            "low_cpu_threshold": {
+                "$ref": "#/$keywords/low_cpu_threshold"
+            }
+        },
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Advisor//resourceGroups/providers": {
+            "exclude": {
+                "$ref": "#/$keywords/exclude"
+            },
+            "low_cpu_threshold": {
+                "$ref": "#/$keywords/low_cpu_threshold"
+            }
+        },
+        "recommendations/suppressions": {
+            "suppressionId": {
+                "$ref": "#/$keywords/suppressionId"
+            },
+            "ttl": {
+                "$ref": "#/$keywords/ttl"
+            }
+        }
+    }
+}

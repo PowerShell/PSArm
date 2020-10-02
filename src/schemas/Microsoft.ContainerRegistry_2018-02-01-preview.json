@@ -1,0 +1,141 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            }
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "alias": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Disabled",
+                        "Enabled"
+                    ]
+                }
+            }
+        },
+        "sourceRepository": {
+            "parameters": {
+                "sourceControlType": {
+                    "enum": [
+                        "Github",
+                        "VisualStudioTeamService"
+                    ]
+                },
+                "repositoryUrl": {
+                    "type": "string"
+                },
+                "isCommitTriggerEnabled": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "sourceControlAuthProperties": {
+                    "$ref": "#/$keywords/sourceControlAuthProperties"
+                }
+            }
+        },
+        "sourceControlAuthProperties": {
+            "parameters": {
+                "tokenType": {
+                    "enum": [
+                        "PAT",
+                        "OAuth"
+                    ]
+                },
+                "token": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "expiresIn": {
+                    "type": "int"
+                }
+            }
+        },
+        "platform": {
+            "parameters": {
+                "osType": {
+                    "enum": [
+                        "Windows",
+                        "Linux"
+                    ]
+                },
+                "cpu": {
+                    "type": "int"
+                }
+            }
+        },
+        "timeout": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "registries/buildTasks/steps": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            }
+        },
+        "registries/buildTasks": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "alias": {
+                "$ref": "#/$keywords/alias"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "sourceRepository": {
+                "$ref": "#/$keywords/sourceRepository"
+            },
+            "platform": {
+                "$ref": "#/$keywords/platform"
+            },
+            "timeout": {
+                "$ref": "#/$keywords/timeout"
+            }
+        }
+    }
+}

@@ -1,0 +1,168 @@
+{
+    "$keywords": {
+        "cacheSizeGB": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "health": {
+            "parameters": {
+                "state": {
+                    "enum": [
+                        "Unknown",
+                        "Healthy",
+                        "Degraded",
+                        "Down",
+                        "Transitioning",
+                        "Stopping",
+                        "Stopped",
+                        "Upgrading",
+                        "Flushing"
+                    ]
+                },
+                "statusDescription": {
+                    "type": "string"
+                }
+            }
+        },
+        "mountAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Failed",
+                        "Cancelled",
+                        "Creating",
+                        "Deleting",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "subnet": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "upgradeStatus": {
+            "parameters": {
+                "currentFirmwareVersion": {
+                    "type": "string"
+                },
+                "firmwareUpdateStatus": {
+                    "enum": [
+                        "available",
+                        "unavailable"
+                    ]
+                },
+                "firmwareUpdateDeadline": {},
+                "lastFirmwareUpdate": {},
+                "pendingFirmwareVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "junctions": {
+            "parameters": {
+                "namespacePath": {
+                    "type": "string"
+                },
+                "targetPath": {
+                    "type": "string"
+                },
+                "nfsExport": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "targetType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "nfs3",
+                        "clfs",
+                        "unknown"
+                    ]
+                }
+            }
+        },
+        "nfs3": {
+            "parameters": {
+                "target": {
+                    "type": "string",
+                    "pattern": "^[-.0-9a-zA-Z]+$"
+                },
+                "usageModel": {
+                    "type": "string"
+                }
+            }
+        },
+        "clfs": {
+            "parameters": {
+                "target": {
+                    "type": "string"
+                }
+            }
+        },
+        "unknown": {
+            "parameters": {
+                "unknownMap": {}
+            }
+        }
+    },
+    "$resources": {
+        "caches": {
+            "cacheSizeGB": {
+                "$ref": "#/$keywords/cacheSizeGB"
+            },
+            "health": {
+                "$ref": "#/$keywords/health"
+            },
+            "mountAddresses": {
+                "$ref": "#/$keywords/mountAddresses"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "subnet": {
+                "$ref": "#/$keywords/subnet"
+            },
+            "upgradeStatus": {
+                "$ref": "#/$keywords/upgradeStatus"
+            }
+        },
+        "caches/storageTargets": {
+            "junctions": {
+                "$ref": "#/$keywords/junctions"
+            },
+            "targetType": {
+                "$ref": "#/$keywords/targetType"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "nfs3": {
+                "$ref": "#/$keywords/nfs3"
+            },
+            "clfs": {
+                "$ref": "#/$keywords/clfs"
+            },
+            "unknown": {
+                "$ref": "#/$keywords/unknown"
+            }
+        }
+    }
+}

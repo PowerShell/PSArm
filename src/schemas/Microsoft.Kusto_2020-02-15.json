@@ -1,0 +1,377 @@
+{
+    "$keywords": {
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Unavailable",
+                        "Running",
+                        "Deleting",
+                        "Deleted",
+                        "Stopping",
+                        "Stopped",
+                        "Starting",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Running",
+                        "Creating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Moving"
+                    ]
+                }
+            }
+        },
+        "uri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataIngestionUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "stateReason": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "trustedExternalTenants": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "optimizedAutoscale": {
+            "parameters": {
+                "version": {
+                    "type": "int"
+                },
+                "isEnabled": {
+                    "type": "bool"
+                },
+                "minimum": {
+                    "type": "int"
+                },
+                "maximum": {
+                    "type": "int"
+                }
+            }
+        },
+        "enableDiskEncryption": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enableStreamingIngest": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "virtualNetworkConfiguration": {
+            "parameters": {
+                "subnetId": {
+                    "type": "string"
+                },
+                "enginePublicIpId": {
+                    "type": "string"
+                },
+                "dataManagementPublicIpId": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyVaultProperties": {
+            "parameters": {
+                "keyName": {
+                    "type": "string"
+                },
+                "keyVersion": {
+                    "type": "string"
+                },
+                "keyVaultUri": {
+                    "type": "string"
+                }
+            }
+        },
+        "enablePurge": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "languageExtensions": {
+            "body": {
+                "value": {
+                    "$ref": "#/$keywords/value"
+                }
+            }
+        },
+        "value": {
+            "parameters": {
+                "languageExtensionName": {
+                    "enum": [
+                        "PYTHON",
+                        "R"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "principalId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "role": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "AllDatabasesAdmin",
+                        "AllDatabasesViewer"
+                    ]
+                }
+            }
+        },
+        "tenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "principalType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "App",
+                        "Group",
+                        "User"
+                    ]
+                }
+            }
+        },
+        "tenantName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "principalName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "principalId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "role_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Admin",
+                        "Ingestor",
+                        "Monitor",
+                        "User",
+                        "UnrestrictedViewers",
+                        "Viewer"
+                    ]
+                }
+            }
+        },
+        "tenantId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "principalName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "databaseName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "attachedDatabaseNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "defaultPrincipalsModificationKind": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Union",
+                        "Replace",
+                        "None"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "clusters": {
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "uri": {
+                "$ref": "#/$keywords/uri"
+            },
+            "dataIngestionUri": {
+                "$ref": "#/$keywords/dataIngestionUri"
+            },
+            "stateReason": {
+                "$ref": "#/$keywords/stateReason"
+            },
+            "trustedExternalTenants": {
+                "$ref": "#/$keywords/trustedExternalTenants"
+            },
+            "optimizedAutoscale": {
+                "$ref": "#/$keywords/optimizedAutoscale"
+            },
+            "enableDiskEncryption": {
+                "$ref": "#/$keywords/enableDiskEncryption"
+            },
+            "enableStreamingIngest": {
+                "$ref": "#/$keywords/enableStreamingIngest"
+            },
+            "virtualNetworkConfiguration": {
+                "$ref": "#/$keywords/virtualNetworkConfiguration"
+            },
+            "keyVaultProperties": {
+                "$ref": "#/$keywords/keyVaultProperties"
+            },
+            "enablePurge": {
+                "$ref": "#/$keywords/enablePurge"
+            },
+            "languageExtensions": {
+                "$ref": "#/$keywords/languageExtensions"
+            }
+        },
+        "clusters/principalAssignments": {
+            "principalId": {
+                "$ref": "#/$keywords/principalId"
+            },
+            "role": {
+                "$ref": "#/$keywords/role"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "principalType": {
+                "$ref": "#/$keywords/principalType"
+            },
+            "tenantName": {
+                "$ref": "#/$keywords/tenantName"
+            },
+            "principalName": {
+                "$ref": "#/$keywords/principalName"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "clusters/databases": {},
+        "clusters/databases/principalAssignments": {
+            "principalId": {
+                "$ref": "#/$keywords/principalId_2"
+            },
+            "role": {
+                "$ref": "#/$keywords/role_2"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_2"
+            },
+            "principalType": {
+                "$ref": "#/$keywords/principalType"
+            },
+            "tenantName": {
+                "$ref": "#/$keywords/tenantName_2"
+            },
+            "principalName": {
+                "$ref": "#/$keywords/principalName_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "clusters/attachedDatabaseConfigurations": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "databaseName": {
+                "$ref": "#/$keywords/databaseName"
+            },
+            "clusterResourceId": {
+                "$ref": "#/$keywords/clusterResourceId"
+            },
+            "attachedDatabaseNames": {
+                "$ref": "#/$keywords/attachedDatabaseNames"
+            },
+            "defaultPrincipalsModificationKind": {
+                "$ref": "#/$keywords/defaultPrincipalsModificationKind"
+            }
+        },
+        "clusters/databases/dataConnections": {}
+    }
+}

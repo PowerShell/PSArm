@@ -1,0 +1,82 @@
+{
+    "$keywords": {
+        "agentPublicKeyCertificate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "aadProfile": {
+            "parameters": {
+                "tenantId": {
+                    "type": "string"
+                },
+                "clientAppId": {
+                    "type": "string"
+                },
+                "serverAppId": {
+                    "type": "string"
+                }
+            }
+        },
+        "kubernetesVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "totalNodeCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "agentVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Provisioning",
+                        "Updating",
+                        "Deleting",
+                        "Accepted"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "connectedClusters": {
+            "agentPublicKeyCertificate": {
+                "$ref": "#/$keywords/agentPublicKeyCertificate"
+            },
+            "aadProfile": {
+                "$ref": "#/$keywords/aadProfile"
+            },
+            "kubernetesVersion": {
+                "$ref": "#/$keywords/kubernetesVersion"
+            },
+            "totalNodeCount": {
+                "$ref": "#/$keywords/totalNodeCount"
+            },
+            "agentVersion": {
+                "$ref": "#/$keywords/agentVersion"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

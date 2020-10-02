@@ -1,0 +1,70 @@
+{
+    "$keywords": {
+        "dataRetentionTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "storageLimitExceededBehavior": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "keyProperties": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "principalObjectId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "roles": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "environments": {
+            "dataRetentionTime": {
+                "$ref": "#/$keywords/dataRetentionTime"
+            },
+            "storageLimitExceededBehavior": {
+                "$ref": "#/$keywords/storageLimitExceededBehavior"
+            }
+        },
+        "environments/eventSources": {},
+        "environments/referenceDataSets": {
+            "keyProperties": {
+                "$ref": "#/$keywords/keyProperties"
+            }
+        },
+        "environments/accessPolicies": {
+            "principalObjectId": {
+                "$ref": "#/$keywords/principalObjectId"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "roles": {
+                "$ref": "#/$keywords/roles"
+            }
+        }
+    }
+}

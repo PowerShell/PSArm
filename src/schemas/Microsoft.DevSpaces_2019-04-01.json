@@ -1,0 +1,76 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Updating",
+                        "Creating",
+                        "Deleting",
+                        "Deleted"
+                    ]
+                }
+            }
+        },
+        "hostSuffix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataPlaneFqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetContainerHostApiServerFqdn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetContainerHostResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetContainerHostCredentialsBase64": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "controllers": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "hostSuffix": {
+                "$ref": "#/$keywords/hostSuffix"
+            },
+            "dataPlaneFqdn": {
+                "$ref": "#/$keywords/dataPlaneFqdn"
+            },
+            "targetContainerHostApiServerFqdn": {
+                "$ref": "#/$keywords/targetContainerHostApiServerFqdn"
+            },
+            "targetContainerHostResourceId": {
+                "$ref": "#/$keywords/targetContainerHostResourceId"
+            },
+            "targetContainerHostCredentialsBase64": {
+                "$ref": "#/$keywords/targetContainerHostCredentialsBase64"
+            }
+        }
+    }
+}

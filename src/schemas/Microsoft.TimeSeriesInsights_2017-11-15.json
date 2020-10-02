@@ -1,0 +1,90 @@
+{
+    "$keywords": {
+        "dataRetentionTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "storageLimitExceededBehavior": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "partitionKeyProperties": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "keyProperties": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "dataStringComparisonBehavior": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "principalObjectId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "roles": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "environments": {
+            "dataRetentionTime": {
+                "$ref": "#/$keywords/dataRetentionTime"
+            },
+            "storageLimitExceededBehavior": {
+                "$ref": "#/$keywords/storageLimitExceededBehavior"
+            },
+            "partitionKeyProperties": {
+                "$ref": "#/$keywords/partitionKeyProperties"
+            }
+        },
+        "environments/eventSources": {},
+        "environments/referenceDataSets": {
+            "keyProperties": {
+                "$ref": "#/$keywords/keyProperties"
+            },
+            "dataStringComparisonBehavior": {
+                "$ref": "#/$keywords/dataStringComparisonBehavior"
+            }
+        },
+        "environments/accessPolicies": {
+            "principalObjectId": {
+                "$ref": "#/$keywords/principalObjectId"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "roles": {
+                "$ref": "#/$keywords/roles"
+            }
+        }
+    }
+}

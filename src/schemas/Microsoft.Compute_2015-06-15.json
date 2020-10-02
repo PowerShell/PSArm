@@ -1,0 +1,980 @@
+{
+    "$keywords": {
+        "platformUpdateDomainCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "platformFaultDomainCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "virtualMachines": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "statuses": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {},
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            },
+            "array": true
+        },
+        "forceUpdateTag": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publisher": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "typeHandlerVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "autoUpgradeMinorVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "settings": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "instanceView": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeHandlerVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "substatuses": {
+                    "$ref": "#/$keywords/substatuses"
+                },
+                "statuses": {
+                    "$ref": "#/$keywords/statuses_2"
+                }
+            }
+        },
+        "substatuses": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {},
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            },
+            "array": true
+        },
+        "statuses_2": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {},
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            },
+            "array": true
+        },
+        "hardwareProfile": {
+            "parameters": {
+                "vmSize": {
+                    "enum": [
+                        "Basic_A0",
+                        "Basic_A1",
+                        "Basic_A2",
+                        "Basic_A3",
+                        "Basic_A4",
+                        "Standard_A0",
+                        "Standard_A1",
+                        "Standard_A2",
+                        "Standard_A3",
+                        "Standard_A4",
+                        "Standard_A5",
+                        "Standard_A6",
+                        "Standard_A7",
+                        "Standard_A8",
+                        "Standard_A9",
+                        "Standard_A10",
+                        "Standard_A11",
+                        "Standard_D1",
+                        "Standard_D2",
+                        "Standard_D3",
+                        "Standard_D4",
+                        "Standard_D11",
+                        "Standard_D12",
+                        "Standard_D13",
+                        "Standard_D14",
+                        "Standard_D1_v2",
+                        "Standard_D2_v2",
+                        "Standard_D3_v2",
+                        "Standard_D4_v2",
+                        "Standard_D5_v2",
+                        "Standard_D11_v2",
+                        "Standard_D12_v2",
+                        "Standard_D13_v2",
+                        "Standard_D14_v2",
+                        "Standard_DS1",
+                        "Standard_DS2",
+                        "Standard_DS3",
+                        "Standard_DS4",
+                        "Standard_DS11",
+                        "Standard_DS12",
+                        "Standard_DS13",
+                        "Standard_DS14",
+                        "Standard_G1",
+                        "Standard_G2",
+                        "Standard_G3",
+                        "Standard_G4",
+                        "Standard_G5",
+                        "Standard_GS1",
+                        "Standard_GS2",
+                        "Standard_GS3",
+                        "Standard_GS4",
+                        "Standard_GS5"
+                    ]
+                }
+            }
+        },
+        "storageProfile": {
+            "body": {
+                "imageReference": {
+                    "$ref": "#/$keywords/imageReference"
+                },
+                "osDisk": {
+                    "$ref": "#/$keywords/osDisk"
+                },
+                "dataDisks": {
+                    "$ref": "#/$keywords/dataDisks"
+                }
+            }
+        },
+        "imageReference": {
+            "parameters": {
+                "publisher": {
+                    "type": "string"
+                },
+                "offer": {
+                    "type": "string"
+                },
+                "sku": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "osDisk": {
+            "parameters": {
+                "osType": {},
+                "name": {
+                    "type": "string"
+                },
+                "caching": {},
+                "createOption": {},
+                "diskSizeGB": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "encryptionSettings": {
+                    "$ref": "#/$keywords/encryptionSettings"
+                },
+                "vhd": {
+                    "$ref": "#/$keywords/vhd"
+                },
+                "image": {
+                    "$ref": "#/$keywords/vhd"
+                }
+            }
+        },
+        "encryptionSettings": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "diskEncryptionKey": {
+                    "$ref": "#/$keywords/diskEncryptionKey"
+                },
+                "keyEncryptionKey": {
+                    "$ref": "#/$keywords/keyEncryptionKey"
+                }
+            }
+        },
+        "diskEncryptionKey": {
+            "parameters": {
+                "secretUrl": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/sourceVault"
+                }
+            }
+        },
+        "sourceVault": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyEncryptionKey": {
+            "parameters": {
+                "keyUrl": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/sourceVault"
+                }
+            }
+        },
+        "vhd": {
+            "parameters": {
+                "uri": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataDisks": {
+            "parameters": {
+                "lun": {
+                    "type": "int"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "caching": {},
+                "createOption": {},
+                "diskSizeGB": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "vhd": {
+                    "$ref": "#/$keywords/vhd"
+                },
+                "image": {
+                    "$ref": "#/$keywords/vhd"
+                }
+            },
+            "array": true
+        },
+        "osProfile": {
+            "parameters": {
+                "computerName": {
+                    "type": "string"
+                },
+                "adminUsername": {
+                    "type": "string"
+                },
+                "adminPassword": {
+                    "type": "string"
+                },
+                "customData": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "windowsConfiguration": {
+                    "$ref": "#/$keywords/windowsConfiguration"
+                },
+                "linuxConfiguration": {
+                    "$ref": "#/$keywords/linuxConfiguration"
+                },
+                "secrets": {
+                    "$ref": "#/$keywords/secrets"
+                }
+            }
+        },
+        "windowsConfiguration": {
+            "parameters": {
+                "provisionVMAgent": {
+                    "type": "bool"
+                },
+                "enableAutomaticUpdates": {
+                    "type": "bool"
+                },
+                "timeZone": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "additionalUnattendContent": {
+                    "$ref": "#/$keywords/additionalUnattendContent"
+                },
+                "winRM": {
+                    "$ref": "#/$keywords/winRM"
+                }
+            }
+        },
+        "additionalUnattendContent": {
+            "parameters": {
+                "passName": {},
+                "componentName": {},
+                "settingName": {},
+                "content": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "winRM": {
+            "body": {
+                "listeners": {
+                    "$ref": "#/$keywords/listeners"
+                }
+            }
+        },
+        "listeners": {
+            "parameters": {
+                "protocol": {},
+                "certificateUrl": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "linuxConfiguration": {
+            "parameters": {
+                "disablePasswordAuthentication": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "ssh": {
+                    "$ref": "#/$keywords/ssh"
+                }
+            }
+        },
+        "ssh": {
+            "body": {
+                "publicKeys": {
+                    "$ref": "#/$keywords/publicKeys"
+                }
+            }
+        },
+        "publicKeys": {
+            "parameters": {
+                "path": {
+                    "type": "string"
+                },
+                "keyData": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "secrets": {
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/sourceVault"
+                },
+                "vaultCertificates": {
+                    "$ref": "#/$keywords/vaultCertificates"
+                }
+            },
+            "array": true
+        },
+        "vaultCertificates": {
+            "parameters": {
+                "certificateUrl": {
+                    "type": "string"
+                },
+                "certificateStore": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "networkProfile": {
+            "body": {
+                "networkInterfaces": {
+                    "$ref": "#/$keywords/networkInterfaces"
+                }
+            }
+        },
+        "networkInterfaces": {
+            "parameters": {
+                "primary": {
+                    "type": "bool"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "diagnosticsProfile": {
+            "body": {
+                "bootDiagnostics": {
+                    "$ref": "#/$keywords/bootDiagnostics"
+                }
+            }
+        },
+        "bootDiagnostics": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "storageUri": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "instanceView_2": {
+            "parameters": {
+                "platformUpdateDomain": {
+                    "type": "int"
+                },
+                "platformFaultDomain": {
+                    "type": "int"
+                },
+                "rdpThumbPrint": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "vmAgent": {
+                    "$ref": "#/$keywords/vmAgent"
+                },
+                "disks": {
+                    "$ref": "#/$keywords/disks"
+                },
+                "extensions": {
+                    "$ref": "#/$keywords/extensions"
+                },
+                "bootDiagnostics": {
+                    "$ref": "#/$keywords/bootDiagnostics_2"
+                },
+                "statuses": {
+                    "$ref": "#/$keywords/statuses_5"
+                }
+            }
+        },
+        "vmAgent": {
+            "parameters": {
+                "vmAgentVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "extensionHandlers": {
+                    "$ref": "#/$keywords/extensionHandlers"
+                },
+                "statuses": {
+                    "$ref": "#/$keywords/statuses_3"
+                }
+            }
+        },
+        "extensionHandlers": {
+            "parameters": {
+                "type": {
+                    "type": "string"
+                },
+                "typeHandlerVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "status": {
+                    "$ref": "#/$keywords/status"
+                }
+            },
+            "array": true
+        },
+        "status": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {},
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            }
+        },
+        "statuses_3": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {},
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            },
+            "array": true
+        },
+        "disks": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "statuses": {
+                    "$ref": "#/$keywords/statuses_4"
+                }
+            },
+            "array": true
+        },
+        "statuses_4": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {},
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            },
+            "array": true
+        },
+        "extensions": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeHandlerVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "substatuses": {
+                    "$ref": "#/$keywords/substatuses"
+                },
+                "statuses": {
+                    "$ref": "#/$keywords/statuses_2"
+                }
+            },
+            "array": true
+        },
+        "bootDiagnostics_2": {
+            "parameters": {
+                "consoleScreenshotBlobUri": {
+                    "type": "string"
+                },
+                "serialConsoleLogBlobUri": {
+                    "type": "string"
+                }
+            }
+        },
+        "statuses_5": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "level": {},
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {}
+            },
+            "array": true
+        },
+        "licenseType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "upgradePolicy": {
+            "parameters": {
+                "mode": {}
+            }
+        },
+        "virtualMachineProfile": {
+            "body": {
+                "osProfile": {
+                    "$ref": "#/$keywords/osProfile_2"
+                },
+                "storageProfile": {
+                    "$ref": "#/$keywords/storageProfile_2"
+                },
+                "networkProfile": {
+                    "$ref": "#/$keywords/networkProfile_2"
+                },
+                "extensionProfile": {
+                    "$ref": "#/$keywords/extensionProfile"
+                }
+            }
+        },
+        "osProfile_2": {
+            "parameters": {
+                "computerNamePrefix": {
+                    "type": "string"
+                },
+                "adminUsername": {
+                    "type": "string"
+                },
+                "adminPassword": {
+                    "type": "string"
+                },
+                "customData": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "windowsConfiguration": {
+                    "$ref": "#/$keywords/windowsConfiguration"
+                },
+                "linuxConfiguration": {
+                    "$ref": "#/$keywords/linuxConfiguration"
+                },
+                "secrets": {
+                    "$ref": "#/$keywords/secrets_2"
+                }
+            }
+        },
+        "secrets_2": {
+            "body": {
+                "sourceVault": {
+                    "$ref": "#/$keywords/sourceVault"
+                },
+                "vaultCertificates": {
+                    "$ref": "#/$keywords/vaultCertificates"
+                }
+            },
+            "array": true
+        },
+        "storageProfile_2": {
+            "body": {
+                "imageReference": {
+                    "$ref": "#/$keywords/imageReference"
+                },
+                "osDisk": {
+                    "$ref": "#/$keywords/osDisk_2"
+                }
+            }
+        },
+        "osDisk_2": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "caching": {},
+                "createOption": {},
+                "osType": {}
+            },
+            "body": {
+                "image": {
+                    "$ref": "#/$keywords/vhd"
+                },
+                "vhdContainers": {
+                    "$ref": "#/$keywords/vhdContainers"
+                }
+            }
+        },
+        "vhdContainers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "networkProfile_2": {
+            "body": {
+                "networkInterfaceConfigurations": {
+                    "$ref": "#/$keywords/networkInterfaceConfigurations"
+                }
+            }
+        },
+        "networkInterfaceConfigurations": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "primary": {
+                    "type": "bool"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "ipConfigurations": {
+                    "$ref": "#/$keywords/ipConfigurations"
+                }
+            },
+            "array": true
+        },
+        "ipConfigurations": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "subnet": {
+                    "$ref": "#/$keywords/subnet"
+                },
+                "loadBalancerBackendAddressPools": {
+                    "$ref": "#/$keywords/loadBalancerBackendAddressPools"
+                },
+                "loadBalancerInboundNatPools": {
+                    "$ref": "#/$keywords/loadBalancerInboundNatPools"
+                }
+            },
+            "array": true
+        },
+        "subnet": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "loadBalancerBackendAddressPools": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "loadBalancerInboundNatPools": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "extensionProfile": {
+            "body": {
+                "extensions": {
+                    "$ref": "#/$keywords/extensions_2"
+                }
+            }
+        },
+        "extensions_2": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "publisher": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeHandlerVersion": {
+                    "type": "string"
+                },
+                "autoUpgradeMinorVersion": {
+                    "type": "bool"
+                },
+                "settings": {},
+                "protectedSettings": {},
+                "provisioningState": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "overProvision": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "availabilitySets": {
+            "platformUpdateDomainCount": {
+                "$ref": "#/$keywords/platformUpdateDomainCount"
+            },
+            "platformFaultDomainCount": {
+                "$ref": "#/$keywords/platformFaultDomainCount"
+            },
+            "virtualMachines": {
+                "$ref": "#/$keywords/virtualMachines"
+            },
+            "statuses": {
+                "$ref": "#/$keywords/statuses"
+            }
+        },
+        "virtualMachines/extensions": {
+            "forceUpdateTag": {
+                "$ref": "#/$keywords/forceUpdateTag"
+            },
+            "publisher": {
+                "$ref": "#/$keywords/publisher"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            },
+            "typeHandlerVersion": {
+                "$ref": "#/$keywords/typeHandlerVersion"
+            },
+            "autoUpgradeMinorVersion": {
+                "$ref": "#/$keywords/autoUpgradeMinorVersion"
+            },
+            "settings": {
+                "$ref": "#/$keywords/settings"
+            },
+            "protectedSettings": {
+                "$ref": "#/$keywords/settings"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "instanceView": {
+                "$ref": "#/$keywords/instanceView"
+            }
+        },
+        "virtualMachines": {
+            "hardwareProfile": {
+                "$ref": "#/$keywords/hardwareProfile"
+            },
+            "storageProfile": {
+                "$ref": "#/$keywords/storageProfile"
+            },
+            "osProfile": {
+                "$ref": "#/$keywords/osProfile"
+            },
+            "networkProfile": {
+                "$ref": "#/$keywords/networkProfile"
+            },
+            "diagnosticsProfile": {
+                "$ref": "#/$keywords/diagnosticsProfile"
+            },
+            "availabilitySet": {
+                "$ref": "#/$keywords/sourceVault"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "instanceView": {
+                "$ref": "#/$keywords/instanceView_2"
+            },
+            "licenseType": {
+                "$ref": "#/$keywords/licenseType"
+            }
+        },
+        "virtualMachineScaleSets": {
+            "upgradePolicy": {
+                "$ref": "#/$keywords/upgradePolicy"
+            },
+            "virtualMachineProfile": {
+                "$ref": "#/$keywords/virtualMachineProfile"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "overProvision": {
+                "$ref": "#/$keywords/overProvision"
+            }
+        }
+    }
+}

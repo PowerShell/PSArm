@@ -1,0 +1,233 @@
+{
+    "$keywords": {
+        "vsoAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "friendlyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyVaultId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "seats": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "discoveryUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "storageAccount": {
+            "parameters": {
+                "storageAccountId": {
+                    "type": "string"
+                },
+                "accessKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accountId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workspaceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "friendlyName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accountId_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workspaceId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "projectId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "gitrepo": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "friendlyName_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "accounts": {
+            "vsoAccountId": {
+                "$ref": "#/$keywords/vsoAccountId"
+            },
+            "accountId": {
+                "$ref": "#/$keywords/accountId"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName"
+            },
+            "keyVaultId": {
+                "$ref": "#/$keywords/keyVaultId"
+            },
+            "seats": {
+                "$ref": "#/$keywords/seats"
+            },
+            "discoveryUri": {
+                "$ref": "#/$keywords/discoveryUri"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "storageAccount": {
+                "$ref": "#/$keywords/storageAccount"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "accounts/workspaces": {
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            },
+            "accountId": {
+                "$ref": "#/$keywords/accountId_2"
+            },
+            "workspaceId": {
+                "$ref": "#/$keywords/workspaceId"
+            },
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName_2"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "accounts/workspaces/projects": {
+            "description": {
+                "$ref": "#/$keywords/description_3"
+            },
+            "accountId": {
+                "$ref": "#/$keywords/accountId_3"
+            },
+            "workspaceId": {
+                "$ref": "#/$keywords/workspaceId_2"
+            },
+            "projectId": {
+                "$ref": "#/$keywords/projectId"
+            },
+            "gitrepo": {
+                "$ref": "#/$keywords/gitrepo"
+            },
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName_3"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate_3"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

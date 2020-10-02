@@ -1,0 +1,107 @@
+{
+    "$keywords": {
+        "guestConfiguration": {
+            "parameters": {
+                "kind": {},
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "configurationParameter": {
+                    "$ref": "#/$keywords/configurationParameter"
+                }
+            }
+        },
+        "configurationParameter": {
+            "body": {
+                "value": {
+                    "$ref": "#/$keywords/value"
+                }
+            }
+        },
+        "value": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "complianceStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Compliant",
+                        "NotCompliant",
+                        "Pending"
+                    ]
+                }
+            }
+        },
+        "complianceReason": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "latestReportId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "assignmentHash": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "location": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "virtualMachines/providers": {
+            "guestConfiguration": {
+                "$ref": "#/$keywords/guestConfiguration"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "complianceStatus": {
+                "$ref": "#/$keywords/complianceStatus"
+            },
+            "complianceReason": {
+                "$ref": "#/$keywords/complianceReason"
+            },
+            "latestReportId": {
+                "$ref": "#/$keywords/latestReportId"
+            },
+            "assignmentHash": {
+                "$ref": "#/$keywords/assignmentHash"
+            },
+            "location": {
+                "$ref": "#/$keywords/location"
+            }
+        }
+    }
+}

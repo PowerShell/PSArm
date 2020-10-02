@@ -1,0 +1,28 @@
+{
+    "$keywords": {
+        "accountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accountDomain": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "spatialAnchorsAccounts": {
+            "accountId": {
+                "$ref": "#/$keywords/accountId"
+            },
+            "accountDomain": {
+                "$ref": "#/$keywords/accountDomain"
+            }
+        }
+    }
+}

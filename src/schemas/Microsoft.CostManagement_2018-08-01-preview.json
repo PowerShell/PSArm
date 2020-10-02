@@ -1,0 +1,339 @@
+{
+    "$keywords": {
+        "format": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "deliveryInfo": {
+            "body": {
+                "destination": {
+                    "$ref": "#/$keywords/destination"
+                }
+            }
+        },
+        "destination": {
+            "parameters": {
+                "resourceId": {
+                    "type": "string"
+                },
+                "container": {
+                    "type": "string"
+                },
+                "rootFolderPath": {
+                    "type": "string"
+                }
+            }
+        },
+        "definition": {
+            "parameters": {
+                "type": {},
+                "timeframe": {
+                    "enum": [
+                        "WeekToDate",
+                        "MonthToDate",
+                        "Custom"
+                    ]
+                }
+            },
+            "body": {
+                "timePeriod": {
+                    "$ref": "#/$keywords/timePeriod"
+                },
+                "dataset": {
+                    "$ref": "#/$keywords/dataset"
+                }
+            }
+        },
+        "timePeriod": {
+            "parameters": {
+                "from": {},
+                "to": {}
+            }
+        },
+        "dataset": {
+            "parameters": {
+                "granularity": {
+                    "enum": [
+                        "Daily",
+                        "Hourly"
+                    ]
+                },
+                "aggregation": {}
+            },
+            "body": {
+                "configuration": {
+                    "$ref": "#/$keywords/configuration"
+                },
+                "grouping": {
+                    "$ref": "#/$keywords/grouping"
+                },
+                "filter": {
+                    "$ref": "#/$keywords/filter"
+                }
+            }
+        },
+        "configuration": {
+            "body": {
+                "columns": {
+                    "$ref": "#/$keywords/columns"
+                }
+            }
+        },
+        "columns": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "grouping": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Tag",
+                        "Dimension"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "filter": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            }
+        },
+        "and": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            },
+            "array": true
+        },
+        "or": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            },
+            "array": true
+        },
+        "dimension": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "operator": {}
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            }
+        },
+        "values": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "schedule": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Active",
+                        "Inactive"
+                    ]
+                },
+                "recurrence": {
+                    "enum": [
+                        "Daily",
+                        "Weekly",
+                        "Monthly",
+                        "Annually"
+                    ]
+                }
+            },
+            "body": {
+                "recurrencePeriod": {
+                    "$ref": "#/$keywords/recurrencePeriod"
+                }
+            }
+        },
+        "recurrencePeriod": {
+            "parameters": {
+                "from": {},
+                "to": {}
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "credentialsKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "credentialsSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "reportId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdOn": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "modifiedOn": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "active",
+                        "error",
+                        "suspended"
+                    ]
+                }
+            }
+        },
+        "collection": {
+            "parameters": {
+                "lastRun": {},
+                "sourceLastUpdated": {},
+                "lastUpdated": {}
+            },
+            "body": {
+                "error": {
+                    "$ref": "#/$keywords/error"
+                }
+            }
+        },
+        "error": {
+            "parameters": {
+                "errorMessage": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "string"
+                },
+                "errorStartTime": {}
+            }
+        }
+    },
+    "$resources": {
+        "reports": {
+            "format": {
+                "$ref": "#/$keywords/format"
+            },
+            "deliveryInfo": {
+                "$ref": "#/$keywords/deliveryInfo"
+            },
+            "definition": {
+                "$ref": "#/$keywords/definition"
+            },
+            "schedule": {
+                "$ref": "#/$keywords/schedule"
+            }
+        },
+        "connectors": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "providerAccountId": {
+                "$ref": "#/$keywords/providerAccountId"
+            },
+            "credentialsKey": {
+                "$ref": "#/$keywords/credentialsKey"
+            },
+            "credentialsSecret": {
+                "$ref": "#/$keywords/credentialsSecret"
+            },
+            "reportId": {
+                "$ref": "#/$keywords/reportId"
+            },
+            "createdOn": {
+                "$ref": "#/$keywords/createdOn"
+            },
+            "modifiedOn": {
+                "$ref": "#/$keywords/modifiedOn"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "collection": {
+                "$ref": "#/$keywords/collection"
+            }
+        }
+    }
+}

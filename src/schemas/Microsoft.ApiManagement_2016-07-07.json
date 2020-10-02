@@ -1,0 +1,19 @@
+{
+    "$keywords": {},
+    "$resources": {
+        "service/apis": {},
+        "service/apis/operations": {},
+        "service/subscriptions": {},
+        "service/products": {},
+        "service/groups": {},
+        "service/certificates": {},
+        "service/users": {},
+        "service/authorizationServers": {},
+        "service/loggers": {},
+        "service/properties": {},
+        "service/openidConnectProviders": {},
+        "service/backends": {},
+        "service/identityProviders": {},
+        "service": {}
+    }
+}

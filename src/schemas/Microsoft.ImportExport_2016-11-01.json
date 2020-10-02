@@ -1,0 +1,294 @@
+{
+    "$keywords": {
+        "storageAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "jobType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "returnAddress": {
+            "parameters": {
+                "recipientName": {
+                    "type": "string"
+                },
+                "streetAddress1": {
+                    "type": "string"
+                },
+                "streetAddress2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "stateOrProvince": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "countryOrRegion": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "returnShipping": {
+            "parameters": {
+                "carrierName": {
+                    "type": "string"
+                },
+                "carrierAccountNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "shippingInformation": {
+            "parameters": {
+                "recipientName": {
+                    "type": "string"
+                },
+                "streetAddress1": {
+                    "type": "string"
+                },
+                "streetAddress2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "stateOrProvince": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "countryOrRegion": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "deliveryPackage": {
+            "parameters": {
+                "carrierName": {
+                    "type": "string"
+                },
+                "trackingNumber": {
+                    "type": "string"
+                },
+                "driveCount": {
+                    "type": "int"
+                },
+                "shipDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "diagnosticsPath": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "logLevel": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupDriveManifest": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cancelRequested": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "percentComplete": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "incompleteBlobListUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "driveList": {
+            "parameters": {
+                "driveId": {
+                    "type": "string"
+                },
+                "bitLockerKey": {
+                    "type": "string"
+                },
+                "manifestFile": {
+                    "type": "string"
+                },
+                "manifestHash": {
+                    "type": "string"
+                },
+                "driveHeaderHash": {
+                    "type": "string"
+                },
+                "state": {
+                    "enum": [
+                        "Specified",
+                        "Received",
+                        "NeverReceived",
+                        "Transferring",
+                        "Completed",
+                        "CompletedMoreInfo",
+                        "ShippedBack"
+                    ]
+                },
+                "copyStatus": {
+                    "type": "string"
+                },
+                "percentComplete": {
+                    "type": "int"
+                },
+                "verboseLogUri": {
+                    "type": "string"
+                },
+                "errorLogUri": {
+                    "type": "string"
+                },
+                "manifestUri": {
+                    "type": "string"
+                },
+                "bytesSucceeded": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "export": {
+            "parameters": {
+                "blobListblobPath": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "blobPath": {
+                    "$ref": "#/$keywords/blobPath"
+                },
+                "blobPathPrefix": {
+                    "$ref": "#/$keywords/blobPathPrefix"
+                }
+            }
+        },
+        "blobPath": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "blobPathPrefix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "jobs": {
+            "storageAccountId": {
+                "$ref": "#/$keywords/storageAccountId"
+            },
+            "jobType": {
+                "$ref": "#/$keywords/jobType"
+            },
+            "returnAddress": {
+                "$ref": "#/$keywords/returnAddress"
+            },
+            "returnShipping": {
+                "$ref": "#/$keywords/returnShipping"
+            },
+            "shippingInformation": {
+                "$ref": "#/$keywords/shippingInformation"
+            },
+            "deliveryPackage": {
+                "$ref": "#/$keywords/deliveryPackage"
+            },
+            "returnPackage": {
+                "$ref": "#/$keywords/deliveryPackage"
+            },
+            "diagnosticsPath": {
+                "$ref": "#/$keywords/diagnosticsPath"
+            },
+            "logLevel": {
+                "$ref": "#/$keywords/logLevel"
+            },
+            "backupDriveManifest": {
+                "$ref": "#/$keywords/backupDriveManifest"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "cancelRequested": {
+                "$ref": "#/$keywords/cancelRequested"
+            },
+            "percentComplete": {
+                "$ref": "#/$keywords/percentComplete"
+            },
+            "incompleteBlobListUri": {
+                "$ref": "#/$keywords/incompleteBlobListUri"
+            },
+            "driveList": {
+                "$ref": "#/$keywords/driveList"
+            },
+            "export": {
+                "$ref": "#/$keywords/export"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

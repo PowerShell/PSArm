@@ -1,0 +1,111 @@
+{
+    "$keywords": {
+        "createdTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastUpdatedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Provisioning",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Deleted",
+                        "Warning",
+                        "Suspending",
+                        "Restoring",
+                        "Moving"
+                    ]
+                }
+            }
+        },
+        "hostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpointType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "EventHub",
+                        "EventGrid",
+                        "ServiceBus"
+                    ]
+                }
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Provisioning",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Deleted",
+                        "Warning",
+                        "Suspending",
+                        "Restoring",
+                        "Moving",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "createdTime_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "deadLetterSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "digitalTwinsInstances": {
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime"
+            },
+            "lastUpdatedTime": {
+                "$ref": "#/$keywords/lastUpdatedTime"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "hostName": {
+                "$ref": "#/$keywords/hostName"
+            }
+        },
+        "digitalTwinsInstances/endpoints": {
+            "endpointType": {
+                "$ref": "#/$keywords/endpointType"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_2"
+            },
+            "deadLetterSecret": {
+                "$ref": "#/$keywords/deadLetterSecret"
+            }
+        }
+    }
+}

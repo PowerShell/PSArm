@@ -1,0 +1,1881 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "createdTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accessEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sku": {
+            "parameters": {
+                "name": {}
+            },
+            "body": {
+                "plan": {
+                    "$ref": "#/$keywords/plan"
+                }
+            }
+        },
+        "plan": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "definition": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "parameters": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "assemblyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "assemblyVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "assemblyCulture": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "assemblyPublicKeyToken": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "batchGroupName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "releaseCriteria": {
+            "parameters": {
+                "messageCount": {
+                    "type": "int"
+                },
+                "batchSize": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "recurrence": {
+                    "$ref": "#/$keywords/recurrence"
+                }
+            }
+        },
+        "recurrence": {
+            "parameters": {
+                "frequency": {},
+                "interval": {
+                    "type": "int"
+                },
+                "startTime": {
+                    "type": "string"
+                },
+                "endTime": {
+                    "type": "string"
+                },
+                "timeZone": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "schedule": {
+                    "$ref": "#/$keywords/schedule"
+                }
+            }
+        },
+        "schedule": {
+            "body": {
+                "minutes": {
+                    "$ref": "#/$keywords/minutes"
+                },
+                "hours": {
+                    "$ref": "#/$keywords/hours"
+                },
+                "weekDays": {
+                    "$ref": "#/$keywords/weekDays"
+                },
+                "monthDays": {
+                    "$ref": "#/$keywords/monthDays"
+                },
+                "monthlyOccurrences": {
+                    "$ref": "#/$keywords/monthlyOccurrences"
+                }
+            }
+        },
+        "minutes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "hours": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "weekDays": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "monthDays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "monthlyOccurrences": {
+            "parameters": {
+                "day": {},
+                "occurrence": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "createdTime_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "schemaType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "targetNamespace": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "documentName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "fileName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdTime_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "content": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentLink": {
+            "parameters": {
+                "uri": {
+                    "type": "string"
+                },
+                "contentVersion": {
+                    "type": "string"
+                },
+                "contentSize": {
+                    "type": "int"
+                },
+                "metadata": {}
+            },
+            "body": {
+                "contentHash": {
+                    "$ref": "#/$keywords/contentHash"
+                }
+            }
+        },
+        "contentHash": {
+            "parameters": {
+                "algorithm": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "mapType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "parametersSchema": {
+            "parameters": {
+                "ref": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdTime_4": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_4": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "content_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentType_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "partnerType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "createdTime_5": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_5": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "content_3": {
+            "body": {
+                "b2b": {
+                    "$ref": "#/$keywords/b2b"
+                }
+            }
+        },
+        "b2b": {
+            "body": {
+                "businessIdentities": {
+                    "$ref": "#/$keywords/businessIdentities"
+                }
+            }
+        },
+        "businessIdentities": {
+            "parameters": {
+                "qualifier": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "createdTime_6": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_6": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "agreementType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "hostPartner": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "guestPartner": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostIdentity": {
+            "parameters": {
+                "qualifier": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "content_4": {
+            "body": {
+                "aS2": {
+                    "$ref": "#/$keywords/aS2"
+                },
+                "x12": {
+                    "$ref": "#/$keywords/x12"
+                },
+                "edifact": {
+                    "$ref": "#/$keywords/edifact"
+                }
+            }
+        },
+        "aS2": {
+            "body": {
+                "receiveAgreement": {
+                    "$ref": "#/$keywords/receiveAgreement"
+                },
+                "sendAgreement": {
+                    "$ref": "#/$keywords/receiveAgreement"
+                }
+            }
+        },
+        "receiveAgreement": {
+            "body": {
+                "senderBusinessIdentity": {
+                    "$ref": "#/$keywords/hostIdentity"
+                },
+                "receiverBusinessIdentity": {
+                    "$ref": "#/$keywords/hostIdentity"
+                },
+                "protocolSettings": {
+                    "$ref": "#/$keywords/protocolSettings"
+                }
+            }
+        },
+        "protocolSettings": {
+            "body": {
+                "messageConnectionSettings": {
+                    "$ref": "#/$keywords/messageConnectionSettings"
+                },
+                "acknowledgementConnectionSettings": {
+                    "$ref": "#/$keywords/acknowledgementConnectionSettings"
+                },
+                "mdnSettings": {
+                    "$ref": "#/$keywords/mdnSettings"
+                },
+                "securitySettings": {
+                    "$ref": "#/$keywords/securitySettings"
+                },
+                "validationSettings": {
+                    "$ref": "#/$keywords/validationSettings"
+                },
+                "envelopeSettings": {
+                    "$ref": "#/$keywords/envelopeSettings"
+                },
+                "errorSettings": {
+                    "$ref": "#/$keywords/errorSettings"
+                }
+            }
+        },
+        "messageConnectionSettings": {
+            "parameters": {
+                "ignoreCertificateNameMismatch": {
+                    "type": "bool"
+                },
+                "supportHttpStatusCodeContinue": {
+                    "type": "bool"
+                },
+                "keepHttpConnectionAlive": {
+                    "type": "bool"
+                },
+                "unfoldHttpHeaders": {
+                    "type": "bool"
+                }
+            }
+        },
+        "acknowledgementConnectionSettings": {
+            "parameters": {
+                "ignoreCertificateNameMismatch": {
+                    "type": "bool"
+                },
+                "supportHttpStatusCodeContinue": {
+                    "type": "bool"
+                },
+                "keepHttpConnectionAlive": {
+                    "type": "bool"
+                },
+                "unfoldHttpHeaders": {
+                    "type": "bool"
+                }
+            }
+        },
+        "mdnSettings": {
+            "parameters": {
+                "needMdn": {
+                    "type": "bool"
+                },
+                "signMdn": {
+                    "type": "bool"
+                },
+                "sendMdnAsynchronously": {
+                    "type": "bool"
+                },
+                "receiptDeliveryUrl": {
+                    "type": "string"
+                },
+                "dispositionNotificationTo": {
+                    "type": "string"
+                },
+                "signOutboundMdnIfOptional": {
+                    "type": "bool"
+                },
+                "mdnText": {
+                    "type": "string"
+                },
+                "sendInboundMdnToMessageBox": {
+                    "type": "bool"
+                },
+                "micHashingAlgorithm": {}
+            }
+        },
+        "securitySettings": {
+            "parameters": {
+                "overrideGroupSigningCertificate": {
+                    "type": "bool"
+                },
+                "signingCertificateName": {
+                    "type": "string"
+                },
+                "encryptionCertificateName": {
+                    "type": "string"
+                },
+                "enableNrrForInboundEncodedMessages": {
+                    "type": "bool"
+                },
+                "enableNrrForInboundDecodedMessages": {
+                    "type": "bool"
+                },
+                "enableNrrForOutboundMdn": {
+                    "type": "bool"
+                },
+                "enableNrrForOutboundEncodedMessages": {
+                    "type": "bool"
+                },
+                "enableNrrForOutboundDecodedMessages": {
+                    "type": "bool"
+                },
+                "enableNrrForInboundMdn": {
+                    "type": "bool"
+                },
+                "sha2AlgorithmFormat": {
+                    "type": "string"
+                }
+            }
+        },
+        "validationSettings": {
+            "parameters": {
+                "overrideMessageProperties": {
+                    "type": "bool"
+                },
+                "encryptMessage": {
+                    "type": "bool"
+                },
+                "signMessage": {
+                    "type": "bool"
+                },
+                "compressMessage": {
+                    "type": "bool"
+                },
+                "checkDuplicateMessage": {
+                    "type": "bool"
+                },
+                "interchangeDuplicatesValidityDays": {
+                    "type": "int"
+                },
+                "checkCertificateRevocationListOnSend": {
+                    "type": "bool"
+                },
+                "checkCertificateRevocationListOnReceive": {
+                    "type": "bool"
+                },
+                "encryptionAlgorithm": {},
+                "signingAlgorithm": {
+                    "enum": [
+                        "NotSpecified",
+                        "Default",
+                        "SHA1",
+                        "SHA2256",
+                        "SHA2384",
+                        "SHA2512"
+                    ]
+                }
+            }
+        },
+        "envelopeSettings": {
+            "parameters": {
+                "messageContentType": {
+                    "type": "string"
+                },
+                "transmitFileNameInMimeHeader": {
+                    "type": "bool"
+                },
+                "fileNameTemplate": {
+                    "type": "string"
+                },
+                "suspendMessageOnFileNameGenerationError": {
+                    "type": "bool"
+                },
+                "autogenerateFileName": {
+                    "type": "bool"
+                }
+            }
+        },
+        "errorSettings": {
+            "parameters": {
+                "suspendDuplicateMessage": {
+                    "type": "bool"
+                },
+                "resendIfMdnNotReceived": {
+                    "type": "bool"
+                }
+            }
+        },
+        "x12": {
+            "body": {
+                "receiveAgreement": {
+                    "$ref": "#/$keywords/receiveAgreement_2"
+                },
+                "sendAgreement": {
+                    "$ref": "#/$keywords/receiveAgreement_2"
+                }
+            }
+        },
+        "receiveAgreement_2": {
+            "body": {
+                "senderBusinessIdentity": {
+                    "$ref": "#/$keywords/hostIdentity"
+                },
+                "receiverBusinessIdentity": {
+                    "$ref": "#/$keywords/hostIdentity"
+                },
+                "protocolSettings": {
+                    "$ref": "#/$keywords/protocolSettings_2"
+                }
+            }
+        },
+        "protocolSettings_2": {
+            "body": {
+                "validationSettings": {
+                    "$ref": "#/$keywords/validationSettings_2"
+                },
+                "framingSettings": {
+                    "$ref": "#/$keywords/framingSettings"
+                },
+                "envelopeSettings": {
+                    "$ref": "#/$keywords/envelopeSettings_2"
+                },
+                "acknowledgementSettings": {
+                    "$ref": "#/$keywords/acknowledgementSettings"
+                },
+                "messageFilter": {
+                    "$ref": "#/$keywords/messageFilter"
+                },
+                "securitySettings": {
+                    "$ref": "#/$keywords/securitySettings_2"
+                },
+                "processingSettings": {
+                    "$ref": "#/$keywords/processingSettings"
+                },
+                "envelopeOverrides": {
+                    "$ref": "#/$keywords/envelopeOverrides"
+                },
+                "validationOverrides": {
+                    "$ref": "#/$keywords/validationOverrides"
+                },
+                "messageFilterList": {
+                    "$ref": "#/$keywords/messageFilterList"
+                },
+                "schemaReferences": {
+                    "$ref": "#/$keywords/schemaReferences"
+                },
+                "x12DelimiterOverrides": {
+                    "$ref": "#/$keywords/x12DelimiterOverrides"
+                }
+            }
+        },
+        "validationSettings_2": {
+            "parameters": {
+                "validateCharacterSet": {
+                    "type": "bool"
+                },
+                "checkDuplicateInterchangeControlNumber": {
+                    "type": "bool"
+                },
+                "interchangeControlNumberValidityDays": {
+                    "type": "int"
+                },
+                "checkDuplicateGroupControlNumber": {
+                    "type": "bool"
+                },
+                "checkDuplicateTransactionSetControlNumber": {
+                    "type": "bool"
+                },
+                "validateEdiTypes": {
+                    "type": "bool"
+                },
+                "validateXsdTypes": {
+                    "type": "bool"
+                },
+                "allowLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                },
+                "trimLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                },
+                "trailingSeparatorPolicy": {}
+            }
+        },
+        "framingSettings": {
+            "parameters": {
+                "dataElementSeparator": {
+                    "type": "int"
+                },
+                "componentSeparator": {
+                    "type": "int"
+                },
+                "replaceSeparatorsInPayload": {
+                    "type": "bool"
+                },
+                "replaceCharacter": {
+                    "type": "int"
+                },
+                "segmentTerminator": {
+                    "type": "int"
+                },
+                "characterSet": {},
+                "segmentTerminatorSuffix": {}
+            }
+        },
+        "envelopeSettings_2": {
+            "parameters": {
+                "controlStandardsId": {
+                    "type": "int"
+                },
+                "useControlStandardsIdAsRepetitionCharacter": {
+                    "type": "bool"
+                },
+                "senderApplicationId": {
+                    "type": "string"
+                },
+                "receiverApplicationId": {
+                    "type": "string"
+                },
+                "controlVersionNumber": {
+                    "type": "string"
+                },
+                "interchangeControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "interchangeControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverInterchangeControlNumber": {
+                    "type": "bool"
+                },
+                "enableDefaultGroupHeaders": {
+                    "type": "bool"
+                },
+                "functionalGroupId": {
+                    "type": "string"
+                },
+                "groupControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "groupControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverGroupControlNumber": {
+                    "type": "bool"
+                },
+                "groupHeaderAgencyCode": {
+                    "type": "string"
+                },
+                "groupHeaderVersion": {
+                    "type": "string"
+                },
+                "transactionSetControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "transactionSetControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverTransactionSetControlNumber": {
+                    "type": "bool"
+                },
+                "transactionSetControlNumberPrefix": {
+                    "type": "string"
+                },
+                "transactionSetControlNumberSuffix": {
+                    "type": "string"
+                },
+                "overwriteExistingTransactionSetControlNumber": {
+                    "type": "bool"
+                },
+                "groupHeaderDateFormat": {},
+                "groupHeaderTimeFormat": {},
+                "usageIndicator": {}
+            }
+        },
+        "acknowledgementSettings": {
+            "parameters": {
+                "needTechnicalAcknowledgement": {
+                    "type": "bool"
+                },
+                "batchTechnicalAcknowledgements": {
+                    "type": "bool"
+                },
+                "needFunctionalAcknowledgement": {
+                    "type": "bool"
+                },
+                "functionalAcknowledgementVersion": {
+                    "type": "string"
+                },
+                "batchFunctionalAcknowledgements": {
+                    "type": "bool"
+                },
+                "needImplementationAcknowledgement": {
+                    "type": "bool"
+                },
+                "implementationAcknowledgementVersion": {
+                    "type": "string"
+                },
+                "batchImplementationAcknowledgements": {
+                    "type": "bool"
+                },
+                "needLoopForValidMessages": {
+                    "type": "bool"
+                },
+                "sendSynchronousAcknowledgement": {
+                    "type": "bool"
+                },
+                "acknowledgementControlNumberPrefix": {
+                    "type": "string"
+                },
+                "acknowledgementControlNumberSuffix": {
+                    "type": "string"
+                },
+                "acknowledgementControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "acknowledgementControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverAcknowledgementControlNumber": {
+                    "type": "bool"
+                }
+            }
+        },
+        "messageFilter": {
+            "parameters": {
+                "messageFilterType": {}
+            }
+        },
+        "securitySettings_2": {
+            "parameters": {
+                "authorizationQualifier": {
+                    "type": "string"
+                },
+                "authorizationValue": {
+                    "type": "string"
+                },
+                "securityQualifier": {
+                    "type": "string"
+                },
+                "passwordValue": {
+                    "type": "string"
+                }
+            }
+        },
+        "processingSettings": {
+            "parameters": {
+                "maskSecurityInfo": {
+                    "type": "bool"
+                },
+                "convertImpliedDecimal": {
+                    "type": "bool"
+                },
+                "preserveInterchange": {
+                    "type": "bool"
+                },
+                "suspendInterchangeOnError": {
+                    "type": "bool"
+                },
+                "createEmptyXmlTagsForTrailingSeparators": {
+                    "type": "bool"
+                },
+                "useDotAsDecimalSeparator": {
+                    "type": "bool"
+                }
+            }
+        },
+        "envelopeOverrides": {
+            "parameters": {
+                "targetNamespace": {
+                    "type": "string"
+                },
+                "protocolVersion": {
+                    "type": "string"
+                },
+                "messageId": {
+                    "type": "string"
+                },
+                "responsibleAgencyCode": {
+                    "type": "string"
+                },
+                "headerVersion": {
+                    "type": "string"
+                },
+                "senderApplicationId": {
+                    "type": "string"
+                },
+                "receiverApplicationId": {
+                    "type": "string"
+                },
+                "functionalIdentifierCode": {
+                    "type": "string"
+                },
+                "dateFormat": {},
+                "timeFormat": {}
+            },
+            "array": true
+        },
+        "validationOverrides": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                },
+                "validateEdiTypes": {
+                    "type": "bool"
+                },
+                "validateXsdTypes": {
+                    "type": "bool"
+                },
+                "allowLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                },
+                "validateCharacterSet": {
+                    "type": "bool"
+                },
+                "trimLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                },
+                "trailingSeparatorPolicy": {}
+            },
+            "array": true
+        },
+        "messageFilterList": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "schemaReferences": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                },
+                "senderApplicationId": {
+                    "type": "string"
+                },
+                "schemaVersion": {
+                    "type": "string"
+                },
+                "schemaName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "x12DelimiterOverrides": {
+            "parameters": {
+                "protocolVersion": {
+                    "type": "string"
+                },
+                "messageId": {
+                    "type": "string"
+                },
+                "dataElementSeparator": {
+                    "type": "int"
+                },
+                "componentSeparator": {
+                    "type": "int"
+                },
+                "segmentTerminator": {
+                    "type": "int"
+                },
+                "segmentTerminatorSuffix": {},
+                "replaceCharacter": {
+                    "type": "int"
+                },
+                "replaceSeparatorsInPayload": {
+                    "type": "bool"
+                },
+                "targetNamespace": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "edifact": {
+            "body": {
+                "receiveAgreement": {
+                    "$ref": "#/$keywords/receiveAgreement_3"
+                },
+                "sendAgreement": {
+                    "$ref": "#/$keywords/receiveAgreement_3"
+                }
+            }
+        },
+        "receiveAgreement_3": {
+            "body": {
+                "senderBusinessIdentity": {
+                    "$ref": "#/$keywords/hostIdentity"
+                },
+                "receiverBusinessIdentity": {
+                    "$ref": "#/$keywords/hostIdentity"
+                },
+                "protocolSettings": {
+                    "$ref": "#/$keywords/protocolSettings_3"
+                }
+            }
+        },
+        "protocolSettings_3": {
+            "body": {
+                "validationSettings": {
+                    "$ref": "#/$keywords/validationSettings_3"
+                },
+                "framingSettings": {
+                    "$ref": "#/$keywords/framingSettings_2"
+                },
+                "envelopeSettings": {
+                    "$ref": "#/$keywords/envelopeSettings_3"
+                },
+                "acknowledgementSettings": {
+                    "$ref": "#/$keywords/acknowledgementSettings_2"
+                },
+                "messageFilter": {
+                    "$ref": "#/$keywords/messageFilter_2"
+                },
+                "processingSettings": {
+                    "$ref": "#/$keywords/processingSettings_2"
+                },
+                "envelopeOverrides": {
+                    "$ref": "#/$keywords/envelopeOverrides_2"
+                },
+                "messageFilterList": {
+                    "$ref": "#/$keywords/messageFilterList_2"
+                },
+                "schemaReferences": {
+                    "$ref": "#/$keywords/schemaReferences_2"
+                },
+                "validationOverrides": {
+                    "$ref": "#/$keywords/validationOverrides_2"
+                },
+                "edifactDelimiterOverrides": {
+                    "$ref": "#/$keywords/edifactDelimiterOverrides"
+                }
+            }
+        },
+        "validationSettings_3": {
+            "parameters": {
+                "validateCharacterSet": {
+                    "type": "bool"
+                },
+                "checkDuplicateInterchangeControlNumber": {
+                    "type": "bool"
+                },
+                "interchangeControlNumberValidityDays": {
+                    "type": "int"
+                },
+                "checkDuplicateGroupControlNumber": {
+                    "type": "bool"
+                },
+                "checkDuplicateTransactionSetControlNumber": {
+                    "type": "bool"
+                },
+                "validateEdiTypes": {
+                    "type": "bool"
+                },
+                "validateXsdTypes": {
+                    "type": "bool"
+                },
+                "allowLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                },
+                "trimLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                },
+                "trailingSeparatorPolicy": {}
+            }
+        },
+        "framingSettings_2": {
+            "parameters": {
+                "serviceCodeListDirectoryVersion": {
+                    "type": "string"
+                },
+                "characterEncoding": {
+                    "type": "string"
+                },
+                "protocolVersion": {
+                    "type": "int"
+                },
+                "dataElementSeparator": {
+                    "type": "int"
+                },
+                "componentSeparator": {
+                    "type": "int"
+                },
+                "segmentTerminator": {
+                    "type": "int"
+                },
+                "releaseIndicator": {
+                    "type": "int"
+                },
+                "repetitionSeparator": {
+                    "type": "int"
+                },
+                "characterSet": {},
+                "decimalPointIndicator": {},
+                "segmentTerminatorSuffix": {}
+            }
+        },
+        "envelopeSettings_3": {
+            "parameters": {
+                "groupAssociationAssignedCode": {
+                    "type": "string"
+                },
+                "communicationAgreementId": {
+                    "type": "string"
+                },
+                "applyDelimiterStringAdvice": {
+                    "type": "bool"
+                },
+                "createGroupingSegments": {
+                    "type": "bool"
+                },
+                "enableDefaultGroupHeaders": {
+                    "type": "bool"
+                },
+                "recipientReferencePasswordValue": {
+                    "type": "string"
+                },
+                "recipientReferencePasswordQualifier": {
+                    "type": "string"
+                },
+                "applicationReferenceId": {
+                    "type": "string"
+                },
+                "processingPriorityCode": {
+                    "type": "string"
+                },
+                "interchangeControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "interchangeControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverInterchangeControlNumber": {
+                    "type": "bool"
+                },
+                "interchangeControlNumberPrefix": {
+                    "type": "string"
+                },
+                "interchangeControlNumberSuffix": {
+                    "type": "string"
+                },
+                "senderReverseRoutingAddress": {
+                    "type": "string"
+                },
+                "receiverReverseRoutingAddress": {
+                    "type": "string"
+                },
+                "functionalGroupId": {
+                    "type": "string"
+                },
+                "groupControllingAgencyCode": {
+                    "type": "string"
+                },
+                "groupMessageVersion": {
+                    "type": "string"
+                },
+                "groupMessageRelease": {
+                    "type": "string"
+                },
+                "groupControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "groupControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverGroupControlNumber": {
+                    "type": "bool"
+                },
+                "groupControlNumberPrefix": {
+                    "type": "string"
+                },
+                "groupControlNumberSuffix": {
+                    "type": "string"
+                },
+                "groupApplicationReceiverQualifier": {
+                    "type": "string"
+                },
+                "groupApplicationReceiverId": {
+                    "type": "string"
+                },
+                "groupApplicationSenderQualifier": {
+                    "type": "string"
+                },
+                "groupApplicationSenderId": {
+                    "type": "string"
+                },
+                "groupApplicationPassword": {
+                    "type": "string"
+                },
+                "overwriteExistingTransactionSetControlNumber": {
+                    "type": "bool"
+                },
+                "transactionSetControlNumberPrefix": {
+                    "type": "string"
+                },
+                "transactionSetControlNumberSuffix": {
+                    "type": "string"
+                },
+                "transactionSetControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "transactionSetControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverTransactionSetControlNumber": {
+                    "type": "bool"
+                },
+                "isTestInterchange": {
+                    "type": "bool"
+                },
+                "senderInternalIdentification": {
+                    "type": "string"
+                },
+                "senderInternalSubIdentification": {
+                    "type": "string"
+                },
+                "receiverInternalIdentification": {
+                    "type": "string"
+                },
+                "receiverInternalSubIdentification": {
+                    "type": "string"
+                }
+            }
+        },
+        "acknowledgementSettings_2": {
+            "parameters": {
+                "needTechnicalAcknowledgement": {
+                    "type": "bool"
+                },
+                "batchTechnicalAcknowledgements": {
+                    "type": "bool"
+                },
+                "needFunctionalAcknowledgement": {
+                    "type": "bool"
+                },
+                "batchFunctionalAcknowledgements": {
+                    "type": "bool"
+                },
+                "needLoopForValidMessages": {
+                    "type": "bool"
+                },
+                "sendSynchronousAcknowledgement": {
+                    "type": "bool"
+                },
+                "acknowledgementControlNumberPrefix": {
+                    "type": "string"
+                },
+                "acknowledgementControlNumberSuffix": {
+                    "type": "string"
+                },
+                "acknowledgementControlNumberLowerBound": {
+                    "type": "int"
+                },
+                "acknowledgementControlNumberUpperBound": {
+                    "type": "int"
+                },
+                "rolloverAcknowledgementControlNumber": {
+                    "type": "bool"
+                }
+            }
+        },
+        "messageFilter_2": {
+            "parameters": {
+                "messageFilterType": {}
+            }
+        },
+        "processingSettings_2": {
+            "parameters": {
+                "maskSecurityInfo": {
+                    "type": "bool"
+                },
+                "preserveInterchange": {
+                    "type": "bool"
+                },
+                "suspendInterchangeOnError": {
+                    "type": "bool"
+                },
+                "createEmptyXmlTagsForTrailingSeparators": {
+                    "type": "bool"
+                },
+                "useDotAsDecimalSeparator": {
+                    "type": "bool"
+                }
+            }
+        },
+        "envelopeOverrides_2": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                },
+                "messageVersion": {
+                    "type": "string"
+                },
+                "messageRelease": {
+                    "type": "string"
+                },
+                "messageAssociationAssignedCode": {
+                    "type": "string"
+                },
+                "targetNamespace": {
+                    "type": "string"
+                },
+                "functionalGroupId": {
+                    "type": "string"
+                },
+                "senderApplicationQualifier": {
+                    "type": "string"
+                },
+                "senderApplicationId": {
+                    "type": "string"
+                },
+                "receiverApplicationQualifier": {
+                    "type": "string"
+                },
+                "receiverApplicationId": {
+                    "type": "string"
+                },
+                "controllingAgencyCode": {
+                    "type": "string"
+                },
+                "groupHeaderMessageVersion": {
+                    "type": "string"
+                },
+                "groupHeaderMessageRelease": {
+                    "type": "string"
+                },
+                "associationAssignedCode": {
+                    "type": "string"
+                },
+                "applicationPassword": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "messageFilterList_2": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "schemaReferences_2": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                },
+                "messageVersion": {
+                    "type": "string"
+                },
+                "messageRelease": {
+                    "type": "string"
+                },
+                "senderApplicationId": {
+                    "type": "string"
+                },
+                "senderApplicationQualifier": {
+                    "type": "string"
+                },
+                "associationAssignedCode": {
+                    "type": "string"
+                },
+                "schemaName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "validationOverrides_2": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                },
+                "enforceCharacterSet": {
+                    "type": "bool"
+                },
+                "validateEdiTypes": {
+                    "type": "bool"
+                },
+                "validateXsdTypes": {
+                    "type": "bool"
+                },
+                "allowLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                },
+                "trailingSeparatorPolicy": {},
+                "trimLeadingAndTrailingSpacesAndZeroes": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "edifactDelimiterOverrides": {
+            "parameters": {
+                "messageId": {
+                    "type": "string"
+                },
+                "messageVersion": {
+                    "type": "string"
+                },
+                "messageRelease": {
+                    "type": "string"
+                },
+                "dataElementSeparator": {
+                    "type": "int"
+                },
+                "componentSeparator": {
+                    "type": "int"
+                },
+                "segmentTerminator": {
+                    "type": "int"
+                },
+                "repetitionSeparator": {
+                    "type": "int"
+                },
+                "segmentTerminatorSuffix": {},
+                "decimalPointIndicator": {},
+                "releaseIndicator": {
+                    "type": "int"
+                },
+                "messageAssociationAssignedCode": {
+                    "type": "string"
+                },
+                "targetNamespace": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "createdTime_7": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_7": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "key": {
+            "parameters": {
+                "keyName": {
+                    "type": "string"
+                },
+                "keyVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "keyVault": {
+                    "$ref": "#/$keywords/keyVault"
+                }
+            }
+        },
+        "keyVault": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "publicCertificate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdTime_8": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_8": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "createdTime_9": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "changedTime_9": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "activitySettings": {
+            "parameters": {
+                "activityType": {}
+            },
+            "body": {
+                "activityBehavior": {
+                    "$ref": "#/$keywords/activityBehavior"
+                },
+                "acknowledgmentOfReceiptSettings": {
+                    "$ref": "#/$keywords/acknowledgmentOfReceiptSettings"
+                }
+            }
+        },
+        "activityBehavior": {
+            "parameters": {
+                "isAuthorizationRequired": {
+                    "type": "bool"
+                },
+                "persistentConfidentialityScope": {},
+                "isSecuredTransportRequired": {
+                    "type": "bool"
+                },
+                "actionType": {},
+                "responseType": {},
+                "nonRepudiationOfOriginAndContent": {
+                    "type": "bool"
+                },
+                "retryCount": {
+                    "type": "int"
+                },
+                "timeToPerformInSeconds": {
+                    "type": "int"
+                }
+            }
+        },
+        "acknowledgmentOfReceiptSettings": {
+            "parameters": {
+                "isNonRepudiationRequired": {
+                    "type": "bool"
+                },
+                "timeToAcknowledgeInSeconds": {
+                    "type": "int"
+                }
+            }
+        },
+        "processCode": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "processVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "processName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "initiatorRoleSettings": {
+            "parameters": {
+                "action": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "roleType": {},
+                "service": {
+                    "type": "string"
+                },
+                "serviceClassification": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "businessDocument": {
+                    "$ref": "#/$keywords/businessDocument"
+                }
+            }
+        },
+        "businessDocument": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "workflows": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "accessEndpoint": {
+                "$ref": "#/$keywords/accessEndpoint"
+            },
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "integrationAccount": {
+                "$ref": "#/$keywords/plan"
+            },
+            "definition": {
+                "$ref": "#/$keywords/definition"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/parameters"
+            }
+        },
+        "integrationAccounts": {},
+        "integrationAccounts/assemblies": {
+            "assemblyName": {
+                "$ref": "#/$keywords/assemblyName"
+            },
+            "assemblyVersion": {
+                "$ref": "#/$keywords/assemblyVersion"
+            },
+            "assemblyCulture": {
+                "$ref": "#/$keywords/assemblyCulture"
+            },
+            "assemblyPublicKeyToken": {
+                "$ref": "#/$keywords/assemblyPublicKeyToken"
+            }
+        },
+        "integrationAccounts/batchConfigurations": {
+            "batchGroupName": {
+                "$ref": "#/$keywords/batchGroupName"
+            },
+            "releaseCriteria": {
+                "$ref": "#/$keywords/releaseCriteria"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_2"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_2"
+            }
+        },
+        "integrationAccounts/schemas": {
+            "schemaType": {
+                "$ref": "#/$keywords/schemaType"
+            },
+            "targetNamespace": {
+                "$ref": "#/$keywords/targetNamespace"
+            },
+            "documentName": {
+                "$ref": "#/$keywords/documentName"
+            },
+            "fileName": {
+                "$ref": "#/$keywords/fileName"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_3"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_3"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/definition"
+            },
+            "content": {
+                "$ref": "#/$keywords/content"
+            },
+            "contentType": {
+                "$ref": "#/$keywords/contentType"
+            },
+            "contentLink": {
+                "$ref": "#/$keywords/contentLink"
+            }
+        },
+        "integrationAccounts/maps": {
+            "mapType": {
+                "$ref": "#/$keywords/mapType"
+            },
+            "parametersSchema": {
+                "$ref": "#/$keywords/parametersSchema"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_4"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_4"
+            },
+            "content": {
+                "$ref": "#/$keywords/content_2"
+            },
+            "contentType": {
+                "$ref": "#/$keywords/contentType_2"
+            },
+            "contentLink": {
+                "$ref": "#/$keywords/contentLink"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/definition"
+            }
+        },
+        "integrationAccounts/partners": {
+            "partnerType": {
+                "$ref": "#/$keywords/partnerType"
+            },
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_5"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_5"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/definition"
+            },
+            "content": {
+                "$ref": "#/$keywords/content_3"
+            }
+        },
+        "integrationAccounts/agreements": {
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_6"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_6"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/definition"
+            },
+            "agreementType": {
+                "$ref": "#/$keywords/agreementType"
+            },
+            "hostPartner": {
+                "$ref": "#/$keywords/hostPartner"
+            },
+            "guestPartner": {
+                "$ref": "#/$keywords/guestPartner"
+            },
+            "hostIdentity": {
+                "$ref": "#/$keywords/hostIdentity"
+            },
+            "guestIdentity": {
+                "$ref": "#/$keywords/hostIdentity"
+            },
+            "content": {
+                "$ref": "#/$keywords/content_4"
+            }
+        },
+        "integrationAccounts/certificates": {
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_7"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_7"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/definition"
+            },
+            "key": {
+                "$ref": "#/$keywords/key"
+            },
+            "publicCertificate": {
+                "$ref": "#/$keywords/publicCertificate"
+            }
+        },
+        "integrationAccounts/sessions": {
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_8"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_8"
+            },
+            "content": {
+                "$ref": "#/$keywords/definition"
+            }
+        },
+        "integrationAccounts/rosettanetprocessconfigurations": {
+            "createdTime": {
+                "$ref": "#/$keywords/createdTime_9"
+            },
+            "changedTime": {
+                "$ref": "#/$keywords/changedTime_9"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "activitySettings": {
+                "$ref": "#/$keywords/activitySettings"
+            },
+            "processCode": {
+                "$ref": "#/$keywords/processCode"
+            },
+            "processVersion": {
+                "$ref": "#/$keywords/processVersion"
+            },
+            "processName": {
+                "$ref": "#/$keywords/processName"
+            },
+            "initiatorRoleSettings": {
+                "$ref": "#/$keywords/initiatorRoleSettings"
+            },
+            "responderRoleSettings": {
+                "$ref": "#/$keywords/initiatorRoleSettings"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            }
+        }
+    }
+}

@@ -1,0 +1,412 @@
+{
+    "$keywords": {
+        "logicAppResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "triggerUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "created": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "createdBy": {
+            "parameters": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "objectId": {}
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "labels": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "notes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "query": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "queryResult": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "updated": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "incidentInfo": {
+            "parameters": {
+                "incidentId": {
+                    "type": "string"
+                },
+                "severity": {
+                    "enum": [
+                        "Critical",
+                        "High",
+                        "Medium",
+                        "Low",
+                        "Informational"
+                    ]
+                },
+                "title": {
+                    "type": "string"
+                },
+                "relationName": {
+                    "type": "string"
+                }
+            }
+        },
+        "additionalData": {
+            "parameters": {
+                "alertsCount": {
+                    "type": "int"
+                },
+                "bookmarksCount": {
+                    "type": "int"
+                },
+                "commentsCount": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "alertProductNames": {
+                    "$ref": "#/$keywords/alertProductNames"
+                },
+                "tactics": {
+                    "$ref": "#/$keywords/tactics"
+                }
+            }
+        },
+        "alertProductNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "tactics": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "InitialAccess",
+                        "Execution",
+                        "Persistence",
+                        "PrivilegeEscalation",
+                        "DefenseEvasion",
+                        "CredentialAccess",
+                        "Discovery",
+                        "LateralMovement",
+                        "Collection",
+                        "Exfiltration",
+                        "CommandAndControl",
+                        "Impact"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "classification": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Undetermined",
+                        "TruePositive",
+                        "BenignPositive",
+                        "FalsePositive"
+                    ]
+                }
+            }
+        },
+        "classificationComment": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "classificationReason": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "SuspiciousActivity",
+                        "SuspiciousButExpected",
+                        "IncorrectAlertLogic",
+                        "InaccurateData"
+                    ]
+                }
+            }
+        },
+        "createdTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "firstActivityTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "incidentUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "incidentNumber": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "labels_2": {
+            "parameters": {
+                "labelName": {
+                    "type": "string"
+                },
+                "labelType": {
+                    "enum": [
+                        "User",
+                        "System"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "lastActivityTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModifiedTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "owner": {
+            "parameters": {
+                "email": {
+                    "type": "string"
+                },
+                "assignedTo": {
+                    "type": "string"
+                },
+                "objectId": {},
+                "userPrincipalName": {
+                    "type": "string"
+                }
+            }
+        },
+        "relatedAnalyticRuleIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "severity": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "High",
+                        "Medium",
+                        "Low",
+                        "Informational"
+                    ]
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "New",
+                        "Active",
+                        "Closed"
+                    ]
+                }
+            }
+        },
+        "title": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdTimeUtc_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "message": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "author": {
+            "parameters": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "objectId": {},
+                "userPrincipalName": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "workspaces/providers": {
+            "created": {
+                "$ref": "#/$keywords/created"
+            },
+            "createdBy": {
+                "$ref": "#/$keywords/createdBy"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "labels": {
+                "$ref": "#/$keywords/labels_2"
+            },
+            "notes": {
+                "$ref": "#/$keywords/notes"
+            },
+            "query": {
+                "$ref": "#/$keywords/query"
+            },
+            "queryResult": {
+                "$ref": "#/$keywords/queryResult"
+            },
+            "updated": {
+                "$ref": "#/$keywords/updated"
+            },
+            "updatedBy": {
+                "$ref": "#/$keywords/createdBy"
+            },
+            "incidentInfo": {
+                "$ref": "#/$keywords/incidentInfo"
+            },
+            "additionalData": {
+                "$ref": "#/$keywords/additionalData"
+            },
+            "classification": {
+                "$ref": "#/$keywords/classification"
+            },
+            "classificationComment": {
+                "$ref": "#/$keywords/classificationComment"
+            },
+            "classificationReason": {
+                "$ref": "#/$keywords/classificationReason"
+            },
+            "createdTimeUtc": {
+                "$ref": "#/$keywords/createdTimeUtc"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "firstActivityTimeUtc": {
+                "$ref": "#/$keywords/firstActivityTimeUtc"
+            },
+            "incidentUrl": {
+                "$ref": "#/$keywords/incidentUrl"
+            },
+            "incidentNumber": {
+                "$ref": "#/$keywords/incidentNumber"
+            },
+            "lastActivityTimeUtc": {
+                "$ref": "#/$keywords/lastActivityTimeUtc"
+            },
+            "lastModifiedTimeUtc": {
+                "$ref": "#/$keywords/lastModifiedTimeUtc"
+            },
+            "owner": {
+                "$ref": "#/$keywords/owner"
+            },
+            "relatedAnalyticRuleIds": {
+                "$ref": "#/$keywords/relatedAnalyticRuleIds"
+            },
+            "severity": {
+                "$ref": "#/$keywords/severity"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "title": {
+                "$ref": "#/$keywords/title"
+            }
+        },
+        "workspaces/providers/actions": {
+            "logicAppResourceId": {
+                "$ref": "#/$keywords/logicAppResourceId"
+            },
+            "triggerUri": {
+                "$ref": "#/$keywords/triggerUri"
+            }
+        },
+        "workspaces/providers/comments": {
+            "createdTimeUtc": {
+                "$ref": "#/$keywords/createdTimeUtc_2"
+            },
+            "message": {
+                "$ref": "#/$keywords/message"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            }
+        }
+    }
+}

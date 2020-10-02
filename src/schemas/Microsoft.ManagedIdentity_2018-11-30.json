@@ -1,0 +1,32 @@
+{
+    "$keywords": {
+        "tenantId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "principalId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "clientId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "userAssignedIdentities": {
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "principalId": {
+                "$ref": "#/$keywords/principalId"
+            },
+            "clientId": {
+                "$ref": "#/$keywords/clientId"
+            }
+        }
+    }
+}

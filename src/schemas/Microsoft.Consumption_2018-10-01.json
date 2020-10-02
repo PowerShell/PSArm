@@ -1,0 +1,112 @@
+{
+    "$keywords": {
+        "category": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Cost",
+                        "Usage"
+                    ]
+                }
+            }
+        },
+        "amount": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "timeGrain": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Monthly",
+                        "Quarterly",
+                        "Annually"
+                    ]
+                }
+            }
+        },
+        "timePeriod": {
+            "parameters": {
+                "startDate": {},
+                "endDate": {}
+            }
+        },
+        "filters": {
+            "parameters": {
+                "tags": {}
+            },
+            "body": {
+                "resourceGroups": {
+                    "$ref": "#/$keywords/resourceGroups"
+                },
+                "resources": {
+                    "$ref": "#/$keywords/resources"
+                },
+                "meters": {
+                    "$ref": "#/$keywords/meters"
+                }
+            }
+        },
+        "resourceGroups": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "resources": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "meters": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "currentSpend": {
+            "parameters": {
+                "amount": {},
+                "unit": {
+                    "type": "string"
+                }
+            }
+        },
+        "notifications": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "budgets": {
+            "category": {
+                "$ref": "#/$keywords/category"
+            },
+            "amount": {
+                "$ref": "#/$keywords/amount"
+            },
+            "timeGrain": {
+                "$ref": "#/$keywords/timeGrain"
+            },
+            "timePeriod": {
+                "$ref": "#/$keywords/timePeriod"
+            },
+            "filters": {
+                "$ref": "#/$keywords/filters"
+            },
+            "currentSpend": {
+                "$ref": "#/$keywords/currentSpend"
+            },
+            "notifications": {
+                "$ref": "#/$keywords/notifications"
+            }
+        }
+    }
+}

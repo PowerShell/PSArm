@@ -1,0 +1,84 @@
+{
+    "$keywords": {
+        "storageAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceBusRuleId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "metrics": {
+            "parameters": {
+                "timeGrain": {},
+                "enabled": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "retentionPolicy": {
+                    "$ref": "#/$keywords/retentionPolicy"
+                }
+            },
+            "array": true
+        },
+        "retentionPolicy": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "days": {
+                    "type": "int"
+                }
+            }
+        },
+        "logs": {
+            "parameters": {
+                "category": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "retentionPolicy": {
+                    "$ref": "#/$keywords/retentionPolicy"
+                }
+            },
+            "array": true
+        },
+        "workspaceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "diagnosticSettings": {
+            "storageAccountId": {
+                "$ref": "#/$keywords/storageAccountId"
+            },
+            "serviceBusRuleId": {
+                "$ref": "#/$keywords/serviceBusRuleId"
+            },
+            "metrics": {
+                "$ref": "#/$keywords/metrics"
+            },
+            "logs": {
+                "$ref": "#/$keywords/logs"
+            },
+            "workspaceId": {
+                "$ref": "#/$keywords/workspaceId"
+            }
+        }
+    }
+}

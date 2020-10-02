@@ -1,0 +1,1696 @@
+{
+    "$keywords": {
+        "apiEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "webEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantFeatures": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "hubBillingInfo": {
+            "parameters": {
+                "skuName": {
+                    "type": "string"
+                },
+                "minUnits": {
+                    "type": "int"
+                },
+                "maxUnits": {
+                    "type": "int"
+                }
+            }
+        },
+        "attributes": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "localizedAttributes": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "smallImage": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "mediumImage": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "largeImage": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiEntitySetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "entityType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "fields": {
+            "parameters": {
+                "arrayValueSeparator": {
+                    "type": "string"
+                },
+                "fieldName": {
+                    "type": "string"
+                },
+                "fieldType": {
+                    "type": "string"
+                },
+                "isArray": {
+                    "type": "bool"
+                },
+                "isEnum": {
+                    "type": "bool"
+                },
+                "isFlagEnum": {
+                    "type": "bool"
+                },
+                "isImage": {
+                    "type": "bool"
+                },
+                "isLocalizedString": {
+                    "type": "bool"
+                },
+                "isName": {
+                    "type": "bool"
+                },
+                "isRequired": {
+                    "type": "bool"
+                },
+                "propertyId": {
+                    "type": "string"
+                },
+                "schemaItemPropLink": {
+                    "type": "string"
+                },
+                "maxLength": {
+                    "type": "int"
+                },
+                "isAvailableInGraph": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "enumValidValues": {
+                    "$ref": "#/$keywords/enumValidValues"
+                },
+                "dataSourcePrecedenceRules": {
+                    "$ref": "#/$keywords/dataSourcePrecedenceRules"
+                }
+            },
+            "array": true
+        },
+        "enumValidValues": {
+            "parameters": {
+                "value": {
+                    "type": "int"
+                },
+                "localizedValueNames": {}
+            },
+            "array": true
+        },
+        "dataSourcePrecedenceRules": {
+            "parameters": {
+                "precedence": {
+                    "type": "int"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "dataSourceType": {
+                    "enum": [
+                        "Connector",
+                        "LinkInteraction",
+                        "SystemDefault"
+                    ]
+                },
+                "status": {
+                    "enum": [
+                        "None",
+                        "Active",
+                        "Deleted"
+                    ]
+                },
+                "id": {
+                    "type": "int"
+                },
+                "dataSourceReferenceId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "instancesCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "lastChangedUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Provisioning",
+                        "Succeeded",
+                        "Expiring",
+                        "Deleting",
+                        "HumanIntervention",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "schemaItemTypeLink": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "timestampFieldName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "typeName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "strongIds": {
+            "parameters": {
+                "strongIdName": {
+                    "type": "string"
+                },
+                "displayName": {},
+                "description": {}
+            },
+            "body": {
+                "keyPropertyNames": {
+                    "$ref": "#/$keywords/keyPropertyNames"
+                }
+            },
+            "array": true
+        },
+        "keyPropertyNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "idPropertyNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "participantProfiles": {
+            "parameters": {
+                "profileTypeName": {
+                    "type": "string"
+                },
+                "participantName": {
+                    "type": "string"
+                },
+                "displayName": {},
+                "description": {},
+                "role": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "participantPropertyReferences": {
+                    "$ref": "#/$keywords/participantPropertyReferences"
+                }
+            },
+            "array": true
+        },
+        "participantPropertyReferences": {
+            "parameters": {
+                "interactionPropertyName": {
+                    "type": "string"
+                },
+                "profilePropertyName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "primaryParticipantProfilePropertyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataSourcePrecedenceRules_2": {
+            "parameters": {
+                "precedence": {
+                    "type": "int"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "dataSourceType": {
+                    "enum": [
+                        "Connector",
+                        "LinkInteraction",
+                        "SystemDefault"
+                    ]
+                },
+                "status": {
+                    "enum": [
+                        "None",
+                        "Active",
+                        "Deleted"
+                    ]
+                },
+                "id": {
+                    "type": "int"
+                },
+                "dataSourceReferenceId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "isActivity": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataSourceType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Connector",
+                        "LinkInteraction",
+                        "SystemDefault"
+                    ]
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "Active",
+                        "Deleted"
+                    ]
+                }
+            }
+        },
+        "id": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "dataSourceReferenceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cardinality": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "displayName_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "expiryDateTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "fields_2": {
+            "parameters": {
+                "arrayValueSeparator": {
+                    "type": "string"
+                },
+                "fieldName": {
+                    "type": "string"
+                },
+                "fieldType": {
+                    "type": "string"
+                },
+                "isArray": {
+                    "type": "bool"
+                },
+                "isEnum": {
+                    "type": "bool"
+                },
+                "isFlagEnum": {
+                    "type": "bool"
+                },
+                "isImage": {
+                    "type": "bool"
+                },
+                "isLocalizedString": {
+                    "type": "bool"
+                },
+                "isName": {
+                    "type": "bool"
+                },
+                "isRequired": {
+                    "type": "bool"
+                },
+                "propertyId": {
+                    "type": "string"
+                },
+                "schemaItemPropLink": {
+                    "type": "string"
+                },
+                "maxLength": {
+                    "type": "int"
+                },
+                "isAvailableInGraph": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "enumValidValues": {
+                    "$ref": "#/$keywords/enumValidValues"
+                },
+                "dataSourcePrecedenceRules": {
+                    "$ref": "#/$keywords/dataSourcePrecedenceRules"
+                }
+            },
+            "array": true
+        },
+        "lookupMappings": {
+            "body": {
+                "fieldMappings": {
+                    "$ref": "#/$keywords/fieldMappings"
+                }
+            },
+            "array": true
+        },
+        "fieldMappings": {
+            "parameters": {
+                "profileFieldName": {
+                    "type": "string"
+                },
+                "relatedProfileKeyProperty": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "profileType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "relationshipName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "relatedProfileType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "relationshipGuidId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "interactionType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "linkName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "mappings": {
+            "parameters": {
+                "interactionFieldName": {
+                    "type": "string"
+                },
+                "linkType": {},
+                "relationshipFieldName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "profilePropertyReferences": {
+            "parameters": {
+                "interactionPropertyName": {
+                    "type": "string"
+                },
+                "profilePropertyName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "relatedProfilePropertyReferences": {
+            "parameters": {
+                "interactionPropertyName": {
+                    "type": "string"
+                },
+                "profilePropertyName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "relationshipName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "relationshipGuidId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantId_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "permissions": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "primaryKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "secondaryKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "connectorId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "connectorName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "connectorType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "CRM",
+                        "AzureBlob",
+                        "Salesforce",
+                        "ExchangeOnline",
+                        "Outbound"
+                    ]
+                }
+            }
+        },
+        "displayName_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "connectorProperties": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "created": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "tenantId_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isInternal": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "connectorName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "created_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "entityTypeName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "connectorMappingName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataFormatId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "mappingProperties": {
+            "parameters": {
+                "folderPath": {
+                    "type": "string"
+                },
+                "fileFilter": {
+                    "type": "string"
+                },
+                "hasHeader": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "errorManagement": {
+                    "$ref": "#/$keywords/errorManagement"
+                },
+                "format": {
+                    "$ref": "#/$keywords/format"
+                },
+                "availability": {
+                    "$ref": "#/$keywords/availability"
+                },
+                "structure": {
+                    "$ref": "#/$keywords/structure"
+                },
+                "completeOperation": {
+                    "$ref": "#/$keywords/completeOperation"
+                }
+            }
+        },
+        "errorManagement": {
+            "parameters": {
+                "errorManagementType": {},
+                "errorLimit": {
+                    "type": "int"
+                }
+            }
+        },
+        "format": {
+            "parameters": {
+                "formatType": {},
+                "columnDelimiter": {
+                    "type": "string"
+                },
+                "acceptLanguage": {
+                    "type": "string"
+                },
+                "quoteCharacter": {
+                    "type": "string"
+                },
+                "quoteEscapeCharacter": {
+                    "type": "string"
+                },
+                "arraySeparator": {
+                    "type": "string"
+                }
+            }
+        },
+        "availability": {
+            "parameters": {
+                "frequency": {},
+                "interval": {
+                    "type": "int"
+                }
+            }
+        },
+        "structure": {
+            "parameters": {
+                "propertyName": {
+                    "type": "string"
+                },
+                "columnName": {
+                    "type": "string"
+                },
+                "customFormatSpecifier": {
+                    "type": "string"
+                },
+                "isEncrypted": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "completeOperation": {
+            "parameters": {
+                "completionOperationType": {},
+                "destinationFolder": {
+                    "type": "string"
+                }
+            }
+        },
+        "nextRunTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "runId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "state_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "tenantId_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "entityTypeName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantId_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "kpiName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_6": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_6": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "calculationWindow": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "calculationWindowFieldName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "function": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "expression": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "unit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "filter": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "groupBy": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "groupByMetadata": {
+            "parameters": {
+                "displayName": {},
+                "fieldName": {
+                    "type": "string"
+                },
+                "fieldType": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "participantProfilesMetadata": {
+            "parameters": {
+                "typeName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "thresHolds": {
+            "parameters": {
+                "lowerLimit": {},
+                "upperLimit": {},
+                "increasingKpi": {
+                    "type": "bool"
+                }
+            }
+        },
+        "aliases": {
+            "parameters": {
+                "aliasName": {
+                    "type": "string"
+                },
+                "expression": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "extracts": {
+            "parameters": {
+                "extractName": {
+                    "type": "string"
+                },
+                "expression": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "viewName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantId_7": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_7": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "definition": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "changed": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "created_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "tenantId_8": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "linkName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sourceInteractionType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetProfileType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_8": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_7": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "mappings_2": {
+            "parameters": {
+                "interactionTypePropertyName": {
+                    "type": "string"
+                },
+                "profileTypePropertyName": {
+                    "type": "string"
+                },
+                "isProfileTypeId": {
+                    "type": "bool"
+                },
+                "linkType": {}
+            },
+            "array": true
+        },
+        "participantPropertyReferences_2": {
+            "parameters": {
+                "interactionPropertyName": {
+                    "type": "string"
+                },
+                "profilePropertyName": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "referenceOnly": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "operationType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "tenantId_9": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "assignmentName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_9": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_8": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "role": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "principals": {
+            "parameters": {
+                "principalId": {
+                    "type": "string"
+                },
+                "principalType": {
+                    "type": "string"
+                },
+                "principalMetadata": {}
+            },
+            "array": true
+        },
+        "profiles": {
+            "body": {
+                "elements": {
+                    "$ref": "#/$keywords/elements"
+                },
+                "exceptions": {
+                    "$ref": "#/$keywords/exceptions"
+                }
+            }
+        },
+        "elements": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "exceptions": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "hubs": {
+            "apiEndpoint": {
+                "$ref": "#/$keywords/apiEndpoint"
+            },
+            "webEndpoint": {
+                "$ref": "#/$keywords/webEndpoint"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "tenantFeatures": {
+                "$ref": "#/$keywords/tenantFeatures"
+            },
+            "hubBillingInfo": {
+                "$ref": "#/$keywords/hubBillingInfo"
+            }
+        },
+        "hubs/profiles": {
+            "attributes": {
+                "$ref": "#/$keywords/attributes"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "localizedAttributes": {
+                "$ref": "#/$keywords/localizedAttributes"
+            },
+            "smallImage": {
+                "$ref": "#/$keywords/smallImage"
+            },
+            "mediumImage": {
+                "$ref": "#/$keywords/mediumImage"
+            },
+            "largeImage": {
+                "$ref": "#/$keywords/largeImage"
+            },
+            "apiEntitySetName": {
+                "$ref": "#/$keywords/apiEntitySetName"
+            },
+            "entityType": {
+                "$ref": "#/$keywords/entityType"
+            },
+            "fields": {
+                "$ref": "#/$keywords/fields"
+            },
+            "instancesCount": {
+                "$ref": "#/$keywords/instancesCount"
+            },
+            "lastChangedUtc": {
+                "$ref": "#/$keywords/lastChangedUtc"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "schemaItemTypeLink": {
+                "$ref": "#/$keywords/schemaItemTypeLink"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "timestampFieldName": {
+                "$ref": "#/$keywords/timestampFieldName"
+            },
+            "typeName": {
+                "$ref": "#/$keywords/typeName"
+            },
+            "strongIds": {
+                "$ref": "#/$keywords/strongIds"
+            }
+        },
+        "hubs/interactions": {
+            "attributes": {
+                "$ref": "#/$keywords/attributes"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "localizedAttributes": {
+                "$ref": "#/$keywords/localizedAttributes"
+            },
+            "smallImage": {
+                "$ref": "#/$keywords/smallImage"
+            },
+            "mediumImage": {
+                "$ref": "#/$keywords/mediumImage"
+            },
+            "largeImage": {
+                "$ref": "#/$keywords/largeImage"
+            },
+            "apiEntitySetName": {
+                "$ref": "#/$keywords/apiEntitySetName"
+            },
+            "entityType": {
+                "$ref": "#/$keywords/entityType"
+            },
+            "fields": {
+                "$ref": "#/$keywords/fields"
+            },
+            "instancesCount": {
+                "$ref": "#/$keywords/instancesCount"
+            },
+            "lastChangedUtc": {
+                "$ref": "#/$keywords/lastChangedUtc"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "schemaItemTypeLink": {
+                "$ref": "#/$keywords/schemaItemTypeLink"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            },
+            "timestampFieldName": {
+                "$ref": "#/$keywords/timestampFieldName"
+            },
+            "typeName": {
+                "$ref": "#/$keywords/typeName"
+            },
+            "idPropertyNames": {
+                "$ref": "#/$keywords/idPropertyNames"
+            },
+            "participantProfiles": {
+                "$ref": "#/$keywords/participantProfiles"
+            },
+            "primaryParticipantProfilePropertyName": {
+                "$ref": "#/$keywords/primaryParticipantProfilePropertyName"
+            },
+            "dataSourcePrecedenceRules": {
+                "$ref": "#/$keywords/dataSourcePrecedenceRules_2"
+            },
+            "isActivity": {
+                "$ref": "#/$keywords/isActivity"
+            },
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "dataSourceType": {
+                "$ref": "#/$keywords/dataSourceType"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "dataSourceReferenceId": {
+                "$ref": "#/$keywords/dataSourceReferenceId"
+            }
+        },
+        "hubs/relationships": {
+            "cardinality": {
+                "$ref": "#/$keywords/cardinality"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_2"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            },
+            "expiryDateTimeUtc": {
+                "$ref": "#/$keywords/expiryDateTimeUtc"
+            },
+            "fields": {
+                "$ref": "#/$keywords/fields_2"
+            },
+            "lookupMappings": {
+                "$ref": "#/$keywords/lookupMappings"
+            },
+            "profileType": {
+                "$ref": "#/$keywords/profileType"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "relationshipName": {
+                "$ref": "#/$keywords/relationshipName"
+            },
+            "relatedProfileType": {
+                "$ref": "#/$keywords/relatedProfileType"
+            },
+            "relationshipGuidId": {
+                "$ref": "#/$keywords/relationshipGuidId"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_2"
+            }
+        },
+        "hubs/relationshipLinks": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName_3"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_3"
+            },
+            "interactionType": {
+                "$ref": "#/$keywords/interactionType"
+            },
+            "linkName": {
+                "$ref": "#/$keywords/linkName"
+            },
+            "mappings": {
+                "$ref": "#/$keywords/mappings"
+            },
+            "profilePropertyReferences": {
+                "$ref": "#/$keywords/profilePropertyReferences"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "relatedProfilePropertyReferences": {
+                "$ref": "#/$keywords/relatedProfilePropertyReferences"
+            },
+            "relationshipName": {
+                "$ref": "#/$keywords/relationshipName_2"
+            },
+            "relationshipGuidId": {
+                "$ref": "#/$keywords/relationshipGuidId_2"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_3"
+            }
+        },
+        "hubs/authorizationPolicies": {
+            "policyName": {
+                "$ref": "#/$keywords/policyName"
+            },
+            "permissions": {
+                "$ref": "#/$keywords/permissions"
+            },
+            "primaryKey": {
+                "$ref": "#/$keywords/primaryKey"
+            },
+            "secondaryKey": {
+                "$ref": "#/$keywords/secondaryKey"
+            }
+        },
+        "hubs/connectors": {
+            "connectorId": {
+                "$ref": "#/$keywords/connectorId"
+            },
+            "connectorName": {
+                "$ref": "#/$keywords/connectorName"
+            },
+            "connectorType": {
+                "$ref": "#/$keywords/connectorType"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_4"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_4"
+            },
+            "connectorProperties": {
+                "$ref": "#/$keywords/connectorProperties"
+            },
+            "created": {
+                "$ref": "#/$keywords/created"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_4"
+            },
+            "isInternal": {
+                "$ref": "#/$keywords/isInternal"
+            }
+        },
+        "hubs/connectors/mappings": {
+            "connectorName": {
+                "$ref": "#/$keywords/connectorName_2"
+            },
+            "connectorType": {
+                "$ref": "#/$keywords/connectorType"
+            },
+            "created": {
+                "$ref": "#/$keywords/created_2"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified_2"
+            },
+            "entityType": {
+                "$ref": "#/$keywords/entityType"
+            },
+            "entityTypeName": {
+                "$ref": "#/$keywords/entityTypeName"
+            },
+            "connectorMappingName": {
+                "$ref": "#/$keywords/connectorMappingName"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_5"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_5"
+            },
+            "dataFormatId": {
+                "$ref": "#/$keywords/dataFormatId"
+            },
+            "mappingProperties": {
+                "$ref": "#/$keywords/mappingProperties"
+            },
+            "nextRunTime": {
+                "$ref": "#/$keywords/nextRunTime"
+            },
+            "runId": {
+                "$ref": "#/$keywords/runId"
+            },
+            "state": {
+                "$ref": "#/$keywords/state_2"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_5"
+            }
+        },
+        "hubs/kpi": {
+            "entityType": {
+                "$ref": "#/$keywords/entityType"
+            },
+            "entityTypeName": {
+                "$ref": "#/$keywords/entityTypeName_2"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_6"
+            },
+            "kpiName": {
+                "$ref": "#/$keywords/kpiName"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_6"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_6"
+            },
+            "calculationWindow": {
+                "$ref": "#/$keywords/calculationWindow"
+            },
+            "calculationWindowFieldName": {
+                "$ref": "#/$keywords/calculationWindowFieldName"
+            },
+            "function": {
+                "$ref": "#/$keywords/function"
+            },
+            "expression": {
+                "$ref": "#/$keywords/expression"
+            },
+            "unit": {
+                "$ref": "#/$keywords/unit"
+            },
+            "filter": {
+                "$ref": "#/$keywords/filter"
+            },
+            "groupBy": {
+                "$ref": "#/$keywords/groupBy"
+            },
+            "groupByMetadata": {
+                "$ref": "#/$keywords/groupByMetadata"
+            },
+            "participantProfilesMetadata": {
+                "$ref": "#/$keywords/participantProfilesMetadata"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "thresHolds": {
+                "$ref": "#/$keywords/thresHolds"
+            },
+            "aliases": {
+                "$ref": "#/$keywords/aliases"
+            },
+            "extracts": {
+                "$ref": "#/$keywords/extracts"
+            }
+        },
+        "hubs/views": {
+            "viewName": {
+                "$ref": "#/$keywords/viewName"
+            },
+            "userId": {
+                "$ref": "#/$keywords/userId"
+            },
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_7"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_7"
+            },
+            "definition": {
+                "$ref": "#/$keywords/definition"
+            },
+            "changed": {
+                "$ref": "#/$keywords/changed"
+            },
+            "created": {
+                "$ref": "#/$keywords/created_3"
+            }
+        },
+        "hubs/links": {
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_8"
+            },
+            "linkName": {
+                "$ref": "#/$keywords/linkName_2"
+            },
+            "sourceInteractionType": {
+                "$ref": "#/$keywords/sourceInteractionType"
+            },
+            "targetProfileType": {
+                "$ref": "#/$keywords/targetProfileType"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_8"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_7"
+            },
+            "mappings": {
+                "$ref": "#/$keywords/mappings_2"
+            },
+            "participantPropertyReferences": {
+                "$ref": "#/$keywords/participantPropertyReferences_2"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "referenceOnly": {
+                "$ref": "#/$keywords/referenceOnly"
+            },
+            "operationType": {
+                "$ref": "#/$keywords/operationType"
+            }
+        },
+        "hubs/roleAssignments": {
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId_9"
+            },
+            "assignmentName": {
+                "$ref": "#/$keywords/assignmentName"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_9"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_8"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "role": {
+                "$ref": "#/$keywords/role"
+            },
+            "principals": {
+                "$ref": "#/$keywords/principals"
+            },
+            "profiles": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "interactions": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "links": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "kpis": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "sasPolicies": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "connectors": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "views": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "relationshipLinks": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "relationships": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "widgetTypes": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "roleAssignments": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "conflationPolicies": {
+                "$ref": "#/$keywords/profiles"
+            },
+            "segments": {
+                "$ref": "#/$keywords/profiles"
+            }
+        }
+    }
+}

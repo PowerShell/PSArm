@@ -1,0 +1,2212 @@
+{
+    "$keywords": {
+        "policyContent": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentFormat": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "xml",
+                        "xml-link",
+                        "rawxml",
+                        "rawxml-link"
+                    ]
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authenticationSettings": {
+            "parameters": {
+                "subscriptionKeyRequired": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "oAuth2": {
+                    "$ref": "#/$keywords/oAuth2"
+                },
+                "openid": {
+                    "$ref": "#/$keywords/openid"
+                }
+            }
+        },
+        "oAuth2": {
+            "parameters": {
+                "authorizationServerId": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                }
+            }
+        },
+        "openid": {
+            "parameters": {
+                "openidProviderId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "bearerTokenSendingMethods": {
+                    "$ref": "#/$keywords/bearerTokenSendingMethods"
+                }
+            }
+        },
+        "bearerTokenSendingMethods": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "authorizationHeader",
+                        "query"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "subscriptionKeyParameterNames": {
+            "parameters": {
+                "header": {
+                    "type": "string"
+                },
+                "query": {
+                    "type": "string"
+                }
+            }
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "http",
+                        "soap"
+                    ]
+                }
+            }
+        },
+        "apiRevision": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isCurrent": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isOnline": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "apiRevisionDescription": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiVersionDescription": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiVersionSetId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "path": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "protocols": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "apiVersionSet": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "versioningScheme": {
+                    "enum": [
+                        "Segment",
+                        "Query",
+                        "Header"
+                    ]
+                },
+                "versionQueryName": {
+                    "type": "string"
+                },
+                "versionHeaderName": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentValue": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentFormat_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "wadl-xml",
+                        "wadl-link-json",
+                        "swagger-json",
+                        "swagger-link-json",
+                        "wsdl",
+                        "wsdl-link"
+                    ]
+                }
+            }
+        },
+        "wsdlSelector": {
+            "parameters": {
+                "wsdlServiceName": {
+                    "type": "string"
+                },
+                "wsdlEndpointName": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "http",
+                        "soap"
+                    ]
+                }
+            }
+        },
+        "apiId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdDateTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "updatedDateTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "notes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "templateParameters": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            },
+            "array": true
+        },
+        "values": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "request": {
+            "parameters": {
+                "description": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "queryParameters": {
+                    "$ref": "#/$keywords/queryParameters"
+                },
+                "headers": {
+                    "$ref": "#/$keywords/headers"
+                },
+                "representations": {
+                    "$ref": "#/$keywords/representations"
+                }
+            }
+        },
+        "queryParameters": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            },
+            "array": true
+        },
+        "headers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            },
+            "array": true
+        },
+        "representations": {
+            "parameters": {
+                "contentType": {
+                    "type": "string"
+                },
+                "sample": {
+                    "type": "string"
+                },
+                "schemaId": {
+                    "type": "string"
+                },
+                "typeName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "formParameters": {
+                    "$ref": "#/$keywords/formParameters"
+                }
+            },
+            "array": true
+        },
+        "formParameters": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            },
+            "array": true
+        },
+        "responses": {
+            "parameters": {
+                "statusCode": {
+                    "type": "int"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "representations": {
+                    "$ref": "#/$keywords/representations_2"
+                },
+                "headers": {
+                    "$ref": "#/$keywords/headers_2"
+                }
+            },
+            "array": true
+        },
+        "representations_2": {
+            "parameters": {
+                "contentType": {
+                    "type": "string"
+                },
+                "sample": {
+                    "type": "string"
+                },
+                "schemaId": {
+                    "type": "string"
+                },
+                "typeName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "formParameters": {
+                    "$ref": "#/$keywords/formParameters"
+                }
+            },
+            "array": true
+        },
+        "headers_2": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            },
+            "array": true
+        },
+        "policies": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "method": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "urlTemplate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "value": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "createdDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "proposed",
+                        "open",
+                        "removed",
+                        "resolved",
+                        "closed"
+                    ]
+                }
+            }
+        },
+        "apiId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "title": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "text": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdDate_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "userId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "title_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentFormat_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "content": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizationMethods": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "clientAuthenticationMethod": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Basic",
+                        "Body"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "tokenBodyParameters": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "tokenEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "supportState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "defaultScope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "bearerTokenSendingMethods_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "authorizationHeader",
+                        "query"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "clientSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceOwnerUsername": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceOwnerPassword": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientRegistrationEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizationEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "grantTypes": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "authorizationCode",
+                        "implicit",
+                        "resourceOwnerPassword",
+                        "clientCredentials"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "clientId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "title_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceFabricCluster": {
+            "parameters": {
+                "clientCertificatethumbprint": {
+                    "type": "string"
+                },
+                "maxPartitionResolutionRetries": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "managementEndpoints": {
+                    "$ref": "#/$keywords/managementEndpoints"
+                },
+                "serverCertificateThumbprints": {
+                    "$ref": "#/$keywords/serverCertificateThumbprints"
+                },
+                "serverX509Names": {
+                    "$ref": "#/$keywords/serverX509Names"
+                }
+            }
+        },
+        "managementEndpoints": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "serverCertificateThumbprints": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "serverX509Names": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "issuerCertificateThumbprint": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "credentials": {
+            "parameters": {
+                "query": {},
+                "header": {}
+            },
+            "body": {
+                "certificate": {
+                    "$ref": "#/$keywords/certificate"
+                },
+                "authorization": {
+                    "$ref": "#/$keywords/authorization"
+                }
+            }
+        },
+        "certificate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "authorization": {
+            "parameters": {
+                "scheme": {
+                    "type": "string"
+                },
+                "parameter": {
+                    "type": "string"
+                }
+            }
+        },
+        "proxy": {
+            "parameters": {
+                "url": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "tls": {
+            "parameters": {
+                "validateCertificateChain": {
+                    "type": "bool"
+                },
+                "validateCertificateName": {
+                    "type": "bool"
+                }
+            }
+        },
+        "url": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "protocol": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "http",
+                        "soap"
+                    ]
+                }
+            }
+        },
+        "data": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "password": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "notificationSenderEmail": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetProvisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdAtUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "gatewayUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "gatewayRegionalUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "portalUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "managementApiUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scmUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostnameConfigurations": {
+            "parameters": {
+                "type": {},
+                "hostName": {
+                    "type": "string"
+                },
+                "keyVaultId": {
+                    "type": "string"
+                },
+                "encodedCertificate": {
+                    "type": "string"
+                },
+                "certificatePassword": {
+                    "type": "string"
+                },
+                "defaultSslBinding": {
+                    "type": "bool"
+                },
+                "negotiateClientCertificate": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "certificate": {
+                    "$ref": "#/$keywords/certificate_2"
+                }
+            },
+            "array": true
+        },
+        "certificate_2": {
+            "parameters": {
+                "expiry": {},
+                "thumbprint": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                }
+            }
+        },
+        "publicIPAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "privateIPAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualNetworkConfiguration": {
+            "parameters": {
+                "vnetid": {
+                    "type": "string"
+                },
+                "subnetname": {
+                    "type": "string"
+                },
+                "subnetResourceId": {
+                    "type": "string",
+                    "pattern": "^/subscriptions/[^/]*/resourceGroups/[^/]*/providers/Microsoft.(ClassicNetwork|Network)/virtualNetworks/[^/]*/subnets/[^/]*$"
+                }
+            }
+        },
+        "additionalLocations": {
+            "parameters": {
+                "location": {
+                    "type": "string"
+                },
+                "gatewayRegionalUrl": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "sku": {
+                    "$ref": "#/$keywords/sku"
+                },
+                "publicIPAddresses": {
+                    "$ref": "#/$keywords/publicIPAddresses_2"
+                },
+                "privateIPAddresses": {
+                    "$ref": "#/$keywords/privateIPAddresses_2"
+                },
+                "virtualNetworkConfiguration": {
+                    "$ref": "#/$keywords/virtualNetworkConfiguration"
+                }
+            },
+            "array": true
+        },
+        "sku": {
+            "parameters": {
+                "name": {
+                    "enum": [
+                        "Developer",
+                        "Standard",
+                        "Premium",
+                        "Basic"
+                    ]
+                },
+                "capacity": {
+                    "type": "int"
+                }
+            }
+        },
+        "publicIPAddresses_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "privateIPAddresses_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "customProperties": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "certificates": {
+            "parameters": {
+                "encodedCertificate": {
+                    "type": "string"
+                },
+                "certificatePassword": {
+                    "type": "string"
+                },
+                "storeName": {
+                    "enum": [
+                        "CertificateAuthority",
+                        "Root"
+                    ]
+                }
+            },
+            "body": {
+                "certificate": {
+                    "$ref": "#/$keywords/certificate_2"
+                }
+            },
+            "array": true
+        },
+        "virtualNetworkType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "External",
+                        "Internal"
+                    ]
+                }
+            }
+        },
+        "publisherEmail": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publisherName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subject": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "title_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "body": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "parameters": {
+            "parameters": {
+                "name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9-._]+$"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9-._]+$"
+                }
+            },
+            "array": true
+        },
+        "displayName_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_7": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "type_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "externalId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "type_3": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "facebook",
+                        "google",
+                        "microsoft",
+                        "twitter",
+                        "aad",
+                        "aadB2C"
+                    ]
+                }
+            }
+        },
+        "allowedTenants": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "signupPolicyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "signinPolicyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "profileEditingPolicyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "passwordResetPolicyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientSecret_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "loggerType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "azureEventHub",
+                        "applicationInsights"
+                    ]
+                }
+            }
+        },
+        "description_8": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "credentials_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "isBuffered": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "displayName_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_9": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "metadataEndpoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientId_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientSecret_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enabled_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "termsOfService": {
+            "parameters": {
+                "text": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "bool"
+                },
+                "consentRequired": {
+                    "type": "bool"
+                }
+            }
+        },
+        "url_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "validationKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptions": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "userRegistration": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "description_10": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "terms": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionRequired": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "approvalRequired": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "subscriptionsLimit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "state_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "displayName_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tags": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "secret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "displayName_7": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9-._]+$"
+                }
+            }
+        },
+        "value_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "userId_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "productId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_8": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "primaryKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "secondaryKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "state_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "displayName_9": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_11": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "externalDocsUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "externalDocsDescription": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "state_4": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "active",
+                        "blocked",
+                        "pending",
+                        "deleted"
+                    ]
+                }
+            }
+        },
+        "note": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "identities": {
+            "parameters": {
+                "provider": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "email": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "firstName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "password_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "confirmation": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "signup",
+                        "invite"
+                    ]
+                }
+            }
+        },
+        "description_12": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "versionQueryName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "versionHeaderName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName_10": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "versioningScheme": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Segment",
+                        "Query",
+                        "Header"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "service/policies": {
+            "policyContent": {
+                "$ref": "#/$keywords/policyContent"
+            },
+            "contentFormat": {
+                "$ref": "#/$keywords/contentFormat"
+            }
+        },
+        "service/apis": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "authenticationSettings": {
+                "$ref": "#/$keywords/authenticationSettings"
+            },
+            "subscriptionKeyParameterNames": {
+                "$ref": "#/$keywords/subscriptionKeyParameterNames"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            },
+            "apiRevision": {
+                "$ref": "#/$keywords/apiRevision"
+            },
+            "apiVersion": {
+                "$ref": "#/$keywords/apiVersion"
+            },
+            "isCurrent": {
+                "$ref": "#/$keywords/isCurrent"
+            },
+            "isOnline": {
+                "$ref": "#/$keywords/isOnline"
+            },
+            "apiRevisionDescription": {
+                "$ref": "#/$keywords/apiRevisionDescription"
+            },
+            "apiVersionDescription": {
+                "$ref": "#/$keywords/apiVersionDescription"
+            },
+            "apiVersionSetId": {
+                "$ref": "#/$keywords/apiVersionSetId"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "serviceUrl": {
+                "$ref": "#/$keywords/serviceUrl"
+            },
+            "path": {
+                "$ref": "#/$keywords/path"
+            },
+            "protocols": {
+                "$ref": "#/$keywords/protocols"
+            },
+            "apiVersionSet": {
+                "$ref": "#/$keywords/apiVersionSet"
+            },
+            "contentValue": {
+                "$ref": "#/$keywords/contentValue"
+            },
+            "contentFormat": {
+                "$ref": "#/$keywords/contentFormat_2"
+            },
+            "wsdlSelector": {
+                "$ref": "#/$keywords/wsdlSelector"
+            },
+            "apiType": {
+                "$ref": "#/$keywords/apiType"
+            }
+        },
+        "service/apis/releases": {
+            "apiId": {
+                "$ref": "#/$keywords/apiId"
+            },
+            "createdDateTime": {
+                "$ref": "#/$keywords/createdDateTime"
+            },
+            "updatedDateTime": {
+                "$ref": "#/$keywords/updatedDateTime"
+            },
+            "notes": {
+                "$ref": "#/$keywords/notes"
+            }
+        },
+        "service/apis/operations": {
+            "templateParameters": {
+                "$ref": "#/$keywords/templateParameters"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            },
+            "request": {
+                "$ref": "#/$keywords/request"
+            },
+            "responses": {
+                "$ref": "#/$keywords/responses"
+            },
+            "policies": {
+                "$ref": "#/$keywords/policies"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_2"
+            },
+            "method": {
+                "$ref": "#/$keywords/method"
+            },
+            "urlTemplate": {
+                "$ref": "#/$keywords/urlTemplate"
+            }
+        },
+        "service/apis/operations/policies": {
+            "policyContent": {
+                "$ref": "#/$keywords/policyContent"
+            },
+            "contentFormat": {
+                "$ref": "#/$keywords/contentFormat"
+            }
+        },
+        "service/apis/policies": {
+            "policyContent": {
+                "$ref": "#/$keywords/policyContent"
+            },
+            "contentFormat": {
+                "$ref": "#/$keywords/contentFormat"
+            }
+        },
+        "service/apis/schemas": {
+            "contentType": {
+                "$ref": "#/$keywords/contentType"
+            },
+            "value": {
+                "$ref": "#/$keywords/value"
+            }
+        },
+        "service/apis/diagnostics": {
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            }
+        },
+        "service/apis/issues": {
+            "createdDate": {
+                "$ref": "#/$keywords/createdDate"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "apiId": {
+                "$ref": "#/$keywords/apiId_2"
+            },
+            "title": {
+                "$ref": "#/$keywords/title"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_3"
+            },
+            "userId": {
+                "$ref": "#/$keywords/userId"
+            }
+        },
+        "service/apis/issues/comments": {
+            "text": {
+                "$ref": "#/$keywords/text"
+            },
+            "createdDate": {
+                "$ref": "#/$keywords/createdDate_2"
+            },
+            "userId": {
+                "$ref": "#/$keywords/userId_2"
+            }
+        },
+        "service/apis/issues/attachments": {
+            "title": {
+                "$ref": "#/$keywords/title_2"
+            },
+            "contentFormat": {
+                "$ref": "#/$keywords/contentFormat_3"
+            },
+            "content": {
+                "$ref": "#/$keywords/content"
+            }
+        },
+        "service/authorizationServers": {
+            "description": {
+                "$ref": "#/$keywords/description_4"
+            },
+            "authorizationMethods": {
+                "$ref": "#/$keywords/authorizationMethods"
+            },
+            "clientAuthenticationMethod": {
+                "$ref": "#/$keywords/clientAuthenticationMethod"
+            },
+            "tokenBodyParameters": {
+                "$ref": "#/$keywords/tokenBodyParameters"
+            },
+            "tokenEndpoint": {
+                "$ref": "#/$keywords/tokenEndpoint"
+            },
+            "supportState": {
+                "$ref": "#/$keywords/supportState"
+            },
+            "defaultScope": {
+                "$ref": "#/$keywords/defaultScope"
+            },
+            "bearerTokenSendingMethods": {
+                "$ref": "#/$keywords/bearerTokenSendingMethods_2"
+            },
+            "clientSecret": {
+                "$ref": "#/$keywords/clientSecret"
+            },
+            "resourceOwnerUsername": {
+                "$ref": "#/$keywords/resourceOwnerUsername"
+            },
+            "resourceOwnerPassword": {
+                "$ref": "#/$keywords/resourceOwnerPassword"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_3"
+            },
+            "clientRegistrationEndpoint": {
+                "$ref": "#/$keywords/clientRegistrationEndpoint"
+            },
+            "authorizationEndpoint": {
+                "$ref": "#/$keywords/authorizationEndpoint"
+            },
+            "grantTypes": {
+                "$ref": "#/$keywords/grantTypes"
+            },
+            "clientId": {
+                "$ref": "#/$keywords/clientId"
+            }
+        },
+        "service/backends": {
+            "title": {
+                "$ref": "#/$keywords/title_3"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_5"
+            },
+            "resourceId": {
+                "$ref": "#/$keywords/resourceId"
+            },
+            "serviceFabricCluster": {
+                "$ref": "#/$keywords/serviceFabricCluster"
+            },
+            "credentials": {
+                "$ref": "#/$keywords/credentials"
+            },
+            "proxy": {
+                "$ref": "#/$keywords/proxy"
+            },
+            "tls": {
+                "$ref": "#/$keywords/tls"
+            },
+            "url": {
+                "$ref": "#/$keywords/url"
+            },
+            "protocol": {
+                "$ref": "#/$keywords/protocol"
+            }
+        },
+        "service/certificates": {
+            "data": {
+                "$ref": "#/$keywords/data"
+            },
+            "password": {
+                "$ref": "#/$keywords/password"
+            }
+        },
+        "service": {
+            "notificationSenderEmail": {
+                "$ref": "#/$keywords/notificationSenderEmail"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "targetProvisioningState": {
+                "$ref": "#/$keywords/targetProvisioningState"
+            },
+            "createdAtUtc": {
+                "$ref": "#/$keywords/createdAtUtc"
+            },
+            "gatewayUrl": {
+                "$ref": "#/$keywords/gatewayUrl"
+            },
+            "gatewayRegionalUrl": {
+                "$ref": "#/$keywords/gatewayRegionalUrl"
+            },
+            "portalUrl": {
+                "$ref": "#/$keywords/portalUrl"
+            },
+            "managementApiUrl": {
+                "$ref": "#/$keywords/managementApiUrl"
+            },
+            "scmUrl": {
+                "$ref": "#/$keywords/scmUrl"
+            },
+            "hostnameConfigurations": {
+                "$ref": "#/$keywords/hostnameConfigurations"
+            },
+            "publicIPAddresses": {
+                "$ref": "#/$keywords/publicIPAddresses"
+            },
+            "privateIPAddresses": {
+                "$ref": "#/$keywords/privateIPAddresses"
+            },
+            "virtualNetworkConfiguration": {
+                "$ref": "#/$keywords/virtualNetworkConfiguration"
+            },
+            "additionalLocations": {
+                "$ref": "#/$keywords/additionalLocations"
+            },
+            "customProperties": {
+                "$ref": "#/$keywords/customProperties"
+            },
+            "certificates": {
+                "$ref": "#/$keywords/certificates"
+            },
+            "virtualNetworkType": {
+                "$ref": "#/$keywords/virtualNetworkType"
+            },
+            "publisherEmail": {
+                "$ref": "#/$keywords/publisherEmail"
+            },
+            "publisherName": {
+                "$ref": "#/$keywords/publisherName"
+            }
+        },
+        "service/diagnostics": {
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            }
+        },
+        "service/templates": {
+            "subject": {
+                "$ref": "#/$keywords/subject"
+            },
+            "title": {
+                "$ref": "#/$keywords/title_4"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_6"
+            },
+            "body": {
+                "$ref": "#/$keywords/body"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/parameters"
+            }
+        },
+        "service/groups": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName_4"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_7"
+            },
+            "type": {
+                "$ref": "#/$keywords/type_2"
+            },
+            "externalId": {
+                "$ref": "#/$keywords/externalId"
+            }
+        },
+        "service/identityProviders": {
+            "type": {
+                "$ref": "#/$keywords/type_3"
+            },
+            "allowedTenants": {
+                "$ref": "#/$keywords/allowedTenants"
+            },
+            "signupPolicyName": {
+                "$ref": "#/$keywords/signupPolicyName"
+            },
+            "signinPolicyName": {
+                "$ref": "#/$keywords/signinPolicyName"
+            },
+            "profileEditingPolicyName": {
+                "$ref": "#/$keywords/profileEditingPolicyName"
+            },
+            "passwordResetPolicyName": {
+                "$ref": "#/$keywords/passwordResetPolicyName"
+            },
+            "clientId": {
+                "$ref": "#/$keywords/clientId_2"
+            },
+            "clientSecret": {
+                "$ref": "#/$keywords/clientSecret_2"
+            }
+        },
+        "service/loggers": {
+            "loggerType": {
+                "$ref": "#/$keywords/loggerType"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_8"
+            },
+            "credentials": {
+                "$ref": "#/$keywords/credentials_2"
+            },
+            "isBuffered": {
+                "$ref": "#/$keywords/isBuffered"
+            }
+        },
+        "service/openidConnectProviders": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName_5"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_9"
+            },
+            "metadataEndpoint": {
+                "$ref": "#/$keywords/metadataEndpoint"
+            },
+            "clientId": {
+                "$ref": "#/$keywords/clientId_3"
+            },
+            "clientSecret": {
+                "$ref": "#/$keywords/clientSecret_3"
+            }
+        },
+        "service/portalsettings": {
+            "enabled": {
+                "$ref": "#/$keywords/enabled_3"
+            },
+            "termsOfService": {
+                "$ref": "#/$keywords/termsOfService"
+            },
+            "url": {
+                "$ref": "#/$keywords/url_2"
+            },
+            "validationKey": {
+                "$ref": "#/$keywords/validationKey"
+            },
+            "subscriptions": {
+                "$ref": "#/$keywords/subscriptions"
+            },
+            "userRegistration": {
+                "$ref": "#/$keywords/userRegistration"
+            }
+        },
+        "service/products": {
+            "description": {
+                "$ref": "#/$keywords/description_10"
+            },
+            "terms": {
+                "$ref": "#/$keywords/terms"
+            },
+            "subscriptionRequired": {
+                "$ref": "#/$keywords/subscriptionRequired"
+            },
+            "approvalRequired": {
+                "$ref": "#/$keywords/approvalRequired"
+            },
+            "subscriptionsLimit": {
+                "$ref": "#/$keywords/subscriptionsLimit"
+            },
+            "state": {
+                "$ref": "#/$keywords/state_2"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_6"
+            }
+        },
+        "service/products/policies": {
+            "policyContent": {
+                "$ref": "#/$keywords/policyContent"
+            },
+            "contentFormat": {
+                "$ref": "#/$keywords/contentFormat"
+            }
+        },
+        "service/properties": {
+            "tags": {
+                "$ref": "#/$keywords/tags"
+            },
+            "secret": {
+                "$ref": "#/$keywords/secret"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_7"
+            },
+            "value": {
+                "$ref": "#/$keywords/value_2"
+            }
+        },
+        "service/subscriptions": {
+            "userId": {
+                "$ref": "#/$keywords/userId_3"
+            },
+            "productId": {
+                "$ref": "#/$keywords/productId"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_8"
+            },
+            "primaryKey": {
+                "$ref": "#/$keywords/primaryKey"
+            },
+            "secondaryKey": {
+                "$ref": "#/$keywords/secondaryKey"
+            },
+            "state": {
+                "$ref": "#/$keywords/state_3"
+            }
+        },
+        "service/tags": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName_9"
+            }
+        },
+        "service/apis/tagDescriptions": {
+            "description": {
+                "$ref": "#/$keywords/description_11"
+            },
+            "externalDocsUrl": {
+                "$ref": "#/$keywords/externalDocsUrl"
+            },
+            "externalDocsDescription": {
+                "$ref": "#/$keywords/externalDocsDescription"
+            }
+        },
+        "service/users": {
+            "state": {
+                "$ref": "#/$keywords/state_4"
+            },
+            "note": {
+                "$ref": "#/$keywords/note"
+            },
+            "identities": {
+                "$ref": "#/$keywords/identities"
+            },
+            "email": {
+                "$ref": "#/$keywords/email"
+            },
+            "firstName": {
+                "$ref": "#/$keywords/firstName"
+            },
+            "lastName": {
+                "$ref": "#/$keywords/lastName"
+            },
+            "password": {
+                "$ref": "#/$keywords/password_2"
+            },
+            "confirmation": {
+                "$ref": "#/$keywords/confirmation"
+            }
+        },
+        "service/api-version-sets": {
+            "description": {
+                "$ref": "#/$keywords/description_12"
+            },
+            "versionQueryName": {
+                "$ref": "#/$keywords/versionQueryName"
+            },
+            "versionHeaderName": {
+                "$ref": "#/$keywords/versionHeaderName"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName_10"
+            },
+            "versioningScheme": {
+                "$ref": "#/$keywords/versioningScheme"
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Cancelled",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "createdDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastUpdatedDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "hybridUseBenefits": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "createdDate": {
+                "$ref": "#/$keywords/createdDate"
+            },
+            "lastUpdatedDate": {
+                "$ref": "#/$keywords/lastUpdatedDate"
+            }
+        }
+    }
+}

@@ -1,0 +1,190 @@
+{
+    "$keywords": {
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "severity": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                }
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "scopes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "evaluationFrequency": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "windowSize": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "targetResourceTypes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "criteria": {
+            "body": {
+                "allOf": {
+                    "$ref": "#/$keywords/allOf"
+                }
+            }
+        },
+        "allOf": {
+            "parameters": {
+                "query": {
+                    "type": "string"
+                },
+                "timeAggregation": {
+                    "enum": [
+                        "Count",
+                        "Average",
+                        "Minimum",
+                        "Maximum",
+                        "Total"
+                    ]
+                },
+                "metricMeasureColumn": {
+                    "type": "string"
+                },
+                "resourceIdColumn": {
+                    "type": "string"
+                },
+                "operator": {
+                    "enum": [
+                        "Equals",
+                        "GreaterThan",
+                        "GreaterThanOrEqual",
+                        "LessThan",
+                        "LessThanOrEqual"
+                    ]
+                },
+                "threshold": {}
+            },
+            "body": {
+                "dimensions": {
+                    "$ref": "#/$keywords/dimensions"
+                },
+                "failingPeriods": {
+                    "$ref": "#/$keywords/failingPeriods"
+                }
+            },
+            "array": true
+        },
+        "dimensions": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "operator": {
+                    "enum": [
+                        "Include",
+                        "Exclude"
+                    ]
+                }
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            },
+            "array": true
+        },
+        "values": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "failingPeriods": {
+            "parameters": {
+                "numberOfEvaluationPeriods": {
+                    "type": "int"
+                },
+                "minFailingPeriodsToAlert": {
+                    "type": "int"
+                }
+            }
+        },
+        "muteActionsDuration": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "actions": {
+            "parameters": {
+                "actionGroupId": {
+                    "type": "string"
+                },
+                "webHookProperties": {}
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "scheduledQueryRules": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "severity": {
+                "$ref": "#/$keywords/severity"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "scopes": {
+                "$ref": "#/$keywords/scopes"
+            },
+            "evaluationFrequency": {
+                "$ref": "#/$keywords/evaluationFrequency"
+            },
+            "windowSize": {
+                "$ref": "#/$keywords/windowSize"
+            },
+            "targetResourceTypes": {
+                "$ref": "#/$keywords/targetResourceTypes"
+            },
+            "criteria": {
+                "$ref": "#/$keywords/criteria"
+            },
+            "muteActionsDuration": {
+                "$ref": "#/$keywords/muteActionsDuration"
+            },
+            "actions": {
+                "$ref": "#/$keywords/actions"
+            }
+        }
+    }
+}

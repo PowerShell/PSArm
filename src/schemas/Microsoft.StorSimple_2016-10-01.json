@@ -1,0 +1,510 @@
+{
+    "$keywords": {
+        "cisIntrinsicSettings": {
+            "parameters": {
+                "type": {}
+            }
+        },
+        "sku": {
+            "parameters": {
+                "name": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "certificate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "integrityKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionKeyThumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "portalCertificateThumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "algorithm": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "initiatorName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "emailNotification": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "notificationToServiceOwners": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "alertNotificationCulture": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "additionalRecipientEmailList": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "startTime": {
+            "parameters": {
+                "hour": {
+                    "type": "int"
+                },
+                "minute": {
+                    "type": "int"
+                }
+            }
+        },
+        "password": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                },
+                "encryptionCertificateThumbprint": {
+                    "type": "string"
+                },
+                "encryptionAlgorithm": {}
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "diskStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "accessControlRecords": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "dataPolicy": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisionedCapacityInBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "usedCapacityInBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "localUsedCapacityInBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "monitoringStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "domainName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageDomainId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupScheduleGroupId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "shareStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "adminUser": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisionedCapacityInBytes_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "usedCapacityInBytes_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "localUsedCapacityInBytes_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "storageDomainId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupScheduleGroupId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "chapId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "reverseChapId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cloudType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "endPoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "login": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "location": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enableSSL": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "storageAccountCredentialIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "encryptionStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "managers": {
+            "cisIntrinsicSettings": {
+                "$ref": "#/$keywords/cisIntrinsicSettings"
+            },
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "managers/certificates": {
+            "authType": {
+                "$ref": "#/$keywords/authType"
+            },
+            "certificate": {
+                "$ref": "#/$keywords/certificate"
+            }
+        },
+        "managers/extendedInformation": {
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "integrityKey": {
+                "$ref": "#/$keywords/integrityKey"
+            },
+            "encryptionKey": {
+                "$ref": "#/$keywords/encryptionKey"
+            },
+            "encryptionKeyThumbprint": {
+                "$ref": "#/$keywords/encryptionKeyThumbprint"
+            },
+            "portalCertificateThumbprint": {
+                "$ref": "#/$keywords/portalCertificateThumbprint"
+            },
+            "algorithm": {
+                "$ref": "#/$keywords/algorithm"
+            }
+        },
+        "managers/accessControlRecords": {
+            "initiatorName": {
+                "$ref": "#/$keywords/initiatorName"
+            }
+        },
+        "managers/devices/alertSettings": {
+            "emailNotification": {
+                "$ref": "#/$keywords/emailNotification"
+            },
+            "notificationToServiceOwners": {
+                "$ref": "#/$keywords/notificationToServiceOwners"
+            },
+            "alertNotificationCulture": {
+                "$ref": "#/$keywords/alertNotificationCulture"
+            },
+            "additionalRecipientEmailList": {
+                "$ref": "#/$keywords/additionalRecipientEmailList"
+            }
+        },
+        "managers/devices/backupScheduleGroups": {
+            "startTime": {
+                "$ref": "#/$keywords/startTime"
+            }
+        },
+        "managers/devices/chapSettings": {
+            "password": {
+                "$ref": "#/$keywords/password"
+            }
+        },
+        "managers/devices/iscsiservers/disks": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "diskStatus": {
+                "$ref": "#/$keywords/diskStatus"
+            },
+            "accessControlRecords": {
+                "$ref": "#/$keywords/accessControlRecords"
+            },
+            "dataPolicy": {
+                "$ref": "#/$keywords/dataPolicy"
+            },
+            "provisionedCapacityInBytes": {
+                "$ref": "#/$keywords/provisionedCapacityInBytes"
+            },
+            "usedCapacityInBytes": {
+                "$ref": "#/$keywords/usedCapacityInBytes"
+            },
+            "localUsedCapacityInBytes": {
+                "$ref": "#/$keywords/localUsedCapacityInBytes"
+            },
+            "monitoringStatus": {
+                "$ref": "#/$keywords/monitoringStatus"
+            }
+        },
+        "managers/devices/fileservers": {
+            "domainName": {
+                "$ref": "#/$keywords/domainName"
+            },
+            "storageDomainId": {
+                "$ref": "#/$keywords/storageDomainId"
+            },
+            "backupScheduleGroupId": {
+                "$ref": "#/$keywords/backupScheduleGroupId"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            }
+        },
+        "managers/devices/fileservers/shares": {
+            "description": {
+                "$ref": "#/$keywords/description_3"
+            },
+            "shareStatus": {
+                "$ref": "#/$keywords/shareStatus"
+            },
+            "dataPolicy": {
+                "$ref": "#/$keywords/dataPolicy"
+            },
+            "adminUser": {
+                "$ref": "#/$keywords/adminUser"
+            },
+            "provisionedCapacityInBytes": {
+                "$ref": "#/$keywords/provisionedCapacityInBytes_2"
+            },
+            "usedCapacityInBytes": {
+                "$ref": "#/$keywords/usedCapacityInBytes_2"
+            },
+            "localUsedCapacityInBytes": {
+                "$ref": "#/$keywords/localUsedCapacityInBytes_2"
+            },
+            "monitoringStatus": {
+                "$ref": "#/$keywords/monitoringStatus"
+            }
+        },
+        "managers/devices/iscsiservers": {
+            "storageDomainId": {
+                "$ref": "#/$keywords/storageDomainId_2"
+            },
+            "backupScheduleGroupId": {
+                "$ref": "#/$keywords/backupScheduleGroupId_2"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_4"
+            },
+            "chapId": {
+                "$ref": "#/$keywords/chapId"
+            },
+            "reverseChapId": {
+                "$ref": "#/$keywords/reverseChapId"
+            }
+        },
+        "managers/storageAccountCredentials": {
+            "cloudType": {
+                "$ref": "#/$keywords/cloudType"
+            },
+            "endPoint": {
+                "$ref": "#/$keywords/endPoint"
+            },
+            "login": {
+                "$ref": "#/$keywords/login"
+            },
+            "location": {
+                "$ref": "#/$keywords/location"
+            },
+            "enableSSL": {
+                "$ref": "#/$keywords/enableSSL"
+            },
+            "accessKey": {
+                "$ref": "#/$keywords/password"
+            }
+        },
+        "managers/storageDomains": {
+            "storageAccountCredentialIds": {
+                "$ref": "#/$keywords/storageAccountCredentialIds"
+            },
+            "encryptionKey": {
+                "$ref": "#/$keywords/password"
+            },
+            "encryptionStatus": {
+                "$ref": "#/$keywords/encryptionStatus"
+            }
+        }
+    }
+}

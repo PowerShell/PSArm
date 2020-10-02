@@ -1,0 +1,202 @@
+{
+    "$keywords": {
+        "targetResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "target": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpointStatus": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "weight": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "priority": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "endpointLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpointMonitorStatus": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "minChildEndpoints": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "geoMapping": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "profileStatus": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "trafficRoutingMethod": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dnsConfig": {
+            "parameters": {
+                "relativeName": {
+                    "type": "string"
+                },
+                "fqdn": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "int"
+                }
+            }
+        },
+        "monitorConfig": {
+            "parameters": {
+                "profileMonitorStatus": {
+                    "type": "string"
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "int"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "endpoints": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "targetResourceId": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                },
+                "endpointStatus": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "int"
+                },
+                "priority": {
+                    "type": "int"
+                },
+                "endpointLocation": {
+                    "type": "string"
+                },
+                "endpointMonitorStatus": {
+                    "type": "string"
+                },
+                "minChildEndpoints": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "geoMapping": {
+                    "$ref": "#/$keywords/geoMapping"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "trafficmanagerprofiles/{endpointType}": {
+            "targetResourceId": {
+                "$ref": "#/$keywords/targetResourceId"
+            },
+            "target": {
+                "$ref": "#/$keywords/target"
+            },
+            "endpointStatus": {
+                "$ref": "#/$keywords/endpointStatus"
+            },
+            "weight": {
+                "$ref": "#/$keywords/weight"
+            },
+            "priority": {
+                "$ref": "#/$keywords/priority"
+            },
+            "endpointLocation": {
+                "$ref": "#/$keywords/endpointLocation"
+            },
+            "endpointMonitorStatus": {
+                "$ref": "#/$keywords/endpointMonitorStatus"
+            },
+            "minChildEndpoints": {
+                "$ref": "#/$keywords/minChildEndpoints"
+            },
+            "geoMapping": {
+                "$ref": "#/$keywords/geoMapping"
+            }
+        },
+        "trafficmanagerprofiles": {
+            "profileStatus": {
+                "$ref": "#/$keywords/profileStatus"
+            },
+            "trafficRoutingMethod": {
+                "$ref": "#/$keywords/trafficRoutingMethod"
+            },
+            "dnsConfig": {
+                "$ref": "#/$keywords/dnsConfig"
+            },
+            "monitorConfig": {
+                "$ref": "#/$keywords/monitorConfig"
+            },
+            "endpoints": {
+                "$ref": "#/$keywords/endpoints"
+            }
+        }
+    }
+}

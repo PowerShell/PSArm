@@ -1,0 +1,247 @@
+{
+    "$keywords": {
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Activating",
+                        "Active",
+                        "Deleting",
+                        "Deleted",
+                        "ActivationFailed",
+                        "DeletionFailed",
+                        "Transitioning",
+                        "Suspending",
+                        "Suspended",
+                        "Resuming",
+                        "FailingOver",
+                        "FailoverFailed"
+                    ]
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "keySource": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "keyVaultProperties": {
+                    "$ref": "#/$keywords/keyVaultProperties"
+                }
+            }
+        },
+        "keyVaultProperties": {
+            "parameters": {
+                "keyIdentifier": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "publicNetworkAccess": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "ipFilterRules": {
+            "parameters": {
+                "filterName": {
+                    "type": "string"
+                },
+                "action": {},
+                "ipMask": {
+                    "type": "string"
+                },
+                "target": {}
+            },
+            "array": true
+        },
+        "privateEndpointConnections": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "pattern": "^(?![0-9]+$)(?!-)[a-zA-Z0-9-]{2,49}[a-zA-Z0-9]$"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "privateEndpoint": {
+                    "$ref": "#/$keywords/privateEndpoint"
+                },
+                "privateLinkServiceConnectionState": {
+                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Pending",
+                        "Approved",
+                        "Rejected",
+                        "Disconnected"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionsRequired": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "iotHubs": {
+            "parameters": {
+                "applyAllocationPolicy": {
+                    "type": "bool"
+                },
+                "allocationWeight": {
+                    "type": "int"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "allocationPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Hashed",
+                        "GeoLatency",
+                        "Static"
+                    ]
+                }
+            }
+        },
+        "serviceOperationsHostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deviceProvisioningHostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "idScope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorizationPolicies": {
+            "parameters": {
+                "keyName": {
+                    "type": "string"
+                },
+                "primaryKey": {
+                    "type": "string"
+                },
+                "secondaryKey": {
+                    "type": "string"
+                },
+                "rights": {
+                    "enum": [
+                        "ServiceConfig",
+                        "EnrollmentRead",
+                        "EnrollmentWrite",
+                        "DeviceConnect",
+                        "RegistrationStatusRead",
+                        "RegistrationStatusWrite"
+                    ]
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "provisioningServices/certificates": {},
+        "provisioningServices": {
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "publicNetworkAccess": {
+                "$ref": "#/$keywords/publicNetworkAccess"
+            },
+            "ipFilterRules": {
+                "$ref": "#/$keywords/ipFilterRules"
+            },
+            "privateEndpointConnections": {
+                "$ref": "#/$keywords/privateEndpointConnections"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "iotHubs": {
+                "$ref": "#/$keywords/iotHubs"
+            },
+            "allocationPolicy": {
+                "$ref": "#/$keywords/allocationPolicy"
+            },
+            "serviceOperationsHostName": {
+                "$ref": "#/$keywords/serviceOperationsHostName"
+            },
+            "deviceProvisioningHostName": {
+                "$ref": "#/$keywords/deviceProvisioningHostName"
+            },
+            "idScope": {
+                "$ref": "#/$keywords/idScope"
+            },
+            "authorizationPolicies": {
+                "$ref": "#/$keywords/authorizationPolicies"
+            }
+        },
+        "provisioningServices/privateEndpointConnections": {
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            }
+        }
+    }
+}

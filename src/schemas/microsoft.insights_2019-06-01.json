@@ -1,0 +1,236 @@
+{
+    "$keywords": {
+        "groupShortName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "emailReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "emailAddress": {
+                    "type": "string"
+                },
+                "useCommonAlertSchema": {
+                    "type": "bool"
+                },
+                "status": {}
+            },
+            "array": true
+        },
+        "smsReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "status": {}
+            },
+            "array": true
+        },
+        "webhookReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "serviceUri": {
+                    "type": "string"
+                },
+                "useCommonAlertSchema": {
+                    "type": "bool"
+                },
+                "useAadAuth": {
+                    "type": "bool"
+                },
+                "objectId": {
+                    "type": "string"
+                },
+                "identifierUri": {
+                    "type": "string"
+                },
+                "tenantId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "itsmReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "workspaceId": {
+                    "type": "string"
+                },
+                "connectionId": {
+                    "type": "string"
+                },
+                "ticketConfiguration": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "azureAppPushReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "emailAddress": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "automationRunbookReceivers": {
+            "parameters": {
+                "automationAccountId": {
+                    "type": "string"
+                },
+                "runbookName": {
+                    "type": "string"
+                },
+                "webhookResourceId": {
+                    "type": "string"
+                },
+                "isGlobalRunbook": {
+                    "type": "bool"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "serviceUri": {
+                    "type": "string"
+                },
+                "useCommonAlertSchema": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "voiceReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "logicAppReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "resourceId": {
+                    "type": "string"
+                },
+                "callbackUrl": {
+                    "type": "string"
+                },
+                "useCommonAlertSchema": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "azureFunctionReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "functionAppResourceId": {
+                    "type": "string"
+                },
+                "functionName": {
+                    "type": "string"
+                },
+                "httpTriggerUrl": {
+                    "type": "string"
+                },
+                "useCommonAlertSchema": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "armRoleReceivers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "roleId": {
+                    "type": "string"
+                },
+                "useCommonAlertSchema": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "actionGroups": {
+            "groupShortName": {
+                "$ref": "#/$keywords/groupShortName"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "emailReceivers": {
+                "$ref": "#/$keywords/emailReceivers"
+            },
+            "smsReceivers": {
+                "$ref": "#/$keywords/smsReceivers"
+            },
+            "webhookReceivers": {
+                "$ref": "#/$keywords/webhookReceivers"
+            },
+            "itsmReceivers": {
+                "$ref": "#/$keywords/itsmReceivers"
+            },
+            "azureAppPushReceivers": {
+                "$ref": "#/$keywords/azureAppPushReceivers"
+            },
+            "automationRunbookReceivers": {
+                "$ref": "#/$keywords/automationRunbookReceivers"
+            },
+            "voiceReceivers": {
+                "$ref": "#/$keywords/voiceReceivers"
+            },
+            "logicAppReceivers": {
+                "$ref": "#/$keywords/logicAppReceivers"
+            },
+            "azureFunctionReceivers": {
+                "$ref": "#/$keywords/azureFunctionReceivers"
+            },
+            "armRoleReceivers": {
+                "$ref": "#/$keywords/armRoleReceivers"
+            }
+        }
+    }
+}

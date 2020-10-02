@@ -1,0 +1,2338 @@
+{
+    "$keywords": {
+        "storageAccountUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "blobName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "overwrite": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "siteName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "databases": {
+            "parameters": {
+                "databaseType": {
+                    "enum": [
+                        "SqlAzure",
+                        "MySql",
+                        "LocalMySql",
+                        "PostgreSql"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "connectionStringName": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ignoreConflictingHostNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "ignoreDatabases": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "appServicePlan": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "operationType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "adjustConnectionStrings": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "hostingEnvironment": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "runtimeVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "unauthenticatedClientAction": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "tokenStoreEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "allowedExternalRedirectUrls": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "defaultProvider": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "tokenRefreshExtensionHours": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "clientId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "issuer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "allowedAudiences": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "additionalLoginParams": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "googleClientId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "googleClientSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "googleOAuthScopes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "facebookAppId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "facebookAppSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "facebookOAuthScopes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "twitterConsumerKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "twitterConsumerSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "microsoftAccountClientId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "microsoftAccountClientSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "microsoftAccountOAuthScopes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "storageAccountUrl_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupSchedule": {
+            "parameters": {
+                "frequencyInterval": {
+                    "type": "int"
+                },
+                "frequencyUnit": {},
+                "keepAtLeastOneBackup": {
+                    "type": "bool"
+                },
+                "retentionPeriodInDays": {
+                    "type": "int"
+                },
+                "startTime": {},
+                "lastExecutionTime": {}
+            }
+        },
+        "databases_2": {
+            "parameters": {
+                "databaseType": {
+                    "enum": [
+                        "SqlAzure",
+                        "MySql",
+                        "LocalMySql",
+                        "PostgreSql"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "connectionStringName": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "applicationLogs": {
+            "body": {
+                "fileSystem": {
+                    "$ref": "#/$keywords/fileSystem"
+                },
+                "azureTableStorage": {
+                    "$ref": "#/$keywords/azureTableStorage"
+                },
+                "azureBlobStorage": {
+                    "$ref": "#/$keywords/azureBlobStorage"
+                }
+            }
+        },
+        "fileSystem": {
+            "parameters": {
+                "level": {}
+            }
+        },
+        "azureTableStorage": {
+            "parameters": {
+                "level": {},
+                "sasUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "azureBlobStorage": {
+            "parameters": {
+                "level": {},
+                "sasUrl": {
+                    "type": "string"
+                },
+                "retentionInDays": {
+                    "type": "int"
+                }
+            }
+        },
+        "httpLogs": {
+            "body": {
+                "fileSystem": {
+                    "$ref": "#/$keywords/fileSystem_2"
+                },
+                "azureBlobStorage": {
+                    "$ref": "#/$keywords/azureBlobStorage_2"
+                }
+            }
+        },
+        "fileSystem_2": {
+            "parameters": {
+                "retentionInMb": {
+                    "type": "int"
+                },
+                "retentionInDays": {
+                    "type": "int"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "azureBlobStorage_2": {
+            "parameters": {
+                "sasUrl": {
+                    "type": "string"
+                },
+                "retentionInDays": {
+                    "type": "int"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "failedRequestsTracing": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "connectionStringNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "appSettingNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "numberOfWorkers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "defaultDocuments": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "netFrameworkVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "phpVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "pythonVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "nodeVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "linuxFxVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestTracingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "requestTracingExpirationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "remoteDebuggingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "remoteDebuggingVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "httpLoggingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "logsDirectorySizeLimit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "detailedErrorLoggingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "publishingUsername": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "appSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "connectionStrings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "machineKey": {
+            "parameters": {
+                "validation": {
+                    "type": "string"
+                },
+                "validationKey": {
+                    "type": "string"
+                },
+                "decryption": {
+                    "type": "string"
+                },
+                "decryptionKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "handlerMappings": {
+            "parameters": {
+                "extension": {
+                    "type": "string"
+                },
+                "scriptProcessor": {
+                    "type": "string"
+                },
+                "arguments": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "documentRoot": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scmType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "Dropbox",
+                        "Tfs",
+                        "LocalGit",
+                        "GitHub",
+                        "CodePlexGit",
+                        "CodePlexHg",
+                        "BitbucketGit",
+                        "BitbucketHg",
+                        "ExternalGit",
+                        "ExternalHg",
+                        "OneDrive",
+                        "VSO"
+                    ]
+                }
+            }
+        },
+        "use32BitWorkerProcess": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "webSocketsEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "alwaysOn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "javaVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "javaContainer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "javaContainerVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "appCommandLine": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "managedPipelineMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "virtualApplications": {
+            "parameters": {
+                "virtualPath": {
+                    "type": "string"
+                },
+                "physicalPath": {
+                    "type": "string"
+                },
+                "preloadEnabled": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "virtualDirectories": {
+                    "$ref": "#/$keywords/virtualDirectories"
+                }
+            },
+            "array": true
+        },
+        "virtualDirectories": {
+            "parameters": {
+                "virtualPath": {
+                    "type": "string"
+                },
+                "physicalPath": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "loadBalancing": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "experiments": {
+            "body": {
+                "rampUpRules": {
+                    "$ref": "#/$keywords/rampUpRules"
+                }
+            }
+        },
+        "rampUpRules": {
+            "parameters": {
+                "actionHostName": {
+                    "type": "string"
+                },
+                "reroutePercentage": {},
+                "changeStep": {},
+                "changeIntervalInMinutes": {
+                    "type": "int"
+                },
+                "minReroutePercentage": {},
+                "maxReroutePercentage": {},
+                "changeDecisionCallbackUrl": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "limits": {
+            "parameters": {
+                "maxPercentageCpu": {},
+                "maxMemoryInMb": {
+                    "type": "int"
+                },
+                "maxDiskSizeInMb": {
+                    "type": "int"
+                }
+            }
+        },
+        "autoHealEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "autoHealRules": {
+            "body": {
+                "triggers": {
+                    "$ref": "#/$keywords/triggers"
+                },
+                "actions": {
+                    "$ref": "#/$keywords/actions"
+                }
+            }
+        },
+        "triggers": {
+            "parameters": {
+                "privateBytesInKB": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "requests": {
+                    "$ref": "#/$keywords/requests"
+                },
+                "statusCodes": {
+                    "$ref": "#/$keywords/statusCodes"
+                },
+                "slowRequests": {
+                    "$ref": "#/$keywords/slowRequests"
+                }
+            }
+        },
+        "requests": {
+            "parameters": {
+                "count": {
+                    "type": "int"
+                },
+                "timeInterval": {
+                    "type": "string"
+                }
+            }
+        },
+        "statusCodes": {
+            "parameters": {
+                "status": {
+                    "type": "int"
+                },
+                "subStatus": {
+                    "type": "int"
+                },
+                "win32Status": {
+                    "type": "int"
+                },
+                "count": {
+                    "type": "int"
+                },
+                "timeInterval": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "slowRequests": {
+            "parameters": {
+                "timeTaken": {
+                    "type": "string"
+                },
+                "count": {
+                    "type": "int"
+                },
+                "timeInterval": {
+                    "type": "string"
+                }
+            }
+        },
+        "actions": {
+            "parameters": {
+                "actionType": {},
+                "minProcessExecutionTime": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "customAction": {
+                    "$ref": "#/$keywords/customAction"
+                }
+            }
+        },
+        "customAction": {
+            "parameters": {
+                "exe": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "string"
+                }
+            }
+        },
+        "tracingOptions": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cors": {
+            "body": {
+                "allowedOrigins": {
+                    "$ref": "#/$keywords/allowedOrigins"
+                }
+            }
+        },
+        "allowedOrigins": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "push": {
+            "parameters": {
+                "isPushEnabled": {
+                    "type": "bool"
+                },
+                "tagWhitelistJson": {
+                    "type": "string"
+                },
+                "tagsRequiringAuth": {
+                    "type": "string"
+                },
+                "dynamicTagsJson": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiDefinition": {
+            "parameters": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "autoSwapSlotName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "localMySqlEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "ipSecurityRestrictions": {
+            "parameters": {
+                "ipAddress": {
+                    "type": "string"
+                },
+                "subnetMask": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "http20Enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "minTlsVersion": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "1.0",
+                        "1.1",
+                        "1.2"
+                    ]
+                }
+            }
+        },
+        "id": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "message": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "author": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deployer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authorEmail": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "startTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "endTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "active": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "details": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "packageUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "connectionString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dbType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "setParametersXmlFileUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "setParameters": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "skipAppData": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "appOffline": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "name_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "functionAppId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scriptRootPathHref": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scriptHref": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "configHref": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "secretsFileHref": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "href": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "config": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "files": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "testData": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "siteName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "domainId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "azureResourceName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "azureResourceType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "customHostNameDnsRecordType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "hostNameType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "sslState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "thumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "virtualIP": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "entityName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "entityConnectionString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceConnectionString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostname": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "port": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "biztalkUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "azurefilesConnectionString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "azurefilesShare": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "switchSiteAfterMigration": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "blockWriteAccessToSite": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "sku": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "product": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vendor": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "location": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tags": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "marketplacePublisher": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "marketplaceOffer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "blob": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "publicCertificateLocation": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "thumbprint_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "repoUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "branch": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isManualIntegration": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "deploymentRollbackEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isMercurial": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "sites/backups": {
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl"
+            },
+            "blobName": {
+                "$ref": "#/$keywords/blobName"
+            },
+            "overwrite": {
+                "$ref": "#/$keywords/overwrite"
+            },
+            "siteName": {
+                "$ref": "#/$keywords/siteName"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases"
+            },
+            "ignoreConflictingHostNames": {
+                "$ref": "#/$keywords/ignoreConflictingHostNames"
+            },
+            "ignoreDatabases": {
+                "$ref": "#/$keywords/ignoreDatabases"
+            },
+            "appServicePlan": {
+                "$ref": "#/$keywords/appServicePlan"
+            },
+            "operationType": {
+                "$ref": "#/$keywords/operationType"
+            },
+            "adjustConnectionStrings": {
+                "$ref": "#/$keywords/adjustConnectionStrings"
+            },
+            "hostingEnvironment": {
+                "$ref": "#/$keywords/hostingEnvironment"
+            }
+        },
+        "sites/config": {
+            "enabled": {
+                "$ref": "#/$keywords/enabled_2"
+            },
+            "runtimeVersion": {
+                "$ref": "#/$keywords/runtimeVersion"
+            },
+            "unauthenticatedClientAction": {
+                "$ref": "#/$keywords/unauthenticatedClientAction"
+            },
+            "tokenStoreEnabled": {
+                "$ref": "#/$keywords/tokenStoreEnabled"
+            },
+            "allowedExternalRedirectUrls": {
+                "$ref": "#/$keywords/allowedExternalRedirectUrls"
+            },
+            "defaultProvider": {
+                "$ref": "#/$keywords/defaultProvider"
+            },
+            "tokenRefreshExtensionHours": {
+                "$ref": "#/$keywords/tokenRefreshExtensionHours"
+            },
+            "clientId": {
+                "$ref": "#/$keywords/clientId"
+            },
+            "clientSecret": {
+                "$ref": "#/$keywords/clientSecret"
+            },
+            "issuer": {
+                "$ref": "#/$keywords/issuer"
+            },
+            "allowedAudiences": {
+                "$ref": "#/$keywords/allowedAudiences"
+            },
+            "additionalLoginParams": {
+                "$ref": "#/$keywords/additionalLoginParams"
+            },
+            "googleClientId": {
+                "$ref": "#/$keywords/googleClientId"
+            },
+            "googleClientSecret": {
+                "$ref": "#/$keywords/googleClientSecret"
+            },
+            "googleOAuthScopes": {
+                "$ref": "#/$keywords/googleOAuthScopes"
+            },
+            "facebookAppId": {
+                "$ref": "#/$keywords/facebookAppId"
+            },
+            "facebookAppSecret": {
+                "$ref": "#/$keywords/facebookAppSecret"
+            },
+            "facebookOAuthScopes": {
+                "$ref": "#/$keywords/facebookOAuthScopes"
+            },
+            "twitterConsumerKey": {
+                "$ref": "#/$keywords/twitterConsumerKey"
+            },
+            "twitterConsumerSecret": {
+                "$ref": "#/$keywords/twitterConsumerSecret"
+            },
+            "microsoftAccountClientId": {
+                "$ref": "#/$keywords/microsoftAccountClientId"
+            },
+            "microsoftAccountClientSecret": {
+                "$ref": "#/$keywords/microsoftAccountClientSecret"
+            },
+            "microsoftAccountOAuthScopes": {
+                "$ref": "#/$keywords/microsoftAccountOAuthScopes"
+            },
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl_2"
+            },
+            "backupSchedule": {
+                "$ref": "#/$keywords/backupSchedule"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases_2"
+            },
+            "type": {
+                "$ref": "#/$keywords/operationType"
+            },
+            "applicationLogs": {
+                "$ref": "#/$keywords/applicationLogs"
+            },
+            "httpLogs": {
+                "$ref": "#/$keywords/httpLogs"
+            },
+            "failedRequestsTracing": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "detailedErrorMessages": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "connectionStringNames": {
+                "$ref": "#/$keywords/connectionStringNames"
+            },
+            "appSettingNames": {
+                "$ref": "#/$keywords/appSettingNames"
+            },
+            "numberOfWorkers": {
+                "$ref": "#/$keywords/numberOfWorkers"
+            },
+            "defaultDocuments": {
+                "$ref": "#/$keywords/defaultDocuments"
+            },
+            "netFrameworkVersion": {
+                "$ref": "#/$keywords/netFrameworkVersion"
+            },
+            "phpVersion": {
+                "$ref": "#/$keywords/phpVersion"
+            },
+            "pythonVersion": {
+                "$ref": "#/$keywords/pythonVersion"
+            },
+            "nodeVersion": {
+                "$ref": "#/$keywords/nodeVersion"
+            },
+            "linuxFxVersion": {
+                "$ref": "#/$keywords/linuxFxVersion"
+            },
+            "requestTracingEnabled": {
+                "$ref": "#/$keywords/requestTracingEnabled"
+            },
+            "requestTracingExpirationTime": {
+                "$ref": "#/$keywords/requestTracingExpirationTime"
+            },
+            "remoteDebuggingEnabled": {
+                "$ref": "#/$keywords/remoteDebuggingEnabled"
+            },
+            "remoteDebuggingVersion": {
+                "$ref": "#/$keywords/remoteDebuggingVersion"
+            },
+            "httpLoggingEnabled": {
+                "$ref": "#/$keywords/httpLoggingEnabled"
+            },
+            "logsDirectorySizeLimit": {
+                "$ref": "#/$keywords/logsDirectorySizeLimit"
+            },
+            "detailedErrorLoggingEnabled": {
+                "$ref": "#/$keywords/detailedErrorLoggingEnabled"
+            },
+            "publishingUsername": {
+                "$ref": "#/$keywords/publishingUsername"
+            },
+            "appSettings": {
+                "$ref": "#/$keywords/appSettings"
+            },
+            "connectionStrings": {
+                "$ref": "#/$keywords/connectionStrings"
+            },
+            "machineKey": {
+                "$ref": "#/$keywords/machineKey"
+            },
+            "handlerMappings": {
+                "$ref": "#/$keywords/handlerMappings"
+            },
+            "documentRoot": {
+                "$ref": "#/$keywords/documentRoot"
+            },
+            "scmType": {
+                "$ref": "#/$keywords/scmType"
+            },
+            "use32BitWorkerProcess": {
+                "$ref": "#/$keywords/use32BitWorkerProcess"
+            },
+            "webSocketsEnabled": {
+                "$ref": "#/$keywords/webSocketsEnabled"
+            },
+            "alwaysOn": {
+                "$ref": "#/$keywords/alwaysOn"
+            },
+            "javaVersion": {
+                "$ref": "#/$keywords/javaVersion"
+            },
+            "javaContainer": {
+                "$ref": "#/$keywords/javaContainer"
+            },
+            "javaContainerVersion": {
+                "$ref": "#/$keywords/javaContainerVersion"
+            },
+            "appCommandLine": {
+                "$ref": "#/$keywords/appCommandLine"
+            },
+            "managedPipelineMode": {
+                "$ref": "#/$keywords/managedPipelineMode"
+            },
+            "virtualApplications": {
+                "$ref": "#/$keywords/virtualApplications"
+            },
+            "loadBalancing": {
+                "$ref": "#/$keywords/loadBalancing"
+            },
+            "experiments": {
+                "$ref": "#/$keywords/experiments"
+            },
+            "limits": {
+                "$ref": "#/$keywords/limits"
+            },
+            "autoHealEnabled": {
+                "$ref": "#/$keywords/autoHealEnabled"
+            },
+            "autoHealRules": {
+                "$ref": "#/$keywords/autoHealRules"
+            },
+            "tracingOptions": {
+                "$ref": "#/$keywords/tracingOptions"
+            },
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName"
+            },
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "push": {
+                "$ref": "#/$keywords/push"
+            },
+            "apiDefinition": {
+                "$ref": "#/$keywords/apiDefinition"
+            },
+            "autoSwapSlotName": {
+                "$ref": "#/$keywords/autoSwapSlotName"
+            },
+            "localMySqlEnabled": {
+                "$ref": "#/$keywords/localMySqlEnabled"
+            },
+            "ipSecurityRestrictions": {
+                "$ref": "#/$keywords/ipSecurityRestrictions"
+            },
+            "http20Enabled": {
+                "$ref": "#/$keywords/http20Enabled"
+            },
+            "minTlsVersion": {
+                "$ref": "#/$keywords/minTlsVersion"
+            }
+        },
+        "sites/deployments": {
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "message": {
+                "$ref": "#/$keywords/message"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "deployer": {
+                "$ref": "#/$keywords/deployer"
+            },
+            "authorEmail": {
+                "$ref": "#/$keywords/authorEmail"
+            },
+            "startTime": {
+                "$ref": "#/$keywords/startTime"
+            },
+            "endTime": {
+                "$ref": "#/$keywords/endTime"
+            },
+            "active": {
+                "$ref": "#/$keywords/active"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            }
+        },
+        "sites/extensions": {
+            "packageUri": {
+                "$ref": "#/$keywords/packageUri"
+            },
+            "connectionString": {
+                "$ref": "#/$keywords/connectionString"
+            },
+            "dbType": {
+                "$ref": "#/$keywords/dbType"
+            },
+            "setParametersXmlFileUri": {
+                "$ref": "#/$keywords/setParametersXmlFileUri"
+            },
+            "setParameters": {
+                "$ref": "#/$keywords/setParameters"
+            },
+            "skipAppData": {
+                "$ref": "#/$keywords/skipAppData"
+            },
+            "appOffline": {
+                "$ref": "#/$keywords/appOffline"
+            }
+        },
+        "sites/functions": {
+            "name": {
+                "$ref": "#/$keywords/name_2"
+            },
+            "functionAppId": {
+                "$ref": "#/$keywords/functionAppId"
+            },
+            "scriptRootPathHref": {
+                "$ref": "#/$keywords/scriptRootPathHref"
+            },
+            "scriptHref": {
+                "$ref": "#/$keywords/scriptHref"
+            },
+            "configHref": {
+                "$ref": "#/$keywords/configHref"
+            },
+            "secretsFileHref": {
+                "$ref": "#/$keywords/secretsFileHref"
+            },
+            "href": {
+                "$ref": "#/$keywords/href"
+            },
+            "config": {
+                "$ref": "#/$keywords/config"
+            },
+            "files": {
+                "$ref": "#/$keywords/files"
+            },
+            "testData": {
+                "$ref": "#/$keywords/testData"
+            }
+        },
+        "sites/hostNameBindings": {
+            "siteName": {
+                "$ref": "#/$keywords/siteName_2"
+            },
+            "domainId": {
+                "$ref": "#/$keywords/domainId"
+            },
+            "azureResourceName": {
+                "$ref": "#/$keywords/azureResourceName"
+            },
+            "azureResourceType": {
+                "$ref": "#/$keywords/azureResourceType"
+            },
+            "customHostNameDnsRecordType": {
+                "$ref": "#/$keywords/customHostNameDnsRecordType"
+            },
+            "hostNameType": {
+                "$ref": "#/$keywords/hostNameType"
+            },
+            "sslState": {
+                "$ref": "#/$keywords/sslState"
+            },
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint"
+            },
+            "virtualIP": {
+                "$ref": "#/$keywords/virtualIP"
+            }
+        },
+        "sites/hybridconnection": {
+            "entityName": {
+                "$ref": "#/$keywords/entityName"
+            },
+            "entityConnectionString": {
+                "$ref": "#/$keywords/entityConnectionString"
+            },
+            "resourceType": {
+                "$ref": "#/$keywords/resourceType"
+            },
+            "resourceConnectionString": {
+                "$ref": "#/$keywords/resourceConnectionString"
+            },
+            "hostname": {
+                "$ref": "#/$keywords/hostname"
+            },
+            "port": {
+                "$ref": "#/$keywords/port"
+            },
+            "biztalkUri": {
+                "$ref": "#/$keywords/biztalkUri"
+            }
+        },
+        "sites/instances/extensions": {
+            "packageUri": {
+                "$ref": "#/$keywords/packageUri"
+            },
+            "connectionString": {
+                "$ref": "#/$keywords/connectionString"
+            },
+            "dbType": {
+                "$ref": "#/$keywords/dbType"
+            },
+            "setParametersXmlFileUri": {
+                "$ref": "#/$keywords/setParametersXmlFileUri"
+            },
+            "setParameters": {
+                "$ref": "#/$keywords/setParameters"
+            },
+            "skipAppData": {
+                "$ref": "#/$keywords/skipAppData"
+            },
+            "appOffline": {
+                "$ref": "#/$keywords/appOffline"
+            }
+        },
+        "sites/migrate": {
+            "azurefilesConnectionString": {
+                "$ref": "#/$keywords/azurefilesConnectionString"
+            },
+            "azurefilesShare": {
+                "$ref": "#/$keywords/azurefilesShare"
+            },
+            "switchSiteAfterMigration": {
+                "$ref": "#/$keywords/switchSiteAfterMigration"
+            },
+            "blockWriteAccessToSite": {
+                "$ref": "#/$keywords/blockWriteAccessToSite"
+            }
+        },
+        "sites/premieraddons": {
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "product": {
+                "$ref": "#/$keywords/product"
+            },
+            "vendor": {
+                "$ref": "#/$keywords/vendor"
+            },
+            "name": {
+                "$ref": "#/$keywords/name_3"
+            },
+            "location": {
+                "$ref": "#/$keywords/location"
+            },
+            "tags": {
+                "$ref": "#/$keywords/tags"
+            },
+            "marketplacePublisher": {
+                "$ref": "#/$keywords/marketplacePublisher"
+            },
+            "marketplaceOffer": {
+                "$ref": "#/$keywords/marketplaceOffer"
+            }
+        },
+        "sites/publicCertificates": {
+            "blob": {
+                "$ref": "#/$keywords/blob"
+            },
+            "publicCertificateLocation": {
+                "$ref": "#/$keywords/publicCertificateLocation"
+            },
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint_2"
+            }
+        },
+        "sites/slots/backups": {
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl"
+            },
+            "blobName": {
+                "$ref": "#/$keywords/blobName"
+            },
+            "overwrite": {
+                "$ref": "#/$keywords/overwrite"
+            },
+            "siteName": {
+                "$ref": "#/$keywords/siteName"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases"
+            },
+            "ignoreConflictingHostNames": {
+                "$ref": "#/$keywords/ignoreConflictingHostNames"
+            },
+            "ignoreDatabases": {
+                "$ref": "#/$keywords/ignoreDatabases"
+            },
+            "appServicePlan": {
+                "$ref": "#/$keywords/appServicePlan"
+            },
+            "operationType": {
+                "$ref": "#/$keywords/operationType"
+            },
+            "adjustConnectionStrings": {
+                "$ref": "#/$keywords/adjustConnectionStrings"
+            },
+            "hostingEnvironment": {
+                "$ref": "#/$keywords/hostingEnvironment"
+            }
+        },
+        "sites/slots/config": {
+            "enabled": {
+                "$ref": "#/$keywords/enabled_2"
+            },
+            "runtimeVersion": {
+                "$ref": "#/$keywords/runtimeVersion"
+            },
+            "unauthenticatedClientAction": {
+                "$ref": "#/$keywords/unauthenticatedClientAction"
+            },
+            "tokenStoreEnabled": {
+                "$ref": "#/$keywords/tokenStoreEnabled"
+            },
+            "allowedExternalRedirectUrls": {
+                "$ref": "#/$keywords/allowedExternalRedirectUrls"
+            },
+            "defaultProvider": {
+                "$ref": "#/$keywords/defaultProvider"
+            },
+            "tokenRefreshExtensionHours": {
+                "$ref": "#/$keywords/tokenRefreshExtensionHours"
+            },
+            "clientId": {
+                "$ref": "#/$keywords/clientId"
+            },
+            "clientSecret": {
+                "$ref": "#/$keywords/clientSecret"
+            },
+            "issuer": {
+                "$ref": "#/$keywords/issuer"
+            },
+            "allowedAudiences": {
+                "$ref": "#/$keywords/allowedAudiences"
+            },
+            "additionalLoginParams": {
+                "$ref": "#/$keywords/additionalLoginParams"
+            },
+            "googleClientId": {
+                "$ref": "#/$keywords/googleClientId"
+            },
+            "googleClientSecret": {
+                "$ref": "#/$keywords/googleClientSecret"
+            },
+            "googleOAuthScopes": {
+                "$ref": "#/$keywords/googleOAuthScopes"
+            },
+            "facebookAppId": {
+                "$ref": "#/$keywords/facebookAppId"
+            },
+            "facebookAppSecret": {
+                "$ref": "#/$keywords/facebookAppSecret"
+            },
+            "facebookOAuthScopes": {
+                "$ref": "#/$keywords/facebookOAuthScopes"
+            },
+            "twitterConsumerKey": {
+                "$ref": "#/$keywords/twitterConsumerKey"
+            },
+            "twitterConsumerSecret": {
+                "$ref": "#/$keywords/twitterConsumerSecret"
+            },
+            "microsoftAccountClientId": {
+                "$ref": "#/$keywords/microsoftAccountClientId"
+            },
+            "microsoftAccountClientSecret": {
+                "$ref": "#/$keywords/microsoftAccountClientSecret"
+            },
+            "microsoftAccountOAuthScopes": {
+                "$ref": "#/$keywords/microsoftAccountOAuthScopes"
+            },
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl_2"
+            },
+            "backupSchedule": {
+                "$ref": "#/$keywords/backupSchedule"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases_2"
+            },
+            "type": {
+                "$ref": "#/$keywords/operationType"
+            },
+            "applicationLogs": {
+                "$ref": "#/$keywords/applicationLogs"
+            },
+            "httpLogs": {
+                "$ref": "#/$keywords/httpLogs"
+            },
+            "failedRequestsTracing": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "detailedErrorMessages": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "numberOfWorkers": {
+                "$ref": "#/$keywords/numberOfWorkers"
+            },
+            "defaultDocuments": {
+                "$ref": "#/$keywords/defaultDocuments"
+            },
+            "netFrameworkVersion": {
+                "$ref": "#/$keywords/netFrameworkVersion"
+            },
+            "phpVersion": {
+                "$ref": "#/$keywords/phpVersion"
+            },
+            "pythonVersion": {
+                "$ref": "#/$keywords/pythonVersion"
+            },
+            "nodeVersion": {
+                "$ref": "#/$keywords/nodeVersion"
+            },
+            "linuxFxVersion": {
+                "$ref": "#/$keywords/linuxFxVersion"
+            },
+            "requestTracingEnabled": {
+                "$ref": "#/$keywords/requestTracingEnabled"
+            },
+            "requestTracingExpirationTime": {
+                "$ref": "#/$keywords/requestTracingExpirationTime"
+            },
+            "remoteDebuggingEnabled": {
+                "$ref": "#/$keywords/remoteDebuggingEnabled"
+            },
+            "remoteDebuggingVersion": {
+                "$ref": "#/$keywords/remoteDebuggingVersion"
+            },
+            "httpLoggingEnabled": {
+                "$ref": "#/$keywords/httpLoggingEnabled"
+            },
+            "logsDirectorySizeLimit": {
+                "$ref": "#/$keywords/logsDirectorySizeLimit"
+            },
+            "detailedErrorLoggingEnabled": {
+                "$ref": "#/$keywords/detailedErrorLoggingEnabled"
+            },
+            "publishingUsername": {
+                "$ref": "#/$keywords/publishingUsername"
+            },
+            "appSettings": {
+                "$ref": "#/$keywords/appSettings"
+            },
+            "connectionStrings": {
+                "$ref": "#/$keywords/connectionStrings"
+            },
+            "machineKey": {
+                "$ref": "#/$keywords/machineKey"
+            },
+            "handlerMappings": {
+                "$ref": "#/$keywords/handlerMappings"
+            },
+            "documentRoot": {
+                "$ref": "#/$keywords/documentRoot"
+            },
+            "scmType": {
+                "$ref": "#/$keywords/scmType"
+            },
+            "use32BitWorkerProcess": {
+                "$ref": "#/$keywords/use32BitWorkerProcess"
+            },
+            "webSocketsEnabled": {
+                "$ref": "#/$keywords/webSocketsEnabled"
+            },
+            "alwaysOn": {
+                "$ref": "#/$keywords/alwaysOn"
+            },
+            "javaVersion": {
+                "$ref": "#/$keywords/javaVersion"
+            },
+            "javaContainer": {
+                "$ref": "#/$keywords/javaContainer"
+            },
+            "javaContainerVersion": {
+                "$ref": "#/$keywords/javaContainerVersion"
+            },
+            "appCommandLine": {
+                "$ref": "#/$keywords/appCommandLine"
+            },
+            "managedPipelineMode": {
+                "$ref": "#/$keywords/managedPipelineMode"
+            },
+            "virtualApplications": {
+                "$ref": "#/$keywords/virtualApplications"
+            },
+            "loadBalancing": {
+                "$ref": "#/$keywords/loadBalancing"
+            },
+            "experiments": {
+                "$ref": "#/$keywords/experiments"
+            },
+            "limits": {
+                "$ref": "#/$keywords/limits"
+            },
+            "autoHealEnabled": {
+                "$ref": "#/$keywords/autoHealEnabled"
+            },
+            "autoHealRules": {
+                "$ref": "#/$keywords/autoHealRules"
+            },
+            "tracingOptions": {
+                "$ref": "#/$keywords/tracingOptions"
+            },
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName"
+            },
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "push": {
+                "$ref": "#/$keywords/push"
+            },
+            "apiDefinition": {
+                "$ref": "#/$keywords/apiDefinition"
+            },
+            "autoSwapSlotName": {
+                "$ref": "#/$keywords/autoSwapSlotName"
+            },
+            "localMySqlEnabled": {
+                "$ref": "#/$keywords/localMySqlEnabled"
+            },
+            "ipSecurityRestrictions": {
+                "$ref": "#/$keywords/ipSecurityRestrictions"
+            },
+            "http20Enabled": {
+                "$ref": "#/$keywords/http20Enabled"
+            },
+            "minTlsVersion": {
+                "$ref": "#/$keywords/minTlsVersion"
+            }
+        },
+        "sites/slots/deployments": {
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "message": {
+                "$ref": "#/$keywords/message"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "deployer": {
+                "$ref": "#/$keywords/deployer"
+            },
+            "authorEmail": {
+                "$ref": "#/$keywords/authorEmail"
+            },
+            "startTime": {
+                "$ref": "#/$keywords/startTime"
+            },
+            "endTime": {
+                "$ref": "#/$keywords/endTime"
+            },
+            "active": {
+                "$ref": "#/$keywords/active"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            }
+        },
+        "sites/slots/extensions": {
+            "packageUri": {
+                "$ref": "#/$keywords/packageUri"
+            },
+            "connectionString": {
+                "$ref": "#/$keywords/connectionString"
+            },
+            "dbType": {
+                "$ref": "#/$keywords/dbType"
+            },
+            "setParametersXmlFileUri": {
+                "$ref": "#/$keywords/setParametersXmlFileUri"
+            },
+            "setParameters": {
+                "$ref": "#/$keywords/setParameters"
+            },
+            "skipAppData": {
+                "$ref": "#/$keywords/skipAppData"
+            },
+            "appOffline": {
+                "$ref": "#/$keywords/appOffline"
+            }
+        },
+        "sites/slots/functions": {
+            "name": {
+                "$ref": "#/$keywords/name_2"
+            },
+            "functionAppId": {
+                "$ref": "#/$keywords/functionAppId"
+            },
+            "scriptRootPathHref": {
+                "$ref": "#/$keywords/scriptRootPathHref"
+            },
+            "scriptHref": {
+                "$ref": "#/$keywords/scriptHref"
+            },
+            "configHref": {
+                "$ref": "#/$keywords/configHref"
+            },
+            "secretsFileHref": {
+                "$ref": "#/$keywords/secretsFileHref"
+            },
+            "href": {
+                "$ref": "#/$keywords/href"
+            },
+            "config": {
+                "$ref": "#/$keywords/config"
+            },
+            "files": {
+                "$ref": "#/$keywords/files"
+            },
+            "testData": {
+                "$ref": "#/$keywords/testData"
+            }
+        },
+        "sites/slots/hostNameBindings": {
+            "siteName": {
+                "$ref": "#/$keywords/siteName_2"
+            },
+            "domainId": {
+                "$ref": "#/$keywords/domainId"
+            },
+            "azureResourceName": {
+                "$ref": "#/$keywords/azureResourceName"
+            },
+            "azureResourceType": {
+                "$ref": "#/$keywords/azureResourceType"
+            },
+            "customHostNameDnsRecordType": {
+                "$ref": "#/$keywords/customHostNameDnsRecordType"
+            },
+            "hostNameType": {
+                "$ref": "#/$keywords/hostNameType"
+            },
+            "sslState": {
+                "$ref": "#/$keywords/sslState"
+            },
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint"
+            },
+            "virtualIP": {
+                "$ref": "#/$keywords/virtualIP"
+            }
+        },
+        "sites/slots/hybridconnection": {
+            "entityName": {
+                "$ref": "#/$keywords/entityName"
+            },
+            "entityConnectionString": {
+                "$ref": "#/$keywords/entityConnectionString"
+            },
+            "resourceType": {
+                "$ref": "#/$keywords/resourceType"
+            },
+            "resourceConnectionString": {
+                "$ref": "#/$keywords/resourceConnectionString"
+            },
+            "hostname": {
+                "$ref": "#/$keywords/hostname"
+            },
+            "port": {
+                "$ref": "#/$keywords/port"
+            },
+            "biztalkUri": {
+                "$ref": "#/$keywords/biztalkUri"
+            }
+        },
+        "sites/slots/instances/extensions": {
+            "packageUri": {
+                "$ref": "#/$keywords/packageUri"
+            },
+            "connectionString": {
+                "$ref": "#/$keywords/connectionString"
+            },
+            "dbType": {
+                "$ref": "#/$keywords/dbType"
+            },
+            "setParametersXmlFileUri": {
+                "$ref": "#/$keywords/setParametersXmlFileUri"
+            },
+            "setParameters": {
+                "$ref": "#/$keywords/setParameters"
+            },
+            "skipAppData": {
+                "$ref": "#/$keywords/skipAppData"
+            },
+            "appOffline": {
+                "$ref": "#/$keywords/appOffline"
+            }
+        },
+        "sites/slots/premieraddons": {
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "product": {
+                "$ref": "#/$keywords/product"
+            },
+            "vendor": {
+                "$ref": "#/$keywords/vendor"
+            },
+            "name": {
+                "$ref": "#/$keywords/name_3"
+            },
+            "location": {
+                "$ref": "#/$keywords/location"
+            },
+            "tags": {
+                "$ref": "#/$keywords/tags"
+            },
+            "marketplacePublisher": {
+                "$ref": "#/$keywords/marketplacePublisher"
+            },
+            "marketplaceOffer": {
+                "$ref": "#/$keywords/marketplaceOffer"
+            }
+        },
+        "sites/slots/publicCertificates": {
+            "blob": {
+                "$ref": "#/$keywords/blob"
+            },
+            "publicCertificateLocation": {
+                "$ref": "#/$keywords/publicCertificateLocation"
+            },
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint_2"
+            }
+        },
+        "sites/slots/sourcecontrols": {
+            "repoUrl": {
+                "$ref": "#/$keywords/repoUrl"
+            },
+            "branch": {
+                "$ref": "#/$keywords/branch"
+            },
+            "isManualIntegration": {
+                "$ref": "#/$keywords/isManualIntegration"
+            },
+            "deploymentRollbackEnabled": {
+                "$ref": "#/$keywords/deploymentRollbackEnabled"
+            },
+            "isMercurial": {
+                "$ref": "#/$keywords/isMercurial"
+            }
+        },
+        "sites/sourcecontrols": {
+            "repoUrl": {
+                "$ref": "#/$keywords/repoUrl"
+            },
+            "branch": {
+                "$ref": "#/$keywords/branch"
+            },
+            "isManualIntegration": {
+                "$ref": "#/$keywords/isManualIntegration"
+            },
+            "deploymentRollbackEnabled": {
+                "$ref": "#/$keywords/deploymentRollbackEnabled"
+            },
+            "isMercurial": {
+                "$ref": "#/$keywords/isMercurial"
+            }
+        }
+    }
+}

@@ -1,0 +1,3266 @@
+{
+    "$keywords": {
+        "friendlyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subjectName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "pfxBlob": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "siteName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "selfLink": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "issuer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "issueDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "expirationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "password": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "thumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "valid": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "cerBlob": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publicKeyHash": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostingEnvironmentProfile": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "distinguishedName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "csrString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "pfxBlob_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "password_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publicKeyHash_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostingEnvironment": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publishingUserName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publishingPassword": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scmUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "location": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "vnetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetResourceGroupName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetSubnetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "virtualNetwork": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "subnet": {
+                    "type": "string"
+                }
+            }
+        },
+        "internalLoadBalancingMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "multiSize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "multiRoleCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "workerPools": {
+            "parameters": {
+                "workerSizeId": {
+                    "type": "int"
+                },
+                "computeMode": {},
+                "workerSize": {
+                    "type": "string"
+                },
+                "workerCount": {
+                    "type": "int"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "body": {
+                "sku": {
+                    "$ref": "#/$keywords/sku"
+                },
+                "instanceNames": {
+                    "$ref": "#/$keywords/instanceNames"
+                }
+            },
+            "array": true
+        },
+        "sku": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "tier": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "family": {
+                    "type": "string"
+                },
+                "capacity": {
+                    "type": "int"
+                }
+            }
+        },
+        "instanceNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ipsslAddressCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "databaseEdition": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "databaseServiceObjective": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "upgradeDomains": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "subscriptionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dnsSuffix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastAction": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastActionResult": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "allowedMultiSizes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "allowedWorkerSizes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "maximumNumberOfMachines": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "vipMappings": {
+            "parameters": {
+                "virtualIP": {
+                    "type": "string"
+                },
+                "internalHttpPort": {
+                    "type": "int"
+                },
+                "internalHttpsPort": {
+                    "type": "int"
+                },
+                "inUse": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "environmentCapacities": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "availableCapacity": {
+                    "type": "int"
+                },
+                "totalCapacity": {
+                    "type": "int"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "computeMode": {},
+                "workerSize": {},
+                "workerSizeId": {
+                    "type": "int"
+                },
+                "excludeFromCapacityAllocation": {
+                    "type": "bool"
+                },
+                "isApplicableForAllComputeModes": {
+                    "type": "bool"
+                },
+                "siteMode": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "networkAccessControlList": {
+            "parameters": {
+                "action": {},
+                "description": {
+                    "type": "string"
+                },
+                "order": {
+                    "type": "int"
+                },
+                "remoteSubnet": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "environmentIsHealthy": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "environmentStatus": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceGroup": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiManagementAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "suspended": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "clusterSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "workerSizeId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "computeMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "workerSize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workerCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "name_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "token": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tokenSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "refreshToken": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "expirationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "name_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workerTierName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "subscription": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "adminSiteName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "maximumNumberOfWorkers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "geoRegion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "perSiteScaling": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "numberOfSites": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "resourceGroup_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "reserved": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "name_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "startAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "routeType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vpnPackageUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "certThumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "certBlob": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "startAddress": {
+                    "type": "string"
+                },
+                "endAddress": {
+                    "type": "string"
+                },
+                "routeType": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "array": true
+        },
+        "resyncRequired": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "dnsServers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "connectionStringNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "appSettingNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "name_7": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostNames_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "repositorySiteName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "usageState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "enabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enabledHostNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "availabilityState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "hostNameSslStates": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "sslState": {},
+                "virtualIP": {
+                    "type": "string"
+                },
+                "thumbprint": {
+                    "type": "string"
+                },
+                "toUpdate": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "serverFarmId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastModifiedTimeUtc": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "siteConfig": {
+            "parameters": {
+                "numberOfWorkers": {
+                    "type": "int"
+                },
+                "netFrameworkVersion": {
+                    "type": "string"
+                },
+                "phpVersion": {
+                    "type": "string"
+                },
+                "pythonVersion": {
+                    "type": "string"
+                },
+                "nodeVersion": {
+                    "type": "string"
+                },
+                "requestTracingEnabled": {
+                    "type": "bool"
+                },
+                "requestTracingExpirationTime": {},
+                "remoteDebuggingEnabled": {
+                    "type": "bool"
+                },
+                "remoteDebuggingVersion": {
+                    "type": "string"
+                },
+                "httpLoggingEnabled": {
+                    "type": "bool"
+                },
+                "logsDirectorySizeLimit": {
+                    "type": "int"
+                },
+                "detailedErrorLoggingEnabled": {
+                    "type": "bool"
+                },
+                "publishingUsername": {
+                    "type": "string"
+                },
+                "publishingPassword": {
+                    "type": "string"
+                },
+                "documentRoot": {
+                    "type": "string"
+                },
+                "scmType": {
+                    "type": "string"
+                },
+                "use32BitWorkerProcess": {
+                    "type": "bool"
+                },
+                "webSocketsEnabled": {
+                    "type": "bool"
+                },
+                "alwaysOn": {
+                    "type": "bool"
+                },
+                "javaVersion": {
+                    "type": "string"
+                },
+                "javaContainer": {
+                    "type": "string"
+                },
+                "javaContainerVersion": {
+                    "type": "string"
+                },
+                "appCommandLine": {
+                    "type": "string"
+                },
+                "managedPipelineMode": {},
+                "loadBalancing": {},
+                "autoHealEnabled": {
+                    "type": "bool"
+                },
+                "tracingOptions": {
+                    "type": "string"
+                },
+                "vnetName": {
+                    "type": "string"
+                },
+                "autoSwapSlotName": {
+                    "type": "string"
+                },
+                "localMySqlEnabled": {
+                    "type": "bool"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "body": {
+                "defaultDocuments": {
+                    "$ref": "#/$keywords/defaultDocuments"
+                },
+                "appSettings": {
+                    "$ref": "#/$keywords/appSettings"
+                },
+                "metadata": {
+                    "$ref": "#/$keywords/metadata"
+                },
+                "connectionStrings": {
+                    "$ref": "#/$keywords/connectionStrings"
+                },
+                "handlerMappings": {
+                    "$ref": "#/$keywords/handlerMappings"
+                },
+                "virtualApplications": {
+                    "$ref": "#/$keywords/virtualApplications"
+                },
+                "experiments": {
+                    "$ref": "#/$keywords/experiments"
+                },
+                "limits": {
+                    "$ref": "#/$keywords/limits"
+                },
+                "autoHealRules": {
+                    "$ref": "#/$keywords/autoHealRules"
+                },
+                "cors": {
+                    "$ref": "#/$keywords/cors"
+                },
+                "apiDefinition": {
+                    "$ref": "#/$keywords/apiDefinition"
+                },
+                "ipSecurityRestrictions": {
+                    "$ref": "#/$keywords/ipSecurityRestrictions"
+                }
+            }
+        },
+        "defaultDocuments": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "appSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "metadata": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "connectionStrings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "handlerMappings": {
+            "parameters": {
+                "extension": {
+                    "type": "string"
+                },
+                "scriptProcessor": {
+                    "type": "string"
+                },
+                "arguments": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualApplications": {
+            "parameters": {
+                "virtualPath": {
+                    "type": "string"
+                },
+                "physicalPath": {
+                    "type": "string"
+                },
+                "preloadEnabled": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "virtualDirectories": {
+                    "$ref": "#/$keywords/virtualDirectories"
+                }
+            },
+            "array": true
+        },
+        "virtualDirectories": {
+            "parameters": {
+                "virtualPath": {
+                    "type": "string"
+                },
+                "physicalPath": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "experiments": {
+            "body": {
+                "rampUpRules": {
+                    "$ref": "#/$keywords/rampUpRules"
+                }
+            }
+        },
+        "rampUpRules": {
+            "parameters": {
+                "actionHostName": {
+                    "type": "string"
+                },
+                "reroutePercentage": {},
+                "changeStep": {},
+                "changeIntervalInMinutes": {
+                    "type": "int"
+                },
+                "minReroutePercentage": {},
+                "maxReroutePercentage": {},
+                "changeDecisionCallbackUrl": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "limits": {
+            "parameters": {
+                "maxPercentageCpu": {},
+                "maxMemoryInMb": {
+                    "type": "int"
+                },
+                "maxDiskSizeInMb": {
+                    "type": "int"
+                }
+            }
+        },
+        "autoHealRules": {
+            "body": {
+                "triggers": {
+                    "$ref": "#/$keywords/triggers"
+                },
+                "actions": {
+                    "$ref": "#/$keywords/actions"
+                }
+            }
+        },
+        "triggers": {
+            "parameters": {
+                "privateBytesInKB": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "requests": {
+                    "$ref": "#/$keywords/requests"
+                },
+                "statusCodes": {
+                    "$ref": "#/$keywords/statusCodes"
+                },
+                "slowRequests": {
+                    "$ref": "#/$keywords/slowRequests"
+                }
+            }
+        },
+        "requests": {
+            "parameters": {
+                "count": {
+                    "type": "int"
+                },
+                "timeInterval": {
+                    "type": "string"
+                }
+            }
+        },
+        "statusCodes": {
+            "parameters": {
+                "status": {
+                    "type": "int"
+                },
+                "subStatus": {
+                    "type": "int"
+                },
+                "win32Status": {
+                    "type": "int"
+                },
+                "count": {
+                    "type": "int"
+                },
+                "timeInterval": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "slowRequests": {
+            "parameters": {
+                "timeTaken": {
+                    "type": "string"
+                },
+                "count": {
+                    "type": "int"
+                },
+                "timeInterval": {
+                    "type": "string"
+                }
+            }
+        },
+        "actions": {
+            "parameters": {
+                "actionType": {},
+                "minProcessExecutionTime": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "customAction": {
+                    "$ref": "#/$keywords/customAction"
+                }
+            }
+        },
+        "customAction": {
+            "parameters": {
+                "exe": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "string"
+                }
+            }
+        },
+        "cors": {
+            "body": {
+                "allowedOrigins": {
+                    "$ref": "#/$keywords/allowedOrigins"
+                }
+            }
+        },
+        "allowedOrigins": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "apiDefinition": {
+            "parameters": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "ipSecurityRestrictions": {
+            "parameters": {
+                "ipAddress": {
+                    "type": "string"
+                },
+                "subnetMask": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "trafficManagerHostNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "premiumAppDeployed": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "scmSiteAlsoStopped": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "targetSwapSlot": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "microService": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "gatewaySiteName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clientAffinityEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "clientCertEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "hostNamesDisabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "outboundIpAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "containerSize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "maxNumberOfWorkers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "cloningInfo": {
+            "parameters": {
+                "correlationId": {
+                    "type": "string"
+                },
+                "overwrite": {
+                    "type": "bool"
+                },
+                "cloneCustomHostNames": {
+                    "type": "bool"
+                },
+                "cloneSourceControl": {
+                    "type": "bool"
+                },
+                "sourceWebAppId": {
+                    "type": "string"
+                },
+                "hostingEnvironment": {
+                    "type": "string"
+                },
+                "appSettingsOverrides": {},
+                "configureLoadBalancing": {
+                    "type": "bool"
+                },
+                "trafficManagerProfileId": {
+                    "type": "string"
+                },
+                "trafficManagerProfileName": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceGroup_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isDefaultContainer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "defaultHostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "id": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "message": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "author": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deployer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "author_email": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "start_time": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "end_time": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "active": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "details": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "name_8": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "siteName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "domainId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "azureResourceName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "azureResourceType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "customHostNameDnsRecordType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "hostNameType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "numberOfWorkers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "netFrameworkVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "phpVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "pythonVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "nodeVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "requestTracingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "requestTracingExpirationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "remoteDebuggingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "remoteDebuggingVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "httpLoggingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "logsDirectorySizeLimit": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "detailedErrorLoggingEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "publishingUsername": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publishingPassword_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "documentRoot": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scmType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "use32BitWorkerProcess": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "webSocketsEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "alwaysOn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "javaVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "javaContainer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "javaContainerVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "appCommandLine": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "managedPipelineMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "loadBalancing": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "autoHealEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "tracingOptions": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetName_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "autoSwapSlotName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "localMySqlEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "repoUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "branch": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "isManualIntegration": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isMercurial": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "applicationLogs": {
+            "body": {
+                "fileSystem": {
+                    "$ref": "#/$keywords/fileSystem"
+                },
+                "azureTableStorage": {
+                    "$ref": "#/$keywords/azureTableStorage"
+                },
+                "azureBlobStorage": {
+                    "$ref": "#/$keywords/azureBlobStorage"
+                }
+            }
+        },
+        "fileSystem": {
+            "parameters": {
+                "level": {}
+            }
+        },
+        "azureTableStorage": {
+            "parameters": {
+                "level": {},
+                "sasUrl": {
+                    "type": "string"
+                }
+            }
+        },
+        "azureBlobStorage": {
+            "parameters": {
+                "level": {},
+                "sasUrl": {
+                    "type": "string"
+                },
+                "retentionInDays": {
+                    "type": "int"
+                }
+            }
+        },
+        "httpLogs": {
+            "body": {
+                "fileSystem": {
+                    "$ref": "#/$keywords/fileSystem_2"
+                },
+                "azureBlobStorage": {
+                    "$ref": "#/$keywords/azureBlobStorage_2"
+                }
+            }
+        },
+        "fileSystem_2": {
+            "parameters": {
+                "retentionInMb": {
+                    "type": "int"
+                },
+                "retentionInDays": {
+                    "type": "int"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "azureBlobStorage_2": {
+            "parameters": {
+                "sasUrl": {
+                    "type": "string"
+                },
+                "retentionInDays": {
+                    "type": "int"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "failedRequestsTracing": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "name_9": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "enabled_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "storageAccountUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupSchedule": {
+            "parameters": {
+                "frequencyInterval": {
+                    "type": "int"
+                },
+                "frequencyUnit": {},
+                "keepAtLeastOneBackup": {
+                    "type": "bool"
+                },
+                "retentionPeriodInDays": {
+                    "type": "int"
+                },
+                "startTime": {},
+                "lastExecutionTime": {}
+            }
+        },
+        "databases": {
+            "parameters": {
+                "databaseType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "connectionStringName": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "storageAccountUrl_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "blobName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "overwrite": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "siteName_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "databases_2": {
+            "parameters": {
+                "databaseType": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "connectionStringName": {
+                    "type": "string"
+                },
+                "connectionString": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ignoreConflictingHostNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "adjustConnectionStrings": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "hostingEnvironment_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "entityName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "entityConnectionString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceConnectionString": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostname": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "port": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "biztalkUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "certificates": {
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName"
+            },
+            "subjectName": {
+                "$ref": "#/$keywords/subjectName"
+            },
+            "hostNames": {
+                "$ref": "#/$keywords/hostNames"
+            },
+            "pfxBlob": {
+                "$ref": "#/$keywords/pfxBlob"
+            },
+            "siteName": {
+                "$ref": "#/$keywords/siteName"
+            },
+            "selfLink": {
+                "$ref": "#/$keywords/selfLink"
+            },
+            "issuer": {
+                "$ref": "#/$keywords/issuer"
+            },
+            "issueDate": {
+                "$ref": "#/$keywords/issueDate"
+            },
+            "expirationDate": {
+                "$ref": "#/$keywords/expirationDate"
+            },
+            "password": {
+                "$ref": "#/$keywords/password"
+            },
+            "thumbprint": {
+                "$ref": "#/$keywords/thumbprint"
+            },
+            "valid": {
+                "$ref": "#/$keywords/valid"
+            },
+            "cerBlob": {
+                "$ref": "#/$keywords/cerBlob"
+            },
+            "publicKeyHash": {
+                "$ref": "#/$keywords/publicKeyHash"
+            },
+            "hostingEnvironmentProfile": {
+                "$ref": "#/$keywords/hostingEnvironmentProfile"
+            }
+        },
+        "csrs": {
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "distinguishedName": {
+                "$ref": "#/$keywords/distinguishedName"
+            },
+            "csrString": {
+                "$ref": "#/$keywords/csrString"
+            },
+            "pfxBlob": {
+                "$ref": "#/$keywords/pfxBlob_2"
+            },
+            "password": {
+                "$ref": "#/$keywords/password_2"
+            },
+            "publicKeyHash": {
+                "$ref": "#/$keywords/publicKeyHash_2"
+            },
+            "hostingEnvironment": {
+                "$ref": "#/$keywords/hostingEnvironment"
+            }
+        },
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Web//providers": {
+            "name": {
+                "$ref": "#/$keywords/name_2"
+            },
+            "publishingUserName": {
+                "$ref": "#/$keywords/publishingUserName"
+            },
+            "publishingPassword": {
+                "$ref": "#/$keywords/publishingPassword"
+            },
+            "scmUri": {
+                "$ref": "#/$keywords/scmUri"
+            }
+        },
+        "hostingEnvironments": {
+            "name": {
+                "$ref": "#/$keywords/name_3"
+            },
+            "location": {
+                "$ref": "#/$keywords/location"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName"
+            },
+            "vnetResourceGroupName": {
+                "$ref": "#/$keywords/vnetResourceGroupName"
+            },
+            "vnetSubnetName": {
+                "$ref": "#/$keywords/vnetSubnetName"
+            },
+            "virtualNetwork": {
+                "$ref": "#/$keywords/virtualNetwork"
+            },
+            "internalLoadBalancingMode": {
+                "$ref": "#/$keywords/internalLoadBalancingMode"
+            },
+            "multiSize": {
+                "$ref": "#/$keywords/multiSize"
+            },
+            "multiRoleCount": {
+                "$ref": "#/$keywords/multiRoleCount"
+            },
+            "workerPools": {
+                "$ref": "#/$keywords/workerPools"
+            },
+            "ipsslAddressCount": {
+                "$ref": "#/$keywords/ipsslAddressCount"
+            },
+            "databaseEdition": {
+                "$ref": "#/$keywords/databaseEdition"
+            },
+            "databaseServiceObjective": {
+                "$ref": "#/$keywords/databaseServiceObjective"
+            },
+            "upgradeDomains": {
+                "$ref": "#/$keywords/upgradeDomains"
+            },
+            "subscriptionId": {
+                "$ref": "#/$keywords/subscriptionId"
+            },
+            "dnsSuffix": {
+                "$ref": "#/$keywords/dnsSuffix"
+            },
+            "lastAction": {
+                "$ref": "#/$keywords/lastAction"
+            },
+            "lastActionResult": {
+                "$ref": "#/$keywords/lastActionResult"
+            },
+            "allowedMultiSizes": {
+                "$ref": "#/$keywords/allowedMultiSizes"
+            },
+            "allowedWorkerSizes": {
+                "$ref": "#/$keywords/allowedWorkerSizes"
+            },
+            "maximumNumberOfMachines": {
+                "$ref": "#/$keywords/maximumNumberOfMachines"
+            },
+            "vipMappings": {
+                "$ref": "#/$keywords/vipMappings"
+            },
+            "environmentCapacities": {
+                "$ref": "#/$keywords/environmentCapacities"
+            },
+            "networkAccessControlList": {
+                "$ref": "#/$keywords/networkAccessControlList"
+            },
+            "environmentIsHealthy": {
+                "$ref": "#/$keywords/environmentIsHealthy"
+            },
+            "environmentStatus": {
+                "$ref": "#/$keywords/environmentStatus"
+            },
+            "resourceGroup": {
+                "$ref": "#/$keywords/resourceGroup"
+            },
+            "apiManagementAccountId": {
+                "$ref": "#/$keywords/apiManagementAccountId"
+            },
+            "suspended": {
+                "$ref": "#/$keywords/suspended"
+            },
+            "clusterSettings": {
+                "$ref": "#/$keywords/clusterSettings"
+            }
+        },
+        "hostingEnvironments/multiRolePools": {
+            "workerSizeId": {
+                "$ref": "#/$keywords/workerSizeId"
+            },
+            "computeMode": {
+                "$ref": "#/$keywords/computeMode"
+            },
+            "workerSize": {
+                "$ref": "#/$keywords/workerSize"
+            },
+            "workerCount": {
+                "$ref": "#/$keywords/workerCount"
+            },
+            "instanceNames": {
+                "$ref": "#/$keywords/instanceNames"
+            }
+        },
+        "hostingEnvironments/workerPools": {
+            "workerSizeId": {
+                "$ref": "#/$keywords/workerSizeId"
+            },
+            "computeMode": {
+                "$ref": "#/$keywords/computeMode"
+            },
+            "workerSize": {
+                "$ref": "#/$keywords/workerSize"
+            },
+            "workerCount": {
+                "$ref": "#/$keywords/workerCount"
+            },
+            "instanceNames": {
+                "$ref": "#/$keywords/instanceNames"
+            }
+        },
+        "managedHostingEnvironments": {
+            "name": {
+                "$ref": "#/$keywords/name_3"
+            },
+            "location": {
+                "$ref": "#/$keywords/location"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName"
+            },
+            "vnetResourceGroupName": {
+                "$ref": "#/$keywords/vnetResourceGroupName"
+            },
+            "vnetSubnetName": {
+                "$ref": "#/$keywords/vnetSubnetName"
+            },
+            "virtualNetwork": {
+                "$ref": "#/$keywords/virtualNetwork"
+            },
+            "internalLoadBalancingMode": {
+                "$ref": "#/$keywords/internalLoadBalancingMode"
+            },
+            "multiSize": {
+                "$ref": "#/$keywords/multiSize"
+            },
+            "multiRoleCount": {
+                "$ref": "#/$keywords/multiRoleCount"
+            },
+            "workerPools": {
+                "$ref": "#/$keywords/workerPools"
+            },
+            "ipsslAddressCount": {
+                "$ref": "#/$keywords/ipsslAddressCount"
+            },
+            "databaseEdition": {
+                "$ref": "#/$keywords/databaseEdition"
+            },
+            "databaseServiceObjective": {
+                "$ref": "#/$keywords/databaseServiceObjective"
+            },
+            "upgradeDomains": {
+                "$ref": "#/$keywords/upgradeDomains"
+            },
+            "subscriptionId": {
+                "$ref": "#/$keywords/subscriptionId"
+            },
+            "dnsSuffix": {
+                "$ref": "#/$keywords/dnsSuffix"
+            },
+            "lastAction": {
+                "$ref": "#/$keywords/lastAction"
+            },
+            "lastActionResult": {
+                "$ref": "#/$keywords/lastActionResult"
+            },
+            "allowedMultiSizes": {
+                "$ref": "#/$keywords/allowedMultiSizes"
+            },
+            "allowedWorkerSizes": {
+                "$ref": "#/$keywords/allowedWorkerSizes"
+            },
+            "maximumNumberOfMachines": {
+                "$ref": "#/$keywords/maximumNumberOfMachines"
+            },
+            "vipMappings": {
+                "$ref": "#/$keywords/vipMappings"
+            },
+            "environmentCapacities": {
+                "$ref": "#/$keywords/environmentCapacities"
+            },
+            "networkAccessControlList": {
+                "$ref": "#/$keywords/networkAccessControlList"
+            },
+            "environmentIsHealthy": {
+                "$ref": "#/$keywords/environmentIsHealthy"
+            },
+            "environmentStatus": {
+                "$ref": "#/$keywords/environmentStatus"
+            },
+            "resourceGroup": {
+                "$ref": "#/$keywords/resourceGroup"
+            },
+            "apiManagementAccountId": {
+                "$ref": "#/$keywords/apiManagementAccountId"
+            },
+            "suspended": {
+                "$ref": "#/$keywords/suspended"
+            },
+            "clusterSettings": {
+                "$ref": "#/$keywords/clusterSettings"
+            }
+        },
+        "sourcecontrols": {
+            "name": {
+                "$ref": "#/$keywords/name_4"
+            },
+            "token": {
+                "$ref": "#/$keywords/token"
+            },
+            "tokenSecret": {
+                "$ref": "#/$keywords/tokenSecret"
+            },
+            "refreshToken": {
+                "$ref": "#/$keywords/refreshToken"
+            },
+            "expirationTime": {
+                "$ref": "#/$keywords/expirationTime"
+            }
+        },
+        "publishingUsers": {
+            "name": {
+                "$ref": "#/$keywords/name_2"
+            },
+            "publishingUserName": {
+                "$ref": "#/$keywords/publishingUserName"
+            },
+            "publishingPassword": {
+                "$ref": "#/$keywords/publishingPassword"
+            },
+            "scmUri": {
+                "$ref": "#/$keywords/scmUri"
+            }
+        },
+        "serverfarms": {
+            "name": {
+                "$ref": "#/$keywords/name_5"
+            },
+            "workerTierName": {
+                "$ref": "#/$keywords/workerTierName"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_2"
+            },
+            "subscription": {
+                "$ref": "#/$keywords/subscription"
+            },
+            "adminSiteName": {
+                "$ref": "#/$keywords/adminSiteName"
+            },
+            "hostingEnvironmentProfile": {
+                "$ref": "#/$keywords/hostingEnvironmentProfile"
+            },
+            "maximumNumberOfWorkers": {
+                "$ref": "#/$keywords/maximumNumberOfWorkers"
+            },
+            "geoRegion": {
+                "$ref": "#/$keywords/geoRegion"
+            },
+            "perSiteScaling": {
+                "$ref": "#/$keywords/perSiteScaling"
+            },
+            "numberOfSites": {
+                "$ref": "#/$keywords/numberOfSites"
+            },
+            "resourceGroup": {
+                "$ref": "#/$keywords/resourceGroup_2"
+            },
+            "reserved": {
+                "$ref": "#/$keywords/reserved"
+            }
+        },
+        "serverfarms/virtualNetworkConnections/routes": {
+            "name": {
+                "$ref": "#/$keywords/name_6"
+            },
+            "startAddress": {
+                "$ref": "#/$keywords/startAddress"
+            },
+            "endAddress": {
+                "$ref": "#/$keywords/endAddress"
+            },
+            "routeType": {
+                "$ref": "#/$keywords/routeType"
+            }
+        },
+        "serverfarms/virtualNetworkConnections/gateways": {
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName_2"
+            },
+            "vpnPackageUri": {
+                "$ref": "#/$keywords/vpnPackageUri"
+            }
+        },
+        "sites/slots/virtualNetworkConnections": {
+            "vnetResourceId": {
+                "$ref": "#/$keywords/vnetResourceId"
+            },
+            "certThumbprint": {
+                "$ref": "#/$keywords/certThumbprint"
+            },
+            "certBlob": {
+                "$ref": "#/$keywords/certBlob"
+            },
+            "routes": {
+                "$ref": "#/$keywords/routes"
+            },
+            "resyncRequired": {
+                "$ref": "#/$keywords/resyncRequired"
+            },
+            "dnsServers": {
+                "$ref": "#/$keywords/dnsServers"
+            }
+        },
+        "sites/virtualNetworkConnections": {
+            "vnetResourceId": {
+                "$ref": "#/$keywords/vnetResourceId"
+            },
+            "certThumbprint": {
+                "$ref": "#/$keywords/certThumbprint"
+            },
+            "certBlob": {
+                "$ref": "#/$keywords/certBlob"
+            },
+            "routes": {
+                "$ref": "#/$keywords/routes"
+            },
+            "resyncRequired": {
+                "$ref": "#/$keywords/resyncRequired"
+            },
+            "dnsServers": {
+                "$ref": "#/$keywords/dnsServers"
+            }
+        },
+        "sites/config": {
+            "connectionStringNames": {
+                "$ref": "#/$keywords/connectionStringNames"
+            },
+            "appSettingNames": {
+                "$ref": "#/$keywords/appSettingNames"
+            },
+            "numberOfWorkers": {
+                "$ref": "#/$keywords/numberOfWorkers"
+            },
+            "defaultDocuments": {
+                "$ref": "#/$keywords/defaultDocuments"
+            },
+            "netFrameworkVersion": {
+                "$ref": "#/$keywords/netFrameworkVersion"
+            },
+            "phpVersion": {
+                "$ref": "#/$keywords/phpVersion"
+            },
+            "pythonVersion": {
+                "$ref": "#/$keywords/pythonVersion"
+            },
+            "nodeVersion": {
+                "$ref": "#/$keywords/nodeVersion"
+            },
+            "requestTracingEnabled": {
+                "$ref": "#/$keywords/requestTracingEnabled"
+            },
+            "requestTracingExpirationTime": {
+                "$ref": "#/$keywords/requestTracingExpirationTime"
+            },
+            "remoteDebuggingEnabled": {
+                "$ref": "#/$keywords/remoteDebuggingEnabled"
+            },
+            "remoteDebuggingVersion": {
+                "$ref": "#/$keywords/remoteDebuggingVersion"
+            },
+            "httpLoggingEnabled": {
+                "$ref": "#/$keywords/httpLoggingEnabled"
+            },
+            "logsDirectorySizeLimit": {
+                "$ref": "#/$keywords/logsDirectorySizeLimit"
+            },
+            "detailedErrorLoggingEnabled": {
+                "$ref": "#/$keywords/detailedErrorLoggingEnabled"
+            },
+            "publishingUsername": {
+                "$ref": "#/$keywords/publishingUsername"
+            },
+            "publishingPassword": {
+                "$ref": "#/$keywords/publishingPassword_2"
+            },
+            "appSettings": {
+                "$ref": "#/$keywords/appSettings"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "connectionStrings": {
+                "$ref": "#/$keywords/connectionStrings"
+            },
+            "handlerMappings": {
+                "$ref": "#/$keywords/handlerMappings"
+            },
+            "documentRoot": {
+                "$ref": "#/$keywords/documentRoot"
+            },
+            "scmType": {
+                "$ref": "#/$keywords/scmType"
+            },
+            "use32BitWorkerProcess": {
+                "$ref": "#/$keywords/use32BitWorkerProcess"
+            },
+            "webSocketsEnabled": {
+                "$ref": "#/$keywords/webSocketsEnabled"
+            },
+            "alwaysOn": {
+                "$ref": "#/$keywords/alwaysOn"
+            },
+            "javaVersion": {
+                "$ref": "#/$keywords/javaVersion"
+            },
+            "javaContainer": {
+                "$ref": "#/$keywords/javaContainer"
+            },
+            "javaContainerVersion": {
+                "$ref": "#/$keywords/javaContainerVersion"
+            },
+            "appCommandLine": {
+                "$ref": "#/$keywords/appCommandLine"
+            },
+            "managedPipelineMode": {
+                "$ref": "#/$keywords/managedPipelineMode"
+            },
+            "virtualApplications": {
+                "$ref": "#/$keywords/virtualApplications"
+            },
+            "loadBalancing": {
+                "$ref": "#/$keywords/loadBalancing"
+            },
+            "experiments": {
+                "$ref": "#/$keywords/experiments"
+            },
+            "limits": {
+                "$ref": "#/$keywords/limits"
+            },
+            "autoHealEnabled": {
+                "$ref": "#/$keywords/autoHealEnabled"
+            },
+            "autoHealRules": {
+                "$ref": "#/$keywords/autoHealRules"
+            },
+            "tracingOptions": {
+                "$ref": "#/$keywords/tracingOptions"
+            },
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName_3"
+            },
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "apiDefinition": {
+                "$ref": "#/$keywords/apiDefinition"
+            },
+            "autoSwapSlotName": {
+                "$ref": "#/$keywords/autoSwapSlotName"
+            },
+            "localMySqlEnabled": {
+                "$ref": "#/$keywords/localMySqlEnabled"
+            },
+            "ipSecurityRestrictions": {
+                "$ref": "#/$keywords/ipSecurityRestrictions"
+            },
+            "applicationLogs": {
+                "$ref": "#/$keywords/applicationLogs"
+            },
+            "httpLogs": {
+                "$ref": "#/$keywords/httpLogs"
+            },
+            "failedRequestsTracing": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "detailedErrorMessages": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "name": {
+                "$ref": "#/$keywords/name_9"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled_2"
+            },
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl"
+            },
+            "backupSchedule": {
+                "$ref": "#/$keywords/backupSchedule"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            }
+        },
+        "sites": {
+            "name": {
+                "$ref": "#/$keywords/name_7"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "hostNames": {
+                "$ref": "#/$keywords/hostNames_2"
+            },
+            "repositorySiteName": {
+                "$ref": "#/$keywords/repositorySiteName"
+            },
+            "usageState": {
+                "$ref": "#/$keywords/usageState"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "enabledHostNames": {
+                "$ref": "#/$keywords/enabledHostNames"
+            },
+            "availabilityState": {
+                "$ref": "#/$keywords/availabilityState"
+            },
+            "hostNameSslStates": {
+                "$ref": "#/$keywords/hostNameSslStates"
+            },
+            "serverFarmId": {
+                "$ref": "#/$keywords/serverFarmId"
+            },
+            "lastModifiedTimeUtc": {
+                "$ref": "#/$keywords/lastModifiedTimeUtc"
+            },
+            "siteConfig": {
+                "$ref": "#/$keywords/siteConfig"
+            },
+            "trafficManagerHostNames": {
+                "$ref": "#/$keywords/trafficManagerHostNames"
+            },
+            "premiumAppDeployed": {
+                "$ref": "#/$keywords/premiumAppDeployed"
+            },
+            "scmSiteAlsoStopped": {
+                "$ref": "#/$keywords/scmSiteAlsoStopped"
+            },
+            "targetSwapSlot": {
+                "$ref": "#/$keywords/targetSwapSlot"
+            },
+            "hostingEnvironmentProfile": {
+                "$ref": "#/$keywords/hostingEnvironmentProfile"
+            },
+            "microService": {
+                "$ref": "#/$keywords/microService"
+            },
+            "gatewaySiteName": {
+                "$ref": "#/$keywords/gatewaySiteName"
+            },
+            "clientAffinityEnabled": {
+                "$ref": "#/$keywords/clientAffinityEnabled"
+            },
+            "clientCertEnabled": {
+                "$ref": "#/$keywords/clientCertEnabled"
+            },
+            "hostNamesDisabled": {
+                "$ref": "#/$keywords/hostNamesDisabled"
+            },
+            "outboundIpAddresses": {
+                "$ref": "#/$keywords/outboundIpAddresses"
+            },
+            "containerSize": {
+                "$ref": "#/$keywords/containerSize"
+            },
+            "maxNumberOfWorkers": {
+                "$ref": "#/$keywords/maxNumberOfWorkers"
+            },
+            "cloningInfo": {
+                "$ref": "#/$keywords/cloningInfo"
+            },
+            "resourceGroup": {
+                "$ref": "#/$keywords/resourceGroup_3"
+            },
+            "isDefaultContainer": {
+                "$ref": "#/$keywords/isDefaultContainer"
+            },
+            "defaultHostName": {
+                "$ref": "#/$keywords/defaultHostName"
+            }
+        },
+        "sites/slots": {
+            "name": {
+                "$ref": "#/$keywords/name_7"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "hostNames": {
+                "$ref": "#/$keywords/hostNames_2"
+            },
+            "repositorySiteName": {
+                "$ref": "#/$keywords/repositorySiteName"
+            },
+            "usageState": {
+                "$ref": "#/$keywords/usageState"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled"
+            },
+            "enabledHostNames": {
+                "$ref": "#/$keywords/enabledHostNames"
+            },
+            "availabilityState": {
+                "$ref": "#/$keywords/availabilityState"
+            },
+            "hostNameSslStates": {
+                "$ref": "#/$keywords/hostNameSslStates"
+            },
+            "serverFarmId": {
+                "$ref": "#/$keywords/serverFarmId"
+            },
+            "lastModifiedTimeUtc": {
+                "$ref": "#/$keywords/lastModifiedTimeUtc"
+            },
+            "siteConfig": {
+                "$ref": "#/$keywords/siteConfig"
+            },
+            "trafficManagerHostNames": {
+                "$ref": "#/$keywords/trafficManagerHostNames"
+            },
+            "premiumAppDeployed": {
+                "$ref": "#/$keywords/premiumAppDeployed"
+            },
+            "scmSiteAlsoStopped": {
+                "$ref": "#/$keywords/scmSiteAlsoStopped"
+            },
+            "targetSwapSlot": {
+                "$ref": "#/$keywords/targetSwapSlot"
+            },
+            "hostingEnvironmentProfile": {
+                "$ref": "#/$keywords/hostingEnvironmentProfile"
+            },
+            "microService": {
+                "$ref": "#/$keywords/microService"
+            },
+            "gatewaySiteName": {
+                "$ref": "#/$keywords/gatewaySiteName"
+            },
+            "clientAffinityEnabled": {
+                "$ref": "#/$keywords/clientAffinityEnabled"
+            },
+            "clientCertEnabled": {
+                "$ref": "#/$keywords/clientCertEnabled"
+            },
+            "hostNamesDisabled": {
+                "$ref": "#/$keywords/hostNamesDisabled"
+            },
+            "outboundIpAddresses": {
+                "$ref": "#/$keywords/outboundIpAddresses"
+            },
+            "containerSize": {
+                "$ref": "#/$keywords/containerSize"
+            },
+            "maxNumberOfWorkers": {
+                "$ref": "#/$keywords/maxNumberOfWorkers"
+            },
+            "cloningInfo": {
+                "$ref": "#/$keywords/cloningInfo"
+            },
+            "resourceGroup": {
+                "$ref": "#/$keywords/resourceGroup_3"
+            },
+            "isDefaultContainer": {
+                "$ref": "#/$keywords/isDefaultContainer"
+            },
+            "defaultHostName": {
+                "$ref": "#/$keywords/defaultHostName"
+            }
+        },
+        "sites/instances/deployments": {
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_3"
+            },
+            "message": {
+                "$ref": "#/$keywords/message"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "deployer": {
+                "$ref": "#/$keywords/deployer"
+            },
+            "author_email": {
+                "$ref": "#/$keywords/author_email"
+            },
+            "start_time": {
+                "$ref": "#/$keywords/start_time"
+            },
+            "end_time": {
+                "$ref": "#/$keywords/end_time"
+            },
+            "active": {
+                "$ref": "#/$keywords/active"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            }
+        },
+        "sites/deployments": {
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_3"
+            },
+            "message": {
+                "$ref": "#/$keywords/message"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "deployer": {
+                "$ref": "#/$keywords/deployer"
+            },
+            "author_email": {
+                "$ref": "#/$keywords/author_email"
+            },
+            "start_time": {
+                "$ref": "#/$keywords/start_time"
+            },
+            "end_time": {
+                "$ref": "#/$keywords/end_time"
+            },
+            "active": {
+                "$ref": "#/$keywords/active"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            }
+        },
+        "sites/slots/deployments": {
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_3"
+            },
+            "message": {
+                "$ref": "#/$keywords/message"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "deployer": {
+                "$ref": "#/$keywords/deployer"
+            },
+            "author_email": {
+                "$ref": "#/$keywords/author_email"
+            },
+            "start_time": {
+                "$ref": "#/$keywords/start_time"
+            },
+            "end_time": {
+                "$ref": "#/$keywords/end_time"
+            },
+            "active": {
+                "$ref": "#/$keywords/active"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            }
+        },
+        "sites/slots/instances/deployments": {
+            "id": {
+                "$ref": "#/$keywords/id"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_3"
+            },
+            "message": {
+                "$ref": "#/$keywords/message"
+            },
+            "author": {
+                "$ref": "#/$keywords/author"
+            },
+            "deployer": {
+                "$ref": "#/$keywords/deployer"
+            },
+            "author_email": {
+                "$ref": "#/$keywords/author_email"
+            },
+            "start_time": {
+                "$ref": "#/$keywords/start_time"
+            },
+            "end_time": {
+                "$ref": "#/$keywords/end_time"
+            },
+            "active": {
+                "$ref": "#/$keywords/active"
+            },
+            "details": {
+                "$ref": "#/$keywords/details"
+            }
+        },
+        "sites/hostNameBindings": {
+            "name": {
+                "$ref": "#/$keywords/name_8"
+            },
+            "siteName": {
+                "$ref": "#/$keywords/siteName_2"
+            },
+            "domainId": {
+                "$ref": "#/$keywords/domainId"
+            },
+            "azureResourceName": {
+                "$ref": "#/$keywords/azureResourceName"
+            },
+            "azureResourceType": {
+                "$ref": "#/$keywords/azureResourceType"
+            },
+            "customHostNameDnsRecordType": {
+                "$ref": "#/$keywords/customHostNameDnsRecordType"
+            },
+            "hostNameType": {
+                "$ref": "#/$keywords/hostNameType"
+            }
+        },
+        "sites/slots/hostNameBindings": {
+            "name": {
+                "$ref": "#/$keywords/name_8"
+            },
+            "siteName": {
+                "$ref": "#/$keywords/siteName_2"
+            },
+            "domainId": {
+                "$ref": "#/$keywords/domainId"
+            },
+            "azureResourceName": {
+                "$ref": "#/$keywords/azureResourceName"
+            },
+            "azureResourceType": {
+                "$ref": "#/$keywords/azureResourceType"
+            },
+            "customHostNameDnsRecordType": {
+                "$ref": "#/$keywords/customHostNameDnsRecordType"
+            },
+            "hostNameType": {
+                "$ref": "#/$keywords/hostNameType"
+            }
+        },
+        "sites/slots/config": {
+            "numberOfWorkers": {
+                "$ref": "#/$keywords/numberOfWorkers"
+            },
+            "defaultDocuments": {
+                "$ref": "#/$keywords/defaultDocuments"
+            },
+            "netFrameworkVersion": {
+                "$ref": "#/$keywords/netFrameworkVersion"
+            },
+            "phpVersion": {
+                "$ref": "#/$keywords/phpVersion"
+            },
+            "pythonVersion": {
+                "$ref": "#/$keywords/pythonVersion"
+            },
+            "nodeVersion": {
+                "$ref": "#/$keywords/nodeVersion"
+            },
+            "requestTracingEnabled": {
+                "$ref": "#/$keywords/requestTracingEnabled"
+            },
+            "requestTracingExpirationTime": {
+                "$ref": "#/$keywords/requestTracingExpirationTime"
+            },
+            "remoteDebuggingEnabled": {
+                "$ref": "#/$keywords/remoteDebuggingEnabled"
+            },
+            "remoteDebuggingVersion": {
+                "$ref": "#/$keywords/remoteDebuggingVersion"
+            },
+            "httpLoggingEnabled": {
+                "$ref": "#/$keywords/httpLoggingEnabled"
+            },
+            "logsDirectorySizeLimit": {
+                "$ref": "#/$keywords/logsDirectorySizeLimit"
+            },
+            "detailedErrorLoggingEnabled": {
+                "$ref": "#/$keywords/detailedErrorLoggingEnabled"
+            },
+            "publishingUsername": {
+                "$ref": "#/$keywords/publishingUsername"
+            },
+            "publishingPassword": {
+                "$ref": "#/$keywords/publishingPassword_2"
+            },
+            "appSettings": {
+                "$ref": "#/$keywords/appSettings"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "connectionStrings": {
+                "$ref": "#/$keywords/connectionStrings"
+            },
+            "handlerMappings": {
+                "$ref": "#/$keywords/handlerMappings"
+            },
+            "documentRoot": {
+                "$ref": "#/$keywords/documentRoot"
+            },
+            "scmType": {
+                "$ref": "#/$keywords/scmType"
+            },
+            "use32BitWorkerProcess": {
+                "$ref": "#/$keywords/use32BitWorkerProcess"
+            },
+            "webSocketsEnabled": {
+                "$ref": "#/$keywords/webSocketsEnabled"
+            },
+            "alwaysOn": {
+                "$ref": "#/$keywords/alwaysOn"
+            },
+            "javaVersion": {
+                "$ref": "#/$keywords/javaVersion"
+            },
+            "javaContainer": {
+                "$ref": "#/$keywords/javaContainer"
+            },
+            "javaContainerVersion": {
+                "$ref": "#/$keywords/javaContainerVersion"
+            },
+            "appCommandLine": {
+                "$ref": "#/$keywords/appCommandLine"
+            },
+            "managedPipelineMode": {
+                "$ref": "#/$keywords/managedPipelineMode"
+            },
+            "virtualApplications": {
+                "$ref": "#/$keywords/virtualApplications"
+            },
+            "loadBalancing": {
+                "$ref": "#/$keywords/loadBalancing"
+            },
+            "experiments": {
+                "$ref": "#/$keywords/experiments"
+            },
+            "limits": {
+                "$ref": "#/$keywords/limits"
+            },
+            "autoHealEnabled": {
+                "$ref": "#/$keywords/autoHealEnabled"
+            },
+            "autoHealRules": {
+                "$ref": "#/$keywords/autoHealRules"
+            },
+            "tracingOptions": {
+                "$ref": "#/$keywords/tracingOptions"
+            },
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName_3"
+            },
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "apiDefinition": {
+                "$ref": "#/$keywords/apiDefinition"
+            },
+            "autoSwapSlotName": {
+                "$ref": "#/$keywords/autoSwapSlotName"
+            },
+            "localMySqlEnabled": {
+                "$ref": "#/$keywords/localMySqlEnabled"
+            },
+            "ipSecurityRestrictions": {
+                "$ref": "#/$keywords/ipSecurityRestrictions"
+            },
+            "applicationLogs": {
+                "$ref": "#/$keywords/applicationLogs"
+            },
+            "httpLogs": {
+                "$ref": "#/$keywords/httpLogs"
+            },
+            "failedRequestsTracing": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "detailedErrorMessages": {
+                "$ref": "#/$keywords/failedRequestsTracing"
+            },
+            "name": {
+                "$ref": "#/$keywords/name_9"
+            },
+            "enabled": {
+                "$ref": "#/$keywords/enabled_2"
+            },
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl"
+            },
+            "backupSchedule": {
+                "$ref": "#/$keywords/backupSchedule"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            }
+        },
+        "sites/sourcecontrols": {
+            "repoUrl": {
+                "$ref": "#/$keywords/repoUrl"
+            },
+            "branch": {
+                "$ref": "#/$keywords/branch"
+            },
+            "isManualIntegration": {
+                "$ref": "#/$keywords/isManualIntegration"
+            },
+            "deploymentRollbackEnabled": {
+                "$ref": "#/$keywords/isManualIntegration"
+            },
+            "isMercurial": {
+                "$ref": "#/$keywords/isMercurial"
+            }
+        },
+        "sites/slots/sourcecontrols": {
+            "repoUrl": {
+                "$ref": "#/$keywords/repoUrl"
+            },
+            "branch": {
+                "$ref": "#/$keywords/branch"
+            },
+            "isManualIntegration": {
+                "$ref": "#/$keywords/isManualIntegration"
+            },
+            "deploymentRollbackEnabled": {
+                "$ref": "#/$keywords/isManualIntegration"
+            },
+            "isMercurial": {
+                "$ref": "#/$keywords/isMercurial"
+            }
+        },
+        "sites/premieraddons": {},
+        "sites/slots/premieraddons": {},
+        "sites/backups": {
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl_2"
+            },
+            "blobName": {
+                "$ref": "#/$keywords/blobName"
+            },
+            "overwrite": {
+                "$ref": "#/$keywords/overwrite"
+            },
+            "siteName": {
+                "$ref": "#/$keywords/siteName_3"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases_2"
+            },
+            "ignoreConflictingHostNames": {
+                "$ref": "#/$keywords/ignoreConflictingHostNames"
+            },
+            "operationType": {
+                "$ref": "#/$keywords/type"
+            },
+            "adjustConnectionStrings": {
+                "$ref": "#/$keywords/adjustConnectionStrings"
+            },
+            "hostingEnvironment": {
+                "$ref": "#/$keywords/hostingEnvironment_2"
+            }
+        },
+        "sites/slots/backups": {
+            "storageAccountUrl": {
+                "$ref": "#/$keywords/storageAccountUrl_2"
+            },
+            "blobName": {
+                "$ref": "#/$keywords/blobName"
+            },
+            "overwrite": {
+                "$ref": "#/$keywords/overwrite"
+            },
+            "siteName": {
+                "$ref": "#/$keywords/siteName_3"
+            },
+            "databases": {
+                "$ref": "#/$keywords/databases_2"
+            },
+            "ignoreConflictingHostNames": {
+                "$ref": "#/$keywords/ignoreConflictingHostNames"
+            },
+            "operationType": {
+                "$ref": "#/$keywords/type"
+            },
+            "adjustConnectionStrings": {
+                "$ref": "#/$keywords/adjustConnectionStrings"
+            },
+            "hostingEnvironment": {
+                "$ref": "#/$keywords/hostingEnvironment_2"
+            }
+        },
+        "sites/hybridconnection": {
+            "entityName": {
+                "$ref": "#/$keywords/entityName"
+            },
+            "entityConnectionString": {
+                "$ref": "#/$keywords/entityConnectionString"
+            },
+            "resourceType": {
+                "$ref": "#/$keywords/resourceType"
+            },
+            "resourceConnectionString": {
+                "$ref": "#/$keywords/resourceConnectionString"
+            },
+            "hostname": {
+                "$ref": "#/$keywords/hostname"
+            },
+            "port": {
+                "$ref": "#/$keywords/port"
+            },
+            "biztalkUri": {
+                "$ref": "#/$keywords/biztalkUri"
+            }
+        },
+        "sites/slots/hybridconnection": {
+            "entityName": {
+                "$ref": "#/$keywords/entityName"
+            },
+            "entityConnectionString": {
+                "$ref": "#/$keywords/entityConnectionString"
+            },
+            "resourceType": {
+                "$ref": "#/$keywords/resourceType"
+            },
+            "resourceConnectionString": {
+                "$ref": "#/$keywords/resourceConnectionString"
+            },
+            "hostname": {
+                "$ref": "#/$keywords/hostname"
+            },
+            "port": {
+                "$ref": "#/$keywords/port"
+            },
+            "biztalkUri": {
+                "$ref": "#/$keywords/biztalkUri"
+            }
+        },
+        "sites/slots/virtualNetworkConnections/gateways": {
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName_2"
+            },
+            "vpnPackageUri": {
+                "$ref": "#/$keywords/vpnPackageUri"
+            }
+        },
+        "sites/virtualNetworkConnections/gateways": {
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName_2"
+            },
+            "vpnPackageUri": {
+                "$ref": "#/$keywords/vpnPackageUri"
+            }
+        }
+    }
+}

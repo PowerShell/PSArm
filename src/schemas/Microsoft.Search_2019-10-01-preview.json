@@ -1,0 +1,134 @@
+{
+    "$keywords": {
+        "replicaCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "partitionCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "hostingMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "statusDetails": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "networkRuleSet": {
+            "parameters": {
+                "endpointAccess": {}
+            },
+            "body": {
+                "ipRules": {
+                    "$ref": "#/$keywords/ipRules"
+                }
+            }
+        },
+        "ipRules": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "privateEndpointConnections": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "privateEndpoint": {
+                    "$ref": "#/$keywords/privateEndpoint"
+                },
+                "privateLinkServiceConnectionState": {
+                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {},
+                "description": {
+                    "type": "string"
+                },
+                "actionsRequired": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "searchServices": {
+            "replicaCount": {
+                "$ref": "#/$keywords/replicaCount"
+            },
+            "partitionCount": {
+                "$ref": "#/$keywords/partitionCount"
+            },
+            "hostingMode": {
+                "$ref": "#/$keywords/hostingMode"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "statusDetails": {
+                "$ref": "#/$keywords/statusDetails"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "networkRuleSet": {
+                "$ref": "#/$keywords/networkRuleSet"
+            },
+            "privateEndpointConnections": {
+                "$ref": "#/$keywords/privateEndpointConnections"
+            }
+        },
+        "searchServices/privateEndpointConnections": {
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            }
+        }
+    }
+}

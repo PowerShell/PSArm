@@ -1,0 +1,115 @@
+{
+    "$keywords": {
+        "policyType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "BuiltIn",
+                        "Custom"
+                    ]
+                }
+            }
+        },
+        "mode": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "Indexed",
+                        "All"
+                    ]
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyRule": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "displayName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyDefinitionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "policyDefinitions": {
+            "policyType": {
+                "$ref": "#/$keywords/policyType"
+            },
+            "mode": {
+                "$ref": "#/$keywords/mode"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "policyRule": {
+                "$ref": "#/$keywords/policyRule"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/policyRule"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/policyRule"
+            }
+        },
+        "policyAssignments": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName_2"
+            },
+            "policyDefinitionId": {
+                "$ref": "#/$keywords/policyDefinitionId"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/policyRule"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "$keywords": {
+        "namespace": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "extensionProperties": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "maintenanceScope": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "All",
+                        "Host",
+                        "Resource",
+                        "InResource"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "maintenanceConfigurations": {
+            "namespace": {
+                "$ref": "#/$keywords/namespace"
+            },
+            "extensionProperties": {
+                "$ref": "#/$keywords/extensionProperties"
+            },
+            "maintenanceScope": {
+                "$ref": "#/$keywords/maintenanceScope"
+            }
+        }
+    }
+}

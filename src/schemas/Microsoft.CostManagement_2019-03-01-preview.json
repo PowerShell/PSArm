@@ -1,0 +1,183 @@
+{
+    "$keywords": {
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerBillingAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "providerBillingAccountDisplayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "credentialsKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "credentialsSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "reportId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "createdOn": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "modifiedOn": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "active",
+                        "error",
+                        "expired",
+                        "warning"
+                    ]
+                }
+            }
+        },
+        "externalBillingAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "defaultManagementGroupId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "billingModel": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "trial",
+                        "autoUpgrade",
+                        "premium",
+                        "expired"
+                    ]
+                }
+            }
+        },
+        "daysTrialRemaining": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "collectionInfo": {
+            "parameters": {
+                "lastChecked": {},
+                "sourceLastUpdated": {},
+                "lastUpdated": {}
+            },
+            "body": {
+                "error": {
+                    "$ref": "#/$keywords/error"
+                }
+            }
+        },
+        "error": {
+            "parameters": {
+                "errorMessage": {
+                    "type": "string"
+                },
+                "errorInnerMessage": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "string"
+                },
+                "errorStartTime": {}
+            }
+        }
+    },
+    "$resources": {
+        "cloudConnectors": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "providerBillingAccountId": {
+                "$ref": "#/$keywords/providerBillingAccountId"
+            },
+            "providerBillingAccountDisplayName": {
+                "$ref": "#/$keywords/providerBillingAccountDisplayName"
+            },
+            "credentialsKey": {
+                "$ref": "#/$keywords/credentialsKey"
+            },
+            "credentialsSecret": {
+                "$ref": "#/$keywords/credentialsSecret"
+            },
+            "reportId": {
+                "$ref": "#/$keywords/reportId"
+            },
+            "createdOn": {
+                "$ref": "#/$keywords/createdOn"
+            },
+            "modifiedOn": {
+                "$ref": "#/$keywords/modifiedOn"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "externalBillingAccountId": {
+                "$ref": "#/$keywords/externalBillingAccountId"
+            },
+            "defaultManagementGroupId": {
+                "$ref": "#/$keywords/defaultManagementGroupId"
+            },
+            "subscriptionId": {
+                "$ref": "#/$keywords/subscriptionId"
+            },
+            "billingModel": {
+                "$ref": "#/$keywords/billingModel"
+            },
+            "daysTrialRemaining": {
+                "$ref": "#/$keywords/daysTrialRemaining"
+            },
+            "collectionInfo": {
+                "$ref": "#/$keywords/collectionInfo"
+            }
+        }
+    }
+}

@@ -1,0 +1,118 @@
+{
+    "$keywords": {
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotActive",
+                        "Active"
+                    ]
+                }
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "scopes": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "childScope": {
+                    "$ref": "#/$keywords/childScope"
+                }
+            },
+            "array": true
+        },
+        "childScope": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "childScope": {
+                    "$ref": "#/$keywords/childScope"
+                }
+            }
+        },
+        "creationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "deprecationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "modificationTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "ruleType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "CustomPrice",
+                        "CostAllocation"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "billingAccounts/providers": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "scopes": {
+                "$ref": "#/$keywords/scopes"
+            },
+            "creationTime": {
+                "$ref": "#/$keywords/creationTime"
+            },
+            "deprecationTime": {
+                "$ref": "#/$keywords/deprecationTime"
+            },
+            "modificationTime": {
+                "$ref": "#/$keywords/modificationTime"
+            },
+            "ruleType": {
+                "$ref": "#/$keywords/ruleType"
+            }
+        }
+    }
+}

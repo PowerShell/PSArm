@@ -1,0 +1,48 @@
+{
+    "$keywords": {
+        "subscriptionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subscriptionDisplayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "offerType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "etag": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "subscriptionDefinitions": {
+            "subscriptionId": {
+                "$ref": "#/$keywords/subscriptionId"
+            },
+            "subscriptionDisplayName": {
+                "$ref": "#/$keywords/subscriptionDisplayName"
+            },
+            "offerType": {
+                "$ref": "#/$keywords/offerType"
+            },
+            "etag": {
+                "$ref": "#/$keywords/etag"
+            }
+        }
+    }
+}

@@ -1,0 +1,130 @@
+{
+    "$keywords": {
+        "category": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "amount": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "timeGrain": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Monthly",
+                        "Quarterly",
+                        "Annually",
+                        "BillingMonth",
+                        "BillingQuarter",
+                        "BillingAnnual"
+                    ]
+                }
+            }
+        },
+        "timePeriod": {
+            "parameters": {
+                "startDate": {},
+                "endDate": {}
+            }
+        },
+        "filter": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "not": {
+                    "$ref": "#/$keywords/not"
+                },
+                "dimensions": {
+                    "$ref": "#/$keywords/dimensions"
+                },
+                "tags": {
+                    "$ref": "#/$keywords/dimensions"
+                }
+            }
+        },
+        "and": {
+            "body": {
+                "dimensions": {
+                    "$ref": "#/$keywords/dimensions"
+                },
+                "tags": {
+                    "$ref": "#/$keywords/dimensions"
+                }
+            },
+            "array": true
+        },
+        "dimensions": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "operator": {}
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            }
+        },
+        "values": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "not": {
+            "body": {
+                "dimensions": {
+                    "$ref": "#/$keywords/dimensions"
+                },
+                "tags": {
+                    "$ref": "#/$keywords/dimensions"
+                }
+            }
+        },
+        "currentSpend": {
+            "parameters": {
+                "amount": {},
+                "unit": {
+                    "type": "string"
+                }
+            }
+        },
+        "notifications": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "budgets": {
+            "category": {
+                "$ref": "#/$keywords/category"
+            },
+            "amount": {
+                "$ref": "#/$keywords/amount"
+            },
+            "timeGrain": {
+                "$ref": "#/$keywords/timeGrain"
+            },
+            "timePeriod": {
+                "$ref": "#/$keywords/timePeriod"
+            },
+            "filter": {
+                "$ref": "#/$keywords/filter"
+            },
+            "currentSpend": {
+                "$ref": "#/$keywords/currentSpend"
+            },
+            "notifications": {
+                "$ref": "#/$keywords/notifications"
+            }
+        }
+    }
+}

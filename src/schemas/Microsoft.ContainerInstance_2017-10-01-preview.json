@@ -1,0 +1,314 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "containers": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "command": {
+                    "$ref": "#/$keywords/command"
+                },
+                "ports": {
+                    "$ref": "#/$keywords/ports"
+                },
+                "environmentVariables": {
+                    "$ref": "#/$keywords/environmentVariables"
+                },
+                "instanceView": {
+                    "$ref": "#/$keywords/instanceView"
+                },
+                "resources": {
+                    "$ref": "#/$keywords/resources"
+                },
+                "volumeMounts": {
+                    "$ref": "#/$keywords/volumeMounts"
+                }
+            },
+            "array": true
+        },
+        "command": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ports": {
+            "parameters": {
+                "protocol": {
+                    "enum": [
+                        "TCP",
+                        "UDP"
+                    ]
+                },
+                "port": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "environmentVariables": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "instanceView": {
+            "parameters": {
+                "restartCount": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "currentState": {
+                    "$ref": "#/$keywords/currentState"
+                },
+                "previousState": {
+                    "$ref": "#/$keywords/currentState"
+                },
+                "events": {
+                    "$ref": "#/$keywords/events"
+                }
+            }
+        },
+        "currentState": {
+            "parameters": {
+                "state": {
+                    "type": "string"
+                },
+                "startTime": {},
+                "exitCode": {
+                    "type": "int"
+                },
+                "finishTime": {},
+                "detailStatus": {
+                    "type": "string"
+                }
+            }
+        },
+        "events": {
+            "parameters": {
+                "count": {
+                    "type": "int"
+                },
+                "firstTimestamp": {},
+                "lastTimestamp": {},
+                "name": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "resources": {
+            "body": {
+                "requests": {
+                    "$ref": "#/$keywords/requests"
+                },
+                "limits": {
+                    "$ref": "#/$keywords/limits"
+                }
+            }
+        },
+        "requests": {
+            "parameters": {
+                "memoryInGB": {},
+                "cpu": {}
+            }
+        },
+        "limits": {
+            "parameters": {
+                "memoryInGB": {},
+                "cpu": {}
+            }
+        },
+        "volumeMounts": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "mountPath": {
+                    "type": "string"
+                },
+                "readOnly": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "imageRegistryCredentials": {
+            "parameters": {
+                "server": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "restartPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Always",
+                        "OnFailure",
+                        "Never"
+                    ]
+                }
+            }
+        },
+        "ipAddress": {
+            "parameters": {
+                "type": {},
+                "ip": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "ports": {
+                    "$ref": "#/$keywords/ports_2"
+                }
+            }
+        },
+        "ports_2": {
+            "parameters": {
+                "protocol": {
+                    "enum": [
+                        "TCP",
+                        "UDP"
+                    ]
+                },
+                "port": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "osType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Windows",
+                        "Linux"
+                    ]
+                }
+            }
+        },
+        "volumes": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "emptyDir": {}
+            },
+            "body": {
+                "azureFile": {
+                    "$ref": "#/$keywords/azureFile"
+                }
+            },
+            "array": true
+        },
+        "azureFile": {
+            "parameters": {
+                "shareName": {
+                    "type": "string"
+                },
+                "readOnly": {
+                    "type": "bool"
+                },
+                "storageAccountName": {
+                    "type": "string"
+                },
+                "storageAccountKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "instanceView_2": {
+            "parameters": {
+                "state": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "events": {
+                    "$ref": "#/$keywords/events_2"
+                }
+            }
+        },
+        "events_2": {
+            "parameters": {
+                "count": {
+                    "type": "int"
+                },
+                "firstTimestamp": {},
+                "lastTimestamp": {},
+                "name": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "containerGroups": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "containers": {
+                "$ref": "#/$keywords/containers"
+            },
+            "imageRegistryCredentials": {
+                "$ref": "#/$keywords/imageRegistryCredentials"
+            },
+            "restartPolicy": {
+                "$ref": "#/$keywords/restartPolicy"
+            },
+            "ipAddress": {
+                "$ref": "#/$keywords/ipAddress"
+            },
+            "osType": {
+                "$ref": "#/$keywords/osType"
+            },
+            "volumes": {
+                "$ref": "#/$keywords/volumes"
+            },
+            "instanceView": {
+                "$ref": "#/$keywords/instanceView_2"
+            }
+        }
+    }
+}

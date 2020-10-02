@@ -1,0 +1,1080 @@
+{
+    "$keywords": {
+        "mediaServiceId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "storageAccounts": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {}
+            },
+            "array": true
+        },
+        "assetId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "created": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "alternateId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "container": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageAccountName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageEncryptionFormat": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "policyId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "created_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "options": {
+            "parameters": {
+                "policyOptionId": {},
+                "name": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "configuration": {
+                    "$ref": "#/$keywords/configuration"
+                },
+                "restriction": {
+                    "$ref": "#/$keywords/restriction"
+                }
+            },
+            "array": true
+        },
+        "configuration": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                }
+            }
+        },
+        "restriction": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                }
+            }
+        },
+        "created_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastModified_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "outputs": {
+            "parameters": {
+                "onError": {},
+                "relativePriority": {}
+            },
+            "body": {
+                "preset": {
+                    "$ref": "#/$keywords/preset"
+                }
+            },
+            "array": true
+        },
+        "preset": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                }
+            }
+        },
+        "created_4": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_4": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "input": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastModified_4": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "outputs_2": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                },
+                "state": {},
+                "progress": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "error": {
+                    "$ref": "#/$keywords/error"
+                }
+            },
+            "array": true
+        },
+        "error": {
+            "parameters": {
+                "code": {},
+                "message": {
+                    "type": "string"
+                },
+                "category": {},
+                "retry": {}
+            },
+            "body": {
+                "details": {
+                    "$ref": "#/$keywords/details"
+                }
+            }
+        },
+        "details": {
+            "parameters": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "priority": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "created_5": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "defaultContentKeyPolicyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "envelopeEncryption": {
+            "parameters": {
+                "customLicenseAcquisitionUrlTemplate": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "enabledProtocols": {
+                    "$ref": "#/$keywords/enabledProtocols"
+                },
+                "clearTracks": {
+                    "$ref": "#/$keywords/clearTracks"
+                },
+                "contentKeys": {
+                    "$ref": "#/$keywords/contentKeys"
+                }
+            }
+        },
+        "enabledProtocols": {
+            "parameters": {
+                "download": {
+                    "type": "bool"
+                },
+                "dash": {
+                    "type": "bool"
+                },
+                "hls": {
+                    "type": "bool"
+                },
+                "smoothStreaming": {
+                    "type": "bool"
+                }
+            }
+        },
+        "clearTracks": {
+            "body": {
+                "trackSelections": {
+                    "$ref": "#/$keywords/trackSelections"
+                }
+            },
+            "array": true
+        },
+        "trackSelections": {
+            "parameters": {
+                "property": {},
+                "operation": {},
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "contentKeys": {
+            "body": {
+                "defaultKey": {
+                    "$ref": "#/$keywords/defaultKey"
+                },
+                "keyToTrackMappings": {
+                    "$ref": "#/$keywords/keyToTrackMappings"
+                }
+            }
+        },
+        "defaultKey": {
+            "parameters": {
+                "label": {
+                    "type": "string"
+                },
+                "policyName": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyToTrackMappings": {
+            "parameters": {
+                "label": {
+                    "type": "string"
+                },
+                "policyName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "tracks": {
+                    "$ref": "#/$keywords/tracks"
+                }
+            },
+            "array": true
+        },
+        "tracks": {
+            "body": {
+                "trackSelections": {
+                    "$ref": "#/$keywords/trackSelections"
+                }
+            },
+            "array": true
+        },
+        "commonEncryptionCenc": {
+            "body": {
+                "enabledProtocols": {
+                    "$ref": "#/$keywords/enabledProtocols"
+                },
+                "clearTracks": {
+                    "$ref": "#/$keywords/clearTracks_2"
+                },
+                "contentKeys": {
+                    "$ref": "#/$keywords/contentKeys"
+                },
+                "drm": {
+                    "$ref": "#/$keywords/drm"
+                }
+            }
+        },
+        "clearTracks_2": {
+            "body": {
+                "trackSelections": {
+                    "$ref": "#/$keywords/trackSelections"
+                }
+            },
+            "array": true
+        },
+        "drm": {
+            "body": {
+                "playReady": {
+                    "$ref": "#/$keywords/playReady"
+                },
+                "widevine": {
+                    "$ref": "#/$keywords/widevine"
+                }
+            }
+        },
+        "playReady": {
+            "parameters": {
+                "customLicenseAcquisitionUrlTemplate": {
+                    "type": "string"
+                },
+                "playReadyCustomAttributes": {
+                    "type": "string"
+                }
+            }
+        },
+        "widevine": {
+            "parameters": {
+                "customLicenseAcquisitionUrlTemplate": {
+                    "type": "string"
+                }
+            }
+        },
+        "commonEncryptionCbcs": {
+            "body": {
+                "enabledProtocols": {
+                    "$ref": "#/$keywords/enabledProtocols"
+                },
+                "clearTracks": {
+                    "$ref": "#/$keywords/clearTracks_3"
+                },
+                "contentKeys": {
+                    "$ref": "#/$keywords/contentKeys"
+                },
+                "drm": {
+                    "$ref": "#/$keywords/drm_2"
+                }
+            }
+        },
+        "clearTracks_3": {
+            "body": {
+                "trackSelections": {
+                    "$ref": "#/$keywords/trackSelections"
+                }
+            },
+            "array": true
+        },
+        "drm_2": {
+            "body": {
+                "fairPlay": {
+                    "$ref": "#/$keywords/fairPlay"
+                },
+                "playReady": {
+                    "$ref": "#/$keywords/playReady"
+                },
+                "widevine": {
+                    "$ref": "#/$keywords/widevine"
+                }
+            }
+        },
+        "fairPlay": {
+            "parameters": {
+                "customLicenseAcquisitionUrlTemplate": {
+                    "type": "string"
+                },
+                "allowPersistentLicense": {
+                    "type": "bool"
+                }
+            }
+        },
+        "noEncryption": {
+            "body": {
+                "enabledProtocols": {
+                    "$ref": "#/$keywords/enabledProtocols"
+                }
+            }
+        },
+        "assetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "created_6": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "startTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "endTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "streamingLocatorId": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "streamingPolicyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "defaultContentKeyPolicyName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "contentKeys_2": {
+            "parameters": {
+                "id": {},
+                "label": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "description_5": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "input_2": {
+            "parameters": {
+                "streamingProtocol": {},
+                "keyFrameIntervalDuration": {
+                    "type": "string"
+                },
+                "accessToken": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "endpoints": {
+                    "$ref": "#/$keywords/endpoints"
+                }
+            }
+        },
+        "endpoints": {
+            "parameters": {
+                "protocol": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "preview": {
+            "parameters": {
+                "previewLocator": {
+                    "type": "string"
+                },
+                "streamingPolicyName": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "endpoints": {
+                    "$ref": "#/$keywords/endpoints_2"
+                },
+                "accessControl": {
+                    "$ref": "#/$keywords/accessControl"
+                }
+            }
+        },
+        "endpoints_2": {
+            "parameters": {
+                "protocol": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "accessControl": {
+            "body": {
+                "ip": {
+                    "$ref": "#/$keywords/ip"
+                }
+            }
+        },
+        "ip": {
+            "body": {
+                "allow": {
+                    "$ref": "#/$keywords/allow"
+                }
+            }
+        },
+        "allow": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "subnetPrefixLength": {
+                    "type": "int"
+                }
+            },
+            "array": true
+        },
+        "encoding": {
+            "parameters": {
+                "encodingType": {},
+                "presetName": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "crossSiteAccessPolicies": {
+            "parameters": {
+                "clientAccessPolicy": {
+                    "type": "string"
+                },
+                "crossDomainPolicy": {
+                    "type": "string"
+                }
+            }
+        },
+        "vanityUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "streamOptions": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "created_7": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified_5": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_6": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "assetName_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "archiveWindowLength": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "manifestName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hls": {
+            "parameters": {
+                "fragmentsPerTsSegment": {
+                    "type": "int"
+                }
+            }
+        },
+        "outputSnapTime": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "created_8": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified_6": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceState_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description_7": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scaleUnits": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "availabilitySetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accessControl_2": {
+            "body": {
+                "akamai": {
+                    "$ref": "#/$keywords/akamai"
+                },
+                "ip": {
+                    "$ref": "#/$keywords/ip"
+                }
+            }
+        },
+        "akamai": {
+            "body": {
+                "akamaiSignatureHeaderAuthenticationKeyList": {
+                    "$ref": "#/$keywords/akamaiSignatureHeaderAuthenticationKeyList"
+                }
+            }
+        },
+        "akamaiSignatureHeaderAuthenticationKeyList": {
+            "parameters": {
+                "identifier": {
+                    "type": "string"
+                },
+                "base64Key": {
+                    "type": "string"
+                },
+                "expiration": {}
+            },
+            "array": true
+        },
+        "maxCacheAge": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "customHostNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "hostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cdnEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "cdnProvider": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cdnProfile": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceState_3": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "freeTrialEndTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "created_9": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModified_7": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "mediaservices": {
+            "mediaServiceId": {
+                "$ref": "#/$keywords/mediaServiceId"
+            },
+            "storageAccounts": {
+                "$ref": "#/$keywords/storageAccounts"
+            }
+        },
+        "mediaServices/assets": {
+            "assetId": {
+                "$ref": "#/$keywords/assetId"
+            },
+            "created": {
+                "$ref": "#/$keywords/created"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified"
+            },
+            "alternateId": {
+                "$ref": "#/$keywords/alternateId"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "container": {
+                "$ref": "#/$keywords/container"
+            },
+            "storageAccountName": {
+                "$ref": "#/$keywords/storageAccountName"
+            },
+            "storageEncryptionFormat": {
+                "$ref": "#/$keywords/storageEncryptionFormat"
+            }
+        },
+        "mediaServices/contentKeyPolicies": {
+            "policyId": {
+                "$ref": "#/$keywords/policyId"
+            },
+            "created": {
+                "$ref": "#/$keywords/created_2"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified_2"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_2"
+            },
+            "options": {
+                "$ref": "#/$keywords/options"
+            }
+        },
+        "mediaServices/transforms": {
+            "created": {
+                "$ref": "#/$keywords/created_3"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_3"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified_3"
+            },
+            "outputs": {
+                "$ref": "#/$keywords/outputs"
+            }
+        },
+        "mediaServices/transforms/jobs": {
+            "created": {
+                "$ref": "#/$keywords/created_4"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "description": {
+                "$ref": "#/$keywords/description_4"
+            },
+            "input": {
+                "$ref": "#/$keywords/input"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified_4"
+            },
+            "outputs": {
+                "$ref": "#/$keywords/outputs_2"
+            },
+            "priority": {
+                "$ref": "#/$keywords/priority"
+            }
+        },
+        "mediaServices/streamingPolicies": {
+            "created": {
+                "$ref": "#/$keywords/created_5"
+            },
+            "defaultContentKeyPolicyName": {
+                "$ref": "#/$keywords/defaultContentKeyPolicyName"
+            },
+            "envelopeEncryption": {
+                "$ref": "#/$keywords/envelopeEncryption"
+            },
+            "commonEncryptionCenc": {
+                "$ref": "#/$keywords/commonEncryptionCenc"
+            },
+            "commonEncryptionCbcs": {
+                "$ref": "#/$keywords/commonEncryptionCbcs"
+            },
+            "noEncryption": {
+                "$ref": "#/$keywords/noEncryption"
+            }
+        },
+        "mediaServices/streamingLocators": {
+            "assetName": {
+                "$ref": "#/$keywords/assetName"
+            },
+            "created": {
+                "$ref": "#/$keywords/created_6"
+            },
+            "startTime": {
+                "$ref": "#/$keywords/startTime"
+            },
+            "endTime": {
+                "$ref": "#/$keywords/endTime"
+            },
+            "streamingLocatorId": {
+                "$ref": "#/$keywords/streamingLocatorId"
+            },
+            "streamingPolicyName": {
+                "$ref": "#/$keywords/streamingPolicyName"
+            },
+            "defaultContentKeyPolicyName": {
+                "$ref": "#/$keywords/defaultContentKeyPolicyName_2"
+            },
+            "contentKeys": {
+                "$ref": "#/$keywords/contentKeys_2"
+            }
+        },
+        "mediaservices/liveEvents": {
+            "description": {
+                "$ref": "#/$keywords/description_5"
+            },
+            "input": {
+                "$ref": "#/$keywords/input_2"
+            },
+            "preview": {
+                "$ref": "#/$keywords/preview"
+            },
+            "encoding": {
+                "$ref": "#/$keywords/encoding"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "resourceState": {
+                "$ref": "#/$keywords/resourceState"
+            },
+            "crossSiteAccessPolicies": {
+                "$ref": "#/$keywords/crossSiteAccessPolicies"
+            },
+            "vanityUrl": {
+                "$ref": "#/$keywords/vanityUrl"
+            },
+            "streamOptions": {
+                "$ref": "#/$keywords/streamOptions"
+            },
+            "created": {
+                "$ref": "#/$keywords/created_7"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified_5"
+            }
+        },
+        "mediaservices/liveEvents/liveOutputs": {
+            "description": {
+                "$ref": "#/$keywords/description_6"
+            },
+            "assetName": {
+                "$ref": "#/$keywords/assetName_2"
+            },
+            "archiveWindowLength": {
+                "$ref": "#/$keywords/archiveWindowLength"
+            },
+            "manifestName": {
+                "$ref": "#/$keywords/manifestName"
+            },
+            "hls": {
+                "$ref": "#/$keywords/hls"
+            },
+            "outputSnapTime": {
+                "$ref": "#/$keywords/outputSnapTime"
+            },
+            "created": {
+                "$ref": "#/$keywords/created_8"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified_6"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "resourceState": {
+                "$ref": "#/$keywords/resourceState_2"
+            }
+        },
+        "mediaservices/streamingEndpoints": {
+            "description": {
+                "$ref": "#/$keywords/description_7"
+            },
+            "scaleUnits": {
+                "$ref": "#/$keywords/scaleUnits"
+            },
+            "availabilitySetName": {
+                "$ref": "#/$keywords/availabilitySetName"
+            },
+            "accessControl": {
+                "$ref": "#/$keywords/accessControl_2"
+            },
+            "maxCacheAge": {
+                "$ref": "#/$keywords/maxCacheAge"
+            },
+            "customHostNames": {
+                "$ref": "#/$keywords/customHostNames"
+            },
+            "hostName": {
+                "$ref": "#/$keywords/hostName"
+            },
+            "cdnEnabled": {
+                "$ref": "#/$keywords/cdnEnabled"
+            },
+            "cdnProvider": {
+                "$ref": "#/$keywords/cdnProvider"
+            },
+            "cdnProfile": {
+                "$ref": "#/$keywords/cdnProfile"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "resourceState": {
+                "$ref": "#/$keywords/resourceState_3"
+            },
+            "crossSiteAccessPolicies": {
+                "$ref": "#/$keywords/crossSiteAccessPolicies"
+            },
+            "freeTrialEndTime": {
+                "$ref": "#/$keywords/freeTrialEndTime"
+            },
+            "created": {
+                "$ref": "#/$keywords/created_9"
+            },
+            "lastModified": {
+                "$ref": "#/$keywords/lastModified_7"
+            }
+        }
+    }
+}

@@ -1,0 +1,141 @@
+{
+    "$keywords": {
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "severity": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Sev0",
+                        "Sev1",
+                        "Sev2",
+                        "Sev3",
+                        "Sev4"
+                    ]
+                }
+            }
+        },
+        "frequency": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "detector": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "parameters": {},
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "supportedResourceTypes": {
+                    "$ref": "#/$keywords/supportedResourceTypes"
+                },
+                "imagePaths": {
+                    "$ref": "#/$keywords/imagePaths"
+                }
+            }
+        },
+        "supportedResourceTypes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "imagePaths": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "scope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "actionGroups": {
+            "parameters": {
+                "customEmailSubject": {
+                    "type": "string"
+                },
+                "customWebhookPayload": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "groupIds": {
+                    "$ref": "#/$keywords/groupIds"
+                }
+            }
+        },
+        "groupIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "throttling": {
+            "parameters": {
+                "duration": {}
+            }
+        }
+    },
+    "$resources": {
+        "smartDetectorAlertRules": {
+            "description": {
+                "$ref": "#/$keywords/description"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "severity": {
+                "$ref": "#/$keywords/severity"
+            },
+            "frequency": {
+                "$ref": "#/$keywords/frequency"
+            },
+            "detector": {
+                "$ref": "#/$keywords/detector"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "actionGroups": {
+                "$ref": "#/$keywords/actionGroups"
+            },
+            "throttling": {
+                "$ref": "#/$keywords/throttling"
+            }
+        }
+    }
+}

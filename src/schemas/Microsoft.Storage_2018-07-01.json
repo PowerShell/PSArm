@@ -1,0 +1,450 @@
+{
+    "$keywords": {
+        "customDomain": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "useSubDomainName": {
+                    "type": "bool"
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "keySource": {
+                    "enum": [
+                        "Microsoft.Storage",
+                        "Microsoft.Keyvault"
+                    ]
+                }
+            },
+            "body": {
+                "services": {
+                    "$ref": "#/$keywords/services"
+                },
+                "keyvaultproperties": {
+                    "$ref": "#/$keywords/keyvaultproperties"
+                }
+            }
+        },
+        "services": {
+            "body": {
+                "blob": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "file": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "table": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "queue": {
+                    "$ref": "#/$keywords/blob"
+                }
+            }
+        },
+        "blob": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "lastEnabledTime": {}
+            }
+        },
+        "keyvaultproperties": {
+            "parameters": {
+                "keyname": {
+                    "type": "string"
+                },
+                "keyversion": {
+                    "type": "string"
+                },
+                "keyvaulturi": {
+                    "type": "string"
+                }
+            }
+        },
+        "networkAcls": {
+            "parameters": {
+                "bypass": {
+                    "enum": [
+                        "None",
+                        "Logging",
+                        "Metrics",
+                        "AzureServices"
+                    ]
+                },
+                "defaultAction": {}
+            },
+            "body": {
+                "virtualNetworkRules": {
+                    "$ref": "#/$keywords/virtualNetworkRules"
+                },
+                "ipRules": {
+                    "$ref": "#/$keywords/ipRules"
+                }
+            }
+        },
+        "virtualNetworkRules": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "action": {},
+                "state": {}
+            },
+            "array": true
+        },
+        "ipRules": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                },
+                "action": {}
+            },
+            "array": true
+        },
+        "accessTier": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "azureFilesAadIntegration": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "supportsHttpsTrafficOnly": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "isHnsEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "cors": {
+            "body": {
+                "corsRules": {
+                    "$ref": "#/$keywords/corsRules"
+                }
+            }
+        },
+        "corsRules": {
+            "parameters": {
+                "maxAgeInSeconds": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "allowedOrigins": {
+                    "$ref": "#/$keywords/allowedOrigins"
+                },
+                "allowedMethods": {
+                    "$ref": "#/$keywords/allowedMethods"
+                },
+                "exposedHeaders": {
+                    "$ref": "#/$keywords/exposedHeaders"
+                },
+                "allowedHeaders": {
+                    "$ref": "#/$keywords/allowedHeaders"
+                }
+            },
+            "array": true
+        },
+        "allowedOrigins": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "allowedMethods": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "DELETE",
+                        "GET",
+                        "HEAD",
+                        "MERGE",
+                        "POST",
+                        "OPTIONS",
+                        "PUT"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "exposedHeaders": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "allowedHeaders": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "defaultServiceVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deleteRetentionPolicy": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "days": {
+                    "type": "int"
+                }
+            }
+        },
+        "publicAccess": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastModifiedTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "leaseStatus": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Locked",
+                        "Unlocked"
+                    ]
+                }
+            }
+        },
+        "leaseState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Available",
+                        "Leased",
+                        "Expired",
+                        "Breaking",
+                        "Broken"
+                    ]
+                }
+            }
+        },
+        "leaseDuration": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Infinite",
+                        "Fixed"
+                    ]
+                }
+            }
+        },
+        "metadata": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "immutabilityPolicy": {
+            "parameters": {
+                "etag": {
+                    "type": "string"
+                },
+                "immutabilityPeriodSinceCreationInDays": {
+                    "type": "int"
+                },
+                "state": {
+                    "enum": [
+                        "Locked",
+                        "Unlocked"
+                    ]
+                }
+            },
+            "body": {
+                "updateHistory": {
+                    "$ref": "#/$keywords/updateHistory"
+                }
+            }
+        },
+        "updateHistory": {
+            "parameters": {
+                "update": {
+                    "enum": [
+                        "put",
+                        "lock",
+                        "extend"
+                    ]
+                },
+                "immutabilityPeriodSinceCreationInDays": {
+                    "type": "int"
+                },
+                "timestamp": {},
+                "objectIdentifier": {
+                    "type": "string"
+                },
+                "tenantId": {
+                    "type": "string"
+                },
+                "upn": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "legalHold": {
+            "parameters": {
+                "hasLegalHold": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "tags": {
+                    "$ref": "#/$keywords/tags"
+                }
+            }
+        },
+        "tags": {
+            "parameters": {
+                "tag": {
+                    "type": "string"
+                },
+                "timestamp": {},
+                "objectIdentifier": {
+                    "type": "string"
+                },
+                "tenantId": {
+                    "type": "string"
+                },
+                "upn": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "hasLegalHold": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "hasImmutabilityPolicy": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "immutabilityPeriodSinceCreationInDays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Locked",
+                        "Unlocked"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "storageAccounts": {
+            "customDomain": {
+                "$ref": "#/$keywords/customDomain"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "networkAcls": {
+                "$ref": "#/$keywords/networkAcls"
+            },
+            "accessTier": {
+                "$ref": "#/$keywords/accessTier"
+            },
+            "azureFilesAadIntegration": {
+                "$ref": "#/$keywords/azureFilesAadIntegration"
+            },
+            "supportsHttpsTrafficOnly": {
+                "$ref": "#/$keywords/supportsHttpsTrafficOnly"
+            },
+            "isHnsEnabled": {
+                "$ref": "#/$keywords/isHnsEnabled"
+            }
+        },
+        "storageAccounts/blobServices": {
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "defaultServiceVersion": {
+                "$ref": "#/$keywords/defaultServiceVersion"
+            },
+            "deleteRetentionPolicy": {
+                "$ref": "#/$keywords/deleteRetentionPolicy"
+            },
+            "publicAccess": {
+                "$ref": "#/$keywords/publicAccess"
+            },
+            "lastModifiedTime": {
+                "$ref": "#/$keywords/lastModifiedTime"
+            },
+            "leaseStatus": {
+                "$ref": "#/$keywords/leaseStatus"
+            },
+            "leaseState": {
+                "$ref": "#/$keywords/leaseState"
+            },
+            "leaseDuration": {
+                "$ref": "#/$keywords/leaseDuration"
+            },
+            "metadata": {
+                "$ref": "#/$keywords/metadata"
+            },
+            "immutabilityPolicy": {
+                "$ref": "#/$keywords/immutabilityPolicy"
+            },
+            "legalHold": {
+                "$ref": "#/$keywords/legalHold"
+            },
+            "hasLegalHold": {
+                "$ref": "#/$keywords/hasLegalHold"
+            },
+            "hasImmutabilityPolicy": {
+                "$ref": "#/$keywords/hasImmutabilityPolicy"
+            }
+        },
+        "storageAccounts/blobServices/immutabilityPolicies": {
+            "immutabilityPeriodSinceCreationInDays": {
+                "$ref": "#/$keywords/immutabilityPeriodSinceCreationInDays"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            }
+        }
+    }
+}

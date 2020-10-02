@@ -1,0 +1,19 @@
+{
+    "$keywords": {
+        "costTags": {
+            "parameters": {
+                "key": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "billingAccounts/providers": {
+            "costTags": {
+                "$ref": "#/$keywords/costTags"
+            }
+        }
+    }
+}

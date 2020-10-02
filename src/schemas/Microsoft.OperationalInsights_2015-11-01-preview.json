@@ -1,0 +1,75 @@
+{
+    "$keywords": {
+        "groupType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "unknown",
+                        "azure-cs",
+                        "azure-sf",
+                        "azure-vmss",
+                        "user-static"
+                    ]
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "count": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "machines": {
+            "parameters": {
+                "displayNameHint": {
+                    "type": "string"
+                },
+                "osFamilyHint": {},
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "enum": [
+                        "ref:machine",
+                        "ref:machinewithhints",
+                        "ref:process",
+                        "ref:port",
+                        "ref:onmachine",
+                        "ref:clientgroup"
+                    ]
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "workspaces/features": {
+            "groupType": {
+                "$ref": "#/$keywords/groupType"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "count": {
+                "$ref": "#/$keywords/count"
+            },
+            "machines": {
+                "$ref": "#/$keywords/machines"
+            }
+        }
+    }
+}

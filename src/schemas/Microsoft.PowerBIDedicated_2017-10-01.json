@@ -1,0 +1,72 @@
+{
+    "$keywords": {
+        "administration": {
+            "body": {
+                "members": {
+                    "$ref": "#/$keywords/members"
+                }
+            }
+        },
+        "members": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Paused",
+                        "Suspended",
+                        "Provisioning",
+                        "Updating",
+                        "Suspending",
+                        "Pausing",
+                        "Resuming",
+                        "Preparing",
+                        "Scaling"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Paused",
+                        "Suspended",
+                        "Provisioning",
+                        "Updating",
+                        "Suspending",
+                        "Pausing",
+                        "Resuming",
+                        "Preparing",
+                        "Scaling"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "capacities": {
+            "administration": {
+                "$ref": "#/$keywords/administration"
+            },
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Deleting",
+                        "Failed",
+                        "Pending"
+                    ]
+                }
+            }
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Pending",
+                        "Approved",
+                        "Rejected",
+                        "Disconnected"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionRequired": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "vaults/privateEndpointConnections": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            }
+        }
+    }
+}

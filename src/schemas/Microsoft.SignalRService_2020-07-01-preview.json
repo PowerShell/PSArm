@@ -1,0 +1,323 @@
+{
+    "$keywords": {
+        "features": {
+            "parameters": {
+                "flag": {
+                    "enum": [
+                        "ServiceMode",
+                        "EnableConnectivityLogs",
+                        "EnableMessagingLogs"
+                    ]
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "cors": {
+            "body": {
+                "allowedOrigins": {
+                    "$ref": "#/$keywords/allowedOrigins"
+                }
+            }
+        },
+        "allowedOrigins": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "upstream": {
+            "body": {
+                "templates": {
+                    "$ref": "#/$keywords/templates"
+                }
+            }
+        },
+        "templates": {
+            "parameters": {
+                "hubPattern": {
+                    "type": "string"
+                },
+                "eventPattern": {
+                    "type": "string"
+                },
+                "categoryPattern": {
+                    "type": "string"
+                },
+                "urlTemplate": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "auth": {
+                    "$ref": "#/$keywords/auth"
+                }
+            },
+            "array": true
+        },
+        "auth": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "None",
+                        "ManagedIdentity"
+                    ]
+                }
+            },
+            "body": {
+                "managedIdentity": {
+                    "$ref": "#/$keywords/managedIdentity"
+                }
+            }
+        },
+        "managedIdentity": {
+            "parameters": {
+                "resource": {
+                    "type": "string"
+                }
+            }
+        },
+        "networkACLs": {
+            "parameters": {
+                "defaultAction": {
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ]
+                }
+            },
+            "body": {
+                "publicNetwork": {
+                    "$ref": "#/$keywords/publicNetwork"
+                },
+                "privateEndpoints": {
+                    "$ref": "#/$keywords/privateEndpoints"
+                }
+            }
+        },
+        "publicNetwork": {
+            "body": {
+                "allow": {
+                    "$ref": "#/$keywords/allow"
+                },
+                "deny": {
+                    "$ref": "#/$keywords/deny"
+                }
+            }
+        },
+        "allow": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ClientConnection",
+                        "ServerConnection",
+                        "RESTAPI"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "deny": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "ClientConnection",
+                        "ServerConnection",
+                        "RESTAPI"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "privateEndpoints": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "allow": {
+                    "$ref": "#/$keywords/allow"
+                },
+                "deny": {
+                    "$ref": "#/$keywords/deny"
+                }
+            },
+            "array": true
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Unknown",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Running",
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Moving"
+                    ]
+                }
+            }
+        },
+        "externalIP": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "hostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "publicPort": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "serverPort": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateEndpointConnections": {
+            "parameters": {
+                "provisioningState": {
+                    "enum": [
+                        "Unknown",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Running",
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Moving"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "privateEndpoint": {
+                    "$ref": "#/$keywords/privateEndpoint"
+                },
+                "privateLinkServiceConnectionState": {
+                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
+                }
+            },
+            "array": true
+        },
+        "privateEndpoint": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "privateLinkServiceConnectionState": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Pending",
+                        "Approved",
+                        "Rejected",
+                        "Disconnected"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionsRequired": {
+                    "type": "string"
+                }
+            }
+        },
+        "tls": {
+            "parameters": {
+                "clientCertEnabled": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "signalR": {
+            "features": {
+                "$ref": "#/$keywords/features"
+            },
+            "cors": {
+                "$ref": "#/$keywords/cors"
+            },
+            "upstream": {
+                "$ref": "#/$keywords/upstream"
+            },
+            "networkACLs": {
+                "$ref": "#/$keywords/networkACLs"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "externalIP": {
+                "$ref": "#/$keywords/externalIP"
+            },
+            "hostName": {
+                "$ref": "#/$keywords/hostName"
+            },
+            "publicPort": {
+                "$ref": "#/$keywords/publicPort"
+            },
+            "serverPort": {
+                "$ref": "#/$keywords/serverPort"
+            },
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "privateEndpointConnections": {
+                "$ref": "#/$keywords/privateEndpointConnections"
+            },
+            "tls": {
+                "$ref": "#/$keywords/tls"
+            }
+        },
+        "signalR/privateEndpointConnections": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "privateEndpoint": {
+                "$ref": "#/$keywords/privateEndpoint"
+            },
+            "privateLinkServiceConnectionState": {
+                "$ref": "#/$keywords/privateLinkServiceConnectionState"
+            }
+        }
+    }
+}

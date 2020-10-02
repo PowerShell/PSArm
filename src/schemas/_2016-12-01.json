@@ -1,0 +1,56 @@
+{
+    "$keywords": {
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyDefinitionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "parameters": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "description": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "": {
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "policyDefinitionId": {
+                "$ref": "#/$keywords/policyDefinitionId"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "description": {
+                "$ref": "#/$keywords/description"
+            }
+        }
+    }
+}

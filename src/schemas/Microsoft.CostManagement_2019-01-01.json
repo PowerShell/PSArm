@@ -1,0 +1,254 @@
+{
+    "$keywords": {
+        "format": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "deliveryInfo": {
+            "body": {
+                "destination": {
+                    "$ref": "#/$keywords/destination"
+                }
+            }
+        },
+        "destination": {
+            "parameters": {
+                "resourceId": {
+                    "type": "string"
+                },
+                "container": {
+                    "type": "string"
+                },
+                "rootFolderPath": {
+                    "type": "string"
+                }
+            }
+        },
+        "definition": {
+            "parameters": {
+                "type": {},
+                "timeframe": {
+                    "enum": [
+                        "WeekToDate",
+                        "MonthToDate",
+                        "YearToDate",
+                        "TheLastWeek",
+                        "TheLastMonth",
+                        "TheLastYear",
+                        "Custom",
+                        "BillingMonthToDate",
+                        "TheLastBillingMonth"
+                    ]
+                }
+            },
+            "body": {
+                "timePeriod": {
+                    "$ref": "#/$keywords/timePeriod"
+                },
+                "dataset": {
+                    "$ref": "#/$keywords/dataset"
+                }
+            }
+        },
+        "timePeriod": {
+            "parameters": {
+                "from": {},
+                "to": {}
+            }
+        },
+        "dataset": {
+            "parameters": {
+                "granularity": {
+                    "enum": [
+                        "Daily",
+                        "Hourly"
+                    ]
+                },
+                "aggregation": {}
+            },
+            "body": {
+                "configuration": {
+                    "$ref": "#/$keywords/configuration"
+                },
+                "grouping": {
+                    "$ref": "#/$keywords/grouping"
+                },
+                "sorting": {
+                    "$ref": "#/$keywords/sorting"
+                },
+                "filter": {
+                    "$ref": "#/$keywords/filter"
+                }
+            }
+        },
+        "configuration": {
+            "body": {
+                "columns": {
+                    "$ref": "#/$keywords/columns"
+                }
+            }
+        },
+        "columns": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "grouping": {
+            "parameters": {
+                "type": {
+                    "enum": [
+                        "Tag",
+                        "Dimension"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "sorting": {
+            "parameters": {
+                "querySortingDirection": {
+                    "enum": [
+                        "Ascending",
+                        "Descending"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "filter": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            }
+        },
+        "and": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            },
+            "array": true
+        },
+        "or": {
+            "body": {
+                "and": {
+                    "$ref": "#/$keywords/and"
+                },
+                "or": {
+                    "$ref": "#/$keywords/or"
+                },
+                "not": {
+                    "$ref": "#/$keywords/filter"
+                },
+                "dimension": {
+                    "$ref": "#/$keywords/dimension"
+                },
+                "tag": {
+                    "$ref": "#/$keywords/dimension"
+                }
+            },
+            "array": true
+        },
+        "dimension": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "operator": {}
+            },
+            "body": {
+                "values": {
+                    "$ref": "#/$keywords/values"
+                }
+            }
+        },
+        "values": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "schedule": {
+            "parameters": {
+                "status": {
+                    "enum": [
+                        "Active",
+                        "Inactive"
+                    ]
+                },
+                "recurrence": {
+                    "enum": [
+                        "Daily",
+                        "Weekly",
+                        "Monthly",
+                        "Annually"
+                    ]
+                }
+            },
+            "body": {
+                "recurrencePeriod": {
+                    "$ref": "#/$keywords/recurrencePeriod"
+                }
+            }
+        },
+        "recurrencePeriod": {
+            "parameters": {
+                "from": {},
+                "to": {}
+            }
+        }
+    },
+    "$resources": {
+        "exports": {
+            "format": {
+                "$ref": "#/$keywords/format"
+            },
+            "deliveryInfo": {
+                "$ref": "#/$keywords/deliveryInfo"
+            },
+            "definition": {
+                "$ref": "#/$keywords/definition"
+            },
+            "schedule": {
+                "$ref": "#/$keywords/schedule"
+            }
+        }
+    }
+}

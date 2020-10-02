@@ -1,0 +1,31 @@
+{
+    "$keywords": {
+        "adminUserEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "storageAccount": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "accessKey": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "registries": {
+            "adminUserEnabled": {
+                "$ref": "#/$keywords/adminUserEnabled"
+            },
+            "storageAccount": {
+                "$ref": "#/$keywords/storageAccount"
+            }
+        }
+    }
+}

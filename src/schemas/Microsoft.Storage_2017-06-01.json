@@ -1,0 +1,140 @@
+{
+    "$keywords": {
+        "customDomain": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "useSubDomainName": {
+                    "type": "bool"
+                }
+            }
+        },
+        "encryption": {
+            "parameters": {
+                "keySource": {
+                    "enum": [
+                        "Microsoft.Storage",
+                        "Microsoft.Keyvault"
+                    ]
+                }
+            },
+            "body": {
+                "services": {
+                    "$ref": "#/$keywords/services"
+                },
+                "keyvaultproperties": {
+                    "$ref": "#/$keywords/keyvaultproperties"
+                }
+            }
+        },
+        "services": {
+            "body": {
+                "blob": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "file": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "table": {
+                    "$ref": "#/$keywords/blob"
+                },
+                "queue": {
+                    "$ref": "#/$keywords/blob"
+                }
+            }
+        },
+        "blob": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "lastEnabledTime": {}
+            }
+        },
+        "keyvaultproperties": {
+            "parameters": {
+                "keyname": {
+                    "type": "string"
+                },
+                "keyversion": {
+                    "type": "string"
+                },
+                "keyvaulturi": {
+                    "type": "string"
+                }
+            }
+        },
+        "networkAcls": {
+            "parameters": {
+                "bypass": {
+                    "enum": [
+                        "None",
+                        "Logging",
+                        "Metrics",
+                        "AzureServices"
+                    ]
+                },
+                "defaultAction": {}
+            },
+            "body": {
+                "virtualNetworkRules": {
+                    "$ref": "#/$keywords/virtualNetworkRules"
+                },
+                "ipRules": {
+                    "$ref": "#/$keywords/ipRules"
+                }
+            }
+        },
+        "virtualNetworkRules": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "action": {},
+                "state": {}
+            },
+            "array": true
+        },
+        "ipRules": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                },
+                "action": {}
+            },
+            "array": true
+        },
+        "accessTier": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "supportsHttpsTrafficOnly": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "storageAccounts": {
+            "customDomain": {
+                "$ref": "#/$keywords/customDomain"
+            },
+            "encryption": {
+                "$ref": "#/$keywords/encryption"
+            },
+            "networkAcls": {
+                "$ref": "#/$keywords/networkAcls"
+            },
+            "accessTier": {
+                "$ref": "#/$keywords/accessTier"
+            },
+            "supportsHttpsTrafficOnly": {
+                "$ref": "#/$keywords/supportsHttpsTrafficOnly"
+            }
+        }
+    }
+}

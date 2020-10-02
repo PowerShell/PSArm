@@ -1,0 +1,175 @@
+{
+    "$keywords": {
+        "defaultGroup": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionConfig": {
+            "parameters": {
+                "type": {}
+            },
+            "body": {
+                "keyVaultMetaInfo": {
+                    "$ref": "#/$keywords/keyVaultMetaInfo"
+                }
+            }
+        },
+        "keyVaultMetaInfo": {
+            "parameters": {
+                "keyVaultResourceId": {
+                    "type": "string"
+                },
+                "encryptionKeyName": {
+                    "type": "string"
+                },
+                "encryptionKeyVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "firewallRules": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "startIpAddress": {
+                    "type": "string"
+                },
+                "endIpAddress": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualNetworkRules": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "subnetId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "firewallState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "firewallAllowAzureIps": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "trustedIdProviders": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "idProvider": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "trustedIdProviderState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "newTier": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "startIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "subnetId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "idProvider": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "accounts": {
+            "defaultGroup": {
+                "$ref": "#/$keywords/defaultGroup"
+            },
+            "encryptionConfig": {
+                "$ref": "#/$keywords/encryptionConfig"
+            },
+            "encryptionState": {
+                "$ref": "#/$keywords/encryptionState"
+            },
+            "firewallRules": {
+                "$ref": "#/$keywords/firewallRules"
+            },
+            "virtualNetworkRules": {
+                "$ref": "#/$keywords/virtualNetworkRules"
+            },
+            "firewallState": {
+                "$ref": "#/$keywords/firewallState"
+            },
+            "firewallAllowAzureIps": {
+                "$ref": "#/$keywords/firewallAllowAzureIps"
+            },
+            "trustedIdProviders": {
+                "$ref": "#/$keywords/trustedIdProviders"
+            },
+            "trustedIdProviderState": {
+                "$ref": "#/$keywords/trustedIdProviderState"
+            },
+            "newTier": {
+                "$ref": "#/$keywords/newTier"
+            }
+        },
+        "accounts/firewallRules": {
+            "startIpAddress": {
+                "$ref": "#/$keywords/startIpAddress"
+            },
+            "endIpAddress": {
+                "$ref": "#/$keywords/endIpAddress"
+            }
+        },
+        "accounts/virtualNetworkRules": {
+            "subnetId": {
+                "$ref": "#/$keywords/subnetId"
+            }
+        },
+        "accounts/trustedIdProviders": {
+            "idProvider": {
+                "$ref": "#/$keywords/idProvider"
+            }
+        }
+    }
+}

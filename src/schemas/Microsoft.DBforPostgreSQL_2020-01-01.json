@@ -1,0 +1,34 @@
+{
+    "$keywords": {
+        "serverKeyType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "uri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "servers/keys": {
+            "serverKeyType": {
+                "$ref": "#/$keywords/serverKeyType"
+            },
+            "uri": {
+                "$ref": "#/$keywords/uri"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            }
+        }
+    }
+}

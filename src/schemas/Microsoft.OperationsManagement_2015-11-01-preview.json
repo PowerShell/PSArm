@@ -1,0 +1,104 @@
+{
+    "$keywords": {
+        "workspaceResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "containedResources": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "referencedResources": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "applicationId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "parentResourceType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "parameters": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "template": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "solutions": {
+            "workspaceResourceId": {
+                "$ref": "#/$keywords/workspaceResourceId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "containedResources": {
+                "$ref": "#/$keywords/containedResources"
+            },
+            "referencedResources": {
+                "$ref": "#/$keywords/referencedResources"
+            }
+        },
+        "ManagementConfigurations": {
+            "applicationId": {
+                "$ref": "#/$keywords/applicationId"
+            },
+            "parentResourceType": {
+                "$ref": "#/$keywords/parentResourceType"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/parameters"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "template": {
+                "$ref": "#/$keywords/template"
+            }
+        }
+    }
+}

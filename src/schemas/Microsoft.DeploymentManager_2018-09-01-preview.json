@@ -1,0 +1,204 @@
+{
+    "$keywords": {
+        "artifactSourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetSubscriptionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetResourceGroup": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "deploymentMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "artifacts": {
+            "parameters": {
+                "templateUri": {
+                    "type": "string"
+                },
+                "parametersUri": {
+                    "type": "string"
+                },
+                "templateArtifactSourceRelativePath": {
+                    "type": "string"
+                },
+                "parametersArtifactSourceRelativePath": {
+                    "type": "string"
+                }
+            }
+        },
+        "stepType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "buildVersion": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "artifactSourceId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetServiceTopologyId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "stepGroups": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "deploymentTargetId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "dependsOnStepGroups": {
+                    "$ref": "#/$keywords/dependsOnStepGroups"
+                },
+                "preDeploymentSteps": {
+                    "$ref": "#/$keywords/preDeploymentSteps"
+                },
+                "postDeploymentSteps": {
+                    "$ref": "#/$keywords/postDeploymentSteps"
+                }
+            },
+            "array": true
+        },
+        "dependsOnStepGroups": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "preDeploymentSteps": {
+            "parameters": {
+                "stepId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "postDeploymentSteps": {
+            "parameters": {
+                "stepId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "sourceType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "artifactRoot": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "authentication": {
+            "parameters": {
+                "type": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "serviceTopologies": {
+            "artifactSourceId": {
+                "$ref": "#/$keywords/artifactSourceId"
+            }
+        },
+        "serviceTopologies/services": {
+            "targetLocation": {
+                "$ref": "#/$keywords/targetLocation"
+            },
+            "targetSubscriptionId": {
+                "$ref": "#/$keywords/targetSubscriptionId"
+            }
+        },
+        "serviceTopologies/services/serviceUnits": {
+            "targetResourceGroup": {
+                "$ref": "#/$keywords/targetResourceGroup"
+            },
+            "deploymentMode": {
+                "$ref": "#/$keywords/deploymentMode"
+            },
+            "artifacts": {
+                "$ref": "#/$keywords/artifacts"
+            }
+        },
+        "steps": {
+            "stepType": {
+                "$ref": "#/$keywords/stepType"
+            }
+        },
+        "rollouts": {
+            "buildVersion": {
+                "$ref": "#/$keywords/buildVersion"
+            },
+            "artifactSourceId": {
+                "$ref": "#/$keywords/artifactSourceId_2"
+            },
+            "targetServiceTopologyId": {
+                "$ref": "#/$keywords/targetServiceTopologyId"
+            },
+            "stepGroups": {
+                "$ref": "#/$keywords/stepGroups"
+            }
+        },
+        "artifactSources": {
+            "sourceType": {
+                "$ref": "#/$keywords/sourceType"
+            },
+            "artifactRoot": {
+                "$ref": "#/$keywords/artifactRoot"
+            },
+            "authentication": {
+                "$ref": "#/$keywords/authentication"
+            }
+        }
+    }
+}

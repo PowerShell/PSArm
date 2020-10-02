@@ -1,0 +1,38 @@
+{
+    "$keywords": {
+        "channelType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "channelFunctions": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "credentials": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "Accounts": {},
+        "Accounts/Channels": {
+            "channelType": {
+                "$ref": "#/$keywords/channelType"
+            },
+            "channelFunctions": {
+                "$ref": "#/$keywords/channelFunctions"
+            },
+            "credentials": {
+                "$ref": "#/$keywords/credentials"
+            }
+        }
+    }
+}

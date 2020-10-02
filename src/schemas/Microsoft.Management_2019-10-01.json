@@ -1,0 +1,74 @@
+{
+    "$keywords": {
+        "template": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "templateLink": {
+            "parameters": {
+                "uri": {
+                    "type": "string"
+                },
+                "contentVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "parametersLink": {
+            "parameters": {
+                "uri": {
+                    "type": "string"
+                },
+                "contentVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "mode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "debugSetting": {
+            "parameters": {
+                "detailLevel": {
+                    "type": "string"
+                }
+            }
+        },
+        "onErrorDeployment": {
+            "parameters": {
+                "type": {},
+                "deploymentName": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "managementGroups/providers": {
+            "template": {
+                "$ref": "#/$keywords/template"
+            },
+            "templateLink": {
+                "$ref": "#/$keywords/templateLink"
+            },
+            "parameters": {
+                "$ref": "#/$keywords/template"
+            },
+            "parametersLink": {
+                "$ref": "#/$keywords/parametersLink"
+            },
+            "mode": {
+                "$ref": "#/$keywords/mode"
+            },
+            "debugSetting": {
+                "$ref": "#/$keywords/debugSetting"
+            },
+            "onErrorDeployment": {
+                "$ref": "#/$keywords/onErrorDeployment"
+            }
+        }
+    }
+}

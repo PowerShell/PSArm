@@ -1,0 +1,84 @@
+{
+    "$keywords": {
+        "protectedItemsCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "backupManagementType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "protectedItemType": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "backupManagementType_2": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "workloadType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "sourceResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "policyId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastRecoveryPoint": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "vaults/backupPolicies": {
+            "protectedItemsCount": {
+                "$ref": "#/$keywords/protectedItemsCount"
+            },
+            "backupManagementType": {
+                "$ref": "#/$keywords/backupManagementType"
+            }
+        },
+        "vaults/backupFabrics/protectionContainers/protectedItems": {
+            "protectedItemType": {
+                "$ref": "#/$keywords/protectedItemType"
+            },
+            "backupManagementType": {
+                "$ref": "#/$keywords/backupManagementType_2"
+            },
+            "workloadType": {
+                "$ref": "#/$keywords/workloadType"
+            },
+            "sourceResourceId": {
+                "$ref": "#/$keywords/sourceResourceId"
+            },
+            "policyId": {
+                "$ref": "#/$keywords/policyId"
+            },
+            "lastRecoveryPoint": {
+                "$ref": "#/$keywords/lastRecoveryPoint"
+            }
+        }
+    }
+}

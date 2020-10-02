@@ -1,0 +1,199 @@
+{
+    "$keywords": {
+        "state": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Unavailable",
+                        "Running",
+                        "Deleting",
+                        "Deleted",
+                        "Stopping",
+                        "Stopped",
+                        "Starting",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Running",
+                        "Creating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Moving"
+                    ]
+                }
+            }
+        },
+        "uri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dataIngestionUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "trustedExternalTenants": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "optimizedAutoscale": {
+            "parameters": {
+                "version": {
+                    "type": "int"
+                },
+                "isEnabled": {
+                    "type": "bool"
+                },
+                "minimum": {
+                    "type": "int"
+                },
+                "maximum": {
+                    "type": "int"
+                }
+            }
+        },
+        "enableDiskEncryption": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enableStreamingIngest": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "virtualNetworkConfiguration": {
+            "parameters": {
+                "subnetId": {
+                    "type": "string"
+                },
+                "enginePublicIpId": {
+                    "type": "string"
+                },
+                "dataManagementPublicIpId": {
+                    "type": "string"
+                }
+            }
+        },
+        "keyVaultProperties": {
+            "parameters": {
+                "keyName": {
+                    "type": "string"
+                },
+                "keyVersion": {
+                    "type": "string"
+                },
+                "keyVaultUri": {
+                    "type": "string"
+                }
+            }
+        },
+        "databaseName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "attachedDatabaseNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "defaultPrincipalsModificationKind": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Union",
+                        "Replace",
+                        "None"
+                    ]
+                }
+            }
+        }
+    },
+    "$resources": {
+        "clusters": {
+            "state": {
+                "$ref": "#/$keywords/state"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "uri": {
+                "$ref": "#/$keywords/uri"
+            },
+            "dataIngestionUri": {
+                "$ref": "#/$keywords/dataIngestionUri"
+            },
+            "trustedExternalTenants": {
+                "$ref": "#/$keywords/trustedExternalTenants"
+            },
+            "optimizedAutoscale": {
+                "$ref": "#/$keywords/optimizedAutoscale"
+            },
+            "enableDiskEncryption": {
+                "$ref": "#/$keywords/enableDiskEncryption"
+            },
+            "enableStreamingIngest": {
+                "$ref": "#/$keywords/enableStreamingIngest"
+            },
+            "virtualNetworkConfiguration": {
+                "$ref": "#/$keywords/virtualNetworkConfiguration"
+            },
+            "keyVaultProperties": {
+                "$ref": "#/$keywords/keyVaultProperties"
+            }
+        },
+        "clusters/databases": {},
+        "clusters/attachedDatabaseConfigurations": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "databaseName": {
+                "$ref": "#/$keywords/databaseName"
+            },
+            "clusterResourceId": {
+                "$ref": "#/$keywords/clusterResourceId"
+            },
+            "attachedDatabaseNames": {
+                "$ref": "#/$keywords/attachedDatabaseNames"
+            },
+            "defaultPrincipalsModificationKind": {
+                "$ref": "#/$keywords/defaultPrincipalsModificationKind"
+            }
+        },
+        "clusters/databases/dataConnections": {}
+    }
+}

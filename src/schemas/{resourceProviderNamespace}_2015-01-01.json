@@ -1,0 +1,32 @@
+{
+    "$keywords": {
+        "level": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "NotSpecified",
+                        "CanNotDelete",
+                        "ReadOnly"
+                    ]
+                }
+            }
+        },
+        "notes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "{parentResourcePath}/{resourceName}": {
+            "level": {
+                "$ref": "#/$keywords/level"
+            },
+            "notes": {
+                "$ref": "#/$keywords/notes"
+            }
+        }
+    }
+}

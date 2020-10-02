@@ -1,0 +1,63 @@
+{
+    "$keywords": {
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Provisioning",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            }
+        },
+        "managementApiUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "webPortalUrl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "storageContainer": {
+            "parameters": {
+                "connectionString": {
+                    "type": "string"
+                },
+                "subscriptionId": {
+                    "type": "string"
+                },
+                "resourceGroup": {
+                    "type": "string"
+                },
+                "containerName": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "Graph": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "managementApiUrl": {
+                "$ref": "#/$keywords/managementApiUrl"
+            },
+            "webPortalUrl": {
+                "$ref": "#/$keywords/webPortalUrl"
+            },
+            "storageContainer": {
+                "$ref": "#/$keywords/storageContainer"
+            }
+        }
+    }
+}

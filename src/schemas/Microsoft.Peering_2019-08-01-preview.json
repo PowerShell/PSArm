@@ -1,0 +1,348 @@
+{
+    "$keywords": {
+        "peerAsn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "peerContactInfo": {
+            "body": {
+                "emails": {
+                    "$ref": "#/$keywords/emails"
+                },
+                "phone": {
+                    "$ref": "#/$keywords/phone"
+                }
+            }
+        },
+        "emails": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "phone": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "peerName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "validationState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "Pending",
+                        "Approved",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "direct": {
+            "parameters": {
+                "useForPeeringService": {
+                    "type": "bool"
+                },
+                "directPeeringType": {
+                    "enum": [
+                        "Edge",
+                        "Transit",
+                        "Cdn",
+                        "Internal"
+                    ]
+                }
+            },
+            "body": {
+                "connections": {
+                    "$ref": "#/$keywords/connections"
+                },
+                "peerAsn": {
+                    "$ref": "#/$keywords/peerAsn_2"
+                }
+            }
+        },
+        "connections": {
+            "parameters": {
+                "bandwidthInMbps": {
+                    "type": "int"
+                },
+                "provisionedBandwidthInMbps": {
+                    "type": "int"
+                },
+                "sessionAddressProvider": {
+                    "enum": [
+                        "Microsoft",
+                        "Peer"
+                    ]
+                },
+                "useForPeeringService": {
+                    "type": "bool"
+                },
+                "peeringDBFacilityId": {
+                    "type": "int"
+                },
+                "connectionState": {
+                    "enum": [
+                        "None",
+                        "PendingApproval",
+                        "Approved",
+                        "ProvisioningStarted",
+                        "ProvisioningFailed",
+                        "ProvisioningCompleted",
+                        "Validating",
+                        "Active"
+                    ]
+                },
+                "connectionIdentifier": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "bgpSession": {
+                    "$ref": "#/$keywords/bgpSession"
+                }
+            },
+            "array": true
+        },
+        "bgpSession": {
+            "parameters": {
+                "sessionPrefixV4": {
+                    "type": "string"
+                },
+                "sessionPrefixV6": {
+                    "type": "string"
+                },
+                "microsoftSessionIPv4Address": {
+                    "type": "string"
+                },
+                "microsoftSessionIPv6Address": {
+                    "type": "string"
+                },
+                "peerSessionIPv4Address": {
+                    "type": "string"
+                },
+                "peerSessionIPv6Address": {
+                    "type": "string"
+                },
+                "sessionStateV4": {
+                    "enum": [
+                        "None",
+                        "Idle",
+                        "Connect",
+                        "Active",
+                        "OpenSent",
+                        "OpenConfirm",
+                        "OpenReceived",
+                        "Established",
+                        "PendingAdd",
+                        "PendingUpdate",
+                        "PendingRemove"
+                    ]
+                },
+                "sessionStateV6": {
+                    "enum": [
+                        "None",
+                        "Idle",
+                        "Connect",
+                        "Active",
+                        "OpenSent",
+                        "OpenConfirm",
+                        "OpenReceived",
+                        "Established",
+                        "PendingAdd",
+                        "PendingUpdate",
+                        "PendingRemove"
+                    ]
+                },
+                "maxPrefixesAdvertisedV4": {
+                    "type": "int"
+                },
+                "maxPrefixesAdvertisedV6": {
+                    "type": "int"
+                },
+                "md5AuthenticationKey": {
+                    "type": "string"
+                }
+            }
+        },
+        "peerAsn_2": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "exchange": {
+            "body": {
+                "connections": {
+                    "$ref": "#/$keywords/connections_2"
+                },
+                "peerAsn": {
+                    "$ref": "#/$keywords/peerAsn_2"
+                }
+            }
+        },
+        "connections_2": {
+            "parameters": {
+                "peeringDBFacilityId": {
+                    "type": "int"
+                },
+                "connectionState": {
+                    "enum": [
+                        "None",
+                        "PendingApproval",
+                        "Approved",
+                        "ProvisioningStarted",
+                        "ProvisioningFailed",
+                        "ProvisioningCompleted",
+                        "Validating",
+                        "Active"
+                    ]
+                },
+                "connectionIdentifier": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "bgpSession": {
+                    "$ref": "#/$keywords/bgpSession"
+                }
+            },
+            "array": true
+        },
+        "peeringLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                }
+            }
+        },
+        "prefix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "prefixValidationState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "Invalid",
+                        "Verified",
+                        "Failed",
+                        "Pending",
+                        "Unknown"
+                    ]
+                }
+            }
+        },
+        "learnedType": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "None",
+                        "ViaPartner",
+                        "ViaSession"
+                    ]
+                }
+            }
+        },
+        "peeringServiceLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "peeringServiceProvider": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "peerAsns": {
+            "peerAsn": {
+                "$ref": "#/$keywords/peerAsn"
+            },
+            "peerContactInfo": {
+                "$ref": "#/$keywords/peerContactInfo"
+            },
+            "peerName": {
+                "$ref": "#/$keywords/peerName"
+            },
+            "validationState": {
+                "$ref": "#/$keywords/validationState"
+            }
+        },
+        "peerings": {
+            "direct": {
+                "$ref": "#/$keywords/direct"
+            },
+            "exchange": {
+                "$ref": "#/$keywords/exchange"
+            },
+            "peeringLocation": {
+                "$ref": "#/$keywords/peeringLocation"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "peeringServices/prefixes": {
+            "prefix": {
+                "$ref": "#/$keywords/prefix"
+            },
+            "prefixValidationState": {
+                "$ref": "#/$keywords/prefixValidationState"
+            },
+            "learnedType": {
+                "$ref": "#/$keywords/learnedType"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "peeringServices": {
+            "peeringServiceLocation": {
+                "$ref": "#/$keywords/peeringServiceLocation"
+            },
+            "peeringServiceProvider": {
+                "$ref": "#/$keywords/peeringServiceProvider"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        }
+    }
+}

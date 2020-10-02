@@ -1,0 +1,90 @@
+{
+    "$keywords": {
+        "storageAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceBusRuleId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workspaceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "eventHubAuthorizationRuleId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "eventHubName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "logs": {
+            "parameters": {
+                "category": {
+                    "enum": [
+                        "AuditLogs",
+                        "SignInLogs"
+                    ]
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            },
+            "body": {
+                "retentionPolicy": {
+                    "$ref": "#/$keywords/retentionPolicy"
+                }
+            },
+            "array": true
+        },
+        "retentionPolicy": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "days": {
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "diagnosticSettings": {
+            "storageAccountId": {
+                "$ref": "#/$keywords/storageAccountId"
+            },
+            "serviceBusRuleId": {
+                "$ref": "#/$keywords/serviceBusRuleId"
+            },
+            "workspaceId": {
+                "$ref": "#/$keywords/workspaceId"
+            },
+            "eventHubAuthorizationRuleId": {
+                "$ref": "#/$keywords/eventHubAuthorizationRuleId"
+            },
+            "eventHubName": {
+                "$ref": "#/$keywords/eventHubName"
+            },
+            "logs": {
+                "$ref": "#/$keywords/logs"
+            }
+        }
+    }
+}

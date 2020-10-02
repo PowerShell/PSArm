@@ -1,0 +1,464 @@
+{
+    "$keywords": {
+        "dataExportId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "allTables": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "tableNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "enable": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "createdDate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastModifiedDate": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "type": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "StorageAccount",
+                        "EventHub"
+                    ]
+                }
+            }
+        },
+        "eventHubName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceId_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "writeAccessResourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Deleting",
+                        "ProvisioningAccount",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "dataSourceType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "storageAccountIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "provisioningState_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Deleting",
+                        "ProvisioningAccount",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "customerId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sku": {
+            "parameters": {
+                "name": {
+                    "enum": [
+                        "Free",
+                        "Standard",
+                        "Premium",
+                        "PerNode",
+                        "PerGB2018",
+                        "Standalone",
+                        "CapacityReservation"
+                    ]
+                },
+                "capacityReservationLevel": {
+                    "type": "int"
+                },
+                "maxCapacityReservationLevel": {
+                    "type": "int"
+                },
+                "lastSkuUpdate": {
+                    "type": "string"
+                }
+            }
+        },
+        "retentionInDays": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "workspaceCapping": {
+            "parameters": {
+                "dailyQuotaGb": {},
+                "quotaNextResetTime": {
+                    "type": "string"
+                },
+                "dataIngestionStatus": {
+                    "enum": [
+                        "RespectQuota",
+                        "ForceOn",
+                        "ForceOff",
+                        "OverQuota",
+                        "SubscriptionSuspended",
+                        "ApproachingQuota"
+                    ]
+                }
+            }
+        },
+        "publicNetworkAccessForIngestion": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "privateLinkScopedResources": {
+            "parameters": {
+                "resourceId": {
+                    "type": "string"
+                },
+                "scopeId": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "nextLink": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "clusterId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState_3": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Deleting",
+                        "ProvisioningAccount",
+                        "Updating"
+                    ]
+                }
+            }
+        },
+        "keyVaultProperties": {
+            "parameters": {
+                "keyVaultUri": {
+                    "type": "string"
+                },
+                "keyName": {
+                    "type": "string"
+                },
+                "keyVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "containers": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "tables": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "storageAccount": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                }
+            }
+        },
+        "status": {
+            "parameters": {
+                "state": {
+                    "enum": [
+                        "OK",
+                        "ERROR"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "category": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "displayName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "query": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "functionAlias": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "functionParameters": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "tags": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "workspaces/dataExports": {
+            "dataExportId": {
+                "$ref": "#/$keywords/dataExportId"
+            },
+            "allTables": {
+                "$ref": "#/$keywords/allTables"
+            },
+            "tableNames": {
+                "$ref": "#/$keywords/tableNames"
+            },
+            "enable": {
+                "$ref": "#/$keywords/enable"
+            },
+            "createdDate": {
+                "$ref": "#/$keywords/createdDate"
+            },
+            "lastModifiedDate": {
+                "$ref": "#/$keywords/lastModifiedDate"
+            },
+            "resourceId": {
+                "$ref": "#/$keywords/resourceId"
+            },
+            "type": {
+                "$ref": "#/$keywords/type"
+            },
+            "eventHubName": {
+                "$ref": "#/$keywords/eventHubName"
+            }
+        },
+        "workspaces/dataSources": {},
+        "workspaces/linkedServices": {
+            "resourceId": {
+                "$ref": "#/$keywords/resourceId_2"
+            },
+            "writeAccessResourceId": {
+                "$ref": "#/$keywords/writeAccessResourceId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "workspaces/linkedStorageAccounts": {
+            "dataSourceType": {
+                "$ref": "#/$keywords/dataSourceType"
+            },
+            "storageAccountIds": {
+                "$ref": "#/$keywords/storageAccountIds"
+            }
+        },
+        "workspaces": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_2"
+            },
+            "customerId": {
+                "$ref": "#/$keywords/customerId"
+            },
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "retentionInDays": {
+                "$ref": "#/$keywords/retentionInDays"
+            },
+            "workspaceCapping": {
+                "$ref": "#/$keywords/workspaceCapping"
+            },
+            "publicNetworkAccessForIngestion": {
+                "$ref": "#/$keywords/publicNetworkAccessForIngestion"
+            },
+            "publicNetworkAccessForQuery": {
+                "$ref": "#/$keywords/publicNetworkAccessForIngestion"
+            },
+            "privateLinkScopedResources": {
+                "$ref": "#/$keywords/privateLinkScopedResources"
+            }
+        },
+        "clusters": {
+            "nextLink": {
+                "$ref": "#/$keywords/nextLink"
+            },
+            "clusterId": {
+                "$ref": "#/$keywords/clusterId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState_3"
+            },
+            "keyVaultProperties": {
+                "$ref": "#/$keywords/keyVaultProperties"
+            }
+        },
+        "workspaces/storageInsightConfigs": {
+            "containers": {
+                "$ref": "#/$keywords/containers"
+            },
+            "tables": {
+                "$ref": "#/$keywords/tables"
+            },
+            "storageAccount": {
+                "$ref": "#/$keywords/storageAccount"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            }
+        },
+        "workspaces/savedSearches": {
+            "category": {
+                "$ref": "#/$keywords/category"
+            },
+            "displayName": {
+                "$ref": "#/$keywords/displayName"
+            },
+            "query": {
+                "$ref": "#/$keywords/query"
+            },
+            "functionAlias": {
+                "$ref": "#/$keywords/functionAlias"
+            },
+            "functionParameters": {
+                "$ref": "#/$keywords/functionParameters"
+            },
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "tags": {
+                "$ref": "#/$keywords/tags"
+            }
+        }
+    }
+}

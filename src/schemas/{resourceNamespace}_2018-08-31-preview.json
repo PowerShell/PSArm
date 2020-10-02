@@ -1,0 +1,19 @@
+{
+    "$keywords": {
+        "actionGroupResourceIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "{resourceType}/providers": {
+            "actionGroupResourceIds": {
+                "$ref": "#/$keywords/actionGroupResourceIds"
+            }
+        }
+    }
+}

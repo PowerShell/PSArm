@@ -1,0 +1,568 @@
+{
+    "$keywords": {
+        "cisIntrinsicSettings": {
+            "parameters": {
+                "type": {}
+            }
+        },
+        "sku": {
+            "parameters": {
+                "name": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "version": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "integrityKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionKey": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "encryptionKeyThumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "portalCertificateThumbprint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "algorithm": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "initiatorName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "volumeCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "schedules": {
+            "parameters": {
+                "rateInMbps": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "start": {
+                    "$ref": "#/$keywords/start"
+                },
+                "stop": {
+                    "$ref": "#/$keywords/start"
+                },
+                "days": {
+                    "$ref": "#/$keywords/days"
+                }
+            },
+            "array": true
+        },
+        "start": {
+            "parameters": {
+                "hours": {
+                    "type": "int"
+                },
+                "minutes": {
+                    "type": "int"
+                },
+                "seconds": {
+                    "type": "int"
+                }
+            }
+        },
+        "days": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "volumeCount_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "emailNotification": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "alertNotificationCulture": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "additionalRecipientEmailList": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "timeZone": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "primaryTimeServer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "secondaryTimeServer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "volumeIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "nextBackupTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastBackupTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "schedulesCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "scheduledBackupStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "backupPolicyCreationType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "ssmHostName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scheduleRecurrence": {
+            "parameters": {
+                "recurrenceType": {},
+                "recurrenceValue": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "weeklyDaysList": {
+                    "$ref": "#/$keywords/weeklyDaysList"
+                }
+            }
+        },
+        "weeklyDaysList": {
+            "propertyParameters": {
+                "value": {}
+            },
+            "array": true
+        },
+        "backupType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "retentionCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "startTime": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "scheduleStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "lastSuccessfulRun": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "encryptionKey_2": {
+            "parameters": {
+                "value": {
+                    "type": "string"
+                },
+                "encryptionCertThumbprint": {
+                    "type": "string"
+                },
+                "encryptionAlgorithm": {}
+            }
+        },
+        "encryptionStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "volumeCount_3": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "storageAccountCredentialId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "ownerShipStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "bandWidthRateInMbps": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "bandwidthSettingId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "totalCloudStorageUsageInBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "sizeInBytes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "volumeType": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "volumeContainerId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "accessControlRecordIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "volumeStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "operationStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "backupStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "monitoringStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "backupPolicyIds": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "endPoint": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "sslStatus": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "volumesCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "managers": {
+            "cisIntrinsicSettings": {
+                "$ref": "#/$keywords/cisIntrinsicSettings"
+            },
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "managers/extendedInformation": {
+            "version": {
+                "$ref": "#/$keywords/version"
+            },
+            "integrityKey": {
+                "$ref": "#/$keywords/integrityKey"
+            },
+            "encryptionKey": {
+                "$ref": "#/$keywords/encryptionKey"
+            },
+            "encryptionKeyThumbprint": {
+                "$ref": "#/$keywords/encryptionKeyThumbprint"
+            },
+            "portalCertificateThumbprint": {
+                "$ref": "#/$keywords/portalCertificateThumbprint"
+            },
+            "algorithm": {
+                "$ref": "#/$keywords/algorithm"
+            }
+        },
+        "managers/accessControlRecords": {
+            "initiatorName": {
+                "$ref": "#/$keywords/initiatorName"
+            },
+            "volumeCount": {
+                "$ref": "#/$keywords/volumeCount"
+            }
+        },
+        "managers/bandwidthSettings": {
+            "schedules": {
+                "$ref": "#/$keywords/schedules"
+            },
+            "volumeCount": {
+                "$ref": "#/$keywords/volumeCount_2"
+            }
+        },
+        "managers/devices/alertSettings": {
+            "emailNotification": {
+                "$ref": "#/$keywords/emailNotification"
+            },
+            "alertNotificationCulture": {
+                "$ref": "#/$keywords/alertNotificationCulture"
+            },
+            "notificationToServiceOwners": {
+                "$ref": "#/$keywords/emailNotification"
+            },
+            "additionalRecipientEmailList": {
+                "$ref": "#/$keywords/additionalRecipientEmailList"
+            }
+        },
+        "managers/devices/timeSettings": {
+            "timeZone": {
+                "$ref": "#/$keywords/timeZone"
+            },
+            "primaryTimeServer": {
+                "$ref": "#/$keywords/primaryTimeServer"
+            },
+            "secondaryTimeServer": {
+                "$ref": "#/$keywords/secondaryTimeServer"
+            }
+        },
+        "managers/devices/backupPolicies": {
+            "volumeIds": {
+                "$ref": "#/$keywords/volumeIds"
+            },
+            "nextBackupTime": {
+                "$ref": "#/$keywords/nextBackupTime"
+            },
+            "lastBackupTime": {
+                "$ref": "#/$keywords/lastBackupTime"
+            },
+            "schedulesCount": {
+                "$ref": "#/$keywords/schedulesCount"
+            },
+            "scheduledBackupStatus": {
+                "$ref": "#/$keywords/scheduledBackupStatus"
+            },
+            "backupPolicyCreationType": {
+                "$ref": "#/$keywords/backupPolicyCreationType"
+            },
+            "ssmHostName": {
+                "$ref": "#/$keywords/ssmHostName"
+            }
+        },
+        "managers/devices/backupPolicies/schedules": {
+            "scheduleRecurrence": {
+                "$ref": "#/$keywords/scheduleRecurrence"
+            },
+            "backupType": {
+                "$ref": "#/$keywords/backupType"
+            },
+            "retentionCount": {
+                "$ref": "#/$keywords/retentionCount"
+            },
+            "startTime": {
+                "$ref": "#/$keywords/startTime"
+            },
+            "scheduleStatus": {
+                "$ref": "#/$keywords/scheduleStatus"
+            },
+            "lastSuccessfulRun": {
+                "$ref": "#/$keywords/lastSuccessfulRun"
+            }
+        },
+        "managers/devices/volumeContainers": {
+            "encryptionKey": {
+                "$ref": "#/$keywords/encryptionKey_2"
+            },
+            "encryptionStatus": {
+                "$ref": "#/$keywords/encryptionStatus"
+            },
+            "volumeCount": {
+                "$ref": "#/$keywords/volumeCount_3"
+            },
+            "storageAccountCredentialId": {
+                "$ref": "#/$keywords/storageAccountCredentialId"
+            },
+            "ownerShipStatus": {
+                "$ref": "#/$keywords/ownerShipStatus"
+            },
+            "bandWidthRateInMbps": {
+                "$ref": "#/$keywords/bandWidthRateInMbps"
+            },
+            "bandwidthSettingId": {
+                "$ref": "#/$keywords/bandwidthSettingId"
+            },
+            "totalCloudStorageUsageInBytes": {
+                "$ref": "#/$keywords/totalCloudStorageUsageInBytes"
+            }
+        },
+        "managers/devices/volumeContainers/volumes": {
+            "sizeInBytes": {
+                "$ref": "#/$keywords/sizeInBytes"
+            },
+            "volumeType": {
+                "$ref": "#/$keywords/volumeType"
+            },
+            "volumeContainerId": {
+                "$ref": "#/$keywords/volumeContainerId"
+            },
+            "accessControlRecordIds": {
+                "$ref": "#/$keywords/accessControlRecordIds"
+            },
+            "volumeStatus": {
+                "$ref": "#/$keywords/volumeStatus"
+            },
+            "operationStatus": {
+                "$ref": "#/$keywords/operationStatus"
+            },
+            "backupStatus": {
+                "$ref": "#/$keywords/backupStatus"
+            },
+            "monitoringStatus": {
+                "$ref": "#/$keywords/monitoringStatus"
+            },
+            "backupPolicyIds": {
+                "$ref": "#/$keywords/backupPolicyIds"
+            }
+        },
+        "managers/storageAccountCredentials": {
+            "endPoint": {
+                "$ref": "#/$keywords/endPoint"
+            },
+            "sslStatus": {
+                "$ref": "#/$keywords/sslStatus"
+            },
+            "accessKey": {
+                "$ref": "#/$keywords/encryptionKey_2"
+            },
+            "volumesCount": {
+                "$ref": "#/$keywords/volumesCount"
+            }
+        }
+    }
+}

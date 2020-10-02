@@ -1,0 +1,100 @@
+{
+    "$keywords": {
+        "exclude": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "lowCpuThreshold": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "5",
+                        "10",
+                        "15",
+                        "20"
+                    ]
+                }
+            }
+        },
+        "digests": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "actionGroupResourceId": {
+                    "type": "string"
+                },
+                "frequency": {
+                    "type": "int"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "state": {
+                    "enum": [
+                        "Active",
+                        "Disabled"
+                    ]
+                }
+            },
+            "body": {
+                "categories": {
+                    "$ref": "#/$keywords/categories"
+                }
+            },
+            "array": true
+        },
+        "categories": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "HighAvailability",
+                        "Security",
+                        "Performance",
+                        "Cost",
+                        "OperationalExcellence"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "suppressionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "ttl": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "configurations": {
+            "exclude": {
+                "$ref": "#/$keywords/exclude"
+            },
+            "lowCpuThreshold": {
+                "$ref": "#/$keywords/lowCpuThreshold"
+            },
+            "digests": {
+                "$ref": "#/$keywords/digests"
+            }
+        },
+        "recommendations/suppressions": {
+            "suppressionId": {
+                "$ref": "#/$keywords/suppressionId"
+            },
+            "ttl": {
+                "$ref": "#/$keywords/ttl"
+            }
+        }
+    }
+}

@@ -1,0 +1,142 @@
+{
+    "$keywords": {
+        "loginServer": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "creationDate": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Updating",
+                        "Deleting",
+                        "Succeeded",
+                        "Failed",
+                        "Canceled"
+                    ]
+                }
+            }
+        },
+        "status": {
+            "parameters": {
+                "displayStatus": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "timestamp": {}
+            }
+        },
+        "adminUserEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "storageAccount": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "serviceUri": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "customHeaders": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status_2": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "enabled",
+                        "disabled"
+                    ]
+                }
+            }
+        },
+        "scope": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "actions": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "push",
+                        "delete"
+                    ]
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "registries": {
+            "loginServer": {
+                "$ref": "#/$keywords/loginServer"
+            },
+            "creationDate": {
+                "$ref": "#/$keywords/creationDate"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "adminUserEnabled": {
+                "$ref": "#/$keywords/adminUserEnabled"
+            },
+            "storageAccount": {
+                "$ref": "#/$keywords/storageAccount"
+            }
+        },
+        "registries/replications": {
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            }
+        },
+        "registries/webhooks": {
+            "serviceUri": {
+                "$ref": "#/$keywords/serviceUri"
+            },
+            "customHeaders": {
+                "$ref": "#/$keywords/customHeaders"
+            },
+            "status": {
+                "$ref": "#/$keywords/status_2"
+            },
+            "scope": {
+                "$ref": "#/$keywords/scope"
+            },
+            "actions": {
+                "$ref": "#/$keywords/actions"
+            }
+        }
+    }
+}

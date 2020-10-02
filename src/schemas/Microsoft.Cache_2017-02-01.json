@@ -1,0 +1,156 @@
+{
+    "$keywords": {
+        "redisConfiguration": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "enableNonSslPort": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "tenantSettings": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "shardCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "subnetId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^/subscriptions/[^/]*/resourceGroups/[^/]*/providers/Microsoft.(ClassicNetwork|Network)/virtualNetworks/[^/]*/subnets/[^/]*$"
+                }
+            }
+        },
+        "staticIP": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+                }
+            }
+        },
+        "sku": {
+            "parameters": {
+                "name": {
+                    "enum": [
+                        "Basic",
+                        "Standard",
+                        "Premium"
+                    ]
+                },
+                "family": {
+                    "enum": [
+                        "C",
+                        "P"
+                    ]
+                },
+                "capacity": {
+                    "type": "int"
+                }
+            }
+        },
+        "startIP": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "endIP": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "scheduleEntries": {
+            "parameters": {
+                "dayOfWeek": {},
+                "startHourUtc": {
+                    "type": "int"
+                },
+                "maintenanceWindow": {}
+            },
+            "array": true
+        },
+        "linkedRedisCacheId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "linkedRedisCacheLocation": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "serverRole": {
+            "propertyParameters": {
+                "value": {}
+            }
+        }
+    },
+    "$resources": {
+        "Redis": {
+            "redisConfiguration": {
+                "$ref": "#/$keywords/redisConfiguration"
+            },
+            "enableNonSslPort": {
+                "$ref": "#/$keywords/enableNonSslPort"
+            },
+            "tenantSettings": {
+                "$ref": "#/$keywords/tenantSettings"
+            },
+            "shardCount": {
+                "$ref": "#/$keywords/shardCount"
+            },
+            "subnetId": {
+                "$ref": "#/$keywords/subnetId"
+            },
+            "staticIP": {
+                "$ref": "#/$keywords/staticIP"
+            },
+            "sku": {
+                "$ref": "#/$keywords/sku"
+            }
+        },
+        "Redis/firewallRules": {
+            "startIP": {
+                "$ref": "#/$keywords/startIP"
+            },
+            "endIP": {
+                "$ref": "#/$keywords/endIP"
+            }
+        },
+        "Redis/patchSchedules": {
+            "scheduleEntries": {
+                "$ref": "#/$keywords/scheduleEntries"
+            }
+        },
+        "Redis/linkedServers": {
+            "linkedRedisCacheId": {
+                "$ref": "#/$keywords/linkedRedisCacheId"
+            },
+            "linkedRedisCacheLocation": {
+                "$ref": "#/$keywords/linkedRedisCacheLocation"
+            },
+            "serverRole": {
+                "$ref": "#/$keywords/serverRole"
+            }
+        }
+    }
+}

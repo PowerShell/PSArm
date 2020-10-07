@@ -1,19 +1,24 @@
-[CmdletBinding()]
+[CmdletBinding(DefaultParameterSetName="Execute")]
 param(
-    [Parameter()]
+    [Parameter(ParameterSetName="Execute")]
     [string]
     $PluginPath = $PSScriptRoot,
 
-    [Parameter()]
+    [Parameter(ParameterSetName="Execute")]
     [string]
     $OutputPath = "$PSScriptRoot/out",
 
-    [Parameter()]
+    [Parameter(ParameterSetName="Execute")]
     [string]
     $SpecRootPath = (Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath 'azure-api-rest-specs'),
 
+    [Parameter(ParameterSetName="Execute")]
     [switch]
-    $WaitSputnikDebugger
+    $WaitSputnikDebugger,
+
+    [Parameter(ParameterSetName="DotSource")]
+    [switch]
+    $NoExecute
 )
 
 function Get-ArmReadmes
@@ -59,7 +64,38 @@ filter Get-AutorestConfigFromReadme
 
         $currBatch = $block.Lines.ToString() | ConvertFrom-Yaml
         $inputPath = $currBatch['input-file'] |
-            ForEach-Object { if (-not [System.IO.Path]::IsPathRooted($_)) { Join-Path -Path $basePath -ChildPath $_ } else { $_ } }
+            ForEach-Object {
+                if ($_ -match '(.*)\$\(this-folder\)(\\|/)(.*)')
+                {
+                    "$($Matches[1])$($Matches[2])"
+                }
+                elseif (-not [System.IO.Path]::IsPathRooted($_))
+                {
+                    Join-Path -Path $basePath -ChildPath $_
+                }
+                else
+                {
+                    $_
+                }
+            }
+
+        $titles = $inputPath |
+            Where-Object { $_ -like '*.json'  } |
+            ForEach-Object { (Get-Content -Raw -LiteralPath $_ | ConvertFrom-Json -AsHashtable).info.title } |
+            Sort-Object -Unique
+
+        if (-not $titles)
+        {
+            Write-Warning "No title found"
+        }
+        elseif ($titles.Count -gt 1)
+        {
+            $titlesStr = ($titles | ForEach-Object { "'$_'" }) -join ','
+            $usedTitle = $titles | Select-Object -First 1
+            Write-Warning "Multiple titles found: $titlesStr. Using '$usedTitle'"
+            $currBatch['title'] = $usedTitle
+        }
+
         $currBatch['input-file'] = $inputPath
         $currBatch.Remove('output-folder')
 
@@ -144,7 +180,7 @@ function Invoke-Autorest
 
     begin
     {
-        $failed = [System.Collections.Generic.List[string]]::new()
+        $failed = [System.Collections.Generic.List[object]]::new()
     }
 
     process
@@ -159,16 +195,28 @@ function Invoke-Autorest
             $configPath = Join-Path ([System.IO.Path]::GetTempPath()) "psarm_autorest_config.yaml"
             $null = New-Item -Path $configPath -Value $YamlConfig -Force
 
+            $errors = [System.Collections.Generic.List[System.Management.Automation.ErrorRecord]]::new()
+
             $params = @(
                 $configPath
                 if ($VerbosePreference) { '--debug' }
                 if ($WaitDebugger) { '--sputnik.debugger' }
             )
-            autorest @params
+            autorest @params 2>&1 | ForEach-Object {
+                if ($_ -is [System.Management.Automation.ErrorRecord])
+                {
+                    $errors.Add($_)
+                }
+
+                $_
+            }
 
             if ($LASTEXITCODE -ne 0)
             {
-                $failed.Add($tag)
+                $failed.Add(@{
+                    Tag = $tag
+                    Errors = $errors.ToArray()
+                })
             }
         }
         finally
@@ -179,11 +227,19 @@ function Invoke-Autorest
 
     end
     {
-        foreach ($tag in $failed)
+        foreach ($failure in $failed)
         {
+            $tag = $failure.Tag
             Write-Warning "FAILED: '$tag'"
+            $failure.Errors | ForEach-Object { "    $_" } | Write-Warning
+            Write-Host
         }
     }
+}
+
+if ($NoExecute)
+{
+    return
 }
 
 if (-not (Test-Path $OutputPath))

@@ -108,7 +108,7 @@ namespace PSArm.Schema
             {
                 string schemaFileName = Path.GetFileNameWithoutExtension(schemaFilePath);
 
-                if (!string.IsNullOrEmpty(providerName) && schemaFileName.StartsWith(providerName))
+                if (!string.IsNullOrEmpty(providerName) && !schemaFileName.StartsWith(providerName))
                 {
                     continue;
                 }

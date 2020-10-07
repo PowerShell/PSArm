@@ -1,0 +1,30 @@
+{
+    "$keywords": {
+        "registrationToken": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "tenantId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "registrations": {
+            "registrationToken": {
+                "$ref": "#/$keywords/registrationToken"
+            }
+        },
+        "registrations/customerSubscriptions": {
+            "tenantId": {
+                "$ref": "#/$keywords/tenantId"
+            }
+        }
+    }
+}

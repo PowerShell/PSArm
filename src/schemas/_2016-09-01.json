@@ -1,0 +1,38 @@
+{
+    "$keywords": {
+        "sourceId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "targetId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "notes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "": {
+            "sourceId": {
+                "$ref": "#/$keywords/sourceId"
+            },
+            "targetId": {
+                "$ref": "#/$keywords/targetId"
+            },
+            "notes": {
+                "$ref": "#/$keywords/notes"
+            }
+        }
+    }
+}

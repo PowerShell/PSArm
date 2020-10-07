@@ -1,43 +1,6 @@
 {
-    "$keywords": {
-        "level": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "NotSpecified",
-                        "CanNotDelete",
-                        "ReadOnly"
-                    ]
-                }
-            }
-        },
-        "notes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "owners": {
-            "parameters": {
-                "applicationId": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        }
-    },
+    "$keywords": {},
     "$resources": {
-        "{parentResourcePath}/{resourceName}": {
-            "level": {
-                "$ref": "#/$keywords/level"
-            },
-            "notes": {
-                "$ref": "#/$keywords/notes"
-            },
-            "owners": {
-                "$ref": "#/$keywords/owners"
-            }
-        }
+        "{parentResourcePath}/{resourceName}": {}
     }
 }

@@ -1,0 +1,61 @@
+{
+    "$keywords": {
+        "accountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Succeeded",
+                        "Failed",
+                        "Canceled",
+                        "Accepted",
+                        "Provisioning",
+                        "Deleting"
+                    ]
+                }
+            }
+        },
+        "dataPoolId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "locations": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        }
+    },
+    "$resources": {
+        "accounts": {
+            "accountId": {
+                "$ref": "#/$keywords/accountId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "accounts/dataPools": {
+            "dataPoolId": {
+                "$ref": "#/$keywords/dataPoolId"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "locations": {
+                "$ref": "#/$keywords/locations"
+            }
+        }
+    }
+}

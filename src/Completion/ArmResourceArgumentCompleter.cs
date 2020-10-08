@@ -46,6 +46,11 @@ namespace PSArm.Completion
 
                 foreach (string providerName in DslLoader.Instance.ListSchemaProviders(apiVersion))
                 {
+                    if (string.IsNullOrEmpty(providerName))
+                    {
+                        continue;
+                    }
+
                     if (providerName.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
                     {
                         completions.Add(new CompletionResult(providerName, providerName, CompletionResultType.ParameterValue, providerName));
@@ -84,8 +89,8 @@ namespace PSArm.Completion
 
             if (IsString(parameterName, "ApiVersion"))
             {
-                string providerName = fakeBoundParameters.Contains("Type")
-                    ? (string)fakeBoundParameters["Type"]
+                string providerName = fakeBoundParameters.Contains("Provider")
+                    ? (string)fakeBoundParameters["Provider"]
                     : null;
 
                 var completions = new List<CompletionResult>();

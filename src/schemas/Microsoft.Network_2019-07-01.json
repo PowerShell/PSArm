@@ -1032,8 +1032,7 @@
                         "Udp",
                         "Icmp",
                         "Esp",
-                        "*",
-                        "Ah"
+                        "*"
                     ]
                 },
                 "sourcePortRange": {
@@ -1210,8 +1209,7 @@
                         "Udp",
                         "Icmp",
                         "Esp",
-                        "*",
-                        "Ah"
+                        "*"
                     ]
                 },
                 "sourcePortRange": {
@@ -1665,9 +1663,6 @@
                         "Basic",
                         "Standard"
                     ]
-                },
-                "protectedIP": {
-                    "type": "bool"
                 }
             },
             "body": {
@@ -2812,12 +2807,6 @@
                 },
                 "customErrorConfigurations": {
                     "$ref": "#/$keywords/customErrorConfigurations"
-                },
-                "firewallPolicy": {
-                    "$ref": "#/$keywords/subnet"
-                },
-                "hostNames": {
-                    "$ref": "#/$keywords/hostNames"
                 }
             },
             "array": true
@@ -2831,14 +2820,6 @@
                     ]
                 },
                 "customErrorPageUrl": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "hostNames": {
-            "propertyParameters": {
-                "value": {
                     "type": "string"
                 }
             },
@@ -2923,9 +2904,6 @@
                     "$ref": "#/$keywords/subnet"
                 },
                 "rewriteRuleSet": {
-                    "$ref": "#/$keywords/subnet"
-                },
-                "firewallPolicy": {
                     "$ref": "#/$keywords/subnet"
                 }
             },
@@ -3063,9 +3041,6 @@
                 },
                 "responseHeaderConfigurations": {
                     "$ref": "#/$keywords/responseHeaderConfigurations"
-                },
-                "urlConfiguration": {
-                    "$ref": "#/$keywords/urlConfiguration"
                 }
             }
         },
@@ -3090,19 +3065,6 @@
                 }
             },
             "array": true
-        },
-        "urlConfiguration": {
-            "parameters": {
-                "modifiedPath": {
-                    "type": "string"
-                },
-                "modifiedQueryString": {
-                    "type": "string"
-                },
-                "reroute": {
-                    "type": "bool"
-                }
-            }
         },
         "redirectConfigurations": {
             "parameters": {
@@ -3378,9 +3340,6 @@
                 },
                 "fqdnTags": {
                     "$ref": "#/$keywords/fqdnTags"
-                },
-                "sourceIpGroups": {
-                    "$ref": "#/$keywords/sourceIpGroups"
                 }
             },
             "array": true
@@ -3417,14 +3376,6 @@
             "array": true
         },
         "fqdnTags": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sourceIpGroups": {
             "propertyParameters": {
                 "value": {
                     "type": "string"
@@ -3488,9 +3439,6 @@
                 },
                 "translatedPort": {
                     "type": "string"
-                },
-                "translatedFqdn": {
-                    "type": "string"
                 }
             },
             "body": {
@@ -3505,9 +3453,6 @@
                 },
                 "protocols": {
                     "$ref": "#/$keywords/protocols_2"
-                },
-                "sourceIpGroups": {
-                    "$ref": "#/$keywords/sourceIpGroups_2"
                 }
             },
             "array": true
@@ -3545,14 +3490,6 @@
                         "Any",
                         "ICMP"
                     ]
-                }
-            },
-            "array": true
-        },
-        "sourceIpGroups_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
                 }
             },
             "array": true
@@ -3611,15 +3548,6 @@
                 },
                 "destinationPorts": {
                     "$ref": "#/$keywords/destinationPorts_2"
-                },
-                "destinationFqdns": {
-                    "$ref": "#/$keywords/destinationFqdns"
-                },
-                "sourceIpGroups": {
-                    "$ref": "#/$keywords/sourceIpGroups_3"
-                },
-                "destinationIpGroups": {
-                    "$ref": "#/$keywords/destinationIpGroups"
                 }
             },
             "array": true
@@ -3661,30 +3589,6 @@
             },
             "array": true
         },
-        "destinationFqdns": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sourceIpGroups_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "destinationIpGroups": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
         "ipConfigurations_3": {
             "parameters": {
                 "name": {
@@ -3693,9 +3597,6 @@
                 "etag": {
                     "type": "string"
                 },
-                "type": {
-                    "type": "string"
-                },
                 "privateIPAddress": {
                     "type": "string"
                 },
@@ -3720,41 +3621,6 @@
                 }
             },
             "array": true
-        },
-        "managementIpConfiguration": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "etag": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "privateIPAddress": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "enum": [
-                        "Succeeded",
-                        "Updating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "subnet": {
-                    "$ref": "#/$keywords/subnet"
-                },
-                "publicIPAddress": {
-                    "$ref": "#/$keywords/subnet"
-                }
-            }
         },
         "threatIntelMode": {
             "propertyParameters": {
@@ -3786,33 +3652,6 @@
                 }
             },
             "array": true
-        },
-        "ipGroups": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "changeNumber": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sku_3": {
-            "parameters": {
-                "name": {
-                    "enum": [
-                        "AZFW_VNet",
-                        "AZFW_Hub"
-                    ]
-                },
-                "tier": {}
-            }
-        },
-        "additionalProperties": {
-            "propertyParameters": {
-                "value": {}
-            }
         },
         "ipConfigurations_4": {
             "parameters": {
@@ -4647,9 +4486,6 @@
                 "routingWeight": {
                     "type": "int"
                 },
-                "enableInternetSecurity": {
-                    "type": "bool"
-                },
                 "id": {
                     "type": "string"
                 }
@@ -4686,13 +4522,6 @@
             "propertyParameters": {
                 "value": {
                     "type": "int"
-                }
-            }
-        },
-        "enableInternetSecurity": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
                 }
             }
         },
@@ -4872,22 +4701,6 @@
                 },
                 "priority": {
                     "type": "int"
-                }
-            },
-            "array": true
-        },
-        "ipAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "firewalls_2": {
-            "parameters": {
-                "id": {
-                    "type": "string"
                 }
             },
             "array": true
@@ -5612,8 +5425,7 @@
                         "Udp",
                         "Icmp",
                         "Esp",
-                        "*",
-                        "Ah"
+                        "*"
                     ]
                 }
             }
@@ -5771,298 +5583,6 @@
         "monitoringIntervalInSeconds": {
             "propertyParameters": {
                 "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "endpoints": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "resourceId": {
-                    "type": "string"
-                },
-                "address": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "filter": {
-                    "$ref": "#/$keywords/filter"
-                }
-            },
-            "array": true
-        },
-        "filter": {
-            "parameters": {
-                "type": {}
-            },
-            "body": {
-                "items": {
-                    "$ref": "#/$keywords/items"
-                }
-            }
-        },
-        "items": {
-            "parameters": {
-                "type": {},
-                "address": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "testConfigurations": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "testFrequencySec": {
-                    "type": "int"
-                },
-                "protocol": {
-                    "enum": [
-                        "Tcp",
-                        "Http",
-                        "Icmp"
-                    ]
-                },
-                "preferredIPVersion": {
-                    "enum": [
-                        "IPv4",
-                        "IPv6"
-                    ]
-                }
-            },
-            "body": {
-                "httpConfiguration": {
-                    "$ref": "#/$keywords/httpConfiguration"
-                },
-                "tcpConfiguration": {
-                    "$ref": "#/$keywords/tcpConfiguration"
-                },
-                "icmpConfiguration": {
-                    "$ref": "#/$keywords/icmpConfiguration"
-                },
-                "successThreshold": {
-                    "$ref": "#/$keywords/successThreshold"
-                }
-            },
-            "array": true
-        },
-        "httpConfiguration": {
-            "parameters": {
-                "port": {
-                    "type": "int"
-                },
-                "method": {
-                    "enum": [
-                        "Get",
-                        "Post"
-                    ]
-                },
-                "path": {
-                    "type": "string"
-                },
-                "preferHTTPS": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "requestHeaders": {
-                    "$ref": "#/$keywords/requestHeaders"
-                },
-                "validStatusCodeRanges": {
-                    "$ref": "#/$keywords/validStatusCodeRanges"
-                }
-            }
-        },
-        "requestHeaders": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "validStatusCodeRanges": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "tcpConfiguration": {
-            "parameters": {
-                "port": {
-                    "type": "int"
-                },
-                "disableTraceRoute": {
-                    "type": "bool"
-                }
-            }
-        },
-        "icmpConfiguration": {
-            "parameters": {
-                "disableTraceRoute": {
-                    "type": "bool"
-                }
-            }
-        },
-        "successThreshold": {
-            "parameters": {
-                "checksFailedPercent": {
-                    "type": "int"
-                },
-                "roundTripTimeMs": {
-                    "type": "int"
-                }
-            }
-        },
-        "testGroups": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "disable": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "testConfigurations": {
-                    "$ref": "#/$keywords/testConfigurations_2"
-                },
-                "sources": {
-                    "$ref": "#/$keywords/sources"
-                },
-                "destinations": {
-                    "$ref": "#/$keywords/destinations"
-                }
-            },
-            "array": true
-        },
-        "testConfigurations_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sources": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "destinations": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "outputs": {
-            "parameters": {
-                "type": {}
-            },
-            "body": {
-                "workspaceSettings": {
-                    "$ref": "#/$keywords/workspaceSettings"
-                }
-            },
-            "array": true
-        },
-        "workspaceSettings": {
-            "parameters": {
-                "workspaceResourceId": {
-                    "type": "string"
-                }
-            }
-        },
-        "notes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "targetResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "targetResourceGuid": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "retentionPolicy": {
-            "parameters": {
-                "days": {
-                    "type": "int"
-                },
-                "enabled": {
-                    "type": "bool"
-                }
-            }
-        },
-        "format": {
-            "parameters": {
-                "type": {},
-                "version": {
-                    "type": "int"
-                }
-            }
-        },
-        "flowAnalyticsConfiguration": {
-            "body": {
-                "networkWatcherFlowAnalyticsConfiguration": {
-                    "$ref": "#/$keywords/networkWatcherFlowAnalyticsConfiguration"
-                }
-            }
-        },
-        "networkWatcherFlowAnalyticsConfiguration": {
-            "parameters": {
-                "enabled": {
-                    "type": "bool"
-                },
-                "workspaceId": {
-                    "type": "string"
-                },
-                "workspaceRegion": {
-                    "type": "string"
-                },
-                "workspaceResourceId": {
-                    "type": "string"
-                },
-                "trafficAnalyticsInterval": {
                     "type": "int"
                 }
             }
@@ -6267,9 +5787,6 @@
                         "Failed"
                     ]
                 },
-                "linkIdentifier": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "string"
                 }
@@ -6315,20 +5832,6 @@
             "array": true
         },
         "alias": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enableProxyProtocol": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "linkIdentifier": {
             "propertyParameters": {
                 "value": {
                     "type": "string"
@@ -6885,16 +6388,6 @@
                 }
             }
         },
-        "bgpCommunities": {
-            "parameters": {
-                "virtualNetworkCommunity": {
-                    "type": "string"
-                },
-                "regionalCommunity": {
-                    "type": "string"
-                }
-            }
-        },
         "addressPrefix_3": {
             "propertyParameters": {
                 "value": {
@@ -7043,7 +6536,7 @@
                 }
             }
         },
-        "sku_4": {
+        "sku_3": {
             "parameters": {
                 "name": {
                     "enum": [
@@ -7290,20 +6783,6 @@
                 }
             }
         },
-        "enableDnsForwarding": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "inboundDnsForwardingEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
         "authorizationKey_4": {
             "propertyParameters": {
                 "value": {
@@ -7352,12 +6831,6 @@
                         "Failed"
                     ]
                 },
-                "enableDnsForwarding": {
-                    "type": "bool"
-                },
-                "inboundDnsForwardingEndpoint": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "string"
                 },
@@ -7380,7 +6853,7 @@
                     "$ref": "#/$keywords/subnet"
                 },
                 "sku": {
-                    "$ref": "#/$keywords/sku_4"
+                    "$ref": "#/$keywords/sku_3"
                 },
                 "vpnClientConfiguration": {
                     "$ref": "#/$keywords/vpnClientConfiguration"
@@ -7745,6 +7218,13 @@
             },
             "array": true
         },
+        "securityProviderName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
         "allowBranchToBranchTraffic": {
             "propertyParameters": {
                 "value": {
@@ -7771,12 +7251,255 @@
                 }
             }
         },
-        "type": {
-            "propertyParameters": {
-                "value": {
+        "p2SVpnServerConfigurations": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "radiusServerAddress": {
+                    "type": "string"
+                },
+                "radiusServerSecret": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                },
+                "id": {
                     "type": "string"
                 }
-            }
+            },
+            "body": {
+                "vpnProtocols": {
+                    "$ref": "#/$keywords/vpnProtocols"
+                },
+                "p2SVpnServerConfigVpnClientRootCertificates": {
+                    "$ref": "#/$keywords/p2SVpnServerConfigVpnClientRootCertificates"
+                },
+                "p2SVpnServerConfigVpnClientRevokedCertificates": {
+                    "$ref": "#/$keywords/p2SVpnServerConfigVpnClientRevokedCertificates"
+                },
+                "p2SVpnServerConfigRadiusServerRootCertificates": {
+                    "$ref": "#/$keywords/p2SVpnServerConfigRadiusServerRootCertificates"
+                },
+                "p2SVpnServerConfigRadiusClientRootCertificates": {
+                    "$ref": "#/$keywords/p2SVpnServerConfigRadiusClientRootCertificates"
+                },
+                "vpnClientIpsecPolicies": {
+                    "$ref": "#/$keywords/vpnClientIpsecPolicies_2"
+                },
+                "p2SVpnGateways": {
+                    "$ref": "#/$keywords/p2SVpnGateways"
+                }
+            },
+            "array": true
+        },
+        "vpnProtocols": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "IkeV2",
+                        "OpenVPN"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "p2SVpnServerConfigVpnClientRootCertificates": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "publicCertData": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "p2SVpnServerConfigVpnClientRevokedCertificates": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "thumbprint": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "p2SVpnServerConfigRadiusServerRootCertificates": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "publicCertData": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "p2SVpnServerConfigRadiusClientRootCertificates": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "etag": {
+                    "type": "string"
+                },
+                "thumbprint": {
+                    "type": "string"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "vpnClientIpsecPolicies_2": {
+            "parameters": {
+                "saLifeTimeSeconds": {
+                    "type": "int"
+                },
+                "saDataSizeKilobytes": {
+                    "type": "int"
+                },
+                "ipsecEncryption": {
+                    "enum": [
+                        "None",
+                        "DES",
+                        "DES3",
+                        "AES128",
+                        "AES192",
+                        "AES256",
+                        "GCMAES128",
+                        "GCMAES192",
+                        "GCMAES256"
+                    ]
+                },
+                "ipsecIntegrity": {
+                    "enum": [
+                        "MD5",
+                        "SHA1",
+                        "SHA256",
+                        "GCMAES128",
+                        "GCMAES192",
+                        "GCMAES256"
+                    ]
+                },
+                "ikeEncryption": {
+                    "enum": [
+                        "DES",
+                        "DES3",
+                        "AES128",
+                        "AES192",
+                        "AES256",
+                        "GCMAES256",
+                        "GCMAES128"
+                    ]
+                },
+                "ikeIntegrity": {
+                    "enum": [
+                        "MD5",
+                        "SHA1",
+                        "SHA256",
+                        "SHA384",
+                        "GCMAES256",
+                        "GCMAES128"
+                    ]
+                },
+                "dhGroup": {
+                    "enum": [
+                        "None",
+                        "DHGroup1",
+                        "DHGroup2",
+                        "DHGroup14",
+                        "DHGroup2048",
+                        "ECP256",
+                        "ECP384",
+                        "DHGroup24"
+                    ]
+                },
+                "pfsGroup": {
+                    "enum": [
+                        "None",
+                        "PFS1",
+                        "PFS2",
+                        "PFS2048",
+                        "ECP256",
+                        "ECP384",
+                        "PFS24",
+                        "PFS14",
+                        "PFSMM"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "p2SVpnGateways": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
         },
         "deviceProperties": {
             "parameters": {
@@ -7868,300 +7591,6 @@
                 }
             }
         },
-        "name": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vpnProtocols": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "IkeV2",
-                        "OpenVPN"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "vpnAuthenticationTypes": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Certificate",
-                        "Radius",
-                        "AAD"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "vpnClientRootCertificates_2": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "publicCertData": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "vpnClientRevokedCertificates_2": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "thumbprint": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "radiusServerRootCertificates": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "publicCertData": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "radiusClientRootCertificates": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "thumbprint": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "vpnClientIpsecPolicies_2": {
-            "parameters": {
-                "saLifeTimeSeconds": {
-                    "type": "int"
-                },
-                "saDataSizeKilobytes": {
-                    "type": "int"
-                },
-                "ipsecEncryption": {
-                    "enum": [
-                        "None",
-                        "DES",
-                        "DES3",
-                        "AES128",
-                        "AES192",
-                        "AES256",
-                        "GCMAES128",
-                        "GCMAES192",
-                        "GCMAES256"
-                    ]
-                },
-                "ipsecIntegrity": {
-                    "enum": [
-                        "MD5",
-                        "SHA1",
-                        "SHA256",
-                        "GCMAES128",
-                        "GCMAES192",
-                        "GCMAES256"
-                    ]
-                },
-                "ikeEncryption": {
-                    "enum": [
-                        "DES",
-                        "DES3",
-                        "AES128",
-                        "AES192",
-                        "AES256",
-                        "GCMAES256",
-                        "GCMAES128"
-                    ]
-                },
-                "ikeIntegrity": {
-                    "enum": [
-                        "MD5",
-                        "SHA1",
-                        "SHA256",
-                        "SHA384",
-                        "GCMAES256",
-                        "GCMAES128"
-                    ]
-                },
-                "dhGroup": {
-                    "enum": [
-                        "None",
-                        "DHGroup1",
-                        "DHGroup2",
-                        "DHGroup14",
-                        "DHGroup2048",
-                        "ECP256",
-                        "ECP384",
-                        "DHGroup24"
-                    ]
-                },
-                "pfsGroup": {
-                    "enum": [
-                        "None",
-                        "PFS1",
-                        "PFS2",
-                        "PFS2048",
-                        "ECP256",
-                        "ECP384",
-                        "PFS24",
-                        "PFS14",
-                        "PFSMM"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "radiusServerAddress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "radiusServerSecret": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "aadAuthenticationParameters": {
-            "parameters": {
-                "aadTenant": {
-                    "type": "string"
-                },
-                "aadAudience": {
-                    "type": "string"
-                },
-                "aadIssuer": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "p2SVpnGateways": {
-            "parameters": {
-                "etag": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "enum": [
-                        "Succeeded",
-                        "Updating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                },
-                "vpnGatewayScaleUnit": {
-                    "type": "int"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "location": {
-                    "type": "string"
-                },
-                "tags": {}
-            },
-            "body": {
-                "virtualHub": {
-                    "$ref": "#/$keywords/subnet"
-                },
-                "p2SConnectionConfigurations": {
-                    "$ref": "#/$keywords/p2SConnectionConfigurations"
-                },
-                "vpnServerConfiguration": {
-                    "$ref": "#/$keywords/subnet"
-                },
-                "vpnClientConnectionHealth": {
-                    "$ref": "#/$keywords/vpnClientConnectionHealth"
-                }
-            },
-            "array": true
-        },
-        "p2SConnectionConfigurations": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "etag": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "enum": [
-                        "Succeeded",
-                        "Updating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "vpnClientAddressPool": {
-                    "$ref": "#/$keywords/addressSpace"
-                }
-            },
-            "array": true
-        },
-        "vpnClientConnectionHealth": {
-            "parameters": {
-                "totalIngressBytesTransferred": {
-                    "type": "int"
-                },
-                "totalEgressBytesTransferred": {
-                    "type": "int"
-                },
-                "vpnClientConnectionsCount": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "allocatedIpAddresses": {
-                    "$ref": "#/$keywords/allocatedIpAddresses"
-                }
-            }
-        },
-        "allocatedIpAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "etag": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
         "virtualNetworkConnections": {
             "parameters": {
                 "name": {
@@ -8232,93 +7661,6 @@
                 }
             },
             "array": true
-        },
-        "securityProviderName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "virtualHubRouteTableV2s": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "etag": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "enum": [
-                        "Succeeded",
-                        "Updating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "routes": {
-                    "$ref": "#/$keywords/routes_3"
-                },
-                "attachedConnections": {
-                    "$ref": "#/$keywords/attachedConnections"
-                }
-            },
-            "array": true
-        },
-        "routes_3": {
-            "parameters": {
-                "destinationType": {
-                    "type": "string"
-                },
-                "nextHopType": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "destinations": {
-                    "$ref": "#/$keywords/destinations_2"
-                },
-                "nextHops": {
-                    "$ref": "#/$keywords/nextHops"
-                }
-            },
-            "array": true
-        },
-        "destinations_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "nextHops": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "attachedConnections": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sku_5": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
         },
         "connections_2": {
             "parameters": {
@@ -8685,10 +8027,45 @@
                 }
             }
         },
+        "enableInternetSecurity": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
         "useLocalAzureIpAddress": {
             "propertyParameters": {
                 "value": {
                     "type": "bool"
+                }
+            }
+        },
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "radiusServerAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "radiusServerSecret": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "etag": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
                 }
             }
         },
@@ -8699,9 +8076,35 @@
                 }
             }
         },
+        "vpnClientConnectionHealth": {
+            "parameters": {
+                "totalIngressBytesTransferred": {
+                    "type": "int"
+                },
+                "totalEgressBytesTransferred": {
+                    "type": "int"
+                },
+                "vpnClientConnectionsCount": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "allocatedIpAddresses": {
+                    "$ref": "#/$keywords/allocatedIpAddresses"
+                }
+            }
+        },
+        "allocatedIpAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
         "policySettings": {
             "parameters": {
-                "state": {
+                "enabledState": {
                     "enum": [
                         "Disabled",
                         "Enabled"
@@ -8712,15 +8115,6 @@
                         "Prevention",
                         "Detection"
                     ]
-                },
-                "requestBodyCheck": {
-                    "type": "bool"
-                },
-                "maxRequestBodySizeInKb": {
-                    "type": "int"
-                },
-                "fileUploadLimitInMb": {
-                    "type": "int"
                 }
             }
         },
@@ -8769,8 +8163,7 @@
                         "GreaterThanOrEqual",
                         "BeginsWith",
                         "EndsWith",
-                        "Regex",
-                        "GeoMatch"
+                        "Regex"
                     ]
                 },
                 "negationConditon": {
@@ -8980,94 +8373,6 @@
                     ]
                 }
             }
-        },
-        "managedRules": {
-            "body": {
-                "exclusions": {
-                    "$ref": "#/$keywords/exclusions_2"
-                },
-                "managedRuleSets": {
-                    "$ref": "#/$keywords/managedRuleSets"
-                }
-            }
-        },
-        "exclusions_2": {
-            "parameters": {
-                "matchVariable": {
-                    "enum": [
-                        "RequestHeaderNames",
-                        "RequestCookieNames",
-                        "RequestArgNames"
-                    ]
-                },
-                "selectorMatchOperator": {
-                    "enum": [
-                        "Equals",
-                        "Contains",
-                        "StartsWith",
-                        "EndsWith",
-                        "EqualsAny"
-                    ]
-                },
-                "selector": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "managedRuleSets": {
-            "parameters": {
-                "ruleSetType": {
-                    "type": "string"
-                },
-                "ruleSetVersion": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "ruleGroupOverrides": {
-                    "$ref": "#/$keywords/ruleGroupOverrides"
-                }
-            },
-            "array": true
-        },
-        "ruleGroupOverrides": {
-            "parameters": {
-                "ruleGroupName": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "rules": {
-                    "$ref": "#/$keywords/rules_7"
-                }
-            },
-            "array": true
-        },
-        "rules_7": {
-            "parameters": {
-                "ruleId": {
-                    "type": "string"
-                },
-                "state": {}
-            },
-            "array": true
-        },
-        "httpListeners_2": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "pathBasedRules": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
         }
     },
     "$resources": {
@@ -9169,9 +8474,6 @@
             "ipConfigurations": {
                 "$ref": "#/$keywords/ipConfigurations_3"
             },
-            "managementIpConfiguration": {
-                "$ref": "#/$keywords/managementIpConfiguration"
-            },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
             },
@@ -9186,15 +8488,6 @@
             },
             "hubIpAddresses": {
                 "$ref": "#/$keywords/hubIpAddresses"
-            },
-            "ipGroups": {
-                "$ref": "#/$keywords/ipGroups"
-            },
-            "sku": {
-                "$ref": "#/$keywords/sku_3"
-            },
-            "additionalProperties": {
-                "$ref": "#/$keywords/additionalProperties"
             }
         },
         "bastionHosts": {
@@ -9475,9 +8768,6 @@
             },
             "routingWeight": {
                 "$ref": "#/$keywords/routingWeight"
-            },
-            "enableInternetSecurity": {
-                "$ref": "#/$keywords/enableInternetSecurity"
             }
         },
         "ExpressRoutePorts": {
@@ -9544,17 +8834,6 @@
             },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "ipGroups": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "ipAddresses": {
-                "$ref": "#/$keywords/ipAddresses"
-            },
-            "firewalls": {
-                "$ref": "#/$keywords/firewalls_2"
             }
         },
         "loadBalancers": {
@@ -9805,47 +9084,6 @@
             },
             "monitoringIntervalInSeconds": {
                 "$ref": "#/$keywords/monitoringIntervalInSeconds"
-            },
-            "endpoints": {
-                "$ref": "#/$keywords/endpoints"
-            },
-            "testConfigurations": {
-                "$ref": "#/$keywords/testConfigurations"
-            },
-            "testGroups": {
-                "$ref": "#/$keywords/testGroups"
-            },
-            "outputs": {
-                "$ref": "#/$keywords/outputs"
-            },
-            "notes": {
-                "$ref": "#/$keywords/notes"
-            }
-        },
-        "networkWatchers/flowLogs": {
-            "targetResourceId": {
-                "$ref": "#/$keywords/targetResourceId"
-            },
-            "targetResourceGuid": {
-                "$ref": "#/$keywords/targetResourceGuid"
-            },
-            "storageId": {
-                "$ref": "#/$keywords/storageId"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "retentionPolicy": {
-                "$ref": "#/$keywords/retentionPolicy"
-            },
-            "format": {
-                "$ref": "#/$keywords/format"
-            },
-            "flowAnalyticsConfiguration": {
-                "$ref": "#/$keywords/flowAnalyticsConfiguration"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
             }
         },
         "privateEndpoints": {
@@ -9892,9 +9130,6 @@
             },
             "alias": {
                 "$ref": "#/$keywords/alias"
-            },
-            "enableProxyProtocol": {
-                "$ref": "#/$keywords/enableProxyProtocol"
             }
         },
         "privateLinkServices/privateEndpointConnections": {
@@ -9906,9 +9141,6 @@
             },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
-            },
-            "linkIdentifier": {
-                "$ref": "#/$keywords/linkIdentifier"
             }
         },
         "publicIPAddresses": {
@@ -10083,9 +9315,6 @@
             },
             "ddosProtectionPlan": {
                 "$ref": "#/$keywords/subnet"
-            },
-            "bgpCommunities": {
-                "$ref": "#/$keywords/bgpCommunities"
             }
         },
         "virtualNetworks/subnets": {
@@ -10190,7 +9419,7 @@
                 "$ref": "#/$keywords/subnet"
             },
             "sku": {
-                "$ref": "#/$keywords/sku_4"
+                "$ref": "#/$keywords/sku_3"
             },
             "vpnClientConfiguration": {
                 "$ref": "#/$keywords/vpnClientConfiguration"
@@ -10206,12 +9435,6 @@
             },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
-            },
-            "enableDnsForwarding": {
-                "$ref": "#/$keywords/enableDnsForwarding"
-            },
-            "inboundDnsForwardingEndpoint": {
-                "$ref": "#/$keywords/inboundDnsForwardingEndpoint"
             }
         },
         "connections": {
@@ -10355,6 +9578,9 @@
             "vpnSites": {
                 "$ref": "#/$keywords/vpnSites"
             },
+            "securityProviderName": {
+                "$ref": "#/$keywords/securityProviderName"
+            },
             "allowBranchToBranchTraffic": {
                 "$ref": "#/$keywords/allowBranchToBranchTraffic"
             },
@@ -10364,11 +9590,11 @@
             "office365LocalBreakoutCategory": {
                 "$ref": "#/$keywords/office365LocalBreakoutCategory"
             },
+            "p2SVpnServerConfigurations": {
+                "$ref": "#/$keywords/p2SVpnServerConfigurations"
+            },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
-            },
-            "type": {
-                "$ref": "#/$keywords/type"
             }
         },
         "vpnSites": {
@@ -10400,50 +9626,6 @@
                 "$ref": "#/$keywords/vpnSiteLinks"
             }
         },
-        "vpnServerConfigurations": {
-            "name": {
-                "$ref": "#/$keywords/name"
-            },
-            "vpnProtocols": {
-                "$ref": "#/$keywords/vpnProtocols"
-            },
-            "vpnAuthenticationTypes": {
-                "$ref": "#/$keywords/vpnAuthenticationTypes"
-            },
-            "vpnClientRootCertificates": {
-                "$ref": "#/$keywords/vpnClientRootCertificates_2"
-            },
-            "vpnClientRevokedCertificates": {
-                "$ref": "#/$keywords/vpnClientRevokedCertificates_2"
-            },
-            "radiusServerRootCertificates": {
-                "$ref": "#/$keywords/radiusServerRootCertificates"
-            },
-            "radiusClientRootCertificates": {
-                "$ref": "#/$keywords/radiusClientRootCertificates"
-            },
-            "vpnClientIpsecPolicies": {
-                "$ref": "#/$keywords/vpnClientIpsecPolicies_2"
-            },
-            "radiusServerAddress": {
-                "$ref": "#/$keywords/radiusServerAddress"
-            },
-            "radiusServerSecret": {
-                "$ref": "#/$keywords/radiusServerSecret"
-            },
-            "aadAuthenticationParameters": {
-                "$ref": "#/$keywords/aadAuthenticationParameters"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "p2SVpnGateways": {
-                "$ref": "#/$keywords/p2SVpnGateways"
-            },
-            "etag": {
-                "$ref": "#/$keywords/etag"
-            }
-        },
         "virtualHubs": {
             "virtualWan": {
                 "$ref": "#/$keywords/subnet"
@@ -10457,9 +9639,6 @@
             "expressRouteGateway": {
                 "$ref": "#/$keywords/subnet"
             },
-            "azureFirewall": {
-                "$ref": "#/$keywords/subnet"
-            },
             "virtualNetworkConnections": {
                 "$ref": "#/$keywords/virtualNetworkConnections"
             },
@@ -10471,15 +9650,6 @@
             },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
-            },
-            "securityProviderName": {
-                "$ref": "#/$keywords/securityProviderName"
-            },
-            "virtualHubRouteTableV2s": {
-                "$ref": "#/$keywords/virtualHubRouteTableV2s"
-            },
-            "sku": {
-                "$ref": "#/$keywords/sku_5"
             }
         },
         "vpnGateways": {
@@ -10549,12 +9719,47 @@
                 "$ref": "#/$keywords/vpnLinkConnections"
             }
         },
+        "virtualWans/p2sVpnServerConfigurations": {
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "vpnProtocols": {
+                "$ref": "#/$keywords/vpnProtocols"
+            },
+            "p2SVpnServerConfigVpnClientRootCertificates": {
+                "$ref": "#/$keywords/p2SVpnServerConfigVpnClientRootCertificates"
+            },
+            "p2SVpnServerConfigVpnClientRevokedCertificates": {
+                "$ref": "#/$keywords/p2SVpnServerConfigVpnClientRevokedCertificates"
+            },
+            "p2SVpnServerConfigRadiusServerRootCertificates": {
+                "$ref": "#/$keywords/p2SVpnServerConfigRadiusServerRootCertificates"
+            },
+            "p2SVpnServerConfigRadiusClientRootCertificates": {
+                "$ref": "#/$keywords/p2SVpnServerConfigRadiusClientRootCertificates"
+            },
+            "vpnClientIpsecPolicies": {
+                "$ref": "#/$keywords/vpnClientIpsecPolicies_2"
+            },
+            "radiusServerAddress": {
+                "$ref": "#/$keywords/radiusServerAddress"
+            },
+            "radiusServerSecret": {
+                "$ref": "#/$keywords/radiusServerSecret"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "p2SVpnGateways": {
+                "$ref": "#/$keywords/p2SVpnGateways"
+            },
+            "etag": {
+                "$ref": "#/$keywords/etag"
+            }
+        },
         "p2svpnGateways": {
             "virtualHub": {
                 "$ref": "#/$keywords/subnet"
-            },
-            "p2SConnectionConfigurations": {
-                "$ref": "#/$keywords/p2SConnectionConfigurations"
             },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
@@ -10562,22 +9767,17 @@
             "vpnGatewayScaleUnit": {
                 "$ref": "#/$keywords/vpnGatewayScaleUnit_2"
             },
-            "vpnServerConfiguration": {
+            "p2SVpnServerConfiguration": {
                 "$ref": "#/$keywords/subnet"
+            },
+            "vpnClientAddressPool": {
+                "$ref": "#/$keywords/addressSpace"
+            },
+            "customRoutes": {
+                "$ref": "#/$keywords/addressSpace"
             },
             "vpnClientConnectionHealth": {
                 "$ref": "#/$keywords/vpnClientConnectionHealth"
-            }
-        },
-        "virtualHubs/routeTables": {
-            "routes": {
-                "$ref": "#/$keywords/routes_3"
-            },
-            "attachedConnections": {
-                "$ref": "#/$keywords/attachedConnections"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
             }
         },
         "ApplicationGatewayWebApplicationFirewallPolicies": {
@@ -10595,15 +9795,6 @@
             },
             "resourceState": {
                 "$ref": "#/$keywords/resourceState"
-            },
-            "managedRules": {
-                "$ref": "#/$keywords/managedRules"
-            },
-            "httpListeners": {
-                "$ref": "#/$keywords/httpListeners_2"
-            },
-            "pathBasedRules": {
-                "$ref": "#/$keywords/pathBasedRules"
             }
         }
     }

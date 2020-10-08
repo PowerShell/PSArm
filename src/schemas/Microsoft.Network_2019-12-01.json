@@ -1012,6 +1012,9 @@
                 },
                 "subnets": {
                     "$ref": "#/$keywords/subnets"
+                },
+                "flowLogs": {
+                    "$ref": "#/$keywords/flowLogs"
                 }
             }
         },
@@ -2545,6 +2548,102 @@
                 }
             },
             "array": true
+        },
+        "flowLogs": {
+            "parameters": {
+                "etag": {
+                    "type": "string"
+                },
+                "targetResourceId": {
+                    "type": "string"
+                },
+                "targetResourceGuid": {
+                    "type": "string"
+                },
+                "storageId": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "bool"
+                },
+                "provisioningState": {
+                    "enum": [
+                        "Succeeded",
+                        "Updating",
+                        "Deleting",
+                        "Failed"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "tags": {}
+            },
+            "body": {
+                "retentionPolicy": {
+                    "$ref": "#/$keywords/retentionPolicy"
+                },
+                "format": {
+                    "$ref": "#/$keywords/format"
+                },
+                "flowAnalyticsConfiguration": {
+                    "$ref": "#/$keywords/flowAnalyticsConfiguration"
+                }
+            },
+            "array": true
+        },
+        "retentionPolicy": {
+            "parameters": {
+                "days": {
+                    "type": "int"
+                },
+                "enabled": {
+                    "type": "bool"
+                }
+            }
+        },
+        "format": {
+            "parameters": {
+                "type": {},
+                "version": {
+                    "type": "int"
+                }
+            }
+        },
+        "flowAnalyticsConfiguration": {
+            "body": {
+                "networkWatcherFlowAnalyticsConfiguration": {
+                    "$ref": "#/$keywords/networkWatcherFlowAnalyticsConfiguration"
+                }
+            }
+        },
+        "networkWatcherFlowAnalyticsConfiguration": {
+            "parameters": {
+                "enabled": {
+                    "type": "bool"
+                },
+                "workspaceId": {
+                    "type": "string"
+                },
+                "workspaceRegion": {
+                    "type": "string"
+                },
+                "workspaceResourceId": {
+                    "type": "string"
+                },
+                "trafficAnalyticsInterval": {
+                    "type": "int"
+                }
+            }
         },
         "loadBalancingRules": {
             "parameters": {
@@ -4158,9 +4257,26 @@
                 },
                 "peerExpressRouteCircuitPeering": {
                     "$ref": "#/$keywords/subnet"
+                },
+                "ipv6CircuitConnectionConfig": {
+                    "$ref": "#/$keywords/ipv6CircuitConnectionConfig"
                 }
             },
             "array": true
+        },
+        "ipv6CircuitConnectionConfig": {
+            "parameters": {
+                "addressPrefix": {
+                    "type": "string"
+                },
+                "circuitConnectionStatus": {
+                    "enum": [
+                        "Connected",
+                        "Connecting",
+                        "Disconnected"
+                    ]
+                }
+            }
         },
         "peeredConnections": {
             "parameters": {
@@ -5673,6 +5789,43 @@
                 }
             }
         },
+        "bootStrapConfigurationBlob": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "cloudInitConfigurationBlob": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "virtualApplianceAsn": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "virtualApplianceNics": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "publicIpAddress": {
+                    "type": "string"
+                },
+                "privateIpAddress": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
         "target": {
             "propertyParameters": {
                 "value": {
@@ -6020,50 +6173,6 @@
             "propertyParameters": {
                 "value": {
                     "type": "bool"
-                }
-            }
-        },
-        "retentionPolicy": {
-            "parameters": {
-                "days": {
-                    "type": "int"
-                },
-                "enabled": {
-                    "type": "bool"
-                }
-            }
-        },
-        "format": {
-            "parameters": {
-                "type": {},
-                "version": {
-                    "type": "int"
-                }
-            }
-        },
-        "flowAnalyticsConfiguration": {
-            "body": {
-                "networkWatcherFlowAnalyticsConfiguration": {
-                    "$ref": "#/$keywords/networkWatcherFlowAnalyticsConfiguration"
-                }
-            }
-        },
-        "networkWatcherFlowAnalyticsConfiguration": {
-            "parameters": {
-                "enabled": {
-                    "type": "bool"
-                },
-                "workspaceId": {
-                    "type": "string"
-                },
-                "workspaceRegion": {
-                    "type": "string"
-                },
-                "workspaceResourceId": {
-                    "type": "string"
-                },
-                "trafficAnalyticsInterval": {
-                    "type": "int"
                 }
             }
         },
@@ -6976,6 +7085,9 @@
                         "Dynamic"
                     ]
                 },
+                "privateIPAddress": {
+                    "type": "string"
+                },
                 "provisioningState": {
                     "enum": [
                         "Succeeded",
@@ -7030,6 +7142,13 @@
             }
         },
         "enableBgp": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "enablePrivateIpAddress": {
             "propertyParameters": {
                 "value": {
                     "type": "bool"
@@ -7281,7 +7400,55 @@
                 "peerWeight": {
                     "type": "int"
                 }
+            },
+            "body": {
+                "bgpPeeringAddresses": {
+                    "$ref": "#/$keywords/bgpPeeringAddresses"
+                }
             }
+        },
+        "bgpPeeringAddresses": {
+            "parameters": {
+                "ipconfigurationId": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "defaultBgpIpAddresses": {
+                    "$ref": "#/$keywords/defaultBgpIpAddresses"
+                },
+                "customBgpIpAddresses": {
+                    "$ref": "#/$keywords/customBgpIpAddresses"
+                },
+                "tunnelIpAddresses": {
+                    "$ref": "#/$keywords/tunnelIpAddresses"
+                }
+            },
+            "array": true
+        },
+        "defaultBgpIpAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "customBgpIpAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "tunnelIpAddresses": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
         },
         "resourceGuid_15": {
             "propertyParameters": {
@@ -7336,6 +7503,9 @@
                     ]
                 },
                 "enableBgp": {
+                    "type": "bool"
+                },
+                "enablePrivateIpAddress": {
                     "type": "bool"
                 },
                 "activeActive": {
@@ -7399,6 +7569,9 @@
                     "type": "string"
                 },
                 "gatewayIpAddress": {
+                    "type": "string"
+                },
+                "fqdn": {
                     "type": "string"
                 },
                 "resourceGuid": {
@@ -7523,6 +7696,13 @@
             }
         },
         "enableBgp_2": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "useLocalAzureIpAddress": {
             "propertyParameters": {
                 "value": {
                     "type": "bool"
@@ -7658,6 +7838,13 @@
             }
         },
         "gatewayIpAddress": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "fqdn": {
             "propertyParameters": {
                 "value": {
                     "type": "string"
@@ -7824,6 +8011,9 @@
                     "type": "string"
                 },
                 "ipAddress": {
+                    "type": "string"
+                },
+                "fqdn": {
                     "type": "string"
                 },
                 "provisioningState": {
@@ -8685,7 +8875,7 @@
                 }
             }
         },
-        "useLocalAzureIpAddress": {
+        "useLocalAzureIpAddress_2": {
             "propertyParameters": {
                 "value": {
                     "type": "bool"
@@ -9319,6 +9509,9 @@
             "authorizationKey": {
                 "$ref": "#/$keywords/authorizationKey_2"
             },
+            "ipv6CircuitConnectionConfig": {
+                "$ref": "#/$keywords/ipv6CircuitConnectionConfig"
+            },
             "circuitConnectionStatus": {
                 "$ref": "#/$keywords/circuitConnectionStatus"
             },
@@ -9711,6 +9904,9 @@
             "subnets": {
                 "$ref": "#/$keywords/subnets"
             },
+            "flowLogs": {
+                "$ref": "#/$keywords/flowLogs"
+            },
             "resourceGuid": {
                 "$ref": "#/$keywords/resourceGuid_10"
             },
@@ -9763,6 +9959,26 @@
             },
             "direction": {
                 "$ref": "#/$keywords/direction"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            }
+        },
+        "networkVirtualAppliances": {
+            "bootStrapConfigurationBlob": {
+                "$ref": "#/$keywords/bootStrapConfigurationBlob"
+            },
+            "virtualHub": {
+                "$ref": "#/$keywords/subnet"
+            },
+            "cloudInitConfigurationBlob": {
+                "$ref": "#/$keywords/cloudInitConfigurationBlob"
+            },
+            "virtualApplianceAsn": {
+                "$ref": "#/$keywords/virtualApplianceAsn"
+            },
+            "virtualApplianceNics": {
+                "$ref": "#/$keywords/virtualApplianceNics"
             },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
@@ -10183,6 +10399,9 @@
             "enableBgp": {
                 "$ref": "#/$keywords/enableBgp"
             },
+            "enablePrivateIpAddress": {
+                "$ref": "#/$keywords/enablePrivateIpAddress"
+            },
             "activeActive": {
                 "$ref": "#/$keywords/activeActive"
             },
@@ -10257,6 +10476,9 @@
             "enableBgp": {
                 "$ref": "#/$keywords/enableBgp_2"
             },
+            "useLocalAzureIpAddress": {
+                "$ref": "#/$keywords/useLocalAzureIpAddress"
+            },
             "usePolicyBasedTrafficSelectors": {
                 "$ref": "#/$keywords/usePolicyBasedTrafficSelectors"
             },
@@ -10283,6 +10505,9 @@
             },
             "gatewayIpAddress": {
                 "$ref": "#/$keywords/gatewayIpAddress"
+            },
+            "fqdn": {
+                "$ref": "#/$keywords/fqdn"
             },
             "bgpSettings": {
                 "$ref": "#/$keywords/bgpSettings"
@@ -10540,7 +10765,7 @@
                 "$ref": "#/$keywords/enableInternetSecurity"
             },
             "useLocalAzureIpAddress": {
-                "$ref": "#/$keywords/useLocalAzureIpAddress"
+                "$ref": "#/$keywords/useLocalAzureIpAddress_2"
             },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"

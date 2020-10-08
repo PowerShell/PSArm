@@ -1,0 +1,499 @@
+{
+    "$keywords": {
+        "name": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "location": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "status": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "vnetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetResourceGroupName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "vnetSubnetName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "virtualNetwork": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "subnet": {
+                    "type": "string"
+                }
+            }
+        },
+        "internalLoadBalancingMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "multiSize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "multiRoleCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "workerPools": {
+            "parameters": {
+                "workerSizeId": {
+                    "type": "int"
+                },
+                "computeMode": {},
+                "workerSize": {
+                    "type": "string"
+                },
+                "workerCount": {
+                    "type": "int"
+                }
+            },
+            "body": {
+                "instanceNames": {
+                    "$ref": "#/$keywords/instanceNames"
+                }
+            },
+            "array": true
+        },
+        "instanceNames": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "ipsslAddressCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "databaseEdition": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "databaseServiceObjective": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "upgradeDomains": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "subscriptionId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dnsSuffix": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastAction": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "lastActionResult": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "allowedMultiSizes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "allowedWorkerSizes": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "maximumNumberOfMachines": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "vipMappings": {
+            "parameters": {
+                "virtualIP": {
+                    "type": "string"
+                },
+                "internalHttpPort": {
+                    "type": "int"
+                },
+                "internalHttpsPort": {
+                    "type": "int"
+                },
+                "inUse": {
+                    "type": "bool"
+                }
+            },
+            "array": true
+        },
+        "environmentCapacities": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "availableCapacity": {
+                    "type": "int"
+                },
+                "totalCapacity": {
+                    "type": "int"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "computeMode": {},
+                "workerSize": {},
+                "workerSizeId": {
+                    "type": "int"
+                },
+                "excludeFromCapacityAllocation": {
+                    "type": "bool"
+                },
+                "isApplicableForAllComputeModes": {
+                    "type": "bool"
+                },
+                "siteMode": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "networkAccessControlList": {
+            "parameters": {
+                "action": {},
+                "description": {
+                    "type": "string"
+                },
+                "order": {
+                    "type": "int"
+                },
+                "remoteSubnet": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "environmentIsHealthy": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "environmentStatus": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceGroup": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "frontEndScaleFactor": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "defaultFrontEndScaleFactor": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "apiManagementAccountId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "suspended": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "dynamicCacheEnabled": {
+            "propertyParameters": {
+                "value": {
+                    "type": "bool"
+                }
+            }
+        },
+        "clusterSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "userWhitelistedIpRanges": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "workerSizeId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        },
+        "computeMode": {
+            "propertyParameters": {
+                "value": {}
+            }
+        },
+        "workerSize": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "workerCount": {
+            "propertyParameters": {
+                "value": {
+                    "type": "int"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "hostingEnvironments": {
+            "name": {
+                "$ref": "#/$keywords/name"
+            },
+            "location": {
+                "$ref": "#/$keywords/location"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "status": {
+                "$ref": "#/$keywords/status"
+            },
+            "vnetName": {
+                "$ref": "#/$keywords/vnetName"
+            },
+            "vnetResourceGroupName": {
+                "$ref": "#/$keywords/vnetResourceGroupName"
+            },
+            "vnetSubnetName": {
+                "$ref": "#/$keywords/vnetSubnetName"
+            },
+            "virtualNetwork": {
+                "$ref": "#/$keywords/virtualNetwork"
+            },
+            "internalLoadBalancingMode": {
+                "$ref": "#/$keywords/internalLoadBalancingMode"
+            },
+            "multiSize": {
+                "$ref": "#/$keywords/multiSize"
+            },
+            "multiRoleCount": {
+                "$ref": "#/$keywords/multiRoleCount"
+            },
+            "workerPools": {
+                "$ref": "#/$keywords/workerPools"
+            },
+            "ipsslAddressCount": {
+                "$ref": "#/$keywords/ipsslAddressCount"
+            },
+            "databaseEdition": {
+                "$ref": "#/$keywords/databaseEdition"
+            },
+            "databaseServiceObjective": {
+                "$ref": "#/$keywords/databaseServiceObjective"
+            },
+            "upgradeDomains": {
+                "$ref": "#/$keywords/upgradeDomains"
+            },
+            "subscriptionId": {
+                "$ref": "#/$keywords/subscriptionId"
+            },
+            "dnsSuffix": {
+                "$ref": "#/$keywords/dnsSuffix"
+            },
+            "lastAction": {
+                "$ref": "#/$keywords/lastAction"
+            },
+            "lastActionResult": {
+                "$ref": "#/$keywords/lastActionResult"
+            },
+            "allowedMultiSizes": {
+                "$ref": "#/$keywords/allowedMultiSizes"
+            },
+            "allowedWorkerSizes": {
+                "$ref": "#/$keywords/allowedWorkerSizes"
+            },
+            "maximumNumberOfMachines": {
+                "$ref": "#/$keywords/maximumNumberOfMachines"
+            },
+            "vipMappings": {
+                "$ref": "#/$keywords/vipMappings"
+            },
+            "environmentCapacities": {
+                "$ref": "#/$keywords/environmentCapacities"
+            },
+            "networkAccessControlList": {
+                "$ref": "#/$keywords/networkAccessControlList"
+            },
+            "environmentIsHealthy": {
+                "$ref": "#/$keywords/environmentIsHealthy"
+            },
+            "environmentStatus": {
+                "$ref": "#/$keywords/environmentStatus"
+            },
+            "resourceGroup": {
+                "$ref": "#/$keywords/resourceGroup"
+            },
+            "frontEndScaleFactor": {
+                "$ref": "#/$keywords/frontEndScaleFactor"
+            },
+            "defaultFrontEndScaleFactor": {
+                "$ref": "#/$keywords/defaultFrontEndScaleFactor"
+            },
+            "apiManagementAccountId": {
+                "$ref": "#/$keywords/apiManagementAccountId"
+            },
+            "suspended": {
+                "$ref": "#/$keywords/suspended"
+            },
+            "dynamicCacheEnabled": {
+                "$ref": "#/$keywords/dynamicCacheEnabled"
+            },
+            "clusterSettings": {
+                "$ref": "#/$keywords/clusterSettings"
+            },
+            "userWhitelistedIpRanges": {
+                "$ref": "#/$keywords/userWhitelistedIpRanges"
+            }
+        },
+        "hostingEnvironments/multiRolePools": {
+            "workerSizeId": {
+                "$ref": "#/$keywords/workerSizeId"
+            },
+            "computeMode": {
+                "$ref": "#/$keywords/computeMode"
+            },
+            "workerSize": {
+                "$ref": "#/$keywords/workerSize"
+            },
+            "workerCount": {
+                "$ref": "#/$keywords/workerCount"
+            },
+            "instanceNames": {
+                "$ref": "#/$keywords/instanceNames"
+            }
+        },
+        "hostingEnvironments/workerPools": {
+            "workerSizeId": {
+                "$ref": "#/$keywords/workerSizeId"
+            },
+            "computeMode": {
+                "$ref": "#/$keywords/computeMode"
+            },
+            "workerSize": {
+                "$ref": "#/$keywords/workerSize"
+            },
+            "workerCount": {
+                "$ref": "#/$keywords/workerCount"
+            },
+            "instanceNames": {
+                "$ref": "#/$keywords/instanceNames"
+            }
+        }
+    }
+}

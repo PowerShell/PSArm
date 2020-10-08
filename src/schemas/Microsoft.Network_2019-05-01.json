@@ -1,0 +1,439 @@
+{
+    "$keywords": {
+        "friendlyName": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "routingRules": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "enabledState": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                },
+                "resourceState": {
+                    "enum": [
+                        "Creating",
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Deleting"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "frontendEndpoints": {
+                    "$ref": "#/$keywords/frontendEndpoints"
+                },
+                "acceptedProtocols": {
+                    "$ref": "#/$keywords/acceptedProtocols"
+                },
+                "patternsToMatch": {
+                    "$ref": "#/$keywords/patternsToMatch"
+                },
+                "routeConfiguration": {
+                    "$ref": "#/$keywords/routeConfiguration"
+                }
+            },
+            "array": true
+        },
+        "frontendEndpoints": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "acceptedProtocols": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Http",
+                        "Https"
+                    ]
+                }
+            },
+            "array": true
+        },
+        "patternsToMatch": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "routeConfiguration": {
+            "parameters": {
+                "@odata.type": {
+                    "type": "string"
+                }
+            }
+        },
+        "loadBalancingSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "sampleSize": {
+                    "type": "int"
+                },
+                "successfulSamplesRequired": {
+                    "type": "int"
+                },
+                "additionalLatencyMilliseconds": {
+                    "type": "int"
+                },
+                "resourceState": {
+                    "enum": [
+                        "Creating",
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Deleting"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "healthProbeSettings": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "protocol": {
+                    "enum": [
+                        "Http",
+                        "Https"
+                    ]
+                },
+                "intervalInSeconds": {
+                    "type": "int"
+                },
+                "healthProbeMethod": {
+                    "enum": [
+                        "GET",
+                        "HEAD"
+                    ]
+                },
+                "enabledState": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                },
+                "resourceState": {
+                    "enum": [
+                        "Creating",
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Deleting"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "backendPools": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "resourceState": {
+                    "enum": [
+                        "Creating",
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Deleting"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "backends": {
+                    "$ref": "#/$keywords/backends"
+                },
+                "loadBalancingSettings": {
+                    "$ref": "#/$keywords/loadBalancingSettings_2"
+                },
+                "healthProbeSettings": {
+                    "$ref": "#/$keywords/loadBalancingSettings_2"
+                }
+            },
+            "array": true
+        },
+        "backends": {
+            "parameters": {
+                "address": {
+                    "type": "string"
+                },
+                "httpPort": {
+                    "type": "int"
+                },
+                "httpsPort": {
+                    "type": "int"
+                },
+                "enabledState": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                },
+                "priority": {
+                    "type": "int"
+                },
+                "weight": {
+                    "type": "int"
+                },
+                "backendHostHeader": {
+                    "type": "string"
+                }
+            },
+            "array": true
+        },
+        "loadBalancingSettings_2": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "frontendEndpoints_2": {
+            "parameters": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "hostName": {
+                    "type": "string"
+                },
+                "sessionAffinityEnabledState": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                },
+                "sessionAffinityTtlSeconds": {
+                    "type": "int"
+                },
+                "resourceState": {
+                    "enum": [
+                        "Creating",
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Deleting"
+                    ]
+                },
+                "customHttpsProvisioningState": {
+                    "enum": [
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Failed"
+                    ]
+                },
+                "customHttpsProvisioningSubstate": {
+                    "enum": [
+                        "SubmittingDomainControlValidationRequest",
+                        "PendingDomainControlValidationREquestApproval",
+                        "DomainControlValidationRequestApproved",
+                        "DomainControlValidationRequestRejected",
+                        "DomainControlValidationRequestTimedOut",
+                        "IssuingCertificate",
+                        "DeployingCertificate",
+                        "CertificateDeployed",
+                        "DeletingCertificate",
+                        "CertificateDeleted"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "webApplicationFirewallPolicyLink": {
+                    "$ref": "#/$keywords/webApplicationFirewallPolicyLink"
+                },
+                "customHttpsConfiguration": {
+                    "$ref": "#/$keywords/customHttpsConfiguration"
+                }
+            },
+            "array": true
+        },
+        "webApplicationFirewallPolicyLink": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "customHttpsConfiguration": {
+            "parameters": {
+                "certificateSource": {
+                    "enum": [
+                        "AzureKeyVault",
+                        "FrontDoor"
+                    ]
+                },
+                "protocolType": {},
+                "minimumTlsVersion": {
+                    "enum": [
+                        "1.0",
+                        "1.2"
+                    ]
+                },
+                "certificateType": {},
+                "secretName": {
+                    "type": "string"
+                },
+                "secretVersion": {
+                    "type": "string"
+                }
+            },
+            "body": {
+                "vault": {
+                    "$ref": "#/$keywords/vault"
+                }
+            }
+        },
+        "vault": {
+            "parameters": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "backendPoolsSettings": {
+            "parameters": {
+                "enforceCertificateNameCheck": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                },
+                "sendRecvTimeoutSeconds": {
+                    "type": "int"
+                }
+            }
+        },
+        "enabledState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Enabled",
+                        "Disabled"
+                    ]
+                }
+            }
+        },
+        "resourceState": {
+            "propertyParameters": {
+                "value": {
+                    "enum": [
+                        "Creating",
+                        "Enabling",
+                        "Enabled",
+                        "Disabling",
+                        "Disabled",
+                        "Deleting"
+                    ]
+                }
+            }
+        },
+        "provisioningState": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "cname": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "$resources": {
+        "frontDoors": {
+            "friendlyName": {
+                "$ref": "#/$keywords/friendlyName"
+            },
+            "routingRules": {
+                "$ref": "#/$keywords/routingRules"
+            },
+            "loadBalancingSettings": {
+                "$ref": "#/$keywords/loadBalancingSettings"
+            },
+            "healthProbeSettings": {
+                "$ref": "#/$keywords/healthProbeSettings"
+            },
+            "backendPools": {
+                "$ref": "#/$keywords/backendPools"
+            },
+            "frontendEndpoints": {
+                "$ref": "#/$keywords/frontendEndpoints_2"
+            },
+            "backendPoolsSettings": {
+                "$ref": "#/$keywords/backendPoolsSettings"
+            },
+            "enabledState": {
+                "$ref": "#/$keywords/enabledState"
+            },
+            "resourceState": {
+                "$ref": "#/$keywords/resourceState"
+            },
+            "provisioningState": {
+                "$ref": "#/$keywords/provisioningState"
+            },
+            "cname": {
+                "$ref": "#/$keywords/cname"
+            }
+        }
+    }
+}

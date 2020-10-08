@@ -1665,9 +1665,6 @@
                         "Basic",
                         "Standard"
                     ]
-                },
-                "protectedIP": {
-                    "type": "bool"
                 }
             },
             "body": {
@@ -2816,8 +2813,8 @@
                 "firewallPolicy": {
                     "$ref": "#/$keywords/subnet"
                 },
-                "hostNames": {
-                    "$ref": "#/$keywords/hostNames"
+                "hostnames": {
+                    "$ref": "#/$keywords/hostnames"
                 }
             },
             "array": true
@@ -2836,7 +2833,7 @@
             },
             "array": true
         },
-        "hostNames": {
+        "hostnames": {
             "propertyParameters": {
                 "value": {
                     "type": "string"
@@ -3063,9 +3060,6 @@
                 },
                 "responseHeaderConfigurations": {
                     "$ref": "#/$keywords/responseHeaderConfigurations"
-                },
-                "urlConfiguration": {
-                    "$ref": "#/$keywords/urlConfiguration"
                 }
             }
         },
@@ -3090,19 +3084,6 @@
                 }
             },
             "array": true
-        },
-        "urlConfiguration": {
-            "parameters": {
-                "modifiedPath": {
-                    "type": "string"
-                },
-                "modifiedQueryString": {
-                    "type": "string"
-                },
-                "reroute": {
-                    "type": "bool"
-                }
-            }
         },
         "redirectConfigurations": {
             "parameters": {
@@ -3693,9 +3674,6 @@
                 "etag": {
                     "type": "string"
                 },
-                "type": {
-                    "type": "string"
-                },
                 "privateIPAddress": {
                     "type": "string"
                 },
@@ -3720,41 +3698,6 @@
                 }
             },
             "array": true
-        },
-        "managementIpConfiguration": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "etag": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "privateIPAddress": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "enum": [
-                        "Succeeded",
-                        "Updating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "subnet": {
-                    "$ref": "#/$keywords/subnet"
-                },
-                "publicIPAddress": {
-                    "$ref": "#/$keywords/subnet"
-                }
-            }
         },
         "threatIntelMode": {
             "propertyParameters": {
@@ -3782,17 +3725,6 @@
         "publicIPAddresses": {
             "parameters": {
                 "address": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "ipGroups": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "changeNumber": {
                     "type": "string"
                 }
             },
@@ -5771,298 +5703,6 @@
         "monitoringIntervalInSeconds": {
             "propertyParameters": {
                 "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "endpoints": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "resourceId": {
-                    "type": "string"
-                },
-                "address": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "filter": {
-                    "$ref": "#/$keywords/filter"
-                }
-            },
-            "array": true
-        },
-        "filter": {
-            "parameters": {
-                "type": {}
-            },
-            "body": {
-                "items": {
-                    "$ref": "#/$keywords/items"
-                }
-            }
-        },
-        "items": {
-            "parameters": {
-                "type": {},
-                "address": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "testConfigurations": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "testFrequencySec": {
-                    "type": "int"
-                },
-                "protocol": {
-                    "enum": [
-                        "Tcp",
-                        "Http",
-                        "Icmp"
-                    ]
-                },
-                "preferredIPVersion": {
-                    "enum": [
-                        "IPv4",
-                        "IPv6"
-                    ]
-                }
-            },
-            "body": {
-                "httpConfiguration": {
-                    "$ref": "#/$keywords/httpConfiguration"
-                },
-                "tcpConfiguration": {
-                    "$ref": "#/$keywords/tcpConfiguration"
-                },
-                "icmpConfiguration": {
-                    "$ref": "#/$keywords/icmpConfiguration"
-                },
-                "successThreshold": {
-                    "$ref": "#/$keywords/successThreshold"
-                }
-            },
-            "array": true
-        },
-        "httpConfiguration": {
-            "parameters": {
-                "port": {
-                    "type": "int"
-                },
-                "method": {
-                    "enum": [
-                        "Get",
-                        "Post"
-                    ]
-                },
-                "path": {
-                    "type": "string"
-                },
-                "preferHTTPS": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "requestHeaders": {
-                    "$ref": "#/$keywords/requestHeaders"
-                },
-                "validStatusCodeRanges": {
-                    "$ref": "#/$keywords/validStatusCodeRanges"
-                }
-            }
-        },
-        "requestHeaders": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "validStatusCodeRanges": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "tcpConfiguration": {
-            "parameters": {
-                "port": {
-                    "type": "int"
-                },
-                "disableTraceRoute": {
-                    "type": "bool"
-                }
-            }
-        },
-        "icmpConfiguration": {
-            "parameters": {
-                "disableTraceRoute": {
-                    "type": "bool"
-                }
-            }
-        },
-        "successThreshold": {
-            "parameters": {
-                "checksFailedPercent": {
-                    "type": "int"
-                },
-                "roundTripTimeMs": {
-                    "type": "int"
-                }
-            }
-        },
-        "testGroups": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "disable": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "testConfigurations": {
-                    "$ref": "#/$keywords/testConfigurations_2"
-                },
-                "sources": {
-                    "$ref": "#/$keywords/sources"
-                },
-                "destinations": {
-                    "$ref": "#/$keywords/destinations"
-                }
-            },
-            "array": true
-        },
-        "testConfigurations_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sources": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "destinations": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "outputs": {
-            "parameters": {
-                "type": {}
-            },
-            "body": {
-                "workspaceSettings": {
-                    "$ref": "#/$keywords/workspaceSettings"
-                }
-            },
-            "array": true
-        },
-        "workspaceSettings": {
-            "parameters": {
-                "workspaceResourceId": {
-                    "type": "string"
-                }
-            }
-        },
-        "notes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "targetResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "targetResourceGuid": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "retentionPolicy": {
-            "parameters": {
-                "days": {
-                    "type": "int"
-                },
-                "enabled": {
-                    "type": "bool"
-                }
-            }
-        },
-        "format": {
-            "parameters": {
-                "type": {},
-                "version": {
-                    "type": "int"
-                }
-            }
-        },
-        "flowAnalyticsConfiguration": {
-            "body": {
-                "networkWatcherFlowAnalyticsConfiguration": {
-                    "$ref": "#/$keywords/networkWatcherFlowAnalyticsConfiguration"
-                }
-            }
-        },
-        "networkWatcherFlowAnalyticsConfiguration": {
-            "parameters": {
-                "enabled": {
-                    "type": "bool"
-                },
-                "workspaceId": {
-                    "type": "string"
-                },
-                "workspaceRegion": {
-                    "type": "string"
-                },
-                "workspaceResourceId": {
-                    "type": "string"
-                },
-                "trafficAnalyticsInterval": {
                     "type": "int"
                 }
             }
@@ -8281,7 +7921,7 @@
             },
             "body": {
                 "destinations": {
-                    "$ref": "#/$keywords/destinations_2"
+                    "$ref": "#/$keywords/destinations"
                 },
                 "nextHops": {
                     "$ref": "#/$keywords/nextHops"
@@ -8289,7 +7929,7 @@
             },
             "array": true
         },
-        "destinations_2": {
+        "destinations": {
             "propertyParameters": {
                 "value": {
                     "type": "string"
@@ -9169,9 +8809,6 @@
             "ipConfigurations": {
                 "$ref": "#/$keywords/ipConfigurations_3"
             },
-            "managementIpConfiguration": {
-                "$ref": "#/$keywords/managementIpConfiguration"
-            },
             "provisioningState": {
                 "$ref": "#/$keywords/provisioningState"
             },
@@ -9186,9 +8823,6 @@
             },
             "hubIpAddresses": {
                 "$ref": "#/$keywords/hubIpAddresses"
-            },
-            "ipGroups": {
-                "$ref": "#/$keywords/ipGroups"
             },
             "sku": {
                 "$ref": "#/$keywords/sku_3"
@@ -9805,47 +9439,6 @@
             },
             "monitoringIntervalInSeconds": {
                 "$ref": "#/$keywords/monitoringIntervalInSeconds"
-            },
-            "endpoints": {
-                "$ref": "#/$keywords/endpoints"
-            },
-            "testConfigurations": {
-                "$ref": "#/$keywords/testConfigurations"
-            },
-            "testGroups": {
-                "$ref": "#/$keywords/testGroups"
-            },
-            "outputs": {
-                "$ref": "#/$keywords/outputs"
-            },
-            "notes": {
-                "$ref": "#/$keywords/notes"
-            }
-        },
-        "networkWatchers/flowLogs": {
-            "targetResourceId": {
-                "$ref": "#/$keywords/targetResourceId"
-            },
-            "targetResourceGuid": {
-                "$ref": "#/$keywords/targetResourceGuid"
-            },
-            "storageId": {
-                "$ref": "#/$keywords/storageId"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "retentionPolicy": {
-                "$ref": "#/$keywords/retentionPolicy"
-            },
-            "format": {
-                "$ref": "#/$keywords/format"
-            },
-            "flowAnalyticsConfiguration": {
-                "$ref": "#/$keywords/flowAnalyticsConfiguration"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
             }
         },
         "privateEndpoints": {

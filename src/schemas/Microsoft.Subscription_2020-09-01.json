@@ -30,6 +30,13 @@
                     "type": "string"
                 }
             }
+        },
+        "resellerId": {
+            "propertyParameters": {
+                "value": {
+                    "type": "string"
+                }
+            }
         }
     },
     "$resources": {
@@ -45,6 +52,9 @@
             },
             "subscriptionId": {
                 "$ref": "#/$keywords/subscriptionId"
+            },
+            "resellerId": {
+                "$ref": "#/$keywords/resellerId"
             }
         }
     }

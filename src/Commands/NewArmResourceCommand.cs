@@ -46,9 +46,13 @@ Resource -Name <string> -Location <string> -ApiVersion <string> -Provider <strin
 
         protected override void EndProcessing()
         {
-            ArmProviderDslInfo dsl = DslLoader.Instance.LoadDsl(Provider, ApiVersion);
-            var resourceDsl = ScriptBlock.Create(dsl.ScriptProducer.GetResourceScriptDefintion(Type));
-            InvokeCommand.InvokeScript(SessionState, resourceDsl);
+            // Try and define the functions needed to define the DSL at this point.
+            // If we can't, we still allow things to proceed -- the user may be defining custom entries
+            if (DslLoader.Instance.TryLoadDsl(Provider, ApiVersion, out ArmProviderDslInfo dsl))
+            {
+                var resourceDsl = ScriptBlock.Create(dsl.ScriptProducer.GetResourceScriptDefintion(Type));
+                InvokeCommand.InvokeScript(SessionState, resourceDsl);
+            }
 
             var properties = new Dictionary<string, ArmPropertyInstance>();
             var subresources = new Dictionary<IArmExpression, ArmResource>();

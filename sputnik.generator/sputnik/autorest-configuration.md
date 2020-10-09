@@ -18,14 +18,15 @@ pipeline-model: v3
 ``` yaml
 
 modelerfour:
-  flatten-models: false
-  flatten-payloads: false
-  group-parameters: false
-  prenamer: false
+  flatten-models: true
+  flatten-payloads: true
+  lenient-model-deduplication: true
+  group-parameters: true
+  prenamer: true
   merge-response-headers: false
   
 use-extension: 
-  "@autorest/modelerfour": "4.13.312"
+  "@autorest/modelerfour": "4.15.421"
 
 pipeline:
   # generates code

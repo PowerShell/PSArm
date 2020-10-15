@@ -1,3 +1,11 @@
+# PSArm autorest generator
+
+Instructions for building/running:
+
+- Ensure https://github.com/Azure/autorest.azureresourceschema is cloned in `../..`
+- Run `dotnet publish` to publish the executable
+- Run `autorest <path> --use:.`
+- Attach a debugger to the `autorest.psarm.exe` process
 
 # Contributing
 

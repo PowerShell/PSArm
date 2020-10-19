@@ -7,12 +7,13 @@ using AutoRest.Core.Parsing;
 using Microsoft.Perks.JsonRPC;
 using System.Diagnostics;
 using System.Threading;
+using System.Reflection;
 
 namespace AutoRest.PSArm
 {
     public class Program : NewPlugin
     {
-        public static int Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
             if (args == null || args.Length == 0 || args[0] != "--server")
             {
@@ -23,12 +24,15 @@ namespace AutoRest.PSArm
             while (!Debugger.IsAttached)
             {
                 Console.Error.WriteLine($"PID: {System.Diagnostics.Process.GetCurrentProcess().Id}");
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
 
             Console.Error.WriteLine("Running the PSArm autorest plugin");
 
-            var connection = new Connection(Console.OpenStandardOutput(), Console.OpenStandardInput());
+            var outStream = new DebugStream(Console.OpenStandardOutput());
+            var inStream = new DebugStream(Console.OpenStandardInput());
+
+            var connection = new Connection(outStream, inStream);
             connection.Dispatch<IEnumerable<string>>("GetPluginNames", async () => new []{ "azureresourceschema", "imodeler2" });
             connection.Dispatch<string, string, bool>("Process", (plugin, sessionId) => {
                 Console.Error.WriteLine("Process handler triggered");
@@ -43,7 +47,9 @@ namespace AutoRest.PSArm
 
             connection.DispatchNotification("Shutdown", connection.Stop);
 
-            connection.GetAwaiter().GetResult();
+            var loopTask = (Task)typeof(Connection).GetField("_loop", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(connection);
+
+            await loopTask.ConfigureAwait(false);
 
             Console.Error.WriteLine("Shutting down");
             return 0;

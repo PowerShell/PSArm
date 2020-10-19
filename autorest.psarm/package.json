@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "The PSArm extension for classic generators in AutoRest",
   "scripts": {
-    "start": "C:\\Users\\rjmho\\Documents\\Dev\\Microsoft\\autorest.psarm\\bin\\Debug\\netcoreapp3.1\\publish\\autorest.psarm.exe --server",
+    "start": "dotnet bin/Debug/netcoreapp3.1/autorest.psarm.dll --server",
     "install": "dotnet publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -29,12 +29,14 @@ namespace AutoRest.PSArm
 
             Console.Error.WriteLine("Running the PSArm autorest plugin");
 
-            var outStream = new DebugStream(Console.OpenStandardOutput());
-            var inStream = new DebugStream(Console.OpenStandardInput());
+            var outStream = Console.OpenStandardOutput(); //new DebugStream(Console.OpenStandardOutput());
+            var inStream = Console.OpenStandardInput(); //new DebugStream(Console.OpenStandardInput());
 
             var connection = new Connection(outStream, inStream);
             connection.Dispatch<IEnumerable<string>>("GetPluginNames", async () => new []{ "azureresourceschema", "imodeler2" });
+
             connection.Dispatch<string, string, bool>("Process", (plugin, sessionId) => {
+
                 Console.Error.WriteLine("Process handler triggered");
                 if (plugin == "imodeler2")
                 {
@@ -47,17 +49,20 @@ namespace AutoRest.PSArm
 
             connection.DispatchNotification("Shutdown", connection.Stop);
 
+            // Evil reflection so we can use a real await
             var loopTask = (Task)typeof(Connection).GetField("_loop", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(connection);
-
             await loopTask.ConfigureAwait(false);
 
             Console.Error.WriteLine("Shutting down");
             return 0;
         }
 
+        private Connection _connection;
+
         public Program(Connection connection, string plugin, string sessionId)
             : base(connection, plugin, sessionId)
         {
+            _connection = connection;
         }
 
         protected override async Task<bool> ProcessInternal()
@@ -79,7 +84,9 @@ namespace AutoRest.PSArm
             };
 
             // process
-            var plugin = new PluginPSArm();
+            string outputFolder = await _connection.Request<string>("GetValue", _sessionId, "output-folder").ConfigureAwait(false);
+
+            var plugin = new PluginPSArm(outputFolder);
             
             using (plugin.Activate())
             {

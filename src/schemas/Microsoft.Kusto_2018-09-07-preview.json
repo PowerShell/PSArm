@@ -1,163 +1,125 @@
 {
-    "$keywords": {
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Unavailable",
-                        "Running",
-                        "Deleting",
-                        "Deleted",
-                        "Stopping",
-                        "Stopped",
-                        "Starting"
-                    ]
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Running",
-                        "Creating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "uri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "dataIngestionUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "trustedExternalTenants": {
-            "parameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "softDeletePeriodInDays": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "hotCachePeriodInDays": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "statistics": {
-            "parameters": {
-                "size": {}
-            }
-        },
-        "eventHubResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "consumerGroup": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "tableName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "mappingRuleName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "dataFormat": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "MULTIJSON",
-                        "JSON",
-                        "CSV"
-                    ]
-                }
-            }
+  "$keywords": {
+    "trustedExternalTenants": {
+      "body": {
+        "value": {
+          "$ref": "#/$keywords/value"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "clusters": {
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "uri": {
-                "$ref": "#/$keywords/uri"
-            },
-            "dataIngestionUri": {
-                "$ref": "#/$keywords/dataIngestionUri"
-            },
-            "trustedExternalTenants": {
-                "$ref": "#/$keywords/trustedExternalTenants"
-            }
-        },
-        "clusters/databases": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "softDeletePeriodInDays": {
-                "$ref": "#/$keywords/softDeletePeriodInDays"
-            },
-            "hotCachePeriodInDays": {
-                "$ref": "#/$keywords/hotCachePeriodInDays"
-            },
-            "statistics": {
-                "$ref": "#/$keywords/statistics"
-            }
-        },
-        "clusters/databases/eventhubconnections": {
-            "eventHubResourceId": {
-                "$ref": "#/$keywords/eventHubResourceId"
-            },
-            "consumerGroup": {
-                "$ref": "#/$keywords/consumerGroup"
-            },
-            "tableName": {
-                "$ref": "#/$keywords/tableName"
-            },
-            "mappingRuleName": {
-                "$ref": "#/$keywords/mappingRuleName"
-            },
-            "dataFormat": {
-                "$ref": "#/$keywords/dataFormat"
-            }
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "softDeletePeriodInDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "hotCachePeriodInDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "statistics": {
+      "body": {
+        "size": {
+          "$ref": "#/$keywords/size"
+        }
+      }
+    },
+    "size": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "eventHubResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "consumerGroup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tableName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "mappingRuleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataFormat": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "MULTIJSON",
+            "JSON",
+            "CSV"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "clusters": {
+      "trustedExternalTenants": {
+        "$ref": "#/$keywords/trustedExternalTenants"
+      }
+    },
+    "clusters/databases": {
+      "softDeletePeriodInDays": {
+        "$ref": "#/$keywords/softDeletePeriodInDays"
+      },
+      "hotCachePeriodInDays": {
+        "$ref": "#/$keywords/hotCachePeriodInDays"
+      },
+      "statistics": {
+        "$ref": "#/$keywords/statistics"
+      }
+    },
+    "clusters/databases/eventhubconnections": {
+      "eventHubResourceId": {
+        "$ref": "#/$keywords/eventHubResourceId"
+      },
+      "consumerGroup": {
+        "$ref": "#/$keywords/consumerGroup"
+      },
+      "tableName": {
+        "$ref": "#/$keywords/tableName"
+      },
+      "mappingRuleName": {
+        "$ref": "#/$keywords/mappingRuleName"
+      },
+      "dataFormat": {
+        "$ref": "#/$keywords/dataFormat"
+      }
+    }
+  }
 }

@@ -1,272 +1,360 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "ResolvingDNS",
-                        "Moving",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "endpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "internalId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "capabilities": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "customSubDomainName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "networkAcls": {
-            "parameters": {
-                "defaultAction": {
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ]
-                }
-            },
-            "body": {
-                "ipRules": {
-                    "$ref": "#/$keywords/ipRules"
-                },
-                "virtualNetworkRules": {
-                    "$ref": "#/$keywords/virtualNetworkRules"
-                }
-            }
+  "$keywords": {
+    "customSubDomainName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "networkAcls": {
+      "body": {
+        "defaultAction": {
+          "$ref": "#/$keywords/defaultAction"
         },
         "ipRules": {
-            "parameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/ipRules"
         },
         "virtualNetworkRules": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "ignoreMissingVnetServiceEndpoint": {
-                    "type": "bool"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/virtualNetworkRules"
+        }
+      }
+    },
+    "defaultAction": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Deny"
+          ]
+        }
+      }
+    },
+    "ipRules": {
+      "body": {
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualNetworkRules": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         },
-        "encryption": {
-            "parameters": {
-                "keySource": {
-                    "enum": [
-                        "Microsoft.CognitiveServices",
-                        "Microsoft.KeyVault"
-                    ]
-                }
-            },
-            "body": {
-                "keyVaultProperties": {
-                    "$ref": "#/$keywords/keyVaultProperties"
-                }
-            }
+        "state": {
+          "$ref": "#/$keywords/state"
         },
+        "ignoreMissingVnetServiceEndpoint": {
+          "$ref": "#/$keywords/ignoreMissingVnetServiceEndpoint"
+        }
+      },
+      "array": true
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ignoreMissingVnetServiceEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "encryption": {
+      "body": {
         "keyVaultProperties": {
-            "parameters": {
-                "keyName": {
-                    "type": "string"
-                },
-                "keyVersion": {
-                    "type": "string"
-                },
-                "keyVaultUri": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/keyVaultProperties"
         },
-        "userOwnedStorage": {
-            "parameters": {
-                "resourceId": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "keySource": {
+          "$ref": "#/$keywords/keySource"
+        }
+      }
+    },
+    "keyVaultProperties": {
+      "body": {
+        "keyName": {
+          "$ref": "#/$keywords/keyName"
         },
-        "privateEndpointConnections": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "privateEndpoint": {
-                    "$ref": "#/$keywords/privateEndpoint"
-                },
-                "privateLinkServiceConnectionState": {
-                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
-                },
-                "groupIds": {
-                    "$ref": "#/$keywords/groupIds"
-                }
-            },
-            "array": true
+        "keyVersion": {
+          "$ref": "#/$keywords/keyVersion"
         },
+        "keyVaultUri": {
+          "$ref": "#/$keywords/keyVaultUri"
+        }
+      }
+    },
+    "keyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keySource": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Microsoft.CognitiveServices",
+            "Microsoft.KeyVault"
+          ]
+        }
+      }
+    },
+    "userOwnedStorage": {
+      "body": {
+        "resourceId": {
+          "$ref": "#/$keywords/resourceId"
+        }
+      },
+      "array": true
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateEndpointConnections": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "properties": {
+      "body": {
         "privateEndpoint": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/privateEndpoint"
         },
         "privateLinkServiceConnectionState": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Pending",
-                        "Approved",
-                        "Rejected",
-                        "Disconnected"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                },
-                "actionRequired": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/privateLinkServiceConnectionState"
         },
         "groupIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "publicNetworkAccess": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "apiProperties": {
-            "parameters": {
-                "qnaRuntimeEndpoint": {
-                    "type": "string"
-                },
-                "statisticsEnabled": {
-                    "type": "bool"
-                },
-                "eventHubConnectionString": {
-                    "type": "string",
-                    "pattern": "^( *)Endpoint=sb://(.*);( *)SharedAccessKeyName=(.*);( *)SharedAccessKey=(.*)$"
-                },
-                "storageAccountConnectionString": {
-                    "type": "string",
-                    "pattern": "^(( *)DefaultEndpointsProtocol=(http|https)( *);( *))?AccountName=(.*)AccountKey=(.*)EndpointSuffix=(.*)$"
-                },
-                "aadClientId": {
-                    "type": "string"
-                },
-                "aadTenantId": {
-                    "type": "string"
-                },
-                "superUser": {
-                    "type": "string"
-                },
-                "websiteName": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/groupIds"
         }
+      }
     },
-    "$resources": {
-        "accounts": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint"
-            },
-            "internalId": {
-                "$ref": "#/$keywords/internalId"
-            },
-            "capabilities": {
-                "$ref": "#/$keywords/capabilities"
-            },
-            "customSubDomainName": {
-                "$ref": "#/$keywords/customSubDomainName"
-            },
-            "networkAcls": {
-                "$ref": "#/$keywords/networkAcls"
-            },
-            "encryption": {
-                "$ref": "#/$keywords/encryption"
-            },
-            "userOwnedStorage": {
-                "$ref": "#/$keywords/userOwnedStorage"
-            },
-            "privateEndpointConnections": {
-                "$ref": "#/$keywords/privateEndpointConnections"
-            },
-            "publicNetworkAccess": {
-                "$ref": "#/$keywords/publicNetworkAccess"
-            },
-            "apiProperties": {
-                "$ref": "#/$keywords/apiProperties"
-            }
+    "privateEndpoint": {
+      "body": {}
+    },
+    "privateLinkServiceConnectionState": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
         },
-        "accounts/privateEndpointConnections": {
-            "privateEndpoint": {
-                "$ref": "#/$keywords/privateEndpoint"
-            },
-            "privateLinkServiceConnectionState": {
-                "$ref": "#/$keywords/privateLinkServiceConnectionState"
-            },
-            "groupIds": {
-                "$ref": "#/$keywords/groupIds"
-            }
+        "description": {
+          "$ref": "#/$keywords/description"
+        },
+        "actionRequired": {
+          "$ref": "#/$keywords/actionRequired"
         }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Rejected",
+            "Disconnected"
+          ]
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "actionRequired": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "groupIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "publicNetworkAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "apiProperties": {
+      "body": {
+        "qnaRuntimeEndpoint": {
+          "$ref": "#/$keywords/qnaRuntimeEndpoint"
+        },
+        "statisticsEnabled": {
+          "$ref": "#/$keywords/statisticsEnabled"
+        },
+        "eventHubConnectionString": {
+          "$ref": "#/$keywords/eventHubConnectionString"
+        },
+        "storageAccountConnectionString": {
+          "$ref": "#/$keywords/storageAccountConnectionString"
+        },
+        "aadClientId": {
+          "$ref": "#/$keywords/aadClientId"
+        },
+        "aadTenantId": {
+          "$ref": "#/$keywords/aadTenantId"
+        },
+        "superUser": {
+          "$ref": "#/$keywords/superUser"
+        },
+        "websiteName": {
+          "$ref": "#/$keywords/websiteName"
+        }
+      }
+    },
+    "qnaRuntimeEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "statisticsEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "eventHubConnectionString": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountConnectionString": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "aadClientId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "aadTenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "superUser": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "websiteName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "accounts": {
+      "customSubDomainName": {
+        "$ref": "#/$keywords/customSubDomainName"
+      },
+      "networkAcls": {
+        "$ref": "#/$keywords/networkAcls"
+      },
+      "encryption": {
+        "$ref": "#/$keywords/encryption"
+      },
+      "userOwnedStorage": {
+        "$ref": "#/$keywords/userOwnedStorage"
+      },
+      "privateEndpointConnections": {
+        "$ref": "#/$keywords/privateEndpointConnections"
+      },
+      "publicNetworkAccess": {
+        "$ref": "#/$keywords/publicNetworkAccess"
+      },
+      "apiProperties": {
+        "$ref": "#/$keywords/apiProperties"
+      }
+    },
+    "accounts/privateEndpointConnections": {
+      "privateEndpoint": {
+        "$ref": "#/$keywords/privateEndpoint"
+      },
+      "privateLinkServiceConnectionState": {
+        "$ref": "#/$keywords/privateLinkServiceConnectionState"
+      },
+      "groupIds": {
+        "$ref": "#/$keywords/groupIds"
+      }
+    }
+  }
 }

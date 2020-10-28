@@ -1,38 +1,36 @@
 {
-    "$keywords": {
-        "channelType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "channelFunctions": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "credentials": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "channelType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "Accounts": {},
-        "Accounts/Channels": {
-            "channelType": {
-                "$ref": "#/$keywords/channelType"
-            },
-            "channelFunctions": {
-                "$ref": "#/$keywords/channelFunctions"
-            },
-            "credentials": {
-                "$ref": "#/$keywords/credentials"
-            }
+    "channelFunctions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
+    },
+    "credentials": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "Accounts": {},
+    "Accounts/Channels": {
+      "channelType": {
+        "$ref": "#/$keywords/channelType"
+      },
+      "channelFunctions": {
+        "$ref": "#/$keywords/channelFunctions"
+      },
+      "credentials": {
+        "$ref": "#/$keywords/credentials"
+      }
+    }
+  }
 }

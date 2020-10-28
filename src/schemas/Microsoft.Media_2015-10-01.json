@@ -1,36 +1,37 @@
 {
-    "$keywords": {
-        "apiEndpoints": {
-            "parameters": {
-                "endpoint": {
-                    "type": "string"
-                },
-                "majorVersion": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "storageAccounts": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         },
-        "storageAccounts": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "isPrimary": {
-                    "type": "bool"
-                }
-            },
-            "array": true
+        "isPrimary": {
+          "$ref": "#/$keywords/isPrimary"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "mediaservices": {
-            "apiEndpoints": {
-                "$ref": "#/$keywords/apiEndpoints"
-            },
-            "storageAccounts": {
-                "$ref": "#/$keywords/storageAccounts"
-            }
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "isPrimary": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "mediaservices": {
+      "storageAccounts": {
+        "$ref": "#/$keywords/storageAccounts"
+      }
+    }
+  }
 }

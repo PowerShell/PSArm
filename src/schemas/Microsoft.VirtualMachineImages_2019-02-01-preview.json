@@ -1,116 +1,56 @@
 {
-    "$keywords": {
-        "source": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
-        "customize": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "distribute": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                },
-                "runOutputName": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z0-9-_]{1,64}$"
-                },
-                "artifactTags": {}
-            },
-            "array": true
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Succeeded",
-                        "Failed",
-                        "Deleting"
-                    ]
-                }
-            }
-        },
-        "provisioningError": {
-            "parameters": {
-                "provisioningErrorCode": {
-                    "enum": [
-                        "BadSourceType",
-                        "BadPIRSource",
-                        "BadISOSource",
-                        "BadManagedImageSource",
-                        "BadCustomizerType",
-                        "UnsupportedCustomizerType",
-                        "NoCustomizerScript",
-                        "BadDistributeType",
-                        "BadSharedImageDistribute",
-                        "ServerError",
-                        "Other"
-                    ]
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "lastRunStatus": {
-            "parameters": {
-                "startTime": {},
-                "endTime": {},
-                "runState": {
-                    "enum": [
-                        "Running",
-                        "Succeeded",
-                        "PartiallySucceeded",
-                        "Failed"
-                    ]
-                },
-                "runSubState": {
-                    "enum": [
-                        "Queued",
-                        "Building",
-                        "Customizing",
-                        "Distributing"
-                    ]
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        }
+  "$keywords": {
+    "source": {
+      "body": {}
     },
-    "$resources": {
-        "imageTemplates": {
-            "source": {
-                "$ref": "#/$keywords/source"
-            },
-            "customize": {
-                "$ref": "#/$keywords/customize"
-            },
-            "distribute": {
-                "$ref": "#/$keywords/distribute"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "provisioningError": {
-                "$ref": "#/$keywords/provisioningError"
-            },
-            "lastRunStatus": {
-                "$ref": "#/$keywords/lastRunStatus"
-            }
+    "customize": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "distribute": {
+      "body": {
+        "runOutputName": {
+          "$ref": "#/$keywords/runOutputName"
+        },
+        "artifactTags": {
+          "$ref": "#/$keywords/artifactTags"
+        }
+      },
+      "array": true
+    },
+    "runOutputName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "artifactTags": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "imageTemplates": {
+      "source": {
+        "$ref": "#/$keywords/source"
+      },
+      "customize": {
+        "$ref": "#/$keywords/customize"
+      },
+      "distribute": {
+        "$ref": "#/$keywords/distribute"
+      }
+    }
+  }
 }

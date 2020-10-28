@@ -1,0 +1,31 @@
+{
+  "$keywords": {
+    "deviceQuota": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "sentinelWorkspaceResourceIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    }
+  },
+  "$resources": {
+    "iotDefenderSettings": {
+      "deviceQuota": {
+        "$ref": "#/$keywords/deviceQuota"
+      },
+      "sentinelWorkspaceResourceIds": {
+        "$ref": "#/$keywords/sentinelWorkspaceResourceIds"
+      }
+    },
+    "iotSensors": {}
+  }
+}

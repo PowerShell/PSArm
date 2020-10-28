@@ -152,13 +152,22 @@ namespace AutoRest.PSArm
         public override string KeywordValueType => "bool";
     }
 
-    public class IntegerKeyword : ValueKeyword<int>
+    public class IntegerKeyword : ValueKeyword<long>
     {
         public IntegerKeyword(string name) : base(name)
         {
         }
 
         public override string KeywordValueType => "int";
+    }
+
+    public class DoubleKeyword : ValueKeyword<double>
+    {
+        public DoubleKeyword(string name) : base(name)
+        {
+        }
+
+        public override string KeywordValueType => "number";
     }
 
     public class KeywordReference
@@ -219,14 +228,13 @@ namespace AutoRest.PSArm
             return keywordReference;
         }
 
-        public IEnumerable<KeyValuePair<string, KeywordReference>> GetKeywords()
-        {
-            return _keywordsById;
-        }
+        public IReadOnlyDictionary<string, KeywordReference> Keywords => _keywordsById;
     }
 
     public class ResourceProviderBuilder
     {
+        private readonly Logger _logger;
+
         private readonly CodeModel _codeModel;
 
         private readonly ResourceSchema _resourceSchema;
@@ -236,11 +244,13 @@ namespace AutoRest.PSArm
         private readonly Dictionary<string, Dictionary<string, KeywordReference>> _typeKeywords;
 
         public ResourceProviderBuilder(
+            Logger logger,
             CodeModel codeModel,
             ResourceSchema resourceSchema,
             string providerName,
             string apiVersion)
         {
+            _logger = logger;
             _codeModel = codeModel;
             _resourceSchema = resourceSchema;
             ProviderName = providerName;
@@ -253,10 +263,12 @@ namespace AutoRest.PSArm
 
         public string ApiVersion { get; }
 
+        public IReadOnlyDictionary<string, KeywordReference> Keywords => _keywordTable.Keywords;
+
         public JObject ToJson()
         {
             var keywords = new JObject();
-            foreach (KeyValuePair<string, KeywordReference> keyword in _keywordTable.GetKeywords())
+            foreach (KeyValuePair<string, KeywordReference> keyword in _keywordTable.Keywords)
             {
                 keywords[keyword.Key] = keyword.Value.Keyword.ToJson();
             }
@@ -297,7 +309,8 @@ namespace AutoRest.PSArm
 
         private void AddKeywords(Dictionary<string, KeywordReference> resourceKeywordTable, JsonSchema resourceJsonSchema)
         {
-            if (!TryGetProperties(resourceJsonSchema, out JsonSchema propertiesSchema))
+            if (!TryGetProperties(resourceJsonSchema, out JsonSchema propertiesSchema)
+                || propertiesSchema.Properties == null)
             {
                 return;
             }
@@ -330,6 +343,15 @@ namespace AutoRest.PSArm
                 TryGetDefinition(keywordBodySchema.Ref, out actualSchema);
             }
 
+            if (actualSchema.AllOf != null)
+            {
+                _logger.Log($"AllOf found: {keywordName}");
+            }
+
+            if (actualSchema.AnyOf != null)
+            {
+                _logger.Log($"AnyOf found: {keywordName}");
+            }
 
             switch (actualSchema.JsonType)
             {
@@ -351,7 +373,10 @@ namespace AutoRest.PSArm
                     };
 
                 case "integer":
-                    return new IntegerKeyword(keywordName).AddProperties(actualSchema, int.Parse);
+                    return new IntegerKeyword(keywordName).AddProperties(actualSchema, long.Parse);
+
+                case "number":
+                    return new DoubleKeyword(keywordName).AddProperties(actualSchema, double.Parse);
 
                 case "object":
                     var bodyKeyword = new BodyKeyword(keywordName);
@@ -365,7 +390,7 @@ namespace AutoRest.PSArm
                     return bodyKeyword;
 
                 default:
-                    Console.Error.WriteLine($"Unknown schema type: {actualSchema.JsonType}");
+                    _logger.Log($"Unknown schema type: {actualSchema.JsonType}");
                     return null;
             }
         }
@@ -396,12 +421,15 @@ namespace AutoRest.PSArm
 
     public class DslSchemaBuilder
     {
+        private readonly Logger _logger;
+
         private readonly CodeModel _codeModel;
 
         private readonly Dictionary<string, Dictionary<string, ResourceProviderBuilder>> _resourceProviders;
 
-        public DslSchemaBuilder(CodeModel codeModel)
+        public DslSchemaBuilder(Logger logger, CodeModel codeModel)
         {
+            _logger = logger;
             _codeModel = codeModel;
             _resourceProviders = new Dictionary<string, Dictionary<string, ResourceProviderBuilder>>();
         }
@@ -419,7 +447,7 @@ namespace AutoRest.PSArm
 
             if (!providerVersions.TryGetValue(apiVersion, out ResourceProviderBuilder providerBuilder))
             {
-                providerBuilder = new ResourceProviderBuilder(_codeModel, resourceSchema, providerName, apiVersion);
+                providerBuilder = new ResourceProviderBuilder(_logger, _codeModel, resourceSchema, providerName, apiVersion);
                 providerVersions[apiVersion] = providerBuilder;
             }
 

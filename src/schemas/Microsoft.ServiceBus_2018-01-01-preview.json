@@ -1,231 +1,267 @@
 {
-    "$keywords": {
+  "$keywords": {
+    "zoneRedundant": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "encryption": {
+      "body": {
+        "keyVaultProperties": {
+          "$ref": "#/$keywords/keyVaultProperties"
+        },
+        "keySource": {
+          "$ref": "#/$keywords/keySource"
+        }
+      }
+    },
+    "keyVaultProperties": {
+      "body": {
+        "keyName": {
+          "$ref": "#/$keywords/keyName"
+        },
+        "keyVaultUri": {
+          "$ref": "#/$keywords/keyVaultUri"
+        }
+      }
+    },
+    "keyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keySource": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Microsoft.KeyVault"
+          ]
+        }
+      }
+    },
+    "ipMask": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Accept",
+            "Reject"
+          ]
+        }
+      }
+    },
+    "filterName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultAction": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Deny"
+          ]
+        }
+      }
+    },
+    "virtualNetworkRules": {
+      "body": {
+        "subnet": {
+          "$ref": "#/$keywords/subnet"
+        },
+        "ignoreMissingVnetServiceEndpoint": {
+          "$ref": "#/$keywords/ignoreMissingVnetServiceEndpoint"
+        }
+      },
+      "array": true
+    },
+    "subnet": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ignoreMissingVnetServiceEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "ipRules": {
+      "body": {
         "ipMask": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/ipMask_1"
         },
         "action": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Accept",
-                        "Reject"
-                    ]
-                }
-            }
-        },
-        "filterName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdAt": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "updatedAt": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "serviceBusEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "metricId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "zoneRedundant": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "encryption": {
-            "parameters": {
-                "keySource": {}
-            },
-            "body": {
-                "keyVaultProperties": {
-                    "$ref": "#/$keywords/keyVaultProperties"
-                }
-            }
-        },
-        "keyVaultProperties": {
-            "parameters": {
-                "keyName": {
-                    "type": "string"
-                },
-                "keyVaultUri": {
-                    "type": "string"
-                }
-            }
-        },
-        "defaultAction": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ]
-                }
-            }
-        },
-        "virtualNetworkRules": {
-            "parameters": {
-                "ignoreMissingVnetServiceEndpoint": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "subnet": {
-                    "$ref": "#/$keywords/subnet"
-                }
-            },
-            "array": true
-        },
-        "subnet": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "ipRules": {
-            "parameters": {
-                "ipMask": {
-                    "type": "string"
-                },
-                "action": {}
-            },
-            "array": true
-        },
-        "virtualNetworkSubnetId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "privateEndpoint": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "privateLinkServiceConnectionState": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Pending",
-                        "Approved",
-                        "Rejected",
-                        "Disconnected"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/action_1"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "namespaces/ipfilterrules": {
-            "ipMask": {
-                "$ref": "#/$keywords/ipMask"
-            },
-            "action": {
-                "$ref": "#/$keywords/action"
-            },
-            "filterName": {
-                "$ref": "#/$keywords/filterName"
-            }
-        },
-        "namespaces": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt"
-            },
-            "serviceBusEndpoint": {
-                "$ref": "#/$keywords/serviceBusEndpoint"
-            },
-            "metricId": {
-                "$ref": "#/$keywords/metricId"
-            },
-            "zoneRedundant": {
-                "$ref": "#/$keywords/zoneRedundant"
-            },
-            "encryption": {
-                "$ref": "#/$keywords/encryption"
-            }
-        },
-        "namespaces/networkrulesets": {
-            "defaultAction": {
-                "$ref": "#/$keywords/defaultAction"
-            },
-            "virtualNetworkRules": {
-                "$ref": "#/$keywords/virtualNetworkRules"
-            },
-            "ipRules": {
-                "$ref": "#/$keywords/ipRules"
-            }
-        },
-        "namespaces/virtualnetworkrules": {
-            "virtualNetworkSubnetId": {
-                "$ref": "#/$keywords/virtualNetworkSubnetId"
-            }
-        },
-        "namespaces/privateEndpointConnections": {
-            "privateEndpoint": {
-                "$ref": "#/$keywords/privateEndpoint"
-            },
-            "privateLinkServiceConnectionState": {
-                "$ref": "#/$keywords/privateLinkServiceConnectionState"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            }
+    "ipMask_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "action_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow"
+          ]
+        }
+      }
+    },
+    "virtualNetworkSubnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateEndpoint": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateLinkServiceConnectionState": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
+        },
+        "description": {
+          "$ref": "#/$keywords/description"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Rejected",
+            "Disconnected"
+          ]
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Updating",
+            "Deleting",
+            "Succeeded",
+            "Canceled",
+            "Failed"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "namespaces": {
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant"
+      },
+      "encryption": {
+        "$ref": "#/$keywords/encryption"
+      }
+    },
+    "namespaces/ipfilterrules": {
+      "ipMask": {
+        "$ref": "#/$keywords/ipMask"
+      },
+      "action": {
+        "$ref": "#/$keywords/action"
+      },
+      "filterName": {
+        "$ref": "#/$keywords/filterName"
+      }
+    },
+    "namespaces/networkrulesets": {
+      "defaultAction": {
+        "$ref": "#/$keywords/defaultAction"
+      },
+      "virtualNetworkRules": {
+        "$ref": "#/$keywords/virtualNetworkRules"
+      },
+      "ipRules": {
+        "$ref": "#/$keywords/ipRules"
+      }
+    },
+    "namespaces/virtualnetworkrules": {
+      "virtualNetworkSubnetId": {
+        "$ref": "#/$keywords/virtualNetworkSubnetId"
+      }
+    },
+    "namespaces/privateEndpointConnections": {
+      "privateEndpoint": {
+        "$ref": "#/$keywords/privateEndpoint"
+      },
+      "privateLinkServiceConnectionState": {
+        "$ref": "#/$keywords/privateLinkServiceConnectionState"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      }
+    }
+  }
 }

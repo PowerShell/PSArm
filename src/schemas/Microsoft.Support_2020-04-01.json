@@ -1,331 +1,313 @@
 {
-    "$keywords": {
-        "supportTicketId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "supportTicketId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "problemClassificationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "severity": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "minimal",
+            "moderate",
+            "critical",
+            "highestcriticalimpact"
+          ]
+        }
+      }
+    },
+    "require24X7Response": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "contactDetails": {
+      "body": {
+        "firstName": {
+          "$ref": "#/$keywords/firstName"
         },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "lastName": {
+          "$ref": "#/$keywords/lastName"
         },
-        "problemClassificationId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "preferredContactMethod": {
+          "$ref": "#/$keywords/preferredContactMethod"
         },
-        "problemClassificationDisplayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "severity": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "minimal",
-                        "moderate",
-                        "critical",
-                        "highestcriticalimpact"
-                    ]
-                }
-            }
-        },
-        "enrollmentId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "require24X7Response": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "contactDetails": {
-            "parameters": {
-                "firstName": {
-                    "type": "string"
-                },
-                "lastName": {
-                    "type": "string"
-                },
-                "preferredContactMethod": {
-                    "enum": [
-                        "email",
-                        "phone"
-                    ]
-                },
-                "primaryEmailAddress": {
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "preferredTimeZone": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "preferredSupportLanguage": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "additionalEmailAddresses": {
-                    "$ref": "#/$keywords/additionalEmailAddresses"
-                }
-            }
+        "primaryEmailAddress": {
+          "$ref": "#/$keywords/primaryEmailAddress"
         },
         "additionalEmailAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/additionalEmailAddresses"
         },
-        "serviceLevelAgreement": {
-            "parameters": {
-                "startTime": {},
-                "expirationTime": {},
-                "slaMinutes": {
-                    "type": "int"
-                }
-            }
+        "phoneNumber": {
+          "$ref": "#/$keywords/phoneNumber"
         },
-        "supportEngineer": {
-            "parameters": {
-                "emailAddress": {
-                    "type": "string"
-                }
-            }
+        "preferredTimeZone": {
+          "$ref": "#/$keywords/preferredTimeZone"
         },
-        "supportPlanType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "country": {
+          "$ref": "#/$keywords/country"
         },
-        "title": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "preferredSupportLanguage": {
+          "$ref": "#/$keywords/preferredSupportLanguage"
+        }
+      }
+    },
+    "firstName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "preferredContactMethod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "email",
+            "phone"
+          ]
+        }
+      }
+    },
+    "primaryEmailAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalEmailAddresses": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "phoneNumber": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "preferredTimeZone": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "country": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "preferredSupportLanguage": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceLevelAgreement": {
+      "body": {}
+    },
+    "supportEngineer": {
+      "body": {}
+    },
+    "title": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "problemStartTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "technicalTicketDetails": {
+      "body": {
+        "resourceId": {
+          "$ref": "#/$keywords/resourceId"
+        }
+      }
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "quotaTicketDetails": {
+      "body": {
+        "quotaChangeRequestSubType": {
+          "$ref": "#/$keywords/quotaChangeRequestSubType"
         },
-        "problemStartTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "serviceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceDisplayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "modifiedDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "technicalTicketDetails": {
-            "parameters": {
-                "resourceId": {
-                    "type": "string"
-                }
-            }
-        },
-        "quotaTicketDetails": {
-            "parameters": {
-                "quotaChangeRequestSubType": {
-                    "type": "string"
-                },
-                "quotaChangeRequestVersion": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "quotaChangeRequests": {
-                    "$ref": "#/$keywords/quotaChangeRequests"
-                }
-            }
+        "quotaChangeRequestVersion": {
+          "$ref": "#/$keywords/quotaChangeRequestVersion"
         },
         "quotaChangeRequests": {
-            "parameters": {
-                "region": {
-                    "type": "string"
-                },
-                "payload": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "communicationType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "web",
-                        "phone"
-                    ]
-                }
-            }
-        },
-        "communicationDirection": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "inbound",
-                        "outbound"
-                    ]
-                }
-            }
-        },
-        "sender": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "subject": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "body": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdDate_2": {
-            "propertyParameters": {
-                "value": {}
-            }
+          "$ref": "#/$keywords/quotaChangeRequests"
         }
+      }
     },
-    "$resources": {
-        "supportTickets": {
-            "supportTicketId": {
-                "$ref": "#/$keywords/supportTicketId"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "problemClassificationId": {
-                "$ref": "#/$keywords/problemClassificationId"
-            },
-            "problemClassificationDisplayName": {
-                "$ref": "#/$keywords/problemClassificationDisplayName"
-            },
-            "severity": {
-                "$ref": "#/$keywords/severity"
-            },
-            "enrollmentId": {
-                "$ref": "#/$keywords/enrollmentId"
-            },
-            "require24X7Response": {
-                "$ref": "#/$keywords/require24X7Response"
-            },
-            "contactDetails": {
-                "$ref": "#/$keywords/contactDetails"
-            },
-            "serviceLevelAgreement": {
-                "$ref": "#/$keywords/serviceLevelAgreement"
-            },
-            "supportEngineer": {
-                "$ref": "#/$keywords/supportEngineer"
-            },
-            "supportPlanType": {
-                "$ref": "#/$keywords/supportPlanType"
-            },
-            "title": {
-                "$ref": "#/$keywords/title"
-            },
-            "problemStartTime": {
-                "$ref": "#/$keywords/problemStartTime"
-            },
-            "serviceId": {
-                "$ref": "#/$keywords/serviceId"
-            },
-            "serviceDisplayName": {
-                "$ref": "#/$keywords/serviceDisplayName"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate"
-            },
-            "modifiedDate": {
-                "$ref": "#/$keywords/modifiedDate"
-            },
-            "technicalTicketDetails": {
-                "$ref": "#/$keywords/technicalTicketDetails"
-            },
-            "quotaTicketDetails": {
-                "$ref": "#/$keywords/quotaTicketDetails"
-            }
-        },
-        "supportTickets/communications": {
-            "communicationType": {
-                "$ref": "#/$keywords/communicationType"
-            },
-            "communicationDirection": {
-                "$ref": "#/$keywords/communicationDirection"
-            },
-            "sender": {
-                "$ref": "#/$keywords/sender"
-            },
-            "subject": {
-                "$ref": "#/$keywords/subject"
-            },
-            "body": {
-                "$ref": "#/$keywords/body"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_2"
-            }
+    "quotaChangeRequestSubType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "quotaChangeRequestVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "quotaChangeRequests": {
+      "body": {
+        "region": {
+          "$ref": "#/$keywords/region"
+        },
+        "payload": {
+          "$ref": "#/$keywords/payload"
+        }
+      },
+      "array": true
+    },
+    "region": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sender": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subject": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "body": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "supportTickets": {
+      "supportTicketId": {
+        "$ref": "#/$keywords/supportTicketId"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "problemClassificationId": {
+        "$ref": "#/$keywords/problemClassificationId"
+      },
+      "severity": {
+        "$ref": "#/$keywords/severity"
+      },
+      "require24X7Response": {
+        "$ref": "#/$keywords/require24X7Response"
+      },
+      "contactDetails": {
+        "$ref": "#/$keywords/contactDetails"
+      },
+      "serviceLevelAgreement": {
+        "$ref": "#/$keywords/serviceLevelAgreement"
+      },
+      "supportEngineer": {
+        "$ref": "#/$keywords/supportEngineer"
+      },
+      "title": {
+        "$ref": "#/$keywords/title"
+      },
+      "problemStartTime": {
+        "$ref": "#/$keywords/problemStartTime"
+      },
+      "serviceId": {
+        "$ref": "#/$keywords/serviceId"
+      },
+      "technicalTicketDetails": {
+        "$ref": "#/$keywords/technicalTicketDetails"
+      },
+      "quotaTicketDetails": {
+        "$ref": "#/$keywords/quotaTicketDetails"
+      }
+    },
+    "supportTickets/communications": {
+      "sender": {
+        "$ref": "#/$keywords/sender"
+      },
+      "subject": {
+        "$ref": "#/$keywords/subject"
+      },
+      "body": {
+        "$ref": "#/$keywords/body"
+      }
+    }
+  }
 }

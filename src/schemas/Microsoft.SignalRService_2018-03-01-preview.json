@@ -1,6 +1,18 @@
 {
-    "$keywords": {},
-    "$resources": {
-        "SignalR": {}
+  "$keywords": {
+    "hostNamePrefix": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "SignalR": {
+      "hostNamePrefix": {
+        "$ref": "#/$keywords/hostNamePrefix"
+      }
+    }
+  }
 }

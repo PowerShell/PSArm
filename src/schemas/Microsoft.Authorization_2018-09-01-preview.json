@@ -1,59 +1,61 @@
 {
-    "$keywords": {
-        "roleDefinitionId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "principalId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "principalType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "User",
-                        "Group",
-                        "ServicePrincipal",
-                        "Unknown",
-                        "DirectoryRoleTemplate",
-                        "ForeignGroup",
-                        "Application",
-                        "MSI",
-                        "DirectoryObjectOrGroup",
-                        "Everyone"
-                    ]
-                }
-            }
-        },
-        "canDelegate": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+  "$keywords": {
+    "roleDefinitionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "roleAssignments": {
-            "roleDefinitionId": {
-                "$ref": "#/$keywords/roleDefinitionId"
-            },
-            "principalId": {
-                "$ref": "#/$keywords/principalId"
-            },
-            "principalType": {
-                "$ref": "#/$keywords/principalType"
-            },
-            "canDelegate": {
-                "$ref": "#/$keywords/canDelegate"
-            }
+    "principalId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "principalType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "User",
+            "Group",
+            "ServicePrincipal",
+            "Unknown",
+            "DirectoryRoleTemplate",
+            "ForeignGroup",
+            "Application",
+            "MSI",
+            "DirectoryObjectOrGroup",
+            "Everyone"
+          ]
+        }
+      }
+    },
+    "canDelegate": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "roleAssignments": {
+      "roleDefinitionId": {
+        "$ref": "#/$keywords/roleDefinitionId"
+      },
+      "principalId": {
+        "$ref": "#/$keywords/principalId"
+      },
+      "principalType": {
+        "$ref": "#/$keywords/principalType"
+      },
+      "canDelegate": {
+        "$ref": "#/$keywords/canDelegate"
+      }
+    }
+  }
 }

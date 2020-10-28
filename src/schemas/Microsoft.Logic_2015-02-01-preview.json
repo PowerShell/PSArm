@@ -1,155 +1,194 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "createdTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "changedTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "state": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "version": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "accessEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "sku": {
-            "parameters": {
-                "name": {}
-            },
-            "body": {
-                "plan": {
-                    "$ref": "#/$keywords/plan"
-                }
-            }
+  "$keywords": {
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "Enabled",
+            "Disabled",
+            "Deleted",
+            "Suspended"
+          ]
+        }
+      }
+    },
+    "sku": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
         "plan": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/plan"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "Free",
+            "Shared",
+            "Basic",
+            "Standard",
+            "Premium"
+          ]
+        }
+      }
+    },
+    "plan": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "definitionLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
         },
-        "definitionLink": {
-            "parameters": {
-                "uri": {
-                    "type": "string"
-                },
-                "contentVersion": {
-                    "type": "string"
-                },
-                "contentSize": {
-                    "type": "int"
-                },
-                "metadata": {}
-            },
-            "body": {
-                "contentHash": {
-                    "$ref": "#/$keywords/contentHash"
-                }
-            }
+        "contentVersion": {
+          "$ref": "#/$keywords/contentVersion"
+        },
+        "contentSize": {
+          "$ref": "#/$keywords/contentSize"
         },
         "contentHash": {
-            "parameters": {
-                "algorithm": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/contentHash"
         },
-        "definition": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "parameters": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "notBefore": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "notAfter": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "metadata": {
+          "$ref": "#/$keywords/metadata"
         }
+      }
     },
-    "$resources": {
-        "workflows": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "createdTime": {
-                "$ref": "#/$keywords/createdTime"
-            },
-            "changedTime": {
-                "$ref": "#/$keywords/changedTime"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "version": {
-                "$ref": "#/$keywords/version"
-            },
-            "accessEndpoint": {
-                "$ref": "#/$keywords/accessEndpoint"
-            },
-            "sku": {
-                "$ref": "#/$keywords/sku"
-            },
-            "definitionLink": {
-                "$ref": "#/$keywords/definitionLink"
-            },
-            "definition": {
-                "$ref": "#/$keywords/definition"
-            },
-            "parametersLink": {
-                "$ref": "#/$keywords/definitionLink"
-            },
-            "parameters": {
-                "$ref": "#/$keywords/parameters"
-            }
-        },
-        "workflows/accessKeys": {
-            "notBefore": {
-                "$ref": "#/$keywords/notBefore"
-            },
-            "notAfter": {
-                "$ref": "#/$keywords/notAfter"
-            }
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "contentVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "contentHash": {
+      "body": {
+        "algorithm": {
+          "$ref": "#/$keywords/algorithm"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      }
+    },
+    "algorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "body": {}
+    },
+    "definition": {
+      "body": {}
+    },
+    "parametersLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "contentVersion": {
+          "$ref": "#/$keywords/contentVersion"
+        },
+        "contentSize": {
+          "$ref": "#/$keywords/contentSize"
+        },
+        "contentHash": {
+          "$ref": "#/$keywords/contentHash"
+        },
+        "metadata": {
+          "$ref": "#/$keywords/metadata"
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "notBefore": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "notAfter": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "workflows": {
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "sku": {
+        "$ref": "#/$keywords/sku"
+      },
+      "definitionLink": {
+        "$ref": "#/$keywords/definitionLink"
+      },
+      "definition": {
+        "$ref": "#/$keywords/definition"
+      },
+      "parametersLink": {
+        "$ref": "#/$keywords/parametersLink"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      }
+    },
+    "workflows/accessKeys": {
+      "notBefore": {
+        "$ref": "#/$keywords/notBefore"
+      },
+      "notAfter": {
+        "$ref": "#/$keywords/notAfter"
+      }
+    }
+  }
 }

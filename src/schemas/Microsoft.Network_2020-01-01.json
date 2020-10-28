@@ -1,654 +1,937 @@
 {
-    "$keywords": {
-        "friendlyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "friendlyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "routingRules": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         },
-        "routingRules": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "enabledState": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "resourceState": {
-                    "enum": [
-                        "Creating",
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Deleting"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "frontendEndpoints": {
-                    "$ref": "#/$keywords/frontendEndpoints"
-                },
-                "acceptedProtocols": {
-                    "$ref": "#/$keywords/acceptedProtocols"
-                },
-                "patternsToMatch": {
-                    "$ref": "#/$keywords/patternsToMatch"
-                },
-                "routeConfiguration": {
-                    "$ref": "#/$keywords/routeConfiguration"
-                },
-                "rulesEngine": {
-                    "$ref": "#/$keywords/rulesEngine"
-                }
-            },
-            "array": true
+        "properties": {
+          "$ref": "#/$keywords/properties"
         },
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      },
+      "array": true
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
         "frontendEndpoints": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/frontendEndpoints"
         },
         "acceptedProtocols": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Http",
-                        "Https"
-                    ]
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/acceptedProtocols"
         },
         "patternsToMatch": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "routeConfiguration": {
-            "parameters": {
-                "@odata.type": {
-                    "type": "string"
-                }
-            }
-        },
-        "rulesEngine": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "loadBalancingSettings": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "sampleSize": {
-                    "type": "int"
-                },
-                "successfulSamplesRequired": {
-                    "type": "int"
-                },
-                "additionalLatencyMilliseconds": {
-                    "type": "int"
-                },
-                "resourceState": {
-                    "enum": [
-                        "Creating",
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Deleting"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "healthProbeSettings": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "path": {
-                    "type": "string"
-                },
-                "protocol": {
-                    "enum": [
-                        "Http",
-                        "Https"
-                    ]
-                },
-                "intervalInSeconds": {
-                    "type": "int"
-                },
-                "healthProbeMethod": {
-                    "enum": [
-                        "GET",
-                        "HEAD"
-                    ]
-                },
-                "enabledState": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "resourceState": {
-                    "enum": [
-                        "Creating",
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Deleting"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "backendPools": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "resourceState": {
-                    "enum": [
-                        "Creating",
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Deleting"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "backends": {
-                    "$ref": "#/$keywords/backends"
-                },
-                "loadBalancingSettings": {
-                    "$ref": "#/$keywords/rulesEngine"
-                },
-                "healthProbeSettings": {
-                    "$ref": "#/$keywords/rulesEngine"
-                }
-            },
-            "array": true
-        },
-        "backends": {
-            "parameters": {
-                "address": {
-                    "type": "string"
-                },
-                "privateLinkAlias": {
-                    "type": "string"
-                },
-                "privateEndpointStatus": {
-                    "enum": [
-                        "Pending",
-                        "Approved",
-                        "Rejected",
-                        "Disconnected",
-                        "Timeout"
-                    ]
-                },
-                "privateLinkApprovalMessage": {
-                    "type": "string"
-                },
-                "httpPort": {
-                    "type": "int"
-                },
-                "httpsPort": {
-                    "type": "int"
-                },
-                "enabledState": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "priority": {
-                    "type": "int"
-                },
-                "weight": {
-                    "type": "int"
-                },
-                "backendHostHeader": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "frontendEndpoints_2": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "hostName": {
-                    "type": "string"
-                },
-                "sessionAffinityEnabledState": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "sessionAffinityTtlSeconds": {
-                    "type": "int"
-                },
-                "resourceState": {
-                    "enum": [
-                        "Creating",
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Deleting"
-                    ]
-                },
-                "customHttpsProvisioningState": {
-                    "enum": [
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Failed"
-                    ]
-                },
-                "customHttpsProvisioningSubstate": {
-                    "enum": [
-                        "SubmittingDomainControlValidationRequest",
-                        "PendingDomainControlValidationREquestApproval",
-                        "DomainControlValidationRequestApproved",
-                        "DomainControlValidationRequestRejected",
-                        "DomainControlValidationRequestTimedOut",
-                        "IssuingCertificate",
-                        "DeployingCertificate",
-                        "CertificateDeployed",
-                        "DeletingCertificate",
-                        "CertificateDeleted"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "webApplicationFirewallPolicyLink": {
-                    "$ref": "#/$keywords/webApplicationFirewallPolicyLink"
-                },
-                "customHttpsConfiguration": {
-                    "$ref": "#/$keywords/customHttpsConfiguration"
-                }
-            },
-            "array": true
-        },
-        "webApplicationFirewallPolicyLink": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "customHttpsConfiguration": {
-            "parameters": {
-                "certificateSource": {
-                    "enum": [
-                        "AzureKeyVault",
-                        "FrontDoor"
-                    ]
-                },
-                "protocolType": {},
-                "minimumTlsVersion": {
-                    "enum": [
-                        "1.0",
-                        "1.2"
-                    ]
-                },
-                "certificateType": {},
-                "secretName": {
-                    "type": "string"
-                },
-                "secretVersion": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "vault": {
-                    "$ref": "#/$keywords/vault"
-                }
-            }
-        },
-        "vault": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "backendPoolsSettings": {
-            "parameters": {
-                "enforceCertificateNameCheck": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "sendRecvTimeoutSeconds": {
-                    "type": "int"
-                }
-            }
+          "$ref": "#/$keywords/patternsToMatch"
         },
         "enabledState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/enabledState"
+        },
+        "routeConfiguration": {
+          "$ref": "#/$keywords/routeConfiguration"
+        },
+        "rulesEngine": {
+          "$ref": "#/$keywords/rulesEngine"
         },
         "resourceState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Deleting"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/resourceState"
+        }
+      }
+    },
+    "frontendEndpoints": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      },
+      "array": true
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "acceptedProtocols": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Http",
+            "Https"
+          ]
+        }
+      },
+      "array": true
+    },
+    "patternsToMatch": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "enabledState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "routeConfiguration": {
+      "body": {}
+    },
+    "rulesEngine": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "resourceState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Deleting"
+          ]
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "loadBalancingSettings": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2"
         },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "properties": {
+          "$ref": "#/$keywords/properties_1"
         },
-        "cname": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        }
+      },
+      "array": true
+    },
+    "id_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties_1": {
+      "body": {
+        "sampleSize": {
+          "$ref": "#/$keywords/sampleSize"
         },
-        "frontdoorId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "successfulSamplesRequired": {
+          "$ref": "#/$keywords/successfulSamplesRequired"
         },
-        "rulesEngines": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "resourceState": {
-                    "enum": [
-                        "Creating",
-                        "Enabling",
-                        "Enabled",
-                        "Disabling",
-                        "Disabled",
-                        "Deleting"
-                    ]
-                }
-            },
-            "body": {
-                "rules": {
-                    "$ref": "#/$keywords/rules"
-                }
-            },
-            "array": true
+        "additionalLatencyMilliseconds": {
+          "$ref": "#/$keywords/additionalLatencyMilliseconds"
         },
-        "rules": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "priority": {
-                    "type": "int"
-                },
-                "matchProcessingBehavior": {
-                    "enum": [
-                        "Continue",
-                        "Stop"
-                    ]
-                }
-            },
-            "body": {
-                "action": {
-                    "$ref": "#/$keywords/action"
-                },
-                "matchConditions": {
-                    "$ref": "#/$keywords/matchConditions"
-                }
-            },
-            "array": true
+        "resourceState": {
+          "$ref": "#/$keywords/resourceState_1"
+        }
+      }
+    },
+    "sampleSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "successfulSamplesRequired": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "additionalLatencyMilliseconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "resourceState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Deleting"
+          ]
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "healthProbeSettings": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        }
+      },
+      "array": true
+    },
+    "id_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties_1_2": {
+      "body": {
+        "path": {
+          "$ref": "#/$keywords/path"
+        },
+        "protocol": {
+          "$ref": "#/$keywords/protocol"
+        },
+        "intervalInSeconds": {
+          "$ref": "#/$keywords/intervalInSeconds"
+        },
+        "healthProbeMethod": {
+          "$ref": "#/$keywords/healthProbeMethod"
+        },
+        "enabledState": {
+          "$ref": "#/$keywords/enabledState_1"
+        },
+        "resourceState": {
+          "$ref": "#/$keywords/resourceState_1_2"
+        }
+      }
+    },
+    "path": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "protocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Http",
+            "Https"
+          ]
+        }
+      }
+    },
+    "intervalInSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "healthProbeMethod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "HEAD"
+          ]
+        }
+      }
+    },
+    "enabledState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "resourceState_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Deleting"
+          ]
+        }
+      }
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "backendPools": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2_3"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        }
+      },
+      "array": true
+    },
+    "id_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties_1_2_3": {
+      "body": {
+        "backends": {
+          "$ref": "#/$keywords/backends"
+        },
+        "loadBalancingSettings": {
+          "$ref": "#/$keywords/loadBalancingSettings_1"
+        },
+        "healthProbeSettings": {
+          "$ref": "#/$keywords/healthProbeSettings_1"
+        },
+        "resourceState": {
+          "$ref": "#/$keywords/resourceState_1_2_3"
+        }
+      }
+    },
+    "backends": {
+      "body": {
+        "address": {
+          "$ref": "#/$keywords/address"
+        },
+        "privateLinkAlias": {
+          "$ref": "#/$keywords/privateLinkAlias"
+        },
+        "privateLinkApprovalMessage": {
+          "$ref": "#/$keywords/privateLinkApprovalMessage"
+        },
+        "httpPort": {
+          "$ref": "#/$keywords/httpPort"
+        },
+        "httpsPort": {
+          "$ref": "#/$keywords/httpsPort"
+        },
+        "enabledState": {
+          "$ref": "#/$keywords/enabledState_1_2"
+        },
+        "priority": {
+          "$ref": "#/$keywords/priority"
+        },
+        "weight": {
+          "$ref": "#/$keywords/weight"
+        },
+        "backendHostHeader": {
+          "$ref": "#/$keywords/backendHostHeader"
+        }
+      },
+      "array": true
+    },
+    "address": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateLinkAlias": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateLinkApprovalMessage": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "httpPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "httpsPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "enabledState_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "priority": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "weight": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "backendHostHeader": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "loadBalancingSettings_1": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "healthProbeSettings_1": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "resourceState_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Deleting"
+          ]
+        }
+      }
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "frontendEndpoints_1": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2_3_4"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4"
+        }
+      },
+      "array": true
+    },
+    "id_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties_1_2_3_4": {
+      "body": {
+        "hostName": {
+          "$ref": "#/$keywords/hostName"
+        },
+        "sessionAffinityEnabledState": {
+          "$ref": "#/$keywords/sessionAffinityEnabledState"
+        },
+        "sessionAffinityTtlSeconds": {
+          "$ref": "#/$keywords/sessionAffinityTtlSeconds"
+        },
+        "webApplicationFirewallPolicyLink": {
+          "$ref": "#/$keywords/webApplicationFirewallPolicyLink"
+        },
+        "resourceState": {
+          "$ref": "#/$keywords/resourceState_1_2_3_4"
+        }
+      }
+    },
+    "hostName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sessionAffinityEnabledState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "sessionAffinityTtlSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "webApplicationFirewallPolicyLink": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceState_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Deleting"
+          ]
+        }
+      }
+    },
+    "name_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "backendPoolsSettings": {
+      "body": {
+        "enforceCertificateNameCheck": {
+          "$ref": "#/$keywords/enforceCertificateNameCheck"
+        },
+        "sendRecvTimeoutSeconds": {
+          "$ref": "#/$keywords/sendRecvTimeoutSeconds"
+        }
+      }
+    },
+    "enforceCertificateNameCheck": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "sendRecvTimeoutSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "enabledState_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "resourceState_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Deleting"
+          ]
+        }
+      }
+    },
+    "rules": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5"
+        },
+        "priority": {
+          "$ref": "#/$keywords/priority_1"
         },
         "action": {
-            "body": {
-                "requestHeaderActions": {
-                    "$ref": "#/$keywords/requestHeaderActions"
-                },
-                "responseHeaderActions": {
-                    "$ref": "#/$keywords/responseHeaderActions"
-                },
-                "routeConfigurationOverride": {
-                    "$ref": "#/$keywords/routeConfiguration"
-                }
-            }
-        },
-        "requestHeaderActions": {
-            "parameters": {
-                "headerActionType": {
-                    "enum": [
-                        "Append",
-                        "Delete",
-                        "Overwrite"
-                    ]
-                },
-                "headerName": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "responseHeaderActions": {
-            "parameters": {
-                "headerActionType": {
-                    "enum": [
-                        "Append",
-                        "Delete",
-                        "Overwrite"
-                    ]
-                },
-                "headerName": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/action"
         },
         "matchConditions": {
-            "parameters": {
-                "rulesEngineMatchVariable": {
-                    "enum": [
-                        "IsMobile",
-                        "RemoteAddr",
-                        "RequestMethod",
-                        "QueryString",
-                        "PostArgs",
-                        "RequestUri",
-                        "RequestPath",
-                        "RequestFilename",
-                        "RequestFilenameExtension",
-                        "RequestHeader",
-                        "RequestBody",
-                        "RequestScheme"
-                    ]
-                },
-                "selector": {
-                    "type": "string"
-                },
-                "rulesEngineOperator": {
-                    "enum": [
-                        "Any",
-                        "IPMatch",
-                        "GeoMatch",
-                        "Equal",
-                        "Contains",
-                        "LessThan",
-                        "GreaterThan",
-                        "LessThanOrEqual",
-                        "GreaterThanOrEqual",
-                        "BeginsWith",
-                        "EndsWith"
-                    ]
-                },
-                "negateCondition": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "rulesEngineMatchValue": {
-                    "$ref": "#/$keywords/rulesEngineMatchValue"
-                },
-                "transforms": {
-                    "$ref": "#/$keywords/transforms"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/matchConditions"
+        },
+        "matchProcessingBehavior": {
+          "$ref": "#/$keywords/matchProcessingBehavior"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "priority_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "action": {
+      "body": {
+        "requestHeaderActions": {
+          "$ref": "#/$keywords/requestHeaderActions"
+        },
+        "responseHeaderActions": {
+          "$ref": "#/$keywords/responseHeaderActions"
+        },
+        "routeConfigurationOverride": {
+          "$ref": "#/$keywords/routeConfigurationOverride"
+        }
+      }
+    },
+    "requestHeaderActions": {
+      "body": {
+        "headerActionType": {
+          "$ref": "#/$keywords/headerActionType"
+        },
+        "headerName": {
+          "$ref": "#/$keywords/headerName"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "headerActionType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Append",
+            "Delete",
+            "Overwrite"
+          ]
+        }
+      }
+    },
+    "headerName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "responseHeaderActions": {
+      "body": {
+        "headerActionType": {
+          "$ref": "#/$keywords/headerActionType"
+        },
+        "headerName": {
+          "$ref": "#/$keywords/headerName"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "routeConfigurationOverride": {
+      "body": {}
+    },
+    "matchConditions": {
+      "body": {
+        "rulesEngineMatchVariable": {
+          "$ref": "#/$keywords/rulesEngineMatchVariable"
+        },
+        "selector": {
+          "$ref": "#/$keywords/selector"
+        },
+        "rulesEngineOperator": {
+          "$ref": "#/$keywords/rulesEngineOperator"
+        },
+        "negateCondition": {
+          "$ref": "#/$keywords/negateCondition"
         },
         "rulesEngineMatchValue": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/rulesEngineMatchValue"
         },
         "transforms": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Lowercase",
-                        "Uppercase",
-                        "Trim",
-                        "UrlDecode",
-                        "UrlEncode",
-                        "RemoveNulls"
-                    ]
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/transforms"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "frontDoors": {
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "routingRules": {
-                "$ref": "#/$keywords/routingRules"
-            },
-            "loadBalancingSettings": {
-                "$ref": "#/$keywords/loadBalancingSettings"
-            },
-            "healthProbeSettings": {
-                "$ref": "#/$keywords/healthProbeSettings"
-            },
-            "backendPools": {
-                "$ref": "#/$keywords/backendPools"
-            },
-            "frontendEndpoints": {
-                "$ref": "#/$keywords/frontendEndpoints_2"
-            },
-            "backendPoolsSettings": {
-                "$ref": "#/$keywords/backendPoolsSettings"
-            },
-            "enabledState": {
-                "$ref": "#/$keywords/enabledState"
-            },
-            "resourceState": {
-                "$ref": "#/$keywords/resourceState"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "cname": {
-                "$ref": "#/$keywords/cname"
-            },
-            "frontdoorId": {
-                "$ref": "#/$keywords/frontdoorId"
-            },
-            "rulesEngines": {
-                "$ref": "#/$keywords/rulesEngines"
-            }
-        },
-        "frontDoors/rulesEngines": {
-            "rules": {
-                "$ref": "#/$keywords/rules"
-            },
-            "resourceState": {
-                "$ref": "#/$keywords/resourceState"
-            }
+    "rulesEngineMatchVariable": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "IsMobile",
+            "RemoteAddr",
+            "RequestMethod",
+            "QueryString",
+            "PostArgs",
+            "RequestUri",
+            "RequestPath",
+            "RequestFilename",
+            "RequestFilenameExtension",
+            "RequestHeader",
+            "RequestBody",
+            "RequestScheme"
+          ]
         }
+      }
+    },
+    "selector": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rulesEngineOperator": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Any",
+            "IPMatch",
+            "GeoMatch",
+            "Equal",
+            "Contains",
+            "LessThan",
+            "GreaterThan",
+            "LessThanOrEqual",
+            "GreaterThanOrEqual",
+            "BeginsWith",
+            "EndsWith"
+          ]
+        }
+      }
+    },
+    "negateCondition": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "rulesEngineMatchValue": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "transforms": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Lowercase",
+            "Uppercase",
+            "Trim",
+            "UrlDecode",
+            "UrlEncode",
+            "RemoveNulls"
+          ]
+        }
+      },
+      "array": true
+    },
+    "matchProcessingBehavior": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Continue",
+            "Stop"
+          ]
+        }
+      }
+    },
+    "resourceState_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Deleting"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "frontDoors": {
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName"
+      },
+      "routingRules": {
+        "$ref": "#/$keywords/routingRules"
+      },
+      "loadBalancingSettings": {
+        "$ref": "#/$keywords/loadBalancingSettings"
+      },
+      "healthProbeSettings": {
+        "$ref": "#/$keywords/healthProbeSettings"
+      },
+      "backendPools": {
+        "$ref": "#/$keywords/backendPools"
+      },
+      "frontendEndpoints": {
+        "$ref": "#/$keywords/frontendEndpoints_1"
+      },
+      "backendPoolsSettings": {
+        "$ref": "#/$keywords/backendPoolsSettings"
+      },
+      "enabledState": {
+        "$ref": "#/$keywords/enabledState_1_2_3"
+      },
+      "resourceState": {
+        "$ref": "#/$keywords/resourceState_1_2_3_4_5"
+      }
+    },
+    "frontDoors/rulesEngines": {
+      "rules": {
+        "$ref": "#/$keywords/rules"
+      },
+      "resourceState": {
+        "$ref": "#/$keywords/resourceState_1_2_3_4_5_6"
+      }
+    }
+  }
 }

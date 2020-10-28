@@ -1,56 +1,39 @@
 {
-    "$keywords": {
-        "notes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "startDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "quantity": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "billingDomainName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "adminDomainName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "notes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "deviceServices": {
-            "notes": {
-                "$ref": "#/$keywords/notes"
-            },
-            "startDate": {
-                "$ref": "#/$keywords/startDate"
-            },
-            "quantity": {
-                "$ref": "#/$keywords/quantity"
-            },
-            "billingDomainName": {
-                "$ref": "#/$keywords/billingDomainName"
-            },
-            "adminDomainName": {
-                "$ref": "#/$keywords/adminDomainName"
-            }
+    "quantity": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
         }
+      }
+    },
+    "adminDomainName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "deviceServices": {
+      "notes": {
+        "$ref": "#/$keywords/notes"
+      },
+      "quantity": {
+        "$ref": "#/$keywords/quantity"
+      },
+      "adminDomainName": {
+        "$ref": "#/$keywords/adminDomainName"
+      }
+    }
+  }
 }

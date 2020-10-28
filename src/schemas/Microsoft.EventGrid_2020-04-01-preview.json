@@ -1,886 +1,799 @@
 {
-    "$keywords": {
-        "privateEndpointConnections": {
-            "parameters": {
-                "provisioningState": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "privateEndpoint": {
-                    "$ref": "#/$keywords/privateEndpoint"
-                },
-                "groupIds": {
-                    "$ref": "#/$keywords/groupIds"
-                },
-                "privateLinkServiceConnectionState": {
-                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
-                }
-            },
-            "array": true
-        },
+  "$keywords": {
+    "privateEndpointConnections": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "properties": {
+      "body": {
         "privateEndpoint": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/privateEndpoint"
         },
         "groupIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/groupIds"
         },
         "privateLinkServiceConnectionState": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Pending",
-                        "Approved",
-                        "Rejected",
-                        "Disconnected"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                },
-                "actionsRequired": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/privateLinkServiceConnectionState"
         },
         "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/provisioningState"
+        }
+      }
+    },
+    "privateEndpoint": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "groupIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "privateLinkServiceConnectionState": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
         },
-        "endpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "description": {
+          "$ref": "#/$keywords/description"
         },
-        "inputSchema": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "EventGridSchema",
-                        "CustomEventSchema",
-                        "CloudEventSchemaV1_0"
-                    ]
-                }
-            }
+        "actionsRequired": {
+          "$ref": "#/$keywords/actionsRequired"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Rejected",
+            "Disconnected"
+          ]
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "actionsRequired": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Updating",
+            "Deleting",
+            "Succeeded",
+            "Canceled",
+            "Failed"
+          ]
+        }
+      }
+    },
+    "inputSchema": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EventGridSchema",
+            "CustomEventSchema",
+            "CloudEventSchemaV1_0"
+          ]
+        }
+      }
+    },
+    "inputSchemaMapping": {
+      "body": {}
+    },
+    "publicNetworkAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "inboundIpRules": {
+      "body": {
+        "ipMask": {
+          "$ref": "#/$keywords/ipMask"
         },
-        "inputSchemaMapping": {
-            "parameters": {
-                "inputSchemaMappingType": {}
-            }
-        },
-        "metricResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "publicNetworkAccess": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "inboundIpRules": {
-            "parameters": {
-                "ipMask": {
-                    "type": "string"
-                },
-                "action": {}
-            },
-            "array": true
-        },
-        "source": {
-            "parameters": {
-                "source": {
-                    "type": "string"
-                }
-            }
+        "action": {
+          "$ref": "#/$keywords/action"
+        }
+      },
+      "array": true
+    },
+    "ipMask": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow"
+          ]
+        }
+      }
+    },
+    "destination": {
+      "body": {}
+    },
+    "deliveryWithResourceIdentity": {
+      "body": {
+        "identity": {
+          "$ref": "#/$keywords/identity"
         },
         "destination": {
-            "parameters": {
-                "azureSubscriptionId": {
-                    "type": "string"
-                },
-                "resourceGroup": {
-                    "type": "string"
-                },
-                "partnerTopicName": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/destination_1"
+        }
+      }
+    },
+    "identity": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
         },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
+        "userAssignedIdentity": {
+          "$ref": "#/$keywords/userAssignedIdentity"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SystemAssigned",
+            "UserAssigned"
+          ]
+        }
+      }
+    },
+    "userAssignedIdentity": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "destination_1": {
+      "body": {}
+    },
+    "filter": {
+      "body": {
+        "subjectBeginsWith": {
+          "$ref": "#/$keywords/subjectBeginsWith"
         },
-        "partnerTopicReadinessState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "NotActivatedByUserYet",
-                        "ActivatedByUser",
-                        "DeactivatedByUser",
-                        "DeletedByUser"
-                    ]
-                }
-            }
-        },
-        "expirationTimeIfNotActivatedUtc": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "filter": {
-            "body": {
-                "advancedFilters": {
-                    "$ref": "#/$keywords/advancedFilters"
-                }
-            }
-        },
-        "advancedFilters": {
-            "parameters": {
-                "operatorType": {
-                    "enum": [
-                        "NumberIn",
-                        "NumberNotIn",
-                        "NumberLessThan",
-                        "NumberGreaterThan",
-                        "NumberLessThanOrEquals",
-                        "NumberGreaterThanOrEquals",
-                        "BoolEquals",
-                        "StringIn",
-                        "StringNotIn",
-                        "StringBeginsWith",
-                        "StringEndsWith",
-                        "StringContains"
-                    ]
-                },
-                "key": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "partnerTopicFriendlyDescription": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "topic": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_3": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed",
-                        "AwaitingManualAction"
-                    ]
-                }
-            }
-        },
-        "destination_2": {
-            "parameters": {
-                "endpointType": {
-                    "enum": [
-                        "WebHook",
-                        "EventHub",
-                        "StorageQueue",
-                        "HybridConnection",
-                        "ServiceBusQueue",
-                        "ServiceBusTopic",
-                        "AzureFunction"
-                    ]
-                }
-            }
-        },
-        "deliveryWithResourceIdentity": {
-            "body": {
-                "identity": {
-                    "$ref": "#/$keywords/identity"
-                },
-                "destination": {
-                    "$ref": "#/$keywords/destination_2"
-                }
-            }
-        },
-        "identity": {
-            "parameters": {
-                "type": {
-                    "enum": [
-                        "SystemAssigned",
-                        "UserAssigned"
-                    ]
-                },
-                "userAssignedIdentity": {
-                    "type": "string"
-                }
-            }
-        },
-        "filter_2": {
-            "parameters": {
-                "subjectBeginsWith": {
-                    "type": "string"
-                },
-                "subjectEndsWith": {
-                    "type": "string"
-                },
-                "isSubjectCaseSensitive": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "includedEventTypes": {
-                    "$ref": "#/$keywords/includedEventTypes"
-                },
-                "advancedFilters": {
-                    "$ref": "#/$keywords/advancedFilters_2"
-                }
-            }
+        "subjectEndsWith": {
+          "$ref": "#/$keywords/subjectEndsWith"
         },
         "includedEventTypes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/includedEventTypes"
         },
-        "advancedFilters_2": {
-            "parameters": {
-                "operatorType": {
-                    "enum": [
-                        "NumberIn",
-                        "NumberNotIn",
-                        "NumberLessThan",
-                        "NumberGreaterThan",
-                        "NumberLessThanOrEquals",
-                        "NumberGreaterThanOrEquals",
-                        "BoolEquals",
-                        "StringIn",
-                        "StringNotIn",
-                        "StringBeginsWith",
-                        "StringEndsWith",
-                        "StringContains"
-                    ]
-                },
-                "key": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "isSubjectCaseSensitive": {
+          "$ref": "#/$keywords/isSubjectCaseSensitive"
         },
-        "labels": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "advancedFilters": {
+          "$ref": "#/$keywords/advancedFilters"
+        }
+      }
+    },
+    "subjectBeginsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subjectEndsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "includedEventTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isSubjectCaseSensitive": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "advancedFilters": {
+      "body": {
+        "key": {
+          "$ref": "#/$keywords/key"
+        }
+      },
+      "array": true
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labels": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "expirationTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventDeliverySchema": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EventGridSchema",
+            "CustomInputSchema",
+            "CloudEventSchemaV1_0"
+          ]
+        }
+      }
+    },
+    "retryPolicy": {
+      "body": {
+        "maxDeliveryAttempts": {
+          "$ref": "#/$keywords/maxDeliveryAttempts"
         },
-        "expirationTimeUtc": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "eventDeliverySchema": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "EventGridSchema",
-                        "CustomInputSchema",
-                        "CloudEventSchemaV1_0"
-                    ]
-                }
-            }
-        },
-        "retryPolicy": {
-            "parameters": {
-                "maxDeliveryAttempts": {
-                    "type": "int"
-                },
-                "eventTimeToLiveInMinutes": {
-                    "type": "int"
-                }
-            }
+        "eventTimeToLiveInMinutes": {
+          "$ref": "#/$keywords/eventTimeToLiveInMinutes"
+        }
+      }
+    },
+    "maxDeliveryAttempts": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "eventTimeToLiveInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "deadLetterDestination": {
+      "body": {}
+    },
+    "deadLetterWithResourceIdentity": {
+      "body": {
+        "identity": {
+          "$ref": "#/$keywords/identity_1"
         },
         "deadLetterDestination": {
-            "parameters": {
-                "endpointType": {}
-            }
-        },
-        "deadLetterWithResourceIdentity": {
-            "body": {
-                "identity": {
-                    "$ref": "#/$keywords/identity"
-                },
-                "deadLetterDestination": {
-                    "$ref": "#/$keywords/deadLetterDestination"
-                }
-            }
-        },
-        "provisioningState_4": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "partnerRegistrationFullyQualifiedId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "endpoint_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_5": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "partnerName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "partnerResourceTypeName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "partnerResourceTypeDisplayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "partnerResourceTypeDescription": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "longDescription": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "partnerCustomerServiceNumber": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "partnerCustomerServiceExtension": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "customerServiceUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "setupUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "logoUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "visibilityState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Hidden",
-                        "PublicPreview",
-                        "GenerallyAvailable"
-                    ]
-                }
-            }
-        },
-        "authorizedAzureSubscriptionIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "provisioningState_6": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "source_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "topicType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "metricResourceId_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "privateEndpointConnections_2": {
-            "parameters": {
-                "provisioningState": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "privateEndpoint": {
-                    "$ref": "#/$keywords/privateEndpoint"
-                },
-                "groupIds": {
-                    "$ref": "#/$keywords/groupIds"
-                },
-                "privateLinkServiceConnectionState": {
-                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
-                }
-            },
-            "array": true
-        },
-        "provisioningState_7": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "endpoint_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "metricResourceId_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "inboundIpRules_2": {
-            "parameters": {
-                "ipMask": {
-                    "type": "string"
-                },
-                "action": {}
-            },
-            "array": true
+          "$ref": "#/$keywords/deadLetterDestination_1"
         }
+      }
     },
-    "$resources": {
-        "domains": {
-            "privateEndpointConnections": {
-                "$ref": "#/$keywords/privateEndpointConnections"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint"
-            },
-            "inputSchema": {
-                "$ref": "#/$keywords/inputSchema"
-            },
-            "inputSchemaMapping": {
-                "$ref": "#/$keywords/inputSchemaMapping"
-            },
-            "metricResourceId": {
-                "$ref": "#/$keywords/metricResourceId"
-            },
-            "publicNetworkAccess": {
-                "$ref": "#/$keywords/publicNetworkAccess"
-            },
-            "inboundIpRules": {
-                "$ref": "#/$keywords/inboundIpRules"
-            }
+    "identity_1": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
         },
-        "partnerNamespaces/eventChannels": {
-            "source": {
-                "$ref": "#/$keywords/source"
-            },
-            "destination": {
-                "$ref": "#/$keywords/destination"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "partnerTopicReadinessState": {
-                "$ref": "#/$keywords/partnerTopicReadinessState"
-            },
-            "expirationTimeIfNotActivatedUtc": {
-                "$ref": "#/$keywords/expirationTimeIfNotActivatedUtc"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter"
-            },
-            "partnerTopicFriendlyDescription": {
-                "$ref": "#/$keywords/partnerTopicFriendlyDescription"
-            }
-        },
-        "eventSubscriptions": {
-            "topic": {
-                "$ref": "#/$keywords/topic"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_3"
-            },
-            "destination": {
-                "$ref": "#/$keywords/destination_2"
-            },
-            "deliveryWithResourceIdentity": {
-                "$ref": "#/$keywords/deliveryWithResourceIdentity"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter_2"
-            },
-            "labels": {
-                "$ref": "#/$keywords/labels"
-            },
-            "expirationTimeUtc": {
-                "$ref": "#/$keywords/expirationTimeUtc"
-            },
-            "eventDeliverySchema": {
-                "$ref": "#/$keywords/eventDeliverySchema"
-            },
-            "retryPolicy": {
-                "$ref": "#/$keywords/retryPolicy"
-            },
-            "deadLetterDestination": {
-                "$ref": "#/$keywords/deadLetterDestination"
-            },
-            "deadLetterWithResourceIdentity": {
-                "$ref": "#/$keywords/deadLetterWithResourceIdentity"
-            }
-        },
-        "systemTopics/eventSubscriptions": {
-            "topic": {
-                "$ref": "#/$keywords/topic"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_3"
-            },
-            "destination": {
-                "$ref": "#/$keywords/destination_2"
-            },
-            "deliveryWithResourceIdentity": {
-                "$ref": "#/$keywords/deliveryWithResourceIdentity"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter_2"
-            },
-            "labels": {
-                "$ref": "#/$keywords/labels"
-            },
-            "expirationTimeUtc": {
-                "$ref": "#/$keywords/expirationTimeUtc"
-            },
-            "eventDeliverySchema": {
-                "$ref": "#/$keywords/eventDeliverySchema"
-            },
-            "retryPolicy": {
-                "$ref": "#/$keywords/retryPolicy"
-            },
-            "deadLetterDestination": {
-                "$ref": "#/$keywords/deadLetterDestination"
-            },
-            "deadLetterWithResourceIdentity": {
-                "$ref": "#/$keywords/deadLetterWithResourceIdentity"
-            }
-        },
-        "partnerTopics/eventSubscriptions": {
-            "topic": {
-                "$ref": "#/$keywords/topic"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_3"
-            },
-            "destination": {
-                "$ref": "#/$keywords/destination_2"
-            },
-            "deliveryWithResourceIdentity": {
-                "$ref": "#/$keywords/deliveryWithResourceIdentity"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter_2"
-            },
-            "labels": {
-                "$ref": "#/$keywords/labels"
-            },
-            "expirationTimeUtc": {
-                "$ref": "#/$keywords/expirationTimeUtc"
-            },
-            "eventDeliverySchema": {
-                "$ref": "#/$keywords/eventDeliverySchema"
-            },
-            "retryPolicy": {
-                "$ref": "#/$keywords/retryPolicy"
-            },
-            "deadLetterDestination": {
-                "$ref": "#/$keywords/deadLetterDestination"
-            },
-            "deadLetterWithResourceIdentity": {
-                "$ref": "#/$keywords/deadLetterWithResourceIdentity"
-            }
-        },
-        "partnerNamespaces": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_4"
-            },
-            "partnerRegistrationFullyQualifiedId": {
-                "$ref": "#/$keywords/partnerRegistrationFullyQualifiedId"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint_2"
-            }
-        },
-        "partnerRegistrations": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_5"
-            },
-            "partnerName": {
-                "$ref": "#/$keywords/partnerName"
-            },
-            "partnerResourceTypeName": {
-                "$ref": "#/$keywords/partnerResourceTypeName"
-            },
-            "partnerResourceTypeDisplayName": {
-                "$ref": "#/$keywords/partnerResourceTypeDisplayName"
-            },
-            "partnerResourceTypeDescription": {
-                "$ref": "#/$keywords/partnerResourceTypeDescription"
-            },
-            "longDescription": {
-                "$ref": "#/$keywords/longDescription"
-            },
-            "partnerCustomerServiceNumber": {
-                "$ref": "#/$keywords/partnerCustomerServiceNumber"
-            },
-            "partnerCustomerServiceExtension": {
-                "$ref": "#/$keywords/partnerCustomerServiceExtension"
-            },
-            "customerServiceUri": {
-                "$ref": "#/$keywords/customerServiceUri"
-            },
-            "setupUri": {
-                "$ref": "#/$keywords/setupUri"
-            },
-            "logoUri": {
-                "$ref": "#/$keywords/logoUri"
-            },
-            "visibilityState": {
-                "$ref": "#/$keywords/visibilityState"
-            },
-            "authorizedAzureSubscriptionIds": {
-                "$ref": "#/$keywords/authorizedAzureSubscriptionIds"
-            }
-        },
-        "{parentType}/privateEndpointConnections": {
-            "privateEndpoint": {
-                "$ref": "#/$keywords/privateEndpoint"
-            },
-            "groupIds": {
-                "$ref": "#/$keywords/groupIds"
-            },
-            "privateLinkServiceConnectionState": {
-                "$ref": "#/$keywords/privateLinkServiceConnectionState"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_6"
-            }
-        },
-        "systemTopics": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_6"
-            },
-            "source": {
-                "$ref": "#/$keywords/source_2"
-            },
-            "topicType": {
-                "$ref": "#/$keywords/topicType"
-            },
-            "metricResourceId": {
-                "$ref": "#/$keywords/metricResourceId_2"
-            }
-        },
-        "topics": {
-            "privateEndpointConnections": {
-                "$ref": "#/$keywords/privateEndpointConnections_2"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_7"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint_3"
-            },
-            "inputSchema": {
-                "$ref": "#/$keywords/inputSchema"
-            },
-            "inputSchemaMapping": {
-                "$ref": "#/$keywords/inputSchemaMapping"
-            },
-            "metricResourceId": {
-                "$ref": "#/$keywords/metricResourceId_3"
-            },
-            "publicNetworkAccess": {
-                "$ref": "#/$keywords/publicNetworkAccess"
-            },
-            "inboundIpRules": {
-                "$ref": "#/$keywords/inboundIpRules_2"
-            }
+        "userAssignedIdentity": {
+          "$ref": "#/$keywords/userAssignedIdentity"
         }
+      }
+    },
+    "deadLetterDestination_1": {
+      "body": {}
+    },
+    "partnerRegistrationFullyQualifiedId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerResourceTypeName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerResourceTypeDisplayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerResourceTypeDescription": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "longDescription": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerCustomerServiceNumber": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerCustomerServiceExtension": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customerServiceUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "setupUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logoUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "visibilityState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Hidden",
+            "PublicPreview",
+            "GenerallyAvailable"
+          ]
+        }
+      }
+    },
+    "authorizedAzureSubscriptionIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "source": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "topicType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateEndpointConnections_1": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "inputSchema_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EventGridSchema",
+            "CustomEventSchema",
+            "CloudEventSchemaV1_0"
+          ]
+        }
+      }
+    },
+    "inputSchemaMapping_1": {
+      "body": {}
+    },
+    "publicNetworkAccess_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "inboundIpRules_1": {
+      "body": {
+        "ipMask": {
+          "$ref": "#/$keywords/ipMask"
+        },
+        "action": {
+          "$ref": "#/$keywords/action"
+        }
+      },
+      "array": true
+    },
+    "source_1": {
+      "body": {
+        "source": {
+          "$ref": "#/$keywords/source_1_2"
+        }
+      }
+    },
+    "source_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "destination_1_2": {
+      "body": {
+        "azureSubscriptionId": {
+          "$ref": "#/$keywords/azureSubscriptionId"
+        },
+        "resourceGroup": {
+          "$ref": "#/$keywords/resourceGroup"
+        },
+        "partnerTopicName": {
+          "$ref": "#/$keywords/partnerTopicName"
+        }
+      }
+    },
+    "azureSubscriptionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceGroup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerTopicName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "expirationTimeIfNotActivatedUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "filter_1": {
+      "body": {
+        "advancedFilters": {
+          "$ref": "#/$keywords/advancedFilters_1"
+        }
+      }
+    },
+    "advancedFilters_1": {
+      "body": {
+        "key": {
+          "$ref": "#/$keywords/key"
+        }
+      },
+      "array": true
+    },
+    "partnerTopicFriendlyDescription": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "domains": {
+      "privateEndpointConnections": {
+        "$ref": "#/$keywords/privateEndpointConnections"
+      },
+      "inputSchema": {
+        "$ref": "#/$keywords/inputSchema"
+      },
+      "inputSchemaMapping": {
+        "$ref": "#/$keywords/inputSchemaMapping"
+      },
+      "publicNetworkAccess": {
+        "$ref": "#/$keywords/publicNetworkAccess"
+      },
+      "inboundIpRules": {
+        "$ref": "#/$keywords/inboundIpRules"
+      }
+    },
+    "eventSubscriptions": {
+      "destination": {
+        "$ref": "#/$keywords/destination"
+      },
+      "deliveryWithResourceIdentity": {
+        "$ref": "#/$keywords/deliveryWithResourceIdentity"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels"
+      },
+      "expirationTimeUtc": {
+        "$ref": "#/$keywords/expirationTimeUtc"
+      },
+      "eventDeliverySchema": {
+        "$ref": "#/$keywords/eventDeliverySchema"
+      },
+      "retryPolicy": {
+        "$ref": "#/$keywords/retryPolicy"
+      },
+      "deadLetterDestination": {
+        "$ref": "#/$keywords/deadLetterDestination"
+      },
+      "deadLetterWithResourceIdentity": {
+        "$ref": "#/$keywords/deadLetterWithResourceIdentity"
+      }
+    },
+    "partnerNamespaces": {
+      "partnerRegistrationFullyQualifiedId": {
+        "$ref": "#/$keywords/partnerRegistrationFullyQualifiedId"
+      }
+    },
+    "partnerRegistrations": {
+      "partnerName": {
+        "$ref": "#/$keywords/partnerName"
+      },
+      "partnerResourceTypeName": {
+        "$ref": "#/$keywords/partnerResourceTypeName"
+      },
+      "partnerResourceTypeDisplayName": {
+        "$ref": "#/$keywords/partnerResourceTypeDisplayName"
+      },
+      "partnerResourceTypeDescription": {
+        "$ref": "#/$keywords/partnerResourceTypeDescription"
+      },
+      "longDescription": {
+        "$ref": "#/$keywords/longDescription"
+      },
+      "partnerCustomerServiceNumber": {
+        "$ref": "#/$keywords/partnerCustomerServiceNumber"
+      },
+      "partnerCustomerServiceExtension": {
+        "$ref": "#/$keywords/partnerCustomerServiceExtension"
+      },
+      "customerServiceUri": {
+        "$ref": "#/$keywords/customerServiceUri"
+      },
+      "setupUri": {
+        "$ref": "#/$keywords/setupUri"
+      },
+      "logoUri": {
+        "$ref": "#/$keywords/logoUri"
+      },
+      "visibilityState": {
+        "$ref": "#/$keywords/visibilityState"
+      },
+      "authorizedAzureSubscriptionIds": {
+        "$ref": "#/$keywords/authorizedAzureSubscriptionIds"
+      }
+    },
+    "systemTopics": {
+      "source": {
+        "$ref": "#/$keywords/source"
+      },
+      "topicType": {
+        "$ref": "#/$keywords/topicType"
+      }
+    },
+    "topics": {
+      "privateEndpointConnections": {
+        "$ref": "#/$keywords/privateEndpointConnections_1"
+      },
+      "inputSchema": {
+        "$ref": "#/$keywords/inputSchema_1"
+      },
+      "inputSchemaMapping": {
+        "$ref": "#/$keywords/inputSchemaMapping_1"
+      },
+      "publicNetworkAccess": {
+        "$ref": "#/$keywords/publicNetworkAccess_1"
+      },
+      "inboundIpRules": {
+        "$ref": "#/$keywords/inboundIpRules_1"
+      }
+    },
+    "domains/topics": {},
+    "partnerNamespaces/eventChannels": {
+      "source": {
+        "$ref": "#/$keywords/source_1"
+      },
+      "destination": {
+        "$ref": "#/$keywords/destination_1_2"
+      },
+      "expirationTimeIfNotActivatedUtc": {
+        "$ref": "#/$keywords/expirationTimeIfNotActivatedUtc"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter_1"
+      },
+      "partnerTopicFriendlyDescription": {
+        "$ref": "#/$keywords/partnerTopicFriendlyDescription"
+      }
+    },
+    "systemTopics/eventSubscriptions": {
+      "destination": {
+        "$ref": "#/$keywords/destination"
+      },
+      "deliveryWithResourceIdentity": {
+        "$ref": "#/$keywords/deliveryWithResourceIdentity"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels"
+      },
+      "expirationTimeUtc": {
+        "$ref": "#/$keywords/expirationTimeUtc"
+      },
+      "eventDeliverySchema": {
+        "$ref": "#/$keywords/eventDeliverySchema"
+      },
+      "retryPolicy": {
+        "$ref": "#/$keywords/retryPolicy"
+      },
+      "deadLetterDestination": {
+        "$ref": "#/$keywords/deadLetterDestination"
+      },
+      "deadLetterWithResourceIdentity": {
+        "$ref": "#/$keywords/deadLetterWithResourceIdentity"
+      }
+    },
+    "partnerTopics/eventSubscriptions": {
+      "destination": {
+        "$ref": "#/$keywords/destination"
+      },
+      "deliveryWithResourceIdentity": {
+        "$ref": "#/$keywords/deliveryWithResourceIdentity"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels"
+      },
+      "expirationTimeUtc": {
+        "$ref": "#/$keywords/expirationTimeUtc"
+      },
+      "eventDeliverySchema": {
+        "$ref": "#/$keywords/eventDeliverySchema"
+      },
+      "retryPolicy": {
+        "$ref": "#/$keywords/retryPolicy"
+      },
+      "deadLetterDestination": {
+        "$ref": "#/$keywords/deadLetterDestination"
+      },
+      "deadLetterWithResourceIdentity": {
+        "$ref": "#/$keywords/deadLetterWithResourceIdentity"
+      }
+    },
+    "topics/privateEndpointConnections": {
+      "privateEndpoint": {
+        "$ref": "#/$keywords/privateEndpoint"
+      },
+      "groupIds": {
+        "$ref": "#/$keywords/groupIds"
+      },
+      "privateLinkServiceConnectionState": {
+        "$ref": "#/$keywords/privateLinkServiceConnectionState"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      }
+    },
+    "domains/privateEndpointConnections": {
+      "privateEndpoint": {
+        "$ref": "#/$keywords/privateEndpoint"
+      },
+      "groupIds": {
+        "$ref": "#/$keywords/groupIds"
+      },
+      "privateLinkServiceConnectionState": {
+        "$ref": "#/$keywords/privateLinkServiceConnectionState"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      }
+    }
+  }
 }

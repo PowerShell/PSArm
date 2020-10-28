@@ -1,0 +1,788 @@
+{
+  "$keywords": {
+    "rights": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Manage",
+            "Send",
+            "Listen"
+          ]
+        }
+      },
+      "array": true
+    },
+    "defaultAction": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Deny"
+          ]
+        }
+      }
+    },
+    "virtualNetworkRules": {
+      "body": {
+        "subnet": {
+          "$ref": "#/$keywords/subnet"
+        },
+        "ignoreMissingVnetServiceEndpoint": {
+          "$ref": "#/$keywords/ignoreMissingVnetServiceEndpoint"
+        }
+      },
+      "array": true
+    },
+    "subnet": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ignoreMissingVnetServiceEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "ipRules": {
+      "body": {
+        "ipMask": {
+          "$ref": "#/$keywords/ipMask"
+        },
+        "action": {
+          "$ref": "#/$keywords/action"
+        }
+      },
+      "array": true
+    },
+    "ipMask": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow"
+          ]
+        }
+      }
+    },
+    "lockDuration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxSizeInMegabytes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "requiresDuplicateDetection": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "requiresSession": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "defaultMessageTimeToLive": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "deadLetteringOnMessageExpiration": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "duplicateDetectionHistoryTimeWindow": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxDeliveryCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Disabled",
+            "Restoring",
+            "SendDisabled",
+            "ReceiveDisabled",
+            "Creating",
+            "Deleting",
+            "Renaming",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "enableBatchedOperations": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "autoDeleteOnIdle": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enablePartitioning": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableExpress": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "forwardTo": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "forwardDeadLetteredMessagesTo": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultMessageTimeToLive_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxSizeInMegabytes_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "requiresDuplicateDetection_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "duplicateDetectionHistoryTimeWindow_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enableBatchedOperations_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Disabled",
+            "Restoring",
+            "SendDisabled",
+            "ReceiveDisabled",
+            "Creating",
+            "Deleting",
+            "Renaming",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "supportOrdering": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "autoDeleteOnIdle_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enablePartitioning_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableExpress_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "partnerNamespace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "alternateName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetNamespace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "postMigrationName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lockDuration_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requiresSession_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "defaultMessageTimeToLive_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "deadLetteringOnFilterEvaluationExceptions": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "deadLetteringOnMessageExpiration_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "duplicateDetectionHistoryTimeWindow_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxDeliveryCount_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "status_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Disabled",
+            "Restoring",
+            "SendDisabled",
+            "ReceiveDisabled",
+            "Creating",
+            "Deleting",
+            "Renaming",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "enableBatchedOperations_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "autoDeleteOnIdle_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "forwardTo_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "forwardDeadLetteredMessagesTo_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action_1": {
+      "body": {
+        "sqlExpression": {
+          "$ref": "#/$keywords/sqlExpression"
+        },
+        "compatibilityLevel": {
+          "$ref": "#/$keywords/compatibilityLevel"
+        },
+        "requiresPreprocessing": {
+          "$ref": "#/$keywords/requiresPreprocessing"
+        }
+      }
+    },
+    "sqlExpression": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "compatibilityLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "requiresPreprocessing": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "filterType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SqlFilter",
+            "CorrelationFilter"
+          ]
+        }
+      }
+    },
+    "sqlFilter": {
+      "body": {
+        "sqlExpression": {
+          "$ref": "#/$keywords/sqlExpression_1"
+        },
+        "compatibilityLevel": {
+          "$ref": "#/$keywords/compatibilityLevel_1"
+        },
+        "requiresPreprocessing": {
+          "$ref": "#/$keywords/requiresPreprocessing_1"
+        }
+      }
+    },
+    "sqlExpression_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "compatibilityLevel_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 20
+        }
+      }
+    },
+    "requiresPreprocessing_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "correlationFilter": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        },
+        "correlationId": {
+          "$ref": "#/$keywords/correlationId"
+        },
+        "messageId": {
+          "$ref": "#/$keywords/messageId"
+        },
+        "to": {
+          "$ref": "#/$keywords/to"
+        },
+        "replyTo": {
+          "$ref": "#/$keywords/replyTo"
+        },
+        "label": {
+          "$ref": "#/$keywords/label"
+        },
+        "sessionId": {
+          "$ref": "#/$keywords/sessionId"
+        },
+        "replyToSessionId": {
+          "$ref": "#/$keywords/replyToSessionId"
+        },
+        "contentType": {
+          "$ref": "#/$keywords/contentType"
+        },
+        "requiresPreprocessing": {
+          "$ref": "#/$keywords/requiresPreprocessing_1_2"
+        }
+      }
+    },
+    "properties": {
+      "body": {}
+    },
+    "correlationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "messageId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "to": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "replyTo": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "label": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sessionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "replyToSessionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requiresPreprocessing_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    }
+  },
+  "$resources": {
+    "namespaces": {},
+    "namespaces/AuthorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/networkRuleSets": {
+      "defaultAction": {
+        "$ref": "#/$keywords/defaultAction"
+      },
+      "virtualNetworkRules": {
+        "$ref": "#/$keywords/virtualNetworkRules"
+      },
+      "ipRules": {
+        "$ref": "#/$keywords/ipRules"
+      }
+    },
+    "namespaces/queues": {
+      "lockDuration": {
+        "$ref": "#/$keywords/lockDuration"
+      },
+      "maxSizeInMegabytes": {
+        "$ref": "#/$keywords/maxSizeInMegabytes"
+      },
+      "requiresDuplicateDetection": {
+        "$ref": "#/$keywords/requiresDuplicateDetection"
+      },
+      "requiresSession": {
+        "$ref": "#/$keywords/requiresSession"
+      },
+      "defaultMessageTimeToLive": {
+        "$ref": "#/$keywords/defaultMessageTimeToLive"
+      },
+      "deadLetteringOnMessageExpiration": {
+        "$ref": "#/$keywords/deadLetteringOnMessageExpiration"
+      },
+      "duplicateDetectionHistoryTimeWindow": {
+        "$ref": "#/$keywords/duplicateDetectionHistoryTimeWindow"
+      },
+      "maxDeliveryCount": {
+        "$ref": "#/$keywords/maxDeliveryCount"
+      },
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "enableBatchedOperations": {
+        "$ref": "#/$keywords/enableBatchedOperations"
+      },
+      "autoDeleteOnIdle": {
+        "$ref": "#/$keywords/autoDeleteOnIdle"
+      },
+      "enablePartitioning": {
+        "$ref": "#/$keywords/enablePartitioning"
+      },
+      "enableExpress": {
+        "$ref": "#/$keywords/enableExpress"
+      },
+      "forwardTo": {
+        "$ref": "#/$keywords/forwardTo"
+      },
+      "forwardDeadLetteredMessagesTo": {
+        "$ref": "#/$keywords/forwardDeadLetteredMessagesTo"
+      }
+    },
+    "namespaces/topics": {
+      "defaultMessageTimeToLive": {
+        "$ref": "#/$keywords/defaultMessageTimeToLive_1"
+      },
+      "maxSizeInMegabytes": {
+        "$ref": "#/$keywords/maxSizeInMegabytes_1"
+      },
+      "requiresDuplicateDetection": {
+        "$ref": "#/$keywords/requiresDuplicateDetection_1"
+      },
+      "duplicateDetectionHistoryTimeWindow": {
+        "$ref": "#/$keywords/duplicateDetectionHistoryTimeWindow_1"
+      },
+      "enableBatchedOperations": {
+        "$ref": "#/$keywords/enableBatchedOperations_1"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1"
+      },
+      "supportOrdering": {
+        "$ref": "#/$keywords/supportOrdering"
+      },
+      "autoDeleteOnIdle": {
+        "$ref": "#/$keywords/autoDeleteOnIdle_1"
+      },
+      "enablePartitioning": {
+        "$ref": "#/$keywords/enablePartitioning_1"
+      },
+      "enableExpress": {
+        "$ref": "#/$keywords/enableExpress_1"
+      }
+    },
+    "namespaces/disasterRecoveryConfigs": {
+      "partnerNamespace": {
+        "$ref": "#/$keywords/partnerNamespace"
+      },
+      "alternateName": {
+        "$ref": "#/$keywords/alternateName"
+      }
+    },
+    "namespaces/migrationConfigurations": {
+      "targetNamespace": {
+        "$ref": "#/$keywords/targetNamespace"
+      },
+      "postMigrationName": {
+        "$ref": "#/$keywords/postMigrationName"
+      }
+    },
+    "namespaces/queues/authorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/topics/authorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/topics/subscriptions": {
+      "lockDuration": {
+        "$ref": "#/$keywords/lockDuration_1"
+      },
+      "requiresSession": {
+        "$ref": "#/$keywords/requiresSession_1"
+      },
+      "defaultMessageTimeToLive": {
+        "$ref": "#/$keywords/defaultMessageTimeToLive_1_2"
+      },
+      "deadLetteringOnFilterEvaluationExceptions": {
+        "$ref": "#/$keywords/deadLetteringOnFilterEvaluationExceptions"
+      },
+      "deadLetteringOnMessageExpiration": {
+        "$ref": "#/$keywords/deadLetteringOnMessageExpiration_1"
+      },
+      "duplicateDetectionHistoryTimeWindow": {
+        "$ref": "#/$keywords/duplicateDetectionHistoryTimeWindow_1_2"
+      },
+      "maxDeliveryCount": {
+        "$ref": "#/$keywords/maxDeliveryCount_1"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1_2"
+      },
+      "enableBatchedOperations": {
+        "$ref": "#/$keywords/enableBatchedOperations_1_2"
+      },
+      "autoDeleteOnIdle": {
+        "$ref": "#/$keywords/autoDeleteOnIdle_1_2"
+      },
+      "forwardTo": {
+        "$ref": "#/$keywords/forwardTo_1"
+      },
+      "forwardDeadLetteredMessagesTo": {
+        "$ref": "#/$keywords/forwardDeadLetteredMessagesTo_1"
+      }
+    },
+    "namespaces/topics/subscriptions/rules": {
+      "action": {
+        "$ref": "#/$keywords/action_1"
+      },
+      "filterType": {
+        "$ref": "#/$keywords/filterType"
+      },
+      "sqlFilter": {
+        "$ref": "#/$keywords/sqlFilter"
+      },
+      "correlationFilter": {
+        "$ref": "#/$keywords/correlationFilter"
+      }
+    }
+  }
+}

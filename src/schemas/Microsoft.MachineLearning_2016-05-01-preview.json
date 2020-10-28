@@ -1,0 +1,283 @@
+{
+  "$keywords": {
+    "title": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keys": {
+      "body": {
+        "primary": {
+          "$ref": "#/$keywords/primary"
+        },
+        "secondary": {
+          "$ref": "#/$keywords/secondary"
+        }
+      }
+    },
+    "primary": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "secondary": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "readOnly": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "exposeSampleData": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "realtimeConfiguration": {
+      "body": {
+        "maxConcurrentCalls": {
+          "$ref": "#/$keywords/maxConcurrentCalls"
+        }
+      }
+    },
+    "maxConcurrentCalls": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "diagnostics": {
+      "body": {
+        "level": {
+          "$ref": "#/$keywords/level"
+        },
+        "expiry": {
+          "$ref": "#/$keywords/expiry"
+        }
+      }
+    },
+    "level": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Error",
+            "All"
+          ]
+        }
+      }
+    },
+    "expiry": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccount": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "key": {
+          "$ref": "#/$keywords/key"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "machineLearningWorkspace": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "commitmentPlan": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "input": {
+      "body": {
+        "title": {
+          "$ref": "#/$keywords/title_1"
+        },
+        "description": {
+          "$ref": "#/$keywords/description_1"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      }
+    },
+    "title_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "object"
+        }
+      }
+    },
+    "properties": {
+      "body": {}
+    },
+    "output": {
+      "body": {
+        "title": {
+          "$ref": "#/$keywords/title_1"
+        },
+        "description": {
+          "$ref": "#/$keywords/description_1"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      }
+    },
+    "exampleRequest": {
+      "body": {
+        "inputs": {
+          "$ref": "#/$keywords/inputs"
+        },
+        "globalParameters": {
+          "$ref": "#/$keywords/globalParameters"
+        }
+      }
+    },
+    "inputs": {
+      "body": {}
+    },
+    "globalParameters": {
+      "body": {}
+    },
+    "assets": {
+      "body": {}
+    },
+    "parameters": {
+      "body": {}
+    }
+  },
+  "$resources": {
+    "commitmentPlans": {},
+    "webServices": {
+      "title": {
+        "$ref": "#/$keywords/title"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "keys": {
+        "$ref": "#/$keywords/keys"
+      },
+      "readOnly": {
+        "$ref": "#/$keywords/readOnly"
+      },
+      "exposeSampleData": {
+        "$ref": "#/$keywords/exposeSampleData"
+      },
+      "realtimeConfiguration": {
+        "$ref": "#/$keywords/realtimeConfiguration"
+      },
+      "diagnostics": {
+        "$ref": "#/$keywords/diagnostics"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      },
+      "machineLearningWorkspace": {
+        "$ref": "#/$keywords/machineLearningWorkspace"
+      },
+      "commitmentPlan": {
+        "$ref": "#/$keywords/commitmentPlan"
+      },
+      "input": {
+        "$ref": "#/$keywords/input"
+      },
+      "output": {
+        "$ref": "#/$keywords/output"
+      },
+      "exampleRequest": {
+        "$ref": "#/$keywords/exampleRequest"
+      },
+      "assets": {
+        "$ref": "#/$keywords/assets"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      }
+    }
+  }
+}

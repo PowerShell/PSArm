@@ -1,33 +1,53 @@
 {
-    "$keywords": {
-        "defaultAction": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ]
-                }
-            }
-        },
-        "ipRules": {
-            "parameters": {
-                "ipMask": {
-                    "type": "string"
-                },
-                "action": {}
-            },
-            "array": true
+  "$keywords": {
+    "defaultAction": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Deny"
+          ]
         }
+      }
     },
-    "$resources": {
-        "namespaces/networkRuleSets": {
-            "defaultAction": {
-                "$ref": "#/$keywords/defaultAction"
-            },
-            "ipRules": {
-                "$ref": "#/$keywords/ipRules"
-            }
+    "ipRules": {
+      "body": {
+        "ipMask": {
+          "$ref": "#/$keywords/ipMask"
+        },
+        "action": {
+          "$ref": "#/$keywords/action"
         }
+      },
+      "array": true
+    },
+    "ipMask": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "namespaces/networkRuleSets": {
+      "defaultAction": {
+        "$ref": "#/$keywords/defaultAction"
+      },
+      "ipRules": {
+        "$ref": "#/$keywords/ipRules"
+      }
+    }
+  }
 }

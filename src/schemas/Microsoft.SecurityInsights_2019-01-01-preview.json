@@ -1,0 +1,1122 @@
+{
+  "$keywords": {
+    "closeReason": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Resolved",
+            "Dismissed",
+            "TruePositive",
+            "FalsePositive",
+            "Other"
+          ]
+        }
+      }
+    },
+    "closedReasonText": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labels": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "owner": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      }
+    },
+    "objectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "severity": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low",
+            "Informational"
+          ]
+        }
+      }
+    },
+    "startTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Draft",
+            "New",
+            "InProgress",
+            "Closed"
+          ]
+        }
+      }
+    },
+    "title": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "created": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdBy": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labels_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "notes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "queryResult": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "updated": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "updatedBy": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      }
+    },
+    "incidentInfo": {
+      "body": {
+        "incidentId": {
+          "$ref": "#/$keywords/incidentId"
+        },
+        "severity": {
+          "$ref": "#/$keywords/severity_1"
+        },
+        "title": {
+          "$ref": "#/$keywords/title_1"
+        },
+        "relationName": {
+          "$ref": "#/$keywords/relationName"
+        }
+      }
+    },
+    "incidentId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "severity_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low",
+            "Informational"
+          ]
+        }
+      }
+    },
+    "title_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relationName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "classification": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Undetermined",
+            "TruePositive",
+            "BenignPositive",
+            "FalsePositive"
+          ]
+        }
+      }
+    },
+    "classificationComment": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "classificationReason": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SuspiciousActivity",
+            "SuspiciousButExpected",
+            "IncorrectAlertLogic",
+            "InaccurateData"
+          ]
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "firstActivityTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labels_1_2": {
+      "body": {
+        "labelName": {
+          "$ref": "#/$keywords/labelName"
+        }
+      },
+      "array": true
+    },
+    "labelName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastActivityTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "owner_1": {
+      "body": {
+        "email": {
+          "$ref": "#/$keywords/email"
+        },
+        "assignedTo": {
+          "$ref": "#/$keywords/assignedTo"
+        },
+        "objectId": {
+          "$ref": "#/$keywords/objectId_1"
+        },
+        "userPrincipalName": {
+          "$ref": "#/$keywords/userPrincipalName"
+        }
+      }
+    },
+    "email": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "assignedTo": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "objectId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userPrincipalName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "severity_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "High",
+            "Medium",
+            "Low",
+            "Informational"
+          ]
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "New",
+            "Active",
+            "Closed"
+          ]
+        }
+      }
+    },
+    "title_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdBy_1": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      }
+    },
+    "displayName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "watchlistType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Local file",
+            "Remote storage"
+          ]
+        }
+      }
+    },
+    "provider": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "workspaceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labels_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "notes_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastUpdatedTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "updatedBy_1": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      }
+    },
+    "defaultDuration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "watchlistItems": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "properties": {
+      "body": {
+        "createdBy": {
+          "$ref": "#/$keywords/createdBy_1_2"
+        },
+        "updatedBy": {
+          "$ref": "#/$keywords/updatedBy_1_2"
+        },
+        "watchlistItemName": {
+          "$ref": "#/$keywords/watchlistItemName"
+        },
+        "watchlistItemPair": {
+          "$ref": "#/$keywords/watchlistItemPair"
+        },
+        "entityMapping": {
+          "$ref": "#/$keywords/entityMapping"
+        },
+        "tenantId": {
+          "$ref": "#/$keywords/tenantId_1"
+        },
+        "createdTimeUtc": {
+          "$ref": "#/$keywords/createdTimeUtc_1"
+        },
+        "lastUpdatedTimeUtc": {
+          "$ref": "#/$keywords/lastUpdatedTimeUtc_1"
+        },
+        "timeToLiveUtc": {
+          "$ref": "#/$keywords/timeToLiveUtc"
+        },
+        "watchlistItemType": {
+          "$ref": "#/$keywords/watchlistItemType"
+        },
+        "watchlistId": {
+          "$ref": "#/$keywords/watchlistId"
+        }
+      }
+    },
+    "createdBy_1_2": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      }
+    },
+    "updatedBy_1_2": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      }
+    },
+    "watchlistItemName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "watchlistItemPair": {
+      "body": {}
+    },
+    "entityMapping": {
+      "body": {}
+    },
+    "tenantId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdTimeUtc_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastUpdatedTimeUtc_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "timeToLiveUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "watchlistItemType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "watchlistId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logicAppResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "triggerUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "message": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relationName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceRelationNode": {
+      "body": {
+        "relationNodeId": {
+          "$ref": "#/$keywords/relationNodeId"
+        },
+        "etag": {
+          "$ref": "#/$keywords/etag"
+        },
+        "relationAdditionalProperties": {
+          "$ref": "#/$keywords/relationAdditionalProperties"
+        }
+      }
+    },
+    "relationNodeId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "etag": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relationAdditionalProperties": {
+      "body": {}
+    },
+    "targetRelationNode": {
+      "body": {
+        "relationNodeId": {
+          "$ref": "#/$keywords/relationNodeId"
+        },
+        "etag": {
+          "$ref": "#/$keywords/etag"
+        },
+        "relationAdditionalProperties": {
+          "$ref": "#/$keywords/relationAdditionalProperties"
+        }
+      }
+    },
+    "relatedResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "message_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "threatIntelligenceTags": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "lastUpdatedTimeUtc_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "source_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "indicatorTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "pattern": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "patternType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "killChainPhases": {
+      "body": {
+        "killChainName": {
+          "$ref": "#/$keywords/killChainName"
+        },
+        "phaseName": {
+          "$ref": "#/$keywords/phaseName"
+        }
+      },
+      "array": true
+    },
+    "killChainName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phaseName": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "externalId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdByRef": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "externalReferences": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "granularMarkings": {
+      "body": {
+        "language": {
+          "$ref": "#/$keywords/language"
+        },
+        "markingRef": {
+          "$ref": "#/$keywords/markingRef"
+        },
+        "selectors": {
+          "$ref": "#/$keywords/selectors"
+        }
+      },
+      "array": true
+    },
+    "language": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "markingRef": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "selectors": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "revoked": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "confidence": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "labels_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "threatTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "validFrom": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "validUntil": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "created_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "modified": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "alertRules": {},
+    "cases": {
+      "closeReason": {
+        "$ref": "#/$keywords/closeReason"
+      },
+      "closedReasonText": {
+        "$ref": "#/$keywords/closedReasonText"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "endTimeUtc": {
+        "$ref": "#/$keywords/endTimeUtc"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels"
+      },
+      "owner": {
+        "$ref": "#/$keywords/owner"
+      },
+      "severity": {
+        "$ref": "#/$keywords/severity"
+      },
+      "startTimeUtc": {
+        "$ref": "#/$keywords/startTimeUtc"
+      },
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "title": {
+        "$ref": "#/$keywords/title"
+      }
+    },
+    "bookmarks": {
+      "created": {
+        "$ref": "#/$keywords/created"
+      },
+      "createdBy": {
+        "$ref": "#/$keywords/createdBy"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels_1"
+      },
+      "notes": {
+        "$ref": "#/$keywords/notes"
+      },
+      "query": {
+        "$ref": "#/$keywords/query"
+      },
+      "queryResult": {
+        "$ref": "#/$keywords/queryResult"
+      },
+      "updated": {
+        "$ref": "#/$keywords/updated"
+      },
+      "updatedBy": {
+        "$ref": "#/$keywords/updatedBy"
+      },
+      "incidentInfo": {
+        "$ref": "#/$keywords/incidentInfo"
+      }
+    },
+    "dataConnectors": {},
+    "settings": {},
+    "incidents": {
+      "classification": {
+        "$ref": "#/$keywords/classification"
+      },
+      "classificationComment": {
+        "$ref": "#/$keywords/classificationComment"
+      },
+      "classificationReason": {
+        "$ref": "#/$keywords/classificationReason"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "firstActivityTimeUtc": {
+        "$ref": "#/$keywords/firstActivityTimeUtc"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels_1_2"
+      },
+      "lastActivityTimeUtc": {
+        "$ref": "#/$keywords/lastActivityTimeUtc"
+      },
+      "owner": {
+        "$ref": "#/$keywords/owner_1"
+      },
+      "severity": {
+        "$ref": "#/$keywords/severity_1_2"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1"
+      },
+      "title": {
+        "$ref": "#/$keywords/title_1_2"
+      }
+    },
+    "watchlists": {
+      "createdTimeUtc": {
+        "$ref": "#/$keywords/createdTimeUtc"
+      },
+      "createdBy": {
+        "$ref": "#/$keywords/createdBy_1"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName_1"
+      },
+      "watchlistType": {
+        "$ref": "#/$keywords/watchlistType"
+      },
+      "source": {
+        "$ref": "#/$keywords/source"
+      },
+      "provider": {
+        "$ref": "#/$keywords/provider"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "tenantId": {
+        "$ref": "#/$keywords/tenantId"
+      },
+      "workspaceId": {
+        "$ref": "#/$keywords/workspaceId"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels_1_2_3"
+      },
+      "notes": {
+        "$ref": "#/$keywords/notes_1"
+      },
+      "lastUpdatedTimeUtc": {
+        "$ref": "#/$keywords/lastUpdatedTimeUtc"
+      },
+      "updatedBy": {
+        "$ref": "#/$keywords/updatedBy_1"
+      },
+      "defaultDuration": {
+        "$ref": "#/$keywords/defaultDuration"
+      },
+      "watchlistItems": {
+        "$ref": "#/$keywords/watchlistItems"
+      }
+    },
+    "alertRules/actions": {
+      "logicAppResourceId": {
+        "$ref": "#/$keywords/logicAppResourceId"
+      },
+      "triggerUri": {
+        "$ref": "#/$keywords/triggerUri"
+      }
+    },
+    "cases/comments": {
+      "message": {
+        "$ref": "#/$keywords/message"
+      }
+    },
+    "cases/relations": {
+      "relationName": {
+        "$ref": "#/$keywords/relationName_1"
+      },
+      "sourceRelationNode": {
+        "$ref": "#/$keywords/sourceRelationNode"
+      },
+      "targetRelationNode": {
+        "$ref": "#/$keywords/targetRelationNode"
+      }
+    },
+    "bookmarks/relations": {
+      "relatedResourceId": {
+        "$ref": "#/$keywords/relatedResourceId"
+      }
+    },
+    "incidents/comments": {
+      "message": {
+        "$ref": "#/$keywords/message_1"
+      }
+    },
+    "incidents/relations": {
+      "relatedResourceId": {
+        "$ref": "#/$keywords/relatedResourceId"
+      }
+    },
+    "threatIntelligence/indicators": {
+      "threatIntelligenceTags": {
+        "$ref": "#/$keywords/threatIntelligenceTags"
+      },
+      "lastUpdatedTimeUtc": {
+        "$ref": "#/$keywords/lastUpdatedTimeUtc_1_2"
+      },
+      "source": {
+        "$ref": "#/$keywords/source_1"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName_1_2"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3"
+      },
+      "indicatorTypes": {
+        "$ref": "#/$keywords/indicatorTypes"
+      },
+      "pattern": {
+        "$ref": "#/$keywords/pattern"
+      },
+      "patternType": {
+        "$ref": "#/$keywords/patternType"
+      },
+      "killChainPhases": {
+        "$ref": "#/$keywords/killChainPhases"
+      },
+      "externalId": {
+        "$ref": "#/$keywords/externalId"
+      },
+      "createdByRef": {
+        "$ref": "#/$keywords/createdByRef"
+      },
+      "externalReferences": {
+        "$ref": "#/$keywords/externalReferences"
+      },
+      "granularMarkings": {
+        "$ref": "#/$keywords/granularMarkings"
+      },
+      "revoked": {
+        "$ref": "#/$keywords/revoked"
+      },
+      "confidence": {
+        "$ref": "#/$keywords/confidence"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels_1_2_3_4"
+      },
+      "threatTypes": {
+        "$ref": "#/$keywords/threatTypes"
+      },
+      "validFrom": {
+        "$ref": "#/$keywords/validFrom"
+      },
+      "validUntil": {
+        "$ref": "#/$keywords/validUntil"
+      },
+      "created": {
+        "$ref": "#/$keywords/created_1"
+      },
+      "modified": {
+        "$ref": "#/$keywords/modified"
+      }
+    }
+  }
+}

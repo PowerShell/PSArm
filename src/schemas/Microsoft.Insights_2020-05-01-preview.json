@@ -1,190 +1,278 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "severity": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        0,
-                        1,
-                        2,
-                        3,
-                        4
-                    ]
-                }
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "scopes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "evaluationFrequency": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "windowSize": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "targetResourceTypes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "criteria": {
-            "body": {
-                "allOf": {
-                    "$ref": "#/$keywords/allOf"
-                }
-            }
-        },
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "severity": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "scopes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "evaluationFrequency": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "windowSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetResourceTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "criteria": {
+      "body": {
         "allOf": {
-            "parameters": {
-                "query": {
-                    "type": "string"
-                },
-                "timeAggregation": {
-                    "enum": [
-                        "Count",
-                        "Average",
-                        "Minimum",
-                        "Maximum",
-                        "Total"
-                    ]
-                },
-                "metricMeasureColumn": {
-                    "type": "string"
-                },
-                "resourceIdColumn": {
-                    "type": "string"
-                },
-                "operator": {
-                    "enum": [
-                        "Equals",
-                        "GreaterThan",
-                        "GreaterThanOrEqual",
-                        "LessThan",
-                        "LessThanOrEqual"
-                    ]
-                },
-                "threshold": {}
-            },
-            "body": {
-                "dimensions": {
-                    "$ref": "#/$keywords/dimensions"
-                },
-                "failingPeriods": {
-                    "$ref": "#/$keywords/failingPeriods"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/allOf"
+        }
+      }
+    },
+    "allOf": {
+      "body": {
+        "query": {
+          "$ref": "#/$keywords/query"
+        },
+        "timeAggregation": {
+          "$ref": "#/$keywords/timeAggregation"
+        },
+        "metricMeasureColumn": {
+          "$ref": "#/$keywords/metricMeasureColumn"
+        },
+        "resourceIdColumn": {
+          "$ref": "#/$keywords/resourceIdColumn"
         },
         "dimensions": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "operator": {
-                    "enum": [
-                        "Include",
-                        "Exclude"
-                    ]
-                }
-            },
-            "body": {
-                "values": {
-                    "$ref": "#/$keywords/values"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/dimensions"
         },
-        "values": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "operator": {
+          "$ref": "#/$keywords/operator_1"
+        },
+        "threshold": {
+          "$ref": "#/$keywords/threshold"
         },
         "failingPeriods": {
-            "parameters": {
-                "numberOfEvaluationPeriods": {
-                    "type": "int"
-                },
-                "minFailingPeriodsToAlert": {
-                    "type": "int"
-                }
-            }
-        },
-        "muteActionsDuration": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "actions": {
-            "parameters": {
-                "actionGroupId": {
-                    "type": "string"
-                },
-                "webHookProperties": {}
-            },
-            "array": true
+          "$ref": "#/$keywords/failingPeriods"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "scheduledQueryRules": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "severity": {
-                "$ref": "#/$keywords/severity"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "scopes": {
-                "$ref": "#/$keywords/scopes"
-            },
-            "evaluationFrequency": {
-                "$ref": "#/$keywords/evaluationFrequency"
-            },
-            "windowSize": {
-                "$ref": "#/$keywords/windowSize"
-            },
-            "targetResourceTypes": {
-                "$ref": "#/$keywords/targetResourceTypes"
-            },
-            "criteria": {
-                "$ref": "#/$keywords/criteria"
-            },
-            "muteActionsDuration": {
-                "$ref": "#/$keywords/muteActionsDuration"
-            },
-            "actions": {
-                "$ref": "#/$keywords/actions"
-            }
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "timeAggregation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Count",
+            "Average",
+            "Minimum",
+            "Maximum",
+            "Total"
+          ]
+        }
+      }
+    },
+    "metricMeasureColumn": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceIdColumn": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dimensions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        },
+        "values": {
+          "$ref": "#/$keywords/values"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operator": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Include",
+            "Exclude"
+          ]
+        }
+      }
+    },
+    "values": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "operator_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Equals",
+            "GreaterThan",
+            "GreaterThanOrEqual",
+            "LessThan",
+            "LessThanOrEqual"
+          ]
+        }
+      }
+    },
+    "threshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "failingPeriods": {
+      "body": {
+        "numberOfEvaluationPeriods": {
+          "$ref": "#/$keywords/numberOfEvaluationPeriods"
+        },
+        "minFailingPeriodsToAlert": {
+          "$ref": "#/$keywords/minFailingPeriodsToAlert"
+        }
+      }
+    },
+    "numberOfEvaluationPeriods": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1
+        }
+      }
+    },
+    "minFailingPeriodsToAlert": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1
+        }
+      }
+    },
+    "muteActionsDuration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "actions": {
+      "body": {
+        "actionGroupId": {
+          "$ref": "#/$keywords/actionGroupId"
+        },
+        "webHookProperties": {
+          "$ref": "#/$keywords/webHookProperties"
+        }
+      },
+      "array": true
+    },
+    "actionGroupId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "webHookProperties": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "scheduledQueryRules": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "severity": {
+        "$ref": "#/$keywords/severity"
+      },
+      "enabled": {
+        "$ref": "#/$keywords/enabled"
+      },
+      "scopes": {
+        "$ref": "#/$keywords/scopes"
+      },
+      "evaluationFrequency": {
+        "$ref": "#/$keywords/evaluationFrequency"
+      },
+      "windowSize": {
+        "$ref": "#/$keywords/windowSize"
+      },
+      "targetResourceTypes": {
+        "$ref": "#/$keywords/targetResourceTypes"
+      },
+      "criteria": {
+        "$ref": "#/$keywords/criteria"
+      },
+      "muteActionsDuration": {
+        "$ref": "#/$keywords/muteActionsDuration"
+      },
+      "actions": {
+        "$ref": "#/$keywords/actions"
+      }
+    }
+  }
 }

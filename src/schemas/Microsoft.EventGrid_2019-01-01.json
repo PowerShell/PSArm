@@ -1,141 +1,110 @@
 {
-    "$keywords": {
-        "topic": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "destination": {
+      "body": {}
+    },
+    "filter": {
+      "body": {
+        "subjectBeginsWith": {
+          "$ref": "#/$keywords/subjectBeginsWith"
         },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed",
-                        "AwaitingManualAction"
-                    ]
-                }
-            }
-        },
-        "destination": {
-            "parameters": {
-                "endpointType": {
-                    "enum": [
-                        "WebHook",
-                        "EventHub",
-                        "StorageQueue",
-                        "HybridConnection"
-                    ]
-                }
-            }
-        },
-        "filter": {
-            "parameters": {
-                "subjectBeginsWith": {
-                    "type": "string"
-                },
-                "subjectEndsWith": {
-                    "type": "string"
-                },
-                "isSubjectCaseSensitive": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "includedEventTypes": {
-                    "$ref": "#/$keywords/includedEventTypes"
-                }
-            }
+        "subjectEndsWith": {
+          "$ref": "#/$keywords/subjectEndsWith"
         },
         "includedEventTypes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/includedEventTypes"
         },
-        "labels": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "retryPolicy": {
-            "parameters": {
-                "maxDeliveryAttempts": {
-                    "type": "int"
-                },
-                "eventTimeToLiveInMinutes": {
-                    "type": "int"
-                }
-            }
-        },
-        "deadLetterDestination": {
-            "parameters": {
-                "endpointType": {}
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "endpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "isSubjectCaseSensitive": {
+          "$ref": "#/$keywords/isSubjectCaseSensitive"
         }
+      }
     },
-    "$resources": {
-        "eventSubscriptions": {
-            "topic": {
-                "$ref": "#/$keywords/topic"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "destination": {
-                "$ref": "#/$keywords/destination"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter"
-            },
-            "labels": {
-                "$ref": "#/$keywords/labels"
-            },
-            "retryPolicy": {
-                "$ref": "#/$keywords/retryPolicy"
-            },
-            "deadLetterDestination": {
-                "$ref": "#/$keywords/deadLetterDestination"
-            }
-        },
-        "topics": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint"
-            }
+    "subjectBeginsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "subjectEndsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "includedEventTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isSubjectCaseSensitive": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "labels": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "retryPolicy": {
+      "body": {
+        "maxDeliveryAttempts": {
+          "$ref": "#/$keywords/maxDeliveryAttempts"
+        },
+        "eventTimeToLiveInMinutes": {
+          "$ref": "#/$keywords/eventTimeToLiveInMinutes"
+        }
+      }
+    },
+    "maxDeliveryAttempts": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "eventTimeToLiveInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "deadLetterDestination": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "eventSubscriptions": {
+      "destination": {
+        "$ref": "#/$keywords/destination"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels"
+      },
+      "retryPolicy": {
+        "$ref": "#/$keywords/retryPolicy"
+      },
+      "deadLetterDestination": {
+        "$ref": "#/$keywords/deadLetterDestination"
+      }
+    },
+    "topics": {}
+  }
 }

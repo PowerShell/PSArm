@@ -1,296 +1,238 @@
 {
-    "$keywords": {
-        "osProfile": {
-            "parameters": {
-                "computerName": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "lastStatusChange": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "errorDetails": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "target": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            },
-            "array": true
-        },
-        "details": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "target": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            },
-            "array": true
-        },
-        "agentVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vmId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "machineFqdn": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "physicalLocation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "clientPublicKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "osName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "osVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "extensions": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "typeHandlerVersion": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "status": {
-                    "$ref": "#/$keywords/status_2"
-                }
-            },
-            "array": true
-        },
-        "status_2": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "level": {},
-                "displayStatus": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "time": {}
-            }
-        },
-        "forceUpdateTag": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "publisher": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "osProfile": {
+      "body": {}
+    },
+    "physicalLocation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clientPublicKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "extensions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
         "type": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/type"
         },
         "typeHandlerVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/typeHandlerVersion"
         },
-        "autoUpgradeMinorVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "settings": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "instanceView": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "typeHandlerVersion": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "status": {
-                    "$ref": "#/$keywords/status_2"
-                }
-            }
+        "status": {
+          "$ref": "#/$keywords/status"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "machines": {
-            "osProfile": {
-                "$ref": "#/$keywords/osProfile"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "lastStatusChange": {
-                "$ref": "#/$keywords/lastStatusChange"
-            },
-            "errorDetails": {
-                "$ref": "#/$keywords/errorDetails"
-            },
-            "agentVersion": {
-                "$ref": "#/$keywords/agentVersion"
-            },
-            "vmId": {
-                "$ref": "#/$keywords/vmId"
-            },
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            },
-            "machineFqdn": {
-                "$ref": "#/$keywords/machineFqdn"
-            },
-            "physicalLocation": {
-                "$ref": "#/$keywords/physicalLocation"
-            },
-            "clientPublicKey": {
-                "$ref": "#/$keywords/clientPublicKey"
-            },
-            "osName": {
-                "$ref": "#/$keywords/osName"
-            },
-            "osVersion": {
-                "$ref": "#/$keywords/osVersion"
-            },
-            "extensions": {
-                "$ref": "#/$keywords/extensions"
-            }
-        },
-        "machines/extensions": {
-            "forceUpdateTag": {
-                "$ref": "#/$keywords/forceUpdateTag"
-            },
-            "publisher": {
-                "$ref": "#/$keywords/publisher"
-            },
-            "type": {
-                "$ref": "#/$keywords/type"
-            },
-            "typeHandlerVersion": {
-                "$ref": "#/$keywords/typeHandlerVersion"
-            },
-            "autoUpgradeMinorVersion": {
-                "$ref": "#/$keywords/autoUpgradeMinorVersion"
-            },
-            "settings": {
-                "$ref": "#/$keywords/settings"
-            },
-            "protectedSettings": {
-                "$ref": "#/$keywords/settings"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "instanceView": {
-                "$ref": "#/$keywords/instanceView"
-            }
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "typeHandlerVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "body": {
+        "code": {
+          "$ref": "#/$keywords/code"
+        },
+        "level": {
+          "$ref": "#/$keywords/level"
+        },
+        "displayStatus": {
+          "$ref": "#/$keywords/displayStatus"
+        },
+        "message": {
+          "$ref": "#/$keywords/message"
+        },
+        "time": {
+          "$ref": "#/$keywords/time"
+        }
+      }
+    },
+    "code": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "level": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Info",
+            "Warning",
+            "Error"
+          ]
+        }
+      }
+    },
+    "displayStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "message": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "time": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "forceUpdateTag": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publisher": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "typeHandlerVersion_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "autoUpgradeMinorVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "settings": {
+      "body": {}
+    },
+    "protectedSettings": {
+      "body": {}
+    },
+    "instanceView": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "typeHandlerVersion": {
+          "$ref": "#/$keywords/typeHandlerVersion"
+        },
+        "status": {
+          "$ref": "#/$keywords/status"
+        }
+      }
     }
+  },
+  "$resources": {
+    "machines": {
+      "osProfile": {
+        "$ref": "#/$keywords/osProfile"
+      },
+      "physicalLocation": {
+        "$ref": "#/$keywords/physicalLocation"
+      },
+      "clientPublicKey": {
+        "$ref": "#/$keywords/clientPublicKey"
+      },
+      "osName": {
+        "$ref": "#/$keywords/osName"
+      },
+      "osVersion": {
+        "$ref": "#/$keywords/osVersion"
+      },
+      "extensions": {
+        "$ref": "#/$keywords/extensions"
+      }
+    },
+    "machines/extensions": {
+      "forceUpdateTag": {
+        "$ref": "#/$keywords/forceUpdateTag"
+      },
+      "publisher": {
+        "$ref": "#/$keywords/publisher"
+      },
+      "type": {
+        "$ref": "#/$keywords/type_1"
+      },
+      "typeHandlerVersion": {
+        "$ref": "#/$keywords/typeHandlerVersion_1"
+      },
+      "autoUpgradeMinorVersion": {
+        "$ref": "#/$keywords/autoUpgradeMinorVersion"
+      },
+      "settings": {
+        "$ref": "#/$keywords/settings"
+      },
+      "protectedSettings": {
+        "$ref": "#/$keywords/protectedSettings"
+      },
+      "instanceView": {
+        "$ref": "#/$keywords/instanceView"
+      }
+    }
+  }
 }

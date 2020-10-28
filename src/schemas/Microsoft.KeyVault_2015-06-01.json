@@ -1,174 +1,231 @@
 {
-    "$keywords": {
-        "vaultUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "vaultUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sku": {
+      "body": {
+        "family": {
+          "$ref": "#/$keywords/family"
         },
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      }
+    },
+    "family": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "A"
+          ]
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "premium"
+          ]
+        }
+      }
+    },
+    "accessPolicies": {
+      "body": {
         "tenantId": {
-            "propertyParameters": {
-                "value": {}
-            }
+          "$ref": "#/$keywords/tenantId_1"
         },
-        "sku": {
-            "parameters": {
-                "family": {},
-                "name": {}
-            }
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
         },
-        "accessPolicies": {
-            "parameters": {
-                "tenantId": {},
-                "objectId": {
-                    "type": "string"
-                },
-                "applicationId": {}
-            },
-            "body": {
-                "permissions": {
-                    "$ref": "#/$keywords/permissions"
-                }
-            },
-            "array": true
+        "applicationId": {
+          "$ref": "#/$keywords/applicationId"
         },
         "permissions": {
-            "body": {
-                "keys": {
-                    "$ref": "#/$keywords/keys"
-                },
-                "secrets": {
-                    "$ref": "#/$keywords/secrets"
-                },
-                "certificates": {
-                    "$ref": "#/$keywords/certificates"
-                }
-            }
-        },
+          "$ref": "#/$keywords/permissions"
+        }
+      },
+      "array": true
+    },
+    "tenantId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "objectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applicationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "permissions": {
+      "body": {
         "keys": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "all",
-                        "encrypt",
-                        "decrypt",
-                        "wrapKey",
-                        "unwrapKey",
-                        "sign",
-                        "verify",
-                        "get",
-                        "list",
-                        "create",
-                        "update",
-                        "import",
-                        "delete",
-                        "backup",
-                        "restore",
-                        "recover",
-                        "purge"
-                    ]
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/keys"
         },
         "secrets": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "all",
-                        "get",
-                        "list",
-                        "set",
-                        "delete",
-                        "backup",
-                        "restore",
-                        "recover",
-                        "purge"
-                    ]
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/secrets"
         },
         "certificates": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "all",
-                        "get",
-                        "list",
-                        "delete",
-                        "create",
-                        "import",
-                        "update",
-                        "managecontacts",
-                        "getissuers",
-                        "listissuers",
-                        "setissuers",
-                        "deleteissuers",
-                        "manageissuers",
-                        "recover",
-                        "purge"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "enabledForDeployment": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enabledForDiskEncryption": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enabledForTemplateDeployment": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enableSoftDelete": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/certificates"
         }
+      }
     },
-    "$resources": {
-        "vaults": {
-            "vaultUri": {
-                "$ref": "#/$keywords/vaultUri"
-            },
-            "tenantId": {
-                "$ref": "#/$keywords/tenantId"
-            },
-            "sku": {
-                "$ref": "#/$keywords/sku"
-            },
-            "accessPolicies": {
-                "$ref": "#/$keywords/accessPolicies"
-            },
-            "enabledForDeployment": {
-                "$ref": "#/$keywords/enabledForDeployment"
-            },
-            "enabledForDiskEncryption": {
-                "$ref": "#/$keywords/enabledForDiskEncryption"
-            },
-            "enabledForTemplateDeployment": {
-                "$ref": "#/$keywords/enabledForTemplateDeployment"
-            },
-            "enableSoftDelete": {
-                "$ref": "#/$keywords/enableSoftDelete"
-            }
+    "keys": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "all",
+            "encrypt",
+            "decrypt",
+            "wrapKey",
+            "unwrapKey",
+            "sign",
+            "verify",
+            "get",
+            "list",
+            "create",
+            "update",
+            "import",
+            "delete",
+            "backup",
+            "restore",
+            "recover",
+            "purge"
+          ]
         }
+      },
+      "array": true
+    },
+    "secrets": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "all",
+            "get",
+            "list",
+            "set",
+            "delete",
+            "backup",
+            "restore",
+            "recover",
+            "purge"
+          ]
+        }
+      },
+      "array": true
+    },
+    "certificates": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "all",
+            "get",
+            "list",
+            "delete",
+            "create",
+            "import",
+            "update",
+            "managecontacts",
+            "getissuers",
+            "listissuers",
+            "setissuers",
+            "deleteissuers",
+            "manageissuers",
+            "recover",
+            "purge"
+          ]
+        }
+      },
+      "array": true
+    },
+    "enabledForDeployment": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enabledForDiskEncryption": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enabledForTemplateDeployment": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableSoftDelete": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "vaults": {
+      "vaultUri": {
+        "$ref": "#/$keywords/vaultUri"
+      },
+      "tenantId": {
+        "$ref": "#/$keywords/tenantId"
+      },
+      "sku": {
+        "$ref": "#/$keywords/sku"
+      },
+      "accessPolicies": {
+        "$ref": "#/$keywords/accessPolicies"
+      },
+      "enabledForDeployment": {
+        "$ref": "#/$keywords/enabledForDeployment"
+      },
+      "enabledForDiskEncryption": {
+        "$ref": "#/$keywords/enabledForDiskEncryption"
+      },
+      "enabledForTemplateDeployment": {
+        "$ref": "#/$keywords/enabledForTemplateDeployment"
+      },
+      "enableSoftDelete": {
+        "$ref": "#/$keywords/enableSoftDelete"
+      }
+    }
+  }
 }

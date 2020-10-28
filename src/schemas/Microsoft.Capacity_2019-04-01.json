@@ -1,142 +1,156 @@
 {
-    "$keywords": {
-        "reservedResourceType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "VirtualMachines",
-                        "SqlDatabases",
-                        "SuseLinux",
-                        "CosmosDb",
-                        "RedHat",
-                        "SqlDataWarehouse",
-                        "VMwareCloudSimple",
-                        "RedHatOsa",
-                        "Databricks",
-                        "AppService",
-                        "ManagedDisk",
-                        "BlockBlob",
-                        "RedisCache",
-                        "AzureDataExplorer",
-                        "MySql",
-                        "MariaDb",
-                        "PostgreSql",
-                        "DedicatedHost",
-                        "SapHana",
-                        "SqlAzureHybridBenefit"
-                    ]
-                }
-            }
-        },
-        "billingScopeId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "term": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "P1Y",
-                        "P3Y"
-                    ]
-                }
-            }
-        },
-        "billingPlan": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Upfront",
-                        "Monthly"
-                    ]
-                }
-            }
-        },
-        "quantity": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "appliedScopeType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Single",
-                        "Shared"
-                    ]
-                }
-            }
-        },
-        "appliedScopes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "renew": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "reservedResourceProperties": {
-            "parameters": {
-                "instanceFlexibility": {
-                    "enum": [
-                        "On",
-                        "Off"
-                    ]
-                }
-            }
+  "$keywords": {
+    "reservedResourceType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "VirtualMachines",
+            "SqlDatabases",
+            "SuseLinux",
+            "CosmosDb",
+            "RedHat",
+            "SqlDataWarehouse",
+            "VMwareCloudSimple",
+            "RedHatOsa",
+            "Databricks",
+            "AppService",
+            "ManagedDisk",
+            "BlockBlob",
+            "RedisCache",
+            "AzureDataExplorer",
+            "MySql",
+            "MariaDb",
+            "PostgreSql",
+            "DedicatedHost",
+            "SapHana",
+            "SqlAzureHybridBenefit"
+          ]
         }
+      }
     },
-    "$resources": {
-        "reservationOrders": {
-            "reservedResourceType": {
-                "$ref": "#/$keywords/reservedResourceType"
-            },
-            "billingScopeId": {
-                "$ref": "#/$keywords/billingScopeId"
-            },
-            "term": {
-                "$ref": "#/$keywords/term"
-            },
-            "billingPlan": {
-                "$ref": "#/$keywords/billingPlan"
-            },
-            "quantity": {
-                "$ref": "#/$keywords/quantity"
-            },
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            },
-            "appliedScopeType": {
-                "$ref": "#/$keywords/appliedScopeType"
-            },
-            "appliedScopes": {
-                "$ref": "#/$keywords/appliedScopes"
-            },
-            "renew": {
-                "$ref": "#/$keywords/renew"
-            },
-            "reservedResourceProperties": {
-                "$ref": "#/$keywords/reservedResourceProperties"
-            }
+    "billingScopeId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "term": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "P1Y",
+            "P3Y"
+          ]
+        }
+      }
+    },
+    "billingPlan": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Upfront",
+            "Monthly"
+          ]
+        }
+      }
+    },
+    "quantity": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "appliedScopeType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Single",
+            "Shared"
+          ]
+        }
+      }
+    },
+    "appliedScopes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "renew": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "reservedResourceProperties": {
+      "body": {
+        "instanceFlexibility": {
+          "$ref": "#/$keywords/instanceFlexibility"
+        }
+      }
+    },
+    "instanceFlexibility": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "On",
+            "Off"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "reservationOrders": {
+      "reservedResourceType": {
+        "$ref": "#/$keywords/reservedResourceType"
+      },
+      "billingScopeId": {
+        "$ref": "#/$keywords/billingScopeId"
+      },
+      "term": {
+        "$ref": "#/$keywords/term"
+      },
+      "billingPlan": {
+        "$ref": "#/$keywords/billingPlan"
+      },
+      "quantity": {
+        "$ref": "#/$keywords/quantity"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "appliedScopeType": {
+        "$ref": "#/$keywords/appliedScopeType"
+      },
+      "appliedScopes": {
+        "$ref": "#/$keywords/appliedScopes"
+      },
+      "renew": {
+        "$ref": "#/$keywords/renew"
+      },
+      "reservedResourceProperties": {
+        "$ref": "#/$keywords/reservedResourceProperties"
+      }
+    }
+  }
 }

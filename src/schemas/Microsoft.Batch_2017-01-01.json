@@ -1,40 +1,68 @@
 {
-    "$keywords": {
-        "autoStorage": {
-            "parameters": {
-                "storageAccountId": {
-                    "type": "string"
-                }
-            }
-        },
-        "poolAllocationMode": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "keyVaultReference": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "autoStorage": {
+      "body": {
+        "storageAccountId": {
+          "$ref": "#/$keywords/storageAccountId"
         }
+      }
     },
-    "$resources": {
-        "batchAccounts": {
-            "autoStorage": {
-                "$ref": "#/$keywords/autoStorage"
-            },
-            "poolAllocationMode": {
-                "$ref": "#/$keywords/poolAllocationMode"
-            },
-            "keyVaultReference": {
-                "$ref": "#/$keywords/keyVaultReference"
-            }
+    "storageAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "poolAllocationMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "BatchService",
+            "UserSubscription"
+          ]
+        }
+      }
+    },
+    "keyVaultReference": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         },
-        "batchAccounts/applications": {}
+        "url": {
+          "$ref": "#/$keywords/url"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "url": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "batchAccounts": {
+      "autoStorage": {
+        "$ref": "#/$keywords/autoStorage"
+      },
+      "poolAllocationMode": {
+        "$ref": "#/$keywords/poolAllocationMode"
+      },
+      "keyVaultReference": {
+        "$ref": "#/$keywords/keyVaultReference"
+      }
+    },
+    "batchAccounts/applications": {},
+    "batchAccounts/applications/versions": {}
+  }
 }

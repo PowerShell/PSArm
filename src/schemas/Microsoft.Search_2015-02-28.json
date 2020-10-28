@@ -1,36 +1,52 @@
 {
-    "$keywords": {
-        "sku": {
-            "parameters": {
-                "name": {}
-            }
-        },
-        "replicaCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "partitionCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
+  "$keywords": {
+    "sku": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         }
+      }
     },
-    "$resources": {
-        "searchServices": {
-            "sku": {
-                "$ref": "#/$keywords/sku"
-            },
-            "replicaCount": {
-                "$ref": "#/$keywords/replicaCount"
-            },
-            "partitionCount": {
-                "$ref": "#/$keywords/partitionCount"
-            }
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "free",
+            "standard",
+            "standard2"
+          ]
         }
+      }
+    },
+    "replicaCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "partitionCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
     }
+  },
+  "$resources": {
+    "searchServices": {
+      "sku": {
+        "$ref": "#/$keywords/sku"
+      },
+      "replicaCount": {
+        "$ref": "#/$keywords/replicaCount"
+      },
+      "partitionCount": {
+        "$ref": "#/$keywords/partitionCount"
+      }
+    }
+  }
 }

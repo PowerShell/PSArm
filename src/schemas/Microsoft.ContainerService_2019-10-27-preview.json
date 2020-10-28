@@ -1,272 +1,348 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "openShiftVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "networkProfile": {
+      "body": {
+        "vnetCidr": {
+          "$ref": "#/$keywords/vnetCidr"
         },
-        "openShiftVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "managementSubnetCidr": {
+          "$ref": "#/$keywords/managementSubnetCidr"
         },
-        "clusterVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "vnetId": {
+          "$ref": "#/$keywords/vnetId"
+        }
+      }
+    },
+    "vnetCidr": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "10.0.0.0/8"
+        }
+      }
+    },
+    "managementSubnetCidr": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "routerProfiles": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "masterPoolProfile": {
+      "body": {
+        "count": {
+          "$ref": "#/$keywords/count"
         },
-        "publicHostname": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize"
         },
-        "fqdn": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "networkProfile": {
-            "parameters": {
-                "vnetCidr": {
-                    "type": "string"
-                },
-                "managementSubnetCidr": {
-                    "type": "string"
-                },
-                "vnetId": {
-                    "type": "string"
-                }
-            }
-        },
-        "routerProfiles": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "publicSubdomain": {
-                    "type": "string"
-                },
-                "fqdn": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "masterPoolProfile": {
-            "parameters": {
-                "count": {
-                    "type": "int"
-                },
-                "vmSize": {
-                    "enum": [
-                        "Standard_D2s_v3",
-                        "Standard_D4s_v3",
-                        "Standard_D8s_v3",
-                        "Standard_D16s_v3",
-                        "Standard_D32s_v3",
-                        "Standard_D64s_v3",
-                        "Standard_DS4_v2",
-                        "Standard_DS5_v2",
-                        "Standard_F8s_v2",
-                        "Standard_F16s_v2",
-                        "Standard_F32s_v2",
-                        "Standard_F64s_v2",
-                        "Standard_F72s_v2",
-                        "Standard_F8s",
-                        "Standard_F16s",
-                        "Standard_E4s_v3",
-                        "Standard_E8s_v3",
-                        "Standard_E16s_v3",
-                        "Standard_E20s_v3",
-                        "Standard_E32s_v3",
-                        "Standard_E64s_v3",
-                        "Standard_GS2",
-                        "Standard_GS3",
-                        "Standard_GS4",
-                        "Standard_GS5",
-                        "Standard_DS12_v2",
-                        "Standard_DS13_v2",
-                        "Standard_DS14_v2",
-                        "Standard_DS15_v2",
-                        "Standard_L4s",
-                        "Standard_L8s",
-                        "Standard_L16s",
-                        "Standard_L32s"
-                    ]
-                },
-                "subnetCidr": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "apiProperties": {
-                    "$ref": "#/$keywords/apiProperties"
-                }
-            }
+        "subnetCidr": {
+          "$ref": "#/$keywords/subnetCidr"
         },
         "apiProperties": {
-            "parameters": {
-                "privateApiServer": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/apiProperties"
+        }
+      }
+    },
+    "count": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "vmSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_D2s_v3",
+            "Standard_D4s_v3",
+            "Standard_D8s_v3",
+            "Standard_D16s_v3",
+            "Standard_D32s_v3",
+            "Standard_D64s_v3",
+            "Standard_DS4_v2",
+            "Standard_DS5_v2",
+            "Standard_F8s_v2",
+            "Standard_F16s_v2",
+            "Standard_F32s_v2",
+            "Standard_F64s_v2",
+            "Standard_F72s_v2",
+            "Standard_F8s",
+            "Standard_F16s",
+            "Standard_E4s_v3",
+            "Standard_E8s_v3",
+            "Standard_E16s_v3",
+            "Standard_E20s_v3",
+            "Standard_E32s_v3",
+            "Standard_E64s_v3",
+            "Standard_GS2",
+            "Standard_GS3",
+            "Standard_GS4",
+            "Standard_GS5",
+            "Standard_DS12_v2",
+            "Standard_DS13_v2",
+            "Standard_DS14_v2",
+            "Standard_DS15_v2",
+            "Standard_L4s",
+            "Standard_L8s",
+            "Standard_L16s",
+            "Standard_L32s"
+          ]
+        }
+      }
+    },
+    "subnetCidr": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "apiProperties": {
+      "body": {
+        "privateApiServer": {
+          "$ref": "#/$keywords/privateApiServer"
+        }
+      }
+    },
+    "privateApiServer": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "agentPoolProfiles": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
         },
-        "agentPoolProfiles": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "count": {
-                    "type": "int"
-                },
-                "vmSize": {
-                    "enum": [
-                        "Standard_D2s_v3",
-                        "Standard_D4s_v3",
-                        "Standard_D8s_v3",
-                        "Standard_D16s_v3",
-                        "Standard_D32s_v3",
-                        "Standard_D64s_v3",
-                        "Standard_DS4_v2",
-                        "Standard_DS5_v2",
-                        "Standard_F8s_v2",
-                        "Standard_F16s_v2",
-                        "Standard_F32s_v2",
-                        "Standard_F64s_v2",
-                        "Standard_F72s_v2",
-                        "Standard_F8s",
-                        "Standard_F16s",
-                        "Standard_E4s_v3",
-                        "Standard_E8s_v3",
-                        "Standard_E16s_v3",
-                        "Standard_E20s_v3",
-                        "Standard_E32s_v3",
-                        "Standard_E64s_v3",
-                        "Standard_GS2",
-                        "Standard_GS3",
-                        "Standard_GS4",
-                        "Standard_GS5",
-                        "Standard_DS12_v2",
-                        "Standard_DS13_v2",
-                        "Standard_DS14_v2",
-                        "Standard_DS15_v2",
-                        "Standard_L4s",
-                        "Standard_L8s",
-                        "Standard_L16s",
-                        "Standard_L32s"
-                    ]
-                },
-                "subnetCidr": {
-                    "type": "string"
-                },
-                "osType": {
-                    "enum": [
-                        "Linux",
-                        "Windows"
-                    ]
-                },
-                "role": {
-                    "enum": [
-                        "compute",
-                        "infra"
-                    ]
-                }
-            },
-            "array": true
+        "count": {
+          "$ref": "#/$keywords/count_1"
         },
-        "authProfile": {
-            "body": {
-                "identityProviders": {
-                    "$ref": "#/$keywords/identityProviders"
-                }
-            }
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize_1"
         },
+        "subnetCidr": {
+          "$ref": "#/$keywords/subnetCidr_1"
+        },
+        "osType": {
+          "$ref": "#/$keywords/osType"
+        },
+        "role": {
+          "$ref": "#/$keywords/role"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "count_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "vmSize_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_D2s_v3",
+            "Standard_D4s_v3",
+            "Standard_D8s_v3",
+            "Standard_D16s_v3",
+            "Standard_D32s_v3",
+            "Standard_D64s_v3",
+            "Standard_DS4_v2",
+            "Standard_DS5_v2",
+            "Standard_F8s_v2",
+            "Standard_F16s_v2",
+            "Standard_F32s_v2",
+            "Standard_F64s_v2",
+            "Standard_F72s_v2",
+            "Standard_F8s",
+            "Standard_F16s",
+            "Standard_E4s_v3",
+            "Standard_E8s_v3",
+            "Standard_E16s_v3",
+            "Standard_E20s_v3",
+            "Standard_E32s_v3",
+            "Standard_E64s_v3",
+            "Standard_GS2",
+            "Standard_GS3",
+            "Standard_GS4",
+            "Standard_GS5",
+            "Standard_DS12_v2",
+            "Standard_DS13_v2",
+            "Standard_DS14_v2",
+            "Standard_DS15_v2",
+            "Standard_L4s",
+            "Standard_L8s",
+            "Standard_L16s",
+            "Standard_L32s"
+          ]
+        }
+      }
+    },
+    "subnetCidr_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "10.0.0.0/24"
+        }
+      }
+    },
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Linux",
+            "Windows"
+          ]
+        }
+      }
+    },
+    "role": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "compute",
+            "infra"
+          ]
+        }
+      }
+    },
+    "authProfile": {
+      "body": {
         "identityProviders": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "provider": {
-                    "$ref": "#/$keywords/provider"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/identityProviders"
+        }
+      }
+    },
+    "identityProviders": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
         },
         "provider": {
-            "parameters": {
-                "kind": {
-                    "type": "string"
-                }
-            }
-        },
-        "monitorProfile": {
-            "parameters": {
-                "workspaceResourceID": {
-                    "type": "string"
-                },
-                "enabled": {
-                    "type": "bool"
-                }
-            }
-        },
-        "refreshCluster": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/provider"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "openShiftManagedClusters": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "openShiftVersion": {
-                "$ref": "#/$keywords/openShiftVersion"
-            },
-            "clusterVersion": {
-                "$ref": "#/$keywords/clusterVersion"
-            },
-            "publicHostname": {
-                "$ref": "#/$keywords/publicHostname"
-            },
-            "fqdn": {
-                "$ref": "#/$keywords/fqdn"
-            },
-            "networkProfile": {
-                "$ref": "#/$keywords/networkProfile"
-            },
-            "routerProfiles": {
-                "$ref": "#/$keywords/routerProfiles"
-            },
-            "masterPoolProfile": {
-                "$ref": "#/$keywords/masterPoolProfile"
-            },
-            "agentPoolProfiles": {
-                "$ref": "#/$keywords/agentPoolProfiles"
-            },
-            "authProfile": {
-                "$ref": "#/$keywords/authProfile"
-            },
-            "monitorProfile": {
-                "$ref": "#/$keywords/monitorProfile"
-            },
-            "refreshCluster": {
-                "$ref": "#/$keywords/refreshCluster"
-            }
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "provider": {
+      "body": {}
+    },
+    "monitorProfile": {
+      "body": {
+        "workspaceResourceID": {
+          "$ref": "#/$keywords/workspaceResourceID"
+        },
+        "enabled": {
+          "$ref": "#/$keywords/enabled"
+        }
+      }
+    },
+    "workspaceResourceID": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "refreshCluster": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "openShiftManagedClusters": {
+      "openShiftVersion": {
+        "$ref": "#/$keywords/openShiftVersion"
+      },
+      "networkProfile": {
+        "$ref": "#/$keywords/networkProfile"
+      },
+      "routerProfiles": {
+        "$ref": "#/$keywords/routerProfiles"
+      },
+      "masterPoolProfile": {
+        "$ref": "#/$keywords/masterPoolProfile"
+      },
+      "agentPoolProfiles": {
+        "$ref": "#/$keywords/agentPoolProfiles"
+      },
+      "authProfile": {
+        "$ref": "#/$keywords/authProfile"
+      },
+      "monitorProfile": {
+        "$ref": "#/$keywords/monitorProfile"
+      },
+      "refreshCluster": {
+        "$ref": "#/$keywords/refreshCluster"
+      }
+    }
+  }
 }

@@ -1,0 +1,767 @@
+{
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "identifier": {
+      "body": {}
+    },
+    "sharingProfile": {
+      "body": {
+        "permissions": {
+          "$ref": "#/$keywords/permissions"
+        }
+      }
+    },
+    "permissions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Private",
+            "Groups"
+          ]
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eula": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privacyStatementUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "releaseNoteUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows",
+            "Linux"
+          ]
+        }
+      }
+    },
+    "osState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Generalized",
+            "Specialized"
+          ]
+        }
+      }
+    },
+    "hyperVGeneration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "V1",
+            "V2"
+          ]
+        }
+      }
+    },
+    "features": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endOfLifeDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "identifier_1": {
+      "body": {
+        "publisher": {
+          "$ref": "#/$keywords/publisher"
+        },
+        "offer": {
+          "$ref": "#/$keywords/offer"
+        },
+        "sku": {
+          "$ref": "#/$keywords/sku"
+        }
+      }
+    },
+    "publisher": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "offer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sku": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recommended": {
+      "body": {
+        "vCPUs": {
+          "$ref": "#/$keywords/vCPUs"
+        },
+        "memory": {
+          "$ref": "#/$keywords/memory"
+        }
+      }
+    },
+    "vCPUs": {
+      "body": {
+        "min": {
+          "$ref": "#/$keywords/min"
+        },
+        "max": {
+          "$ref": "#/$keywords/max"
+        }
+      }
+    },
+    "min": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "max": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "memory": {
+      "body": {
+        "min": {
+          "$ref": "#/$keywords/min"
+        },
+        "max": {
+          "$ref": "#/$keywords/max"
+        }
+      }
+    },
+    "disallowed": {
+      "body": {
+        "diskTypes": {
+          "$ref": "#/$keywords/diskTypes"
+        }
+      }
+    },
+    "diskTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "purchasePlan": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "publisher": {
+          "$ref": "#/$keywords/publisher_1"
+        },
+        "product": {
+          "$ref": "#/$keywords/product"
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publisher_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "product": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eula_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privacyStatementUri_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "releaseNoteUri_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endOfLifeDate_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "supportedOSType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows",
+            "Linux"
+          ]
+        }
+      }
+    },
+    "publishingProfile": {
+      "body": {
+        "targetRegions": {
+          "$ref": "#/$keywords/targetRegions"
+        },
+        "replicaCount": {
+          "$ref": "#/$keywords/replicaCount"
+        },
+        "excludeFromLatest": {
+          "$ref": "#/$keywords/excludeFromLatest"
+        },
+        "endOfLifeDate": {
+          "$ref": "#/$keywords/endOfLifeDate_1_2"
+        },
+        "storageAccountType": {
+          "$ref": "#/$keywords/storageAccountType_1"
+        }
+      }
+    },
+    "targetRegions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "regionalReplicaCount": {
+          "$ref": "#/$keywords/regionalReplicaCount"
+        },
+        "storageAccountType": {
+          "$ref": "#/$keywords/storageAccountType"
+        },
+        "encryption": {
+          "$ref": "#/$keywords/encryption"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "regionalReplicaCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageAccountType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_LRS",
+            "Standard_ZRS",
+            "Premium_LRS"
+          ]
+        }
+      }
+    },
+    "encryption": {
+      "body": {
+        "osDiskImage": {
+          "$ref": "#/$keywords/osDiskImage"
+        },
+        "dataDiskImages": {
+          "$ref": "#/$keywords/dataDiskImages"
+        }
+      }
+    },
+    "osDiskImage": {
+      "body": {
+        "diskEncryptionSetId": {
+          "$ref": "#/$keywords/diskEncryptionSetId"
+        }
+      }
+    },
+    "diskEncryptionSetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataDiskImages": {
+      "body": {
+        "diskEncryptionSetId": {
+          "$ref": "#/$keywords/diskEncryptionSetId_1"
+        },
+        "lun": {
+          "$ref": "#/$keywords/lun"
+        }
+      },
+      "array": true
+    },
+    "diskEncryptionSetId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lun": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "replicaCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "excludeFromLatest": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "endOfLifeDate_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_LRS",
+            "Standard_ZRS",
+            "Premium_LRS"
+          ]
+        }
+      }
+    },
+    "storageProfile": {
+      "body": {
+        "source": {
+          "$ref": "#/$keywords/source"
+        },
+        "osDiskImage": {
+          "$ref": "#/$keywords/osDiskImage_1"
+        },
+        "dataDiskImages": {
+          "$ref": "#/$keywords/dataDiskImages_1"
+        }
+      }
+    },
+    "source": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osDiskImage_1": {
+      "body": {
+        "hostCaching": {
+          "$ref": "#/$keywords/hostCaching"
+        },
+        "source": {
+          "$ref": "#/$keywords/source_1"
+        }
+      }
+    },
+    "hostCaching": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "ReadOnly",
+            "ReadWrite"
+          ]
+        }
+      }
+    },
+    "source_1": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        }
+      }
+    },
+    "dataDiskImages_1": {
+      "body": {
+        "hostCaching": {
+          "$ref": "#/$keywords/hostCaching_1"
+        },
+        "source": {
+          "$ref": "#/$keywords/source_1_2"
+        },
+        "lun": {
+          "$ref": "#/$keywords/lun_1"
+        }
+      },
+      "array": true
+    },
+    "hostCaching_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "ReadOnly",
+            "ReadWrite"
+          ]
+        }
+      }
+    },
+    "source_1_2": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        }
+      }
+    },
+    "lun_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "publishingProfile_1": {
+      "body": {
+        "targetRegions": {
+          "$ref": "#/$keywords/targetRegions_1"
+        },
+        "replicaCount": {
+          "$ref": "#/$keywords/replicaCount_1"
+        },
+        "excludeFromLatest": {
+          "$ref": "#/$keywords/excludeFromLatest_1"
+        },
+        "endOfLifeDate": {
+          "$ref": "#/$keywords/endOfLifeDate_1_2_3"
+        },
+        "storageAccountType": {
+          "$ref": "#/$keywords/storageAccountType_1_2"
+        },
+        "source": {
+          "$ref": "#/$keywords/source_1_2_3"
+        },
+        "contentType": {
+          "$ref": "#/$keywords/contentType"
+        },
+        "enableHealthCheck": {
+          "$ref": "#/$keywords/enableHealthCheck"
+        }
+      }
+    },
+    "targetRegions_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "regionalReplicaCount": {
+          "$ref": "#/$keywords/regionalReplicaCount"
+        },
+        "storageAccountType": {
+          "$ref": "#/$keywords/storageAccountType"
+        },
+        "encryption": {
+          "$ref": "#/$keywords/encryption"
+        }
+      },
+      "array": true
+    },
+    "replicaCount_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "excludeFromLatest_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "endOfLifeDate_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountType_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_LRS",
+            "Standard_ZRS",
+            "Premium_LRS"
+          ]
+        }
+      }
+    },
+    "source_1_2_3": {
+      "body": {
+        "fileName": {
+          "$ref": "#/$keywords/fileName"
+        },
+        "mediaLink": {
+          "$ref": "#/$keywords/mediaLink"
+        }
+      }
+    },
+    "fileName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "mediaLink": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enableHealthCheck": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    }
+  },
+  "$resources": {
+    "galleries": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "identifier": {
+        "$ref": "#/$keywords/identifier"
+      },
+      "sharingProfile": {
+        "$ref": "#/$keywords/sharingProfile"
+      }
+    },
+    "galleries/images": {
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "eula": {
+        "$ref": "#/$keywords/eula"
+      },
+      "privacyStatementUri": {
+        "$ref": "#/$keywords/privacyStatementUri"
+      },
+      "releaseNoteUri": {
+        "$ref": "#/$keywords/releaseNoteUri"
+      },
+      "osType": {
+        "$ref": "#/$keywords/osType"
+      },
+      "osState": {
+        "$ref": "#/$keywords/osState"
+      },
+      "hyperVGeneration": {
+        "$ref": "#/$keywords/hyperVGeneration"
+      },
+      "features": {
+        "$ref": "#/$keywords/features"
+      },
+      "endOfLifeDate": {
+        "$ref": "#/$keywords/endOfLifeDate"
+      },
+      "identifier": {
+        "$ref": "#/$keywords/identifier_1"
+      },
+      "recommended": {
+        "$ref": "#/$keywords/recommended"
+      },
+      "disallowed": {
+        "$ref": "#/$keywords/disallowed"
+      },
+      "purchasePlan": {
+        "$ref": "#/$keywords/purchasePlan"
+      }
+    },
+    "galleries/applications": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "eula": {
+        "$ref": "#/$keywords/eula_1"
+      },
+      "privacyStatementUri": {
+        "$ref": "#/$keywords/privacyStatementUri_1"
+      },
+      "releaseNoteUri": {
+        "$ref": "#/$keywords/releaseNoteUri_1"
+      },
+      "endOfLifeDate": {
+        "$ref": "#/$keywords/endOfLifeDate_1"
+      },
+      "supportedOSType": {
+        "$ref": "#/$keywords/supportedOSType"
+      }
+    },
+    "galleries/images/versions": {
+      "publishingProfile": {
+        "$ref": "#/$keywords/publishingProfile"
+      },
+      "storageProfile": {
+        "$ref": "#/$keywords/storageProfile"
+      }
+    },
+    "galleries/applications/versions": {
+      "publishingProfile": {
+        "$ref": "#/$keywords/publishingProfile_1"
+      }
+    }
+  }
+}

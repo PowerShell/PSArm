@@ -1,738 +1,503 @@
 {
-    "$keywords": {
-        "createdTimestamp": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "updatedTimestamp": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "serviceEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "assessmentSolutionId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "projectStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Active",
-                        "Inactive"
-                    ]
-                }
-            }
-        },
-        "customerWorkspaceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "customerWorkspaceLocation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "numberOfGroups": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "numberOfMachines": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "numberOfAssessments": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "lastAssessmentTimestamp": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Accepted",
-                        "Creating",
-                        "Deleting",
-                        "Failed",
-                        "Moving",
-                        "Succeeded"
-                    ]
-                }
-            }
-        },
-        "groupStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Created",
-                        "Updated",
-                        "Running",
-                        "Completed",
-                        "Invalid"
-                    ]
-                }
-            }
-        },
-        "machineCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "assessments": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "areAssessmentsRunning": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "createdTimestamp_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "updatedTimestamp_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "azureLocation": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "EastAsia",
-                        "SoutheastAsia",
-                        "AustraliaEast",
-                        "AustraliaSoutheast",
-                        "BrazilSouth",
-                        "CanadaCentral",
-                        "CanadaEast",
-                        "WestEurope",
-                        "NorthEurope",
-                        "CentralIndia",
-                        "SouthIndia",
-                        "WestIndia",
-                        "JapanEast",
-                        "JapanWest",
-                        "KoreaCentral",
-                        "KoreaSouth",
-                        "UkWest",
-                        "UkSouth",
-                        "NorthCentralUs",
-                        "EastUs",
-                        "WestUs2",
-                        "SouthCentralUs",
-                        "CentralUs",
-                        "EastUs2",
-                        "WestUs",
-                        "WestCentralUs",
-                        "GermanyCentral",
-                        "GermanyNortheast",
-                        "ChinaNorth",
-                        "ChinaEast",
-                        "USGovArizona",
-                        "USGovTexas",
-                        "USGovIowa",
-                        "USGovVirginia",
-                        "USDoDCentral",
-                        "USDoDEast"
-                    ]
-                }
-            }
-        },
-        "azureOfferCode": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "MSAZR0003P",
-                        "MSAZR0044P",
-                        "MSAZR0059P",
-                        "MSAZR0060P",
-                        "MSAZR0062P",
-                        "MSAZR0063P",
-                        "MSAZR0064P",
-                        "MSAZR0029P",
-                        "MSAZR0022P",
-                        "MSAZR0023P",
-                        "MSAZR0148P",
-                        "MSAZR0025P",
-                        "MSAZR0036P",
-                        "MSAZR0120P",
-                        "MSAZR0121P",
-                        "MSAZR0122P",
-                        "MSAZR0123P",
-                        "MSAZR0124P",
-                        "MSAZR0125P",
-                        "MSAZR0126P",
-                        "MSAZR0127P",
-                        "MSAZR0128P",
-                        "MSAZR0129P",
-                        "MSAZR0130P",
-                        "MSAZR0111P",
-                        "MSAZR0144P",
-                        "MSAZR0149P",
-                        "MSMCAZR0044P",
-                        "MSMCAZR0059P",
-                        "MSMCAZR0060P",
-                        "MSMCAZR0063P",
-                        "MSMCAZR0120P",
-                        "MSMCAZR0121P",
-                        "MSMCAZR0125P",
-                        "MSMCAZR0128P",
-                        "MSAZRDE0003P",
-                        "MSAZRDE0044P",
-                        "MSAZRUSGOV0003P",
-                        "EA"
-                    ]
-                }
-            }
-        },
-        "eaSubscriptionId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "azurePricingTier": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Standard",
-                        "Basic"
-                    ]
-                }
-            }
-        },
-        "azureStorageRedundancy": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "LocallyRedundant",
-                        "ZoneRedundant",
-                        "GeoRedundant",
-                        "ReadAccessGeoRedundant"
-                    ]
-                }
-            }
-        },
-        "scalingFactor": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "percentile": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Percentile50",
-                        "Percentile90",
-                        "Percentile95",
-                        "Percentile99"
-                    ]
-                }
-            }
-        },
-        "timeRange": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Day",
-                        "Week",
-                        "Month",
-                        "Custom"
-                    ]
-                }
-            }
-        },
-        "perfDataStartTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "perfDataEndTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "stage": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "InProgress",
-                        "UnderReview",
-                        "Approved"
-                    ]
-                }
-            }
-        },
-        "currency": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "USD",
-                        "DKK",
-                        "CAD",
-                        "IDR",
-                        "JPY",
-                        "KRW",
-                        "NZD",
-                        "NOK",
-                        "RUB",
-                        "SAR",
-                        "ZAR",
-                        "SEK",
-                        "TRY",
-                        "GBP",
-                        "MXN",
-                        "MYR",
-                        "INR",
-                        "HKD",
-                        "BRL",
-                        "TWD",
-                        "EUR",
-                        "CHF",
-                        "ARS",
-                        "AUD",
-                        "CNY"
-                    ]
-                }
-            }
-        },
-        "azureHybridUseBenefit": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Yes",
-                        "No"
-                    ]
-                }
-            }
-        },
-        "discountPercentage": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "confidenceRatingInPercentage": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "sizingCriterion": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "PerformanceBased",
-                        "AsOnPremises"
-                    ]
-                }
-            }
-        },
-        "reservedInstance": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "None",
-                        "RI1Year",
-                        "RI3Year"
-                    ]
-                }
-            }
-        },
-        "azureVmFamilies": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Basic_A0_A4",
-                        "Standard_A0_A7",
-                        "Standard_A8_A11",
-                        "Av2_series",
-                        "D_series",
-                        "Dv2_series",
-                        "DS_series",
-                        "DSv2_series",
-                        "F_series",
-                        "Fs_series",
-                        "G_series",
-                        "GS_series",
-                        "H_series",
-                        "Ls_series",
-                        "Dsv3_series",
-                        "Dv3_series",
-                        "Fsv2_series",
-                        "Ev3_series",
-                        "Esv3_series",
-                        "M_series",
-                        "DC_Series"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "azureDiskType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Standard",
-                        "Premium",
-                        "StandardSSD",
-                        "StandardOrPremium"
-                    ]
-                }
-            }
-        },
-        "vmUptime": {
-            "parameters": {
-                "daysPerMonth": {
-                    "type": "int"
-                },
-                "hoursPerDay": {
-                    "type": "int"
-                }
-            }
-        },
-        "pricesTimestamp": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "createdTimestamp_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "updatedTimestamp_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "monthlyComputeCost": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "monthlyBandwidthCost": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "monthlyStorageCost": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "monthlyPremiumStorageCost": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "monthlyStandardSSDStorageCost": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Created",
-                        "Updated",
-                        "Running",
-                        "Completed",
-                        "Invalid",
-                        "OutOfSync",
-                        "OutDated"
-                    ]
-                }
-            }
-        },
-        "numberOfMachines_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "discoverySiteId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdTimestamp_4": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "updatedTimestamp_4": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "agentProperties": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                },
-                "lastHeartbeatUtc": {}
-            },
-            "body": {
-                "spnDetails": {
-                    "$ref": "#/$keywords/spnDetails"
-                }
-            }
-        },
-        "spnDetails": {
-            "parameters": {
-                "authority": {
-                    "type": "string"
-                },
-                "applicationId": {
-                    "type": "string"
-                },
-                "audience": {
-                    "type": "string"
-                },
-                "objectId": {
-                    "type": "string"
-                },
-                "tenantId": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "assessmentSolutionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "assessmentProjects": {
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp"
-            },
-            "serviceEndpoint": {
-                "$ref": "#/$keywords/serviceEndpoint"
-            },
-            "assessmentSolutionId": {
-                "$ref": "#/$keywords/assessmentSolutionId"
-            },
-            "projectStatus": {
-                "$ref": "#/$keywords/projectStatus"
-            },
-            "customerWorkspaceId": {
-                "$ref": "#/$keywords/customerWorkspaceId"
-            },
-            "customerWorkspaceLocation": {
-                "$ref": "#/$keywords/customerWorkspaceLocation"
-            },
-            "numberOfGroups": {
-                "$ref": "#/$keywords/numberOfGroups"
-            },
-            "numberOfMachines": {
-                "$ref": "#/$keywords/numberOfMachines"
-            },
-            "numberOfAssessments": {
-                "$ref": "#/$keywords/numberOfAssessments"
-            },
-            "lastAssessmentTimestamp": {
-                "$ref": "#/$keywords/lastAssessmentTimestamp"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "assessmentProjects/groups": {
-            "groupStatus": {
-                "$ref": "#/$keywords/groupStatus"
-            },
-            "machineCount": {
-                "$ref": "#/$keywords/machineCount"
-            },
-            "assessments": {
-                "$ref": "#/$keywords/assessments"
-            },
-            "areAssessmentsRunning": {
-                "$ref": "#/$keywords/areAssessmentsRunning"
-            },
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp_2"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp_2"
-            }
-        },
-        "assessmentProjects/groups/assessments": {
-            "azureLocation": {
-                "$ref": "#/$keywords/azureLocation"
-            },
-            "azureOfferCode": {
-                "$ref": "#/$keywords/azureOfferCode"
-            },
-            "eaSubscriptionId": {
-                "$ref": "#/$keywords/eaSubscriptionId"
-            },
-            "azurePricingTier": {
-                "$ref": "#/$keywords/azurePricingTier"
-            },
-            "azureStorageRedundancy": {
-                "$ref": "#/$keywords/azureStorageRedundancy"
-            },
-            "scalingFactor": {
-                "$ref": "#/$keywords/scalingFactor"
-            },
-            "percentile": {
-                "$ref": "#/$keywords/percentile"
-            },
-            "timeRange": {
-                "$ref": "#/$keywords/timeRange"
-            },
-            "perfDataStartTime": {
-                "$ref": "#/$keywords/perfDataStartTime"
-            },
-            "perfDataEndTime": {
-                "$ref": "#/$keywords/perfDataEndTime"
-            },
-            "stage": {
-                "$ref": "#/$keywords/stage"
-            },
-            "currency": {
-                "$ref": "#/$keywords/currency"
-            },
-            "azureHybridUseBenefit": {
-                "$ref": "#/$keywords/azureHybridUseBenefit"
-            },
-            "discountPercentage": {
-                "$ref": "#/$keywords/discountPercentage"
-            },
-            "confidenceRatingInPercentage": {
-                "$ref": "#/$keywords/confidenceRatingInPercentage"
-            },
-            "sizingCriterion": {
-                "$ref": "#/$keywords/sizingCriterion"
-            },
-            "reservedInstance": {
-                "$ref": "#/$keywords/reservedInstance"
-            },
-            "azureVmFamilies": {
-                "$ref": "#/$keywords/azureVmFamilies"
-            },
-            "azureDiskType": {
-                "$ref": "#/$keywords/azureDiskType"
-            },
-            "vmUptime": {
-                "$ref": "#/$keywords/vmUptime"
-            },
-            "pricesTimestamp": {
-                "$ref": "#/$keywords/pricesTimestamp"
-            },
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp_3"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp_3"
-            },
-            "monthlyComputeCost": {
-                "$ref": "#/$keywords/monthlyComputeCost"
-            },
-            "monthlyBandwidthCost": {
-                "$ref": "#/$keywords/monthlyBandwidthCost"
-            },
-            "monthlyStorageCost": {
-                "$ref": "#/$keywords/monthlyStorageCost"
-            },
-            "monthlyPremiumStorageCost": {
-                "$ref": "#/$keywords/monthlyPremiumStorageCost"
-            },
-            "monthlyStandardSSDStorageCost": {
-                "$ref": "#/$keywords/monthlyStandardSSDStorageCost"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "numberOfMachines": {
-                "$ref": "#/$keywords/numberOfMachines_2"
-            }
-        },
-        "assessmentProjects/hypervcollectors": {
-            "discoverySiteId": {
-                "$ref": "#/$keywords/discoverySiteId"
-            },
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp_4"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp_4"
-            },
-            "agentProperties": {
-                "$ref": "#/$keywords/agentProperties"
-            }
-        },
-        "assessmentProjects/vmwarecollectors": {
-            "discoverySiteId": {
-                "$ref": "#/$keywords/discoverySiteId"
-            },
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp_4"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp_4"
-            },
-            "agentProperties": {
-                "$ref": "#/$keywords/agentProperties"
-            }
+    "projectStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Inactive"
+          ]
         }
+      }
+    },
+    "customerWorkspaceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customerWorkspaceLocation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "discoverySiteId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "agentProperties": {
+      "body": {
+        "spnDetails": {
+          "$ref": "#/$keywords/spnDetails"
+        }
+      }
+    },
+    "spnDetails": {
+      "body": {
+        "authority": {
+          "$ref": "#/$keywords/authority"
+        },
+        "applicationId": {
+          "$ref": "#/$keywords/applicationId"
+        },
+        "audience": {
+          "$ref": "#/$keywords/audience"
+        },
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        },
+        "tenantId": {
+          "$ref": "#/$keywords/tenantId"
+        }
+      }
+    },
+    "authority": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applicationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "audience": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "objectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "azureLocation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "EastAsia",
+            "SoutheastAsia",
+            "AustraliaEast",
+            "AustraliaSoutheast",
+            "BrazilSouth",
+            "CanadaCentral",
+            "CanadaEast",
+            "WestEurope",
+            "NorthEurope",
+            "CentralIndia",
+            "SouthIndia",
+            "WestIndia",
+            "JapanEast",
+            "JapanWest",
+            "KoreaCentral",
+            "KoreaSouth",
+            "UkWest",
+            "UkSouth",
+            "NorthCentralUs",
+            "EastUs",
+            "WestUs2",
+            "SouthCentralUs",
+            "CentralUs",
+            "EastUs2",
+            "WestUs",
+            "WestCentralUs",
+            "GermanyCentral",
+            "GermanyNortheast",
+            "ChinaNorth",
+            "ChinaEast",
+            "USGovArizona",
+            "USGovTexas",
+            "USGovIowa",
+            "USGovVirginia",
+            "USDoDCentral",
+            "USDoDEast"
+          ]
+        }
+      }
+    },
+    "azureOfferCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "MSAZR0003P",
+            "MSAZR0044P",
+            "MSAZR0059P",
+            "MSAZR0060P",
+            "MSAZR0062P",
+            "MSAZR0063P",
+            "MSAZR0064P",
+            "MSAZR0029P",
+            "MSAZR0022P",
+            "MSAZR0023P",
+            "MSAZR0148P",
+            "MSAZR0025P",
+            "MSAZR0036P",
+            "MSAZR0120P",
+            "MSAZR0121P",
+            "MSAZR0122P",
+            "MSAZR0123P",
+            "MSAZR0124P",
+            "MSAZR0125P",
+            "MSAZR0126P",
+            "MSAZR0127P",
+            "MSAZR0128P",
+            "MSAZR0129P",
+            "MSAZR0130P",
+            "MSAZR0111P",
+            "MSAZR0144P",
+            "MSAZR0149P",
+            "MSMCAZR0044P",
+            "MSMCAZR0059P",
+            "MSMCAZR0060P",
+            "MSMCAZR0063P",
+            "MSMCAZR0120P",
+            "MSMCAZR0121P",
+            "MSMCAZR0125P",
+            "MSMCAZR0128P",
+            "MSAZRDE0003P",
+            "MSAZRDE0044P",
+            "MSAZRUSGOV0003P",
+            "EA"
+          ]
+        }
+      }
+    },
+    "azurePricingTier": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard",
+            "Basic"
+          ]
+        }
+      }
+    },
+    "azureStorageRedundancy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "LocallyRedundant",
+            "ZoneRedundant",
+            "GeoRedundant",
+            "ReadAccessGeoRedundant"
+          ]
+        }
+      }
+    },
+    "scalingFactor": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "percentile": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Percentile50",
+            "Percentile90",
+            "Percentile95",
+            "Percentile99"
+          ]
+        }
+      }
+    },
+    "timeRange": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Day",
+            "Week",
+            "Month",
+            "Custom"
+          ]
+        }
+      }
+    },
+    "stage": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "InProgress",
+            "UnderReview",
+            "Approved"
+          ]
+        }
+      }
+    },
+    "currency": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "USD",
+            "DKK",
+            "CAD",
+            "IDR",
+            "JPY",
+            "KRW",
+            "NZD",
+            "NOK",
+            "RUB",
+            "SAR",
+            "ZAR",
+            "SEK",
+            "TRY",
+            "GBP",
+            "MXN",
+            "MYR",
+            "INR",
+            "HKD",
+            "BRL",
+            "TWD",
+            "EUR",
+            "CHF",
+            "ARS",
+            "AUD",
+            "CNY"
+          ]
+        }
+      }
+    },
+    "azureHybridUseBenefit": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Yes",
+            "No"
+          ]
+        }
+      }
+    },
+    "discountPercentage": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "sizingCriterion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "PerformanceBased",
+            "AsOnPremises"
+          ]
+        }
+      }
+    },
+    "reservedInstance": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "RI1Year",
+            "RI3Year"
+          ]
+        }
+      }
+    },
+    "azureVmFamilies": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Basic_A0_A4",
+            "Standard_A0_A7",
+            "Standard_A8_A11",
+            "Av2_series",
+            "D_series",
+            "Dv2_series",
+            "DS_series",
+            "DSv2_series",
+            "F_series",
+            "Fs_series",
+            "G_series",
+            "GS_series",
+            "H_series",
+            "Ls_series",
+            "Dsv3_series",
+            "Dv3_series",
+            "Fsv2_series",
+            "Ev3_series",
+            "Esv3_series",
+            "M_series",
+            "DC_Series"
+          ]
+        }
+      },
+      "array": true
+    },
+    "azureDiskType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Standard",
+            "Premium",
+            "StandardSSD",
+            "StandardOrPremium"
+          ]
+        }
+      }
+    },
+    "vmUptime": {
+      "body": {
+        "daysPerMonth": {
+          "$ref": "#/$keywords/daysPerMonth"
+        },
+        "hoursPerDay": {
+          "$ref": "#/$keywords/hoursPerDay"
+        }
+      }
+    },
+    "daysPerMonth": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "hoursPerDay": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
     }
+  },
+  "$resources": {
+    "assessmentProjects": {
+      "assessmentSolutionId": {
+        "$ref": "#/$keywords/assessmentSolutionId"
+      },
+      "projectStatus": {
+        "$ref": "#/$keywords/projectStatus"
+      },
+      "customerWorkspaceId": {
+        "$ref": "#/$keywords/customerWorkspaceId"
+      },
+      "customerWorkspaceLocation": {
+        "$ref": "#/$keywords/customerWorkspaceLocation"
+      }
+    },
+    "assessmentProjects/groups": {},
+    "assessmentProjects/hypervcollectors": {
+      "discoverySiteId": {
+        "$ref": "#/$keywords/discoverySiteId"
+      },
+      "agentProperties": {
+        "$ref": "#/$keywords/agentProperties"
+      }
+    },
+    "assessmentProjects/vmwarecollectors": {
+      "discoverySiteId": {
+        "$ref": "#/$keywords/discoverySiteId"
+      },
+      "agentProperties": {
+        "$ref": "#/$keywords/agentProperties"
+      }
+    },
+    "assessmentProjects/groups/assessments": {
+      "azureLocation": {
+        "$ref": "#/$keywords/azureLocation"
+      },
+      "azureOfferCode": {
+        "$ref": "#/$keywords/azureOfferCode"
+      },
+      "azurePricingTier": {
+        "$ref": "#/$keywords/azurePricingTier"
+      },
+      "azureStorageRedundancy": {
+        "$ref": "#/$keywords/azureStorageRedundancy"
+      },
+      "scalingFactor": {
+        "$ref": "#/$keywords/scalingFactor"
+      },
+      "percentile": {
+        "$ref": "#/$keywords/percentile"
+      },
+      "timeRange": {
+        "$ref": "#/$keywords/timeRange"
+      },
+      "stage": {
+        "$ref": "#/$keywords/stage"
+      },
+      "currency": {
+        "$ref": "#/$keywords/currency"
+      },
+      "azureHybridUseBenefit": {
+        "$ref": "#/$keywords/azureHybridUseBenefit"
+      },
+      "discountPercentage": {
+        "$ref": "#/$keywords/discountPercentage"
+      },
+      "sizingCriterion": {
+        "$ref": "#/$keywords/sizingCriterion"
+      },
+      "reservedInstance": {
+        "$ref": "#/$keywords/reservedInstance"
+      },
+      "azureVmFamilies": {
+        "$ref": "#/$keywords/azureVmFamilies"
+      },
+      "azureDiskType": {
+        "$ref": "#/$keywords/azureDiskType"
+      },
+      "vmUptime": {
+        "$ref": "#/$keywords/vmUptime"
+      }
+    }
+  }
 }

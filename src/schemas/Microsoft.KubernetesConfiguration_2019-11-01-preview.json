@@ -1,0 +1,117 @@
+{
+  "$keywords": {
+    "repositoryUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operatorNamespace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "default"
+        }
+      }
+    },
+    "operatorInstanceName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operatorType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Flux"
+          ]
+        }
+      }
+    },
+    "operatorParams": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operatorScope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "cluster",
+            "namespace"
+          ]
+        }
+      }
+    },
+    "enableHelmOperator": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        }
+      }
+    },
+    "helmOperatorProperties": {
+      "body": {
+        "chartVersion": {
+          "$ref": "#/$keywords/chartVersion"
+        },
+        "chartValues": {
+          "$ref": "#/$keywords/chartValues"
+        }
+      }
+    },
+    "chartVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "chartValues": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "sourceControlConfigurations": {
+      "repositoryUrl": {
+        "$ref": "#/$keywords/repositoryUrl"
+      },
+      "operatorNamespace": {
+        "$ref": "#/$keywords/operatorNamespace"
+      },
+      "operatorInstanceName": {
+        "$ref": "#/$keywords/operatorInstanceName"
+      },
+      "operatorType": {
+        "$ref": "#/$keywords/operatorType"
+      },
+      "operatorParams": {
+        "$ref": "#/$keywords/operatorParams"
+      },
+      "operatorScope": {
+        "$ref": "#/$keywords/operatorScope"
+      },
+      "enableHelmOperator": {
+        "$ref": "#/$keywords/enableHelmOperator"
+      },
+      "helmOperatorProperties": {
+        "$ref": "#/$keywords/helmOperatorProperties"
+      }
+    }
+  }
+}

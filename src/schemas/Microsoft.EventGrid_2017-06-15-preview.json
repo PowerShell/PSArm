@@ -1,118 +1,106 @@
 {
-    "$keywords": {
-        "topic": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "destination": {
+      "body": {
+        "endpointType": {
+          "$ref": "#/$keywords/endpointType"
         },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      }
+    },
+    "endpointType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "WebHook"
+          ]
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "endpointUrl": {
+          "$ref": "#/$keywords/endpointUrl"
+        }
+      }
+    },
+    "endpointUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "filter": {
+      "body": {
+        "subjectBeginsWith": {
+          "$ref": "#/$keywords/subjectBeginsWith"
         },
-        "destination": {
-            "parameters": {
-                "endpointType": {},
-                "endpointUrl": {
-                    "type": "string"
-                },
-                "endpointBaseUrl": {
-                    "type": "string"
-                }
-            }
-        },
-        "filter": {
-            "parameters": {
-                "subjectBeginsWith": {
-                    "type": "string"
-                },
-                "subjectEndsWith": {
-                    "type": "string"
-                },
-                "isSubjectCaseSensitive": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "includedEventTypes": {
-                    "$ref": "#/$keywords/includedEventTypes"
-                }
-            }
+        "subjectEndsWith": {
+          "$ref": "#/$keywords/subjectEndsWith"
         },
         "includedEventTypes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/includedEventTypes"
         },
-        "labels": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "endpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "isSubjectCaseSensitive": {
+          "$ref": "#/$keywords/isSubjectCaseSensitive"
         }
+      }
     },
-    "$resources": {
-        "eventSubscriptions": {
-            "topic": {
-                "$ref": "#/$keywords/topic"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "destination": {
-                "$ref": "#/$keywords/destination"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter"
-            },
-            "labels": {
-                "$ref": "#/$keywords/labels"
-            }
-        },
-        "topics": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint"
-            }
+    "subjectBeginsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "subjectEndsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "includedEventTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isSubjectCaseSensitive": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "labels": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "eventSubscriptions": {
+      "destination": {
+        "$ref": "#/$keywords/destination"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels"
+      }
+    },
+    "topics": {}
+  }
 }

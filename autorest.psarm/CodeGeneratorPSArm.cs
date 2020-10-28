@@ -6,8 +6,6 @@ using AutoRest.AzureResourceSchema;
 using AutoRest.AzureResourceSchema.Models;
 using AutoRest.Core;
 using AutoRest.Core.Model;
-using AutoRest.Modeler.Model;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace AutoRest.PSArm
@@ -21,6 +19,8 @@ namespace AutoRest.PSArm
         public override string UsageInstructions => "";
 
         public string OutputFolder { get; set; }
+        
+        public Logger Logger { get; set; }
 
         public override async Task Generate(CodeModel serviceClient)
         {
@@ -30,13 +30,13 @@ namespace AutoRest.PSArm
                 .Where(v => v != null)
                 .Distinct();
 
-            var schemaBuilder = new DslSchemaBuilder(serviceClient);
+            var schemaBuilder = new DslSchemaBuilder(Logger, serviceClient);
 
             foreach (string version in apiVersions)
             {
                 foreach (KeyValuePair<string, ResourceSchema> resourceProvider in ResourceSchemaParser.Parse(serviceClient, version))
                 {
-                    Console.Error.WriteLine($"Processing: '{resourceProvider.Key}'");
+                    Logger.Log($"Processing: '{resourceProvider.Key}'");
                     schemaBuilder.AddResourceProvider(resourceProvider.Key, version, resourceProvider.Value);
                 }
             }
@@ -50,13 +50,22 @@ namespace AutoRest.PSArm
             {
                 string providerName = resource.Item1;
                 string apiVersion = resource.Item2;
-                string outputPath = Path.Combine(OutputFolder, $"{providerName}_{apiVersion}.json");
-                using (var file = new FileStream(outputPath, FileMode.Create, FileAccess.Write, FileShare.Read))
-                using (var writer = new StreamWriter(file))
+                ResourceProviderBuilder resourceBuilder = resource.Item3;
+
+                if (resource.Item3.Keywords.Count == 0)
+                {
+                    Logger.Log($"Resource '{providerName}_{apiVersion}' has no keywords and will be skipped");
+                    continue;
+                }
+
+                string outputPath = string.Join('/', OutputFolder, $"{providerName}_{apiVersion}.json");
+                using (var writer = new StringWriter())
                 using (var jsonWriter = new JsonTextWriter(writer){ Formatting = Formatting.Indented })
                 {
-                    Console.Error.WriteLine($"Writing out: '{outputPath}'");
-                    resource.Item3.ToJson().WriteTo(jsonWriter);
+                    Logger.Log($"Writing out: '{outputPath}'");
+                    resourceBuilder.ToJson().WriteTo(jsonWriter);
+                    await Write(writer.ToString(), outputPath);
+                    Logger.Log($"Done.{Environment.NewLine}-------------------{Environment.NewLine}{Environment.NewLine}");
                 }
             }
         }

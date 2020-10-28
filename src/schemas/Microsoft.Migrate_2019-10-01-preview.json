@@ -1,270 +1,127 @@
 {
-    "$keywords": {
-        "sourceRegion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "targetRegion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Updating",
-                        "Creating",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "sourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "sourceRegion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetRegion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Updating",
+            "Creating",
+            "Failed"
+          ]
+        }
+      }
+    },
+    "provisioningState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Updating",
+            "Creating",
+            "Failed"
+          ]
+        }
+      }
+    },
+    "sourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "existingTargetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceSettings": {
+      "body": {
+        "targetResourceName": {
+          "$ref": "#/$keywords/targetResourceName"
+        }
+      }
+    },
+    "targetResourceName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dependsOnOverrides": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         },
         "targetId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "existingTargetId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "resourceSettings": {
-            "parameters": {
-                "resourceType": {
-                    "type": "string"
-                },
-                "targetResourceName": {
-                    "type": "string"
-                }
-            }
-        },
-        "sourceResourceSettings": {
-            "parameters": {
-                "resourceType": {
-                    "type": "string"
-                },
-                "targetResourceName": {
-                    "type": "string"
-                }
-            }
-        },
-        "moveStatus": {
-            "parameters": {
-                "moveState": {
-                    "enum": [
-                        "AssignmentPending",
-                        "PreparePending",
-                        "PrepareInProgress",
-                        "PrepareFailed",
-                        "MovePending",
-                        "MoveInProgress",
-                        "MoveFailed",
-                        "DiscardInProgress",
-                        "DiscardFailed",
-                        "CommitPending",
-                        "CommitInProgress",
-                        "CommitFailed",
-                        "Committed"
-                    ]
-                },
-                "targetId": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "jobStatus": {
-                    "$ref": "#/$keywords/jobStatus"
-                },
-                "errors": {
-                    "$ref": "#/$keywords/errors"
-                }
-            }
-        },
-        "jobStatus": {
-            "parameters": {
-                "jobName": {},
-                "jobProgress": {
-                    "type": "string"
-                }
-            }
-        },
-        "errors": {
-            "propertyParameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "target": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            }
-        },
-        "details": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "target": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            },
-            "array": true
-        },
-        "dependsOn": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "resolutionStatus": {
-                    "type": "string"
-                },
-                "resolutionType": {
-                    "enum": [
-                        "Manual",
-                        "Automatic"
-                    ]
-                },
-                "dependencyType": {
-                    "enum": [
-                        "RequiredForPrepare",
-                        "RequiredForMove"
-                    ]
-                },
-                "isOptional": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "manualResolution": {
-                    "$ref": "#/$keywords/manualResolution"
-                },
-                "automaticResolution": {
-                    "$ref": "#/$keywords/automaticResolution"
-                }
-            },
-            "array": true
-        },
-        "manualResolution": {
-            "parameters": {
-                "targetId": {
-                    "type": "string"
-                }
-            }
-        },
-        "automaticResolution": {
-            "parameters": {
-                "moveResourceId": {
-                    "type": "string"
-                }
-            }
-        },
-        "dependsOnOverrides": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "targetId": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "errors_2": {
-            "propertyParameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "target": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            }
+          "$ref": "#/$keywords/targetId"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "moveCollections": {
-            "sourceRegion": {
-                "$ref": "#/$keywords/sourceRegion"
-            },
-            "targetRegion": {
-                "$ref": "#/$keywords/targetRegion"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "moveCollections/moveResources": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "sourceId": {
-                "$ref": "#/$keywords/sourceId"
-            },
-            "targetId": {
-                "$ref": "#/$keywords/targetId"
-            },
-            "existingTargetId": {
-                "$ref": "#/$keywords/existingTargetId"
-            },
-            "resourceSettings": {
-                "$ref": "#/$keywords/resourceSettings"
-            },
-            "sourceResourceSettings": {
-                "$ref": "#/$keywords/sourceResourceSettings"
-            },
-            "moveStatus": {
-                "$ref": "#/$keywords/moveStatus"
-            },
-            "dependsOn": {
-                "$ref": "#/$keywords/dependsOn"
-            },
-            "dependsOnOverrides": {
-                "$ref": "#/$keywords/dependsOnOverrides"
-            },
-            "errors": {
-                "$ref": "#/$keywords/errors_2"
-            }
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "targetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "moveCollections": {
+      "sourceRegion": {
+        "$ref": "#/$keywords/sourceRegion"
+      },
+      "targetRegion": {
+        "$ref": "#/$keywords/targetRegion"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      }
+    },
+    "moveCollections/moveResources": {
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1"
+      },
+      "sourceId": {
+        "$ref": "#/$keywords/sourceId"
+      },
+      "existingTargetId": {
+        "$ref": "#/$keywords/existingTargetId"
+      },
+      "resourceSettings": {
+        "$ref": "#/$keywords/resourceSettings"
+      },
+      "dependsOnOverrides": {
+        "$ref": "#/$keywords/dependsOnOverrides"
+      }
+    }
+  }
 }

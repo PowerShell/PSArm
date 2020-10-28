@@ -1,0 +1,1525 @@
+{
+  "$keywords": {
+    "predicateExpression": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "auditActionsAndGroups": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "storageAccountSubscriptionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isStorageSecondaryKeyInUse": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isAzureMonitorTargetEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "queueDelayMs": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "state_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageEndpoint_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "auditActionsAndGroups_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "storageAccountSubscriptionId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isStorageSecondaryKeyInUse_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isAzureMonitorTargetEnabled_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "queueDelayMs_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "databaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "New",
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "disabledAlerts": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "emailAddresses": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "emailAccountAdmins": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "storageEndpoint_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "administratorType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ActiveDirectory"
+          ]
+        }
+      }
+    },
+    "login": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sid": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Copy",
+            "Secondary",
+            "OnlineSecondary",
+            "PointInTimeRestore",
+            "Restore",
+            "Recovery",
+            "RestoreExternalBackup",
+            "RestoreExternalBackupSecondary",
+            "RestoreLongTermRetentionBackup"
+          ]
+        }
+      }
+    },
+    "collation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxSizeBytes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "sampleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AdventureWorksLT",
+            "WideWorldImportersStd",
+            "WideWorldImportersFull"
+          ]
+        }
+      }
+    },
+    "elasticPoolId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseDeletionDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoveryServicesRecoveryPointId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "longTermRetentionBackupResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoverableDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorableDroppedDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "catalogCollation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DATABASE_DEFAULT",
+            "SQL_Latin1_General_CP1_CI_AS"
+          ]
+        }
+      }
+    },
+    "zoneRedundant": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "collation_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "catalogCollation_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DATABASE_DEFAULT",
+            "SQL_Latin1_General_CP1_CI_AS"
+          ]
+        }
+      }
+    },
+    "createMode_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "RestoreExternalBackup",
+            "PointInTimeRestore",
+            "Recovery",
+            "RestoreLongTermRetentionBackup"
+          ]
+        }
+      }
+    },
+    "storageContainerUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorableDroppedDatabaseId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageContainerSasToken": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoverableDatabaseId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "longTermRetentionBackupResourceId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "predicateExpression_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageEndpoint_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "auditActionsAndGroups_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "storageAccountSubscriptionId_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isStorageSecondaryKeyInUse_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isAzureMonitorTargetEnabled_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "queueDelayMs_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "state_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageEndpoint_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "auditActionsAndGroups_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "storageAccountSubscriptionId_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isStorageSecondaryKeyInUse_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isAzureMonitorTargetEnabled_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "queueDelayMs_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageContainerPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageContainerSasKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recurringScans": {
+      "body": {
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled"
+        },
+        "emailSubscriptionAdmins": {
+          "$ref": "#/$keywords/emailSubscriptionAdmins"
+        },
+        "emails": {
+          "$ref": "#/$keywords/emails"
+        }
+      }
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "emailSubscriptionAdmins": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "emails": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "username": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "schedule": {
+      "body": {
+        "startTime": {
+          "$ref": "#/$keywords/startTime"
+        },
+        "endTime": {
+          "$ref": "#/$keywords/endTime"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "enabled": {
+          "$ref": "#/$keywords/enabled"
+        },
+        "interval": {
+          "$ref": "#/$keywords/interval"
+        }
+      }
+    },
+    "startTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "0001-01-01T00:00:00Z"
+        }
+      }
+    },
+    "endTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "9999-12-31T11:59:59Z"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Once",
+            "Recurring"
+          ]
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "interval": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "members": {
+      "body": {
+        "membershipType": {
+          "$ref": "#/$keywords/membershipType"
+        },
+        "type": {
+          "$ref": "#/$keywords/type_1"
+        },
+        "serverName": {
+          "$ref": "#/$keywords/serverName"
+        },
+        "databaseName": {
+          "$ref": "#/$keywords/databaseName"
+        },
+        "elasticPoolName": {
+          "$ref": "#/$keywords/elasticPoolName"
+        },
+        "shardMapName": {
+          "$ref": "#/$keywords/shardMapName"
+        },
+        "refreshCredential": {
+          "$ref": "#/$keywords/refreshCredential"
+        }
+      },
+      "array": true
+    },
+    "membershipType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Include",
+            "Exclude"
+          ]
+        }
+      }
+    },
+    "type_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TargetGroup",
+            "SqlDatabase",
+            "SqlElasticPool",
+            "SqlShardMap",
+            "SqlServer"
+          ]
+        }
+      }
+    },
+    "serverName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "databaseName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "elasticPoolName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "shardMapName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "refreshCredential": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "weeklyRetention": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "monthlyRetention": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "yearlyRetention": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "weekOfYear": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "retentionDays_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "stepId": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "targetGroup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "credential": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type_1_2"
+        },
+        "source": {
+          "$ref": "#/$keywords/source"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      }
+    },
+    "type_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TSql"
+          ]
+        }
+      }
+    },
+    "source": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Inline"
+          ]
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "output": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type_1_2_3"
+        },
+        "subscriptionId": {
+          "$ref": "#/$keywords/subscriptionId"
+        },
+        "resourceGroupName": {
+          "$ref": "#/$keywords/resourceGroupName"
+        },
+        "serverName": {
+          "$ref": "#/$keywords/serverName_1"
+        },
+        "databaseName": {
+          "$ref": "#/$keywords/databaseName_1"
+        },
+        "schemaName": {
+          "$ref": "#/$keywords/schemaName"
+        },
+        "tableName": {
+          "$ref": "#/$keywords/tableName"
+        },
+        "credential": {
+          "$ref": "#/$keywords/credential_1"
+        }
+      }
+    },
+    "type_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SqlDatabase"
+          ]
+        }
+      }
+    },
+    "subscriptionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceGroupName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "databaseName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "schemaName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "dbo"
+        }
+      }
+    },
+    "tableName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "credential_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "executionOptions": {
+      "body": {
+        "timeoutSeconds": {
+          "$ref": "#/$keywords/timeoutSeconds"
+        },
+        "retryAttempts": {
+          "$ref": "#/$keywords/retryAttempts"
+        },
+        "initialRetryIntervalSeconds": {
+          "$ref": "#/$keywords/initialRetryIntervalSeconds"
+        },
+        "maximumRetryIntervalSeconds": {
+          "$ref": "#/$keywords/maximumRetryIntervalSeconds"
+        },
+        "retryIntervalBackoffMultiplier": {
+          "$ref": "#/$keywords/retryIntervalBackoffMultiplier"
+        }
+      }
+    },
+    "timeoutSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 43200
+        }
+      }
+    },
+    "retryAttempts": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 10
+        }
+      }
+    },
+    "initialRetryIntervalSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1
+        }
+      }
+    },
+    "maximumRetryIntervalSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 120
+        }
+      }
+    },
+    "retryIntervalBackoffMultiplier": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 2.0
+        }
+      }
+    },
+    "baselineResults": {
+      "body": {
+        "result": {
+          "$ref": "#/$keywords/result"
+        }
+      },
+      "array": true
+    },
+    "result": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "labelName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labelId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "informationType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "informationTypeId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rank": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ]
+        }
+      }
+    }
+  },
+  "$resources": {
+    "servers/extendedAuditingSettings": {
+      "predicateExpression": {
+        "$ref": "#/$keywords/predicateExpression"
+      },
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays"
+      },
+      "auditActionsAndGroups": {
+        "$ref": "#/$keywords/auditActionsAndGroups"
+      },
+      "storageAccountSubscriptionId": {
+        "$ref": "#/$keywords/storageAccountSubscriptionId"
+      },
+      "isStorageSecondaryKeyInUse": {
+        "$ref": "#/$keywords/isStorageSecondaryKeyInUse"
+      },
+      "isAzureMonitorTargetEnabled": {
+        "$ref": "#/$keywords/isAzureMonitorTargetEnabled"
+      },
+      "queueDelayMs": {
+        "$ref": "#/$keywords/queueDelayMs"
+      }
+    },
+    "servers/auditingSettings": {
+      "state": {
+        "$ref": "#/$keywords/state_1"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint_1"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey_1"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1"
+      },
+      "auditActionsAndGroups": {
+        "$ref": "#/$keywords/auditActionsAndGroups_1"
+      },
+      "storageAccountSubscriptionId": {
+        "$ref": "#/$keywords/storageAccountSubscriptionId_1"
+      },
+      "isStorageSecondaryKeyInUse": {
+        "$ref": "#/$keywords/isStorageSecondaryKeyInUse_1"
+      },
+      "isAzureMonitorTargetEnabled": {
+        "$ref": "#/$keywords/isAzureMonitorTargetEnabled_1"
+      },
+      "queueDelayMs": {
+        "$ref": "#/$keywords/queueDelayMs_1"
+      }
+    },
+    "servers/jobAgents": {
+      "databaseId": {
+        "$ref": "#/$keywords/databaseId"
+      }
+    },
+    "servers/dnsAliases": {},
+    "servers/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state_1_2"
+      },
+      "disabledAlerts": {
+        "$ref": "#/$keywords/disabledAlerts"
+      },
+      "emailAddresses": {
+        "$ref": "#/$keywords/emailAddresses"
+      },
+      "emailAccountAdmins": {
+        "$ref": "#/$keywords/emailAccountAdmins"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint_1_2"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey_1_2"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2"
+      }
+    },
+    "managedInstances/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state_1_2"
+      },
+      "disabledAlerts": {
+        "$ref": "#/$keywords/disabledAlerts"
+      },
+      "emailAddresses": {
+        "$ref": "#/$keywords/emailAddresses"
+      },
+      "emailAccountAdmins": {
+        "$ref": "#/$keywords/emailAccountAdmins"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint_1_2"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey_1_2"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2"
+      }
+    },
+    "managedInstances/administrators": {
+      "administratorType": {
+        "$ref": "#/$keywords/administratorType"
+      },
+      "login": {
+        "$ref": "#/$keywords/login"
+      },
+      "sid": {
+        "$ref": "#/$keywords/sid"
+      },
+      "tenantId": {
+        "$ref": "#/$keywords/tenantId"
+      }
+    },
+    "servers/databases": {
+      "createMode": {
+        "$ref": "#/$keywords/createMode"
+      },
+      "collation": {
+        "$ref": "#/$keywords/collation"
+      },
+      "maxSizeBytes": {
+        "$ref": "#/$keywords/maxSizeBytes"
+      },
+      "sampleName": {
+        "$ref": "#/$keywords/sampleName"
+      },
+      "elasticPoolId": {
+        "$ref": "#/$keywords/elasticPoolId"
+      },
+      "sourceDatabaseId": {
+        "$ref": "#/$keywords/sourceDatabaseId"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime"
+      },
+      "sourceDatabaseDeletionDate": {
+        "$ref": "#/$keywords/sourceDatabaseDeletionDate"
+      },
+      "recoveryServicesRecoveryPointId": {
+        "$ref": "#/$keywords/recoveryServicesRecoveryPointId"
+      },
+      "longTermRetentionBackupResourceId": {
+        "$ref": "#/$keywords/longTermRetentionBackupResourceId"
+      },
+      "recoverableDatabaseId": {
+        "$ref": "#/$keywords/recoverableDatabaseId"
+      },
+      "restorableDroppedDatabaseId": {
+        "$ref": "#/$keywords/restorableDroppedDatabaseId"
+      },
+      "catalogCollation": {
+        "$ref": "#/$keywords/catalogCollation"
+      },
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant"
+      }
+    },
+    "managedInstances/databases": {
+      "collation": {
+        "$ref": "#/$keywords/collation_1"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime_1"
+      },
+      "catalogCollation": {
+        "$ref": "#/$keywords/catalogCollation_1"
+      },
+      "createMode": {
+        "$ref": "#/$keywords/createMode_1"
+      },
+      "storageContainerUri": {
+        "$ref": "#/$keywords/storageContainerUri"
+      },
+      "sourceDatabaseId": {
+        "$ref": "#/$keywords/sourceDatabaseId_1"
+      },
+      "restorableDroppedDatabaseId": {
+        "$ref": "#/$keywords/restorableDroppedDatabaseId_1"
+      },
+      "storageContainerSasToken": {
+        "$ref": "#/$keywords/storageContainerSasToken"
+      },
+      "recoverableDatabaseId": {
+        "$ref": "#/$keywords/recoverableDatabaseId_1"
+      },
+      "longTermRetentionBackupResourceId": {
+        "$ref": "#/$keywords/longTermRetentionBackupResourceId_1"
+      }
+    },
+    "servers/databases/extendedAuditingSettings": {
+      "predicateExpression": {
+        "$ref": "#/$keywords/predicateExpression_1"
+      },
+      "state": {
+        "$ref": "#/$keywords/state_1_2_3"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint_1_2_3"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey_1_2_3"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2_3"
+      },
+      "auditActionsAndGroups": {
+        "$ref": "#/$keywords/auditActionsAndGroups_1_2"
+      },
+      "storageAccountSubscriptionId": {
+        "$ref": "#/$keywords/storageAccountSubscriptionId_1_2"
+      },
+      "isStorageSecondaryKeyInUse": {
+        "$ref": "#/$keywords/isStorageSecondaryKeyInUse_1_2"
+      },
+      "isAzureMonitorTargetEnabled": {
+        "$ref": "#/$keywords/isAzureMonitorTargetEnabled_1_2"
+      },
+      "queueDelayMs": {
+        "$ref": "#/$keywords/queueDelayMs_1_2"
+      }
+    },
+    "servers/databases/auditingSettings": {
+      "state": {
+        "$ref": "#/$keywords/state_1_2_3_4"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint_1_2_3_4"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey_1_2_3_4"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2_3_4"
+      },
+      "auditActionsAndGroups": {
+        "$ref": "#/$keywords/auditActionsAndGroups_1_2_3"
+      },
+      "storageAccountSubscriptionId": {
+        "$ref": "#/$keywords/storageAccountSubscriptionId_1_2_3"
+      },
+      "isStorageSecondaryKeyInUse": {
+        "$ref": "#/$keywords/isStorageSecondaryKeyInUse_1_2_3"
+      },
+      "isAzureMonitorTargetEnabled": {
+        "$ref": "#/$keywords/isAzureMonitorTargetEnabled_1_2_3"
+      },
+      "queueDelayMs": {
+        "$ref": "#/$keywords/queueDelayMs_1_2_3"
+      }
+    },
+    "servers/databases/vulnerabilityAssessments": {
+      "storageContainerPath": {
+        "$ref": "#/$keywords/storageContainerPath"
+      },
+      "storageContainerSasKey": {
+        "$ref": "#/$keywords/storageContainerSasKey"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey_1_2_3_4_5"
+      },
+      "recurringScans": {
+        "$ref": "#/$keywords/recurringScans"
+      }
+    },
+    "servers/jobAgents/credentials": {
+      "username": {
+        "$ref": "#/$keywords/username"
+      },
+      "password": {
+        "$ref": "#/$keywords/password"
+      }
+    },
+    "servers/jobAgents/jobs": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "schedule": {
+        "$ref": "#/$keywords/schedule"
+      }
+    },
+    "servers/jobAgents/targetGroups": {
+      "members": {
+        "$ref": "#/$keywords/members"
+      }
+    },
+    "servers/databases/backupLongTermRetentionPolicies": {
+      "weeklyRetention": {
+        "$ref": "#/$keywords/weeklyRetention"
+      },
+      "monthlyRetention": {
+        "$ref": "#/$keywords/monthlyRetention"
+      },
+      "yearlyRetention": {
+        "$ref": "#/$keywords/yearlyRetention"
+      },
+      "weekOfYear": {
+        "$ref": "#/$keywords/weekOfYear"
+      }
+    },
+    "managedInstances/databases/backupShortTermRetentionPolicies": {
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2_3_4_5"
+      }
+    },
+    "managedInstances/restorableDroppedDatabases/backupShortTermRetentionPolicies": {
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2_3_4_5"
+      }
+    },
+    "managedInstances/databases/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state_1_2"
+      },
+      "disabledAlerts": {
+        "$ref": "#/$keywords/disabledAlerts"
+      },
+      "emailAddresses": {
+        "$ref": "#/$keywords/emailAddresses"
+      },
+      "emailAccountAdmins": {
+        "$ref": "#/$keywords/emailAccountAdmins"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint_1_2"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey_1_2"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2"
+      }
+    },
+    "servers/jobAgents/jobs/executions": {},
+    "servers/jobAgents/jobs/steps": {
+      "stepId": {
+        "$ref": "#/$keywords/stepId"
+      },
+      "targetGroup": {
+        "$ref": "#/$keywords/targetGroup"
+      },
+      "credential": {
+        "$ref": "#/$keywords/credential"
+      },
+      "action": {
+        "$ref": "#/$keywords/action"
+      },
+      "output": {
+        "$ref": "#/$keywords/output"
+      },
+      "executionOptions": {
+        "$ref": "#/$keywords/executionOptions"
+      }
+    },
+    "servers/databases/vulnerabilityAssessments/rules/baselines": {
+      "baselineResults": {
+        "$ref": "#/$keywords/baselineResults"
+      }
+    },
+    "servers/databases/schemas/tables/columns/sensitivityLabels": {
+      "labelName": {
+        "$ref": "#/$keywords/labelName"
+      },
+      "labelId": {
+        "$ref": "#/$keywords/labelId"
+      },
+      "informationType": {
+        "$ref": "#/$keywords/informationType"
+      },
+      "informationTypeId": {
+        "$ref": "#/$keywords/informationTypeId"
+      },
+      "rank": {
+        "$ref": "#/$keywords/rank"
+      }
+    }
+  }
+}

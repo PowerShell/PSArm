@@ -1,195 +1,118 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Accepted",
-                        "Deleting",
-                        "Deploying",
-                        "Stopped",
-                        "Stopping",
-                        "Starting",
-                        "FailedToStart",
-                        "FailedToStop",
-                        "Succeeded",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "publicKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "virtualSubnetId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "taskType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "errors": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            },
-            "array": true
-        },
-        "details": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            },
-            "array": true
-        },
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Queued",
-                        "Running",
-                        "Canceled",
-                        "Succeeded",
-                        "Failed",
-                        "FailedInputValidation",
-                        "Faulted"
-                    ]
-                }
-            }
-        },
-        "sourcePlatform": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "SQL",
-                        "Unknown"
-                    ]
-                }
-            }
-        },
-        "targetPlatform": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "SQLDB",
-                        "SQLMI",
-                        "Unknown"
-                    ]
-                }
-            }
-        },
-        "creationTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "sourceConnectionInfo": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                },
-                "userName": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "databasesInfo": {
-            "parameters": {
-                "sourceDatabaseName": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Deleting",
-                        "Succeeded"
-                    ]
-                }
-            }
+  "$keywords": {
+    "publicKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "services": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "publicKey": {
-                "$ref": "#/$keywords/publicKey"
-            },
-            "virtualSubnetId": {
-                "$ref": "#/$keywords/virtualSubnetId"
-            }
-        },
-        "services/projects/tasks": {
-            "taskType": {
-                "$ref": "#/$keywords/taskType"
-            },
-            "errors": {
-                "$ref": "#/$keywords/errors"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            }
-        },
-        "services/projects": {
-            "sourcePlatform": {
-                "$ref": "#/$keywords/sourcePlatform"
-            },
-            "targetPlatform": {
-                "$ref": "#/$keywords/targetPlatform"
-            },
-            "creationTime": {
-                "$ref": "#/$keywords/creationTime"
-            },
-            "sourceConnectionInfo": {
-                "$ref": "#/$keywords/sourceConnectionInfo"
-            },
-            "targetConnectionInfo": {
-                "$ref": "#/$keywords/sourceConnectionInfo"
-            },
-            "databasesInfo": {
-                "$ref": "#/$keywords/databasesInfo"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            }
+    "virtualSubnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "sourcePlatform": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SQL",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "targetPlatform": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SQLDB",
+            "SQLMI",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "sourceConnectionInfo": {
+      "body": {
+        "userName": {
+          "$ref": "#/$keywords/userName"
+        },
+        "password": {
+          "$ref": "#/$keywords/password"
+        }
+      }
+    },
+    "userName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetConnectionInfo": {
+      "body": {
+        "userName": {
+          "$ref": "#/$keywords/userName"
+        },
+        "password": {
+          "$ref": "#/$keywords/password"
+        }
+      }
+    },
+    "databasesInfo": {
+      "body": {
+        "sourceDatabaseName": {
+          "$ref": "#/$keywords/sourceDatabaseName"
+        }
+      },
+      "array": true
+    },
+    "sourceDatabaseName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "services": {
+      "publicKey": {
+        "$ref": "#/$keywords/publicKey"
+      },
+      "virtualSubnetId": {
+        "$ref": "#/$keywords/virtualSubnetId"
+      }
+    },
+    "services/projects": {
+      "sourcePlatform": {
+        "$ref": "#/$keywords/sourcePlatform"
+      },
+      "targetPlatform": {
+        "$ref": "#/$keywords/targetPlatform"
+      },
+      "sourceConnectionInfo": {
+        "$ref": "#/$keywords/sourceConnectionInfo"
+      },
+      "targetConnectionInfo": {
+        "$ref": "#/$keywords/targetConnectionInfo"
+      },
+      "databasesInfo": {
+        "$ref": "#/$keywords/databasesInfo"
+      }
+    },
+    "services/projects/tasks": {}
+  }
 }

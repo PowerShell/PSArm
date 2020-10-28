@@ -1,24 +1,20 @@
 {
-    "$keywords": {
-        "lenses": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "metadata": {
-            "propertyParameters": {
-                "value": {}
-            }
-        }
+  "$keywords": {
+    "lenses": {
+      "body": {}
     },
-    "$resources": {
-        "dashboards": {
-            "lenses": {
-                "$ref": "#/$keywords/lenses"
-            },
-            "metadata": {
-                "$ref": "#/$keywords/metadata"
-            }
-        }
+    "metadata": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "dashboards": {
+      "lenses": {
+        "$ref": "#/$keywords/lenses"
+      },
+      "metadata": {
+        "$ref": "#/$keywords/metadata"
+      }
+    }
+  }
 }

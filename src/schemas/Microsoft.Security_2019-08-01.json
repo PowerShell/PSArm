@@ -1,0 +1,307 @@
+{
+  "$keywords": {
+    "thresholdRules": {
+      "body": {
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled"
+        },
+        "minThreshold": {
+          "$ref": "#/$keywords/minThreshold"
+        },
+        "maxThreshold": {
+          "$ref": "#/$keywords/maxThreshold"
+        }
+      },
+      "array": true
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "minThreshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxThreshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "timeWindowRules": {
+      "body": {
+        "timeWindowSize": {
+          "$ref": "#/$keywords/timeWindowSize"
+        },
+        "ruleType": {
+          "$ref": "#/$keywords/ruleType"
+        }
+      },
+      "array": true
+    },
+    "timeWindowSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ruleType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TimeWindowCustomAlertRule"
+          ]
+        }
+      }
+    },
+    "allowlistRules": {
+      "body": {
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled_1"
+        },
+        "allowlistValues": {
+          "$ref": "#/$keywords/allowlistValues"
+        }
+      },
+      "array": true
+    },
+    "isEnabled_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "allowlistValues": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "denylistRules": {
+      "body": {
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled_1_2"
+        },
+        "denylistValues": {
+          "$ref": "#/$keywords/denylistValues"
+        }
+      },
+      "array": true
+    },
+    "isEnabled_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "denylistValues": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "workspace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "export": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "RawEvents"
+          ]
+        }
+      },
+      "array": true
+    },
+    "disabledDataSources": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TwinData"
+          ]
+        }
+      },
+      "array": true
+    },
+    "iotHubs": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "userDefinedResources": {
+      "body": {
+        "query": {
+          "$ref": "#/$keywords/query"
+        },
+        "querySubscriptions": {
+          "$ref": "#/$keywords/querySubscriptions"
+        }
+      }
+    },
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "querySubscriptions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "recommendationsConfiguration": {
+      "body": {
+        "recommendationType": {
+          "$ref": "#/$keywords/recommendationType"
+        },
+        "status": {
+          "$ref": "#/$keywords/status_1"
+        }
+      },
+      "array": true
+    },
+    "recommendationType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "IoT_ACRAuthentication",
+            "IoT_AgentSendsUnutilizedMessages",
+            "IoT_Baseline",
+            "IoT_EdgeHubMemOptimize",
+            "IoT_EdgeLoggingOptions",
+            "IoT_InconsistentModuleSettings",
+            "IoT_InstallAgent",
+            "IoT_IPFilter_DenyAll",
+            "IoT_IPFilter_PermissiveRule",
+            "IoT_OpenPorts",
+            "IoT_PermissiveFirewallPolicy",
+            "IoT_PermissiveInputFirewallRules",
+            "IoT_PermissiveOutputFirewallRules",
+            "IoT_PrivilegedDockerOptions",
+            "IoT_SharedCredentials",
+            "IoT_VulnerableTLSCipherSuite"
+          ]
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "unmaskedIpLoggingStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    }
+  },
+  "$resources": {
+    "deviceSecurityGroups": {
+      "thresholdRules": {
+        "$ref": "#/$keywords/thresholdRules"
+      },
+      "timeWindowRules": {
+        "$ref": "#/$keywords/timeWindowRules"
+      },
+      "allowlistRules": {
+        "$ref": "#/$keywords/allowlistRules"
+      },
+      "denylistRules": {
+        "$ref": "#/$keywords/denylistRules"
+      }
+    },
+    "iotSecuritySolutions": {
+      "workspace": {
+        "$ref": "#/$keywords/workspace"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "export": {
+        "$ref": "#/$keywords/export"
+      },
+      "disabledDataSources": {
+        "$ref": "#/$keywords/disabledDataSources"
+      },
+      "iotHubs": {
+        "$ref": "#/$keywords/iotHubs"
+      },
+      "userDefinedResources": {
+        "$ref": "#/$keywords/userDefinedResources"
+      },
+      "recommendationsConfiguration": {
+        "$ref": "#/$keywords/recommendationsConfiguration"
+      },
+      "unmaskedIpLoggingStatus": {
+        "$ref": "#/$keywords/unmaskedIpLoggingStatus"
+      }
+    }
+  }
+}

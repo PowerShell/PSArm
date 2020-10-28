@@ -1,161 +1,177 @@
 {
-    "$keywords": {
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Unavailable",
-                        "Running",
-                        "Deleting",
-                        "Deleted",
-                        "Stopping",
-                        "Stopped",
-                        "Starting",
-                        "Updating"
-                    ]
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Running",
-                        "Creating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Moving"
-                    ]
-                }
-            }
-        },
-        "uri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "dataIngestionUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "trustedExternalTenants": {
-            "parameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "optimizedAutoscale": {
-            "parameters": {
-                "version": {
-                    "type": "int"
-                },
-                "isEnabled": {
-                    "type": "bool"
-                },
-                "minimum": {
-                    "type": "int"
-                },
-                "maximum": {
-                    "type": "int"
-                }
-            }
-        },
-        "enableDiskEncryption": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enableStreamingIngest": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "virtualNetworkConfiguration": {
-            "parameters": {
-                "subnetId": {
-                    "type": "string"
-                },
-                "enginePublicIpId": {
-                    "type": "string"
-                },
-                "dataManagementPublicIpId": {
-                    "type": "string"
-                }
-            }
-        },
-        "softDeletePeriod": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "hotCachePeriod": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "statistics": {
-            "parameters": {
-                "size": {}
-            }
+  "$keywords": {
+    "trustedExternalTenants": {
+      "body": {
+        "value": {
+          "$ref": "#/$keywords/value"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "clusters": {
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "uri": {
-                "$ref": "#/$keywords/uri"
-            },
-            "dataIngestionUri": {
-                "$ref": "#/$keywords/dataIngestionUri"
-            },
-            "trustedExternalTenants": {
-                "$ref": "#/$keywords/trustedExternalTenants"
-            },
-            "optimizedAutoscale": {
-                "$ref": "#/$keywords/optimizedAutoscale"
-            },
-            "enableDiskEncryption": {
-                "$ref": "#/$keywords/enableDiskEncryption"
-            },
-            "enableStreamingIngest": {
-                "$ref": "#/$keywords/enableStreamingIngest"
-            },
-            "virtualNetworkConfiguration": {
-                "$ref": "#/$keywords/virtualNetworkConfiguration"
-            }
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "optimizedAutoscale": {
+      "body": {
+        "version": {
+          "$ref": "#/$keywords/version"
         },
-        "clusters/databases": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "softDeletePeriod": {
-                "$ref": "#/$keywords/softDeletePeriod"
-            },
-            "hotCachePeriod": {
-                "$ref": "#/$keywords/hotCachePeriod"
-            },
-            "statistics": {
-                "$ref": "#/$keywords/statistics"
-            }
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled"
         },
-        "clusters/databases/dataConnections": {}
+        "minimum": {
+          "$ref": "#/$keywords/minimum"
+        },
+        "maximum": {
+          "$ref": "#/$keywords/maximum"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "minimum": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maximum": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "enableDiskEncryption": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableStreamingIngest": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "virtualNetworkConfiguration": {
+      "body": {
+        "subnetId": {
+          "$ref": "#/$keywords/subnetId"
+        },
+        "enginePublicIpId": {
+          "$ref": "#/$keywords/enginePublicIpId"
+        },
+        "dataManagementPublicIpId": {
+          "$ref": "#/$keywords/dataManagementPublicIpId"
+        }
+      }
+    },
+    "subnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enginePublicIpId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataManagementPublicIpId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "softDeletePeriod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hotCachePeriod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "statistics": {
+      "body": {
+        "size": {
+          "$ref": "#/$keywords/size"
+        }
+      }
+    },
+    "size": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
     }
+  },
+  "$resources": {
+    "clusters": {
+      "trustedExternalTenants": {
+        "$ref": "#/$keywords/trustedExternalTenants"
+      },
+      "optimizedAutoscale": {
+        "$ref": "#/$keywords/optimizedAutoscale"
+      },
+      "enableDiskEncryption": {
+        "$ref": "#/$keywords/enableDiskEncryption"
+      },
+      "enableStreamingIngest": {
+        "$ref": "#/$keywords/enableStreamingIngest"
+      },
+      "virtualNetworkConfiguration": {
+        "$ref": "#/$keywords/virtualNetworkConfiguration"
+      }
+    },
+    "clusters/databases": {
+      "softDeletePeriod": {
+        "$ref": "#/$keywords/softDeletePeriod"
+      },
+      "hotCachePeriod": {
+        "$ref": "#/$keywords/hotCachePeriod"
+      },
+      "statistics": {
+        "$ref": "#/$keywords/statistics"
+      }
+    },
+    "clusters/databases/dataConnections": {}
+  }
 }

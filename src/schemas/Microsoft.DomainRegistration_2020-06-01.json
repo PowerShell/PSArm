@@ -1,268 +1,384 @@
 {
-    "$keywords": {
-        "contactAdmin": {
-            "parameters": {
-                "email": {
-                    "type": "string"
-                },
-                "fax": {
-                    "type": "string"
-                },
-                "jobTitle": {
-                    "type": "string"
-                },
-                "nameFirst": {
-                    "type": "string"
-                },
-                "nameLast": {
-                    "type": "string"
-                },
-                "nameMiddle": {
-                    "type": "string"
-                },
-                "organization": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "addressMailing": {
-                    "$ref": "#/$keywords/addressMailing"
-                }
-            }
-        },
+  "$keywords": {
+    "contactAdmin": {
+      "body": {
         "addressMailing": {
-            "parameters": {
-                "address1": {
-                    "type": "string"
-                },
-                "address2": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "postalCode": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/addressMailing"
         },
-        "registrationStatus": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "email": {
+          "$ref": "#/$keywords/email"
         },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "fax": {
+          "$ref": "#/$keywords/fax"
         },
-        "nameServers": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "jobTitle": {
+          "$ref": "#/$keywords/jobTitle"
         },
-        "privacy": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+        "nameFirst": {
+          "$ref": "#/$keywords/nameFirst"
         },
-        "createdTime": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "nameLast": {
+          "$ref": "#/$keywords/nameLast"
         },
-        "expirationTime": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "nameMiddle": {
+          "$ref": "#/$keywords/nameMiddle"
         },
-        "lastRenewedTime": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "organization": {
+          "$ref": "#/$keywords/organization"
         },
-        "autoRenew": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "readyForDnsRecordManagement": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "managedHostNames": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "azureResourceName": {
-                    "type": "string"
-                },
-                "azureResourceType": {},
-                "customHostNameDnsRecordType": {},
-                "hostNameType": {}
-            },
-            "body": {
-                "siteNames": {
-                    "$ref": "#/$keywords/siteNames"
-                }
-            },
-            "array": true
-        },
-        "siteNames": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "consent": {
-            "parameters": {
-                "agreedBy": {
-                    "type": "string"
-                },
-                "agreedAt": {}
-            },
-            "body": {
-                "agreementKeys": {
-                    "$ref": "#/$keywords/agreementKeys"
-                }
-            }
-        },
-        "agreementKeys": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "domainNotRenewableReasons": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "RegistrationStatusNotSupportedForRenewal",
-                        "ExpirationNotInRenewalTimeRange",
-                        "SubscriptionNotActive"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "dnsType": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "dnsZoneId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "authCode": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "ownershipId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "phone": {
+          "$ref": "#/$keywords/phone"
         }
+      }
     },
-    "$resources": {
-        "domains": {
-            "contactAdmin": {
-                "$ref": "#/$keywords/contactAdmin"
-            },
-            "contactBilling": {
-                "$ref": "#/$keywords/contactAdmin"
-            },
-            "contactRegistrant": {
-                "$ref": "#/$keywords/contactAdmin"
-            },
-            "contactTech": {
-                "$ref": "#/$keywords/contactAdmin"
-            },
-            "registrationStatus": {
-                "$ref": "#/$keywords/registrationStatus"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "nameServers": {
-                "$ref": "#/$keywords/nameServers"
-            },
-            "privacy": {
-                "$ref": "#/$keywords/privacy"
-            },
-            "createdTime": {
-                "$ref": "#/$keywords/createdTime"
-            },
-            "expirationTime": {
-                "$ref": "#/$keywords/expirationTime"
-            },
-            "lastRenewedTime": {
-                "$ref": "#/$keywords/lastRenewedTime"
-            },
-            "autoRenew": {
-                "$ref": "#/$keywords/autoRenew"
-            },
-            "readyForDnsRecordManagement": {
-                "$ref": "#/$keywords/readyForDnsRecordManagement"
-            },
-            "managedHostNames": {
-                "$ref": "#/$keywords/managedHostNames"
-            },
-            "consent": {
-                "$ref": "#/$keywords/consent"
-            },
-            "domainNotRenewableReasons": {
-                "$ref": "#/$keywords/domainNotRenewableReasons"
-            },
-            "dnsType": {
-                "$ref": "#/$keywords/dnsType"
-            },
-            "dnsZoneId": {
-                "$ref": "#/$keywords/dnsZoneId"
-            },
-            "targetDnsType": {
-                "$ref": "#/$keywords/dnsType"
-            },
-            "authCode": {
-                "$ref": "#/$keywords/authCode"
-            }
+    "addressMailing": {
+      "body": {
+        "address1": {
+          "$ref": "#/$keywords/address1"
         },
-        "domains/domainOwnershipIdentifiers": {
-            "ownershipId": {
-                "$ref": "#/$keywords/ownershipId"
-            }
+        "address2": {
+          "$ref": "#/$keywords/address2"
+        },
+        "city": {
+          "$ref": "#/$keywords/city"
+        },
+        "country": {
+          "$ref": "#/$keywords/country"
+        },
+        "postalCode": {
+          "$ref": "#/$keywords/postalCode"
+        },
+        "state": {
+          "$ref": "#/$keywords/state"
         }
+      }
+    },
+    "address1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "address2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "city": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "country": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "postalCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "email": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fax": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "jobTitle": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "nameFirst": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "nameLast": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "nameMiddle": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "organization": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phone": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contactBilling": {
+      "body": {
+        "addressMailing": {
+          "$ref": "#/$keywords/addressMailing"
+        },
+        "email": {
+          "$ref": "#/$keywords/email"
+        },
+        "fax": {
+          "$ref": "#/$keywords/fax"
+        },
+        "jobTitle": {
+          "$ref": "#/$keywords/jobTitle"
+        },
+        "nameFirst": {
+          "$ref": "#/$keywords/nameFirst"
+        },
+        "nameLast": {
+          "$ref": "#/$keywords/nameLast"
+        },
+        "nameMiddle": {
+          "$ref": "#/$keywords/nameMiddle"
+        },
+        "organization": {
+          "$ref": "#/$keywords/organization"
+        },
+        "phone": {
+          "$ref": "#/$keywords/phone"
+        }
+      }
+    },
+    "contactRegistrant": {
+      "body": {
+        "addressMailing": {
+          "$ref": "#/$keywords/addressMailing"
+        },
+        "email": {
+          "$ref": "#/$keywords/email"
+        },
+        "fax": {
+          "$ref": "#/$keywords/fax"
+        },
+        "jobTitle": {
+          "$ref": "#/$keywords/jobTitle"
+        },
+        "nameFirst": {
+          "$ref": "#/$keywords/nameFirst"
+        },
+        "nameLast": {
+          "$ref": "#/$keywords/nameLast"
+        },
+        "nameMiddle": {
+          "$ref": "#/$keywords/nameMiddle"
+        },
+        "organization": {
+          "$ref": "#/$keywords/organization"
+        },
+        "phone": {
+          "$ref": "#/$keywords/phone"
+        }
+      }
+    },
+    "contactTech": {
+      "body": {
+        "addressMailing": {
+          "$ref": "#/$keywords/addressMailing"
+        },
+        "email": {
+          "$ref": "#/$keywords/email"
+        },
+        "fax": {
+          "$ref": "#/$keywords/fax"
+        },
+        "jobTitle": {
+          "$ref": "#/$keywords/jobTitle"
+        },
+        "nameFirst": {
+          "$ref": "#/$keywords/nameFirst"
+        },
+        "nameLast": {
+          "$ref": "#/$keywords/nameLast"
+        },
+        "nameMiddle": {
+          "$ref": "#/$keywords/nameMiddle"
+        },
+        "organization": {
+          "$ref": "#/$keywords/organization"
+        },
+        "phone": {
+          "$ref": "#/$keywords/phone"
+        }
+      }
+    },
+    "privacy": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "autoRenew": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "consent": {
+      "body": {
+        "agreementKeys": {
+          "$ref": "#/$keywords/agreementKeys"
+        },
+        "agreedBy": {
+          "$ref": "#/$keywords/agreedBy"
+        },
+        "agreedAt": {
+          "$ref": "#/$keywords/agreedAt"
+        }
+      }
+    },
+    "agreementKeys": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "agreedBy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "agreedAt": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dnsType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AzureDns",
+            "DefaultDomainRegistrarDns"
+          ]
+        }
+      }
+    },
+    "dnsZoneId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetDnsType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AzureDns",
+            "DefaultDomainRegistrarDns"
+          ]
+        }
+      }
+    },
+    "authCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ownershipId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "domains": {
+      "contactAdmin": {
+        "$ref": "#/$keywords/contactAdmin"
+      },
+      "contactBilling": {
+        "$ref": "#/$keywords/contactBilling"
+      },
+      "contactRegistrant": {
+        "$ref": "#/$keywords/contactRegistrant"
+      },
+      "contactTech": {
+        "$ref": "#/$keywords/contactTech"
+      },
+      "privacy": {
+        "$ref": "#/$keywords/privacy"
+      },
+      "autoRenew": {
+        "$ref": "#/$keywords/autoRenew"
+      },
+      "consent": {
+        "$ref": "#/$keywords/consent"
+      },
+      "dnsType": {
+        "$ref": "#/$keywords/dnsType"
+      },
+      "dnsZoneId": {
+        "$ref": "#/$keywords/dnsZoneId"
+      },
+      "targetDnsType": {
+        "$ref": "#/$keywords/targetDnsType"
+      },
+      "authCode": {
+        "$ref": "#/$keywords/authCode"
+      }
+    },
+    "domains/domainOwnershipIdentifiers": {
+      "ownershipId": {
+        "$ref": "#/$keywords/ownershipId"
+      }
+    }
+  }
 }

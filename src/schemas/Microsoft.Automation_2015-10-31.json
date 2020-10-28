@@ -1,0 +1,872 @@
+{
+  "$keywords": {
+    "sku": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "family": {
+          "$ref": "#/$keywords/family"
+        },
+        "capacity": {
+          "$ref": "#/$keywords/capacity"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Free",
+            "Basic"
+          ]
+        }
+      }
+    },
+    "family": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "capacity": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "base64Value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "thumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isExportable": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "connectionType": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fieldDefinitionValues": {
+      "body": {}
+    },
+    "isGlobal": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "fieldDefinitions": {
+      "body": {}
+    },
+    "userName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "configuration": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        }
+      }
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "incrementNodeConfigurationBuild": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "logVerbose": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "logProgress": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "source": {
+      "body": {
+        "hash": {
+          "$ref": "#/$keywords/hash"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "value": {
+          "$ref": "#/$keywords/value_1"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "hash": {
+      "body": {
+        "algorithm": {
+          "$ref": "#/$keywords/algorithm"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      }
+    },
+    "algorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "embeddedContent",
+            "uri"
+          ]
+        }
+      }
+    },
+    "value_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1": {
+      "body": {}
+    },
+    "description_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runbook": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        }
+      }
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1_2": {
+      "body": {}
+    },
+    "runOn": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "schedule": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4"
+        }
+      }
+    },
+    "name_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runbook_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        }
+      }
+    },
+    "runOn_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1_2_3": {
+      "body": {}
+    },
+    "contentLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "contentHash": {
+          "$ref": "#/$keywords/contentHash"
+        },
+        "version": {
+          "$ref": "#/$keywords/version_1"
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentHash": {
+      "body": {
+        "algorithm": {
+          "$ref": "#/$keywords/algorithm"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      }
+    },
+    "version_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logVerbose_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "logProgress_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "runbookType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Script",
+            "Graph",
+            "PowerShellWorkflow",
+            "PowerShell",
+            "GraphPowerShellWorkflow",
+            "GraphPowerShell"
+          ]
+        }
+      }
+    },
+    "draft": {
+      "body": {
+        "inEdit": {
+          "$ref": "#/$keywords/inEdit"
+        },
+        "draftContentLink": {
+          "$ref": "#/$keywords/draftContentLink"
+        },
+        "creationTime": {
+          "$ref": "#/$keywords/creationTime"
+        },
+        "lastModifiedTime": {
+          "$ref": "#/$keywords/lastModifiedTime"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters_1_2_3_4"
+        },
+        "outputTypes": {
+          "$ref": "#/$keywords/outputTypes"
+        }
+      }
+    },
+    "inEdit": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "draftContentLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "contentHash": {
+          "$ref": "#/$keywords/contentHash"
+        },
+        "version": {
+          "$ref": "#/$keywords/version_1"
+        }
+      }
+    },
+    "creationTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastModifiedTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1_2_3_4": {
+      "body": {}
+    },
+    "outputTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "publishContentLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "contentHash": {
+          "$ref": "#/$keywords/contentHash"
+        },
+        "version": {
+          "$ref": "#/$keywords/version_1"
+        }
+      }
+    },
+    "description_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logActivityTrace": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "description_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "startTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "expiryTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "interval": {
+      "body": {}
+    },
+    "frequency": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "OneTime",
+            "Day",
+            "Hour",
+            "Week",
+            "Month",
+            "Minute"
+          ]
+        }
+      }
+    },
+    "timeZone": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "advancedSchedule": {
+      "body": {
+        "weekDays": {
+          "$ref": "#/$keywords/weekDays"
+        },
+        "monthDays": {
+          "$ref": "#/$keywords/monthDays"
+        },
+        "monthlyOccurrences": {
+          "$ref": "#/$keywords/monthlyOccurrences"
+        }
+      }
+    },
+    "weekDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "monthDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      },
+      "array": true
+    },
+    "monthlyOccurrences": {
+      "body": {
+        "occurrence": {
+          "$ref": "#/$keywords/occurrence"
+        },
+        "day": {
+          "$ref": "#/$keywords/day"
+        }
+      },
+      "array": true
+    },
+    "occurrence": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "day": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        }
+      }
+    },
+    "value_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isEncrypted": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "uri_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "expiryTime_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1_2_3_4_5": {
+      "body": {}
+    },
+    "runbook_1_2": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        }
+      }
+    },
+    "runOn_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "executionFrequencyInSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "scriptName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "scriptParameters": {
+      "body": {}
+    },
+    "scriptRunOn": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3_4_5_6_7": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "automationAccounts": {
+      "sku": {
+        "$ref": "#/$keywords/sku"
+      }
+    },
+    "automationAccounts/certificates": {
+      "base64Value": {
+        "$ref": "#/$keywords/base64Value"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "thumbprint": {
+        "$ref": "#/$keywords/thumbprint"
+      },
+      "isExportable": {
+        "$ref": "#/$keywords/isExportable"
+      }
+    },
+    "automationAccounts/connections": {
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "connectionType": {
+        "$ref": "#/$keywords/connectionType"
+      },
+      "fieldDefinitionValues": {
+        "$ref": "#/$keywords/fieldDefinitionValues"
+      }
+    },
+    "automationAccounts/connectionTypes": {
+      "isGlobal": {
+        "$ref": "#/$keywords/isGlobal"
+      },
+      "fieldDefinitions": {
+        "$ref": "#/$keywords/fieldDefinitions"
+      }
+    },
+    "automationAccounts/credentials": {
+      "userName": {
+        "$ref": "#/$keywords/userName"
+      },
+      "password": {
+        "$ref": "#/$keywords/password"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      }
+    },
+    "automationAccounts/compilationjobs": {
+      "configuration": {
+        "$ref": "#/$keywords/configuration"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      },
+      "incrementNodeConfigurationBuild": {
+        "$ref": "#/$keywords/incrementNodeConfigurationBuild"
+      }
+    },
+    "automationAccounts/configurations": {
+      "logVerbose": {
+        "$ref": "#/$keywords/logVerbose"
+      },
+      "logProgress": {
+        "$ref": "#/$keywords/logProgress"
+      },
+      "source": {
+        "$ref": "#/$keywords/source"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3"
+      }
+    },
+    "automationAccounts/nodeConfigurations": {},
+    "automationAccounts/jobs": {
+      "runbook": {
+        "$ref": "#/$keywords/runbook"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1_2"
+      },
+      "runOn": {
+        "$ref": "#/$keywords/runOn"
+      }
+    },
+    "automationAccounts/jobSchedules": {
+      "schedule": {
+        "$ref": "#/$keywords/schedule"
+      },
+      "runbook": {
+        "$ref": "#/$keywords/runbook_1"
+      },
+      "runOn": {
+        "$ref": "#/$keywords/runOn_1"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1_2_3"
+      }
+    },
+    "automationAccounts/modules": {
+      "contentLink": {
+        "$ref": "#/$keywords/contentLink"
+      }
+    },
+    "automationAccounts/runbooks": {
+      "logVerbose": {
+        "$ref": "#/$keywords/logVerbose_1"
+      },
+      "logProgress": {
+        "$ref": "#/$keywords/logProgress_1"
+      },
+      "runbookType": {
+        "$ref": "#/$keywords/runbookType"
+      },
+      "draft": {
+        "$ref": "#/$keywords/draft"
+      },
+      "publishContentLink": {
+        "$ref": "#/$keywords/publishContentLink"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4"
+      },
+      "logActivityTrace": {
+        "$ref": "#/$keywords/logActivityTrace"
+      }
+    },
+    "automationAccounts/schedules": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4_5"
+      },
+      "startTime": {
+        "$ref": "#/$keywords/startTime"
+      },
+      "expiryTime": {
+        "$ref": "#/$keywords/expiryTime"
+      },
+      "interval": {
+        "$ref": "#/$keywords/interval"
+      },
+      "frequency": {
+        "$ref": "#/$keywords/frequency"
+      },
+      "timeZone": {
+        "$ref": "#/$keywords/timeZone"
+      },
+      "advancedSchedule": {
+        "$ref": "#/$keywords/advancedSchedule"
+      }
+    },
+    "automationAccounts/variables": {
+      "value": {
+        "$ref": "#/$keywords/value_1_2"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4_5_6"
+      },
+      "isEncrypted": {
+        "$ref": "#/$keywords/isEncrypted"
+      }
+    },
+    "automationAccounts/webhooks": {
+      "isEnabled": {
+        "$ref": "#/$keywords/isEnabled"
+      },
+      "uri": {
+        "$ref": "#/$keywords/uri_1"
+      },
+      "expiryTime": {
+        "$ref": "#/$keywords/expiryTime_1"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1_2_3_4_5"
+      },
+      "runbook": {
+        "$ref": "#/$keywords/runbook_1_2"
+      },
+      "runOn": {
+        "$ref": "#/$keywords/runOn_1_2"
+      }
+    },
+    "automationAccounts/watchers": {
+      "executionFrequencyInSeconds": {
+        "$ref": "#/$keywords/executionFrequencyInSeconds"
+      },
+      "scriptName": {
+        "$ref": "#/$keywords/scriptName"
+      },
+      "scriptParameters": {
+        "$ref": "#/$keywords/scriptParameters"
+      },
+      "scriptRunOn": {
+        "$ref": "#/$keywords/scriptRunOn"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4_5_6_7"
+      }
+    },
+    "automationAccounts/runbooks/draft": {}
+  }
+}

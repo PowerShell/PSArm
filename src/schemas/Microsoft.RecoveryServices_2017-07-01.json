@@ -1,84 +1,76 @@
 {
-    "$keywords": {
-        "protectionIntentItemType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "backupManagementType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "AzureIaasVM",
-                        "MAB",
-                        "DPM",
-                        "AzureBackupServer",
-                        "AzureSql",
-                        "AzureStorage",
-                        "AzureWorkload",
-                        "DefaultBackup"
-                    ]
-                }
-            }
-        },
-        "sourceResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "itemId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "policyId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "protectionState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "NotProtected",
-                        "Protecting",
-                        "Protected",
-                        "ProtectionFailed"
-                    ]
-                }
-            }
+  "$keywords": {
+    "backupManagementType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "AzureIaasVM",
+            "MAB",
+            "DPM",
+            "AzureBackupServer",
+            "AzureSql",
+            "AzureStorage",
+            "AzureWorkload",
+            "DefaultBackup"
+          ]
         }
+      }
     },
-    "$resources": {
-        "vaults/backupFabrics/backupProtectionIntent": {
-            "protectionIntentItemType": {
-                "$ref": "#/$keywords/protectionIntentItemType"
-            },
-            "backupManagementType": {
-                "$ref": "#/$keywords/backupManagementType"
-            },
-            "sourceResourceId": {
-                "$ref": "#/$keywords/sourceResourceId"
-            },
-            "itemId": {
-                "$ref": "#/$keywords/itemId"
-            },
-            "policyId": {
-                "$ref": "#/$keywords/policyId"
-            },
-            "protectionState": {
-                "$ref": "#/$keywords/protectionState"
-            }
+    "sourceResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "itemId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "policyId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "protectionState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "NotProtected",
+            "Protecting",
+            "Protected",
+            "ProtectionFailed"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "vaults/backupFabrics/backupProtectionIntent": {
+      "backupManagementType": {
+        "$ref": "#/$keywords/backupManagementType"
+      },
+      "sourceResourceId": {
+        "$ref": "#/$keywords/sourceResourceId"
+      },
+      "itemId": {
+        "$ref": "#/$keywords/itemId"
+      },
+      "policyId": {
+        "$ref": "#/$keywords/policyId"
+      },
+      "protectionState": {
+        "$ref": "#/$keywords/protectionState"
+      }
+    }
+  }
 }

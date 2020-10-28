@@ -1,84 +1,89 @@
 {
-    "$keywords": {
-        "protectedItemsCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "backupManagementType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "protectedItemType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "backupManagementType_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "workloadType": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "sourceResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "policyId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "lastRecoveryPoint": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "protectedItemsCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
         }
+      }
     },
-    "$resources": {
-        "vaults/backupPolicies": {
-            "protectedItemsCount": {
-                "$ref": "#/$keywords/protectedItemsCount"
-            },
-            "backupManagementType": {
-                "$ref": "#/$keywords/backupManagementType"
-            }
-        },
-        "vaults/backupFabrics/protectionContainers/protectedItems": {
-            "protectedItemType": {
-                "$ref": "#/$keywords/protectedItemType"
-            },
-            "backupManagementType": {
-                "$ref": "#/$keywords/backupManagementType_2"
-            },
-            "workloadType": {
-                "$ref": "#/$keywords/workloadType"
-            },
-            "sourceResourceId": {
-                "$ref": "#/$keywords/sourceResourceId"
-            },
-            "policyId": {
-                "$ref": "#/$keywords/policyId"
-            },
-            "lastRecoveryPoint": {
-                "$ref": "#/$keywords/lastRecoveryPoint"
-            }
+    "backupManagementType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "AzureIaasVM",
+            "MAB",
+            "DPM",
+            "AzureBackupServer",
+            "AzureSql"
+          ]
         }
+      }
+    },
+    "workloadType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "VM",
+            "FileFolder",
+            "AzureSqlDb",
+            "SQLDB",
+            "Exchange",
+            "Sharepoint",
+            "DPMUnknown"
+          ]
+        }
+      }
+    },
+    "sourceResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "policyId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastRecoveryPoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "vaults/backupPolicies": {
+      "protectedItemsCount": {
+        "$ref": "#/$keywords/protectedItemsCount"
+      }
+    },
+    "vaults/backupFabrics/protectionContainers/protectedItems": {
+      "backupManagementType": {
+        "$ref": "#/$keywords/backupManagementType"
+      },
+      "workloadType": {
+        "$ref": "#/$keywords/workloadType"
+      },
+      "sourceResourceId": {
+        "$ref": "#/$keywords/sourceResourceId"
+      },
+      "policyId": {
+        "$ref": "#/$keywords/policyId"
+      },
+      "lastRecoveryPoint": {
+        "$ref": "#/$keywords/lastRecoveryPoint"
+      }
+    }
+  }
 }

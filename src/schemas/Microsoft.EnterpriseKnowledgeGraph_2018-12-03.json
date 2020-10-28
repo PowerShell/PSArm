@@ -1,41 +1,40 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "metadata": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Deleting",
-                        "Failed",
-                        "Succeeded"
-                    ]
-                }
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "services": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "metadata": {
-                "$ref": "#/$keywords/metadata"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
+    "metadata": {
+      "body": {}
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Deleting",
+            "Failed",
+            "Succeeded"
+          ]
         }
+      }
     }
+  },
+  "$resources": {
+    "services": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "metadata": {
+        "$ref": "#/$keywords/metadata"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      }
+    }
+  }
 }

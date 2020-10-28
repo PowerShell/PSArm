@@ -1,0 +1,452 @@
+{
+  "$keywords": {
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Succeeded",
+            "Failed",
+            "Canceled",
+            "Deleting",
+            "ProvisioningAccount",
+            "Updating"
+          ]
+        }
+      }
+    },
+    "sku": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "capacityReservationLevel": {
+          "$ref": "#/$keywords/capacityReservationLevel"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Free",
+            "Standard",
+            "Premium",
+            "PerNode",
+            "PerGB2018",
+            "Standalone",
+            "CapacityReservation"
+          ]
+        }
+      }
+    },
+    "capacityReservationLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "retentionInDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "workspaceCapping": {
+      "body": {
+        "dailyQuotaGb": {
+          "$ref": "#/$keywords/dailyQuotaGb"
+        }
+      }
+    },
+    "dailyQuotaGb": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "publicNetworkAccessForIngestion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "publicNetworkAccessForQuery": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "nextLink": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultProperties": {
+      "body": {
+        "keyVaultUri": {
+          "$ref": "#/$keywords/keyVaultUri"
+        },
+        "keyName": {
+          "$ref": "#/$keywords/keyName"
+        },
+        "keyVersion": {
+          "$ref": "#/$keywords/keyVersion"
+        }
+      }
+    },
+    "keyVaultUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataExportId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tableNames": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "destination": {
+      "body": {
+        "resourceId": {
+          "$ref": "#/$keywords/resourceId"
+        },
+        "metaData": {
+          "$ref": "#/$keywords/metaData"
+        }
+      }
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "metaData": {
+      "body": {
+        "eventHubName": {
+          "$ref": "#/$keywords/eventHubName"
+        }
+      }
+    },
+    "eventHubName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enable": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "createdDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastModifiedDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "writeAccessResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Deleting",
+            "ProvisioningAccount",
+            "Updating"
+          ]
+        }
+      }
+    },
+    "storageAccountIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "containers": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "tables": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "storageAccount": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "key": {
+          "$ref": "#/$keywords/key"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "category": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "functionAlias": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "functionParameters": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "tags": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "workspaces": {
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      },
+      "sku": {
+        "$ref": "#/$keywords/sku"
+      },
+      "retentionInDays": {
+        "$ref": "#/$keywords/retentionInDays"
+      },
+      "workspaceCapping": {
+        "$ref": "#/$keywords/workspaceCapping"
+      },
+      "publicNetworkAccessForIngestion": {
+        "$ref": "#/$keywords/publicNetworkAccessForIngestion"
+      },
+      "publicNetworkAccessForQuery": {
+        "$ref": "#/$keywords/publicNetworkAccessForQuery"
+      }
+    },
+    "clusters": {
+      "nextLink": {
+        "$ref": "#/$keywords/nextLink"
+      },
+      "keyVaultProperties": {
+        "$ref": "#/$keywords/keyVaultProperties"
+      }
+    },
+    "workspaces/dataExports": {
+      "dataExportId": {
+        "$ref": "#/$keywords/dataExportId"
+      },
+      "tableNames": {
+        "$ref": "#/$keywords/tableNames"
+      },
+      "destination": {
+        "$ref": "#/$keywords/destination"
+      },
+      "enable": {
+        "$ref": "#/$keywords/enable"
+      },
+      "createdDate": {
+        "$ref": "#/$keywords/createdDate"
+      },
+      "lastModifiedDate": {
+        "$ref": "#/$keywords/lastModifiedDate"
+      }
+    },
+    "workspaces/dataSources": {},
+    "workspaces/linkedServices": {
+      "resourceId": {
+        "$ref": "#/$keywords/resourceId_1"
+      },
+      "writeAccessResourceId": {
+        "$ref": "#/$keywords/writeAccessResourceId"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1"
+      }
+    },
+    "workspaces/linkedStorageAccounts": {
+      "storageAccountIds": {
+        "$ref": "#/$keywords/storageAccountIds"
+      }
+    },
+    "workspaces/storageInsightConfigs": {
+      "containers": {
+        "$ref": "#/$keywords/containers"
+      },
+      "tables": {
+        "$ref": "#/$keywords/tables"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      }
+    },
+    "workspaces/savedSearches": {
+      "category": {
+        "$ref": "#/$keywords/category"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "query": {
+        "$ref": "#/$keywords/query"
+      },
+      "functionAlias": {
+        "$ref": "#/$keywords/functionAlias"
+      },
+      "functionParameters": {
+        "$ref": "#/$keywords/functionParameters"
+      },
+      "version": {
+        "$ref": "#/$keywords/version"
+      },
+      "tags": {
+        "$ref": "#/$keywords/tags"
+      }
+    }
+  }
+}

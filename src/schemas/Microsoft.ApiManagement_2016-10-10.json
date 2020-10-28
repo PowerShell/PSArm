@@ -1,229 +1,257 @@
 {
-    "$keywords": {
-        "publisherEmail": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "publisherEmail": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publisherName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "addresserEmail": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hostnameConfigurations": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
         },
-        "publisherName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "targetProvisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdAtUtc": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "runtimeUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "portalUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "managementApiUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "scmUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "addresserEmail": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hostnameConfigurations": {
-            "parameters": {
-                "type": {},
-                "hostname": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "certificate": {
-                    "$ref": "#/$keywords/certificate"
-                }
-            },
-            "array": true
+        "hostname": {
+          "$ref": "#/$keywords/hostname"
         },
         "certificate": {
-            "parameters": {
-                "expiry": {},
-                "thumbprint": {
-                    "type": "string"
-                },
-                "subject": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/certificate"
+        }
+      },
+      "array": true
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Proxy",
+            "Portal",
+            "Management",
+            "Scm"
+          ]
+        }
+      }
+    },
+    "hostname": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "certificate": {
+      "body": {
+        "expiry": {
+          "$ref": "#/$keywords/expiry"
         },
-        "staticIPs": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "thumbprint": {
+          "$ref": "#/$keywords/thumbprint"
+        },
+        "subject": {
+          "$ref": "#/$keywords/subject"
+        }
+      }
+    },
+    "expiry": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "thumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subject": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vpnconfiguration": {
+      "body": {
+        "subnetResourceId": {
+          "$ref": "#/$keywords/subnetResourceId"
+        },
+        "location": {
+          "$ref": "#/$keywords/location"
+        }
+      }
+    },
+    "subnetResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "location": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalLocations": {
+      "body": {
+        "location": {
+          "$ref": "#/$keywords/location_1"
+        },
+        "skuType": {
+          "$ref": "#/$keywords/skuType"
+        },
+        "skuUnitCount": {
+          "$ref": "#/$keywords/skuUnitCount"
         },
         "vpnconfiguration": {
-            "parameters": {
-                "vnetid": {
-                    "type": "string"
-                },
-                "subnetname": {
-                    "type": "string"
-                },
-                "subnetResourceId": {
-                    "type": "string",
-                    "pattern": "^/subscriptions/[^/]*/resourceGroups/[^/]*/providers/Microsoft.(ClassicNetwork|Network)/virtualNetworks/[^/]*/subnets/[^/]*$"
-                },
-                "location": {
-                    "type": "string"
-                }
-            }
-        },
-        "additionalLocations": {
-            "parameters": {
-                "location": {
-                    "type": "string"
-                },
-                "skuType": {},
-                "skuUnitCount": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "staticIPs": {
-                    "$ref": "#/$keywords/staticIPs_2"
-                },
-                "vpnconfiguration": {
-                    "$ref": "#/$keywords/vpnconfiguration"
-                }
-            },
-            "array": true
-        },
-        "staticIPs_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "customProperties": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "vpnType": {
-            "propertyParameters": {
-                "value": {}
-            }
+          "$ref": "#/$keywords/vpnconfiguration_1"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "service/apis": {},
-        "service/apis/operations": {},
-        "service/apis/operations/policy": {},
-        "service/apis/policy": {},
-        "service/authorizationServers": {},
-        "service/backends": {},
-        "service/certificates": {},
-        "service": {
-            "publisherEmail": {
-                "$ref": "#/$keywords/publisherEmail"
-            },
-            "publisherName": {
-                "$ref": "#/$keywords/publisherName"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "targetProvisioningState": {
-                "$ref": "#/$keywords/targetProvisioningState"
-            },
-            "createdAtUtc": {
-                "$ref": "#/$keywords/createdAtUtc"
-            },
-            "runtimeUrl": {
-                "$ref": "#/$keywords/runtimeUrl"
-            },
-            "portalUrl": {
-                "$ref": "#/$keywords/portalUrl"
-            },
-            "managementApiUrl": {
-                "$ref": "#/$keywords/managementApiUrl"
-            },
-            "scmUrl": {
-                "$ref": "#/$keywords/scmUrl"
-            },
-            "addresserEmail": {
-                "$ref": "#/$keywords/addresserEmail"
-            },
-            "hostnameConfigurations": {
-                "$ref": "#/$keywords/hostnameConfigurations"
-            },
-            "staticIPs": {
-                "$ref": "#/$keywords/staticIPs"
-            },
-            "vpnconfiguration": {
-                "$ref": "#/$keywords/vpnconfiguration"
-            },
-            "additionalLocations": {
-                "$ref": "#/$keywords/additionalLocations"
-            },
-            "customProperties": {
-                "$ref": "#/$keywords/customProperties"
-            },
-            "vpnType": {
-                "$ref": "#/$keywords/vpnType"
-            }
+    "location_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "skuType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Developer",
+            "Standard",
+            "Premium"
+          ]
+        }
+      }
+    },
+    "skuUnitCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1
+        }
+      }
+    },
+    "vpnconfiguration_1": {
+      "body": {
+        "subnetResourceId": {
+          "$ref": "#/$keywords/subnetResourceId"
         },
-        "service/groups": {},
-        "service/identityProviders": {},
-        "service/loggers": {},
-        "service/openidConnectProviders": {},
-        "service/products": {},
-        "service/products/policy": {},
-        "service/properties": {},
-        "service/subscriptions": {},
-        "service/tenant": {},
-        "service/users": {}
+        "location": {
+          "$ref": "#/$keywords/location"
+        }
+      }
+    },
+    "customProperties": {
+      "body": {}
+    },
+    "vpnType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "External",
+            "Internal"
+          ]
+        }
+      }
+    },
+    "skipCertificateChainValidation": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "skipCertificateNameValidation": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "service": {
+      "publisherEmail": {
+        "$ref": "#/$keywords/publisherEmail"
+      },
+      "publisherName": {
+        "$ref": "#/$keywords/publisherName"
+      },
+      "addresserEmail": {
+        "$ref": "#/$keywords/addresserEmail"
+      },
+      "hostnameConfigurations": {
+        "$ref": "#/$keywords/hostnameConfigurations"
+      },
+      "vpnconfiguration": {
+        "$ref": "#/$keywords/vpnconfiguration"
+      },
+      "additionalLocations": {
+        "$ref": "#/$keywords/additionalLocations"
+      },
+      "customProperties": {
+        "$ref": "#/$keywords/customProperties"
+      },
+      "vpnType": {
+        "$ref": "#/$keywords/vpnType"
+      }
+    },
+    "service/apis": {},
+    "service/authorizationServers": {},
+    "service/backends": {
+      "skipCertificateChainValidation": {
+        "$ref": "#/$keywords/skipCertificateChainValidation"
+      },
+      "skipCertificateNameValidation": {
+        "$ref": "#/$keywords/skipCertificateNameValidation"
+      }
+    },
+    "service/certificates": {},
+    "service/groups": {},
+    "service/identityProviders": {},
+    "service/loggers": {},
+    "service/openidConnectProviders": {},
+    "service/products": {},
+    "service/properties": {},
+    "service/subscriptions": {},
+    "service/tenant": {},
+    "service/users": {},
+    "service/apis/operations": {},
+    "service/apis/policy": {},
+    "service/groups/users": {},
+    "service/products/apis": {},
+    "service/products/groups": {},
+    "service/products/policy": {},
+    "service/apis/operations/policy": {}
+  }
 }

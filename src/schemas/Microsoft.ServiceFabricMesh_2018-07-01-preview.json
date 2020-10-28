@@ -1,535 +1,688 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "debugParams": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "services": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "debugParams": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "services": {
-            "parameters": {
-                "osType": {
-                    "enum": [
-                        "Linux",
-                        "Windows"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                },
-                "replicaCount": {
-                    "type": "int"
-                },
-                "healthState": {
-                    "enum": [
-                        "Invalid",
-                        "Ok",
-                        "Warning",
-                        "Error",
-                        "Unknown"
-                    ]
-                },
-                "status": {
-                    "enum": [
-                        "Unknown",
-                        "Active",
-                        "Upgrading",
-                        "Deleting",
-                        "Creating",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "codePackages": {
-                    "$ref": "#/$keywords/codePackages"
-                },
-                "networkRefs": {
-                    "$ref": "#/$keywords/networkRefs"
-                },
-                "diagnostics": {
-                    "$ref": "#/$keywords/diagnostics"
-                }
-            },
-            "array": true
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "osType": {
+          "$ref": "#/$keywords/osType"
         },
         "codePackages": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "image": {
-                    "type": "string"
-                },
-                "entrypoint": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "imageRegistryCredential": {
-                    "$ref": "#/$keywords/imageRegistryCredential"
-                },
-                "commands": {
-                    "$ref": "#/$keywords/commands"
-                },
-                "environmentVariables": {
-                    "$ref": "#/$keywords/environmentVariables"
-                },
-                "settings": {
-                    "$ref": "#/$keywords/settings"
-                },
-                "labels": {
-                    "$ref": "#/$keywords/labels"
-                },
-                "endpoints": {
-                    "$ref": "#/$keywords/endpoints"
-                },
-                "resources": {
-                    "$ref": "#/$keywords/resources"
-                },
-                "volumeRefs": {
-                    "$ref": "#/$keywords/volumeRefs"
-                },
-                "instanceView": {
-                    "$ref": "#/$keywords/instanceView"
-                },
-                "diagnostics": {
-                    "$ref": "#/$keywords/diagnostics"
-                }
-            },
-            "array": true
-        },
-        "imageRegistryCredential": {
-            "parameters": {
-                "server": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "commands": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "environmentVariables": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "settings": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "labels": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "endpoints": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "port": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
-        "resources": {
-            "body": {
-                "requests": {
-                    "$ref": "#/$keywords/requests"
-                },
-                "limits": {
-                    "$ref": "#/$keywords/limits"
-                }
-            }
-        },
-        "requests": {
-            "parameters": {
-                "memoryInGB": {},
-                "cpu": {}
-            }
-        },
-        "limits": {
-            "parameters": {
-                "memoryInGB": {},
-                "cpu": {}
-            }
-        },
-        "volumeRefs": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "readOnly": {
-                    "type": "bool"
-                },
-                "destinationPath": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "instanceView": {
-            "parameters": {
-                "restartCount": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "currentState": {
-                    "$ref": "#/$keywords/currentState"
-                },
-                "previousState": {
-                    "$ref": "#/$keywords/currentState"
-                },
-                "events": {
-                    "$ref": "#/$keywords/events"
-                }
-            }
-        },
-        "currentState": {
-            "parameters": {
-                "state": {
-                    "type": "string"
-                },
-                "startTime": {},
-                "exitCode": {
-                    "type": "string"
-                },
-                "finishTime": {},
-                "detailStatus": {
-                    "type": "string"
-                }
-            }
-        },
-        "events": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "count": {
-                    "type": "int"
-                },
-                "firstTimestamp": {
-                    "type": "string"
-                },
-                "lastTimestamp": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "diagnostics": {
-            "parameters": {
-                "enabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "sinkRefs": {
-                    "$ref": "#/$keywords/sinkRefs"
-                }
-            }
-        },
-        "sinkRefs": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/codePackages"
         },
         "networkRefs": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/networkRefs"
+        },
+        "diagnostics": {
+          "$ref": "#/$keywords/diagnostics_1"
+        },
+        "description": {
+          "$ref": "#/$keywords/description_1"
+        },
+        "replicaCount": {
+          "$ref": "#/$keywords/replicaCount"
         },
         "healthState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "Ok",
-                        "Warning",
-                        "Error",
-                        "Unknown"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/healthState"
+        }
+      }
+    },
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Linux",
+            "Windows"
+          ]
+        }
+      }
+    },
+    "codePackages": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
         },
-        "unhealthyEvaluation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "image": {
+          "$ref": "#/$keywords/image"
         },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "Ready",
-                        "Upgrading",
-                        "Creating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                }
-            }
+        "imageRegistryCredential": {
+          "$ref": "#/$keywords/imageRegistryCredential"
         },
-        "statusDetails": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "entrypoint": {
+          "$ref": "#/$keywords/entrypoint"
         },
-        "serviceNames": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "commands": {
+          "$ref": "#/$keywords/commands"
         },
-        "diagnostics_2": {
-            "parameters": {
-                "enabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "sinks": {
-                    "$ref": "#/$keywords/sinks"
-                },
-                "defaultSinkRefs": {
-                    "$ref": "#/$keywords/defaultSinkRefs"
-                }
-            }
+        "environmentVariables": {
+          "$ref": "#/$keywords/environmentVariables"
         },
+        "settings": {
+          "$ref": "#/$keywords/settings"
+        },
+        "labels": {
+          "$ref": "#/$keywords/labels"
+        },
+        "endpoints": {
+          "$ref": "#/$keywords/endpoints"
+        },
+        "resources": {
+          "$ref": "#/$keywords/resources"
+        },
+        "volumeRefs": {
+          "$ref": "#/$keywords/volumeRefs"
+        },
+        "diagnostics": {
+          "$ref": "#/$keywords/diagnostics"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "image": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "imageRegistryCredential": {
+      "body": {
+        "server": {
+          "$ref": "#/$keywords/server"
+        },
+        "username": {
+          "$ref": "#/$keywords/username"
+        },
+        "password": {
+          "$ref": "#/$keywords/password"
+        }
+      }
+    },
+    "server": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "username": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "entrypoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "commands": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "environmentVariables": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "settings": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "value": {
+          "$ref": "#/$keywords/value_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labels": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4"
+        },
+        "value": {
+          "$ref": "#/$keywords/value_1_2"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endpoints": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5"
+        },
+        "port": {
+          "$ref": "#/$keywords/port"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "port": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "resources": {
+      "body": {
+        "requests": {
+          "$ref": "#/$keywords/requests"
+        },
+        "limits": {
+          "$ref": "#/$keywords/limits"
+        }
+      }
+    },
+    "requests": {
+      "body": {
+        "memoryInGB": {
+          "$ref": "#/$keywords/memoryInGB"
+        },
+        "cpu": {
+          "$ref": "#/$keywords/cpu"
+        }
+      }
+    },
+    "memoryInGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "cpu": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "limits": {
+      "body": {
+        "memoryInGB": {
+          "$ref": "#/$keywords/memoryInGB_1"
+        },
+        "cpu": {
+          "$ref": "#/$keywords/cpu_1"
+        }
+      }
+    },
+    "memoryInGB_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "cpu_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "volumeRefs": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6"
+        },
+        "readOnly": {
+          "$ref": "#/$keywords/readOnly"
+        },
+        "destinationPath": {
+          "$ref": "#/$keywords/destinationPath"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "readOnly": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "destinationPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diagnostics": {
+      "body": {
+        "enabled": {
+          "$ref": "#/$keywords/enabled"
+        },
+        "sinkRefs": {
+          "$ref": "#/$keywords/sinkRefs"
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "sinkRefs": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "networkRefs": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6_7"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6_7": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diagnostics_1": {
+      "body": {
+        "enabled": {
+          "$ref": "#/$keywords/enabled"
+        },
+        "sinkRefs": {
+          "$ref": "#/$keywords/sinkRefs"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "replicaCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "healthState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "Ok",
+            "Warning",
+            "Error",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "diagnostics_1_2": {
+      "body": {
         "sinks": {
-            "parameters": {
-                "kind": {
-                    "enum": [
-                        "Invalid",
-                        "AzureInternalMonitoringPipeline"
-                    ]
-                },
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/sinks"
+        },
+        "enabled": {
+          "$ref": "#/$keywords/enabled_1"
         },
         "defaultSinkRefs": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/defaultSinkRefs"
+        }
+      }
+    },
+    "sinks": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6_7_8"
         },
-        "description_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "addressPrefix": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "ingressConfig": {
-            "parameters": {
-                "qosLevel": {},
-                "publicIPAddress": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "layer4": {
-                    "$ref": "#/$keywords/layer4"
-                }
-            }
+        "description": {
+          "$ref": "#/$keywords/description_1_2"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6_7_8": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabled_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "defaultSinkRefs": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "description_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "addressPrefix": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ingressConfig": {
+      "body": {
+        "qosLevel": {
+          "$ref": "#/$keywords/qosLevel"
         },
         "layer4": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "publicPort": {
-                    "type": "int"
-                },
-                "applicationName": {
-                    "type": "string"
-                },
-                "serviceName": {
-                    "type": "string"
-                },
-                "endpointName": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "description_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provider": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "azureFileParameters": {
-            "parameters": {
-                "accountName": {
-                    "type": "string"
-                },
-                "accountKey": {
-                    "type": "string"
-                },
-                "shareName": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/layer4"
         }
+      }
     },
-    "$resources": {
-        "applications": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "debugParams": {
-                "$ref": "#/$keywords/debugParams"
-            },
-            "services": {
-                "$ref": "#/$keywords/services"
-            },
-            "healthState": {
-                "$ref": "#/$keywords/healthState"
-            },
-            "unhealthyEvaluation": {
-                "$ref": "#/$keywords/unhealthyEvaluation"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "statusDetails": {
-                "$ref": "#/$keywords/statusDetails"
-            },
-            "serviceNames": {
-                "$ref": "#/$keywords/serviceNames"
-            },
-            "diagnostics": {
-                "$ref": "#/$keywords/diagnostics_2"
-            }
-        },
-        "networks": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_2"
-            },
-            "addressPrefix": {
-                "$ref": "#/$keywords/addressPrefix"
-            },
-            "ingressConfig": {
-                "$ref": "#/$keywords/ingressConfig"
-            }
-        },
-        "volumes": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_3"
-            },
-            "provider": {
-                "$ref": "#/$keywords/provider"
-            },
-            "azureFileParameters": {
-                "$ref": "#/$keywords/azureFileParameters"
-            }
+    "qosLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Bronze"
+          ]
         }
+      }
+    },
+    "layer4": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6_7_8_9"
+        },
+        "publicPort": {
+          "$ref": "#/$keywords/publicPort"
+        },
+        "applicationName": {
+          "$ref": "#/$keywords/applicationName"
+        },
+        "serviceName": {
+          "$ref": "#/$keywords/serviceName"
+        },
+        "endpointName": {
+          "$ref": "#/$keywords/endpointName"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6_7_8_9": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "applicationName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endpointName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provider": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SFAzureFile"
+          ]
+        }
+      }
+    },
+    "azureFileParameters": {
+      "body": {
+        "accountName": {
+          "$ref": "#/$keywords/accountName"
+        },
+        "accountKey": {
+          "$ref": "#/$keywords/accountKey"
+        },
+        "shareName": {
+          "$ref": "#/$keywords/shareName"
+        }
+      }
+    },
+    "accountName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accountKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "shareName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "applications": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "debugParams": {
+        "$ref": "#/$keywords/debugParams"
+      },
+      "services": {
+        "$ref": "#/$keywords/services"
+      },
+      "diagnostics": {
+        "$ref": "#/$keywords/diagnostics_1_2"
+      }
+    },
+    "networks": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3"
+      },
+      "addressPrefix": {
+        "$ref": "#/$keywords/addressPrefix"
+      },
+      "ingressConfig": {
+        "$ref": "#/$keywords/ingressConfig"
+      }
+    },
+    "volumes": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4"
+      },
+      "provider": {
+        "$ref": "#/$keywords/provider"
+      },
+      "azureFileParameters": {
+        "$ref": "#/$keywords/azureFileParameters"
+      }
+    }
+  }
 }

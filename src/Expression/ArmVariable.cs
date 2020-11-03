@@ -15,7 +15,7 @@ namespace PSArm.Expression
     /// </summary>
     public class ArmVariable : ArmOperation, IArmElement
     {
-        public ArmVariable(string name, IArmExpression value)
+        public ArmVariable(string name, IArmValue value)
         {
             Name = name;
             Value = value;
@@ -29,9 +29,9 @@ namespace PSArm.Expression
         /// <summary>
         /// The given value of the variable.
         /// </summary>
-        public IArmExpression Value { get; }
+        public IArmValue Value { get; }
 
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             return new ArmVariable(Name, Value.Instantiate(parameters));
         }
@@ -45,9 +45,9 @@ namespace PSArm.Expression
                 .ToString();
         }
 
-        public JToken ToJson()
+        public override JToken ToJson()
         {
-            return new JValue(Value.ToExpressionString());
+            return Value.ToJson();
         }
     }
 

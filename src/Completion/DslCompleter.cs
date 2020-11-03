@@ -125,6 +125,7 @@ namespace PSArm.Completion
                     {
                         lastTokenIndex = i;
                         lastToken = currToken;
+                        break;
                     }
                 }
             }
@@ -478,7 +479,7 @@ namespace PSArm.Completion
                 case TokenKind.Identifier:
                 case TokenKind.Generic:
                 case TokenKind.Command:
-                    effectiveCompletionPosition = cursorPosition;
+                    effectiveCompletionPosition = lastToken.Extent.EndScriptPosition;
                     break;
 
                 default:

@@ -51,18 +51,18 @@ namespace PSArm.Expression
         /// <summary>
         /// Allowed values for this parameter, if any.
         /// </summary>
-        public object[] AllowedValues { get; set; }
+        public List<IArmValue> AllowedValues { get; set; }
 
         /// <summary>
         /// The default value for this parameter, if any.
         /// </summary>
-        public IArmExpression DefaultValue { get; set; }
+        public IArmValue DefaultValue { get; set; }
 
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
-            IArmExpression value = parameters[Name];
+            IArmValue value = parameters[Name];
 
-            if (value is ArmLiteral literal && AllowedValues != null)
+            if (AllowedValues != null && value is ArmLiteral literal)
             {
                 bool found = false;
                 foreach (object allowedValue in AllowedValues)
@@ -80,7 +80,7 @@ namespace PSArm.Expression
                 }
             }
 
-            return value;
+            return (IArmExpression)value;
         }
 
         public override string ToInnerExpressionString()
@@ -92,7 +92,7 @@ namespace PSArm.Expression
                 .ToString();
         }
 
-        public JToken ToJson()
+        public override JToken ToJson()
         {
             var jObj = new JObject();
 
@@ -104,18 +104,16 @@ namespace PSArm.Expression
             if (AllowedValues != null)
             {
                 var jArr = new JArray();
-                foreach (object val in AllowedValues)
+                foreach (IArmValue val in AllowedValues)
                 {
-                    jArr.Add(val);
+                    jArr.Add(val.ToJson());
                 }
                 jObj["allowedValues"] = jArr;
             }
 
             if (DefaultValue != null)
             {
-                jObj["defaultValue"] = DefaultValue is IArmExpression armExpr
-                    ? new JValue(armExpr.ToExpressionString())
-                    : new JValue(DefaultValue);
+                jObj["defaultValue"] = DefaultValue.ToJson();
             }
 
             return jObj;

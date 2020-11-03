@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -45,6 +46,13 @@ namespace PSArm.Expression
         /// </summary>
         /// <returns>The underlying .NET value of the literal.</returns>
         public abstract object GetValue();
+
+        public IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
+        {
+            return this;
+        }
+
+        public abstract JToken ToJson();
     }
 
     /// <summary>
@@ -110,19 +118,24 @@ namespace PSArm.Expression
         {
             return "'" + Value + "'";
         }
+
+        public override JToken ToJson()
+        {
+            return new JValue(Value);
+        }
     }
 
     /// <summary>
     /// An ARM integer literal.
     /// </summary>
     [TypeConverter(typeof(ArmTypeConverter))]
-    public class ArmIntLiteral : ArmLiteral<int>
+    public class ArmIntLiteral : ArmLiteral<long>
     {
         /// <summary>
         /// Create a new ARM integer literal.
         /// </summary>
         /// <param name="value">The underlying integer value of the literal.</param>
-        public ArmIntLiteral(int value) : base(value)
+        public ArmIntLiteral(long value) : base(value)
         {
         }
 
@@ -137,6 +150,11 @@ namespace PSArm.Expression
         /// </summary>
         /// <returns></returns>
         public override string ToInnerExpressionString() => ToExpressionString();
+
+        public override JToken ToJson()
+        {
+            return new JValue(Value);
+        }
     }
 
     /// <summary>
@@ -169,6 +187,11 @@ namespace PSArm.Expression
         /// </summary>
         /// <returns></returns>
         public override string ToInnerExpressionString() => ToExpressionString();
+
+        public override JToken ToJson()
+        {
+            return new JValue(Value);
+        }
     }
 
 }

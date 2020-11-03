@@ -46,12 +46,12 @@ namespace PSArm.ArmBuilding
         /// <summary>
         /// ARM parameters on this template that must be passed in to instantiate it.
         /// </summary>
-        public ArmParameter[] Parameters { get; set; }
+        public List<ArmParameter> Parameters { get; set; }
 
         /// <summary>
         /// ARM variables on this template.
         /// </summary>
-        public ArmVariable[] Variables { get; set; }
+        public List<ArmVariable> Variables { get; set; }
 
         /// <summary>
         /// Render the template as ARM template JSON.
@@ -65,7 +65,7 @@ namespace PSArm.ArmBuilding
                 ["contentVersion"] = ContentVersion.ToString(),
             };
 
-            if (Parameters != null && Parameters.Length != 0)
+            if (Parameters != null && Parameters.Count != 0)
             {
                 var parameters = new JObject();
                 foreach (ArmParameter parameter in Parameters)
@@ -75,7 +75,7 @@ namespace PSArm.ArmBuilding
                 jObj["parameters"] = parameters;
             }
 
-            if (Variables != null && Variables.Length != 0)
+            if (Variables != null && Variables.Count != 0)
             {
                 var variables = new JObject();
                 foreach (ArmVariable variable in Variables)
@@ -122,7 +122,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">Values to instantiate ARM parameters with.</param>
         /// <returns>A copy of the ARM template with all given parameter values instantiated.</returns>
-        public ArmTemplate Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public ArmTemplate Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             // No parameters to instantiate, so save the trouble
             if (Parameters == null)
@@ -131,7 +131,7 @@ namespace PSArm.ArmBuilding
             }
 
             // Go through given parameters and add any that require default values
-            Dictionary<string, IArmExpression> defaultParametersToUse = null;
+            Dictionary<string, IArmValue> defaultParametersToUse = null;
             foreach (ArmParameter parameter in Parameters)
             {
                 if (!parameters.ContainsKey(parameter.Name)
@@ -139,7 +139,7 @@ namespace PSArm.ArmBuilding
                 {
                     if (defaultParametersToUse == null)
                     {
-                        defaultParametersToUse = new Dictionary<string, IArmExpression>();
+                        defaultParametersToUse = new Dictionary<string, IArmValue>();
                     }
 
                     defaultParametersToUse[parameter.Name] = parameter.DefaultValue;
@@ -151,7 +151,7 @@ namespace PSArm.ArmBuilding
             // and use that instead
             if (defaultParametersToUse != null)
             {
-                foreach (KeyValuePair<string, IArmExpression> givenParameter in parameters)
+                foreach (KeyValuePair<string, IArmValue> givenParameter in parameters)
                 {
                     defaultParametersToUse[givenParameter.Key] = givenParameter.Value;
                 }
@@ -187,7 +187,7 @@ namespace PSArm.ArmBuilding
                 Schema = Schema,
                 Outputs = outputs,
                 Resources = resources,
-                Variables = variables?.ToArray(),
+                Variables = variables,
             };
         }
     }

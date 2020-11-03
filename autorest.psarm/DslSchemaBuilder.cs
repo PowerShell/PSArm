@@ -36,6 +36,44 @@ namespace AutoRest.PSArm
         }
     }
 
+    public class KeywordParameter
+    {
+        public KeywordParameter(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+
+        public string Type { get; set; }
+
+        public string Default { get; set; }
+
+        public string[] Enum { get; set; }
+
+        public JObject ToJson()
+        {
+            var jObj = new JObject();
+
+            if (Type != null)
+            {
+                jObj["type"] = new JValue(Type);
+            }
+
+            if (Default != null)
+            {
+                jObj["default"] = new JValue(Default);
+            }
+
+            if (Enum != null && Enum.Length > 0)
+            {
+                jObj["enum"] = new JArray(Enum.Select(v => new JValue(v)).ToArray());
+            }
+
+            return jObj;
+        }
+    }
+
     public abstract class Keyword
     {
         public Keyword(string name)
@@ -53,24 +91,41 @@ namespace AutoRest.PSArm
         public BodyKeyword(string name) : base(name)
         {
             BlockKeywords = new Dictionary<string, KeywordReference>();
+            Parameters = new Dictionary<string, KeywordParameter>();
         }
 
         public Dictionary<string, KeywordReference> BlockKeywords { get; }
 
+        public Dictionary<string, KeywordParameter> Parameters { get; }
+
         public override JObject ToJson()
         {
-            var body = new JObject();
-            foreach (KeyValuePair<string, KeywordReference> subword in BlockKeywords)
+            var result = new JObject();
+
+            if (BlockKeywords.Count > 0)
             {
-                body[subword.Key] = new JObject
+                var body = new JObject();
+                foreach (KeyValuePair<string, KeywordReference> subword in BlockKeywords)
                 {
-                    ["$ref"] = new JValue(subword.Value.DefinitionPath)
-                };
+                    body[subword.Key] = new JObject
+                    {
+                        ["$ref"] = new JValue(subword.Value.DefinitionPath)
+                    };
+                }
+                result["body"] = body;
             }
-            return new JObject
+
+            if (Parameters.Count > 0)
             {
-                ["body"] = body
-            };
+                var parameters = new JObject();
+                foreach (KeyValuePair<string, KeywordParameter> parameter in Parameters)
+                {
+                    parameters[parameter.Key] = parameter.Value.ToJson();
+                }
+                result["parameters"] = parameters;
+            }
+
+            return result;
         }
     }
 
@@ -217,7 +272,7 @@ namespace AutoRest.PSArm
             int i = 1;
             while (_keywordsById.ContainsKey(keywordId))
             {
-                keywordId = $"{keywordId}_{i}";
+                keywordId = $"{keywordName}_{i}";
                 i++;
             }
 
@@ -369,7 +424,7 @@ namespace AutoRest.PSArm
                 case "array":
                     return new ArrayKeyword(keywordName)
                     {
-                        ElementSchema = GetKeywordBodyFromSchema(keywordName: null, actualSchema.Items),
+                        ElementSchema = GetKeywordBodyFromSchema(keywordName, actualSchema.Items),
                     };
 
                 case "integer":
@@ -380,11 +435,37 @@ namespace AutoRest.PSArm
 
                 case "object":
                     var bodyKeyword = new BodyKeyword(keywordName);
-                    if (actualSchema.Properties != null && actualSchema.Properties.Count > 0)
+                    if (actualSchema.Properties != null
+                        && actualSchema.Properties.Count > 0)
                     {
                         foreach (KeyValuePair<string, JsonSchema> subSchema in actualSchema.Properties)
                         {
-                            bodyKeyword.BlockKeywords[subSchema.Key] = GetKeywordFromProperty(subSchema.Key, subSchema.Value);
+                            if (subSchema.Key.Equals("properties", StringComparison.Ordinal))
+                            {
+                                JsonSchema propertiesSchema = subSchema.Value;
+                                if (!string.IsNullOrEmpty(propertiesSchema.Ref)
+                                    && TryGetDefinition(propertiesSchema.Ref, out JsonSchema refSchema))
+                                {
+                                    propertiesSchema = refSchema;
+                                }
+
+                                if (propertiesSchema != null
+                                    && propertiesSchema.Properties != null
+                                    && propertiesSchema.Properties.Count > 0)
+                                {
+                                    foreach (KeyValuePair<string, JsonSchema> property in propertiesSchema.Properties)
+                                    {
+                                        bodyKeyword.BlockKeywords[property.Key] = GetKeywordFromProperty(property.Key, property.Value);
+                                    }
+                                }
+
+                                continue;
+                            }
+
+                            if (TryGetParameterFromProperty(subSchema.Key, subSchema.Value, out KeywordParameter parameter))
+                            {
+                                bodyKeyword.Parameters[subSchema.Key] = parameter;
+                            }
                         }
                     }
                     return bodyKeyword;
@@ -393,6 +474,30 @@ namespace AutoRest.PSArm
                     _logger.Log($"Unknown schema type: {actualSchema.JsonType}");
                     return null;
             }
+        }
+
+        private bool TryGetParameterFromProperty(string propertyName, JsonSchema propertySchema, out KeywordParameter parameter)
+        {
+            switch (propertySchema.JsonType)
+            {
+                case "object":
+                case "array":
+                    _logger.Log($"Property '{propertyName}' has illegal property type '{propertySchema.JsonType}'");
+                    parameter = null;
+                    return false;
+            }
+
+            parameter = new KeywordParameter(propertyName)
+            {
+                Type = propertySchema.JsonType,
+                Default = propertySchema.Default,
+            };
+
+            if (propertySchema.Enum != null && propertySchema.Enum.Count > 0)
+            {
+                parameter.Enum = propertySchema.Enum.ToArray();
+            }
+            return true;
         }
 
         private bool TryGetProperties(JsonSchema resourceJsonSchema, out JsonSchema propertiesSchema)

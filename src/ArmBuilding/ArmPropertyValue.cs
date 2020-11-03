@@ -18,7 +18,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="propertyName">The name of the property.</param>
         /// <param name="value">The value of the property.</param>
-        public ArmPropertyValue(string propertyName, IArmExpression value)
+        public ArmPropertyValue(string propertyName, IArmValue value)
             : base(propertyName)
         {
             Value = value;
@@ -27,14 +27,14 @@ namespace PSArm.ArmBuilding
         /// <summary>
         /// The value of the ARM element.
         /// </summary>
-        public IArmExpression Value { get; }
+        public IArmValue Value { get; }
 
         /// <summary>
         /// Instantiate ARM parameters within this element with the given values.
         /// </summary>
         /// <param name="parameters">The values with which to instantiate ARM parameters.</param>
         /// <returns>A copy of the property element with the parameters instantiated.</returns>
-        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             return new ArmPropertyValue(PropertyName, Value.Instantiate(parameters));
         }
@@ -45,7 +45,7 @@ namespace PSArm.ArmBuilding
         /// <returns>A JSON object representing the ARM template JSON of this element.</returns>
         public override JToken ToJson()
         {
-            return Value.ToExpressionString();
+            return Value.ToJson();
         }
     }
 }

@@ -17,15 +17,15 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="obj">The .NET object or value to convert.</param>
         /// <returns>An ARM expression representing the given .NET value.</returns>
-        public static IArmExpression Convert(object obj)
+        public static IArmValue Convert(object obj)
         {
             switch (obj)
             {
                 case null:
                     return null;
 
-                case IArmExpression expression:
-                    return expression;
+                case IArmValue value:
+                    return value;
 
                 case PSObject psObj:
                     return Convert(psObj.BaseObject);

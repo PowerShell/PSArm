@@ -32,9 +32,9 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">Parameters provided for template instantiation.</param>
         /// <returns>A new DependsOn element instantiated with the given parameters.</returns>
-        public ArmDependsOn Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public ArmDependsOn Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
-            return new ArmDependsOn(Value.Instantiate(parameters));
+            return new ArmDependsOn((IArmExpression)Value.Instantiate(parameters));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace PSArm.ArmBuilding
         /// <returns>A JSON object representation of the ARM template element.</returns>
         public JToken ToJson()
         {
-            return new JValue(Value.ToExpressionString());
+            return Value.ToJson();
         }
     }
 }

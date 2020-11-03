@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
@@ -33,6 +34,11 @@ namespace PSArm.Expression
         /// <returns></returns>
         public abstract string ToInnerExpressionString();
 
+        public virtual JToken ToJson()
+        {
+            return new JValue(ToExpressionString());
+        }
+
         /// <summary>
         /// Implement dynamic member access on this operation,
         /// so that accessing a member on this object returns a new member access expression object
@@ -58,7 +64,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">Values to instantiate parameters with.</param>
         /// <returns></returns>
-        public abstract IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters);
+        public abstract IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters);
 
         private string UnPascal(string s)
         {

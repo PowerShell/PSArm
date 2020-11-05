@@ -98,7 +98,7 @@ namespace PSArm.Expression
 
             if (Type != null)
             {
-                jObj["type"] = GetArmTypeNameFromType(Type);
+                jObj["type"] = ArmTypeConversion.GetArmTypeNameFromType(Type);
             }
 
             if (AllowedValues != null)
@@ -117,51 +117,6 @@ namespace PSArm.Expression
             }
 
             return jObj;
-        }
-
-        private string GetArmTypeNameFromType(Type type)
-        {
-            if (type == null)
-            {
-                return null;
-            }
-
-            if (type == typeof(string))
-            {
-                return "string";
-            }
-
-            if (type == typeof(object))
-            {
-                return "object";
-            }
-
-            if (type == typeof(bool))
-            {
-                return "bool";
-            }
-
-            if (type == typeof(int))
-            {
-                return "int";
-            }
-
-            if (type == typeof(SecureString))
-            {
-                return "securestring";
-            }
-
-            if (type == typeof(Array))
-            {
-                return "array";
-            }
-
-            if (type == typeof(SecureObject))
-            {
-                return "secureObject";
-            }
-
-            throw new ArgumentException($"Cannot convert type '{type}' to known ARM type");
         }
     }
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PSArm
+namespace PSArm.Conversion
 {
     internal struct ArmExpressionParser
     {
@@ -41,6 +41,7 @@ namespace PSArm
             Expect(ref tokenizer, ArmExpressionTokenType.OpenBracket);
             IArmExpression wholeExpression = ParseInnerExpression(ref tokenizer, noLiteral: true);
             Expect(ref tokenizer, ArmExpressionTokenType.CloseBracket);
+            Expect(ref tokenizer, ArmExpressionTokenType.EOF);
             return wholeExpression;
         }
 

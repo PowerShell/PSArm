@@ -1,4 +1,3 @@
-using Microsoft.PowerShell.Commands;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PSArm.ArmBuilding;
@@ -9,10 +8,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Resources;
 using System.Threading.Tasks;
 
-namespace PSArm
+namespace PSArm.Conversion
 {
     public class ArmParser
     {

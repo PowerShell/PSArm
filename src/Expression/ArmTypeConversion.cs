@@ -4,6 +4,7 @@
 
 using System;
 using System.Management.Automation;
+using System.Security;
 
 namespace PSArm.Expression
 {
@@ -42,6 +43,51 @@ namespace PSArm.Expression
                 default:
                     throw new ArgumentException($"Unable to covert value '{obj}' of type '{obj.GetType()}' to IArmExpression");
             }
+        }
+
+        public static string GetArmTypeNameFromType(Type type)
+        {
+            if (type == null)
+            {
+                return null;
+            }
+
+            if (type == typeof(string))
+            {
+                return "string";
+            }
+
+            if (type == typeof(object))
+            {
+                return "object";
+            }
+
+            if (type == typeof(bool))
+            {
+                return "bool";
+            }
+
+            if (type == typeof(int))
+            {
+                return "int";
+            }
+
+            if (type == typeof(SecureString))
+            {
+                return "securestring";
+            }
+
+            if (type == typeof(Array))
+            {
+                return "array";
+            }
+
+            if (type == typeof(SecureObject))
+            {
+                return "secureObject";
+            }
+
+            throw new ArgumentException($"Cannot convert type '{type}' to known ARM type");
         }
     }
 

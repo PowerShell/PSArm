@@ -61,30 +61,40 @@ namespace PSArm.Conversion
         {
             Write("Arm ");
             OpenBlock();
-            WriteParameters();
+            WriteParametersAndVariables();
             WriteResources();
             WriteOutputs();
             CloseBlock();
         }
 
-        private void WriteParameters()
+        private void WriteParametersAndVariables()
         {
-            if (_template.Parameters == null || _template.Parameters.Count == 0)
-            {
-                return;
-            }
-
             Write("param(");
             Indent();
             WriteLine();
 
-            WriteParameter(_template.Parameters[0]);
-
-            for (int i = 1; i < _template.Parameters.Count; i++)
+            if (_template.Parameters != null && _template.Parameters.Count > 0)
             {
-                Write(",");
-                WriteLine();
-                WriteParameter(_template.Parameters[i]);
+                WriteParameter(_template.Parameters[0]);
+
+                for (int i = 1; i < _template.Parameters.Count; i++)
+                {
+                    Write(",");
+                    WriteLine(lineCount: 2);
+                    WriteParameter(_template.Parameters[i]);
+                }
+            }
+
+            if (_template.Variables != null && _template.Variables.Count > 0)
+            {
+                WriteVariable(_template.Variables[0]);
+
+                for (int i = 1; i < _template.Variables.Count; i++)
+                {
+                    Write(",");
+                    WriteLine(lineCount: 2);
+                    WriteVariable(_template.Variables[i]);
+                }
             }
 
             Dedent();
@@ -96,7 +106,6 @@ namespace PSArm.Conversion
         private void WriteParameter(ArmParameter parameter)
         {
             WriteAllowedValues(parameter.AllowedValues);
-            WriteLine();
             WriteParameterType(parameter.GetType());
             WriteVariable(parameter.Name);
             WriteDefaultValue(parameter.DefaultValue);
@@ -110,7 +119,6 @@ namespace PSArm.Conversion
                 return;
             }
 
-            WriteLine();
             Write("[ValidateSet(");
             WriteValue(allowedValues[0]);
             for (int i = 1; i < allowedValues.Count; i++)
@@ -119,6 +127,7 @@ namespace PSArm.Conversion
                 WriteValue(allowedValues[i]);
             }
             Write(")]");
+            WriteLine();
         }
 
         private void WriteParameterType(Type parameterType)
@@ -127,6 +136,7 @@ namespace PSArm.Conversion
             Write("[ArmParameter[");
             Write(psType);
             Write("]]");
+            WriteLine();
         }
 
         private void WriteDefaultValue(IArmValue defaultValue)
@@ -138,6 +148,15 @@ namespace PSArm.Conversion
 
             Write(" = ");
             WriteValue(defaultValue, includeParens: true);
+        }
+
+        private void WriteVariable(ArmVariable variable)
+        {
+            Write("[ArmVariable]");
+            WriteLine();
+            WriteVariable(variable.Name);
+            Write(" = ");
+            WriteValue(variable.Value, includeParens: true);
         }
 
         private void WriteResources()
@@ -175,14 +194,17 @@ namespace PSArm.Conversion
             Write(" ");
             OpenBlock();
 
+            bool needNewline = false;
             if (resource.Sku != null)
             {
+                needNewline = true;
                 WriteSku(resource.Sku);
-                WriteLine();
             }
 
             if (resource.Properties != null && resource.Properties.Count > 0)
             {
+                if (needNewline) { WriteLine(); }
+                needNewline = true;
                 Write("Properties ");
                 OpenBlock();
 
@@ -198,7 +220,6 @@ namespace PSArm.Conversion
                 }
 
                 CloseBlock();
-                WriteLine();
             }
 
             /*
@@ -214,6 +235,7 @@ namespace PSArm.Conversion
 
             if (resource.DependsOn != null && resource.DependsOn.Count > 0)
             {
+                if (needNewline) { WriteLine(); }
                 bool first = true;
                 foreach (IArmExpression dependsOn in resource.DependsOn)
                 {

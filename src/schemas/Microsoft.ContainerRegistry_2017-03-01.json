@@ -1,31 +1,46 @@
 {
-    "$keywords": {
-        "adminUserEnabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "storageAccount": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "accessKey": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "adminUserEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
         }
+      }
     },
-    "$resources": {
-        "registries": {
-            "adminUserEnabled": {
-                "$ref": "#/$keywords/adminUserEnabled"
-            },
-            "storageAccount": {
-                "$ref": "#/$keywords/storageAccount"
-            }
+    "storageAccount": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "accessKey": {
+          "$ref": "#/$keywords/accessKey"
         }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accessKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "registries": {
+      "adminUserEnabled": {
+        "$ref": "#/$keywords/adminUserEnabled"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      }
+    }
+  }
 }

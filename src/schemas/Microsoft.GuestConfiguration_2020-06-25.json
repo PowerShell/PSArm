@@ -1,0 +1,213 @@
+{
+  "$keywords": {
+    "guestConfiguration": {
+      "body": {
+        "kind": {
+          "$ref": "#/$keywords/kind"
+        },
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        },
+        "configurationParameter": {
+          "$ref": "#/$keywords/configurationParameter"
+        },
+        "configurationSetting": {
+          "$ref": "#/$keywords/configurationSetting"
+        }
+      }
+    },
+    "kind": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DSC"
+          ]
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "configurationParameter": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "configurationSetting": {
+      "body": {
+        "configurationMode": {
+          "$ref": "#/$keywords/configurationMode"
+        },
+        "allowModuleOverwrite": {
+          "$ref": "#/$keywords/allowModuleOverwrite"
+        },
+        "actionAfterReboot": {
+          "$ref": "#/$keywords/actionAfterReboot"
+        },
+        "refreshFrequencyMins": {
+          "$ref": "#/$keywords/refreshFrequencyMins"
+        },
+        "rebootIfNeeded": {
+          "$ref": "#/$keywords/rebootIfNeeded"
+        },
+        "configurationModeFrequencyMins": {
+          "$ref": "#/$keywords/configurationModeFrequencyMins"
+        }
+      }
+    },
+    "configurationMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ApplyOnly",
+            "ApplyAndMonitor",
+            "ApplyAndAutoCorrect"
+          ]
+        }
+      }
+    },
+    "allowModuleOverwrite": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "True",
+            "False"
+          ]
+        }
+      }
+    },
+    "actionAfterReboot": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ContinueConfiguration",
+            "StopConfiguration"
+          ]
+        }
+      }
+    },
+    "refreshFrequencyMins": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 30.0
+        }
+      }
+    },
+    "rebootIfNeeded": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "True",
+            "False"
+          ]
+        }
+      }
+    },
+    "configurationModeFrequencyMins": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 15.0
+        }
+      }
+    },
+    "latestAssignmentReport": {
+      "body": {
+        "assignment": {
+          "$ref": "#/$keywords/assignment"
+        },
+        "vm": {
+          "$ref": "#/$keywords/vm"
+        },
+        "resources": {
+          "$ref": "#/$keywords/resources"
+        }
+      }
+    },
+    "assignment": {
+      "body": {
+        "configuration": {
+          "$ref": "#/$keywords/configuration"
+        }
+      }
+    },
+    "configuration": {
+      "body": {}
+    },
+    "vm": {
+      "body": {}
+    },
+    "resources": {
+      "body": {
+        "reasons": {
+          "$ref": "#/$keywords/reasons"
+        }
+      },
+      "array": true
+    },
+    "reasons": {
+      "body": {},
+      "array": true
+    },
+    "context": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "guestConfigurationAssignments": {
+      "guestConfiguration": {
+        "$ref": "#/$keywords/guestConfiguration"
+      },
+      "latestAssignmentReport": {
+        "$ref": "#/$keywords/latestAssignmentReport"
+      },
+      "context": {
+        "$ref": "#/$keywords/context"
+      }
+    }
+  }
+}

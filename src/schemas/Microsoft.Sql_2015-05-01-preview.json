@@ -1,0 +1,761 @@
+{
+  "$keywords": {
+    "managedInstanceCreateMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "PointInTimeRestore"
+          ]
+        }
+      }
+    },
+    "administratorLogin": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorLoginPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "licenseType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LicenseIncluded",
+            "BasePrice"
+          ]
+        }
+      }
+    },
+    "vCores": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageSizeInGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "collation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dnsZonePartner": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicDataEndpointEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "sourceManagedInstanceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "proxyOverride": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Proxy",
+            "Redirect",
+            "Default"
+          ]
+        }
+      }
+    },
+    "timezoneId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "instancePoolId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maintenanceConfigurationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "minimalTlsVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorLogin_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorLoginPassword_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverKeyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverKeyType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ServiceManaged",
+            "AzureKeyVault"
+          ]
+        }
+      }
+    },
+    "readWriteEndpoint": {
+      "body": {
+        "failoverPolicy": {
+          "$ref": "#/$keywords/failoverPolicy"
+        },
+        "failoverWithDataLossGracePeriodMinutes": {
+          "$ref": "#/$keywords/failoverWithDataLossGracePeriodMinutes"
+        }
+      }
+    },
+    "failoverPolicy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Manual",
+            "Automatic"
+          ]
+        }
+      }
+    },
+    "failoverWithDataLossGracePeriodMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "readOnlyEndpoint": {
+      "body": {
+        "failoverPolicy": {
+          "$ref": "#/$keywords/failoverPolicy_1"
+        }
+      }
+    },
+    "failoverPolicy_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "partnerServers": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      },
+      "array": true
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "databases": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "serverKeyType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ServiceManaged",
+            "AzureKeyVault"
+          ]
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "thumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "creationDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "syncDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualNetworkSubnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ignoreMissingVnetServiceEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "startIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "interval": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "conflictResolutionPolicy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "HubWin",
+            "MemberWin"
+          ]
+        }
+      }
+    },
+    "syncDatabaseId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hubDatabaseUserName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hubDatabasePassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "schema": {
+      "body": {
+        "tables": {
+          "$ref": "#/$keywords/tables"
+        },
+        "masterSyncMemberName": {
+          "$ref": "#/$keywords/masterSyncMemberName"
+        }
+      }
+    },
+    "tables": {
+      "body": {
+        "columns": {
+          "$ref": "#/$keywords/columns"
+        },
+        "quotedName": {
+          "$ref": "#/$keywords/quotedName_1"
+        }
+      },
+      "array": true
+    },
+    "columns": {
+      "body": {
+        "quotedName": {
+          "$ref": "#/$keywords/quotedName"
+        },
+        "dataSize": {
+          "$ref": "#/$keywords/dataSize"
+        },
+        "dataType": {
+          "$ref": "#/$keywords/dataType"
+        }
+      },
+      "array": true
+    },
+    "quotedName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "quotedName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "masterSyncMemberName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "auditActionsAndGroups": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "storageAccountSubscriptionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isStorageSecondaryKeyInUse": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isAzureMonitorTargetEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "queueDelayMs": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "databaseType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AzureSqlDatabase",
+            "SqlServerDatabase"
+          ]
+        }
+      }
+    },
+    "syncAgentId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sqlServerDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "databaseName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "syncDirection": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Bidirectional",
+            "OneWayMemberToHub",
+            "OneWayHubToMember"
+          ]
+        }
+      }
+    }
+  },
+  "$resources": {
+    "managedInstances": {
+      "managedInstanceCreateMode": {
+        "$ref": "#/$keywords/managedInstanceCreateMode"
+      },
+      "administratorLogin": {
+        "$ref": "#/$keywords/administratorLogin"
+      },
+      "administratorLoginPassword": {
+        "$ref": "#/$keywords/administratorLoginPassword"
+      },
+      "subnetId": {
+        "$ref": "#/$keywords/subnetId"
+      },
+      "licenseType": {
+        "$ref": "#/$keywords/licenseType"
+      },
+      "vCores": {
+        "$ref": "#/$keywords/vCores"
+      },
+      "storageSizeInGB": {
+        "$ref": "#/$keywords/storageSizeInGB"
+      },
+      "collation": {
+        "$ref": "#/$keywords/collation"
+      },
+      "dnsZonePartner": {
+        "$ref": "#/$keywords/dnsZonePartner"
+      },
+      "publicDataEndpointEnabled": {
+        "$ref": "#/$keywords/publicDataEndpointEnabled"
+      },
+      "sourceManagedInstanceId": {
+        "$ref": "#/$keywords/sourceManagedInstanceId"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime"
+      },
+      "proxyOverride": {
+        "$ref": "#/$keywords/proxyOverride"
+      },
+      "timezoneId": {
+        "$ref": "#/$keywords/timezoneId"
+      },
+      "instancePoolId": {
+        "$ref": "#/$keywords/instancePoolId"
+      },
+      "maintenanceConfigurationId": {
+        "$ref": "#/$keywords/maintenanceConfigurationId"
+      },
+      "minimalTlsVersion": {
+        "$ref": "#/$keywords/minimalTlsVersion"
+      }
+    },
+    "servers": {
+      "administratorLogin": {
+        "$ref": "#/$keywords/administratorLogin_1"
+      },
+      "administratorLoginPassword": {
+        "$ref": "#/$keywords/administratorLoginPassword_1"
+      },
+      "version": {
+        "$ref": "#/$keywords/version"
+      }
+    },
+    "servers/encryptionProtector": {
+      "serverKeyName": {
+        "$ref": "#/$keywords/serverKeyName"
+      },
+      "serverKeyType": {
+        "$ref": "#/$keywords/serverKeyType"
+      }
+    },
+    "servers/failoverGroups": {
+      "readWriteEndpoint": {
+        "$ref": "#/$keywords/readWriteEndpoint"
+      },
+      "readOnlyEndpoint": {
+        "$ref": "#/$keywords/readOnlyEndpoint"
+      },
+      "partnerServers": {
+        "$ref": "#/$keywords/partnerServers"
+      },
+      "databases": {
+        "$ref": "#/$keywords/databases"
+      }
+    },
+    "servers/keys": {
+      "serverKeyType": {
+        "$ref": "#/$keywords/serverKeyType_1"
+      },
+      "uri": {
+        "$ref": "#/$keywords/uri"
+      },
+      "thumbprint": {
+        "$ref": "#/$keywords/thumbprint"
+      },
+      "creationDate": {
+        "$ref": "#/$keywords/creationDate"
+      }
+    },
+    "servers/syncAgents": {
+      "syncDatabaseId": {
+        "$ref": "#/$keywords/syncDatabaseId"
+      }
+    },
+    "servers/virtualNetworkRules": {
+      "virtualNetworkSubnetId": {
+        "$ref": "#/$keywords/virtualNetworkSubnetId"
+      },
+      "ignoreMissingVnetServiceEndpoint": {
+        "$ref": "#/$keywords/ignoreMissingVnetServiceEndpoint"
+      }
+    },
+    "servers/firewallRules": {
+      "startIpAddress": {
+        "$ref": "#/$keywords/startIpAddress"
+      },
+      "endIpAddress": {
+        "$ref": "#/$keywords/endIpAddress"
+      }
+    },
+    "servers/databases/syncGroups": {
+      "interval": {
+        "$ref": "#/$keywords/interval"
+      },
+      "conflictResolutionPolicy": {
+        "$ref": "#/$keywords/conflictResolutionPolicy"
+      },
+      "syncDatabaseId": {
+        "$ref": "#/$keywords/syncDatabaseId_1"
+      },
+      "hubDatabaseUserName": {
+        "$ref": "#/$keywords/hubDatabaseUserName"
+      },
+      "hubDatabasePassword": {
+        "$ref": "#/$keywords/hubDatabasePassword"
+      },
+      "schema": {
+        "$ref": "#/$keywords/schema"
+      }
+    },
+    "servers/databases/auditingSettings": {
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays"
+      },
+      "auditActionsAndGroups": {
+        "$ref": "#/$keywords/auditActionsAndGroups"
+      },
+      "storageAccountSubscriptionId": {
+        "$ref": "#/$keywords/storageAccountSubscriptionId"
+      },
+      "isStorageSecondaryKeyInUse": {
+        "$ref": "#/$keywords/isStorageSecondaryKeyInUse"
+      },
+      "isAzureMonitorTargetEnabled": {
+        "$ref": "#/$keywords/isAzureMonitorTargetEnabled"
+      },
+      "queueDelayMs": {
+        "$ref": "#/$keywords/queueDelayMs"
+      }
+    },
+    "servers/databases/syncGroups/syncMembers": {
+      "databaseType": {
+        "$ref": "#/$keywords/databaseType"
+      },
+      "syncAgentId": {
+        "$ref": "#/$keywords/syncAgentId"
+      },
+      "sqlServerDatabaseId": {
+        "$ref": "#/$keywords/sqlServerDatabaseId"
+      },
+      "serverName": {
+        "$ref": "#/$keywords/serverName"
+      },
+      "databaseName": {
+        "$ref": "#/$keywords/databaseName"
+      },
+      "userName": {
+        "$ref": "#/$keywords/userName"
+      },
+      "password": {
+        "$ref": "#/$keywords/password"
+      },
+      "syncDirection": {
+        "$ref": "#/$keywords/syncDirection"
+      }
+    }
+  }
+}

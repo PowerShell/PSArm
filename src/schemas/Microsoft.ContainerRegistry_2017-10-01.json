@@ -1,184 +1,180 @@
 {
-    "$keywords": {
-        "loginServer": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "creationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled"
-                    ]
-                }
-            }
-        },
-        "status": {
-            "parameters": {
-                "displayStatus": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "timestamp": {}
-            }
-        },
-        "adminUserEnabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "storageAccount": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "networkRuleSet": {
-            "parameters": {
-                "defaultAction": {
-                    "enum": [
-                        "Allow",
-                        "Deny"
-                    ]
-                }
-            },
-            "body": {
-                "virtualNetworkRules": {
-                    "$ref": "#/$keywords/virtualNetworkRules"
-                },
-                "ipRules": {
-                    "$ref": "#/$keywords/ipRules"
-                }
-            }
+  "$keywords": {
+    "adminUserEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "storageAccount": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "networkRuleSet": {
+      "body": {
+        "defaultAction": {
+          "$ref": "#/$keywords/defaultAction"
         },
         "virtualNetworkRules": {
-            "parameters": {
-                "action": {},
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/virtualNetworkRules"
         },
         "ipRules": {
-            "parameters": {
-                "action": {},
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "serviceUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "customHeaders": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "status_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "enabled",
-                        "disabled"
-                    ]
-                }
-            }
-        },
-        "scope": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "actions": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "push",
-                        "delete",
-                        "quarantine",
-                        "chart_push",
-                        "chart_delete"
-                    ]
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/ipRules"
         }
+      }
     },
-    "$resources": {
-        "registries": {
-            "loginServer": {
-                "$ref": "#/$keywords/loginServer"
-            },
-            "creationDate": {
-                "$ref": "#/$keywords/creationDate"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "adminUserEnabled": {
-                "$ref": "#/$keywords/adminUserEnabled"
-            },
-            "storageAccount": {
-                "$ref": "#/$keywords/storageAccount"
-            },
-            "networkRuleSet": {
-                "$ref": "#/$keywords/networkRuleSet"
-            }
-        },
-        "registries/replications": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            }
-        },
-        "registries/webhooks": {
-            "serviceUri": {
-                "$ref": "#/$keywords/serviceUri"
-            },
-            "customHeaders": {
-                "$ref": "#/$keywords/customHeaders"
-            },
-            "status": {
-                "$ref": "#/$keywords/status_2"
-            },
-            "scope": {
-                "$ref": "#/$keywords/scope"
-            },
-            "actions": {
-                "$ref": "#/$keywords/actions"
-            }
+    "defaultAction": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Deny"
+          ]
         }
+      }
+    },
+    "virtualNetworkRules": {
+      "body": {
+        "action": {
+          "$ref": "#/$keywords/action"
+        },
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      },
+      "array": true
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow"
+          ]
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ipRules": {
+      "body": {
+        "action": {
+          "$ref": "#/$keywords/action_1"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "action_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow"
+          ]
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customHeaders": {
+      "body": {}
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "enabled",
+            "disabled"
+          ]
+        }
+      }
+    },
+    "scope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "actions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "push",
+            "delete",
+            "quarantine",
+            "chart_push",
+            "chart_delete"
+          ]
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "registries": {
+      "adminUserEnabled": {
+        "$ref": "#/$keywords/adminUserEnabled"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      },
+      "networkRuleSet": {
+        "$ref": "#/$keywords/networkRuleSet"
+      }
+    },
+    "registries/replications": {},
+    "registries/webhooks": {
+      "serviceUri": {
+        "$ref": "#/$keywords/serviceUri"
+      },
+      "customHeaders": {
+        "$ref": "#/$keywords/customHeaders"
+      },
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "scope": {
+        "$ref": "#/$keywords/scope"
+      },
+      "actions": {
+        "$ref": "#/$keywords/actions"
+      }
+    }
+  }
 }

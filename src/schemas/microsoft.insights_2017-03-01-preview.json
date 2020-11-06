@@ -1,79 +1,106 @@
 {
-    "$keywords": {
-        "scopes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "condition": {
-            "body": {
-                "allOf": {
-                    "$ref": "#/$keywords/allOf"
-                }
-            }
-        },
-        "allOf": {
-            "parameters": {
-                "field": {
-                    "type": "string"
-                },
-                "equals": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "actions": {
-            "body": {
-                "actionGroups": {
-                    "$ref": "#/$keywords/actionGroups"
-                }
-            }
-        },
-        "actionGroups": {
-            "parameters": {
-                "actionGroupId": {
-                    "type": "string"
-                },
-                "webhookProperties": {}
-            },
-            "array": true
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "scopes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "activityLogAlerts": {
-            "scopes": {
-                "$ref": "#/$keywords/scopes"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "condition": {
-                "$ref": "#/$keywords/condition"
-            },
-            "actions": {
-                "$ref": "#/$keywords/actions"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            }
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
         }
+      }
+    },
+    "condition": {
+      "body": {
+        "allOf": {
+          "$ref": "#/$keywords/allOf"
+        }
+      }
+    },
+    "allOf": {
+      "body": {
+        "field": {
+          "$ref": "#/$keywords/field"
+        },
+        "equals": {
+          "$ref": "#/$keywords/equals"
+        }
+      },
+      "array": true
+    },
+    "field": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "equals": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "actions": {
+      "body": {
+        "actionGroups": {
+          "$ref": "#/$keywords/actionGroups"
+        }
+      }
+    },
+    "actionGroups": {
+      "body": {
+        "actionGroupId": {
+          "$ref": "#/$keywords/actionGroupId"
+        },
+        "webhookProperties": {
+          "$ref": "#/$keywords/webhookProperties"
+        }
+      },
+      "array": true
+    },
+    "actionGroupId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "webhookProperties": {
+      "body": {}
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "activityLogAlerts": {
+      "scopes": {
+        "$ref": "#/$keywords/scopes"
+      },
+      "enabled": {
+        "$ref": "#/$keywords/enabled"
+      },
+      "condition": {
+        "$ref": "#/$keywords/condition"
+      },
+      "actions": {
+        "$ref": "#/$keywords/actions"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      }
+    }
+  }
 }

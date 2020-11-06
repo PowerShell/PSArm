@@ -1,248 +1,199 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
+  "$keywords": {
+    "inputSchema": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EventGridSchema",
+            "CustomEventSchema",
+            "CloudEventV01Schema"
+          ]
+        }
+      }
+    },
+    "inputSchemaMapping": {
+      "body": {}
+    },
+    "destination": {
+      "body": {}
+    },
+    "filter": {
+      "body": {
+        "subjectBeginsWith": {
+          "$ref": "#/$keywords/subjectBeginsWith"
         },
-        "endpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "inputSchema": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "EventGridSchema",
-                        "CustomEventSchema",
-                        "CloudEventV01Schema"
-                    ]
-                }
-            }
-        },
-        "inputSchemaMapping": {
-            "parameters": {
-                "inputSchemaMappingType": {}
-            }
-        },
-        "topic": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed",
-                        "AwaitingManualAction"
-                    ]
-                }
-            }
-        },
-        "destination": {
-            "parameters": {
-                "endpointType": {
-                    "enum": [
-                        "WebHook",
-                        "EventHub",
-                        "StorageQueue",
-                        "HybridConnection",
-                        "ServiceBusQueue"
-                    ]
-                }
-            }
-        },
-        "filter": {
-            "parameters": {
-                "subjectBeginsWith": {
-                    "type": "string"
-                },
-                "subjectEndsWith": {
-                    "type": "string"
-                },
-                "isSubjectCaseSensitive": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "includedEventTypes": {
-                    "$ref": "#/$keywords/includedEventTypes"
-                },
-                "advancedFilters": {
-                    "$ref": "#/$keywords/advancedFilters"
-                }
-            }
+        "subjectEndsWith": {
+          "$ref": "#/$keywords/subjectEndsWith"
         },
         "includedEventTypes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/includedEventTypes"
+        },
+        "isSubjectCaseSensitive": {
+          "$ref": "#/$keywords/isSubjectCaseSensitive"
         },
         "advancedFilters": {
-            "parameters": {
-                "operatorType": {
-                    "enum": [
-                        "NumberIn",
-                        "NumberNotIn",
-                        "NumberLessThan",
-                        "NumberGreaterThan",
-                        "NumberLessThanOrEquals",
-                        "NumberGreaterThanOrEquals",
-                        "BoolEquals",
-                        "StringIn",
-                        "StringNotIn",
-                        "StringBeginsWith",
-                        "StringEndsWith",
-                        "StringContains"
-                    ]
-                },
-                "key": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "labels": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "expirationTimeUtc": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "eventDeliverySchema": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "EventGridSchema",
-                        "CloudEventV01Schema",
-                        "CustomInputSchema"
-                    ]
-                }
-            }
-        },
-        "retryPolicy": {
-            "parameters": {
-                "maxDeliveryAttempts": {
-                    "type": "int"
-                },
-                "eventTimeToLiveInMinutes": {
-                    "type": "int"
-                }
-            }
-        },
-        "deadLetterDestination": {
-            "parameters": {
-                "endpointType": {}
-            }
-        },
-        "provisioningState_3": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "endpoint_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/advancedFilters"
         }
+      }
     },
-    "$resources": {
-        "domains": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint"
-            },
-            "inputSchema": {
-                "$ref": "#/$keywords/inputSchema"
-            },
-            "inputSchemaMapping": {
-                "$ref": "#/$keywords/inputSchemaMapping"
-            }
-        },
-        "eventSubscriptions": {
-            "topic": {
-                "$ref": "#/$keywords/topic"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "destination": {
-                "$ref": "#/$keywords/destination"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter"
-            },
-            "labels": {
-                "$ref": "#/$keywords/labels"
-            },
-            "expirationTimeUtc": {
-                "$ref": "#/$keywords/expirationTimeUtc"
-            },
-            "eventDeliverySchema": {
-                "$ref": "#/$keywords/eventDeliverySchema"
-            },
-            "retryPolicy": {
-                "$ref": "#/$keywords/retryPolicy"
-            },
-            "deadLetterDestination": {
-                "$ref": "#/$keywords/deadLetterDestination"
-            }
-        },
-        "topics": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_3"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint_2"
-            },
-            "inputSchema": {
-                "$ref": "#/$keywords/inputSchema"
-            },
-            "inputSchemaMapping": {
-                "$ref": "#/$keywords/inputSchemaMapping"
-            }
+    "subjectBeginsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "subjectEndsWith": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "includedEventTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isSubjectCaseSensitive": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "advancedFilters": {
+      "body": {
+        "key": {
+          "$ref": "#/$keywords/key"
+        }
+      },
+      "array": true
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labels": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "expirationTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventDeliverySchema": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EventGridSchema",
+            "CloudEventV01Schema",
+            "CustomInputSchema"
+          ]
+        }
+      }
+    },
+    "retryPolicy": {
+      "body": {
+        "maxDeliveryAttempts": {
+          "$ref": "#/$keywords/maxDeliveryAttempts"
+        },
+        "eventTimeToLiveInMinutes": {
+          "$ref": "#/$keywords/eventTimeToLiveInMinutes"
+        }
+      }
+    },
+    "maxDeliveryAttempts": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "eventTimeToLiveInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "deadLetterDestination": {
+      "body": {}
+    },
+    "inputSchema_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EventGridSchema",
+            "CustomEventSchema",
+            "CloudEventV01Schema"
+          ]
+        }
+      }
+    },
+    "inputSchemaMapping_1": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "domains": {
+      "inputSchema": {
+        "$ref": "#/$keywords/inputSchema"
+      },
+      "inputSchemaMapping": {
+        "$ref": "#/$keywords/inputSchemaMapping"
+      }
+    },
+    "eventSubscriptions": {
+      "destination": {
+        "$ref": "#/$keywords/destination"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter"
+      },
+      "labels": {
+        "$ref": "#/$keywords/labels"
+      },
+      "expirationTimeUtc": {
+        "$ref": "#/$keywords/expirationTimeUtc"
+      },
+      "eventDeliverySchema": {
+        "$ref": "#/$keywords/eventDeliverySchema"
+      },
+      "retryPolicy": {
+        "$ref": "#/$keywords/retryPolicy"
+      },
+      "deadLetterDestination": {
+        "$ref": "#/$keywords/deadLetterDestination"
+      }
+    },
+    "topics": {
+      "inputSchema": {
+        "$ref": "#/$keywords/inputSchema_1"
+      },
+      "inputSchemaMapping": {
+        "$ref": "#/$keywords/inputSchemaMapping_1"
+      }
+    },
+    "domains/topics": {}
+  }
 }

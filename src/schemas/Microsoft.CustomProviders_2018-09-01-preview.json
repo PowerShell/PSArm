@@ -1,89 +1,134 @@
 {
-    "$keywords": {
-        "actions": {
-            "parameters": {
-                "routingType": {},
-                "name": {
-                    "type": "string"
-                },
-                "endpoint": {
-                    "type": "string",
-                    "pattern": "^https://.+"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "actions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
-        "resourceTypes": {
-            "parameters": {
-                "routingType": {
-                    "enum": [
-                        "Proxy",
-                        "Proxy,Cache"
-                    ]
-                },
-                "name": {
-                    "type": "string"
-                },
-                "endpoint": {
-                    "type": "string",
-                    "pattern": "^https://.+"
-                }
-            },
-            "array": true
+        "endpoint": {
+          "$ref": "#/$keywords/endpoint"
         },
-        "validations": {
-            "parameters": {
-                "validationType": {},
-                "specification": {
-                    "type": "string",
-                    "pattern": "^https://raw.githubusercontent.com/.+"
-                }
-            },
-            "array": true
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Accepted",
-                        "Deleting",
-                        "Running",
-                        "Succeeded",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "targetResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "routingType": {
+          "$ref": "#/$keywords/routingType"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "resourceProviders": {
-            "actions": {
-                "$ref": "#/$keywords/actions"
-            },
-            "resourceTypes": {
-                "$ref": "#/$keywords/resourceTypes"
-            },
-            "validations": {
-                "$ref": "#/$keywords/validations"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "associations": {
-            "targetResourceId": {
-                "$ref": "#/$keywords/targetResourceId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "endpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "routingType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Proxy"
+          ]
+        }
+      }
+    },
+    "resourceTypes": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "endpoint": {
+          "$ref": "#/$keywords/endpoint_1"
+        },
+        "routingType": {
+          "$ref": "#/$keywords/routingType_1"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endpoint_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "routingType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Proxy",
+            "Proxy,Cache"
+          ]
+        }
+      }
+    },
+    "validations": {
+      "body": {
+        "validationType": {
+          "$ref": "#/$keywords/validationType"
+        },
+        "specification": {
+          "$ref": "#/$keywords/specification"
+        }
+      },
+      "array": true
+    },
+    "validationType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Swagger"
+          ]
+        }
+      }
+    },
+    "specification": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "resourceProviders": {
+      "actions": {
+        "$ref": "#/$keywords/actions"
+      },
+      "resourceTypes": {
+        "$ref": "#/$keywords/resourceTypes"
+      },
+      "validations": {
+        "$ref": "#/$keywords/validations"
+      }
+    },
+    "associations": {
+      "targetResourceId": {
+        "$ref": "#/$keywords/targetResourceId"
+      }
+    }
+  }
 }

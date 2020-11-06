@@ -1,19 +1,27 @@
 {
-    "$keywords": {
-        "autoStorage": {
-            "parameters": {
-                "storageAccountId": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "autoStorage": {
+      "body": {
+        "storageAccountId": {
+          "$ref": "#/$keywords/storageAccountId"
         }
+      }
     },
-    "$resources": {
-        "batchAccounts": {
-            "autoStorage": {
-                "$ref": "#/$keywords/autoStorage"
-            }
-        },
-        "batchAccounts/applications": {}
+    "storageAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "batchAccounts": {
+      "autoStorage": {
+        "$ref": "#/$keywords/autoStorage"
+      }
+    },
+    "batchAccounts/applications": {},
+    "batchAccounts/applications/versions": {}
+  }
 }

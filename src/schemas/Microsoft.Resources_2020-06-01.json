@@ -1,90 +1,164 @@
 {
-    "$keywords": {
-        "template": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "templateLink": {
-            "parameters": {
-                "uri": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "relativePath": {
-                    "type": "string"
-                },
-                "contentVersion": {
-                    "type": "string"
-                }
-            }
-        },
-        "parametersLink": {
-            "parameters": {
-                "uri": {
-                    "type": "string"
-                },
-                "contentVersion": {
-                    "type": "string"
-                }
-            }
-        },
-        "mode": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "debugSetting": {
-            "parameters": {
-                "detailLevel": {
-                    "type": "string"
-                }
-            }
-        },
-        "onErrorDeployment": {
-            "parameters": {
-                "type": {},
-                "deploymentName": {
-                    "type": "string"
-                }
-            }
-        },
-        "tags": {
-            "propertyParameters": {
-                "value": {}
-            }
-        }
+  "$keywords": {
+    "template": {
+      "body": {}
     },
-    "$resources": {
-        "deployments": {
-            "template": {
-                "$ref": "#/$keywords/template"
-            },
-            "templateLink": {
-                "$ref": "#/$keywords/templateLink"
-            },
-            "parameters": {
-                "$ref": "#/$keywords/template"
-            },
-            "parametersLink": {
-                "$ref": "#/$keywords/parametersLink"
-            },
-            "mode": {
-                "$ref": "#/$keywords/mode"
-            },
-            "debugSetting": {
-                "$ref": "#/$keywords/debugSetting"
-            },
-            "onErrorDeployment": {
-                "$ref": "#/$keywords/onErrorDeployment"
-            }
+    "templateLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
         },
-        "tags": {
-            "tags": {
-                "$ref": "#/$keywords/tags"
-            }
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "relativePath": {
+          "$ref": "#/$keywords/relativePath"
+        },
+        "contentVersion": {
+          "$ref": "#/$keywords/contentVersion"
         }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relativePath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "parametersLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri_1"
+        },
+        "contentVersion": {
+          "$ref": "#/$keywords/contentVersion_1"
+        }
+      }
+    },
+    "uri_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentVersion_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "mode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Incremental",
+            "Complete"
+          ]
+        }
+      }
+    },
+    "debugSetting": {
+      "body": {
+        "detailLevel": {
+          "$ref": "#/$keywords/detailLevel"
+        }
+      }
+    },
+    "detailLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "onErrorDeployment": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "deploymentName": {
+          "$ref": "#/$keywords/deploymentName"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LastSuccessful",
+            "SpecificDeployment"
+          ]
+        }
+      }
+    },
+    "deploymentName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tags": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "deployments": {
+      "template": {
+        "$ref": "#/$keywords/template"
+      },
+      "templateLink": {
+        "$ref": "#/$keywords/templateLink"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      },
+      "parametersLink": {
+        "$ref": "#/$keywords/parametersLink"
+      },
+      "mode": {
+        "$ref": "#/$keywords/mode"
+      },
+      "debugSetting": {
+        "$ref": "#/$keywords/debugSetting"
+      },
+      "onErrorDeployment": {
+        "$ref": "#/$keywords/onErrorDeployment"
+      }
+    },
+    "tags": {
+      "tags": {
+        "$ref": "#/$keywords/tags"
+      }
+    }
+  }
 }

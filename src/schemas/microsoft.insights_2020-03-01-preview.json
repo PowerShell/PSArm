@@ -1,18 +1,18 @@
 {
-    "$keywords": {
-        "linkedStorageAccount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "linkedStorageAccount": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
-    },
-    "$resources": {
-        "components/linkedStorageAccounts": {
-            "linkedStorageAccount": {
-                "$ref": "#/$keywords/linkedStorageAccount"
-            }
-        }
+      }
     }
+  },
+  "$resources": {
+    "components/linkedStorageAccounts": {
+      "linkedStorageAccount": {
+        "$ref": "#/$keywords/linkedStorageAccount"
+      }
+    }
+  }
 }

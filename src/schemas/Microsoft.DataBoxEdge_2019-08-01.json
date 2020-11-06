@@ -1,787 +1,766 @@
 {
-    "$keywords": {
-        "dataBoxEdgeDeviceStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "ReadyToSetup",
-                        "Online",
-                        "Offline",
-                        "NeedsAttention",
-                        "Disconnected",
-                        "PartiallyDisconnected",
-                        "Maintenance"
-                    ]
-                }
-            }
+  "$keywords": {
+    "dataBoxEdgeDeviceStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ReadyToSetup",
+            "Online",
+            "Offline",
+            "NeedsAttention",
+            "Disconnected",
+            "PartiallyDisconnected",
+            "Maintenance"
+          ]
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "modelDescription": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "friendlyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "start": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "stop": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rateInMbps": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "days": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ]
+        }
+      },
+      "array": true
+    },
+    "contactInformation": {
+      "body": {
+        "contactPerson": {
+          "$ref": "#/$keywords/contactPerson"
         },
-        "serialNumber": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "companyName": {
+          "$ref": "#/$keywords/companyName"
         },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "modelDescription": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deviceType": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "friendlyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "culture": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deviceModel": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deviceSoftwareVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deviceLocalCapacity": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "timeZone": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deviceHcsVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "configuredRoleTypes": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "IOT",
-                        "ASA",
-                        "Functions",
-                        "Cognitive"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "nodeCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "start": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "stop": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "rateInMbps": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "days": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Sunday",
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday",
-                        "Saturday"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "contactInformation": {
-            "parameters": {
-                "contactPerson": {
-                    "type": "string"
-                },
-                "companyName": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "emailList": {
-                    "$ref": "#/$keywords/emailList"
-                }
-            }
+        "phone": {
+          "$ref": "#/$keywords/phone"
         },
         "emailList": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/emailList"
+        }
+      }
+    },
+    "contactPerson": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "companyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phone": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emailList": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "shippingAddress": {
+      "body": {
+        "addressLine1": {
+          "$ref": "#/$keywords/addressLine1"
         },
-        "shippingAddress": {
-            "parameters": {
-                "addressLine1": {
-                    "type": "string"
-                },
-                "addressLine2": {
-                    "type": "string"
-                },
-                "addressLine3": {
-                    "type": "string"
-                },
-                "postalCode": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                }
-            }
+        "addressLine2": {
+          "$ref": "#/$keywords/addressLine2"
         },
-        "currentStatus": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Untracked",
-                        "AwaitingFulfilment",
-                        "AwaitingPreparation",
-                        "AwaitingShipment",
-                        "Shipped",
-                        "Arriving",
-                        "Delivered",
-                        "ReplacementRequested",
-                        "LostDevice",
-                        "Declined",
-                        "ReturnInitiated",
-                        "AwaitingReturnShipment",
-                        "ShippedBack",
-                        "CollectedAtMicrosoft"
-                    ]
-                },
-                "updateDateTime": {},
-                "comments": {
-                    "type": "string"
-                },
-                "additionalOrderDetails": {}
-            }
+        "addressLine3": {
+          "$ref": "#/$keywords/addressLine3"
         },
-        "orderHistory": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Untracked",
-                        "AwaitingFulfilment",
-                        "AwaitingPreparation",
-                        "AwaitingShipment",
-                        "Shipped",
-                        "Arriving",
-                        "Delivered",
-                        "ReplacementRequested",
-                        "LostDevice",
-                        "Declined",
-                        "ReturnInitiated",
-                        "AwaitingReturnShipment",
-                        "ShippedBack",
-                        "CollectedAtMicrosoft"
-                    ]
-                },
-                "updateDateTime": {},
-                "comments": {
-                    "type": "string"
-                },
-                "additionalOrderDetails": {}
-            },
-            "array": true
+        "postalCode": {
+          "$ref": "#/$keywords/postalCode"
         },
-        "serialNumber_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "city": {
+          "$ref": "#/$keywords/city"
         },
-        "deliveryTrackingInfo": {
-            "parameters": {
-                "serialNumber": {
-                    "type": "string"
-                },
-                "carrierName": {
-                    "type": "string"
-                },
-                "trackingId": {
-                    "type": "string"
-                },
-                "trackingUrl": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "state": {
+          "$ref": "#/$keywords/state"
         },
-        "returnTrackingInfo": {
-            "parameters": {
-                "serialNumber": {
-                    "type": "string"
-                },
-                "carrierName": {
-                    "type": "string"
-                },
-                "trackingId": {
-                    "type": "string"
-                },
-                "trackingUrl": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "country": {
+          "$ref": "#/$keywords/country"
+        }
+      }
+    },
+    "addressLine1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "addressLine2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "addressLine3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "postalCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "city": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "country": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "currentStatus": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
         },
-        "description_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "shareStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Offline",
-                        "Unknown",
-                        "OK",
-                        "Updating",
-                        "NeedsAttention"
-                    ]
-                }
-            }
-        },
-        "monitoringStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "azureContainerInfo": {
-            "parameters": {
-                "storageAccountCredentialId": {
-                    "type": "string"
-                },
-                "containerName": {
-                    "type": "string"
-                },
-                "dataFormat": {
-                    "enum": [
-                        "BlockBlob",
-                        "PageBlob",
-                        "AzureFile"
-                    ]
-                }
-            }
-        },
-        "accessProtocol": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "SMB",
-                        "NFS"
-                    ]
-                }
-            }
-        },
-        "userAccessRights": {
-            "parameters": {
-                "userId": {
-                    "type": "string"
-                },
-                "accessType": {
-                    "enum": [
-                        "Change",
-                        "Read",
-                        "Custom"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "clientAccessRights": {
-            "parameters": {
-                "client": {
-                    "type": "string"
-                },
-                "accessPermission": {
-                    "enum": [
-                        "NoAccess",
-                        "ReadOnly",
-                        "ReadWrite"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "refreshDetails": {
-            "parameters": {
-                "inProgressRefreshJobId": {
-                    "type": "string"
-                },
-                "lastCompletedRefreshJobTimeInUTC": {},
-                "errorManifestFile": {
-                    "type": "string"
-                },
-                "lastJob": {
-                    "type": "string"
-                }
-            }
-        },
-        "shareMappings": {
-            "parameters": {
-                "shareId": {
-                    "type": "string"
-                },
-                "roleId": {
-                    "type": "string"
-                },
-                "mountPoint": {
-                    "type": "string"
-                },
-                "roleType": {
-                    "enum": [
-                        "IOT",
-                        "ASA",
-                        "Functions",
-                        "Cognitive"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "dataPolicy": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Cloud",
-                        "Local"
-                    ]
-                }
-            }
-        },
-        "alias": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "userName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "accountKey": {
-            "parameters": {
-                "value": {
-                    "type": "string"
-                },
-                "encryptionCertThumbprint": {
-                    "type": "string"
-                },
-                "encryptionAlgorithm": {
-                    "enum": [
-                        "None",
-                        "AES256",
-                        "RSAES_PKCS1_v_1_5"
-                    ]
-                }
-            }
-        },
-        "connectionString": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "sslStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "blobDomainName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "accountType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "GeneralPurposeStorage",
-                        "BlobStorage"
-                    ]
-                }
-            }
-        },
-        "storageAccountId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageAccountStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "OK",
-                        "Offline",
-                        "Unknown",
-                        "Updating",
-                        "NeedsAttention"
-                    ]
-                }
-            }
-        },
+        "comments": {
+          "$ref": "#/$keywords/comments"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Untracked",
+            "AwaitingFulfilment",
+            "AwaitingPreparation",
+            "AwaitingShipment",
+            "Shipped",
+            "Arriving",
+            "Delivered",
+            "ReplacementRequested",
+            "LostDevice",
+            "Declined",
+            "ReturnInitiated",
+            "AwaitingReturnShipment",
+            "ShippedBack",
+            "CollectedAtMicrosoft"
+          ]
+        }
+      }
+    },
+    "comments": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "shareStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Offline",
+            "Unknown",
+            "OK",
+            "Updating",
+            "NeedsAttention"
+          ]
+        }
+      }
+    },
+    "monitoringStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "azureContainerInfo": {
+      "body": {
         "storageAccountCredentialId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/storageAccountCredentialId"
         },
-        "blobEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "containerCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "containerStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "OK",
-                        "Offline",
-                        "Unknown",
-                        "Updating",
-                        "NeedsAttention"
-                    ]
-                }
-            }
+        "containerName": {
+          "$ref": "#/$keywords/containerName"
         },
         "dataFormat": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "BlockBlob",
-                        "PageBlob",
-                        "AzureFile"
-                    ]
-                }
-            }
-        },
-        "createdDateTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "shareAccessRights": {
-            "parameters": {
-                "shareId": {
-                    "type": "string"
-                },
-                "accessType": {
-                    "enum": [
-                        "Change",
-                        "Read",
-                        "Custom"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "userType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Share",
-                        "LocalManagement",
-                        "ARM"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/dataFormat"
         }
+      }
     },
-    "$resources": {
-        "dataBoxEdgeDevices": {
-            "dataBoxEdgeDeviceStatus": {
-                "$ref": "#/$keywords/dataBoxEdgeDeviceStatus"
-            },
-            "serialNumber": {
-                "$ref": "#/$keywords/serialNumber"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "modelDescription": {
-                "$ref": "#/$keywords/modelDescription"
-            },
-            "deviceType": {
-                "$ref": "#/$keywords/deviceType"
-            },
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "culture": {
-                "$ref": "#/$keywords/culture"
-            },
-            "deviceModel": {
-                "$ref": "#/$keywords/deviceModel"
-            },
-            "deviceSoftwareVersion": {
-                "$ref": "#/$keywords/deviceSoftwareVersion"
-            },
-            "deviceLocalCapacity": {
-                "$ref": "#/$keywords/deviceLocalCapacity"
-            },
-            "timeZone": {
-                "$ref": "#/$keywords/timeZone"
-            },
-            "deviceHcsVersion": {
-                "$ref": "#/$keywords/deviceHcsVersion"
-            },
-            "configuredRoleTypes": {
-                "$ref": "#/$keywords/configuredRoleTypes"
-            },
-            "nodeCount": {
-                "$ref": "#/$keywords/nodeCount"
-            }
-        },
-        "dataBoxEdgeDevices/bandwidthSchedules": {
-            "start": {
-                "$ref": "#/$keywords/start"
-            },
-            "stop": {
-                "$ref": "#/$keywords/stop"
-            },
-            "rateInMbps": {
-                "$ref": "#/$keywords/rateInMbps"
-            },
-            "days": {
-                "$ref": "#/$keywords/days"
-            }
-        },
-        "dataBoxEdgeDevices/orders": {
-            "contactInformation": {
-                "$ref": "#/$keywords/contactInformation"
-            },
-            "shippingAddress": {
-                "$ref": "#/$keywords/shippingAddress"
-            },
-            "currentStatus": {
-                "$ref": "#/$keywords/currentStatus"
-            },
-            "orderHistory": {
-                "$ref": "#/$keywords/orderHistory"
-            },
-            "serialNumber": {
-                "$ref": "#/$keywords/serialNumber_2"
-            },
-            "deliveryTrackingInfo": {
-                "$ref": "#/$keywords/deliveryTrackingInfo"
-            },
-            "returnTrackingInfo": {
-                "$ref": "#/$keywords/returnTrackingInfo"
-            }
-        },
-        "dataBoxEdgeDevices/roles": {},
-        "dataBoxEdgeDevices/shares": {
-            "description": {
-                "$ref": "#/$keywords/description_2"
-            },
-            "shareStatus": {
-                "$ref": "#/$keywords/shareStatus"
-            },
-            "monitoringStatus": {
-                "$ref": "#/$keywords/monitoringStatus"
-            },
-            "azureContainerInfo": {
-                "$ref": "#/$keywords/azureContainerInfo"
-            },
-            "accessProtocol": {
-                "$ref": "#/$keywords/accessProtocol"
-            },
-            "userAccessRights": {
-                "$ref": "#/$keywords/userAccessRights"
-            },
-            "clientAccessRights": {
-                "$ref": "#/$keywords/clientAccessRights"
-            },
-            "refreshDetails": {
-                "$ref": "#/$keywords/refreshDetails"
-            },
-            "shareMappings": {
-                "$ref": "#/$keywords/shareMappings"
-            },
-            "dataPolicy": {
-                "$ref": "#/$keywords/dataPolicy"
-            }
-        },
-        "dataBoxEdgeDevices/storageAccountCredentials": {
-            "alias": {
-                "$ref": "#/$keywords/alias"
-            },
-            "userName": {
-                "$ref": "#/$keywords/userName"
-            },
-            "accountKey": {
-                "$ref": "#/$keywords/accountKey"
-            },
-            "connectionString": {
-                "$ref": "#/$keywords/connectionString"
-            },
-            "sslStatus": {
-                "$ref": "#/$keywords/sslStatus"
-            },
-            "blobDomainName": {
-                "$ref": "#/$keywords/blobDomainName"
-            },
-            "accountType": {
-                "$ref": "#/$keywords/accountType"
-            },
-            "storageAccountId": {
-                "$ref": "#/$keywords/storageAccountId"
-            }
-        },
-        "dataBoxEdgeDevices/storageAccounts": {
-            "description": {
-                "$ref": "#/$keywords/description_3"
-            },
-            "storageAccountStatus": {
-                "$ref": "#/$keywords/storageAccountStatus"
-            },
-            "dataPolicy": {
-                "$ref": "#/$keywords/dataPolicy"
-            },
-            "storageAccountCredentialId": {
-                "$ref": "#/$keywords/storageAccountCredentialId"
-            },
-            "blobEndpoint": {
-                "$ref": "#/$keywords/blobEndpoint"
-            },
-            "containerCount": {
-                "$ref": "#/$keywords/containerCount"
-            }
-        },
-        "dataBoxEdgeDevices/storageAccounts/containers": {
-            "containerStatus": {
-                "$ref": "#/$keywords/containerStatus"
-            },
-            "dataFormat": {
-                "$ref": "#/$keywords/dataFormat"
-            },
-            "refreshDetails": {
-                "$ref": "#/$keywords/refreshDetails"
-            },
-            "createdDateTime": {
-                "$ref": "#/$keywords/createdDateTime"
-            }
-        },
-        "dataBoxEdgeDevices/triggers": {},
-        "dataBoxEdgeDevices/users": {
-            "encryptedPassword": {
-                "$ref": "#/$keywords/accountKey"
-            },
-            "shareAccessRights": {
-                "$ref": "#/$keywords/shareAccessRights"
-            },
-            "userType": {
-                "$ref": "#/$keywords/userType"
-            }
+    "storageAccountCredentialId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "containerName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataFormat": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "BlockBlob",
+            "PageBlob",
+            "AzureFile"
+          ]
+        }
+      }
+    },
+    "accessProtocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SMB",
+            "NFS"
+          ]
+        }
+      }
+    },
+    "userAccessRights": {
+      "body": {
+        "userId": {
+          "$ref": "#/$keywords/userId"
+        },
+        "accessType": {
+          "$ref": "#/$keywords/accessType"
+        }
+      },
+      "array": true
+    },
+    "userId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accessType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Change",
+            "Read",
+            "Custom"
+          ]
+        }
+      }
+    },
+    "clientAccessRights": {
+      "body": {
+        "client": {
+          "$ref": "#/$keywords/client"
+        },
+        "accessPermission": {
+          "$ref": "#/$keywords/accessPermission"
+        }
+      },
+      "array": true
+    },
+    "client": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accessPermission": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NoAccess",
+            "ReadOnly",
+            "ReadWrite"
+          ]
+        }
+      }
+    },
+    "refreshDetails": {
+      "body": {
+        "inProgressRefreshJobId": {
+          "$ref": "#/$keywords/inProgressRefreshJobId"
+        },
+        "lastCompletedRefreshJobTimeInUTC": {
+          "$ref": "#/$keywords/lastCompletedRefreshJobTimeInUTC"
+        },
+        "errorManifestFile": {
+          "$ref": "#/$keywords/errorManifestFile"
+        },
+        "lastJob": {
+          "$ref": "#/$keywords/lastJob"
+        }
+      }
+    },
+    "inProgressRefreshJobId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastCompletedRefreshJobTimeInUTC": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "errorManifestFile": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastJob": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataPolicy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Cloud",
+            "Local"
+          ]
+        }
+      }
+    },
+    "alias": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accountKey": {
+      "body": {
+        "value": {
+          "$ref": "#/$keywords/value"
+        },
+        "encryptionCertThumbprint": {
+          "$ref": "#/$keywords/encryptionCertThumbprint"
+        },
+        "encryptionAlgorithm": {
+          "$ref": "#/$keywords/encryptionAlgorithm"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "encryptionCertThumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "encryptionAlgorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "AES256",
+            "RSAES_PKCS1_v_1_5"
+          ]
+        }
+      }
+    },
+    "connectionString": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sslStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "blobDomainName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accountType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "GeneralPurposeStorage",
+            "BlobStorage"
+          ]
+        }
+      }
+    },
+    "storageAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "Offline",
+            "Unknown",
+            "Updating",
+            "NeedsAttention"
+          ]
+        }
+      }
+    },
+    "dataPolicy_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Cloud",
+            "Local"
+          ]
+        }
+      }
+    },
+    "storageAccountCredentialId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "encryptedPassword": {
+      "body": {
+        "value": {
+          "$ref": "#/$keywords/value"
+        },
+        "encryptionCertThumbprint": {
+          "$ref": "#/$keywords/encryptionCertThumbprint"
+        },
+        "encryptionAlgorithm": {
+          "$ref": "#/$keywords/encryptionAlgorithm"
+        }
+      }
+    },
+    "shareAccessRights": {
+      "body": {
+        "shareId": {
+          "$ref": "#/$keywords/shareId"
+        },
+        "accessType": {
+          "$ref": "#/$keywords/accessType_1"
+        }
+      },
+      "array": true
+    },
+    "shareId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accessType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Change",
+            "Read",
+            "Custom"
+          ]
+        }
+      }
+    },
+    "userType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Share",
+            "LocalManagement",
+            "ARM"
+          ]
+        }
+      }
+    },
+    "dataFormat_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "BlockBlob",
+            "PageBlob",
+            "AzureFile"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "dataBoxEdgeDevices": {
+      "dataBoxEdgeDeviceStatus": {
+        "$ref": "#/$keywords/dataBoxEdgeDeviceStatus"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "modelDescription": {
+        "$ref": "#/$keywords/modelDescription"
+      },
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName"
+      }
+    },
+    "dataBoxEdgeDevices/bandwidthSchedules": {
+      "start": {
+        "$ref": "#/$keywords/start"
+      },
+      "stop": {
+        "$ref": "#/$keywords/stop"
+      },
+      "rateInMbps": {
+        "$ref": "#/$keywords/rateInMbps"
+      },
+      "days": {
+        "$ref": "#/$keywords/days"
+      }
+    },
+    "dataBoxEdgeDevices/orders": {
+      "contactInformation": {
+        "$ref": "#/$keywords/contactInformation"
+      },
+      "shippingAddress": {
+        "$ref": "#/$keywords/shippingAddress"
+      },
+      "currentStatus": {
+        "$ref": "#/$keywords/currentStatus"
+      }
+    },
+    "dataBoxEdgeDevices/roles": {},
+    "dataBoxEdgeDevices/shares": {
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "shareStatus": {
+        "$ref": "#/$keywords/shareStatus"
+      },
+      "monitoringStatus": {
+        "$ref": "#/$keywords/monitoringStatus"
+      },
+      "azureContainerInfo": {
+        "$ref": "#/$keywords/azureContainerInfo"
+      },
+      "accessProtocol": {
+        "$ref": "#/$keywords/accessProtocol"
+      },
+      "userAccessRights": {
+        "$ref": "#/$keywords/userAccessRights"
+      },
+      "clientAccessRights": {
+        "$ref": "#/$keywords/clientAccessRights"
+      },
+      "refreshDetails": {
+        "$ref": "#/$keywords/refreshDetails"
+      },
+      "dataPolicy": {
+        "$ref": "#/$keywords/dataPolicy"
+      }
+    },
+    "dataBoxEdgeDevices/storageAccountCredentials": {
+      "alias": {
+        "$ref": "#/$keywords/alias"
+      },
+      "userName": {
+        "$ref": "#/$keywords/userName"
+      },
+      "accountKey": {
+        "$ref": "#/$keywords/accountKey"
+      },
+      "connectionString": {
+        "$ref": "#/$keywords/connectionString"
+      },
+      "sslStatus": {
+        "$ref": "#/$keywords/sslStatus"
+      },
+      "blobDomainName": {
+        "$ref": "#/$keywords/blobDomainName"
+      },
+      "accountType": {
+        "$ref": "#/$keywords/accountType"
+      },
+      "storageAccountId": {
+        "$ref": "#/$keywords/storageAccountId"
+      }
+    },
+    "dataBoxEdgeDevices/storageAccounts": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "storageAccountStatus": {
+        "$ref": "#/$keywords/storageAccountStatus"
+      },
+      "dataPolicy": {
+        "$ref": "#/$keywords/dataPolicy_1"
+      },
+      "storageAccountCredentialId": {
+        "$ref": "#/$keywords/storageAccountCredentialId_1"
+      }
+    },
+    "dataBoxEdgeDevices/triggers": {},
+    "dataBoxEdgeDevices/users": {
+      "encryptedPassword": {
+        "$ref": "#/$keywords/encryptedPassword"
+      },
+      "shareAccessRights": {
+        "$ref": "#/$keywords/shareAccessRights"
+      },
+      "userType": {
+        "$ref": "#/$keywords/userType"
+      }
+    },
+    "dataBoxEdgeDevices/storageAccounts/containers": {
+      "dataFormat": {
+        "$ref": "#/$keywords/dataFormat_1"
+      }
+    }
+  }
 }

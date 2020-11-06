@@ -1,109 +1,139 @@
 {
-    "$keywords": {
-        "namespace": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "extensionProperties": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "maintenanceScope": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "All",
-                        "Host",
-                        "Resource",
-                        "InResource",
-                        "OSImage",
-                        "Extension",
-                        "InGuestPatch",
-                        "SQLDB",
-                        "SQLManagedInstance"
-                    ]
-                }
-            }
-        },
-        "visibility": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Custom",
-                        "Public"
-                    ]
-                }
-            }
-        },
+  "$keywords": {
+    "maintenanceConfigurationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "namespace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "extensionProperties": {
+      "body": {}
+    },
+    "maintenanceScope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "All",
+            "Host",
+            "Resource",
+            "InResource",
+            "OSImage",
+            "Extension",
+            "InGuestPatch",
+            "SQLDB",
+            "SQLManagedInstance"
+          ]
+        }
+      }
+    },
+    "maintenanceWindow": {
+      "body": {
         "startDateTime": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/startDateTime"
         },
         "expirationDateTime": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/expirationDateTime"
         },
         "duration": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/duration"
         },
         "timeZone": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/timeZone"
         },
         "recurEvery": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/recurEvery"
         }
+      }
     },
-    "$resources": {
-        "maintenanceConfigurations": {
-            "namespace": {
-                "$ref": "#/$keywords/namespace"
-            },
-            "extensionProperties": {
-                "$ref": "#/$keywords/extensionProperties"
-            },
-            "maintenanceScope": {
-                "$ref": "#/$keywords/maintenanceScope"
-            },
-            "visibility": {
-                "$ref": "#/$keywords/visibility"
-            },
-            "startDateTime": {
-                "$ref": "#/$keywords/startDateTime"
-            },
-            "expirationDateTime": {
-                "$ref": "#/$keywords/expirationDateTime"
-            },
-            "duration": {
-                "$ref": "#/$keywords/duration"
-            },
-            "timeZone": {
-                "$ref": "#/$keywords/timeZone"
-            },
-            "recurEvery": {
-                "$ref": "#/$keywords/recurEvery"
-            }
+    "startDateTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "expirationDateTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "duration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "timeZone": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recurEvery": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "visibility": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Custom",
+            "Public"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "applyUpdates": {},
+    "configurationAssignments": {
+      "maintenanceConfigurationId": {
+        "$ref": "#/$keywords/maintenanceConfigurationId"
+      },
+      "resourceId": {
+        "$ref": "#/$keywords/resourceId"
+      }
+    },
+    "maintenanceConfigurations": {
+      "namespace": {
+        "$ref": "#/$keywords/namespace"
+      },
+      "extensionProperties": {
+        "$ref": "#/$keywords/extensionProperties"
+      },
+      "maintenanceScope": {
+        "$ref": "#/$keywords/maintenanceScope"
+      },
+      "maintenanceWindow": {
+        "$ref": "#/$keywords/maintenanceWindow"
+      },
+      "visibility": {
+        "$ref": "#/$keywords/visibility"
+      }
+    }
+  }
 }

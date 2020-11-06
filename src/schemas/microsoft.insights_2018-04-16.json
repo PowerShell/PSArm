@@ -1,104 +1,118 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "true",
-                        "false"
-                    ]
-                }
-            }
-        },
-        "lastUpdatedTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Deploying",
-                        "Canceled",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "source": {
-            "parameters": {
-                "query": {
-                    "type": "string"
-                },
-                "dataSourceId": {
-                    "type": "string"
-                },
-                "queryType": {}
-            },
-            "body": {
-                "authorizedResources": {
-                    "$ref": "#/$keywords/authorizedResources"
-                }
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ]
+        }
+      }
+    },
+    "source": {
+      "body": {
+        "query": {
+          "$ref": "#/$keywords/query"
         },
         "authorizedResources": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/authorizedResources"
         },
-        "schedule": {
-            "parameters": {
-                "frequencyInMinutes": {
-                    "type": "int"
-                },
-                "timeWindowInMinutes": {
-                    "type": "int"
-                }
-            }
+        "dataSourceId": {
+          "$ref": "#/$keywords/dataSourceId"
         },
-        "action": {
-            "parameters": {
-                "odata.type": {
-                    "type": "string"
-                }
-            }
+        "queryType": {
+          "$ref": "#/$keywords/queryType"
         }
+      }
     },
-    "$resources": {
-        "scheduledQueryRules": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "lastUpdatedTime": {
-                "$ref": "#/$keywords/lastUpdatedTime"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "source": {
-                "$ref": "#/$keywords/source"
-            },
-            "schedule": {
-                "$ref": "#/$keywords/schedule"
-            },
-            "action": {
-                "$ref": "#/$keywords/action"
-            }
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "authorizedResources": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "dataSourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "queryType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ResultCount"
+          ]
+        }
+      }
+    },
+    "schedule": {
+      "body": {
+        "frequencyInMinutes": {
+          "$ref": "#/$keywords/frequencyInMinutes"
+        },
+        "timeWindowInMinutes": {
+          "$ref": "#/$keywords/timeWindowInMinutes"
+        }
+      }
+    },
+    "frequencyInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "timeWindowInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "action": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "scheduledQueryRules": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "enabled": {
+        "$ref": "#/$keywords/enabled"
+      },
+      "source": {
+        "$ref": "#/$keywords/source"
+      },
+      "schedule": {
+        "$ref": "#/$keywords/schedule"
+      },
+      "action": {
+        "$ref": "#/$keywords/action"
+      }
+    }
+  }
 }

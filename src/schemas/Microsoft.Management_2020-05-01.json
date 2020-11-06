@@ -1,135 +1,66 @@
 {
-    "$keywords": {
-        "tenantId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "details": {
-            "parameters": {
-                "version": {
-                    "type": "int"
-                },
-                "updatedTime": {},
-                "updatedBy": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "parent": {
-                    "$ref": "#/$keywords/parent"
-                }
-            }
-        },
-        "parent": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "displayName": {
-                    "type": "string"
-                }
-            }
-        },
-        "children": {
-            "parameters": {
-                "type": {
-                    "enum": [
-                        "Microsoft.Management/managementGroups",
-                        "/subscriptions"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "displayName": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "children": {
-                    "$ref": "#/$keywords/children_2"
-                }
-            },
-            "array": true
-        },
-        "children_2": {
-            "parameters": {
-                "type": {
-                    "enum": [
-                        "Microsoft.Management/managementGroups",
-                        "/subscriptions"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "displayName": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "children": {
-                    "$ref": "#/$keywords/children_2"
-                }
-            },
-            "array": true
-        },
-        "requireAuthorizationForGroupCreation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "defaultManagementGroup": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "managementGroups": {
-            "tenantId": {
-                "$ref": "#/$keywords/tenantId"
-            },
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            },
-            "details": {
-                "$ref": "#/$keywords/details"
-            },
-            "children": {
-                "$ref": "#/$keywords/children"
-            }
-        },
-        "managementGroups/settings": {
-            "requireAuthorizationForGroupCreation": {
-                "$ref": "#/$keywords/requireAuthorizationForGroupCreation"
-            },
-            "defaultManagementGroup": {
-                "$ref": "#/$keywords/defaultManagementGroup"
-            }
+    "details": {
+      "body": {
+        "parent": {
+          "$ref": "#/$keywords/parent"
         }
+      }
+    },
+    "parent": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requireAuthorizationForGroupCreation": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "defaultManagementGroup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "managementGroups": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "details": {
+        "$ref": "#/$keywords/details"
+      }
+    },
+    "managementGroups/subscriptions": {},
+    "managementGroups/settings": {
+      "requireAuthorizationForGroupCreation": {
+        "$ref": "#/$keywords/requireAuthorizationForGroupCreation"
+      },
+      "defaultManagementGroup": {
+        "$ref": "#/$keywords/defaultManagementGroup"
+      }
+    }
+  }
 }

@@ -1,363 +1,359 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "friendlyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "applicationGroupReferences": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "description_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "friendlyName_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hostPoolArmPath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "workspaceArmPath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "applicationGroupType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "RemoteApp",
-                        "Desktop"
-                    ]
-                }
-            }
-        },
-        "description_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "friendlyName_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "filePath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "commandLineSetting": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "DoNotAllow",
-                        "Allow",
-                        "Require"
-                    ]
-                }
-            }
-        },
-        "commandLineArguments": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "showInPortal": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "iconPath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "iconIndex": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "iconHash": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "iconContent": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "friendlyName_4": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description_4": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hostPoolType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Personal",
-                        "Pooled"
-                    ]
-                }
-            }
-        },
-        "personalDesktopAssignmentType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Automatic",
-                        "Direct"
-                    ]
-                }
-            }
-        },
-        "customRdpProperty": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "maxSessionLimit": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "loadBalancerType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "BreadthFirst",
-                        "DepthFirst",
-                        "Persistent"
-                    ]
-                }
-            }
-        },
-        "ring": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "validationEnvironment": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "registrationInfo": {
-            "parameters": {
-                "expirationTime": {},
-                "token": {
-                    "type": "string"
-                },
-                "registrationTokenOperation": {
-                    "enum": [
-                        "Delete",
-                        "None",
-                        "Update"
-                    ]
-                }
-            }
-        },
-        "vmTemplate": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "applicationGroupReferences_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "ssoContext": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "preferredAppGroupType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "None",
-                        "Desktop",
-                        "RailApplications"
-                    ]
-                }
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "workspaces": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "applicationGroupReferences": {
-                "$ref": "#/$keywords/applicationGroupReferences"
-            }
-        },
-        "applicationGroups": {
-            "description": {
-                "$ref": "#/$keywords/description_2"
-            },
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName_2"
-            },
-            "hostPoolArmPath": {
-                "$ref": "#/$keywords/hostPoolArmPath"
-            },
-            "workspaceArmPath": {
-                "$ref": "#/$keywords/workspaceArmPath"
-            },
-            "applicationGroupType": {
-                "$ref": "#/$keywords/applicationGroupType"
-            }
-        },
-        "applicationGroups/applications": {
-            "description": {
-                "$ref": "#/$keywords/description_3"
-            },
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName_3"
-            },
-            "filePath": {
-                "$ref": "#/$keywords/filePath"
-            },
-            "commandLineSetting": {
-                "$ref": "#/$keywords/commandLineSetting"
-            },
-            "commandLineArguments": {
-                "$ref": "#/$keywords/commandLineArguments"
-            },
-            "showInPortal": {
-                "$ref": "#/$keywords/showInPortal"
-            },
-            "iconPath": {
-                "$ref": "#/$keywords/iconPath"
-            },
-            "iconIndex": {
-                "$ref": "#/$keywords/iconIndex"
-            },
-            "iconHash": {
-                "$ref": "#/$keywords/iconHash"
-            },
-            "iconContent": {
-                "$ref": "#/$keywords/iconContent"
-            }
-        },
-        "hostPools": {
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName_4"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_4"
-            },
-            "hostPoolType": {
-                "$ref": "#/$keywords/hostPoolType"
-            },
-            "personalDesktopAssignmentType": {
-                "$ref": "#/$keywords/personalDesktopAssignmentType"
-            },
-            "customRdpProperty": {
-                "$ref": "#/$keywords/customRdpProperty"
-            },
-            "maxSessionLimit": {
-                "$ref": "#/$keywords/maxSessionLimit"
-            },
-            "loadBalancerType": {
-                "$ref": "#/$keywords/loadBalancerType"
-            },
-            "ring": {
-                "$ref": "#/$keywords/ring"
-            },
-            "validationEnvironment": {
-                "$ref": "#/$keywords/validationEnvironment"
-            },
-            "registrationInfo": {
-                "$ref": "#/$keywords/registrationInfo"
-            },
-            "vmTemplate": {
-                "$ref": "#/$keywords/vmTemplate"
-            },
-            "applicationGroupReferences": {
-                "$ref": "#/$keywords/applicationGroupReferences_2"
-            },
-            "ssoContext": {
-                "$ref": "#/$keywords/ssoContext"
-            },
-            "preferredAppGroupType": {
-                "$ref": "#/$keywords/preferredAppGroupType"
-            }
+    "friendlyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "applicationGroupReferences": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "friendlyName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hostPoolArmPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applicationGroupType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "RemoteApp",
+            "Desktop"
+          ]
+        }
+      }
+    },
+    "friendlyName_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hostPoolType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Personal",
+            "Pooled"
+          ]
+        }
+      }
+    },
+    "personalDesktopAssignmentType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Automatic",
+            "Direct"
+          ]
+        }
+      }
+    },
+    "customRdpProperty": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxSessionLimit": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "loadBalancerType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "BreadthFirst",
+            "DepthFirst",
+            "Persistent"
+          ]
+        }
+      }
+    },
+    "ring": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "validationEnvironment": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "registrationInfo": {
+      "body": {
+        "expirationTime": {
+          "$ref": "#/$keywords/expirationTime"
+        },
+        "token": {
+          "$ref": "#/$keywords/token"
+        },
+        "registrationTokenOperation": {
+          "$ref": "#/$keywords/registrationTokenOperation"
+        }
+      }
+    },
+    "expirationTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "token": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "registrationTokenOperation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Delete",
+            "None",
+            "Update"
+          ]
+        }
+      }
+    },
+    "vmTemplate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ssoContext": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "preferredAppGroupType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Desktop",
+            "RailApplications"
+          ]
+        }
+      }
+    },
+    "description_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "friendlyName_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "filePath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "commandLineSetting": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DoNotAllow",
+            "Allow",
+            "Require"
+          ]
+        }
+      }
+    },
+    "commandLineArguments": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "showInPortal": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "iconPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "iconIndex": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
     }
+  },
+  "$resources": {
+    "workspaces": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName"
+      },
+      "applicationGroupReferences": {
+        "$ref": "#/$keywords/applicationGroupReferences"
+      }
+    },
+    "applicationGroups": {
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName_1"
+      },
+      "hostPoolArmPath": {
+        "$ref": "#/$keywords/hostPoolArmPath"
+      },
+      "applicationGroupType": {
+        "$ref": "#/$keywords/applicationGroupType"
+      }
+    },
+    "hostPools": {
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName_1_2"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "hostPoolType": {
+        "$ref": "#/$keywords/hostPoolType"
+      },
+      "personalDesktopAssignmentType": {
+        "$ref": "#/$keywords/personalDesktopAssignmentType"
+      },
+      "customRdpProperty": {
+        "$ref": "#/$keywords/customRdpProperty"
+      },
+      "maxSessionLimit": {
+        "$ref": "#/$keywords/maxSessionLimit"
+      },
+      "loadBalancerType": {
+        "$ref": "#/$keywords/loadBalancerType"
+      },
+      "ring": {
+        "$ref": "#/$keywords/ring"
+      },
+      "validationEnvironment": {
+        "$ref": "#/$keywords/validationEnvironment"
+      },
+      "registrationInfo": {
+        "$ref": "#/$keywords/registrationInfo"
+      },
+      "vmTemplate": {
+        "$ref": "#/$keywords/vmTemplate"
+      },
+      "ssoContext": {
+        "$ref": "#/$keywords/ssoContext"
+      },
+      "preferredAppGroupType": {
+        "$ref": "#/$keywords/preferredAppGroupType"
+      }
+    },
+    "applicationGroups/applications": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3"
+      },
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName_1_2_3"
+      },
+      "filePath": {
+        "$ref": "#/$keywords/filePath"
+      },
+      "commandLineSetting": {
+        "$ref": "#/$keywords/commandLineSetting"
+      },
+      "commandLineArguments": {
+        "$ref": "#/$keywords/commandLineArguments"
+      },
+      "showInPortal": {
+        "$ref": "#/$keywords/showInPortal"
+      },
+      "iconPath": {
+        "$ref": "#/$keywords/iconPath"
+      },
+      "iconIndex": {
+        "$ref": "#/$keywords/iconIndex"
+      }
+    }
+  }
 }

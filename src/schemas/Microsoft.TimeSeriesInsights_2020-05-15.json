@@ -1,78 +1,95 @@
 {
-    "$keywords": {
-        "keyProperties": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "enum": [
-                        "String",
-                        "Double",
-                        "Bool",
-                        "DateTime"
-                    ]
-                }
-            },
-            "array": true
+  "$keywords": {
+    "keyProperties": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
-        "dataStringComparisonBehavior": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Ordinal",
-                        "OrdinalIgnoreCase"
-                    ]
-                }
-            }
-        },
-        "principalObjectId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "roles": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Reader",
-                        "Contributor"
-                    ]
-                }
-            },
-            "array": true
+        "type": {
+          "$ref": "#/$keywords/type"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "environments": {},
-        "environments/eventSources": {},
-        "environments/referenceDataSets": {
-            "keyProperties": {
-                "$ref": "#/$keywords/keyProperties"
-            },
-            "dataStringComparisonBehavior": {
-                "$ref": "#/$keywords/dataStringComparisonBehavior"
-            }
-        },
-        "environments/accessPolicies": {
-            "principalObjectId": {
-                "$ref": "#/$keywords/principalObjectId"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "roles": {
-                "$ref": "#/$keywords/roles"
-            }
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "String",
+            "Double",
+            "Bool",
+            "DateTime"
+          ]
+        }
+      }
+    },
+    "dataStringComparisonBehavior": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Ordinal",
+            "OrdinalIgnoreCase"
+          ]
+        }
+      }
+    },
+    "principalObjectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "roles": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Reader",
+            "Contributor"
+          ]
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "environments": {},
+    "environments/eventSources": {},
+    "environments/referenceDataSets": {
+      "keyProperties": {
+        "$ref": "#/$keywords/keyProperties"
+      },
+      "dataStringComparisonBehavior": {
+        "$ref": "#/$keywords/dataStringComparisonBehavior"
+      }
+    },
+    "environments/accessPolicies": {
+      "principalObjectId": {
+        "$ref": "#/$keywords/principalObjectId"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "roles": {
+        "$ref": "#/$keywords/roles"
+      }
+    }
+  }
 }

@@ -1,75 +1,85 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "scopes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "criteria": {
-            "body": {
-                "allOf": {
-                    "$ref": "#/$keywords/allOf"
-                }
-            }
-        },
-        "allOf": {
-            "parameters": {
-                "namespace": {}
-            },
-            "array": true
-        },
-        "actions": {
-            "parameters": {
-                "actionGroupId": {
-                    "type": "string"
-                },
-                "webHookProperties": {}
-            },
-            "array": true
-        },
-        "lastUpdatedTime": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "resourceHealthAlerts": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "scopes": {
-                "$ref": "#/$keywords/scopes"
-            },
-            "criteria": {
-                "$ref": "#/$keywords/criteria"
-            },
-            "actions": {
-                "$ref": "#/$keywords/actions"
-            },
-            "lastUpdatedTime": {
-                "$ref": "#/$keywords/lastUpdatedTime"
-            }
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
         }
+      }
+    },
+    "scopes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "criteria": {
+      "body": {
+        "allOf": {
+          "$ref": "#/$keywords/allOf"
+        }
+      }
+    },
+    "allOf": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
+        }
+      },
+      "array": true
+    },
+    "additionalProperties": {
+      "body": {}
+    },
+    "actions": {
+      "body": {
+        "actionGroupId": {
+          "$ref": "#/$keywords/actionGroupId"
+        },
+        "webHookProperties": {
+          "$ref": "#/$keywords/webHookProperties"
+        }
+      },
+      "array": true
+    },
+    "actionGroupId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "webHookProperties": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "resourceHealthAlerts": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "enabled": {
+        "$ref": "#/$keywords/enabled"
+      },
+      "scopes": {
+        "$ref": "#/$keywords/scopes"
+      },
+      "criteria": {
+        "$ref": "#/$keywords/criteria"
+      },
+      "actions": {
+        "$ref": "#/$keywords/actions"
+      }
+    }
+  }
 }

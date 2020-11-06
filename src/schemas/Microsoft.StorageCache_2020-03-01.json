@@ -1,230 +1,245 @@
 {
-    "$keywords": {
-        "cacheSizeGB": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "health": {
-            "parameters": {
-                "state": {
-                    "enum": [
-                        "Unknown",
-                        "Healthy",
-                        "Degraded",
-                        "Down",
-                        "Transitioning",
-                        "Stopping",
-                        "Stopped",
-                        "Upgrading",
-                        "Flushing"
-                    ]
-                },
-                "statusDescription": {
-                    "type": "string"
-                }
-            }
-        },
-        "mountAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Failed",
-                        "Cancelled",
-                        "Creating",
-                        "Deleting",
-                        "Updating"
-                    ]
-                }
-            }
-        },
-        "subnet": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "upgradeStatus": {
-            "parameters": {
-                "currentFirmwareVersion": {
-                    "type": "string"
-                },
-                "firmwareUpdateStatus": {
-                    "enum": [
-                        "available",
-                        "unavailable"
-                    ]
-                },
-                "firmwareUpdateDeadline": {},
-                "lastFirmwareUpdate": {},
-                "pendingFirmwareVersion": {
-                    "type": "string"
-                }
-            }
-        },
-        "networkSettings": {
-            "parameters": {
-                "mtu": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "utilityAddresses": {
-                    "$ref": "#/$keywords/utilityAddresses"
-                }
-            }
-        },
-        "utilityAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "encryptionSettings": {
-            "body": {
-                "keyEncryptionKey": {
-                    "$ref": "#/$keywords/keyEncryptionKey"
-                }
-            }
-        },
+  "$keywords": {
+    "cacheSizeGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Failed",
+            "Cancelled",
+            "Creating",
+            "Deleting",
+            "Updating"
+          ]
+        }
+      }
+    },
+    "subnet": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "upgradeStatus": {
+      "body": {}
+    },
+    "networkSettings": {
+      "body": {
+        "mtu": {
+          "$ref": "#/$keywords/mtu"
+        }
+      }
+    },
+    "mtu": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1500
+        }
+      }
+    },
+    "encryptionSettings": {
+      "body": {
         "keyEncryptionKey": {
-            "parameters": {
-                "keyUrl": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "sourceVault": {
-                    "$ref": "#/$keywords/sourceVault"
-                }
-            }
+          "$ref": "#/$keywords/keyEncryptionKey"
+        }
+      }
+    },
+    "keyEncryptionKey": {
+      "body": {
+        "keyUrl": {
+          "$ref": "#/$keywords/keyUrl"
         },
         "sourceVault": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "securitySettings": {
-            "parameters": {
-                "rootSquash": {
-                    "type": "bool"
-                }
-            }
-        },
-        "junctions": {
-            "parameters": {
-                "namespacePath": {
-                    "type": "string"
-                },
-                "targetPath": {
-                    "type": "string"
-                },
-                "nfsExport": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "targetType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "nfs3",
-                        "clfs",
-                        "unknown"
-                    ]
-                }
-            }
-        },
-        "nfs3": {
-            "parameters": {
-                "target": {
-                    "type": "string",
-                    "pattern": "^[-.0-9a-zA-Z]+$"
-                },
-                "usageModel": {
-                    "type": "string"
-                }
-            }
-        },
-        "clfs": {
-            "parameters": {
-                "target": {
-                    "type": "string"
-                }
-            }
-        },
-        "unknown": {
-            "parameters": {
-                "unknownMap": {}
-            }
+          "$ref": "#/$keywords/sourceVault"
         }
+      }
     },
-    "$resources": {
-        "caches": {
-            "cacheSizeGB": {
-                "$ref": "#/$keywords/cacheSizeGB"
-            },
-            "health": {
-                "$ref": "#/$keywords/health"
-            },
-            "mountAddresses": {
-                "$ref": "#/$keywords/mountAddresses"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "subnet": {
-                "$ref": "#/$keywords/subnet"
-            },
-            "upgradeStatus": {
-                "$ref": "#/$keywords/upgradeStatus"
-            },
-            "networkSettings": {
-                "$ref": "#/$keywords/networkSettings"
-            },
-            "encryptionSettings": {
-                "$ref": "#/$keywords/encryptionSettings"
-            },
-            "securitySettings": {
-                "$ref": "#/$keywords/securitySettings"
-            }
-        },
-        "caches/storageTargets": {
-            "junctions": {
-                "$ref": "#/$keywords/junctions"
-            },
-            "targetType": {
-                "$ref": "#/$keywords/targetType"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "nfs3": {
-                "$ref": "#/$keywords/nfs3"
-            },
-            "clfs": {
-                "$ref": "#/$keywords/clfs"
-            },
-            "unknown": {
-                "$ref": "#/$keywords/unknown"
-            }
+    "keyUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "sourceVault": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySettings": {
+      "body": {
+        "rootSquash": {
+          "$ref": "#/$keywords/rootSquash"
+        }
+      }
+    },
+    "rootSquash": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "junctions": {
+      "body": {
+        "namespacePath": {
+          "$ref": "#/$keywords/namespacePath"
+        },
+        "targetPath": {
+          "$ref": "#/$keywords/targetPath"
+        },
+        "nfsExport": {
+          "$ref": "#/$keywords/nfsExport"
+        }
+      },
+      "array": true
+    },
+    "namespacePath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "nfsExport": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Failed",
+            "Cancelled",
+            "Creating",
+            "Deleting",
+            "Updating"
+          ]
+        }
+      }
+    },
+    "nfs3": {
+      "body": {
+        "target": {
+          "$ref": "#/$keywords/target"
+        },
+        "usageModel": {
+          "$ref": "#/$keywords/usageModel"
+        }
+      }
+    },
+    "target": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "usageModel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clfs": {
+      "body": {
+        "target": {
+          "$ref": "#/$keywords/target_1"
+        }
+      }
+    },
+    "target_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "unknown": {
+      "body": {
+        "unknownMap": {
+          "$ref": "#/$keywords/unknownMap"
+        }
+      }
+    },
+    "unknownMap": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "caches": {
+      "cacheSizeGB": {
+        "$ref": "#/$keywords/cacheSizeGB"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      },
+      "subnet": {
+        "$ref": "#/$keywords/subnet"
+      },
+      "upgradeStatus": {
+        "$ref": "#/$keywords/upgradeStatus"
+      },
+      "networkSettings": {
+        "$ref": "#/$keywords/networkSettings"
+      },
+      "encryptionSettings": {
+        "$ref": "#/$keywords/encryptionSettings"
+      },
+      "securitySettings": {
+        "$ref": "#/$keywords/securitySettings"
+      }
+    },
+    "caches/storageTargets": {
+      "junctions": {
+        "$ref": "#/$keywords/junctions"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1"
+      },
+      "nfs3": {
+        "$ref": "#/$keywords/nfs3"
+      },
+      "clfs": {
+        "$ref": "#/$keywords/clfs"
+      },
+      "unknown": {
+        "$ref": "#/$keywords/unknown"
+      }
+    }
+  }
 }

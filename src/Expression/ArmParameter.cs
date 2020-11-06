@@ -51,18 +51,18 @@ namespace PSArm.Expression
         /// <summary>
         /// Allowed values for this parameter, if any.
         /// </summary>
-        public object[] AllowedValues { get; set; }
+        public List<IArmValue> AllowedValues { get; set; }
 
         /// <summary>
         /// The default value for this parameter, if any.
         /// </summary>
-        public IArmExpression DefaultValue { get; set; }
+        public IArmValue DefaultValue { get; set; }
 
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
-            IArmExpression value = parameters[Name];
+            IArmValue value = parameters[Name];
 
-            if (value is ArmLiteral literal && AllowedValues != null)
+            if (AllowedValues != null && value is ArmLiteral literal)
             {
                 bool found = false;
                 foreach (object allowedValue in AllowedValues)
@@ -80,7 +80,7 @@ namespace PSArm.Expression
                 }
             }
 
-            return value;
+            return (IArmExpression)value;
         }
 
         public override string ToInnerExpressionString()
@@ -92,78 +92,31 @@ namespace PSArm.Expression
                 .ToString();
         }
 
-        public JToken ToJson()
+        public override JToken ToJson()
         {
             var jObj = new JObject();
 
             if (Type != null)
             {
-                jObj["type"] = GetArmTypeNameFromType(Type);
+                jObj["type"] = ArmTypeConversion.GetArmTypeNameFromType(Type);
             }
 
             if (AllowedValues != null)
             {
                 var jArr = new JArray();
-                foreach (object val in AllowedValues)
+                foreach (IArmValue val in AllowedValues)
                 {
-                    jArr.Add(val);
+                    jArr.Add(val.ToJson());
                 }
                 jObj["allowedValues"] = jArr;
             }
 
             if (DefaultValue != null)
             {
-                jObj["defaultValue"] = DefaultValue is IArmExpression armExpr
-                    ? new JValue(armExpr.ToExpressionString())
-                    : new JValue(DefaultValue);
+                jObj["defaultValue"] = DefaultValue.ToJson();
             }
 
             return jObj;
-        }
-
-        private string GetArmTypeNameFromType(Type type)
-        {
-            if (type == null)
-            {
-                return null;
-            }
-
-            if (type == typeof(string))
-            {
-                return "string";
-            }
-
-            if (type == typeof(object))
-            {
-                return "object";
-            }
-
-            if (type == typeof(bool))
-            {
-                return "bool";
-            }
-
-            if (type == typeof(int))
-            {
-                return "int";
-            }
-
-            if (type == typeof(SecureString))
-            {
-                return "securestring";
-            }
-
-            if (type == typeof(Array))
-            {
-                return "array";
-            }
-
-            if (type == typeof(SecureObject))
-            {
-                return "secureObject";
-            }
-
-            throw new ArgumentException($"Cannot convert type '{type}' to known ARM type");
         }
     }
 }

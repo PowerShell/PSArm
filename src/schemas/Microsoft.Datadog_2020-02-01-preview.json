@@ -1,220 +1,291 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Accepted",
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled",
-                        "Deleted",
-                        "NotSpecified"
-                    ]
-                }
-            }
+  "$keywords": {
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Accepted",
+            "Creating",
+            "Updating",
+            "Deleting",
+            "Succeeded",
+            "Failed",
+            "Canceled",
+            "Deleted",
+            "NotSpecified"
+          ]
+        }
+      }
+    },
+    "monitoringStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "marketplaceSubscriptionStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Suspended"
+          ]
+        }
+      }
+    },
+    "datadogOrganizationProperties": {
+      "body": {
+        "linkingAuthCode": {
+          "$ref": "#/$keywords/linkingAuthCode"
         },
-        "monitoringStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "marketplaceSubscriptionStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Active",
-                        "Suspended"
-                    ]
-                }
-            }
-        },
-        "datadogOrganizationProperties": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "linkingAuthCode": {
-                    "type": "string"
-                },
-                "linkingClientId": {
-                    "type": "string"
-                },
-                "enterpriseAppId": {
-                    "type": "string"
-                }
-            }
-        },
-        "userInfo": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "emailAddress": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,}$"
-                },
-                "phoneNumber": {
-                    "type": "string"
-                }
-            }
-        },
-        "liftrResourceCategory": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "MonitorLogs"
-                    ]
-                }
-            }
-        },
-        "liftrResourcePreference": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "logRules": {
-            "parameters": {
-                "sendAadLogs": {
-                    "type": "bool"
-                },
-                "sendSubscriptionLogs": {
-                    "type": "bool"
-                },
-                "sendResourceLogs": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "filteringTags": {
-                    "$ref": "#/$keywords/filteringTags"
-                }
-            }
-        },
-        "filteringTags": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                },
-                "action": {
-                    "enum": [
-                        "Include",
-                        "Exclude"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "metricRules": {
-            "body": {
-                "filteringTags": {
-                    "$ref": "#/$keywords/filteringTags_2"
-                }
-            }
-        },
-        "filteringTags_2": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                },
-                "action": {
-                    "enum": [
-                        "Include",
-                        "Exclude"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "singleSignOnState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Initial",
-                        "Enable",
-                        "Disable",
-                        "Existing"
-                    ]
-                }
-            }
+        "linkingClientId": {
+          "$ref": "#/$keywords/linkingClientId"
         },
         "enterpriseAppId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "singleSignOnUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/enterpriseAppId"
         }
+      }
     },
-    "$resources": {
-        "monitors": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "monitoringStatus": {
-                "$ref": "#/$keywords/monitoringStatus"
-            },
-            "marketplaceSubscriptionStatus": {
-                "$ref": "#/$keywords/marketplaceSubscriptionStatus"
-            },
-            "datadogOrganizationProperties": {
-                "$ref": "#/$keywords/datadogOrganizationProperties"
-            },
-            "userInfo": {
-                "$ref": "#/$keywords/userInfo"
-            },
-            "liftrResourceCategory": {
-                "$ref": "#/$keywords/liftrResourceCategory"
-            },
-            "liftrResourcePreference": {
-                "$ref": "#/$keywords/liftrResourcePreference"
-            }
-        },
-        "monitors/tagRules": {
-            "logRules": {
-                "$ref": "#/$keywords/logRules"
-            },
-            "metricRules": {
-                "$ref": "#/$keywords/metricRules"
-            }
-        },
-        "monitors/singleSignOnConfigurations": {
-            "singleSignOnState": {
-                "$ref": "#/$keywords/singleSignOnState"
-            },
-            "enterpriseAppId": {
-                "$ref": "#/$keywords/enterpriseAppId"
-            },
-            "singleSignOnUrl": {
-                "$ref": "#/$keywords/singleSignOnUrl"
-            }
+    "linkingAuthCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "linkingClientId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enterpriseAppId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userInfo": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "emailAddress": {
+          "$ref": "#/$keywords/emailAddress"
+        },
+        "phoneNumber": {
+          "$ref": "#/$keywords/phoneNumber"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emailAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phoneNumber": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "liftrResourceCategory": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "MonitorLogs"
+          ]
+        }
+      }
+    },
+    "logRules": {
+      "body": {
+        "sendAadLogs": {
+          "$ref": "#/$keywords/sendAadLogs"
+        },
+        "sendSubscriptionLogs": {
+          "$ref": "#/$keywords/sendSubscriptionLogs"
+        },
+        "sendResourceLogs": {
+          "$ref": "#/$keywords/sendResourceLogs"
+        },
+        "filteringTags": {
+          "$ref": "#/$keywords/filteringTags"
+        }
+      }
+    },
+    "sendAadLogs": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "sendSubscriptionLogs": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "sendResourceLogs": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "filteringTags": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        },
+        "action": {
+          "$ref": "#/$keywords/action"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Include",
+            "Exclude"
+          ]
+        }
+      }
+    },
+    "metricRules": {
+      "body": {
+        "filteringTags": {
+          "$ref": "#/$keywords/filteringTags_1"
+        }
+      }
+    },
+    "filteringTags_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        },
+        "action": {
+          "$ref": "#/$keywords/action"
+        }
+      },
+      "array": true
+    },
+    "singleSignOnState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Initial",
+            "Enable",
+            "Disable",
+            "Existing"
+          ]
+        }
+      }
+    },
+    "enterpriseAppId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "singleSignOnUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "monitors": {
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      },
+      "monitoringStatus": {
+        "$ref": "#/$keywords/monitoringStatus"
+      },
+      "marketplaceSubscriptionStatus": {
+        "$ref": "#/$keywords/marketplaceSubscriptionStatus"
+      },
+      "datadogOrganizationProperties": {
+        "$ref": "#/$keywords/datadogOrganizationProperties"
+      },
+      "userInfo": {
+        "$ref": "#/$keywords/userInfo"
+      },
+      "liftrResourceCategory": {
+        "$ref": "#/$keywords/liftrResourceCategory"
+      }
+    },
+    "monitors/tagRules": {
+      "logRules": {
+        "$ref": "#/$keywords/logRules"
+      },
+      "metricRules": {
+        "$ref": "#/$keywords/metricRules"
+      }
+    },
+    "monitors/singleSignOnConfigurations": {
+      "singleSignOnState": {
+        "$ref": "#/$keywords/singleSignOnState"
+      },
+      "enterpriseAppId": {
+        "$ref": "#/$keywords/enterpriseAppId_1"
+      },
+      "singleSignOnUrl": {
+        "$ref": "#/$keywords/singleSignOnUrl"
+      }
+    }
+  }
 }

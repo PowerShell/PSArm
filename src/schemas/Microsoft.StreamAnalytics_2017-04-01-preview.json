@@ -1,0 +1,536 @@
+{
+  "$keywords": {
+    "sku": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard"
+          ]
+        }
+      }
+    },
+    "jobType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Cloud",
+            "Edge"
+          ]
+        }
+      }
+    },
+    "outputStartMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "JobStartTime",
+            "CustomTime",
+            "LastOutputEventTime"
+          ]
+        }
+      }
+    },
+    "outputStartTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventsOutOfOrderPolicy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Adjust",
+            "Drop"
+          ]
+        }
+      }
+    },
+    "outputErrorPolicy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Stop",
+            "Drop"
+          ]
+        }
+      }
+    },
+    "eventsOutOfOrderMaxDelayInSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "eventsLateArrivalMaxDelayInSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "dataLocale": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "compatibilityLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ]
+        }
+      }
+    },
+    "inputs": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "serialization": {
+          "$ref": "#/$keywords/serialization"
+        },
+        "compression": {
+          "$ref": "#/$keywords/compression"
+        },
+        "partitionKey": {
+          "$ref": "#/$keywords/partitionKey"
+        }
+      }
+    },
+    "serialization": {
+      "body": {}
+    },
+    "compression": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partitionKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "transformation": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1"
+        }
+      }
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties_1": {
+      "body": {
+        "streamingUnits": {
+          "$ref": "#/$keywords/streamingUnits"
+        },
+        "query": {
+          "$ref": "#/$keywords/query"
+        }
+      }
+    },
+    "streamingUnits": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "outputs": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties_1_2": {
+      "body": {
+        "datasource": {
+          "$ref": "#/$keywords/datasource"
+        },
+        "timeWindow": {
+          "$ref": "#/$keywords/timeWindow"
+        },
+        "sizeWindow": {
+          "$ref": "#/$keywords/sizeWindow"
+        },
+        "serialization": {
+          "$ref": "#/$keywords/serialization_1"
+        }
+      }
+    },
+    "datasource": {
+      "body": {}
+    },
+    "timeWindow": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sizeWindow": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "serialization_1": {
+      "body": {}
+    },
+    "functions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2_3"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties_1_2_3": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2_3_4"
+        }
+      }
+    },
+    "properties_1_2_3_4": {
+      "body": {
+        "inputs": {
+          "$ref": "#/$keywords/inputs_1"
+        },
+        "output": {
+          "$ref": "#/$keywords/output"
+        },
+        "binding": {
+          "$ref": "#/$keywords/binding"
+        }
+      }
+    },
+    "inputs_1": {
+      "body": {
+        "dataType": {
+          "$ref": "#/$keywords/dataType"
+        },
+        "isConfigurationParameter": {
+          "$ref": "#/$keywords/isConfigurationParameter"
+        }
+      },
+      "array": true
+    },
+    "dataType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isConfigurationParameter": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "output": {
+      "body": {
+        "dataType": {
+          "$ref": "#/$keywords/dataType_1"
+        }
+      }
+    },
+    "dataType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "binding": {
+      "body": {}
+    },
+    "jobStorageAccount": {
+      "body": {
+        "accountName": {
+          "$ref": "#/$keywords/accountName"
+        },
+        "accountKey": {
+          "$ref": "#/$keywords/accountKey"
+        },
+        "authenticationMode": {
+          "$ref": "#/$keywords/authenticationMode"
+        }
+      }
+    },
+    "accountName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accountKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "authenticationMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Msi",
+            "UserToken",
+            "ConnectionString"
+          ]
+        }
+      }
+    },
+    "externals": {
+      "body": {
+        "storageAccount": {
+          "$ref": "#/$keywords/storageAccount"
+        },
+        "container": {
+          "$ref": "#/$keywords/container"
+        },
+        "path": {
+          "$ref": "#/$keywords/path"
+        }
+      }
+    },
+    "storageAccount": {
+      "body": {
+        "accountName": {
+          "$ref": "#/$keywords/accountName_1"
+        },
+        "accountKey": {
+          "$ref": "#/$keywords/accountKey_1"
+        }
+      }
+    },
+    "accountName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accountKey_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "container": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "path": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "cluster": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "streamingjobs": {
+      "sku": {
+        "$ref": "#/$keywords/sku"
+      },
+      "jobType": {
+        "$ref": "#/$keywords/jobType"
+      },
+      "outputStartMode": {
+        "$ref": "#/$keywords/outputStartMode"
+      },
+      "outputStartTime": {
+        "$ref": "#/$keywords/outputStartTime"
+      },
+      "eventsOutOfOrderPolicy": {
+        "$ref": "#/$keywords/eventsOutOfOrderPolicy"
+      },
+      "outputErrorPolicy": {
+        "$ref": "#/$keywords/outputErrorPolicy"
+      },
+      "eventsOutOfOrderMaxDelayInSeconds": {
+        "$ref": "#/$keywords/eventsOutOfOrderMaxDelayInSeconds"
+      },
+      "eventsLateArrivalMaxDelayInSeconds": {
+        "$ref": "#/$keywords/eventsLateArrivalMaxDelayInSeconds"
+      },
+      "dataLocale": {
+        "$ref": "#/$keywords/dataLocale"
+      },
+      "compatibilityLevel": {
+        "$ref": "#/$keywords/compatibilityLevel"
+      },
+      "inputs": {
+        "$ref": "#/$keywords/inputs"
+      },
+      "transformation": {
+        "$ref": "#/$keywords/transformation"
+      },
+      "outputs": {
+        "$ref": "#/$keywords/outputs"
+      },
+      "functions": {
+        "$ref": "#/$keywords/functions"
+      },
+      "jobStorageAccount": {
+        "$ref": "#/$keywords/jobStorageAccount"
+      },
+      "externals": {
+        "$ref": "#/$keywords/externals"
+      },
+      "cluster": {
+        "$ref": "#/$keywords/cluster"
+      }
+    },
+    "streamingjobs/functions": {
+      "properties": {
+        "$ref": "#/$keywords/properties_1_2_3_4"
+      }
+    },
+    "streamingjobs/inputs": {
+      "serialization": {
+        "$ref": "#/$keywords/serialization"
+      },
+      "compression": {
+        "$ref": "#/$keywords/compression"
+      },
+      "partitionKey": {
+        "$ref": "#/$keywords/partitionKey"
+      }
+    },
+    "streamingjobs/outputs": {
+      "datasource": {
+        "$ref": "#/$keywords/datasource"
+      },
+      "timeWindow": {
+        "$ref": "#/$keywords/timeWindow"
+      },
+      "sizeWindow": {
+        "$ref": "#/$keywords/sizeWindow"
+      },
+      "serialization": {
+        "$ref": "#/$keywords/serialization_1"
+      }
+    },
+    "streamingjobs/transformations": {
+      "streamingUnits": {
+        "$ref": "#/$keywords/streamingUnits"
+      },
+      "query": {
+        "$ref": "#/$keywords/query"
+      }
+    }
+  }
+}

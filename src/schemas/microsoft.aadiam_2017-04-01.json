@@ -1,90 +1,120 @@
 {
-    "$keywords": {
-        "storageAccountId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "storageAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceBusRuleId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "workspaceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventHubAuthorizationRuleId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventHubName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logs": {
+      "body": {
+        "category": {
+          "$ref": "#/$keywords/category"
         },
-        "serviceBusRuleId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "workspaceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "eventHubAuthorizationRuleId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "eventHubName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "logs": {
-            "parameters": {
-                "category": {
-                    "enum": [
-                        "AuditLogs",
-                        "SignInLogs"
-                    ]
-                },
-                "enabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "retentionPolicy": {
-                    "$ref": "#/$keywords/retentionPolicy"
-                }
-            },
-            "array": true
+        "enabled": {
+          "$ref": "#/$keywords/enabled"
         },
         "retentionPolicy": {
-            "parameters": {
-                "enabled": {
-                    "type": "bool"
-                },
-                "days": {
-                    "type": "int"
-                }
-            }
+          "$ref": "#/$keywords/retentionPolicy"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "diagnosticSettings": {
-            "storageAccountId": {
-                "$ref": "#/$keywords/storageAccountId"
-            },
-            "serviceBusRuleId": {
-                "$ref": "#/$keywords/serviceBusRuleId"
-            },
-            "workspaceId": {
-                "$ref": "#/$keywords/workspaceId"
-            },
-            "eventHubAuthorizationRuleId": {
-                "$ref": "#/$keywords/eventHubAuthorizationRuleId"
-            },
-            "eventHubName": {
-                "$ref": "#/$keywords/eventHubName"
-            },
-            "logs": {
-                "$ref": "#/$keywords/logs"
-            }
+    "category": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AuditLogs",
+            "SignInLogs"
+          ]
         }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "retentionPolicy": {
+      "body": {
+        "enabled": {
+          "$ref": "#/$keywords/enabled_1"
+        },
+        "days": {
+          "$ref": "#/$keywords/days"
+        }
+      }
+    },
+    "enabled_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "days": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
     }
+  },
+  "$resources": {
+    "diagnosticSettings": {
+      "storageAccountId": {
+        "$ref": "#/$keywords/storageAccountId"
+      },
+      "serviceBusRuleId": {
+        "$ref": "#/$keywords/serviceBusRuleId"
+      },
+      "workspaceId": {
+        "$ref": "#/$keywords/workspaceId"
+      },
+      "eventHubAuthorizationRuleId": {
+        "$ref": "#/$keywords/eventHubAuthorizationRuleId"
+      },
+      "eventHubName": {
+        "$ref": "#/$keywords/eventHubName"
+      },
+      "logs": {
+        "$ref": "#/$keywords/logs"
+      }
+    }
+  }
 }

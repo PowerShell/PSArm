@@ -28,13 +28,13 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The values to instantiate parameters with.</param>
         /// <returns>A fully instantiated concat expression, or possibly a constant expression.</returns>
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             var args = new List<IArmExpression>(Arguments.Length);
             bool canFlatten = true;
             foreach (IArmExpression arg in Arguments)
             {
-                IArmExpression resolved = arg.Instantiate(parameters);
+                var resolved = (IArmExpression)arg.Instantiate(parameters);
 
                 if (!(resolved is ArmStringLiteral))
                 {

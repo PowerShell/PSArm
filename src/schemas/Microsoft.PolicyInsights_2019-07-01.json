@@ -1,101 +1,60 @@
 {
-    "$keywords": {
-        "policyAssignmentId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "policyDefinitionReferenceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "resourceDiscoveryMode": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "ExistingNonCompliant",
-                        "ReEvaluateCompliance"
-                    ]
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdOn": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "lastUpdatedOn": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "filters": {
-            "body": {
-                "locations": {
-                    "$ref": "#/$keywords/locations"
-                }
-            }
-        },
-        "locations": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "deploymentStatus": {
-            "parameters": {
-                "totalDeployments": {
-                    "type": "int"
-                },
-                "successfulDeployments": {
-                    "type": "int"
-                },
-                "failedDeployments": {
-                    "type": "int"
-                }
-            }
+  "$keywords": {
+    "policyAssignmentId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "remediations": {
-            "policyAssignmentId": {
-                "$ref": "#/$keywords/policyAssignmentId"
-            },
-            "policyDefinitionReferenceId": {
-                "$ref": "#/$keywords/policyDefinitionReferenceId"
-            },
-            "resourceDiscoveryMode": {
-                "$ref": "#/$keywords/resourceDiscoveryMode"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "createdOn": {
-                "$ref": "#/$keywords/createdOn"
-            },
-            "lastUpdatedOn": {
-                "$ref": "#/$keywords/lastUpdatedOn"
-            },
-            "filters": {
-                "$ref": "#/$keywords/filters"
-            },
-            "deploymentStatus": {
-                "$ref": "#/$keywords/deploymentStatus"
-            }
+    "policyDefinitionReferenceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "resourceDiscoveryMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ExistingNonCompliant",
+            "ReEvaluateCompliance"
+          ]
+        }
+      }
+    },
+    "filters": {
+      "body": {
+        "locations": {
+          "$ref": "#/$keywords/locations"
+        }
+      }
+    },
+    "locations": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "remediations": {
+      "policyAssignmentId": {
+        "$ref": "#/$keywords/policyAssignmentId"
+      },
+      "policyDefinitionReferenceId": {
+        "$ref": "#/$keywords/policyDefinitionReferenceId"
+      },
+      "resourceDiscoveryMode": {
+        "$ref": "#/$keywords/resourceDiscoveryMode"
+      },
+      "filters": {
+        "$ref": "#/$keywords/filters"
+      }
+    }
+  }
 }

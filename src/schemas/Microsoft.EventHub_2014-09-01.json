@@ -1,183 +1,164 @@
 {
-    "$keywords": {
-        "status": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdAt": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "updatedAt": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "serviceBusEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "metricId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "rights": {
-            "propertyParameters": {
-                "value": {}
-            },
-            "array": true
-        },
-        "createdAt_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "messageRetentionInDays": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "partitionCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "partitionIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "status_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "updatedAt_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "createdAt_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "eventHubPath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "updatedAt_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "userMetadata": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Creating",
+            "Created",
+            "Activating",
+            "Enabling",
+            "Active",
+            "Disabling",
+            "Disabled",
+            "SoftDeleting",
+            "SoftDeleted",
+            "Removing",
+            "Removed",
+            "Failed"
+          ]
         }
+      }
     },
-    "$resources": {
-        "namespaces": {
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt"
-            },
-            "serviceBusEndpoint": {
-                "$ref": "#/$keywords/serviceBusEndpoint"
-            },
-            "metricId": {
-                "$ref": "#/$keywords/metricId"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            }
-        },
-        "namespaces/AuthorizationRules": {
-            "rights": {
-                "$ref": "#/$keywords/rights"
-            }
-        },
-        "namespaces/eventhubs": {
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt_2"
-            },
-            "messageRetentionInDays": {
-                "$ref": "#/$keywords/messageRetentionInDays"
-            },
-            "partitionCount": {
-                "$ref": "#/$keywords/partitionCount"
-            },
-            "partitionIds": {
-                "$ref": "#/$keywords/partitionIds"
-            },
-            "status": {
-                "$ref": "#/$keywords/status_2"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt_2"
-            }
-        },
-        "namespaces/eventhubs/authorizationRules": {
-            "rights": {
-                "$ref": "#/$keywords/rights"
-            }
-        },
-        "namespaces/eventhubs/consumergroups": {
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt_3"
-            },
-            "eventHubPath": {
-                "$ref": "#/$keywords/eventHubPath"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt_3"
-            },
-            "userMetadata": {
-                "$ref": "#/$keywords/userMetadata"
-            }
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "createdAt": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "updatedAt": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceBusEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "rights": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Manage",
+            "Send",
+            "Listen"
+          ]
+        }
+      },
+      "array": true
+    },
+    "messageRetentionInDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "partitionCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Disabled",
+            "Restoring",
+            "SendDisabled",
+            "ReceiveDisabled",
+            "Creating",
+            "Deleting",
+            "Renaming",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "userMetadata": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "namespaces": {
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      },
+      "createdAt": {
+        "$ref": "#/$keywords/createdAt"
+      },
+      "updatedAt": {
+        "$ref": "#/$keywords/updatedAt"
+      },
+      "serviceBusEndpoint": {
+        "$ref": "#/$keywords/serviceBusEndpoint"
+      },
+      "enabled": {
+        "$ref": "#/$keywords/enabled"
+      }
+    },
+    "namespaces/AuthorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/eventhubs": {
+      "messageRetentionInDays": {
+        "$ref": "#/$keywords/messageRetentionInDays"
+      },
+      "partitionCount": {
+        "$ref": "#/$keywords/partitionCount"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1"
+      }
+    },
+    "namespaces/eventhubs/authorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/eventhubs/consumergroups": {
+      "userMetadata": {
+        "$ref": "#/$keywords/userMetadata"
+      }
+    }
+  }
 }

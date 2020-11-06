@@ -38,7 +38,7 @@ namespace PSArm.Expression
         /// </summary>
         /// <param name="parameters">The values to instantiate parameters with.</param>
         /// <returns>A copy of the function call expression with ARM parameters instantiated.</returns>
-        public override IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             if (Arguments == null)
             {
@@ -48,7 +48,7 @@ namespace PSArm.Expression
             var args = new List<IArmExpression>();
             foreach (IArmExpression arg in Arguments)
             {
-                args.Add(arg.Instantiate(parameters));
+                args.Add((IArmExpression)arg.Instantiate(parameters));
             }
 
             return new ArmFunctionCall(FunctionName, args.ToArray());

@@ -1,86 +1,89 @@
 {
-    "$keywords": {
-        "publisher": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "product": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "plan": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "licenseTextLink": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "privacyPolicyLink": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "retrieveDatetime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "signature": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "accepted": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+  "$keywords": {
+    "publisher": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "offerTypes/publishers/offers/plans/agreements": {
-            "publisher": {
-                "$ref": "#/$keywords/publisher"
-            },
-            "product": {
-                "$ref": "#/$keywords/product"
-            },
-            "plan": {
-                "$ref": "#/$keywords/plan"
-            },
-            "licenseTextLink": {
-                "$ref": "#/$keywords/licenseTextLink"
-            },
-            "privacyPolicyLink": {
-                "$ref": "#/$keywords/privacyPolicyLink"
-            },
-            "retrieveDatetime": {
-                "$ref": "#/$keywords/retrieveDatetime"
-            },
-            "signature": {
-                "$ref": "#/$keywords/signature"
-            },
-            "accepted": {
-                "$ref": "#/$keywords/accepted"
-            }
+    "product": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "plan": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "licenseTextLink": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privacyPolicyLink": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retrieveDatetime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "signature": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accepted": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "offerTypes/publishers/offers/plans/agreements": {
+      "publisher": {
+        "$ref": "#/$keywords/publisher"
+      },
+      "product": {
+        "$ref": "#/$keywords/product"
+      },
+      "plan": {
+        "$ref": "#/$keywords/plan"
+      },
+      "licenseTextLink": {
+        "$ref": "#/$keywords/licenseTextLink"
+      },
+      "privacyPolicyLink": {
+        "$ref": "#/$keywords/privacyPolicyLink"
+      },
+      "retrieveDatetime": {
+        "$ref": "#/$keywords/retrieveDatetime"
+      },
+      "signature": {
+        "$ref": "#/$keywords/signature"
+      },
+      "accepted": {
+        "$ref": "#/$keywords/accepted"
+      }
+    }
+  }
 }

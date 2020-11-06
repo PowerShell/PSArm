@@ -1,0 +1,133 @@
+{
+  "$keywords": {
+    "configuration": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "incrementNodeConfigurationBuild": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "source": {
+      "body": {
+        "hash": {
+          "$ref": "#/$keywords/hash"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "value": {
+          "$ref": "#/$keywords/value_1"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "hash": {
+      "body": {
+        "algorithm": {
+          "$ref": "#/$keywords/algorithm"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      }
+    },
+    "algorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "embeddedContent",
+            "uri"
+          ]
+        }
+      }
+    },
+    "value_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "configuration_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      }
+    },
+    "incrementNodeConfigurationBuild_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    }
+  },
+  "$resources": {
+    "automationAccounts/compilationjobs": {
+      "configuration": {
+        "$ref": "#/$keywords/configuration"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      },
+      "incrementNodeConfigurationBuild": {
+        "$ref": "#/$keywords/incrementNodeConfigurationBuild"
+      }
+    },
+    "automationAccounts/nodeConfigurations": {
+      "source": {
+        "$ref": "#/$keywords/source"
+      },
+      "configuration": {
+        "$ref": "#/$keywords/configuration_1"
+      },
+      "incrementNodeConfigurationBuild": {
+        "$ref": "#/$keywords/incrementNodeConfigurationBuild_1"
+      }
+    }
+  }
+}

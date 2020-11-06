@@ -1,297 +1,355 @@
 {
-    "$keywords": {
-        "state": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "disabledAlerts": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "emailAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "emailAccountAdmins": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "storageEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageAccountAccessKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "retentionDays": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        }
-    },
-    "$resources": {
-        "servers/securityAlertPolicies": {
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "disabledAlerts": {
-                "$ref": "#/$keywords/disabledAlerts"
-            },
-            "emailAddresses": {
-                "$ref": "#/$keywords/emailAddresses"
-            },
-            "emailAccountAdmins": {
-                "$ref": "#/$keywords/emailAccountAdmins"
-            },
-            "storageEndpoint": {
-                "$ref": "#/$keywords/storageEndpoint"
-            },
-            "storageAccountAccessKey": {
-                "$ref": "#/$keywords/storageAccountAccessKey"
-            },
-            "retentionDays": {
-                "$ref": "#/$keywords/retentionDays"
-            }
-        }
-    }
-}            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Default",
-                        "PointInTimeRestore",
-                        "GeoRestore",
-                        "Replica"
-                    ]
-                }
-            }
-        },
-        "startIpAddress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string",
-                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
-                }
-            }
-        },
-        "endIpAddress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string",
-                    "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
-                }
-            }
-        },
-        "virtualNetworkSubnetId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "ignoreMissingVnetServiceEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Initializing",
-                        "InProgress",
-                        "Ready",
-                        "Deleting",
-                        "Unknown"
-                    ]
-                }
-            }
-        },
-        "charset": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "collation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
+  "$keywords": {
+    "version": {
+      "propertyParameters": {
         "value": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "defaultValue": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "dataType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "allowedValues": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "source": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "administratorType": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "login": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "sid": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "tenantId": {
-            "propertyParameters": {
-                "value": {}
-            }
+          "type": "string",
+          "enum": [
+            "9.5",
+            "9.6",
+            "10",
+            "10.0",
+            "10.2",
+            "11"
+          ]
         }
+      }
     },
-    "$resources": {
-        "servers": {
-            "version": {
-                "$ref": "#/$keywords/version"
-            },
-            "sslEnforcement": {
-                "$ref": "#/$keywords/sslEnforcement"
-            },
-            "minimalTlsVersion": {
-                "$ref": "#/$keywords/minimalTlsVersion"
-            },
-            "infrastructureEncryption": {
-                "$ref": "#/$keywords/infrastructureEncryption"
-            },
-            "publicNetworkAccess": {
-                "$ref": "#/$keywords/publicNetworkAccess"
-            },
-            "storageProfile": {
-                "$ref": "#/$keywords/storageProfile"
-            },
-            "createMode": {
-                "$ref": "#/$keywords/createMode"
-            }
-        },
-        "servers/firewallRules": {
-            "startIpAddress": {
-                "$ref": "#/$keywords/startIpAddress"
-            },
-            "endIpAddress": {
-                "$ref": "#/$keywords/endIpAddress"
-            }
-        },
-        "servers/virtualNetworkRules": {
-            "virtualNetworkSubnetId": {
-                "$ref": "#/$keywords/virtualNetworkSubnetId"
-            },
-            "ignoreMissingVnetServiceEndpoint": {
-                "$ref": "#/$keywords/ignoreMissingVnetServiceEndpoint"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            }
-        },
-        "servers/databases": {
-            "charset": {
-                "$ref": "#/$keywords/charset"
-            },
-            "collation": {
-                "$ref": "#/$keywords/collation"
-            }
-        },
-        "servers/configurations": {
-            "value": {
-                "$ref": "#/$keywords/value"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "defaultValue": {
-                "$ref": "#/$keywords/defaultValue"
-            },
-            "dataType": {
-                "$ref": "#/$keywords/dataType"
-            },
-            "allowedValues": {
-                "$ref": "#/$keywords/allowedValues"
-            },
-            "source": {
-                "$ref": "#/$keywords/source"
-            }
-        },
-        "servers/Administrators": {
-            "administratorType": {
-                "$ref": "#/$keywords/administratorType"
-            },
-            "login": {
-                "$ref": "#/$keywords/login"
-            },
-            "sid": {
-                "$ref": "#/$keywords/sid"
-            },
-            "tenantId": {
-                "$ref": "#/$keywords/tenantId"
-            }
+    "sslEnforcement": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
         }
+      }
+    },
+    "minimalTlsVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TLS1_0",
+            "TLS1_1",
+            "TLS1_2",
+            "TLSEnforcementDisabled"
+          ]
+        }
+      }
+    },
+    "infrastructureEncryption": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "publicNetworkAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageProfile": {
+      "body": {
+        "backupRetentionDays": {
+          "$ref": "#/$keywords/backupRetentionDays"
+        },
+        "geoRedundantBackup": {
+          "$ref": "#/$keywords/geoRedundantBackup"
+        },
+        "storageMB": {
+          "$ref": "#/$keywords/storageMB"
+        },
+        "storageAutogrow": {
+          "$ref": "#/$keywords/storageAutogrow"
+        }
+      }
+    },
+    "backupRetentionDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "geoRedundantBackup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageMB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageAutogrow": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "startIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualNetworkSubnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ignoreMissingVnetServiceEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "charset": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "collation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ActiveDirectory"
+          ]
+        }
+      }
+    },
+    "login": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sid": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "disabledAlerts": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "emailAddresses": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "emailAccountAdmins": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "storageEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
     }
+  },
+  "$resources": {
+    "servers": {
+      "version": {
+        "$ref": "#/$keywords/version"
+      },
+      "sslEnforcement": {
+        "$ref": "#/$keywords/sslEnforcement"
+      },
+      "minimalTlsVersion": {
+        "$ref": "#/$keywords/minimalTlsVersion"
+      },
+      "infrastructureEncryption": {
+        "$ref": "#/$keywords/infrastructureEncryption"
+      },
+      "publicNetworkAccess": {
+        "$ref": "#/$keywords/publicNetworkAccess"
+      },
+      "storageProfile": {
+        "$ref": "#/$keywords/storageProfile"
+      }
+    },
+    "servers/firewallRules": {
+      "startIpAddress": {
+        "$ref": "#/$keywords/startIpAddress"
+      },
+      "endIpAddress": {
+        "$ref": "#/$keywords/endIpAddress"
+      }
+    },
+    "servers/virtualNetworkRules": {
+      "virtualNetworkSubnetId": {
+        "$ref": "#/$keywords/virtualNetworkSubnetId"
+      },
+      "ignoreMissingVnetServiceEndpoint": {
+        "$ref": "#/$keywords/ignoreMissingVnetServiceEndpoint"
+      }
+    },
+    "servers/databases": {
+      "charset": {
+        "$ref": "#/$keywords/charset"
+      },
+      "collation": {
+        "$ref": "#/$keywords/collation"
+      }
+    },
+    "servers/configurations": {
+      "value": {
+        "$ref": "#/$keywords/value"
+      },
+      "source": {
+        "$ref": "#/$keywords/source"
+      }
+    },
+    "servers/Administrators": {
+      "administratorType": {
+        "$ref": "#/$keywords/administratorType"
+      },
+      "login": {
+        "$ref": "#/$keywords/login"
+      },
+      "sid": {
+        "$ref": "#/$keywords/sid"
+      },
+      "tenantId": {
+        "$ref": "#/$keywords/tenantId"
+      }
+    },
+    "servers/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "disabledAlerts": {
+        "$ref": "#/$keywords/disabledAlerts"
+      },
+      "emailAddresses": {
+        "$ref": "#/$keywords/emailAddresses"
+      },
+      "emailAccountAdmins": {
+        "$ref": "#/$keywords/emailAccountAdmins"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays"
+      }
+    }
+  }
 }

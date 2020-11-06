@@ -1,0 +1,544 @@
+{
+  "$keywords": {
+    "repoConfiguration": {
+      "body": {
+        "accountName": {
+          "$ref": "#/$keywords/accountName"
+        },
+        "repositoryName": {
+          "$ref": "#/$keywords/repositoryName"
+        },
+        "collaborationBranch": {
+          "$ref": "#/$keywords/collaborationBranch"
+        },
+        "rootFolder": {
+          "$ref": "#/$keywords/rootFolder"
+        },
+        "lastCommitId": {
+          "$ref": "#/$keywords/lastCommitId"
+        }
+      }
+    },
+    "accountName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "repositoryName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "collaborationBranch": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rootFolder": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastCommitId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "globalParameters": {
+      "body": {}
+    },
+    "publicNetworkAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "additionalProperties": {
+      "body": {}
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalProperties_1": {
+      "body": {}
+    },
+    "connectVia": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "referenceName": {
+          "$ref": "#/$keywords/referenceName"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "IntegrationRuntimeReference"
+          ]
+        }
+      }
+    },
+    "referenceName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1": {
+      "body": {}
+    },
+    "annotations": {
+      "body": {},
+      "array": true
+    },
+    "additionalProperties_1_2": {
+      "body": {}
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "structure": {
+      "body": {}
+    },
+    "schema": {
+      "body": {}
+    },
+    "linkedServiceName": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type_1"
+        },
+        "referenceName": {
+          "$ref": "#/$keywords/referenceName_1"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters_1_2"
+        }
+      }
+    },
+    "type_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LinkedServiceReference"
+          ]
+        }
+      }
+    },
+    "referenceName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1_2": {
+      "body": {}
+    },
+    "parameters_1_2_3": {
+      "body": {}
+    },
+    "annotations_1": {
+      "body": {},
+      "array": true
+    },
+    "folder": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "activities": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties_1_2_3"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "description": {
+          "$ref": "#/$keywords/description_1_2_3_4"
+        },
+        "dependsOn": {
+          "$ref": "#/$keywords/dependsOn"
+        },
+        "userProperties": {
+          "$ref": "#/$keywords/userProperties"
+        }
+      },
+      "array": true
+    },
+    "additionalProperties_1_2_3": {
+      "body": {}
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dependsOn": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties_1_2_3_4"
+        },
+        "activity": {
+          "$ref": "#/$keywords/activity"
+        },
+        "dependencyConditions": {
+          "$ref": "#/$keywords/dependencyConditions"
+        }
+      },
+      "array": true
+    },
+    "additionalProperties_1_2_3_4": {
+      "body": {}
+    },
+    "activity": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dependencyConditions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Failed",
+            "Skipped",
+            "Completed"
+          ]
+        }
+      },
+      "array": true
+    },
+    "userProperties": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "body": {}
+    },
+    "parameters_1_2_3_4": {
+      "body": {}
+    },
+    "variables": {
+      "body": {}
+    },
+    "concurrency": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "annotations_1_2": {
+      "body": {},
+      "array": true
+    },
+    "runDimensions": {
+      "body": {}
+    },
+    "folder_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        }
+      }
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalProperties_1_2_3_4_5": {
+      "body": {}
+    },
+    "description_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "annotations_1_2_3": {
+      "body": {},
+      "array": true
+    },
+    "description_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "annotations_1_2_3_4": {
+      "body": {},
+      "array": true
+    },
+    "folder_1_2": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4"
+        }
+      }
+    },
+    "name_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalProperties_1_2_3_4_5_6": {
+      "body": {}
+    },
+    "additionalProperties_1_2_3_4_5_6_7": {
+      "body": {}
+    },
+    "connectionState": {
+      "body": {}
+    },
+    "fqdns": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "groupId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateLinkResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "factories": {
+      "repoConfiguration": {
+        "$ref": "#/$keywords/repoConfiguration"
+      },
+      "globalParameters": {
+        "$ref": "#/$keywords/globalParameters"
+      },
+      "publicNetworkAccess": {
+        "$ref": "#/$keywords/publicNetworkAccess"
+      }
+    },
+    "factories/integrationRuntimes": {
+      "additionalProperties": {
+        "$ref": "#/$keywords/additionalProperties"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      }
+    },
+    "factories/linkedservices": {
+      "additionalProperties": {
+        "$ref": "#/$keywords/additionalProperties_1"
+      },
+      "connectVia": {
+        "$ref": "#/$keywords/connectVia"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1"
+      },
+      "annotations": {
+        "$ref": "#/$keywords/annotations"
+      }
+    },
+    "factories/datasets": {
+      "additionalProperties": {
+        "$ref": "#/$keywords/additionalProperties_1_2"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "structure": {
+        "$ref": "#/$keywords/structure"
+      },
+      "schema": {
+        "$ref": "#/$keywords/schema"
+      },
+      "linkedServiceName": {
+        "$ref": "#/$keywords/linkedServiceName"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1_2_3"
+      },
+      "annotations": {
+        "$ref": "#/$keywords/annotations_1"
+      },
+      "folder": {
+        "$ref": "#/$keywords/folder"
+      }
+    },
+    "factories/pipelines": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3"
+      },
+      "activities": {
+        "$ref": "#/$keywords/activities"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1_2_3_4"
+      },
+      "variables": {
+        "$ref": "#/$keywords/variables"
+      },
+      "concurrency": {
+        "$ref": "#/$keywords/concurrency"
+      },
+      "annotations": {
+        "$ref": "#/$keywords/annotations_1_2"
+      },
+      "runDimensions": {
+        "$ref": "#/$keywords/runDimensions"
+      },
+      "folder": {
+        "$ref": "#/$keywords/folder_1"
+      }
+    },
+    "factories/triggers": {
+      "additionalProperties": {
+        "$ref": "#/$keywords/additionalProperties_1_2_3_4_5"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4_5"
+      },
+      "annotations": {
+        "$ref": "#/$keywords/annotations_1_2_3"
+      }
+    },
+    "factories/dataflows": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4_5_6"
+      },
+      "annotations": {
+        "$ref": "#/$keywords/annotations_1_2_3_4"
+      },
+      "folder": {
+        "$ref": "#/$keywords/folder_1_2"
+      }
+    },
+    "factories/managedVirtualNetworks": {
+      "additionalProperties": {
+        "$ref": "#/$keywords/additionalProperties_1_2_3_4_5_6"
+      }
+    },
+    "factories/managedVirtualNetworks/managedPrivateEndpoints": {
+      "additionalProperties": {
+        "$ref": "#/$keywords/additionalProperties_1_2_3_4_5_6_7"
+      },
+      "connectionState": {
+        "$ref": "#/$keywords/connectionState"
+      },
+      "fqdns": {
+        "$ref": "#/$keywords/fqdns"
+      },
+      "groupId": {
+        "$ref": "#/$keywords/groupId"
+      },
+      "privateLinkResourceId": {
+        "$ref": "#/$keywords/privateLinkResourceId"
+      }
+    }
+  }
+}

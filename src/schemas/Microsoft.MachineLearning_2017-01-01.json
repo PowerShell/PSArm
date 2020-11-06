@@ -1,235 +1,320 @@
 {
-    "$keywords": {
+  "$keywords": {
+    "title": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keys": {
+      "body": {
+        "primary": {
+          "$ref": "#/$keywords/primary"
+        },
+        "secondary": {
+          "$ref": "#/$keywords/secondary"
+        }
+      }
+    },
+    "primary": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "secondary": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "readOnly": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "exposeSampleData": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "realtimeConfiguration": {
+      "body": {
+        "maxConcurrentCalls": {
+          "$ref": "#/$keywords/maxConcurrentCalls"
+        }
+      }
+    },
+    "maxConcurrentCalls": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "diagnostics": {
+      "body": {
+        "level": {
+          "$ref": "#/$keywords/level"
+        },
+        "expiry": {
+          "$ref": "#/$keywords/expiry"
+        }
+      }
+    },
+    "level": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Error",
+            "All"
+          ]
+        }
+      }
+    },
+    "expiry": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccount": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "key": {
+          "$ref": "#/$keywords/key"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "machineLearningWorkspace": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "commitmentPlan": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "input": {
+      "body": {
         "title": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/title_1"
         },
         "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/description_1"
         },
-        "createdOn": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "type": {
+          "$ref": "#/$keywords/type"
         },
-        "modifiedOn": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Provisioning",
-                        "Succeeded",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "keys": {
-            "parameters": {
-                "primary": {
-                    "type": "string"
-                },
-                "secondary": {
-                    "type": "string"
-                }
-            }
-        },
-        "readOnly": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "swaggerLocation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "exposeSampleData": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "realtimeConfiguration": {
-            "parameters": {
-                "maxConcurrentCalls": {
-                    "type": "int"
-                }
-            }
-        },
-        "diagnostics": {
-            "parameters": {
-                "level": {
-                    "enum": [
-                        "None",
-                        "Error",
-                        "All"
-                    ]
-                },
-                "expiry": {}
-            }
-        },
-        "storageAccount": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "key": {
-                    "type": "string"
-                }
-            }
-        },
-        "machineLearningWorkspace": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "commitmentPlan": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "input": {
-            "parameters": {
-                "title": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
-        "exampleRequest": {
-            "parameters": {
-                "inputs": {},
-                "globalParameters": {}
-            }
-        },
-        "assets": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "parameters": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "packageType": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "payloadsInBlobStorage": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "payloadsLocation": {
-            "parameters": {
-                "uri": {
-                    "type": "string"
-                },
-                "credentials": {
-                    "type": "string"
-                }
-            }
+        "properties": {
+          "$ref": "#/$keywords/properties"
         }
+      }
     },
-    "$resources": {
-        "webServices": {
-            "title": {
-                "$ref": "#/$keywords/title"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "createdOn": {
-                "$ref": "#/$keywords/createdOn"
-            },
-            "modifiedOn": {
-                "$ref": "#/$keywords/modifiedOn"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "keys": {
-                "$ref": "#/$keywords/keys"
-            },
-            "readOnly": {
-                "$ref": "#/$keywords/readOnly"
-            },
-            "swaggerLocation": {
-                "$ref": "#/$keywords/swaggerLocation"
-            },
-            "exposeSampleData": {
-                "$ref": "#/$keywords/exposeSampleData"
-            },
-            "realtimeConfiguration": {
-                "$ref": "#/$keywords/realtimeConfiguration"
-            },
-            "diagnostics": {
-                "$ref": "#/$keywords/diagnostics"
-            },
-            "storageAccount": {
-                "$ref": "#/$keywords/storageAccount"
-            },
-            "machineLearningWorkspace": {
-                "$ref": "#/$keywords/machineLearningWorkspace"
-            },
-            "commitmentPlan": {
-                "$ref": "#/$keywords/commitmentPlan"
-            },
-            "input": {
-                "$ref": "#/$keywords/input"
-            },
-            "output": {
-                "$ref": "#/$keywords/input"
-            },
-            "exampleRequest": {
-                "$ref": "#/$keywords/exampleRequest"
-            },
-            "assets": {
-                "$ref": "#/$keywords/assets"
-            },
-            "parameters": {
-                "$ref": "#/$keywords/parameters"
-            },
-            "packageType": {
-                "$ref": "#/$keywords/packageType"
-            },
-            "payloadsInBlobStorage": {
-                "$ref": "#/$keywords/payloadsInBlobStorage"
-            },
-            "payloadsLocation": {
-                "$ref": "#/$keywords/payloadsLocation"
-            }
+    "title_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "default": "object"
+        }
+      }
+    },
+    "properties": {
+      "body": {}
+    },
+    "output": {
+      "body": {
+        "title": {
+          "$ref": "#/$keywords/title_1"
+        },
+        "description": {
+          "$ref": "#/$keywords/description_1"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      }
+    },
+    "exampleRequest": {
+      "body": {
+        "inputs": {
+          "$ref": "#/$keywords/inputs"
+        },
+        "globalParameters": {
+          "$ref": "#/$keywords/globalParameters"
+        }
+      }
+    },
+    "inputs": {
+      "body": {}
+    },
+    "globalParameters": {
+      "body": {}
+    },
+    "assets": {
+      "body": {}
+    },
+    "parameters": {
+      "body": {}
+    },
+    "payloadsInBlobStorage": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "payloadsLocation": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "credentials": {
+          "$ref": "#/$keywords/credentials"
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "credentials": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "webServices": {
+      "title": {
+        "$ref": "#/$keywords/title"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "keys": {
+        "$ref": "#/$keywords/keys"
+      },
+      "readOnly": {
+        "$ref": "#/$keywords/readOnly"
+      },
+      "exposeSampleData": {
+        "$ref": "#/$keywords/exposeSampleData"
+      },
+      "realtimeConfiguration": {
+        "$ref": "#/$keywords/realtimeConfiguration"
+      },
+      "diagnostics": {
+        "$ref": "#/$keywords/diagnostics"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      },
+      "machineLearningWorkspace": {
+        "$ref": "#/$keywords/machineLearningWorkspace"
+      },
+      "commitmentPlan": {
+        "$ref": "#/$keywords/commitmentPlan"
+      },
+      "input": {
+        "$ref": "#/$keywords/input"
+      },
+      "output": {
+        "$ref": "#/$keywords/output"
+      },
+      "exampleRequest": {
+        "$ref": "#/$keywords/exampleRequest"
+      },
+      "assets": {
+        "$ref": "#/$keywords/assets"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      },
+      "payloadsInBlobStorage": {
+        "$ref": "#/$keywords/payloadsInBlobStorage"
+      },
+      "payloadsLocation": {
+        "$ref": "#/$keywords/payloadsLocation"
+      }
+    }
+  }
 }

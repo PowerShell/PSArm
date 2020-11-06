@@ -1,151 +1,246 @@
 {
-    "$keywords": {
-        "dataSourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "repositoryId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled",
+            "Supported"
+          ]
+        }
+      }
+    },
+    "extendedProperties": {
+      "body": {}
+    },
+    "dataStoreTypeId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customerSecrets": {
+      "body": {
+        "keyIdentifier": {
+          "$ref": "#/$keywords/keyIdentifier"
         },
-        "dataSinkId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "keyValue": {
+          "$ref": "#/$keywords/keyValue"
         },
-        "schedules": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "policyList": {
-                    "$ref": "#/$keywords/policyList"
-                }
-            },
-            "array": true
+        "algorithm": {
+          "$ref": "#/$keywords/algorithm"
+        }
+      },
+      "array": true
+    },
+    "keyIdentifier": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyValue": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "algorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "RSA1_5",
+            "RSA_OAEP",
+            "PlainText"
+          ]
+        }
+      }
+    },
+    "dataSourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataSinkId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "schedules": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
         "policyList": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "state": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "lastModifiedTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "runLocation": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "userConfirmation": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "dataServiceInput": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "customerSecrets": {
-            "parameters": {
-                "keyIdentifier": {
-                    "type": "string"
-                },
-                "keyValue": {
-                    "type": "string"
-                },
-                "algorithm": {}
-            },
-            "array": true
-        },
-        "repositoryId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "dataStoreTypeId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "customerSecrets_2": {
-            "parameters": {
-                "keyIdentifier": {
-                    "type": "string"
-                },
-                "keyValue": {
-                    "type": "string"
-                },
-                "algorithm": {}
-            },
-            "array": true
+          "$ref": "#/$keywords/policyList"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "dataManagers": {},
-        "dataManagers/dataServices/jobDefinitions": {
-            "dataSourceId": {
-                "$ref": "#/$keywords/dataSourceId"
-            },
-            "dataSinkId": {
-                "$ref": "#/$keywords/dataSinkId"
-            },
-            "schedules": {
-                "$ref": "#/$keywords/schedules"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "lastModifiedTime": {
-                "$ref": "#/$keywords/lastModifiedTime"
-            },
-            "runLocation": {
-                "$ref": "#/$keywords/runLocation"
-            },
-            "userConfirmation": {
-                "$ref": "#/$keywords/userConfirmation"
-            },
-            "dataServiceInput": {
-                "$ref": "#/$keywords/dataServiceInput"
-            },
-            "customerSecrets": {
-                "$ref": "#/$keywords/customerSecrets"
-            }
-        },
-        "dataManagers/dataStores": {
-            "repositoryId": {
-                "$ref": "#/$keywords/repositoryId"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "extendedProperties": {
-                "$ref": "#/$keywords/dataServiceInput"
-            },
-            "dataStoreTypeId": {
-                "$ref": "#/$keywords/dataStoreTypeId"
-            },
-            "customerSecrets": {
-                "$ref": "#/$keywords/customerSecrets_2"
-            }
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "policyList": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "state_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled",
+            "Supported"
+          ]
+        }
+      }
+    },
+    "lastModifiedTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runLocation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "none",
+            "australiaeast",
+            "australiasoutheast",
+            "brazilsouth",
+            "canadacentral",
+            "canadaeast",
+            "centralindia",
+            "centralus",
+            "eastasia",
+            "eastus",
+            "eastus2",
+            "japaneast",
+            "japanwest",
+            "koreacentral",
+            "koreasouth",
+            "southeastasia",
+            "southcentralus",
+            "southindia",
+            "northcentralus",
+            "northeurope",
+            "uksouth",
+            "ukwest",
+            "westcentralus",
+            "westeurope",
+            "westindia",
+            "westus",
+            "westus2"
+          ]
+        }
+      }
+    },
+    "userConfirmation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotRequired",
+            "Required"
+          ]
+        }
+      }
+    },
+    "dataServiceInput": {
+      "body": {}
+    },
+    "customerSecrets_1": {
+      "body": {
+        "keyIdentifier": {
+          "$ref": "#/$keywords/keyIdentifier"
+        },
+        "keyValue": {
+          "$ref": "#/$keywords/keyValue"
+        },
+        "algorithm": {
+          "$ref": "#/$keywords/algorithm"
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "dataManagers": {},
+    "dataManagers/dataStores": {
+      "repositoryId": {
+        "$ref": "#/$keywords/repositoryId"
+      },
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "extendedProperties": {
+        "$ref": "#/$keywords/extendedProperties"
+      },
+      "dataStoreTypeId": {
+        "$ref": "#/$keywords/dataStoreTypeId"
+      },
+      "customerSecrets": {
+        "$ref": "#/$keywords/customerSecrets"
+      }
+    },
+    "dataManagers/dataServices/jobDefinitions": {
+      "dataSourceId": {
+        "$ref": "#/$keywords/dataSourceId"
+      },
+      "dataSinkId": {
+        "$ref": "#/$keywords/dataSinkId"
+      },
+      "schedules": {
+        "$ref": "#/$keywords/schedules"
+      },
+      "state": {
+        "$ref": "#/$keywords/state_1"
+      },
+      "lastModifiedTime": {
+        "$ref": "#/$keywords/lastModifiedTime"
+      },
+      "runLocation": {
+        "$ref": "#/$keywords/runLocation"
+      },
+      "userConfirmation": {
+        "$ref": "#/$keywords/userConfirmation"
+      },
+      "dataServiceInput": {
+        "$ref": "#/$keywords/dataServiceInput"
+      },
+      "customerSecrets": {
+        "$ref": "#/$keywords/customerSecrets_1"
+      }
+    }
+  }
 }

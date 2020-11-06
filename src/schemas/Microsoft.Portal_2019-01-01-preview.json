@@ -1,36 +1,33 @@
 {
-    "$keywords": {
-        "lenses": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "metadata": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "enforcePrivateMarkdownStorage": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        }
+  "$keywords": {
+    "lenses": {
+      "body": {}
     },
-    "$resources": {
-        "dashboards": {
-            "lenses": {
-                "$ref": "#/$keywords/lenses"
-            },
-            "metadata": {
-                "$ref": "#/$keywords/metadata"
-            }
-        },
-        "tenantConfigurations": {
-            "enforcePrivateMarkdownStorage": {
-                "$ref": "#/$keywords/enforcePrivateMarkdownStorage"
-            }
+    "metadata": {
+      "body": {}
+    },
+    "enforcePrivateMarkdownStorage": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
         }
+      }
     }
+  },
+  "$resources": {
+    "dashboards": {
+      "lenses": {
+        "$ref": "#/$keywords/lenses"
+      },
+      "metadata": {
+        "$ref": "#/$keywords/metadata"
+      }
+    },
+    "tenantConfigurations": {
+      "enforcePrivateMarkdownStorage": {
+        "$ref": "#/$keywords/enforcePrivateMarkdownStorage"
+      }
+    }
+  }
 }

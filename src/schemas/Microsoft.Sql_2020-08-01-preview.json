@@ -1,0 +1,348 @@
+{
+  "$keywords": {
+    "createMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Copy",
+            "Secondary",
+            "PointInTimeRestore",
+            "Restore",
+            "Recovery",
+            "RestoreExternalBackup",
+            "RestoreExternalBackupSecondary",
+            "RestoreLongTermRetentionBackup",
+            "OnlineSecondary"
+          ]
+        }
+      }
+    },
+    "collation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxSizeBytes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "sampleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AdventureWorksLT",
+            "WideWorldImportersStd",
+            "WideWorldImportersFull"
+          ]
+        }
+      }
+    },
+    "elasticPoolId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseDeletionDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoveryServicesRecoveryPointId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "longTermRetentionBackupResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoverableDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorableDroppedDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "catalogCollation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DATABASE_DEFAULT",
+            "SQL_Latin1_General_CP1_CI_AS"
+          ]
+        }
+      }
+    },
+    "zoneRedundant": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "licenseType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LicenseIncluded",
+            "BasePrice"
+          ]
+        }
+      }
+    },
+    "readScale": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "highAvailabilityReplicaCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "secondaryType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Geo",
+            "Named"
+          ]
+        }
+      }
+    },
+    "autoPauseDelay": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageAccountType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "GRS",
+            "LRS",
+            "ZRS"
+          ]
+        }
+      }
+    },
+    "minCapacity": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "maintenanceConfigurationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxSizeBytes_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "perDatabaseSettings": {
+      "body": {
+        "minCapacity": {
+          "$ref": "#/$keywords/minCapacity_1"
+        },
+        "maxCapacity": {
+          "$ref": "#/$keywords/maxCapacity"
+        }
+      }
+    },
+    "minCapacity_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "maxCapacity": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "zoneRedundant_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "licenseType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LicenseIncluded",
+            "BasePrice"
+          ]
+        }
+      }
+    },
+    "maintenanceConfigurationId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "servers/databases": {
+      "createMode": {
+        "$ref": "#/$keywords/createMode"
+      },
+      "collation": {
+        "$ref": "#/$keywords/collation"
+      },
+      "maxSizeBytes": {
+        "$ref": "#/$keywords/maxSizeBytes"
+      },
+      "sampleName": {
+        "$ref": "#/$keywords/sampleName"
+      },
+      "elasticPoolId": {
+        "$ref": "#/$keywords/elasticPoolId"
+      },
+      "sourceDatabaseId": {
+        "$ref": "#/$keywords/sourceDatabaseId"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime"
+      },
+      "sourceDatabaseDeletionDate": {
+        "$ref": "#/$keywords/sourceDatabaseDeletionDate"
+      },
+      "recoveryServicesRecoveryPointId": {
+        "$ref": "#/$keywords/recoveryServicesRecoveryPointId"
+      },
+      "longTermRetentionBackupResourceId": {
+        "$ref": "#/$keywords/longTermRetentionBackupResourceId"
+      },
+      "recoverableDatabaseId": {
+        "$ref": "#/$keywords/recoverableDatabaseId"
+      },
+      "restorableDroppedDatabaseId": {
+        "$ref": "#/$keywords/restorableDroppedDatabaseId"
+      },
+      "catalogCollation": {
+        "$ref": "#/$keywords/catalogCollation"
+      },
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant"
+      },
+      "licenseType": {
+        "$ref": "#/$keywords/licenseType"
+      },
+      "readScale": {
+        "$ref": "#/$keywords/readScale"
+      },
+      "highAvailabilityReplicaCount": {
+        "$ref": "#/$keywords/highAvailabilityReplicaCount"
+      },
+      "secondaryType": {
+        "$ref": "#/$keywords/secondaryType"
+      },
+      "autoPauseDelay": {
+        "$ref": "#/$keywords/autoPauseDelay"
+      },
+      "storageAccountType": {
+        "$ref": "#/$keywords/storageAccountType"
+      },
+      "minCapacity": {
+        "$ref": "#/$keywords/minCapacity"
+      },
+      "maintenanceConfigurationId": {
+        "$ref": "#/$keywords/maintenanceConfigurationId"
+      }
+    },
+    "servers/elasticPools": {
+      "maxSizeBytes": {
+        "$ref": "#/$keywords/maxSizeBytes_1"
+      },
+      "perDatabaseSettings": {
+        "$ref": "#/$keywords/perDatabaseSettings"
+      },
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant_1"
+      },
+      "licenseType": {
+        "$ref": "#/$keywords/licenseType_1"
+      },
+      "maintenanceConfigurationId": {
+        "$ref": "#/$keywords/maintenanceConfigurationId_1"
+      }
+    }
+  }
+}

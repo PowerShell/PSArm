@@ -1,262 +1,203 @@
 {
-    "$keywords": {
-        "managementCluster": {
-            "parameters": {
-                "clusterId": {
-                    "type": "int"
-                },
-                "clusterSize": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "hosts": {
-                    "$ref": "#/$keywords/hosts"
-                }
-            }
-        },
-        "hosts": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "internet": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "identitySources": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "alias": {
-                    "type": "string"
-                },
-                "domain": {
-                    "type": "string"
-                },
-                "baseUserDN": {
-                    "type": "string"
-                },
-                "baseGroupDN": {
-                    "type": "string"
-                },
-                "primaryServer": {
-                    "type": "string"
-                },
-                "secondaryServer": {
-                    "type": "string"
-                },
-                "ssl": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "username": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Failed",
-                        "Cancelled",
-                        "Pending",
-                        "Building",
-                        "Deleting",
-                        "Updating"
-                    ]
-                }
-            }
-        },
-        "circuit": {
-            "parameters": {
-                "primarySubnet": {
-                    "type": "string"
-                },
-                "secondarySubnet": {
-                    "type": "string"
-                },
-                "expressRouteID": {
-                    "type": "string"
-                },
-                "expressRoutePrivatePeeringID": {
-                    "type": "string"
-                }
-            }
-        },
-        "endpoints": {
-            "parameters": {
-                "nsxtManager": {
-                    "type": "string"
-                },
-                "vcsa": {
-                    "type": "string"
-                },
-                "hcxCloudManager": {
-                    "type": "string"
-                }
-            }
-        },
-        "networkBlock": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "managementNetwork": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningNetwork": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vmotionNetwork": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vcenterPassword": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "nsxtPassword": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vcenterCertificateThumbprint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "nsxtCertificateThumbprint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
+  "$keywords": {
+    "managementCluster": {
+      "body": {
         "clusterSize": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "clusterId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Failed",
-                        "Cancelled",
-                        "Deleting",
-                        "Updating"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/clusterSize"
         }
+      }
     },
-    "$resources": {
-        "privateClouds": {
-            "managementCluster": {
-                "$ref": "#/$keywords/managementCluster"
-            },
-            "internet": {
-                "$ref": "#/$keywords/internet"
-            },
-            "identitySources": {
-                "$ref": "#/$keywords/identitySources"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "circuit": {
-                "$ref": "#/$keywords/circuit"
-            },
-            "endpoints": {
-                "$ref": "#/$keywords/endpoints"
-            },
-            "networkBlock": {
-                "$ref": "#/$keywords/networkBlock"
-            },
-            "managementNetwork": {
-                "$ref": "#/$keywords/managementNetwork"
-            },
-            "provisioningNetwork": {
-                "$ref": "#/$keywords/provisioningNetwork"
-            },
-            "vmotionNetwork": {
-                "$ref": "#/$keywords/vmotionNetwork"
-            },
-            "vcenterPassword": {
-                "$ref": "#/$keywords/vcenterPassword"
-            },
-            "nsxtPassword": {
-                "$ref": "#/$keywords/nsxtPassword"
-            },
-            "vcenterCertificateThumbprint": {
-                "$ref": "#/$keywords/vcenterCertificateThumbprint"
-            },
-            "nsxtCertificateThumbprint": {
-                "$ref": "#/$keywords/nsxtCertificateThumbprint"
-            }
-        },
-        "privateClouds/clusters": {
-            "clusterSize": {
-                "$ref": "#/$keywords/clusterSize"
-            },
-            "clusterId": {
-                "$ref": "#/$keywords/clusterId"
-            },
-            "hosts": {
-                "$ref": "#/$keywords/hosts"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            }
+    "clusterSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
         }
+      }
+    },
+    "internet": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "identitySources": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "alias": {
+          "$ref": "#/$keywords/alias"
+        },
+        "domain": {
+          "$ref": "#/$keywords/domain"
+        },
+        "baseUserDN": {
+          "$ref": "#/$keywords/baseUserDN"
+        },
+        "baseGroupDN": {
+          "$ref": "#/$keywords/baseGroupDN"
+        },
+        "primaryServer": {
+          "$ref": "#/$keywords/primaryServer"
+        },
+        "secondaryServer": {
+          "$ref": "#/$keywords/secondaryServer"
+        },
+        "ssl": {
+          "$ref": "#/$keywords/ssl"
+        },
+        "username": {
+          "$ref": "#/$keywords/username"
+        },
+        "password": {
+          "$ref": "#/$keywords/password"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "alias": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "domain": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "baseUserDN": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "baseGroupDN": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "primaryServer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "secondaryServer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ssl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "username": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "circuit": {
+      "body": {}
+    },
+    "networkBlock": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vcenterPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "nsxtPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterSize_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
     }
+  },
+  "$resources": {
+    "privateClouds": {
+      "managementCluster": {
+        "$ref": "#/$keywords/managementCluster"
+      },
+      "internet": {
+        "$ref": "#/$keywords/internet"
+      },
+      "identitySources": {
+        "$ref": "#/$keywords/identitySources"
+      },
+      "circuit": {
+        "$ref": "#/$keywords/circuit"
+      },
+      "networkBlock": {
+        "$ref": "#/$keywords/networkBlock"
+      },
+      "vcenterPassword": {
+        "$ref": "#/$keywords/vcenterPassword"
+      },
+      "nsxtPassword": {
+        "$ref": "#/$keywords/nsxtPassword"
+      }
+    },
+    "privateClouds/clusters": {
+      "clusterSize": {
+        "$ref": "#/$keywords/clusterSize_1"
+      }
+    },
+    "privateClouds/hcxEnterpriseSites": {},
+    "privateClouds/authorizations": {}
+  }
 }

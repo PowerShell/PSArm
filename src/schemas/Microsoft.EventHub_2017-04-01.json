@@ -1,0 +1,345 @@
+{
+  "$keywords": {
+    "isAutoInflateEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "maximumThroughputUnits": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "kafkaEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "rights": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Manage",
+            "Send",
+            "Listen"
+          ]
+        }
+      },
+      "array": true
+    },
+    "defaultAction": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Deny"
+          ]
+        }
+      }
+    },
+    "virtualNetworkRules": {
+      "body": {
+        "subnet": {
+          "$ref": "#/$keywords/subnet"
+        },
+        "ignoreMissingVnetServiceEndpoint": {
+          "$ref": "#/$keywords/ignoreMissingVnetServiceEndpoint"
+        }
+      },
+      "array": true
+    },
+    "subnet": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ignoreMissingVnetServiceEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "ipRules": {
+      "body": {
+        "ipMask": {
+          "$ref": "#/$keywords/ipMask"
+        },
+        "action": {
+          "$ref": "#/$keywords/action"
+        }
+      },
+      "array": true
+    },
+    "ipMask": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow"
+          ]
+        }
+      }
+    },
+    "partnerNamespace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "alternateName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "messageRetentionInDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "partitionCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Disabled",
+            "Restoring",
+            "SendDisabled",
+            "ReceiveDisabled",
+            "Creating",
+            "Deleting",
+            "Renaming",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "captureDescription": {
+      "body": {
+        "enabled": {
+          "$ref": "#/$keywords/enabled"
+        },
+        "encoding": {
+          "$ref": "#/$keywords/encoding"
+        },
+        "intervalInSeconds": {
+          "$ref": "#/$keywords/intervalInSeconds"
+        },
+        "sizeLimitInBytes": {
+          "$ref": "#/$keywords/sizeLimitInBytes"
+        },
+        "destination": {
+          "$ref": "#/$keywords/destination"
+        },
+        "skipEmptyArchives": {
+          "$ref": "#/$keywords/skipEmptyArchives"
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "encoding": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Avro",
+            "AvroDeflate"
+          ]
+        }
+      }
+    },
+    "intervalInSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "sizeLimitInBytes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "destination": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "storageAccountResourceId": {
+          "$ref": "#/$keywords/storageAccountResourceId"
+        },
+        "blobContainer": {
+          "$ref": "#/$keywords/blobContainer"
+        },
+        "archiveNameFormat": {
+          "$ref": "#/$keywords/archiveNameFormat"
+        }
+      }
+    },
+    "storageAccountResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "blobContainer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "archiveNameFormat": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "skipEmptyArchives": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "userMetadata": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "namespaces": {
+      "isAutoInflateEnabled": {
+        "$ref": "#/$keywords/isAutoInflateEnabled"
+      },
+      "maximumThroughputUnits": {
+        "$ref": "#/$keywords/maximumThroughputUnits"
+      },
+      "kafkaEnabled": {
+        "$ref": "#/$keywords/kafkaEnabled"
+      }
+    },
+    "namespaces/authorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/networkRuleSets": {
+      "defaultAction": {
+        "$ref": "#/$keywords/defaultAction"
+      },
+      "virtualNetworkRules": {
+        "$ref": "#/$keywords/virtualNetworkRules"
+      },
+      "ipRules": {
+        "$ref": "#/$keywords/ipRules"
+      }
+    },
+    "namespaces/disasterRecoveryConfigs": {
+      "partnerNamespace": {
+        "$ref": "#/$keywords/partnerNamespace"
+      },
+      "alternateName": {
+        "$ref": "#/$keywords/alternateName"
+      }
+    },
+    "namespaces/eventhubs": {
+      "messageRetentionInDays": {
+        "$ref": "#/$keywords/messageRetentionInDays"
+      },
+      "partitionCount": {
+        "$ref": "#/$keywords/partitionCount"
+      },
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "captureDescription": {
+        "$ref": "#/$keywords/captureDescription"
+      }
+    },
+    "namespaces/eventhubs/authorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/eventhubs/consumergroups": {
+      "userMetadata": {
+        "$ref": "#/$keywords/userMetadata"
+      }
+    }
+  }
+}

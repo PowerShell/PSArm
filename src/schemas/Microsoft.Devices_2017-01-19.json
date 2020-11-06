@@ -1,301 +1,527 @@
 {
-    "$keywords": {
-        "authorizationPolicies": {
-            "parameters": {
-                "keyName": {
-                    "type": "string"
-                },
-                "primaryKey": {
-                    "type": "string"
-                },
-                "secondaryKey": {
-                    "type": "string"
-                },
-                "rights": {}
-            },
-            "array": true
+  "$keywords": {
+    "authorizationPolicies": {
+      "body": {
+        "keyName": {
+          "$ref": "#/$keywords/keyName"
         },
-        "ipFilterRules": {
-            "parameters": {
-                "filterName": {
-                    "type": "string"
-                },
-                "action": {},
-                "ipMask": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "primaryKey": {
+          "$ref": "#/$keywords/primaryKey"
         },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "secondaryKey": {
+          "$ref": "#/$keywords/secondaryKey"
         },
-        "hostName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "rights": {
+          "$ref": "#/$keywords/rights"
+        }
+      },
+      "array": true
+    },
+    "keyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "primaryKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "secondaryKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rights": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "RegistryRead",
+            "RegistryWrite",
+            "ServiceConnect",
+            "DeviceConnect",
+            "RegistryRead, RegistryWrite",
+            "RegistryRead, ServiceConnect",
+            "RegistryRead, DeviceConnect",
+            "RegistryWrite, ServiceConnect",
+            "RegistryWrite, DeviceConnect",
+            "ServiceConnect, DeviceConnect",
+            "RegistryRead, RegistryWrite, ServiceConnect",
+            "RegistryRead, RegistryWrite, DeviceConnect",
+            "RegistryRead, ServiceConnect, DeviceConnect",
+            "RegistryWrite, ServiceConnect, DeviceConnect",
+            "RegistryRead, RegistryWrite, ServiceConnect, DeviceConnect"
+          ]
+        }
+      }
+    },
+    "ipFilterRules": {
+      "body": {
+        "filterName": {
+          "$ref": "#/$keywords/filterName"
         },
-        "eventHubEndpoints": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "action": {
+          "$ref": "#/$keywords/action"
         },
-        "routing": {
-            "body": {
-                "endpoints": {
-                    "$ref": "#/$keywords/endpoints"
-                },
-                "routes": {
-                    "$ref": "#/$keywords/routes"
-                },
-                "fallbackRoute": {
-                    "$ref": "#/$keywords/fallbackRoute"
-                }
-            }
-        },
+        "ipMask": {
+          "$ref": "#/$keywords/ipMask"
+        }
+      },
+      "array": true
+    },
+    "filterName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Accept",
+            "Reject"
+          ]
+        }
+      }
+    },
+    "ipMask": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventHubEndpoints": {
+      "body": {}
+    },
+    "routing": {
+      "body": {
         "endpoints": {
-            "body": {
-                "serviceBusQueues": {
-                    "$ref": "#/$keywords/serviceBusQueues"
-                },
-                "serviceBusTopics": {
-                    "$ref": "#/$keywords/serviceBusTopics"
-                },
-                "eventHubs": {
-                    "$ref": "#/$keywords/eventHubs"
-                }
-            }
-        },
-        "serviceBusQueues": {
-            "parameters": {
-                "connectionString": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z0-9-._]{1,64}$"
-                },
-                "subscriptionId": {
-                    "type": "string"
-                },
-                "resourceGroup": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "serviceBusTopics": {
-            "parameters": {
-                "connectionString": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z0-9-._]{1,64}$"
-                },
-                "subscriptionId": {
-                    "type": "string"
-                },
-                "resourceGroup": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "eventHubs": {
-            "parameters": {
-                "connectionString": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z0-9-._]{1,64}$"
-                },
-                "subscriptionId": {
-                    "type": "string"
-                },
-                "resourceGroup": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/endpoints"
         },
         "routes": {
-            "parameters": {
-                "name": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z0-9-._]{1,64}$"
-                },
-                "source": {
-                    "enum": [
-                        "DeviceMessages",
-                        "TwinChangeEvents",
-                        "DeviceLifecycleEvents",
-                        "DeviceJobLifecycleEvents"
-                    ]
-                },
-                "condition": {
-                    "type": "string"
-                },
-                "isEnabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "endpointNames": {
-                    "$ref": "#/$keywords/endpointNames"
-                }
-            },
-            "array": true
-        },
-        "endpointNames": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/routes"
         },
         "fallbackRoute": {
-            "parameters": {
-                "source": {
-                    "enum": [
-                        "DeviceMessages",
-                        "TwinChangeEvents",
-                        "DeviceLifecycleEvents",
-                        "DeviceJobLifecycleEvents"
-                    ]
-                },
-                "condition": {
-                    "type": "string"
-                },
-                "isEnabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "endpointNames": {
-                    "$ref": "#/$keywords/endpointNames_2"
-                }
-            }
+          "$ref": "#/$keywords/fallbackRoute"
+        }
+      }
+    },
+    "endpoints": {
+      "body": {
+        "serviceBusQueues": {
+          "$ref": "#/$keywords/serviceBusQueues"
         },
-        "endpointNames_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "serviceBusTopics": {
+          "$ref": "#/$keywords/serviceBusTopics"
         },
-        "storageEndpoints": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "eventHubs": {
+          "$ref": "#/$keywords/eventHubs"
+        }
+      }
+    },
+    "serviceBusQueues": {
+      "body": {
+        "connectionString": {
+          "$ref": "#/$keywords/connectionString"
         },
-        "messagingEndpoints": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "name": {
+          "$ref": "#/$keywords/name"
         },
-        "enableFileUploadNotifications": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+        "subscriptionId": {
+          "$ref": "#/$keywords/subscriptionId"
         },
-        "cloudToDevice": {
-            "parameters": {
-                "maxDeliveryCount": {
-                    "type": "int"
-                },
-                "defaultTtlAsIso8601": {}
-            },
-            "body": {
-                "feedback": {
-                    "$ref": "#/$keywords/feedback"
-                }
-            }
+        "resourceGroup": {
+          "$ref": "#/$keywords/resourceGroup"
+        }
+      },
+      "array": true
+    },
+    "connectionString": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subscriptionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceGroup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceBusTopics": {
+      "body": {
+        "connectionString": {
+          "$ref": "#/$keywords/connectionString_1"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "subscriptionId": {
+          "$ref": "#/$keywords/subscriptionId_1"
+        },
+        "resourceGroup": {
+          "$ref": "#/$keywords/resourceGroup_1"
+        }
+      },
+      "array": true
+    },
+    "connectionString_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subscriptionId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceGroup_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventHubs": {
+      "body": {
+        "connectionString": {
+          "$ref": "#/$keywords/connectionString_1_2"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "subscriptionId": {
+          "$ref": "#/$keywords/subscriptionId_1_2"
+        },
+        "resourceGroup": {
+          "$ref": "#/$keywords/resourceGroup_1_2"
+        }
+      },
+      "array": true
+    },
+    "connectionString_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subscriptionId_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceGroup_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "routes": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "source": {
+          "$ref": "#/$keywords/source"
+        },
+        "condition": {
+          "$ref": "#/$keywords/condition"
+        },
+        "endpointNames": {
+          "$ref": "#/$keywords/endpointNames"
+        },
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DeviceMessages",
+            "TwinChangeEvents",
+            "DeviceLifecycleEvents",
+            "DeviceJobLifecycleEvents"
+          ]
+        }
+      }
+    },
+    "condition": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endpointNames": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "fallbackRoute": {
+      "body": {
+        "source": {
+          "$ref": "#/$keywords/source_1"
+        },
+        "condition": {
+          "$ref": "#/$keywords/condition_1"
+        },
+        "endpointNames": {
+          "$ref": "#/$keywords/endpointNames_1"
+        },
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled_1"
+        }
+      }
+    },
+    "source_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DeviceMessages",
+            "TwinChangeEvents",
+            "DeviceLifecycleEvents",
+            "DeviceJobLifecycleEvents"
+          ]
+        }
+      }
+    },
+    "condition_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endpointNames_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isEnabled_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "storageEndpoints": {
+      "body": {}
+    },
+    "messagingEndpoints": {
+      "body": {}
+    },
+    "enableFileUploadNotifications": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "cloudToDevice": {
+      "body": {
+        "maxDeliveryCount": {
+          "$ref": "#/$keywords/maxDeliveryCount"
+        },
+        "defaultTtlAsIso8601": {
+          "$ref": "#/$keywords/defaultTtlAsIso8601"
         },
         "feedback": {
-            "parameters": {
-                "lockDurationAsIso8601": {},
-                "ttlAsIso8601": {},
-                "maxDeliveryCount": {
-                    "type": "int"
-                }
-            }
-        },
-        "comments": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "operationsMonitoringProperties": {
-            "parameters": {
-                "events": {}
-            }
-        },
-        "features": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "None",
-                        "DeviceManagement"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/feedback"
         }
+      }
     },
-    "$resources": {
-        "IotHubs": {
-            "authorizationPolicies": {
-                "$ref": "#/$keywords/authorizationPolicies"
-            },
-            "ipFilterRules": {
-                "$ref": "#/$keywords/ipFilterRules"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "hostName": {
-                "$ref": "#/$keywords/hostName"
-            },
-            "eventHubEndpoints": {
-                "$ref": "#/$keywords/eventHubEndpoints"
-            },
-            "routing": {
-                "$ref": "#/$keywords/routing"
-            },
-            "storageEndpoints": {
-                "$ref": "#/$keywords/storageEndpoints"
-            },
-            "messagingEndpoints": {
-                "$ref": "#/$keywords/messagingEndpoints"
-            },
-            "enableFileUploadNotifications": {
-                "$ref": "#/$keywords/enableFileUploadNotifications"
-            },
-            "cloudToDevice": {
-                "$ref": "#/$keywords/cloudToDevice"
-            },
-            "comments": {
-                "$ref": "#/$keywords/comments"
-            },
-            "operationsMonitoringProperties": {
-                "$ref": "#/$keywords/operationsMonitoringProperties"
-            },
-            "features": {
-                "$ref": "#/$keywords/features"
-            }
+    "maxDeliveryCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
         }
+      }
+    },
+    "defaultTtlAsIso8601": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "feedback": {
+      "body": {
+        "lockDurationAsIso8601": {
+          "$ref": "#/$keywords/lockDurationAsIso8601"
+        },
+        "ttlAsIso8601": {
+          "$ref": "#/$keywords/ttlAsIso8601"
+        },
+        "maxDeliveryCount": {
+          "$ref": "#/$keywords/maxDeliveryCount_1"
+        }
+      }
+    },
+    "lockDurationAsIso8601": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ttlAsIso8601": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxDeliveryCount_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "comments": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operationsMonitoringProperties": {
+      "body": {
+        "events": {
+          "$ref": "#/$keywords/events"
+        }
+      }
+    },
+    "events": {
+      "body": {}
+    },
+    "features": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "DeviceManagement"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "IotHubs": {
+      "authorizationPolicies": {
+        "$ref": "#/$keywords/authorizationPolicies"
+      },
+      "ipFilterRules": {
+        "$ref": "#/$keywords/ipFilterRules"
+      },
+      "eventHubEndpoints": {
+        "$ref": "#/$keywords/eventHubEndpoints"
+      },
+      "routing": {
+        "$ref": "#/$keywords/routing"
+      },
+      "storageEndpoints": {
+        "$ref": "#/$keywords/storageEndpoints"
+      },
+      "messagingEndpoints": {
+        "$ref": "#/$keywords/messagingEndpoints"
+      },
+      "enableFileUploadNotifications": {
+        "$ref": "#/$keywords/enableFileUploadNotifications"
+      },
+      "cloudToDevice": {
+        "$ref": "#/$keywords/cloudToDevice"
+      },
+      "comments": {
+        "$ref": "#/$keywords/comments"
+      },
+      "operationsMonitoringProperties": {
+        "$ref": "#/$keywords/operationsMonitoringProperties"
+      },
+      "features": {
+        "$ref": "#/$keywords/features"
+      }
+    },
+    "IotHubs/eventHubEndpoints/ConsumerGroups": {}
+  }
 }

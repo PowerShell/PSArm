@@ -1,0 +1,776 @@
+{
+  "$keywords": {
+    "policySettings": {
+      "body": {
+        "enabledState": {
+          "$ref": "#/$keywords/enabledState"
+        },
+        "mode": {
+          "$ref": "#/$keywords/mode"
+        },
+        "defaultRedirectUrl": {
+          "$ref": "#/$keywords/defaultRedirectUrl"
+        },
+        "defaultCustomBlockResponseStatusCode": {
+          "$ref": "#/$keywords/defaultCustomBlockResponseStatusCode"
+        },
+        "defaultCustomBlockResponseBody": {
+          "$ref": "#/$keywords/defaultCustomBlockResponseBody"
+        }
+      }
+    },
+    "enabledState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "mode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Prevention",
+            "Detection"
+          ]
+        }
+      }
+    },
+    "defaultRedirectUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultCustomBlockResponseStatusCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "defaultCustomBlockResponseBody": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rateLimitRules": {
+      "body": {
+        "rules": {
+          "$ref": "#/$keywords/rules"
+        }
+      }
+    },
+    "rules": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "enabledState": {
+          "$ref": "#/$keywords/enabledState_1"
+        },
+        "priority": {
+          "$ref": "#/$keywords/priority"
+        },
+        "matchConditions": {
+          "$ref": "#/$keywords/matchConditions"
+        },
+        "action": {
+          "$ref": "#/$keywords/action"
+        },
+        "rateLimitThreshold": {
+          "$ref": "#/$keywords/rateLimitThreshold"
+        },
+        "rateLimitDurationInMinutes": {
+          "$ref": "#/$keywords/rateLimitDurationInMinutes"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabledState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "priority": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "matchConditions": {
+      "body": {
+        "matchVariable": {
+          "$ref": "#/$keywords/matchVariable"
+        },
+        "selector": {
+          "$ref": "#/$keywords/selector"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        },
+        "negateCondition": {
+          "$ref": "#/$keywords/negateCondition"
+        },
+        "matchValue": {
+          "$ref": "#/$keywords/matchValue"
+        },
+        "transforms": {
+          "$ref": "#/$keywords/transforms"
+        }
+      },
+      "array": true
+    },
+    "matchVariable": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "RemoteAddress",
+            "RequestMethod",
+            "QueryString",
+            "PostArgs",
+            "RequestUri",
+            "RequestHeader",
+            "RequestBody",
+            "RequestScheme",
+            "UrlPath",
+            "UrlFileExtension",
+            "UrlFileName",
+            "HttpVersion",
+            "Cookies",
+            "IsDevice",
+            "RemoteAddr",
+            "SocketAddr"
+          ]
+        }
+      }
+    },
+    "selector": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operator": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Any",
+            "IPMatch",
+            "GeoMatch",
+            "Equal",
+            "Contains",
+            "LessThan",
+            "GreaterThan",
+            "LessThanOrEqual",
+            "GreaterThanOrEqual",
+            "BeginsWith",
+            "EndsWith",
+            "RegEx"
+          ]
+        }
+      }
+    },
+    "negateCondition": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "matchValue": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "transforms": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Lowercase",
+            "Uppercase",
+            "Trim",
+            "UrlDecode",
+            "UrlEncode",
+            "RemoveNulls"
+          ]
+        }
+      },
+      "array": true
+    },
+    "action": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Block",
+            "Log",
+            "Redirect"
+          ]
+        }
+      }
+    },
+    "rateLimitThreshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "rateLimitDurationInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "customRules": {
+      "body": {
+        "rules": {
+          "$ref": "#/$keywords/rules_1"
+        }
+      }
+    },
+    "rules_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "enabledState": {
+          "$ref": "#/$keywords/enabledState_1_2"
+        },
+        "priority": {
+          "$ref": "#/$keywords/priority_1"
+        },
+        "matchConditions": {
+          "$ref": "#/$keywords/matchConditions_1"
+        },
+        "action": {
+          "$ref": "#/$keywords/action_1"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabledState_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "priority_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "matchConditions_1": {
+      "body": {
+        "matchVariable": {
+          "$ref": "#/$keywords/matchVariable"
+        },
+        "selector": {
+          "$ref": "#/$keywords/selector"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        },
+        "negateCondition": {
+          "$ref": "#/$keywords/negateCondition"
+        },
+        "matchValue": {
+          "$ref": "#/$keywords/matchValue"
+        },
+        "transforms": {
+          "$ref": "#/$keywords/transforms"
+        }
+      },
+      "array": true
+    },
+    "action_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Block",
+            "Log",
+            "Redirect"
+          ]
+        }
+      }
+    },
+    "managedRules": {
+      "body": {
+        "managedRuleSets": {
+          "$ref": "#/$keywords/managedRuleSets"
+        }
+      }
+    },
+    "managedRuleSets": {
+      "body": {
+        "ruleSetType": {
+          "$ref": "#/$keywords/ruleSetType"
+        },
+        "ruleSetVersion": {
+          "$ref": "#/$keywords/ruleSetVersion"
+        },
+        "anomalyScore": {
+          "$ref": "#/$keywords/anomalyScore"
+        },
+        "ruleGroupOverrides": {
+          "$ref": "#/$keywords/ruleGroupOverrides"
+        }
+      },
+      "array": true
+    },
+    "ruleSetType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ruleSetVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "anomalyScore": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "ruleGroupOverrides": {
+      "body": {
+        "ruleGroupName": {
+          "$ref": "#/$keywords/ruleGroupName"
+        },
+        "rules": {
+          "$ref": "#/$keywords/rules_1_2"
+        }
+      },
+      "array": true
+    },
+    "ruleGroupName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rules_1_2": {
+      "body": {
+        "ruleId": {
+          "$ref": "#/$keywords/ruleId"
+        },
+        "enabledState": {
+          "$ref": "#/$keywords/enabledState_1_2_3"
+        },
+        "action": {
+          "$ref": "#/$keywords/action_1_2"
+        }
+      },
+      "array": true
+    },
+    "ruleId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabledState_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "action_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Block",
+            "Log",
+            "Redirect"
+          ]
+        }
+      }
+    },
+    "originHostHeader": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "originPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentTypesToCompress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isCompressionEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isHttpAllowed": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isHttpsAllowed": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "queryStringCachingBehavior": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "IgnoreQueryString",
+            "BypassCaching",
+            "UseQueryString",
+            "NotSet"
+          ]
+        }
+      }
+    },
+    "optimizationType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "GeneralWebDelivery",
+            "GeneralMediaStreaming",
+            "VideoOnDemandMediaStreaming",
+            "LargeFileDownload",
+            "DynamicSiteAcceleration"
+          ]
+        }
+      }
+    },
+    "probePath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "geoFilters": {
+      "body": {
+        "relativePath": {
+          "$ref": "#/$keywords/relativePath"
+        },
+        "action": {
+          "$ref": "#/$keywords/action_1_2_3"
+        },
+        "countryCodes": {
+          "$ref": "#/$keywords/countryCodes"
+        }
+      },
+      "array": true
+    },
+    "relativePath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Block",
+            "Allow"
+          ]
+        }
+      }
+    },
+    "countryCodes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "deliveryPolicy": {
+      "body": {
+        "description": {
+          "$ref": "#/$keywords/description"
+        },
+        "rules": {
+          "$ref": "#/$keywords/rules_1_2_3"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rules_1_2_3": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "order": {
+          "$ref": "#/$keywords/order"
+        },
+        "conditions": {
+          "$ref": "#/$keywords/conditions"
+        },
+        "actions": {
+          "$ref": "#/$keywords/actions"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "order": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "conditions": {
+      "body": {},
+      "array": true
+    },
+    "actions": {
+      "body": {},
+      "array": true
+    },
+    "webApplicationFirewallPolicyLink": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "origins": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "hostName": {
+          "$ref": "#/$keywords/hostName"
+        },
+        "httpPort": {
+          "$ref": "#/$keywords/httpPort"
+        },
+        "httpsPort": {
+          "$ref": "#/$keywords/httpsPort"
+        }
+      }
+    },
+    "hostName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "httpPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "httpsPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "hostName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "profiles": {},
+    "CdnWebApplicationFirewallPolicies": {
+      "policySettings": {
+        "$ref": "#/$keywords/policySettings"
+      },
+      "rateLimitRules": {
+        "$ref": "#/$keywords/rateLimitRules"
+      },
+      "customRules": {
+        "$ref": "#/$keywords/customRules"
+      },
+      "managedRules": {
+        "$ref": "#/$keywords/managedRules"
+      }
+    },
+    "profiles/endpoints": {
+      "originHostHeader": {
+        "$ref": "#/$keywords/originHostHeader"
+      },
+      "originPath": {
+        "$ref": "#/$keywords/originPath"
+      },
+      "contentTypesToCompress": {
+        "$ref": "#/$keywords/contentTypesToCompress"
+      },
+      "isCompressionEnabled": {
+        "$ref": "#/$keywords/isCompressionEnabled"
+      },
+      "isHttpAllowed": {
+        "$ref": "#/$keywords/isHttpAllowed"
+      },
+      "isHttpsAllowed": {
+        "$ref": "#/$keywords/isHttpsAllowed"
+      },
+      "queryStringCachingBehavior": {
+        "$ref": "#/$keywords/queryStringCachingBehavior"
+      },
+      "optimizationType": {
+        "$ref": "#/$keywords/optimizationType"
+      },
+      "probePath": {
+        "$ref": "#/$keywords/probePath"
+      },
+      "geoFilters": {
+        "$ref": "#/$keywords/geoFilters"
+      },
+      "deliveryPolicy": {
+        "$ref": "#/$keywords/deliveryPolicy"
+      },
+      "webApplicationFirewallPolicyLink": {
+        "$ref": "#/$keywords/webApplicationFirewallPolicyLink"
+      },
+      "origins": {
+        "$ref": "#/$keywords/origins"
+      }
+    },
+    "profiles/endpoints/customDomains": {
+      "hostName": {
+        "$ref": "#/$keywords/hostName_1"
+      }
+    }
+  }
+}

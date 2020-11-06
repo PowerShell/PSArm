@@ -16,7 +16,7 @@ namespace PSArm.Commands.ArmBuilding
         public string Name { get; set; }
 
         [Parameter(Position = 1, Mandatory = true)]
-        public IArmExpression Value { get; set; }
+        public IArmValue Value { get; set; }
 
         protected override void EndProcessing()
         {

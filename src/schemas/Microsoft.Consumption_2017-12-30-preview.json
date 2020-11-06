@@ -1,66 +1,80 @@
 {
-    "$keywords": {
-        "category": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "amount": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "timeGrain": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Monthly",
-                        "Quarterly",
-                        "Annually"
-                    ]
-                }
-            }
-        },
-        "timePeriod": {
-            "parameters": {
-                "startDate": {},
-                "endDate": {}
-            }
-        },
-        "currentSpend": {
-            "parameters": {
-                "amount": {},
-                "unit": {
-                    "type": "string"
-                }
-            }
-        },
-        "notifications": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "category": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Cost"
+          ]
         }
+      }
     },
-    "$resources": {
-        "budgets": {
-            "category": {
-                "$ref": "#/$keywords/category"
-            },
-            "amount": {
-                "$ref": "#/$keywords/amount"
-            },
-            "timeGrain": {
-                "$ref": "#/$keywords/timeGrain"
-            },
-            "timePeriod": {
-                "$ref": "#/$keywords/timePeriod"
-            },
-            "currentSpend": {
-                "$ref": "#/$keywords/currentSpend"
-            },
-            "notifications": {
-                "$ref": "#/$keywords/notifications"
-            }
+    "amount": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
         }
+      }
+    },
+    "timeGrain": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Monthly",
+            "Quarterly",
+            "Annually"
+          ]
+        }
+      }
+    },
+    "timePeriod": {
+      "body": {
+        "startDate": {
+          "$ref": "#/$keywords/startDate"
+        },
+        "endDate": {
+          "$ref": "#/$keywords/endDate"
+        }
+      }
+    },
+    "startDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "notifications": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "budgets": {
+      "category": {
+        "$ref": "#/$keywords/category"
+      },
+      "amount": {
+        "$ref": "#/$keywords/amount"
+      },
+      "timeGrain": {
+        "$ref": "#/$keywords/timeGrain"
+      },
+      "timePeriod": {
+        "$ref": "#/$keywords/timePeriod"
+      },
+      "notifications": {
+        "$ref": "#/$keywords/notifications"
+      }
+    }
+  }
 }

@@ -1,344 +1,477 @@
 {
-    "$keywords": {
-        "friendlyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "appSharingFromLevel": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "none",
-                        "policyManagedApps",
-                        "allApps"
-                    ]
-                }
-            }
-        },
-        "appSharingToLevel": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "none",
-                        "policyManagedApps",
-                        "allApps"
-                    ]
-                }
-            }
-        },
-        "authentication": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "required",
-                        "notRequired"
-                    ]
-                }
-            }
-        },
-        "clipboardSharingLevel": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "blocked",
-                        "policyManagedApps",
-                        "policyManagedAppsWithPasteIn",
-                        "allApps"
-                    ]
-                }
-            }
-        },
-        "dataBackup": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "allow",
-                        "block"
-                    ]
-                }
-            }
-        },
-        "fileSharingSaveAs": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "allow",
-                        "block"
-                    ]
-                }
-            }
-        },
-        "pin": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "required",
-                        "notRequired"
-                    ]
-                }
-            }
-        },
-        "pinNumRetry": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "deviceCompliance": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "enable",
-                        "disable"
-                    ]
-                }
-            }
-        },
-        "managedBrowser": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "required",
-                        "notRequired"
-                    ]
-                }
-            }
-        },
-        "accessRecheckOfflineTimeout": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "accessRecheckOnlineTimeout": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "offlineWipeTimeout": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "groupStatus": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "notTargeted",
-                        "targeted"
-                    ]
-                }
-            }
-        },
-        "lastModifiedTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "fileEncryptionLevel": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "deviceLocked",
-                        "deviceLockedExceptFilesOpen",
-                        "afterDeviceRestart",
-                        "useDeviceSettings"
-                    ]
-                }
-            }
-        },
-        "touchId": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "enable",
-                        "disable"
-                    ]
-                }
-            }
-        },
-        "url": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "screenCapture": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "allow",
-                        "block"
-                    ]
-                }
-            }
-        },
-        "fileEncryption": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "required",
-                        "notRequired"
-                    ]
-                }
-            }
+  "$keywords": {
+    "friendlyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "locations/iosPolicies": {
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "appSharingFromLevel": {
-                "$ref": "#/$keywords/appSharingFromLevel"
-            },
-            "appSharingToLevel": {
-                "$ref": "#/$keywords/appSharingToLevel"
-            },
-            "authentication": {
-                "$ref": "#/$keywords/authentication"
-            },
-            "clipboardSharingLevel": {
-                "$ref": "#/$keywords/clipboardSharingLevel"
-            },
-            "dataBackup": {
-                "$ref": "#/$keywords/dataBackup"
-            },
-            "fileSharingSaveAs": {
-                "$ref": "#/$keywords/fileSharingSaveAs"
-            },
-            "pin": {
-                "$ref": "#/$keywords/pin"
-            },
-            "pinNumRetry": {
-                "$ref": "#/$keywords/pinNumRetry"
-            },
-            "deviceCompliance": {
-                "$ref": "#/$keywords/deviceCompliance"
-            },
-            "managedBrowser": {
-                "$ref": "#/$keywords/managedBrowser"
-            },
-            "accessRecheckOfflineTimeout": {
-                "$ref": "#/$keywords/accessRecheckOfflineTimeout"
-            },
-            "accessRecheckOnlineTimeout": {
-                "$ref": "#/$keywords/accessRecheckOnlineTimeout"
-            },
-            "offlineWipeTimeout": {
-                "$ref": "#/$keywords/offlineWipeTimeout"
-            },
-            "numOfApps": {
-                "$ref": "#/$keywords/pinNumRetry"
-            },
-            "groupStatus": {
-                "$ref": "#/$keywords/groupStatus"
-            },
-            "lastModifiedTime": {
-                "$ref": "#/$keywords/lastModifiedTime"
-            },
-            "fileEncryptionLevel": {
-                "$ref": "#/$keywords/fileEncryptionLevel"
-            },
-            "touchId": {
-                "$ref": "#/$keywords/touchId"
-            }
-        },
-        "locations/iosPolicies/apps": {
-            "url": {
-                "$ref": "#/$keywords/url"
-            }
-        },
-        "locations/iosPolicies/groups": {
-            "url": {
-                "$ref": "#/$keywords/url"
-            }
-        },
-        "locations/androidPolicies": {
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "appSharingFromLevel": {
-                "$ref": "#/$keywords/appSharingFromLevel"
-            },
-            "appSharingToLevel": {
-                "$ref": "#/$keywords/appSharingToLevel"
-            },
-            "authentication": {
-                "$ref": "#/$keywords/authentication"
-            },
-            "clipboardSharingLevel": {
-                "$ref": "#/$keywords/clipboardSharingLevel"
-            },
-            "dataBackup": {
-                "$ref": "#/$keywords/dataBackup"
-            },
-            "fileSharingSaveAs": {
-                "$ref": "#/$keywords/fileSharingSaveAs"
-            },
-            "pin": {
-                "$ref": "#/$keywords/pin"
-            },
-            "pinNumRetry": {
-                "$ref": "#/$keywords/pinNumRetry"
-            },
-            "deviceCompliance": {
-                "$ref": "#/$keywords/deviceCompliance"
-            },
-            "managedBrowser": {
-                "$ref": "#/$keywords/managedBrowser"
-            },
-            "accessRecheckOfflineTimeout": {
-                "$ref": "#/$keywords/accessRecheckOfflineTimeout"
-            },
-            "accessRecheckOnlineTimeout": {
-                "$ref": "#/$keywords/accessRecheckOnlineTimeout"
-            },
-            "offlineWipeTimeout": {
-                "$ref": "#/$keywords/offlineWipeTimeout"
-            },
-            "numOfApps": {
-                "$ref": "#/$keywords/pinNumRetry"
-            },
-            "groupStatus": {
-                "$ref": "#/$keywords/groupStatus"
-            },
-            "lastModifiedTime": {
-                "$ref": "#/$keywords/lastModifiedTime"
-            },
-            "screenCapture": {
-                "$ref": "#/$keywords/screenCapture"
-            },
-            "fileEncryption": {
-                "$ref": "#/$keywords/fileEncryption"
-            }
-        },
-        "locations/androidPolicies/apps": {
-            "url": {
-                "$ref": "#/$keywords/url"
-            }
-        },
-        "locations/androidPolicies/groups": {
-            "url": {
-                "$ref": "#/$keywords/url"
-            }
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "appSharingFromLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "none",
+            "policyManagedApps",
+            "allApps"
+          ]
+        }
+      }
+    },
+    "appSharingToLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "none",
+            "policyManagedApps",
+            "allApps"
+          ]
+        }
+      }
+    },
+    "authentication": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "required",
+            "notRequired"
+          ]
+        }
+      }
+    },
+    "clipboardSharingLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "blocked",
+            "policyManagedApps",
+            "policyManagedAppsWithPasteIn",
+            "allApps"
+          ]
+        }
+      }
+    },
+    "dataBackup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "block"
+          ]
+        }
+      }
+    },
+    "fileSharingSaveAs": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "block"
+          ]
+        }
+      }
+    },
+    "pin": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "required",
+            "notRequired"
+          ]
+        }
+      }
+    },
+    "pinNumRetry": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "deviceCompliance": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable"
+          ]
+        }
+      }
+    },
+    "managedBrowser": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "required",
+            "notRequired"
+          ]
+        }
+      }
+    },
+    "accessRecheckOfflineTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accessRecheckOnlineTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "offlineWipeTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fileEncryptionLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "deviceLocked",
+            "deviceLockedExceptFilesOpen",
+            "afterDeviceRestart",
+            "useDeviceSettings"
+          ]
+        }
+      }
+    },
+    "touchId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable"
+          ]
+        }
+      }
+    },
+    "friendlyName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "appSharingFromLevel_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "none",
+            "policyManagedApps",
+            "allApps"
+          ]
+        }
+      }
+    },
+    "appSharingToLevel_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "none",
+            "policyManagedApps",
+            "allApps"
+          ]
+        }
+      }
+    },
+    "authentication_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "required",
+            "notRequired"
+          ]
+        }
+      }
+    },
+    "clipboardSharingLevel_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "blocked",
+            "policyManagedApps",
+            "policyManagedAppsWithPasteIn",
+            "allApps"
+          ]
+        }
+      }
+    },
+    "dataBackup_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "block"
+          ]
+        }
+      }
+    },
+    "fileSharingSaveAs_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "block"
+          ]
+        }
+      }
+    },
+    "pin_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "required",
+            "notRequired"
+          ]
+        }
+      }
+    },
+    "pinNumRetry_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "deviceCompliance_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable"
+          ]
+        }
+      }
+    },
+    "managedBrowser_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "required",
+            "notRequired"
+          ]
+        }
+      }
+    },
+    "accessRecheckOfflineTimeout_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accessRecheckOnlineTimeout_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "offlineWipeTimeout_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "screenCapture": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "block"
+          ]
+        }
+      }
+    },
+    "fileEncryption": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "required",
+            "notRequired"
+          ]
+        }
+      }
+    },
+    "url": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "locations/iosPolicies": {
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "appSharingFromLevel": {
+        "$ref": "#/$keywords/appSharingFromLevel"
+      },
+      "appSharingToLevel": {
+        "$ref": "#/$keywords/appSharingToLevel"
+      },
+      "authentication": {
+        "$ref": "#/$keywords/authentication"
+      },
+      "clipboardSharingLevel": {
+        "$ref": "#/$keywords/clipboardSharingLevel"
+      },
+      "dataBackup": {
+        "$ref": "#/$keywords/dataBackup"
+      },
+      "fileSharingSaveAs": {
+        "$ref": "#/$keywords/fileSharingSaveAs"
+      },
+      "pin": {
+        "$ref": "#/$keywords/pin"
+      },
+      "pinNumRetry": {
+        "$ref": "#/$keywords/pinNumRetry"
+      },
+      "deviceCompliance": {
+        "$ref": "#/$keywords/deviceCompliance"
+      },
+      "managedBrowser": {
+        "$ref": "#/$keywords/managedBrowser"
+      },
+      "accessRecheckOfflineTimeout": {
+        "$ref": "#/$keywords/accessRecheckOfflineTimeout"
+      },
+      "accessRecheckOnlineTimeout": {
+        "$ref": "#/$keywords/accessRecheckOnlineTimeout"
+      },
+      "offlineWipeTimeout": {
+        "$ref": "#/$keywords/offlineWipeTimeout"
+      },
+      "fileEncryptionLevel": {
+        "$ref": "#/$keywords/fileEncryptionLevel"
+      },
+      "touchId": {
+        "$ref": "#/$keywords/touchId"
+      }
+    },
+    "locations/androidPolicies": {
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName_1"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "appSharingFromLevel": {
+        "$ref": "#/$keywords/appSharingFromLevel_1"
+      },
+      "appSharingToLevel": {
+        "$ref": "#/$keywords/appSharingToLevel_1"
+      },
+      "authentication": {
+        "$ref": "#/$keywords/authentication_1"
+      },
+      "clipboardSharingLevel": {
+        "$ref": "#/$keywords/clipboardSharingLevel_1"
+      },
+      "dataBackup": {
+        "$ref": "#/$keywords/dataBackup_1"
+      },
+      "fileSharingSaveAs": {
+        "$ref": "#/$keywords/fileSharingSaveAs_1"
+      },
+      "pin": {
+        "$ref": "#/$keywords/pin_1"
+      },
+      "pinNumRetry": {
+        "$ref": "#/$keywords/pinNumRetry_1"
+      },
+      "deviceCompliance": {
+        "$ref": "#/$keywords/deviceCompliance_1"
+      },
+      "managedBrowser": {
+        "$ref": "#/$keywords/managedBrowser_1"
+      },
+      "accessRecheckOfflineTimeout": {
+        "$ref": "#/$keywords/accessRecheckOfflineTimeout_1"
+      },
+      "accessRecheckOnlineTimeout": {
+        "$ref": "#/$keywords/accessRecheckOnlineTimeout_1"
+      },
+      "offlineWipeTimeout": {
+        "$ref": "#/$keywords/offlineWipeTimeout_1"
+      },
+      "screenCapture": {
+        "$ref": "#/$keywords/screenCapture"
+      },
+      "fileEncryption": {
+        "$ref": "#/$keywords/fileEncryption"
+      }
+    },
+    "locations/iosPolicies/apps": {
+      "url": {
+        "$ref": "#/$keywords/url"
+      }
+    },
+    "locations/iosPolicies/groups": {
+      "url": {
+        "$ref": "#/$keywords/url"
+      }
+    },
+    "locations/androidPolicies/apps": {
+      "url": {
+        "$ref": "#/$keywords/url"
+      }
+    },
+    "locations/androidPolicies/groups": {
+      "url": {
+        "$ref": "#/$keywords/url"
+      }
+    }
+  }
 }

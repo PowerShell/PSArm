@@ -1,0 +1,220 @@
+{
+  "$keywords": {
+    "guestDiagnosticSettingsName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows",
+            "Linux"
+          ]
+        }
+      }
+    },
+    "dataSources": {
+      "body": {
+        "kind": {
+          "$ref": "#/$keywords/kind"
+        },
+        "configuration": {
+          "$ref": "#/$keywords/configuration"
+        },
+        "sinks": {
+          "$ref": "#/$keywords/sinks"
+        }
+      },
+      "array": true
+    },
+    "kind": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "PerformanceCounter",
+            "ETWProviders",
+            "WindowsEventLogs"
+          ]
+        }
+      }
+    },
+    "configuration": {
+      "body": {
+        "providers": {
+          "$ref": "#/$keywords/providers"
+        },
+        "perfCounters": {
+          "$ref": "#/$keywords/perfCounters"
+        },
+        "eventLogs": {
+          "$ref": "#/$keywords/eventLogs"
+        }
+      }
+    },
+    "providers": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "events": {
+          "$ref": "#/$keywords/events"
+        }
+      },
+      "array": true
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "events": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        },
+        "filter": {
+          "$ref": "#/$keywords/filter"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "filter": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "perfCounters": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "samplingPeriod": {
+          "$ref": "#/$keywords/samplingPeriod"
+        },
+        "instance": {
+          "$ref": "#/$keywords/instance"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "samplingPeriod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "instance": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventLogs": {
+      "body": {
+        "logName": {
+          "$ref": "#/$keywords/logName"
+        },
+        "filter": {
+          "$ref": "#/$keywords/filter_1"
+        }
+      },
+      "array": true
+    },
+    "logName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "filter_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sinks": {
+      "body": {
+        "kind": {
+          "$ref": "#/$keywords/kind_1"
+        }
+      },
+      "array": true
+    },
+    "kind_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "EventHub",
+            "ApplicationInsights",
+            "LogAnalytics"
+          ]
+        }
+      }
+    },
+    "proxySetting": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "guestDiagnosticSettingsAssociation": {
+      "guestDiagnosticSettingsName": {
+        "$ref": "#/$keywords/guestDiagnosticSettingsName"
+      }
+    },
+    "guestDiagnosticSettings": {
+      "osType": {
+        "$ref": "#/$keywords/osType"
+      },
+      "dataSources": {
+        "$ref": "#/$keywords/dataSources"
+      },
+      "proxySetting": {
+        "$ref": "#/$keywords/proxySetting"
+      }
+    }
+  }
+}

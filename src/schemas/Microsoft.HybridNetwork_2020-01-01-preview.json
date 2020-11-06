@@ -1,480 +1,545 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Succeeded",
-                        "Accepted",
-                        "Deleting",
-                        "Failed",
-                        "Canceled",
-                        "Deleted"
-                    ]
-                }
-            }
+  "$keywords": {
+    "device": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "skuName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vendorName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "managedApplicationParameters": {
+      "body": {}
+    },
+    "virtualNetworkFunctionUserConfigurations": {
+      "body": {
+        "roleName": {
+          "$ref": "#/$keywords/roleName"
         },
-        "device": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "skuName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "skuType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "EvolvedPacketCore",
-                        "SDWAN"
-                    ]
-                }
-            }
-        },
-        "vendorName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vendorProvisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "NotProvisioned",
-                        "Provisioning",
-                        "Provisioned",
-                        "Deprovisioned",
-                        "UserDataValidationFailed"
-                    ]
-                }
-            }
-        },
-        "managedApplicationParameters": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "virtualNetworkFunctionUserConfigurations": {
-            "parameters": {
-                "roleName": {
-                    "type": "string"
-                },
-                "userDataParameters": {}
-            },
-            "body": {
-                "networkInterfaces": {
-                    "$ref": "#/$keywords/networkInterfaces"
-                }
-            },
-            "array": true
+        "userDataParameters": {
+          "$ref": "#/$keywords/userDataParameters"
         },
         "networkInterfaces": {
-            "parameters": {
-                "networkInterfaceName": {
-                    "type": "string"
-                },
-                "macAddress": {
-                    "type": "string"
-                },
-                "vmSwitchType": {
-                    "enum": [
-                        "Unknown",
-                        "Management",
-                        "Wan",
-                        "Lan",
-                        "Internal"
-                    ]
-                }
-            },
-            "body": {
-                "ipConfigurations": {
-                    "$ref": "#/$keywords/ipConfigurations"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/networkInterfaces"
+        }
+      },
+      "array": true
+    },
+    "roleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userDataParameters": {
+      "body": {}
+    },
+    "networkInterfaces": {
+      "body": {
+        "networkInterfaceName": {
+          "$ref": "#/$keywords/networkInterfaceName"
+        },
+        "macAddress": {
+          "$ref": "#/$keywords/macAddress"
         },
         "ipConfigurations": {
-            "parameters": {
-                "ipAllocationMethod": {
-                    "enum": [
-                        "Unknown",
-                        "Static",
-                        "Dynamic"
-                    ]
-                },
-                "ipAddress": {
-                    "type": "string"
-                },
-                "subnet": {
-                    "type": "string"
-                },
-                "gateway": {
-                    "type": "string"
-                },
-                "ipVersion": {
-                    "enum": [
-                        "Unknown",
-                        "IPv4"
-                    ]
-                }
-            },
-            "body": {
-                "dnsServers": {
-                    "$ref": "#/$keywords/dnsServers"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/ipConfigurations"
+        },
+        "vmSwitchType": {
+          "$ref": "#/$keywords/vmSwitchType"
+        }
+      },
+      "array": true
+    },
+    "networkInterfaceName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "macAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ipConfigurations": {
+      "body": {
+        "ipAllocationMethod": {
+          "$ref": "#/$keywords/ipAllocationMethod"
+        },
+        "ipAddress": {
+          "$ref": "#/$keywords/ipAddress"
+        },
+        "subnet": {
+          "$ref": "#/$keywords/subnet"
+        },
+        "gateway": {
+          "$ref": "#/$keywords/gateway"
+        },
+        "ipVersion": {
+          "$ref": "#/$keywords/ipVersion"
         },
         "dnsServers": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "NotRegistered",
-                        "Registered"
-                    ]
-                }
-            }
-        },
-        "deviceType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "AzureStackEdge"
-                    ]
-                }
-            }
-        },
-        "virtualNetworkFunctions": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "skus": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "deploymentMode": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Azure",
-                        "PrivateEdgeZone"
-                    ]
-                }
-            }
-        },
-        "preview": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "virtualNetworkFunctionTemplate": {
-            "body": {
-                "virutalNetworkFunctionRoleConfigurations": {
-                    "$ref": "#/$keywords/virutalNetworkFunctionRoleConfigurations"
-                }
-            }
-        },
+          "$ref": "#/$keywords/dnsServers"
+        }
+      },
+      "array": true
+    },
+    "ipAllocationMethod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Static",
+            "Dynamic"
+          ]
+        }
+      }
+    },
+    "ipAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subnet": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "gateway": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ipVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "IPv4"
+          ]
+        }
+      }
+    },
+    "dnsServers": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "vmSwitchType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Management",
+            "Wan",
+            "Lan",
+            "Internal"
+          ]
+        }
+      }
+    },
+    "azureStackEdge": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "skuType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "EvolvedPacketCore",
+            "SDWAN"
+          ]
+        }
+      }
+    },
+    "deploymentMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Azure",
+            "PrivateEdgeZone"
+          ]
+        }
+      }
+    },
+    "preview": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "managedApplicationParameters_1": {
+      "body": {}
+    },
+    "managedApplicationTemplate": {
+      "body": {}
+    },
+    "virtualNetworkFunctionTemplate": {
+      "body": {
         "virutalNetworkFunctionRoleConfigurations": {
-            "parameters": {
-                "roleName": {
-                    "type": "string"
-                },
-                "roleType": {
-                    "enum": [
-                        "Unknown",
-                        "VirtualMachine"
-                    ]
-                },
-                "virtualMachineSize": {
-                    "enum": [
-                        "Unknown",
-                        "Standard_D1_v2",
-                        "Standard_D2_v2",
-                        "Standard_D3_v2",
-                        "Standard_D4_v2",
-                        "Standard_D5_v2",
-                        "Standard_D11_v2",
-                        "Standard_D12_v2",
-                        "Standard_D13_v2",
-                        "Standard_DS1_v2",
-                        "Standard_DS2_v2",
-                        "Standard_DS3_v2",
-                        "Standard_DS4_v2",
-                        "Standard_DS5_v2",
-                        "Standard_DS11_v2",
-                        "Standard_DS12_v2",
-                        "Standard_DS13_v2"
-                    ]
-                },
-                "userDataTemplate": {},
-                "userDataParameters": {}
-            },
-            "body": {
-                "imageReference": {
-                    "$ref": "#/$keywords/imageReference"
-                },
-                "osProfile": {
-                    "$ref": "#/$keywords/osProfile"
-                },
-                "networkInterfaces": {
-                    "$ref": "#/$keywords/networkInterfaces_2"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/virutalNetworkFunctionRoleConfigurations"
+        }
+      }
+    },
+    "virutalNetworkFunctionRoleConfigurations": {
+      "body": {
+        "roleName": {
+          "$ref": "#/$keywords/roleName_1"
+        },
+        "roleType": {
+          "$ref": "#/$keywords/roleType"
+        },
+        "virtualMachineSize": {
+          "$ref": "#/$keywords/virtualMachineSize"
         },
         "imageReference": {
-            "parameters": {
-                "osType": {
-                    "enum": [
-                        "Unknown",
-                        "Windows",
-                        "Linux"
-                    ]
-                },
-                "vhdName": {
-                    "type": "string"
-                },
-                "vhdType": {
-                    "enum": [
-                        "Unknown",
-                        "VHD",
-                        "VHDX"
-                    ]
-                },
-                "sasUri": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/imageReference"
         },
         "osProfile": {
-            "parameters": {
-                "adminUsername": {
-                    "type": "string"
-                },
-                "adminPassword": {
-                    "type": "string"
-                },
-                "sshPublicKey": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/osProfile"
         },
-        "networkInterfaces_2": {
-            "parameters": {
-                "networkInterfaceName": {
-                    "type": "string"
-                },
-                "macAddress": {
-                    "type": "string"
-                },
-                "vmSwitchType": {
-                    "enum": [
-                        "Unknown",
-                        "Management",
-                        "Wan",
-                        "Lan",
-                        "Internal"
-                    ]
-                }
-            },
-            "body": {
-                "ipConfigurations": {
-                    "$ref": "#/$keywords/ipConfigurations"
-                }
-            },
-            "array": true
+        "userDataTemplate": {
+          "$ref": "#/$keywords/userDataTemplate"
         },
-        "skuName_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "userDataParameters": {
+          "$ref": "#/$keywords/userDataParameters_1"
         },
-        "virtualNetworkFunctionVendorConfigurations": {
-            "parameters": {
-                "roleName": {
-                    "type": "string"
-                },
-                "customData": {
-                    "type": "string"
-                },
-                "userDataParameters": {}
-            },
-            "body": {
-                "osProfile": {
-                    "$ref": "#/$keywords/osProfile"
-                },
-                "networkInterfaces": {
-                    "$ref": "#/$keywords/networkInterfaces_3"
-                }
-            },
-            "array": true
-        },
-        "networkInterfaces_3": {
-            "parameters": {
-                "networkInterfaceName": {
-                    "type": "string"
-                },
-                "macAddress": {
-                    "type": "string"
-                },
-                "vmSwitchType": {
-                    "enum": [
-                        "Unknown",
-                        "Management",
-                        "Wan",
-                        "Lan",
-                        "Internal"
-                    ]
-                }
-            },
-            "body": {
-                "ipConfigurations": {
-                    "$ref": "#/$keywords/ipConfigurations"
-                }
-            },
-            "array": true
+        "networkInterfaces": {
+          "$ref": "#/$keywords/networkInterfaces_1"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "virtualNetworkFunctions": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "device": {
-                "$ref": "#/$keywords/device"
-            },
-            "skuName": {
-                "$ref": "#/$keywords/skuName"
-            },
-            "skuType": {
-                "$ref": "#/$keywords/skuType"
-            },
-            "vendorName": {
-                "$ref": "#/$keywords/vendorName"
-            },
-            "serviceKey": {
-                "$ref": "#/$keywords/serviceKey"
-            },
-            "vendorProvisioningState": {
-                "$ref": "#/$keywords/vendorProvisioningState"
-            },
-            "managedApplication": {
-                "$ref": "#/$keywords/device"
-            },
-            "managedApplicationParameters": {
-                "$ref": "#/$keywords/managedApplicationParameters"
-            },
-            "virtualNetworkFunctionUserConfigurations": {
-                "$ref": "#/$keywords/virtualNetworkFunctionUserConfigurations"
-            }
+    "roleName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "roleType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "VirtualMachine"
+          ]
+        }
+      }
+    },
+    "virtualMachineSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Standard_D1_v2",
+            "Standard_D2_v2",
+            "Standard_D3_v2",
+            "Standard_D4_v2",
+            "Standard_D5_v2",
+            "Standard_D11_v2",
+            "Standard_D12_v2",
+            "Standard_D13_v2",
+            "Standard_DS1_v2",
+            "Standard_DS2_v2",
+            "Standard_DS3_v2",
+            "Standard_DS4_v2",
+            "Standard_DS5_v2",
+            "Standard_DS11_v2",
+            "Standard_DS12_v2",
+            "Standard_DS13_v2"
+          ]
+        }
+      }
+    },
+    "imageReference": {
+      "body": {
+        "osType": {
+          "$ref": "#/$keywords/osType"
         },
-        "devices": {
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "deviceType": {
-                "$ref": "#/$keywords/deviceType"
-            },
-            "azureStackEdge": {
-                "$ref": "#/$keywords/device"
-            },
-            "virtualNetworkFunctions": {
-                "$ref": "#/$keywords/virtualNetworkFunctions"
-            }
+        "vhdName": {
+          "$ref": "#/$keywords/vhdName"
         },
-        "vendors": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "skus": {
-                "$ref": "#/$keywords/skus"
-            }
+        "vhdType": {
+          "$ref": "#/$keywords/vhdType"
         },
-        "vendors/vendorSkus": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "skuType": {
-                "$ref": "#/$keywords/skuType"
-            },
-            "deploymentMode": {
-                "$ref": "#/$keywords/deploymentMode"
-            },
-            "preview": {
-                "$ref": "#/$keywords/preview"
-            },
-            "managedApplicationParameters": {
-                "$ref": "#/$keywords/managedApplicationParameters"
-            },
-            "managedApplicationTemplate": {
-                "$ref": "#/$keywords/managedApplicationParameters"
-            },
-            "virtualNetworkFunctionTemplate": {
-                "$ref": "#/$keywords/virtualNetworkFunctionTemplate"
-            }
+        "sasUri": {
+          "$ref": "#/$keywords/sasUri"
+        }
+      }
+    },
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Windows",
+            "Linux"
+          ]
+        }
+      }
+    },
+    "vhdName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vhdType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "VHD",
+            "VHDX"
+          ]
+        }
+      }
+    },
+    "sasUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osProfile": {
+      "body": {
+        "adminUsername": {
+          "$ref": "#/$keywords/adminUsername"
         },
-        "locations/vendors/virtualNetworkFunctions": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "vendorProvisioningState": {
-                "$ref": "#/$keywords/vendorProvisioningState"
-            },
-            "skuName": {
-                "$ref": "#/$keywords/skuName_2"
-            },
-            "skuType": {
-                "$ref": "#/$keywords/skuType"
-            },
-            "virtualNetworkFunctionVendorConfigurations": {
-                "$ref": "#/$keywords/virtualNetworkFunctionVendorConfigurations"
-            }
+        "adminPassword": {
+          "$ref": "#/$keywords/adminPassword"
         },
-        "vendors/vendorSkus/previewSubscriptions": {}
+        "sshPublicKey": {
+          "$ref": "#/$keywords/sshPublicKey"
+        }
+      }
+    },
+    "adminUsername": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "adminPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sshPublicKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userDataTemplate": {
+      "body": {}
+    },
+    "userDataParameters_1": {
+      "body": {}
+    },
+    "networkInterfaces_1": {
+      "body": {
+        "networkInterfaceName": {
+          "$ref": "#/$keywords/networkInterfaceName"
+        },
+        "macAddress": {
+          "$ref": "#/$keywords/macAddress"
+        },
+        "ipConfigurations": {
+          "$ref": "#/$keywords/ipConfigurations"
+        },
+        "vmSwitchType": {
+          "$ref": "#/$keywords/vmSwitchType"
+        }
+      },
+      "array": true
+    },
+    "vendorProvisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "NotProvisioned",
+            "Provisioning",
+            "Provisioned",
+            "Deprovisioned",
+            "UserDataValidationFailed"
+          ]
+        }
+      }
+    },
+    "virtualNetworkFunctionVendorConfigurations": {
+      "body": {
+        "roleName": {
+          "$ref": "#/$keywords/roleName_1_2"
+        },
+        "customData": {
+          "$ref": "#/$keywords/customData"
+        },
+        "osProfile": {
+          "$ref": "#/$keywords/osProfile_1"
+        },
+        "networkInterfaces": {
+          "$ref": "#/$keywords/networkInterfaces_1_2"
+        }
+      },
+      "array": true
+    },
+    "roleName_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customData": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osProfile_1": {
+      "body": {
+        "adminUsername": {
+          "$ref": "#/$keywords/adminUsername"
+        },
+        "adminPassword": {
+          "$ref": "#/$keywords/adminPassword"
+        },
+        "sshPublicKey": {
+          "$ref": "#/$keywords/sshPublicKey"
+        }
+      }
+    },
+    "networkInterfaces_1_2": {
+      "body": {
+        "networkInterfaceName": {
+          "$ref": "#/$keywords/networkInterfaceName"
+        },
+        "macAddress": {
+          "$ref": "#/$keywords/macAddress"
+        },
+        "ipConfigurations": {
+          "$ref": "#/$keywords/ipConfigurations"
+        },
+        "vmSwitchType": {
+          "$ref": "#/$keywords/vmSwitchType"
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "virtualNetworkFunctions": {
+      "device": {
+        "$ref": "#/$keywords/device"
+      },
+      "skuName": {
+        "$ref": "#/$keywords/skuName"
+      },
+      "vendorName": {
+        "$ref": "#/$keywords/vendorName"
+      },
+      "managedApplicationParameters": {
+        "$ref": "#/$keywords/managedApplicationParameters"
+      },
+      "virtualNetworkFunctionUserConfigurations": {
+        "$ref": "#/$keywords/virtualNetworkFunctionUserConfigurations"
+      }
+    },
+    "devices": {
+      "azureStackEdge": {
+        "$ref": "#/$keywords/azureStackEdge"
+      }
+    },
+    "vendors": {},
+    "vendors/vendorSkus": {
+      "skuType": {
+        "$ref": "#/$keywords/skuType"
+      },
+      "deploymentMode": {
+        "$ref": "#/$keywords/deploymentMode"
+      },
+      "preview": {
+        "$ref": "#/$keywords/preview"
+      },
+      "managedApplicationParameters": {
+        "$ref": "#/$keywords/managedApplicationParameters_1"
+      },
+      "managedApplicationTemplate": {
+        "$ref": "#/$keywords/managedApplicationTemplate"
+      },
+      "virtualNetworkFunctionTemplate": {
+        "$ref": "#/$keywords/virtualNetworkFunctionTemplate"
+      }
+    },
+    "locations/vendors/virtualNetworkFunctions": {
+      "vendorProvisioningState": {
+        "$ref": "#/$keywords/vendorProvisioningState"
+      },
+      "virtualNetworkFunctionVendorConfigurations": {
+        "$ref": "#/$keywords/virtualNetworkFunctionVendorConfigurations"
+      }
+    },
+    "vendors/vendorSkus/previewSubscriptions": {}
+  }
 }

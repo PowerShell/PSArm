@@ -1,100 +1,138 @@
 {
-    "$keywords": {
-        "exclude": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+  "$keywords": {
+    "exclude": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "lowCpuThreshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "5",
+            "10",
+            "15",
+            "20"
+          ]
+        }
+      }
+    },
+    "digests": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
-        "lowCpuThreshold": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "5",
-                        "10",
-                        "15",
-                        "20"
-                    ]
-                }
-            }
+        "actionGroupResourceId": {
+          "$ref": "#/$keywords/actionGroupResourceId"
         },
-        "digests": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "actionGroupResourceId": {
-                    "type": "string"
-                },
-                "frequency": {
-                    "type": "int"
-                },
-                "language": {
-                    "type": "string"
-                },
-                "state": {
-                    "enum": [
-                        "Active",
-                        "Disabled"
-                    ]
-                }
-            },
-            "body": {
-                "categories": {
-                    "$ref": "#/$keywords/categories"
-                }
-            },
-            "array": true
+        "frequency": {
+          "$ref": "#/$keywords/frequency"
         },
         "categories": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "HighAvailability",
-                        "Security",
-                        "Performance",
-                        "Cost",
-                        "OperationalExcellence"
-                    ]
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/categories"
         },
-        "suppressionId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "language": {
+          "$ref": "#/$keywords/language"
         },
-        "ttl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "state": {
+          "$ref": "#/$keywords/state"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "configurations": {
-            "exclude": {
-                "$ref": "#/$keywords/exclude"
-            },
-            "lowCpuThreshold": {
-                "$ref": "#/$keywords/lowCpuThreshold"
-            },
-            "digests": {
-                "$ref": "#/$keywords/digests"
-            }
-        },
-        "recommendations/suppressions": {
-            "suppressionId": {
-                "$ref": "#/$keywords/suppressionId"
-            },
-            "ttl": {
-                "$ref": "#/$keywords/ttl"
-            }
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "actionGroupResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "frequency": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "categories": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "HighAvailability",
+            "Security",
+            "Performance",
+            "Cost",
+            "OperationalExcellence"
+          ]
+        }
+      },
+      "array": true
+    },
+    "language": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "suppressionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ttl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "configurations": {
+      "exclude": {
+        "$ref": "#/$keywords/exclude"
+      },
+      "lowCpuThreshold": {
+        "$ref": "#/$keywords/lowCpuThreshold"
+      },
+      "digests": {
+        "$ref": "#/$keywords/digests"
+      }
+    },
+    "recommendations/suppressions": {
+      "suppressionId": {
+        "$ref": "#/$keywords/suppressionId"
+      },
+      "ttl": {
+        "$ref": "#/$keywords/ttl"
+      }
+    }
+  }
 }

@@ -1,0 +1,144 @@
+{
+  "$keywords": {
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "policyDefinitionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "scope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "notScopes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "parameters": {
+      "body": {}
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "body": {}
+    },
+    "policyType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "BuiltIn",
+            "Custom"
+          ]
+        }
+      }
+    },
+    "displayName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata_1": {
+      "body": {}
+    },
+    "parameters_1": {
+      "body": {}
+    },
+    "policyDefinitions": {
+      "body": {
+        "policyDefinitionId": {
+          "$ref": "#/$keywords/policyDefinitionId_1"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters_1_2"
+        }
+      },
+      "array": true
+    },
+    "policyDefinitionId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1_2": {
+      "body": {}
+    }
+  },
+  "$resources": {
+    "policyAssignments": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "policyDefinitionId": {
+        "$ref": "#/$keywords/policyDefinitionId"
+      },
+      "scope": {
+        "$ref": "#/$keywords/scope"
+      },
+      "notScopes": {
+        "$ref": "#/$keywords/notScopes"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "metadata": {
+        "$ref": "#/$keywords/metadata"
+      }
+    },
+    "policySetDefinitions": {
+      "policyType": {
+        "$ref": "#/$keywords/policyType"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName_1"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "metadata": {
+        "$ref": "#/$keywords/metadata_1"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1"
+      },
+      "policyDefinitions": {
+        "$ref": "#/$keywords/policyDefinitions"
+      }
+    }
+  }
+}

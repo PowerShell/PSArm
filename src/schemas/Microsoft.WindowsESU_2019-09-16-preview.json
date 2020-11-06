@@ -1,99 +1,69 @@
 {
-    "$keywords": {
-        "multipleActivationKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "expirationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "osType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Windows7",
-                        "WindowsServer2008",
-                        "WindowsServer2008R2"
-                    ]
-                }
-            }
-        },
-        "supportType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "SupplementalServicing",
-                        "PremiumAssurance"
-                    ]
-                }
-            }
-        },
-        "installedServerNumber": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "agreementNumber": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "isEligible": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Failed",
-                        "Canceled",
-                        "Accepted",
-                        "Provisioning"
-                    ]
-                }
-            }
+  "$keywords": {
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows7",
+            "WindowsServer2008",
+            "WindowsServer2008R2"
+          ]
         }
+      }
     },
-    "$resources": {
-        "multipleActivationKeys": {
-            "multipleActivationKey": {
-                "$ref": "#/$keywords/multipleActivationKey"
-            },
-            "expirationDate": {
-                "$ref": "#/$keywords/expirationDate"
-            },
-            "osType": {
-                "$ref": "#/$keywords/osType"
-            },
-            "supportType": {
-                "$ref": "#/$keywords/supportType"
-            },
-            "installedServerNumber": {
-                "$ref": "#/$keywords/installedServerNumber"
-            },
-            "agreementNumber": {
-                "$ref": "#/$keywords/agreementNumber"
-            },
-            "isEligible": {
-                "$ref": "#/$keywords/isEligible"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
+    "supportType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SupplementalServicing",
+            "PremiumAssurance"
+          ]
         }
+      }
+    },
+    "installedServerNumber": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "agreementNumber": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isEligible": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "multipleActivationKeys": {
+      "osType": {
+        "$ref": "#/$keywords/osType"
+      },
+      "supportType": {
+        "$ref": "#/$keywords/supportType"
+      },
+      "installedServerNumber": {
+        "$ref": "#/$keywords/installedServerNumber"
+      },
+      "agreementNumber": {
+        "$ref": "#/$keywords/agreementNumber"
+      },
+      "isEligible": {
+        "$ref": "#/$keywords/isEligible"
+      }
+    }
+  }
 }

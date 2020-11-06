@@ -1,618 +1,561 @@
 {
-    "$keywords": {
-        "count": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "tier": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "os": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Windows",
-                        "Linux"
-                    ]
-                }
-            }
-        },
-        "virtualNetworkSubnetResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled"
-                    ]
-                }
-            }
-        },
-        "runRequest": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                },
-                "isArchiveEnabled": {
-                    "type": "bool"
-                },
-                "agentPoolName": {
-                    "type": "string"
-                },
-                "logTemplate": {
-                    "type": "string"
-                }
-            }
-        },
-        "runResult": {
-            "parameters": {
-                "runId": {
-                    "type": "string"
-                },
-                "status": {
-                    "enum": [
-                        "Queued",
-                        "Started",
-                        "Running",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled",
-                        "Error",
-                        "Timeout"
-                    ]
-                },
-                "lastUpdatedTime": {},
-                "runType": {
-                    "enum": [
-                        "QuickBuild",
-                        "QuickRun",
-                        "AutoBuild",
-                        "AutoRun"
-                    ]
-                },
-                "agentPoolName": {
-                    "type": "string"
-                },
-                "createTime": {},
-                "startTime": {},
-                "finishTime": {},
-                "task": {
-                    "type": "string"
-                },
-                "sourceRegistryAuth": {
-                    "type": "string"
-                },
-                "runErrorMessage": {
-                    "type": "string"
-                },
-                "updateTriggerToken": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled"
-                    ]
-                },
-                "isArchiveEnabled": {
-                    "type": "bool"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "outputImages": {
-                    "$ref": "#/$keywords/outputImages"
-                },
-                "imageUpdateTrigger": {
-                    "$ref": "#/$keywords/imageUpdateTrigger"
-                },
-                "sourceTrigger": {
-                    "$ref": "#/$keywords/sourceTrigger"
-                },
-                "timerTrigger": {
-                    "$ref": "#/$keywords/timerTrigger"
-                },
-                "platform": {
-                    "$ref": "#/$keywords/platform"
-                },
-                "agentConfiguration": {
-                    "$ref": "#/$keywords/agentConfiguration"
-                },
-                "customRegistries": {
-                    "$ref": "#/$keywords/customRegistries"
-                },
-                "logArtifact": {
-                    "$ref": "#/$keywords/logArtifact"
-                }
-            }
-        },
-        "outputImages": {
-            "parameters": {
-                "registry": {
-                    "type": "string"
-                },
-                "repository": {
-                    "type": "string"
-                },
-                "tag": {
-                    "type": "string"
-                },
-                "digest": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "imageUpdateTrigger": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "timestamp": {}
-            },
-            "body": {
-                "images": {
-                    "$ref": "#/$keywords/images"
-                }
-            }
-        },
-        "images": {
-            "parameters": {
-                "registry": {
-                    "type": "string"
-                },
-                "repository": {
-                    "type": "string"
-                },
-                "tag": {
-                    "type": "string"
-                },
-                "digest": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sourceTrigger": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "eventType": {
-                    "type": "string"
-                },
-                "commitId": {
-                    "type": "string"
-                },
-                "pullRequestId": {
-                    "type": "string"
-                },
-                "repositoryUrl": {
-                    "type": "string"
-                },
-                "branchName": {
-                    "type": "string"
-                },
-                "providerType": {
-                    "type": "string"
-                }
-            }
-        },
-        "timerTrigger": {
-            "parameters": {
-                "timerTriggerName": {
-                    "type": "string"
-                },
-                "scheduleOccurrence": {
-                    "type": "string"
-                }
-            }
-        },
-        "platform": {
-            "parameters": {
-                "os": {
-                    "enum": [
-                        "Windows",
-                        "Linux"
-                    ]
-                },
-                "architecture": {
-                    "enum": [
-                        "amd64",
-                        "x86",
-                        "386",
-                        "arm",
-                        "arm64"
-                    ]
-                },
-                "variant": {
-                    "enum": [
-                        "v6",
-                        "v7",
-                        "v8"
-                    ]
-                }
-            }
-        },
-        "agentConfiguration": {
-            "parameters": {
-                "cpu": {
-                    "type": "int"
-                }
-            }
-        },
-        "customRegistries": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "logArtifact": {
-            "parameters": {
-                "registry": {
-                    "type": "string"
-                },
-                "repository": {
-                    "type": "string"
-                },
-                "tag": {
-                    "type": "string"
-                },
-                "digest": {
-                    "type": "string"
-                }
-            }
-        },
-        "forceUpdateTag": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "creationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Disabled",
-                        "Enabled"
-                    ]
-                }
-            }
+  "$keywords": {
+    "count": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "tier": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "os": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows",
+            "Linux"
+          ]
+        }
+      }
+    },
+    "virtualNetworkSubnetResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runRequest": {
+      "body": {
+        "isArchiveEnabled": {
+          "$ref": "#/$keywords/isArchiveEnabled"
         },
         "agentPoolName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "timeout": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "step": {
-            "parameters": {
-                "type": {
-                    "enum": [
-                        "Docker",
-                        "FileTask",
-                        "EncodedTask"
-                    ]
-                },
-                "contextPath": {
-                    "type": "string"
-                },
-                "contextAccessToken": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "baseImageDependencies": {
-                    "$ref": "#/$keywords/baseImageDependencies"
-                }
-            }
-        },
-        "baseImageDependencies": {
-            "parameters": {
-                "type": {
-                    "enum": [
-                        "BuildTime",
-                        "RunTime"
-                    ]
-                },
-                "registry": {
-                    "type": "string"
-                },
-                "repository": {
-                    "type": "string"
-                },
-                "tag": {
-                    "type": "string"
-                },
-                "digest": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "trigger": {
-            "body": {
-                "timerTriggers": {
-                    "$ref": "#/$keywords/timerTriggers"
-                },
-                "sourceTriggers": {
-                    "$ref": "#/$keywords/sourceTriggers"
-                },
-                "baseImageTrigger": {
-                    "$ref": "#/$keywords/baseImageTrigger"
-                }
-            }
-        },
-        "timerTriggers": {
-            "parameters": {
-                "schedule": {
-                    "type": "string"
-                },
-                "status": {
-                    "enum": [
-                        "Disabled",
-                        "Enabled"
-                    ]
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "sourceTriggers": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Disabled",
-                        "Enabled"
-                    ]
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "sourceRepository": {
-                    "$ref": "#/$keywords/sourceRepository"
-                },
-                "sourceTriggerEvents": {
-                    "$ref": "#/$keywords/sourceTriggerEvents"
-                }
-            },
-            "array": true
-        },
-        "sourceRepository": {
-            "parameters": {
-                "sourceControlType": {
-                    "enum": [
-                        "Github",
-                        "VisualStudioTeamService"
-                    ]
-                },
-                "repositoryUrl": {
-                    "type": "string"
-                },
-                "branch": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "sourceControlAuthProperties": {
-                    "$ref": "#/$keywords/sourceControlAuthProperties"
-                }
-            }
-        },
-        "sourceControlAuthProperties": {
-            "parameters": {
-                "tokenType": {
-                    "enum": [
-                        "PAT",
-                        "OAuth"
-                    ]
-                },
-                "token": {
-                    "type": "string"
-                },
-                "refreshToken": {
-                    "type": "string"
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "expiresIn": {
-                    "type": "int"
-                }
-            }
-        },
-        "sourceTriggerEvents": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "commit",
-                        "pullrequest"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "baseImageTrigger": {
-            "parameters": {
-                "baseImageTriggerType": {
-                    "enum": [
-                        "All",
-                        "Runtime"
-                    ]
-                },
-                "updateTriggerEndpoint": {
-                    "type": "string"
-                },
-                "updateTriggerPayloadType": {
-                    "enum": [
-                        "Default",
-                        "Token"
-                    ]
-                },
-                "status": {
-                    "enum": [
-                        "Disabled",
-                        "Enabled"
-                    ]
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "credentials": {
-            "parameters": {
-                "customRegistries": {}
-            },
-            "body": {
-                "sourceRegistry": {
-                    "$ref": "#/$keywords/sourceRegistry"
-                }
-            }
-        },
-        "sourceRegistry": {
-            "parameters": {
-                "loginMode": {
-                    "enum": [
-                        "None",
-                        "Default"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/agentPoolName"
         },
         "logTemplate": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "isSystemTask": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/logTemplate"
         }
+      }
     },
-    "$resources": {
-        "registries/agentPools": {
-            "count": {
-                "$ref": "#/$keywords/count"
-            },
-            "tier": {
-                "$ref": "#/$keywords/tier"
-            },
-            "os": {
-                "$ref": "#/$keywords/os"
-            },
-            "virtualNetworkSubnetResourceId": {
-                "$ref": "#/$keywords/virtualNetworkSubnetResourceId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "registries/taskRuns": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "runRequest": {
-                "$ref": "#/$keywords/runRequest"
-            },
-            "runResult": {
-                "$ref": "#/$keywords/runResult"
-            },
-            "forceUpdateTag": {
-                "$ref": "#/$keywords/forceUpdateTag"
-            }
-        },
-        "registries/tasks": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "creationDate": {
-                "$ref": "#/$keywords/creationDate"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "platform": {
-                "$ref": "#/$keywords/platform"
-            },
-            "agentConfiguration": {
-                "$ref": "#/$keywords/agentConfiguration"
-            },
-            "agentPoolName": {
-                "$ref": "#/$keywords/agentPoolName"
-            },
-            "timeout": {
-                "$ref": "#/$keywords/timeout"
-            },
-            "step": {
-                "$ref": "#/$keywords/step"
-            },
-            "trigger": {
-                "$ref": "#/$keywords/trigger"
-            },
-            "credentials": {
-                "$ref": "#/$keywords/credentials"
-            },
-            "logTemplate": {
-                "$ref": "#/$keywords/logTemplate"
-            },
-            "isSystemTask": {
-                "$ref": "#/$keywords/isSystemTask"
-            }
+    "isArchiveEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
         }
+      }
+    },
+    "agentPoolName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logTemplate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "forceUpdateTag": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "platform": {
+      "body": {
+        "os": {
+          "$ref": "#/$keywords/os_1"
+        },
+        "architecture": {
+          "$ref": "#/$keywords/architecture"
+        },
+        "variant": {
+          "$ref": "#/$keywords/variant"
+        }
+      }
+    },
+    "os_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows",
+            "Linux"
+          ]
+        }
+      }
+    },
+    "architecture": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "amd64",
+            "x86",
+            "386",
+            "arm",
+            "arm64"
+          ]
+        }
+      }
+    },
+    "variant": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "v6",
+            "v7",
+            "v8"
+          ]
+        }
+      }
+    },
+    "agentConfiguration": {
+      "body": {
+        "cpu": {
+          "$ref": "#/$keywords/cpu"
+        }
+      }
+    },
+    "cpu": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "agentPoolName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "timeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 3600
+        }
+      }
+    },
+    "step": {
+      "body": {
+        "contextPath": {
+          "$ref": "#/$keywords/contextPath"
+        },
+        "contextAccessToken": {
+          "$ref": "#/$keywords/contextAccessToken"
+        }
+      }
+    },
+    "contextPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contextAccessToken": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "trigger": {
+      "body": {
+        "timerTriggers": {
+          "$ref": "#/$keywords/timerTriggers"
+        },
+        "sourceTriggers": {
+          "$ref": "#/$keywords/sourceTriggers"
+        },
+        "baseImageTrigger": {
+          "$ref": "#/$keywords/baseImageTrigger"
+        }
+      }
+    },
+    "timerTriggers": {
+      "body": {
+        "schedule": {
+          "$ref": "#/$keywords/schedule"
+        },
+        "status": {
+          "$ref": "#/$keywords/status_1"
+        },
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      },
+      "array": true
+    },
+    "schedule": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceTriggers": {
+      "body": {
+        "sourceRepository": {
+          "$ref": "#/$keywords/sourceRepository"
+        },
+        "sourceTriggerEvents": {
+          "$ref": "#/$keywords/sourceTriggerEvents"
+        },
+        "status": {
+          "$ref": "#/$keywords/status_1_2"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        }
+      },
+      "array": true
+    },
+    "sourceRepository": {
+      "body": {
+        "sourceControlType": {
+          "$ref": "#/$keywords/sourceControlType"
+        },
+        "repositoryUrl": {
+          "$ref": "#/$keywords/repositoryUrl"
+        },
+        "branch": {
+          "$ref": "#/$keywords/branch"
+        },
+        "sourceControlAuthProperties": {
+          "$ref": "#/$keywords/sourceControlAuthProperties"
+        }
+      }
+    },
+    "sourceControlType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Github",
+            "VisualStudioTeamService"
+          ]
+        }
+      }
+    },
+    "repositoryUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "branch": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceControlAuthProperties": {
+      "body": {
+        "tokenType": {
+          "$ref": "#/$keywords/tokenType"
+        },
+        "token": {
+          "$ref": "#/$keywords/token"
+        },
+        "refreshToken": {
+          "$ref": "#/$keywords/refreshToken"
+        },
+        "scope": {
+          "$ref": "#/$keywords/scope"
+        },
+        "expiresIn": {
+          "$ref": "#/$keywords/expiresIn"
+        }
+      }
+    },
+    "tokenType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "PAT",
+            "OAuth"
+          ]
+        }
+      }
+    },
+    "token": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "refreshToken": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "scope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "expiresIn": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "sourceTriggerEvents": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "commit",
+            "pullrequest"
+          ]
+        }
+      },
+      "array": true
+    },
+    "status_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "baseImageTrigger": {
+      "body": {
+        "baseImageTriggerType": {
+          "$ref": "#/$keywords/baseImageTriggerType"
+        },
+        "updateTriggerEndpoint": {
+          "$ref": "#/$keywords/updateTriggerEndpoint"
+        },
+        "updateTriggerPayloadType": {
+          "$ref": "#/$keywords/updateTriggerPayloadType"
+        },
+        "status": {
+          "$ref": "#/$keywords/status_1_2_3"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        }
+      }
+    },
+    "baseImageTriggerType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "All",
+            "Runtime"
+          ]
+        }
+      }
+    },
+    "updateTriggerEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "updateTriggerPayloadType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Token"
+          ]
+        }
+      }
+    },
+    "status_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "credentials": {
+      "body": {
+        "sourceRegistry": {
+          "$ref": "#/$keywords/sourceRegistry"
+        },
+        "customRegistries": {
+          "$ref": "#/$keywords/customRegistries"
+        }
+      }
+    },
+    "sourceRegistry": {
+      "body": {
+        "loginMode": {
+          "$ref": "#/$keywords/loginMode"
+        }
+      }
+    },
+    "loginMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Default"
+          ]
+        }
+      }
+    },
+    "customRegistries": {
+      "body": {}
+    },
+    "logTemplate_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isSystemTask": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "registries/agentPools": {
+      "count": {
+        "$ref": "#/$keywords/count"
+      },
+      "tier": {
+        "$ref": "#/$keywords/tier"
+      },
+      "os": {
+        "$ref": "#/$keywords/os"
+      },
+      "virtualNetworkSubnetResourceId": {
+        "$ref": "#/$keywords/virtualNetworkSubnetResourceId"
+      }
+    },
+    "registries/taskRuns": {
+      "runRequest": {
+        "$ref": "#/$keywords/runRequest"
+      },
+      "forceUpdateTag": {
+        "$ref": "#/$keywords/forceUpdateTag"
+      }
+    },
+    "registries/tasks": {
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "platform": {
+        "$ref": "#/$keywords/platform"
+      },
+      "agentConfiguration": {
+        "$ref": "#/$keywords/agentConfiguration"
+      },
+      "agentPoolName": {
+        "$ref": "#/$keywords/agentPoolName_1"
+      },
+      "timeout": {
+        "$ref": "#/$keywords/timeout"
+      },
+      "step": {
+        "$ref": "#/$keywords/step"
+      },
+      "trigger": {
+        "$ref": "#/$keywords/trigger"
+      },
+      "credentials": {
+        "$ref": "#/$keywords/credentials"
+      },
+      "logTemplate": {
+        "$ref": "#/$keywords/logTemplate_1"
+      },
+      "isSystemTask": {
+        "$ref": "#/$keywords/isSystemTask"
+      }
+    }
+  }
 }

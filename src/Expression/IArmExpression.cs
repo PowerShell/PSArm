@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -12,7 +13,7 @@ namespace PSArm.Expression
     /// May be a literal or a more complex expression like a function call or a member access.
     /// </summary>
     [TypeConverter(typeof(ArmTypeConverter))]
-    public interface IArmExpression
+    public interface IArmExpression : IArmValue
     {
         /// <summary>
         /// Render this ARM expression to its JSON value.
@@ -25,12 +26,5 @@ namespace PSArm.Expression
         /// </summary>
         /// <returns></returns>
         string ToInnerExpressionString();
-
-        /// <summary>
-        /// Copy the ARM expression with any ARM parameters instantiated with given values.
-        /// </summary>
-        /// <param name="parameters">The values to instantiate parameters with.</param>
-        /// <returns></returns>
-        IArmExpression Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters);
     }
 }

@@ -1,1250 +1,173 @@
 {
-    "$keywords": {
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hostNames": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "repositorySiteName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "usageState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enabledHostNames": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "availabilityState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "hostNameSslStates": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "sslState": {},
-                "virtualIP": {
-                    "type": "string"
-                },
-                "thumbprint": {
-                    "type": "string"
-                },
-                "toUpdate": {
-                    "type": "bool"
-                },
-                "hostType": {}
-            },
-            "array": true
-        },
-        "serverFarmId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "reserved": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "lastModifiedTimeUtc": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "siteConfig": {
-            "parameters": {
-                "numberOfWorkers": {
-                    "type": "int"
-                },
-                "netFrameworkVersion": {
-                    "type": "string"
-                },
-                "phpVersion": {
-                    "type": "string"
-                },
-                "pythonVersion": {
-                    "type": "string"
-                },
-                "nodeVersion": {
-                    "type": "string"
-                },
-                "linuxFxVersion": {
-                    "type": "string"
-                },
-                "requestTracingEnabled": {
-                    "type": "bool"
-                },
-                "requestTracingExpirationTime": {},
-                "remoteDebuggingEnabled": {
-                    "type": "bool"
-                },
-                "remoteDebuggingVersion": {
-                    "type": "string"
-                },
-                "httpLoggingEnabled": {
-                    "type": "bool"
-                },
-                "logsDirectorySizeLimit": {
-                    "type": "int"
-                },
-                "detailedErrorLoggingEnabled": {
-                    "type": "bool"
-                },
-                "publishingUsername": {
-                    "type": "string"
-                },
-                "documentRoot": {
-                    "type": "string"
-                },
-                "scmType": {
-                    "enum": [
-                        "None",
-                        "Dropbox",
-                        "Tfs",
-                        "LocalGit",
-                        "GitHub",
-                        "CodePlexGit",
-                        "CodePlexHg",
-                        "BitbucketGit",
-                        "BitbucketHg",
-                        "ExternalGit",
-                        "ExternalHg",
-                        "OneDrive",
-                        "VSO"
-                    ]
-                },
-                "use32BitWorkerProcess": {
-                    "type": "bool"
-                },
-                "webSocketsEnabled": {
-                    "type": "bool"
-                },
-                "alwaysOn": {
-                    "type": "bool"
-                },
-                "javaVersion": {
-                    "type": "string"
-                },
-                "javaContainer": {
-                    "type": "string"
-                },
-                "javaContainerVersion": {
-                    "type": "string"
-                },
-                "appCommandLine": {
-                    "type": "string"
-                },
-                "managedPipelineMode": {},
-                "loadBalancing": {},
-                "autoHealEnabled": {
-                    "type": "bool"
-                },
-                "tracingOptions": {
-                    "type": "string"
-                },
-                "vnetName": {
-                    "type": "string"
-                },
-                "autoSwapSlotName": {
-                    "type": "string"
-                },
-                "localMySqlEnabled": {
-                    "type": "bool"
-                },
-                "http20Enabled": {
-                    "type": "bool"
-                },
-                "minTlsVersion": {
-                    "enum": [
-                        "1.0",
-                        "1.1",
-                        "1.2"
-                    ]
-                }
-            },
-            "body": {
-                "defaultDocuments": {
-                    "$ref": "#/$keywords/defaultDocuments"
-                },
-                "appSettings": {
-                    "$ref": "#/$keywords/appSettings"
-                },
-                "connectionStrings": {
-                    "$ref": "#/$keywords/connectionStrings"
-                },
-                "machineKey": {
-                    "$ref": "#/$keywords/machineKey"
-                },
-                "handlerMappings": {
-                    "$ref": "#/$keywords/handlerMappings"
-                },
-                "virtualApplications": {
-                    "$ref": "#/$keywords/virtualApplications"
-                },
-                "experiments": {
-                    "$ref": "#/$keywords/experiments"
-                },
-                "limits": {
-                    "$ref": "#/$keywords/limits"
-                },
-                "autoHealRules": {
-                    "$ref": "#/$keywords/autoHealRules"
-                },
-                "cors": {
-                    "$ref": "#/$keywords/cors"
-                },
-                "push": {
-                    "$ref": "#/$keywords/push"
-                },
-                "apiDefinition": {
-                    "$ref": "#/$keywords/apiDefinition"
-                },
-                "ipSecurityRestrictions": {
-                    "$ref": "#/$keywords/ipSecurityRestrictions"
-                }
-            }
-        },
-        "defaultDocuments": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "appSettings": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "connectionStrings": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "connectionString": {
-                    "type": "string"
-                },
-                "type": {}
-            },
-            "array": true
-        },
-        "machineKey": {
-            "parameters": {
-                "validation": {
-                    "type": "string"
-                },
-                "validationKey": {
-                    "type": "string"
-                },
-                "decryption": {
-                    "type": "string"
-                },
-                "decryptionKey": {
-                    "type": "string"
-                }
-            }
-        },
-        "handlerMappings": {
-            "parameters": {
-                "extension": {
-                    "type": "string"
-                },
-                "scriptProcessor": {
-                    "type": "string"
-                },
-                "arguments": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "virtualApplications": {
-            "parameters": {
-                "virtualPath": {
-                    "type": "string"
-                },
-                "physicalPath": {
-                    "type": "string"
-                },
-                "preloadEnabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "virtualDirectories": {
-                    "$ref": "#/$keywords/virtualDirectories"
-                }
-            },
-            "array": true
-        },
-        "virtualDirectories": {
-            "parameters": {
-                "virtualPath": {
-                    "type": "string"
-                },
-                "physicalPath": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "experiments": {
-            "body": {
-                "rampUpRules": {
-                    "$ref": "#/$keywords/rampUpRules"
-                }
-            }
-        },
-        "rampUpRules": {
-            "parameters": {
-                "actionHostName": {
-                    "type": "string"
-                },
-                "reroutePercentage": {},
-                "changeStep": {},
-                "changeIntervalInMinutes": {
-                    "type": "int"
-                },
-                "minReroutePercentage": {},
-                "maxReroutePercentage": {},
-                "changeDecisionCallbackUrl": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "limits": {
-            "parameters": {
-                "maxPercentageCpu": {},
-                "maxMemoryInMb": {
-                    "type": "int"
-                },
-                "maxDiskSizeInMb": {
-                    "type": "int"
-                }
-            }
-        },
-        "autoHealRules": {
-            "body": {
-                "triggers": {
-                    "$ref": "#/$keywords/triggers"
-                },
-                "actions": {
-                    "$ref": "#/$keywords/actions"
-                }
-            }
-        },
-        "triggers": {
-            "parameters": {
-                "privateBytesInKB": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "requests": {
-                    "$ref": "#/$keywords/requests"
-                },
-                "statusCodes": {
-                    "$ref": "#/$keywords/statusCodes"
-                },
-                "slowRequests": {
-                    "$ref": "#/$keywords/slowRequests"
-                }
-            }
-        },
-        "requests": {
-            "parameters": {
-                "count": {
-                    "type": "int"
-                },
-                "timeInterval": {
-                    "type": "string"
-                }
-            }
-        },
-        "statusCodes": {
-            "parameters": {
-                "status": {
-                    "type": "int"
-                },
-                "subStatus": {
-                    "type": "int"
-                },
-                "win32Status": {
-                    "type": "int"
-                },
-                "count": {
-                    "type": "int"
-                },
-                "timeInterval": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "slowRequests": {
-            "parameters": {
-                "timeTaken": {
-                    "type": "string"
-                },
-                "count": {
-                    "type": "int"
-                },
-                "timeInterval": {
-                    "type": "string"
-                }
-            }
-        },
-        "actions": {
-            "parameters": {
-                "actionType": {},
-                "minProcessExecutionTime": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "customAction": {
-                    "$ref": "#/$keywords/customAction"
-                }
-            }
-        },
-        "customAction": {
-            "parameters": {
-                "exe": {
-                    "type": "string"
-                },
-                "parameters": {
-                    "type": "string"
-                }
-            }
-        },
-        "cors": {
-            "body": {
-                "allowedOrigins": {
-                    "$ref": "#/$keywords/allowedOrigins"
-                }
-            }
-        },
-        "allowedOrigins": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "push": {
-            "parameters": {
-                "isPushEnabled": {
-                    "type": "bool"
-                },
-                "tagWhitelistJson": {
-                    "type": "string"
-                },
-                "tagsRequiringAuth": {
-                    "type": "string"
-                },
-                "dynamicTagsJson": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "kind": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
-        "apiDefinition": {
-            "parameters": {
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "ipSecurityRestrictions": {
-            "parameters": {
-                "ipAddress": {
-                    "type": "string"
-                },
-                "subnetMask": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "trafficManagerHostNames": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "scmSiteAlsoStopped": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "targetSwapSlot": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hostingEnvironmentProfile": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
-        "clientAffinityEnabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "clientCertEnabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "hostNamesDisabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "outboundIpAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "possibleOutboundIpAddresses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "containerSize": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "dailyMemoryTimeQuota": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "suspendedTill": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "maxNumberOfWorkers": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "cloningInfo": {
-            "parameters": {
-                "correlationId": {},
-                "overwrite": {
-                    "type": "bool"
-                },
-                "cloneCustomHostNames": {
-                    "type": "bool"
-                },
-                "cloneSourceControl": {
-                    "type": "bool"
-                },
-                "sourceWebAppId": {
-                    "type": "string"
-                },
-                "hostingEnvironment": {
-                    "type": "string"
-                },
-                "appSettingsOverrides": {},
-                "configureLoadBalancing": {
-                    "type": "bool"
-                },
-                "trafficManagerProfileId": {
-                    "type": "string"
-                },
-                "trafficManagerProfileName": {
-                    "type": "string"
-                },
-                "ignoreQuotas": {
-                    "type": "bool"
-                }
-            }
-        },
-        "snapshotInfo": {
-            "parameters": {
-                "snapshotTime": {
-                    "type": "string"
-                },
-                "overwrite": {
-                    "type": "bool"
-                },
-                "recoverConfiguration": {
-                    "type": "bool"
-                },
-                "ignoreConflictingHostNames": {
-                    "type": "bool"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "kind": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "recoveryTarget": {
-                    "$ref": "#/$keywords/recoveryTarget"
-                }
-            }
-        },
-        "recoveryTarget": {
-            "parameters": {
-                "location": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "resourceGroup": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "isDefaultContainer": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "defaultHostName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "slotSwapStatus": {
-            "parameters": {
-                "timestampUtc": {},
-                "sourceSlotName": {
-                    "type": "string"
-                },
-                "destinationSlotName": {
-                    "type": "string"
-                }
-            }
-        },
-        "httpsOnly": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "isPushEnabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "tagWhitelistJson": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "tagsRequiringAuth": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "dynamicTagsJson": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "id": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceBusNamespace": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "relayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "relayArmUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hostname": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "port": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "sendKeyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "sendKeyValue": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceBusSuffix": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vnetResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "certThumbprint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "certBlob": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "routes": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "startAddress": {
-                    "type": "string"
-                },
-                "endAddress": {
-                    "type": "string"
-                },
-                "routeType": {
-                    "enum": [
-                        "DEFAULT",
-                        "INHERITED",
-                        "STATIC"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "kind": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "resyncRequired": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "dnsServers": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vnetName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vpnPackageUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "hostNames": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "sites": {
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "hostNames": {
-                "$ref": "#/$keywords/hostNames"
-            },
-            "repositorySiteName": {
-                "$ref": "#/$keywords/repositorySiteName"
-            },
-            "usageState": {
-                "$ref": "#/$keywords/usageState"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "enabledHostNames": {
-                "$ref": "#/$keywords/enabledHostNames"
-            },
-            "availabilityState": {
-                "$ref": "#/$keywords/availabilityState"
-            },
-            "hostNameSslStates": {
-                "$ref": "#/$keywords/hostNameSslStates"
-            },
-            "serverFarmId": {
-                "$ref": "#/$keywords/serverFarmId"
-            },
-            "reserved": {
-                "$ref": "#/$keywords/reserved"
-            },
-            "lastModifiedTimeUtc": {
-                "$ref": "#/$keywords/lastModifiedTimeUtc"
-            },
-            "siteConfig": {
-                "$ref": "#/$keywords/siteConfig"
-            },
-            "trafficManagerHostNames": {
-                "$ref": "#/$keywords/trafficManagerHostNames"
-            },
-            "scmSiteAlsoStopped": {
-                "$ref": "#/$keywords/scmSiteAlsoStopped"
-            },
-            "targetSwapSlot": {
-                "$ref": "#/$keywords/targetSwapSlot"
-            },
-            "hostingEnvironmentProfile": {
-                "$ref": "#/$keywords/hostingEnvironmentProfile"
-            },
-            "clientAffinityEnabled": {
-                "$ref": "#/$keywords/clientAffinityEnabled"
-            },
-            "clientCertEnabled": {
-                "$ref": "#/$keywords/clientCertEnabled"
-            },
-            "hostNamesDisabled": {
-                "$ref": "#/$keywords/hostNamesDisabled"
-            },
-            "outboundIpAddresses": {
-                "$ref": "#/$keywords/outboundIpAddresses"
-            },
-            "possibleOutboundIpAddresses": {
-                "$ref": "#/$keywords/possibleOutboundIpAddresses"
-            },
-            "containerSize": {
-                "$ref": "#/$keywords/containerSize"
-            },
-            "dailyMemoryTimeQuota": {
-                "$ref": "#/$keywords/dailyMemoryTimeQuota"
-            },
-            "suspendedTill": {
-                "$ref": "#/$keywords/suspendedTill"
-            },
-            "maxNumberOfWorkers": {
-                "$ref": "#/$keywords/maxNumberOfWorkers"
-            },
-            "cloningInfo": {
-                "$ref": "#/$keywords/cloningInfo"
-            },
-            "snapshotInfo": {
-                "$ref": "#/$keywords/snapshotInfo"
-            },
-            "resourceGroup": {
-                "$ref": "#/$keywords/resourceGroup"
-            },
-            "isDefaultContainer": {
-                "$ref": "#/$keywords/isDefaultContainer"
-            },
-            "defaultHostName": {
-                "$ref": "#/$keywords/defaultHostName"
-            },
-            "slotSwapStatus": {
-                "$ref": "#/$keywords/slotSwapStatus"
-            },
-            "httpsOnly": {
-                "$ref": "#/$keywords/httpsOnly"
-            }
-        },
-        "sites/config": {
-            "isPushEnabled": {
-                "$ref": "#/$keywords/isPushEnabled"
-            },
-            "tagWhitelistJson": {
-                "$ref": "#/$keywords/tagWhitelistJson"
-            },
-            "tagsRequiringAuth": {
-                "$ref": "#/$keywords/tagsRequiringAuth"
-            },
-            "dynamicTagsJson": {
-                "$ref": "#/$keywords/dynamicTagsJson"
-            }
-        },
-        "sites/domainOwnershipIdentifiers": {
-            "id": {
-                "$ref": "#/$keywords/id"
-            }
-        },
-        "sites/hybridConnectionNamespaces/relays": {
-            "serviceBusNamespace": {
-                "$ref": "#/$keywords/serviceBusNamespace"
-            },
-            "relayName": {
-                "$ref": "#/$keywords/relayName"
-            },
-            "relayArmUri": {
-                "$ref": "#/$keywords/relayArmUri"
-            },
-            "hostname": {
-                "$ref": "#/$keywords/hostname"
-            },
-            "port": {
-                "$ref": "#/$keywords/port"
-            },
-            "sendKeyName": {
-                "$ref": "#/$keywords/sendKeyName"
-            },
-            "sendKeyValue": {
-                "$ref": "#/$keywords/sendKeyValue"
-            },
-            "serviceBusSuffix": {
-                "$ref": "#/$keywords/serviceBusSuffix"
-            }
-        },
-        "sites/slots": {
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "hostNames": {
-                "$ref": "#/$keywords/hostNames"
-            },
-            "repositorySiteName": {
-                "$ref": "#/$keywords/repositorySiteName"
-            },
-            "usageState": {
-                "$ref": "#/$keywords/usageState"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            },
-            "enabledHostNames": {
-                "$ref": "#/$keywords/enabledHostNames"
-            },
-            "availabilityState": {
-                "$ref": "#/$keywords/availabilityState"
-            },
-            "hostNameSslStates": {
-                "$ref": "#/$keywords/hostNameSslStates"
-            },
-            "serverFarmId": {
-                "$ref": "#/$keywords/serverFarmId"
-            },
-            "reserved": {
-                "$ref": "#/$keywords/reserved"
-            },
-            "lastModifiedTimeUtc": {
-                "$ref": "#/$keywords/lastModifiedTimeUtc"
-            },
-            "siteConfig": {
-                "$ref": "#/$keywords/siteConfig"
-            },
-            "trafficManagerHostNames": {
-                "$ref": "#/$keywords/trafficManagerHostNames"
-            },
-            "scmSiteAlsoStopped": {
-                "$ref": "#/$keywords/scmSiteAlsoStopped"
-            },
-            "targetSwapSlot": {
-                "$ref": "#/$keywords/targetSwapSlot"
-            },
-            "hostingEnvironmentProfile": {
-                "$ref": "#/$keywords/hostingEnvironmentProfile"
-            },
-            "clientAffinityEnabled": {
-                "$ref": "#/$keywords/clientAffinityEnabled"
-            },
-            "clientCertEnabled": {
-                "$ref": "#/$keywords/clientCertEnabled"
-            },
-            "hostNamesDisabled": {
-                "$ref": "#/$keywords/hostNamesDisabled"
-            },
-            "outboundIpAddresses": {
-                "$ref": "#/$keywords/outboundIpAddresses"
-            },
-            "possibleOutboundIpAddresses": {
-                "$ref": "#/$keywords/possibleOutboundIpAddresses"
-            },
-            "containerSize": {
-                "$ref": "#/$keywords/containerSize"
-            },
-            "dailyMemoryTimeQuota": {
-                "$ref": "#/$keywords/dailyMemoryTimeQuota"
-            },
-            "suspendedTill": {
-                "$ref": "#/$keywords/suspendedTill"
-            },
-            "maxNumberOfWorkers": {
-                "$ref": "#/$keywords/maxNumberOfWorkers"
-            },
-            "cloningInfo": {
-                "$ref": "#/$keywords/cloningInfo"
-            },
-            "snapshotInfo": {
-                "$ref": "#/$keywords/snapshotInfo"
-            },
-            "resourceGroup": {
-                "$ref": "#/$keywords/resourceGroup"
-            },
-            "isDefaultContainer": {
-                "$ref": "#/$keywords/isDefaultContainer"
-            },
-            "defaultHostName": {
-                "$ref": "#/$keywords/defaultHostName"
-            },
-            "slotSwapStatus": {
-                "$ref": "#/$keywords/slotSwapStatus"
-            },
-            "httpsOnly": {
-                "$ref": "#/$keywords/httpsOnly"
-            }
-        },
-        "sites/slots/config": {
-            "isPushEnabled": {
-                "$ref": "#/$keywords/isPushEnabled"
-            },
-            "tagWhitelistJson": {
-                "$ref": "#/$keywords/tagWhitelistJson"
-            },
-            "tagsRequiringAuth": {
-                "$ref": "#/$keywords/tagsRequiringAuth"
-            },
-            "dynamicTagsJson": {
-                "$ref": "#/$keywords/dynamicTagsJson"
-            }
-        },
-        "sites/slots/domainOwnershipIdentifiers": {
-            "id": {
-                "$ref": "#/$keywords/id"
-            }
-        },
-        "sites/slots/hybridConnectionNamespaces/relays": {
-            "serviceBusNamespace": {
-                "$ref": "#/$keywords/serviceBusNamespace"
-            },
-            "relayName": {
-                "$ref": "#/$keywords/relayName"
-            },
-            "relayArmUri": {
-                "$ref": "#/$keywords/relayArmUri"
-            },
-            "hostname": {
-                "$ref": "#/$keywords/hostname"
-            },
-            "port": {
-                "$ref": "#/$keywords/port"
-            },
-            "sendKeyName": {
-                "$ref": "#/$keywords/sendKeyName"
-            },
-            "sendKeyValue": {
-                "$ref": "#/$keywords/sendKeyValue"
-            },
-            "serviceBusSuffix": {
-                "$ref": "#/$keywords/serviceBusSuffix"
-            }
-        },
-        "sites/slots/virtualNetworkConnections": {
-            "vnetResourceId": {
-                "$ref": "#/$keywords/vnetResourceId"
-            },
-            "certThumbprint": {
-                "$ref": "#/$keywords/certThumbprint"
-            },
-            "certBlob": {
-                "$ref": "#/$keywords/certBlob"
-            },
-            "routes": {
-                "$ref": "#/$keywords/routes"
-            },
-            "resyncRequired": {
-                "$ref": "#/$keywords/resyncRequired"
-            },
-            "dnsServers": {
-                "$ref": "#/$keywords/dnsServers"
-            }
-        },
-        "sites/slots/virtualNetworkConnections/gateways": {
-            "vnetName": {
-                "$ref": "#/$keywords/vnetName"
-            },
-            "vpnPackageUri": {
-                "$ref": "#/$keywords/vpnPackageUri"
-            }
-        },
-        "sites/virtualNetworkConnections": {
-            "vnetResourceId": {
-                "$ref": "#/$keywords/vnetResourceId"
-            },
-            "certThumbprint": {
-                "$ref": "#/$keywords/certThumbprint"
-            },
-            "certBlob": {
-                "$ref": "#/$keywords/certBlob"
-            },
-            "routes": {
-                "$ref": "#/$keywords/routes"
-            },
-            "resyncRequired": {
-                "$ref": "#/$keywords/resyncRequired"
-            },
-            "dnsServers": {
-                "$ref": "#/$keywords/dnsServers"
-            }
-        },
-        "sites/virtualNetworkConnections/gateways": {
-            "vnetName": {
-                "$ref": "#/$keywords/vnetName"
-            },
-            "vpnPackageUri": {
-                "$ref": "#/$keywords/vpnPackageUri"
-            }
+    "pfxBlob": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultSecretName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverFarmId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publishingUserName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publishingPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publishingPasswordHash": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publishingPasswordHashSalt": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "token": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tokenSecret": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "refreshToken": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "expirationTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "certificates": {
+      "hostNames": {
+        "$ref": "#/$keywords/hostNames"
+      },
+      "pfxBlob": {
+        "$ref": "#/$keywords/pfxBlob"
+      },
+      "password": {
+        "$ref": "#/$keywords/password"
+      },
+      "keyVaultId": {
+        "$ref": "#/$keywords/keyVaultId"
+      },
+      "keyVaultSecretName": {
+        "$ref": "#/$keywords/keyVaultSecretName"
+      },
+      "serverFarmId": {
+        "$ref": "#/$keywords/serverFarmId"
+      }
+    },
+    "publishingUsers": {
+      "name": {
+        "$ref": "#/$keywords/name"
+      },
+      "publishingUserName": {
+        "$ref": "#/$keywords/publishingUserName"
+      },
+      "publishingPassword": {
+        "$ref": "#/$keywords/publishingPassword"
+      },
+      "publishingPasswordHash": {
+        "$ref": "#/$keywords/publishingPasswordHash"
+      },
+      "publishingPasswordHashSalt": {
+        "$ref": "#/$keywords/publishingPasswordHashSalt"
+      }
+    },
+    "sourcecontrols": {
+      "name": {
+        "$ref": "#/$keywords/name_1"
+      },
+      "token": {
+        "$ref": "#/$keywords/token"
+      },
+      "tokenSecret": {
+        "$ref": "#/$keywords/tokenSecret"
+      },
+      "refreshToken": {
+        "$ref": "#/$keywords/refreshToken"
+      },
+      "expirationTime": {
+        "$ref": "#/$keywords/expirationTime"
+      }
+    }
+  }
 }

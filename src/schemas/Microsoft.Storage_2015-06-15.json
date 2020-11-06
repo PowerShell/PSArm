@@ -1,16 +1,25 @@
 {
-    "$keywords": {
-        "accountType": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "accountType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_LRS",
+            "Standard_ZRS",
+            "Standard_GRS",
+            "Standard_RAGRS",
+            "Premium_LRS"
+          ]
         }
-    },
-    "$resources": {
-        "storageAccounts": {
-            "accountType": {
-                "$ref": "#/$keywords/accountType"
-            }
-        }
+      }
     }
+  },
+  "$resources": {
+    "storageAccounts": {
+      "accountType": {
+        "$ref": "#/$keywords/accountType"
+      }
+    }
+  }
 }

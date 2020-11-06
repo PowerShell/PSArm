@@ -1,479 +1,365 @@
 {
-    "$keywords": {
-        "workspaceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "friendlyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "creationTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "keyVault": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "applicationInsights": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "containerRegistry": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageAccount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "discoveryUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Updating",
-                        "Creating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled"
-                    ]
-                }
-            }
-        },
-        "encryption": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            },
-            "body": {
-                "keyVaultProperties": {
-                    "$ref": "#/$keywords/keyVaultProperties"
-                }
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "friendlyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVault": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applicationInsights": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "containerRegistry": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccount": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "discoveryUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "encryption": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
         },
         "keyVaultProperties": {
-            "parameters": {
-                "keyVaultArmId": {
-                    "type": "string"
-                },
-                "keyIdentifier": {
-                    "type": "string"
-                },
-                "identityClientId": {
-                    "type": "string"
-                }
-            }
-        },
-        "hbiWorkspace": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "serviceProvisionedResourceGroup": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "privateLinkCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "imageBuildCompute": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "allowPublicAccessWhenBehindVnet": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "privateEndpointConnections": {
-            "parameters": {
-                "provisioningState": {
-                    "enum": [
-                        "Succeeded",
-                        "Creating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "location": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "tags": {}
-            },
-            "body": {
-                "privateEndpoint": {
-                    "$ref": "#/$keywords/privateEndpoint"
-                },
-                "privateLinkServiceConnectionState": {
-                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
-                },
-                "identity": {
-                    "$ref": "#/$keywords/identity"
-                },
-                "sku": {
-                    "$ref": "#/$keywords/sku"
-                }
-            },
-            "array": true
-        },
-        "privateEndpoint": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "privateLinkServiceConnectionState": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Pending",
-                        "Approved",
-                        "Rejected",
-                        "Disconnected",
-                        "Timeout"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                },
-                "actionsRequired": {
-                    "type": "string"
-                }
-            }
-        },
-        "identity": {
-            "parameters": {
-                "principalId": {
-                    "type": "string"
-                },
-                "tenantId": {
-                    "type": "string"
-                },
-                "type": {},
-                "userAssignedIdentities": {}
-            }
-        },
-        "sku": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "tier": {
-                    "type": "string"
-                }
-            }
-        },
-        "sharedPrivateLinkResources": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "privateLinkResourceId": {
-                    "type": "string"
-                },
-                "groupId": {
-                    "type": "string"
-                },
-                "requestMessage": {
-                    "type": "string"
-                },
-                "status": {
-                    "enum": [
-                        "Pending",
-                        "Approved",
-                        "Rejected",
-                        "Disconnected",
-                        "Timeout"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "computeType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "AKS",
-                        "AmlCompute",
-                        "DataFactory",
-                        "VirtualMachine",
-                        "HDInsight",
-                        "Databricks",
-                        "DataLakeAnalytics"
-                    ]
-                }
-            }
-        },
-        "computeLocation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdOn": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "modifiedOn": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "resourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningErrors": {
-            "body": {
-                "error": {
-                    "$ref": "#/$keywords/error"
-                }
-            },
-            "array": true
-        },
-        "error": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            }
-        },
-        "details": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "isAttachedCompute": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Creating",
-                        "Deleting",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "linkedWorkspaceResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "userAssignedIdentityResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/keyVaultProperties"
         }
+      }
     },
-    "$resources": {
-        "workspaces": {
-            "workspaceId": {
-                "$ref": "#/$keywords/workspaceId"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "creationTime": {
-                "$ref": "#/$keywords/creationTime"
-            },
-            "keyVault": {
-                "$ref": "#/$keywords/keyVault"
-            },
-            "applicationInsights": {
-                "$ref": "#/$keywords/applicationInsights"
-            },
-            "containerRegistry": {
-                "$ref": "#/$keywords/containerRegistry"
-            },
-            "storageAccount": {
-                "$ref": "#/$keywords/storageAccount"
-            },
-            "discoveryUrl": {
-                "$ref": "#/$keywords/discoveryUrl"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "encryption": {
-                "$ref": "#/$keywords/encryption"
-            },
-            "hbiWorkspace": {
-                "$ref": "#/$keywords/hbiWorkspace"
-            },
-            "serviceProvisionedResourceGroup": {
-                "$ref": "#/$keywords/serviceProvisionedResourceGroup"
-            },
-            "privateLinkCount": {
-                "$ref": "#/$keywords/privateLinkCount"
-            },
-            "imageBuildCompute": {
-                "$ref": "#/$keywords/imageBuildCompute"
-            },
-            "allowPublicAccessWhenBehindVnet": {
-                "$ref": "#/$keywords/allowPublicAccessWhenBehindVnet"
-            },
-            "privateEndpointConnections": {
-                "$ref": "#/$keywords/privateEndpointConnections"
-            },
-            "sharedPrivateLinkResources": {
-                "$ref": "#/$keywords/sharedPrivateLinkResources"
-            }
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "keyVaultProperties": {
+      "body": {
+        "keyVaultArmId": {
+          "$ref": "#/$keywords/keyVaultArmId"
         },
-        "workspaces/computes": {
-            "computeType": {
-                "$ref": "#/$keywords/computeType"
-            },
-            "computeLocation": {
-                "$ref": "#/$keywords/computeLocation"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_2"
-            },
-            "createdOn": {
-                "$ref": "#/$keywords/createdOn"
-            },
-            "modifiedOn": {
-                "$ref": "#/$keywords/modifiedOn"
-            },
-            "resourceId": {
-                "$ref": "#/$keywords/resourceId"
-            },
-            "provisioningErrors": {
-                "$ref": "#/$keywords/provisioningErrors"
-            },
-            "isAttachedCompute": {
-                "$ref": "#/$keywords/isAttachedCompute"
-            }
+        "keyIdentifier": {
+          "$ref": "#/$keywords/keyIdentifier"
         },
-        "workspaces/privateEndpointConnections": {
-            "privateEndpoint": {
-                "$ref": "#/$keywords/privateEndpoint"
-            },
-            "privateLinkServiceConnectionState": {
-                "$ref": "#/$keywords/privateLinkServiceConnectionState"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            }
+        "identityClientId": {
+          "$ref": "#/$keywords/identityClientId"
+        }
+      }
+    },
+    "keyVaultArmId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyIdentifier": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "identityClientId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hbiWorkspace": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "imageBuildCompute": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowPublicAccessWhenBehindVnet": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "sharedPrivateLinkResources": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
-        "workspaces/linkedWorkspaces": {
-            "linkedWorkspaceResourceId": {
-                "$ref": "#/$keywords/linkedWorkspaceResourceId"
-            },
-            "userAssignedIdentityResourceId": {
-                "$ref": "#/$keywords/userAssignedIdentityResourceId"
-            }
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "privateLinkResourceId": {
+          "$ref": "#/$keywords/privateLinkResourceId"
         },
-        "workspaces/services": {},
-        "workspaces/datasets": {},
-        "workspaces/datastores": {}
+        "groupId": {
+          "$ref": "#/$keywords/groupId"
+        },
+        "requestMessage": {
+          "$ref": "#/$keywords/requestMessage"
+        },
+        "status": {
+          "$ref": "#/$keywords/status_1"
+        }
+      }
+    },
+    "privateLinkResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "groupId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requestMessage": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Rejected",
+            "Disconnected",
+            "Timeout"
+          ]
+        }
+      }
+    },
+    "computeLocation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateEndpoint": {
+      "body": {}
+    },
+    "privateLinkServiceConnectionState": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status_1_2"
+        },
+        "description": {
+          "$ref": "#/$keywords/description_1_2"
+        },
+        "actionsRequired": {
+          "$ref": "#/$keywords/actionsRequired"
+        }
+      }
+    },
+    "status_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "Approved",
+            "Rejected",
+            "Disconnected",
+            "Timeout"
+          ]
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "actionsRequired": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Creating",
+            "Deleting",
+            "Failed"
+          ]
+        }
+      }
+    },
+    "linkedWorkspaceResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userAssignedIdentityResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "workspaces": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName"
+      },
+      "keyVault": {
+        "$ref": "#/$keywords/keyVault"
+      },
+      "applicationInsights": {
+        "$ref": "#/$keywords/applicationInsights"
+      },
+      "containerRegistry": {
+        "$ref": "#/$keywords/containerRegistry"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      },
+      "discoveryUrl": {
+        "$ref": "#/$keywords/discoveryUrl"
+      },
+      "encryption": {
+        "$ref": "#/$keywords/encryption"
+      },
+      "hbiWorkspace": {
+        "$ref": "#/$keywords/hbiWorkspace"
+      },
+      "imageBuildCompute": {
+        "$ref": "#/$keywords/imageBuildCompute"
+      },
+      "allowPublicAccessWhenBehindVnet": {
+        "$ref": "#/$keywords/allowPublicAccessWhenBehindVnet"
+      },
+      "sharedPrivateLinkResources": {
+        "$ref": "#/$keywords/sharedPrivateLinkResources"
+      }
+    },
+    "workspaces/computes": {
+      "computeLocation": {
+        "$ref": "#/$keywords/computeLocation"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "resourceId": {
+        "$ref": "#/$keywords/resourceId"
+      }
+    },
+    "workspaces/privateEndpointConnections": {
+      "privateEndpoint": {
+        "$ref": "#/$keywords/privateEndpoint"
+      },
+      "privateLinkServiceConnectionState": {
+        "$ref": "#/$keywords/privateLinkServiceConnectionState"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      }
+    },
+    "workspaces/linkedWorkspaces": {
+      "linkedWorkspaceResourceId": {
+        "$ref": "#/$keywords/linkedWorkspaceResourceId"
+      },
+      "userAssignedIdentityResourceId": {
+        "$ref": "#/$keywords/userAssignedIdentityResourceId"
+      }
+    },
+    "workspaces/services": {},
+    "workspaces/datasets": {},
+    "workspaces/datastores": {}
+  }
 }

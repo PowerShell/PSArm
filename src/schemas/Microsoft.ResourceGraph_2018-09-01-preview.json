@@ -1,44 +1,28 @@
 {
-    "$keywords": {
-        "timeModified": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "query": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "resultKind": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "queries": {
-            "timeModified": {
-                "$ref": "#/$keywords/timeModified"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "query": {
-                "$ref": "#/$keywords/query"
-            },
-            "resultKind": {
-                "$ref": "#/$keywords/resultKind"
-            }
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     }
+  },
+  "$resources": {
+    "queries": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "query": {
+        "$ref": "#/$keywords/query"
+      }
+    }
+  }
 }

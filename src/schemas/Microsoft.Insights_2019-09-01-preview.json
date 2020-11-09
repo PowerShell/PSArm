@@ -1,0 +1,91 @@
+{
+  "$keywords": {
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "body": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "related": {
+      "body": {
+        "categories": {
+          "$ref": "#/$keywords/categories"
+        },
+        "resourceTypes": {
+          "$ref": "#/$keywords/resourceTypes"
+        },
+        "solutions": {
+          "$ref": "#/$keywords/solutions"
+        }
+      }
+    },
+    "categories": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "resourceTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "solutions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "tags": {
+      "body": {}
+    },
+    "properties": {
+      "body": {}
+    }
+  },
+  "$resources": {
+    "queryPacks": {},
+    "queryPacks/queries": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "body": {
+        "$ref": "#/$keywords/body"
+      },
+      "related": {
+        "$ref": "#/$keywords/related"
+      },
+      "tags": {
+        "$ref": "#/$keywords/tags"
+      },
+      "properties": {
+        "$ref": "#/$keywords/properties"
+      }
+    }
+  }
+}

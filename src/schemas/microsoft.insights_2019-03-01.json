@@ -1,0 +1,496 @@
+{
+  "$keywords": {
+    "groupShortName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "emailReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "emailAddress": {
+          "$ref": "#/$keywords/emailAddress"
+        },
+        "useCommonAlertSchema": {
+          "$ref": "#/$keywords/useCommonAlertSchema"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emailAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useCommonAlertSchema": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "smsReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "countryCode": {
+          "$ref": "#/$keywords/countryCode"
+        },
+        "phoneNumber": {
+          "$ref": "#/$keywords/phoneNumber"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "countryCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phoneNumber": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "webhookReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "serviceUri": {
+          "$ref": "#/$keywords/serviceUri"
+        },
+        "useCommonAlertSchema": {
+          "$ref": "#/$keywords/useCommonAlertSchema_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useCommonAlertSchema_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "itsmReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "workspaceId": {
+          "$ref": "#/$keywords/workspaceId"
+        },
+        "connectionId": {
+          "$ref": "#/$keywords/connectionId"
+        },
+        "ticketConfiguration": {
+          "$ref": "#/$keywords/ticketConfiguration"
+        },
+        "region": {
+          "$ref": "#/$keywords/region"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "workspaceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "connectionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ticketConfiguration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "region": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "azureAppPushReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4"
+        },
+        "emailAddress": {
+          "$ref": "#/$keywords/emailAddress_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emailAddress_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "automationRunbookReceivers": {
+      "body": {
+        "automationAccountId": {
+          "$ref": "#/$keywords/automationAccountId"
+        },
+        "runbookName": {
+          "$ref": "#/$keywords/runbookName"
+        },
+        "webhookResourceId": {
+          "$ref": "#/$keywords/webhookResourceId"
+        },
+        "isGlobalRunbook": {
+          "$ref": "#/$keywords/isGlobalRunbook"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5"
+        },
+        "serviceUri": {
+          "$ref": "#/$keywords/serviceUri_1"
+        },
+        "useCommonAlertSchema": {
+          "$ref": "#/$keywords/useCommonAlertSchema_1_2"
+        }
+      },
+      "array": true
+    },
+    "automationAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runbookName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "webhookResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isGlobalRunbook": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "name_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceUri_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useCommonAlertSchema_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "voiceReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6"
+        },
+        "countryCode": {
+          "$ref": "#/$keywords/countryCode_1"
+        },
+        "phoneNumber": {
+          "$ref": "#/$keywords/phoneNumber_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "countryCode_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "phoneNumber_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logicAppReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6_7"
+        },
+        "resourceId": {
+          "$ref": "#/$keywords/resourceId"
+        },
+        "callbackUrl": {
+          "$ref": "#/$keywords/callbackUrl"
+        },
+        "useCommonAlertSchema": {
+          "$ref": "#/$keywords/useCommonAlertSchema_1_2_3"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6_7": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "callbackUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useCommonAlertSchema_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "azureFunctionReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6_7_8"
+        },
+        "functionAppResourceId": {
+          "$ref": "#/$keywords/functionAppResourceId"
+        },
+        "functionName": {
+          "$ref": "#/$keywords/functionName"
+        },
+        "httpTriggerUrl": {
+          "$ref": "#/$keywords/httpTriggerUrl"
+        },
+        "useCommonAlertSchema": {
+          "$ref": "#/$keywords/useCommonAlertSchema_1_2_3_4"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6_7_8": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "functionAppResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "functionName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "httpTriggerUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useCommonAlertSchema_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "armRoleReceivers": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4_5_6_7_8_9"
+        },
+        "roleId": {
+          "$ref": "#/$keywords/roleId"
+        },
+        "useCommonAlertSchema": {
+          "$ref": "#/$keywords/useCommonAlertSchema_1_2_3_4_5"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4_5_6_7_8_9": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "roleId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useCommonAlertSchema_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    }
+  },
+  "$resources": {
+    "actionGroups": {
+      "groupShortName": {
+        "$ref": "#/$keywords/groupShortName"
+      },
+      "enabled": {
+        "$ref": "#/$keywords/enabled"
+      },
+      "emailReceivers": {
+        "$ref": "#/$keywords/emailReceivers"
+      },
+      "smsReceivers": {
+        "$ref": "#/$keywords/smsReceivers"
+      },
+      "webhookReceivers": {
+        "$ref": "#/$keywords/webhookReceivers"
+      },
+      "itsmReceivers": {
+        "$ref": "#/$keywords/itsmReceivers"
+      },
+      "azureAppPushReceivers": {
+        "$ref": "#/$keywords/azureAppPushReceivers"
+      },
+      "automationRunbookReceivers": {
+        "$ref": "#/$keywords/automationRunbookReceivers"
+      },
+      "voiceReceivers": {
+        "$ref": "#/$keywords/voiceReceivers"
+      },
+      "logicAppReceivers": {
+        "$ref": "#/$keywords/logicAppReceivers"
+      },
+      "azureFunctionReceivers": {
+        "$ref": "#/$keywords/azureFunctionReceivers"
+      },
+      "armRoleReceivers": {
+        "$ref": "#/$keywords/armRoleReceivers"
+      }
+    }
+  }
+}

@@ -39,7 +39,7 @@ namespace PSArm.Commands
                 ContentVersion = ContentVersion,
             };
 
-            (ScriptBlock parameterizedBody, ArmParameter[] armParameters, ArmVariable[] armVariables) = ParameterizeScriptBlock(Body);
+            (ScriptBlock parameterizedBody, List<ArmParameter> armParameters, List<ArmVariable> armVariables) = ParameterizeScriptBlock(Body);
 
             armTemplate.Parameters = armParameters;
             armTemplate.Variables = armVariables;
@@ -64,7 +64,7 @@ namespace PSArm.Commands
             WriteObject(armTemplate);
         }
 
-        private (ScriptBlock, ArmParameter[], ArmVariable[]) ParameterizeScriptBlock(ScriptBlock sb)
+        private (ScriptBlock, List<ArmParameter>, List<ArmVariable>) ParameterizeScriptBlock(ScriptBlock sb)
         {
 
             var ast = (ScriptBlockAst)sb.Ast;
@@ -130,7 +130,7 @@ namespace PSArm.Commands
                 (NamedBlockAst)ast.EndBlock?.Copy(),
                 (NamedBlockAst)ast.DynamicParamBlock?.Copy());
 
-            return (newScriptBlockAst.GetScriptBlock(), armParameters.ToArray(), armVariables.ToArray());
+            return (newScriptBlockAst.GetScriptBlock(), armParameters, armVariables);
         }
 
         private bool TryGetArmParameterFromPSParameter(
@@ -176,12 +176,12 @@ namespace PSArm.Commands
                 if (attributeType == typeof(ValidateSetAttribute)
                     || attribute.TypeName.FullName.Is("ValidateSetAttribute"))
                 {
-                    var allowedValues = new List<object>();
+                    var allowedValues = new List<IArmValue>();
                     foreach (ExpressionAst allowedExpression in attribute.PositionalArguments)
                     {
-                        allowedValues.Add(allowedExpression.SafeGetValue());
+                        allowedValues.Add(ArmTypeConversion.Convert(allowedExpression.SafeGetValue()));
                     }
-                    armParameter.AllowedValues = allowedValues.ToArray();
+                    armParameter.AllowedValues = allowedValues;
                 }
             }
 
@@ -271,7 +271,7 @@ namespace PSArm.Commands
             throw new ArgumentException($"Cannot convert typename '{typeName}' to ARM parameter type");
         }
 
-        private IArmExpression GetDefaultValue(ExpressionAst defaultValue)
+        private IArmValue GetDefaultValue(ExpressionAst defaultValue)
         {
             if (defaultValue == null)
             {

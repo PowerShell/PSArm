@@ -1,228 +1,120 @@
 {
-    "$keywords": {
-        "workspaceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "friendlyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "creationTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "batchaiWorkspace": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "keyVault": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "applicationInsights": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "containerRegistry": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageAccount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "discoveryUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Unknown",
-                        "Updating",
-                        "Creating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled"
-                    ]
-                }
-            }
-        },
-        "computeType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "AKS",
-                        "BatchAI",
-                        "DataFactory",
-                        "VirtualMachine",
-                        "HDInsight"
-                    ]
-                }
-            }
-        },
-        "computeLocation": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdOn": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "modifiedOn": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "resourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningErrors": {
-            "body": {
-                "error": {
-                    "$ref": "#/$keywords/error"
-                }
-            },
-            "array": true
-        },
-        "error": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            }
-        },
-        "details": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "workspaces": {
-            "workspaceId": {
-                "$ref": "#/$keywords/workspaceId"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "creationTime": {
-                "$ref": "#/$keywords/creationTime"
-            },
-            "batchaiWorkspace": {
-                "$ref": "#/$keywords/batchaiWorkspace"
-            },
-            "keyVault": {
-                "$ref": "#/$keywords/keyVault"
-            },
-            "applicationInsights": {
-                "$ref": "#/$keywords/applicationInsights"
-            },
-            "containerRegistry": {
-                "$ref": "#/$keywords/containerRegistry"
-            },
-            "storageAccount": {
-                "$ref": "#/$keywords/storageAccount"
-            },
-            "discoveryUrl": {
-                "$ref": "#/$keywords/discoveryUrl"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "workspaces/computes": {
-            "computeType": {
-                "$ref": "#/$keywords/computeType"
-            },
-            "computeLocation": {
-                "$ref": "#/$keywords/computeLocation"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_2"
-            },
-            "createdOn": {
-                "$ref": "#/$keywords/createdOn"
-            },
-            "modifiedOn": {
-                "$ref": "#/$keywords/modifiedOn"
-            },
-            "resourceId": {
-                "$ref": "#/$keywords/resourceId"
-            },
-            "provisioningErrors": {
-                "$ref": "#/$keywords/provisioningErrors"
-            }
+    "friendlyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "batchaiWorkspace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVault": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applicationInsights": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "containerRegistry": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccount": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "discoveryUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "computeLocation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "workspaces": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName"
+      },
+      "batchaiWorkspace": {
+        "$ref": "#/$keywords/batchaiWorkspace"
+      },
+      "keyVault": {
+        "$ref": "#/$keywords/keyVault"
+      },
+      "applicationInsights": {
+        "$ref": "#/$keywords/applicationInsights"
+      },
+      "containerRegistry": {
+        "$ref": "#/$keywords/containerRegistry"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      },
+      "discoveryUrl": {
+        "$ref": "#/$keywords/discoveryUrl"
+      }
+    },
+    "workspaces/computes": {
+      "computeLocation": {
+        "$ref": "#/$keywords/computeLocation"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "resourceId": {
+        "$ref": "#/$keywords/resourceId"
+      }
+    }
+  }
 }

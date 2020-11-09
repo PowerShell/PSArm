@@ -1,242 +1,159 @@
 {
-    "$keywords": {
-        "protocol": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "NotSpecified",
-                        "Parity",
-                        "Quorum",
-                        "Corda"
-                    ]
-                }
-            }
-        },
-        "validatorNodesSku": {
-            "parameters": {
-                "capacity": {
-                    "type": "int"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "NotSpecified",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Stale"
-                    ]
-                }
-            }
-        },
-        "dns": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "userName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "password": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "consortium": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "consortiumManagementAccountAddress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "consortiumManagementAccountPassword": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "consortiumRole": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "consortiumMemberDisplayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "rootContractAddress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "publicKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "firewallRules": {
-            "parameters": {
-                "ruleName": {
-                    "type": "string"
-                },
-                "startIpAddress": {
-                    "type": "string"
-                },
-                "endIpAddress": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "NotSpecified",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "dns_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "publicKey_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "userName_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "password_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "firewallRules_2": {
-            "parameters": {
-                "ruleName": {
-                    "type": "string"
-                },
-                "startIpAddress": {
-                    "type": "string"
-                },
-                "endIpAddress": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "protocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "Parity",
+            "Quorum",
+            "Corda"
+          ]
         }
+      }
     },
-    "$resources": {
-        "blockchainMembers": {
-            "protocol": {
-                "$ref": "#/$keywords/protocol"
-            },
-            "validatorNodesSku": {
-                "$ref": "#/$keywords/validatorNodesSku"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "dns": {
-                "$ref": "#/$keywords/dns"
-            },
-            "userName": {
-                "$ref": "#/$keywords/userName"
-            },
-            "password": {
-                "$ref": "#/$keywords/password"
-            },
-            "consortium": {
-                "$ref": "#/$keywords/consortium"
-            },
-            "consortiumManagementAccountAddress": {
-                "$ref": "#/$keywords/consortiumManagementAccountAddress"
-            },
-            "consortiumManagementAccountPassword": {
-                "$ref": "#/$keywords/consortiumManagementAccountPassword"
-            },
-            "consortiumRole": {
-                "$ref": "#/$keywords/consortiumRole"
-            },
-            "consortiumMemberDisplayName": {
-                "$ref": "#/$keywords/consortiumMemberDisplayName"
-            },
-            "rootContractAddress": {
-                "$ref": "#/$keywords/rootContractAddress"
-            },
-            "publicKey": {
-                "$ref": "#/$keywords/publicKey"
-            },
-            "firewallRules": {
-                "$ref": "#/$keywords/firewallRules"
-            }
-        },
-        "blockchainMembers/transactionNodes": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "dns": {
-                "$ref": "#/$keywords/dns_2"
-            },
-            "publicKey": {
-                "$ref": "#/$keywords/publicKey_2"
-            },
-            "userName": {
-                "$ref": "#/$keywords/userName_2"
-            },
-            "password": {
-                "$ref": "#/$keywords/password_2"
-            },
-            "firewallRules": {
-                "$ref": "#/$keywords/firewallRules_2"
-            }
+    "validatorNodesSku": {
+      "body": {
+        "capacity": {
+          "$ref": "#/$keywords/capacity"
         }
+      }
+    },
+    "capacity": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "consortium": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "consortiumManagementAccountPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "consortiumRole": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "consortiumMemberDisplayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "firewallRules": {
+      "body": {
+        "ruleName": {
+          "$ref": "#/$keywords/ruleName"
+        },
+        "startIpAddress": {
+          "$ref": "#/$keywords/startIpAddress"
+        },
+        "endIpAddress": {
+          "$ref": "#/$keywords/endIpAddress"
+        }
+      },
+      "array": true
+    },
+    "ruleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "startIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "firewallRules_1": {
+      "body": {
+        "ruleName": {
+          "$ref": "#/$keywords/ruleName"
+        },
+        "startIpAddress": {
+          "$ref": "#/$keywords/startIpAddress"
+        },
+        "endIpAddress": {
+          "$ref": "#/$keywords/endIpAddress"
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "blockchainMembers": {
+      "protocol": {
+        "$ref": "#/$keywords/protocol"
+      },
+      "validatorNodesSku": {
+        "$ref": "#/$keywords/validatorNodesSku"
+      },
+      "password": {
+        "$ref": "#/$keywords/password"
+      },
+      "consortium": {
+        "$ref": "#/$keywords/consortium"
+      },
+      "consortiumManagementAccountPassword": {
+        "$ref": "#/$keywords/consortiumManagementAccountPassword"
+      },
+      "consortiumRole": {
+        "$ref": "#/$keywords/consortiumRole"
+      },
+      "consortiumMemberDisplayName": {
+        "$ref": "#/$keywords/consortiumMemberDisplayName"
+      },
+      "firewallRules": {
+        "$ref": "#/$keywords/firewallRules"
+      }
+    },
+    "blockchainMembers/transactionNodes": {
+      "password": {
+        "$ref": "#/$keywords/password_1"
+      },
+      "firewallRules": {
+        "$ref": "#/$keywords/firewallRules_1"
+      }
+    }
+  }
 }

@@ -1,28 +1,28 @@
 {
-    "$keywords": {
-        "suppressionId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "ttl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "suppressionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "recommendations/suppressions": {
-            "suppressionId": {
-                "$ref": "#/$keywords/suppressionId"
-            },
-            "ttl": {
-                "$ref": "#/$keywords/ttl"
-            }
+    "ttl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     }
+  },
+  "$resources": {
+    "recommendations/suppressions": {
+      "suppressionId": {
+        "$ref": "#/$keywords/suppressionId"
+      },
+      "ttl": {
+        "$ref": "#/$keywords/ttl"
+      }
+    }
+  }
 }

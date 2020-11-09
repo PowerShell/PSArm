@@ -1,94 +1,204 @@
 {
-    "$keywords": {
-        "attestationPolicy": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "policySigningCertificates": {
-            "body": {
-                "keys": {
-                    "$ref": "#/$keywords/keys"
-                }
-            }
-        },
+  "$keywords": {
+    "attestationPolicy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "policySigningCertificates": {
+      "body": {
         "keys": {
-            "parameters": {
-                "alg": {
-                    "type": "string"
-                },
-                "crv": {
-                    "type": "string"
-                },
-                "d": {
-                    "type": "string"
-                },
-                "dp": {
-                    "type": "string"
-                },
-                "dq": {
-                    "type": "string"
-                },
-                "e": {
-                    "type": "string"
-                },
-                "k": {
-                    "type": "string"
-                },
-                "kid": {
-                    "type": "string"
-                },
-                "kty": {
-                    "type": "string"
-                },
-                "n": {
-                    "type": "string"
-                },
-                "p": {
-                    "type": "string"
-                },
-                "q": {
-                    "type": "string"
-                },
-                "qi": {
-                    "type": "string"
-                },
-                "use": {
-                    "type": "string"
-                },
-                "x": {
-                    "type": "string"
-                },
-                "y": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "x5c": {
-                    "$ref": "#/$keywords/x5c"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/keys"
+        }
+      }
+    },
+    "keys": {
+      "body": {
+        "alg": {
+          "$ref": "#/$keywords/alg"
+        },
+        "crv": {
+          "$ref": "#/$keywords/crv"
+        },
+        "d": {
+          "$ref": "#/$keywords/d"
+        },
+        "dp": {
+          "$ref": "#/$keywords/dp"
+        },
+        "dq": {
+          "$ref": "#/$keywords/dq"
+        },
+        "e": {
+          "$ref": "#/$keywords/e"
+        },
+        "k": {
+          "$ref": "#/$keywords/k"
+        },
+        "kid": {
+          "$ref": "#/$keywords/kid"
+        },
+        "kty": {
+          "$ref": "#/$keywords/kty"
+        },
+        "n": {
+          "$ref": "#/$keywords/n"
+        },
+        "p": {
+          "$ref": "#/$keywords/p"
+        },
+        "q": {
+          "$ref": "#/$keywords/q"
+        },
+        "qi": {
+          "$ref": "#/$keywords/qi"
+        },
+        "use": {
+          "$ref": "#/$keywords/use"
+        },
+        "x": {
+          "$ref": "#/$keywords/x"
         },
         "x5c": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/x5c"
+        },
+        "y": {
+          "$ref": "#/$keywords/y"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "attestationProviders": {
-            "attestationPolicy": {
-                "$ref": "#/$keywords/attestationPolicy"
-            },
-            "policySigningCertificates": {
-                "$ref": "#/$keywords/policySigningCertificates"
-            }
+    "alg": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "crv": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "d": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dp": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dq": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "e": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "k": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "kid": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "kty": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "n": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "p": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "q": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "qi": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "use": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "x": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "x5c": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "y": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "attestationProviders": {
+      "attestationPolicy": {
+        "$ref": "#/$keywords/attestationPolicy"
+      },
+      "policySigningCertificates": {
+        "$ref": "#/$keywords/policySigningCertificates"
+      }
+    }
+  }
 }

@@ -1,117 +1,106 @@
 {
-    "$keywords": {
-        "friendlyName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "backupManagementType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "AzureIaasVM",
-                        "MAB",
-                        "DPM",
-                        "AzureBackupServer",
-                        "AzureSql",
-                        "AzureStorage",
-                        "AzureWorkload",
-                        "DefaultBackup"
-                    ]
-                }
-            }
-        },
-        "registrationStatus": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "healthStatus": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "containerType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "Unknown",
-                        "IaasVMContainer",
-                        "IaasVMServiceContainer",
-                        "DPMContainer",
-                        "AzureBackupServerContainer",
-                        "MABContainer",
-                        "Cluster",
-                        "AzureSqlContainer",
-                        "Windows",
-                        "VCenter",
-                        "VMAppContainer",
-                        "SQLAGWorkLoadContainer",
-                        "StorageContainer",
-                        "GenericContainer"
-                    ]
-                }
-            }
-        },
-        "storageModelType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "GeoRedundant",
-                        "LocallyRedundant"
-                    ]
-                }
-            }
-        },
-        "storageTypeState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Invalid",
-                        "Locked",
-                        "Unlocked"
-                    ]
-                }
-            }
+  "$keywords": {
+    "storageModelType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "GeoRedundant",
+            "LocallyRedundant"
+          ]
         }
+      }
     },
-    "$resources": {
-        "vaults/backupFabrics/protectionContainers": {
-            "friendlyName": {
-                "$ref": "#/$keywords/friendlyName"
-            },
-            "backupManagementType": {
-                "$ref": "#/$keywords/backupManagementType"
-            },
-            "registrationStatus": {
-                "$ref": "#/$keywords/registrationStatus"
-            },
-            "healthStatus": {
-                "$ref": "#/$keywords/healthStatus"
-            },
-            "containerType": {
-                "$ref": "#/$keywords/containerType"
-            }
-        },
-        "vaults/backupstorageconfig": {
-            "storageModelType": {
-                "$ref": "#/$keywords/storageModelType"
-            },
-            "storageType": {
-                "$ref": "#/$keywords/storageModelType"
-            },
-            "storageTypeState": {
-                "$ref": "#/$keywords/storageTypeState"
-            }
+    "storageType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "GeoRedundant",
+            "LocallyRedundant"
+          ]
         }
+      }
+    },
+    "storageTypeState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "Locked",
+            "Unlocked"
+          ]
+        }
+      }
+    },
+    "friendlyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "backupManagementType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Invalid",
+            "AzureIaasVM",
+            "MAB",
+            "DPM",
+            "AzureSql",
+            "AzureBackupServer",
+            "AzureWorkload",
+            "AzureStorage",
+            "DefaultBackup"
+          ]
+        }
+      }
+    },
+    "registrationStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "healthStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "vaults/backupstorageconfig": {
+      "storageModelType": {
+        "$ref": "#/$keywords/storageModelType"
+      },
+      "storageType": {
+        "$ref": "#/$keywords/storageType"
+      },
+      "storageTypeState": {
+        "$ref": "#/$keywords/storageTypeState"
+      }
+    },
+    "vaults/backupFabrics/protectionContainers": {
+      "friendlyName": {
+        "$ref": "#/$keywords/friendlyName"
+      },
+      "backupManagementType": {
+        "$ref": "#/$keywords/backupManagementType"
+      },
+      "registrationStatus": {
+        "$ref": "#/$keywords/registrationStatus"
+      },
+      "healthStatus": {
+        "$ref": "#/$keywords/healthStatus"
+      }
+    }
+  }
 }

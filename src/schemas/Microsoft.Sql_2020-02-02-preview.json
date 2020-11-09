@@ -1,0 +1,453 @@
+{
+  "$keywords": {
+    "managedInstanceCreateMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "PointInTimeRestore"
+          ]
+        }
+      }
+    },
+    "administratorLogin": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorLoginPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "licenseType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LicenseIncluded",
+            "BasePrice"
+          ]
+        }
+      }
+    },
+    "vCores": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageSizeInGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "collation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dnsZonePartner": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicDataEndpointEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "sourceManagedInstanceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "proxyOverride": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Proxy",
+            "Redirect",
+            "Default"
+          ]
+        }
+      }
+    },
+    "timezoneId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "instancePoolId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maintenanceConfigurationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "minimalTlsVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "GRS",
+            "LRS",
+            "ZRS"
+          ]
+        }
+      }
+    },
+    "collation_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "catalogCollation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DATABASE_DEFAULT",
+            "SQL_Latin1_General_CP1_CI_AS"
+          ]
+        }
+      }
+    },
+    "createMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "RestoreExternalBackup",
+            "PointInTimeRestore",
+            "Recovery",
+            "RestoreLongTermRetentionBackup"
+          ]
+        }
+      }
+    },
+    "storageContainerUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorableDroppedDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageContainerSasToken": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoverableDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "longTermRetentionBackupResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "autoCompleteRestore": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "lastBackupName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "azureADOnlyAuthentication": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "azureADOnlyAuthentication_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "groupMembers": {
+      "body": {
+        "serverId": {
+          "$ref": "#/$keywords/serverId"
+        }
+      },
+      "array": true
+    },
+    "serverId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "trustScopes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "GlobalTransactions"
+          ]
+        }
+      },
+      "array": true
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "retentionDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "diffBackupIntervalInHours": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    }
+  },
+  "$resources": {
+    "managedInstances": {
+      "managedInstanceCreateMode": {
+        "$ref": "#/$keywords/managedInstanceCreateMode"
+      },
+      "administratorLogin": {
+        "$ref": "#/$keywords/administratorLogin"
+      },
+      "administratorLoginPassword": {
+        "$ref": "#/$keywords/administratorLoginPassword"
+      },
+      "subnetId": {
+        "$ref": "#/$keywords/subnetId"
+      },
+      "licenseType": {
+        "$ref": "#/$keywords/licenseType"
+      },
+      "vCores": {
+        "$ref": "#/$keywords/vCores"
+      },
+      "storageSizeInGB": {
+        "$ref": "#/$keywords/storageSizeInGB"
+      },
+      "collation": {
+        "$ref": "#/$keywords/collation"
+      },
+      "dnsZonePartner": {
+        "$ref": "#/$keywords/dnsZonePartner"
+      },
+      "publicDataEndpointEnabled": {
+        "$ref": "#/$keywords/publicDataEndpointEnabled"
+      },
+      "sourceManagedInstanceId": {
+        "$ref": "#/$keywords/sourceManagedInstanceId"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime"
+      },
+      "proxyOverride": {
+        "$ref": "#/$keywords/proxyOverride"
+      },
+      "timezoneId": {
+        "$ref": "#/$keywords/timezoneId"
+      },
+      "instancePoolId": {
+        "$ref": "#/$keywords/instancePoolId"
+      },
+      "maintenanceConfigurationId": {
+        "$ref": "#/$keywords/maintenanceConfigurationId"
+      },
+      "minimalTlsVersion": {
+        "$ref": "#/$keywords/minimalTlsVersion"
+      },
+      "storageAccountType": {
+        "$ref": "#/$keywords/storageAccountType"
+      }
+    },
+    "managedInstances/databases": {
+      "collation": {
+        "$ref": "#/$keywords/collation_1"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime_1"
+      },
+      "catalogCollation": {
+        "$ref": "#/$keywords/catalogCollation"
+      },
+      "createMode": {
+        "$ref": "#/$keywords/createMode"
+      },
+      "storageContainerUri": {
+        "$ref": "#/$keywords/storageContainerUri"
+      },
+      "sourceDatabaseId": {
+        "$ref": "#/$keywords/sourceDatabaseId"
+      },
+      "restorableDroppedDatabaseId": {
+        "$ref": "#/$keywords/restorableDroppedDatabaseId"
+      },
+      "storageContainerSasToken": {
+        "$ref": "#/$keywords/storageContainerSasToken"
+      },
+      "recoverableDatabaseId": {
+        "$ref": "#/$keywords/recoverableDatabaseId"
+      },
+      "longTermRetentionBackupResourceId": {
+        "$ref": "#/$keywords/longTermRetentionBackupResourceId"
+      },
+      "autoCompleteRestore": {
+        "$ref": "#/$keywords/autoCompleteRestore"
+      },
+      "lastBackupName": {
+        "$ref": "#/$keywords/lastBackupName"
+      }
+    },
+    "servers/azureADOnlyAuthentications": {
+      "azureADOnlyAuthentication": {
+        "$ref": "#/$keywords/azureADOnlyAuthentication"
+      }
+    },
+    "managedInstances/azureADOnlyAuthentications": {
+      "azureADOnlyAuthentication": {
+        "$ref": "#/$keywords/azureADOnlyAuthentication_1"
+      }
+    },
+    "locations/serverTrustGroups": {
+      "groupMembers": {
+        "$ref": "#/$keywords/groupMembers"
+      },
+      "trustScopes": {
+        "$ref": "#/$keywords/trustScopes"
+      }
+    },
+    "managedInstances/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state"
+      }
+    },
+    "servers/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state"
+      }
+    },
+    "servers/databases/backupShortTermRetentionPolicies": {
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays"
+      },
+      "diffBackupIntervalInHours": {
+        "$ref": "#/$keywords/diffBackupIntervalInHours"
+      }
+    },
+    "servers/databases/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state"
+      }
+    }
+  }
+}

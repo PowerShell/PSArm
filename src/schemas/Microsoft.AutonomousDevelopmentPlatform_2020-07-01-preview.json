@@ -1,61 +1,27 @@
 {
-    "$keywords": {
-        "accountId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Failed",
-                        "Canceled",
-                        "Accepted",
-                        "Provisioning",
-                        "Deleting"
-                    ]
-                }
-            }
-        },
-        "dataPoolId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "locations": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "locations": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "accounts": {
-            "accountId": {
-                "$ref": "#/$keywords/accountId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "accounts/dataPools": {
-            "dataPoolId": {
-                "$ref": "#/$keywords/dataPoolId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "locations": {
-                "$ref": "#/$keywords/locations"
-            }
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     }
+  },
+  "$resources": {
+    "accounts": {},
+    "accounts/dataPools": {
+      "locations": {
+        "$ref": "#/$keywords/locations"
+      }
+    }
+  }
 }

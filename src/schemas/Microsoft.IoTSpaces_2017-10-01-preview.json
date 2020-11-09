@@ -1,63 +1,55 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Provisioning",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled"
-                    ]
-                }
-            }
+  "$keywords": {
+    "storageContainer": {
+      "body": {
+        "connectionString": {
+          "$ref": "#/$keywords/connectionString"
         },
-        "managementApiUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "subscriptionId": {
+          "$ref": "#/$keywords/subscriptionId"
         },
-        "webPortalUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "resourceGroup": {
+          "$ref": "#/$keywords/resourceGroup"
         },
-        "storageContainer": {
-            "parameters": {
-                "connectionString": {
-                    "type": "string"
-                },
-                "subscriptionId": {
-                    "type": "string"
-                },
-                "resourceGroup": {
-                    "type": "string"
-                },
-                "containerName": {
-                    "type": "string"
-                }
-            }
+        "containerName": {
+          "$ref": "#/$keywords/containerName"
         }
+      }
     },
-    "$resources": {
-        "Graph": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "managementApiUrl": {
-                "$ref": "#/$keywords/managementApiUrl"
-            },
-            "webPortalUrl": {
-                "$ref": "#/$keywords/webPortalUrl"
-            },
-            "storageContainer": {
-                "$ref": "#/$keywords/storageContainer"
-            }
+    "connectionString": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "subscriptionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceGroup": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "containerName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "Graph": {
+      "storageContainer": {
+        "$ref": "#/$keywords/storageContainer"
+      }
+    }
+  }
 }

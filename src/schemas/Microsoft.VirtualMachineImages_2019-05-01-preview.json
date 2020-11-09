@@ -1,116 +1,84 @@
 {
-    "$keywords": {
-        "source": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
-        "customize": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "distribute": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                },
-                "runOutputName": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z0-9-_.]{1,64}$"
-                },
-                "artifactTags": {}
-            },
-            "array": true
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningError": {
-            "parameters": {
-                "provisioningErrorCode": {
-                    "enum": [
-                        "BadSourceType",
-                        "BadPIRSource",
-                        "BadISOSource",
-                        "BadManagedImageSource",
-                        "BadSharedImageVersionSource",
-                        "BadCustomizerType",
-                        "UnsupportedCustomizerType",
-                        "NoCustomizerScript",
-                        "BadDistributeType",
-                        "BadSharedImageDistribute",
-                        "ServerError",
-                        "Other"
-                    ]
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "lastRunStatus": {
-            "parameters": {
-                "startTime": {},
-                "endTime": {},
-                "runState": {},
-                "runSubState": {},
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "buildTimeoutInMinutes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "vmProfile": {
-            "parameters": {
-                "vmSize": {
-                    "type": "string"
-                }
-            }
-        }
+  "$keywords": {
+    "source": {
+      "body": {}
     },
-    "$resources": {
-        "imageTemplates": {
-            "source": {
-                "$ref": "#/$keywords/source"
-            },
-            "customize": {
-                "$ref": "#/$keywords/customize"
-            },
-            "distribute": {
-                "$ref": "#/$keywords/distribute"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "provisioningError": {
-                "$ref": "#/$keywords/provisioningError"
-            },
-            "lastRunStatus": {
-                "$ref": "#/$keywords/lastRunStatus"
-            },
-            "buildTimeoutInMinutes": {
-                "$ref": "#/$keywords/buildTimeoutInMinutes"
-            },
-            "vmProfile": {
-                "$ref": "#/$keywords/vmProfile"
-            }
+    "customize": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "distribute": {
+      "body": {
+        "runOutputName": {
+          "$ref": "#/$keywords/runOutputName"
+        },
+        "artifactTags": {
+          "$ref": "#/$keywords/artifactTags"
+        }
+      },
+      "array": true
+    },
+    "runOutputName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "artifactTags": {
+      "body": {}
+    },
+    "buildTimeoutInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "vmProfile": {
+      "body": {
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize"
+        }
+      }
+    },
+    "vmSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "imageTemplates": {
+      "source": {
+        "$ref": "#/$keywords/source"
+      },
+      "customize": {
+        "$ref": "#/$keywords/customize"
+      },
+      "distribute": {
+        "$ref": "#/$keywords/distribute"
+      },
+      "buildTimeoutInMinutes": {
+        "$ref": "#/$keywords/buildTimeoutInMinutes"
+      },
+      "vmProfile": {
+        "$ref": "#/$keywords/vmProfile"
+      }
+    }
+  }
 }

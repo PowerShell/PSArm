@@ -1,359 +1,968 @@
 {
-    "$keywords": {
-        "sku": {
-            "parameters": {
-                "name": {}
-            }
+  "$keywords": {
+    "sku": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard",
+            "Free",
+            "Premium"
+          ]
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled",
+            "Suspended",
+            "Deleted"
+          ]
+        }
+      }
+    },
+    "quota": {
+      "body": {
+        "maxJobCount": {
+          "$ref": "#/$keywords/maxJobCount"
         },
-        "state": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "quota": {
-            "parameters": {
-                "maxJobCount": {
-                    "type": "int"
-                },
-                "maxJobOccurrence": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "maxRecurrence": {
-                    "$ref": "#/$keywords/maxRecurrence"
-                }
-            }
+        "maxJobOccurrence": {
+          "$ref": "#/$keywords/maxJobOccurrence"
         },
         "maxRecurrence": {
-            "parameters": {
-                "frequency": {},
-                "interval": {
-                    "type": "int"
-                }
-            }
+          "$ref": "#/$keywords/maxRecurrence"
+        }
+      }
+    },
+    "maxJobCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxJobOccurrence": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxRecurrence": {
+      "body": {
+        "frequency": {
+          "$ref": "#/$keywords/frequency"
         },
-        "startTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "action": {
-            "parameters": {
-                "type": {}
-            },
-            "body": {
-                "request": {
-                    "$ref": "#/$keywords/request"
-                },
-                "queueMessage": {
-                    "$ref": "#/$keywords/queueMessage"
-                },
-                "serviceBusQueueMessage": {
-                    "$ref": "#/$keywords/serviceBusQueueMessage"
-                },
-                "serviceBusTopicMessage": {
-                    "$ref": "#/$keywords/serviceBusTopicMessage"
-                },
-                "retryPolicy": {
-                    "$ref": "#/$keywords/retryPolicy"
-                },
-                "errorAction": {
-                    "$ref": "#/$keywords/errorAction"
-                }
-            }
+        "interval": {
+          "$ref": "#/$keywords/interval"
+        }
+      }
+    },
+    "frequency": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Minute",
+            "Hour",
+            "Day",
+            "Week",
+            "Month"
+          ]
+        }
+      }
+    },
+    "interval": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "startTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "action": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
         },
         "request": {
-            "parameters": {
-                "uri": {
-                    "type": "string"
-                },
-                "method": {
-                    "type": "string"
-                },
-                "body": {
-                    "type": "string"
-                },
-                "headers": {}
-            },
-            "body": {
-                "authentication": {
-                    "$ref": "#/$keywords/authentication"
-                }
-            }
-        },
-        "authentication": {
-            "parameters": {
-                "type": {}
-            }
+          "$ref": "#/$keywords/request"
         },
         "queueMessage": {
-            "parameters": {
-                "storageAccount": {
-                    "type": "string"
-                },
-                "queueName": {
-                    "type": "string"
-                },
-                "sasToken": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/queueMessage"
         },
         "serviceBusQueueMessage": {
-            "parameters": {
-                "queueName": {
-                    "type": "string"
-                },
-                "customMessageProperties": {},
-                "message": {
-                    "type": "string"
-                },
-                "namespace": {
-                    "type": "string"
-                },
-                "transportType": {}
-            },
-            "body": {
-                "authentication": {
-                    "$ref": "#/$keywords/authentication_2"
-                },
-                "brokeredMessageProperties": {
-                    "$ref": "#/$keywords/brokeredMessageProperties"
-                }
-            }
-        },
-        "authentication_2": {
-            "parameters": {
-                "sasKey": {
-                    "type": "string"
-                },
-                "sasKeyName": {
-                    "type": "string"
-                },
-                "type": {}
-            }
-        },
-        "brokeredMessageProperties": {
-            "parameters": {
-                "contentType": {
-                    "type": "string"
-                },
-                "correlationId": {
-                    "type": "string"
-                },
-                "forcePersistence": {
-                    "type": "bool"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "messageId": {
-                    "type": "string"
-                },
-                "partitionKey": {
-                    "type": "string"
-                },
-                "replyTo": {
-                    "type": "string"
-                },
-                "replyToSessionId": {
-                    "type": "string"
-                },
-                "scheduledEnqueueTimeUtc": {},
-                "sessionId": {
-                    "type": "string"
-                },
-                "timeToLive": {},
-                "to": {
-                    "type": "string"
-                },
-                "viaPartitionKey": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/serviceBusQueueMessage"
         },
         "serviceBusTopicMessage": {
-            "parameters": {
-                "topicPath": {
-                    "type": "string"
-                },
-                "customMessageProperties": {},
-                "message": {
-                    "type": "string"
-                },
-                "namespace": {
-                    "type": "string"
-                },
-                "transportType": {}
-            },
-            "body": {
-                "authentication": {
-                    "$ref": "#/$keywords/authentication_2"
-                },
-                "brokeredMessageProperties": {
-                    "$ref": "#/$keywords/brokeredMessageProperties"
-                }
-            }
+          "$ref": "#/$keywords/serviceBusTopicMessage"
         },
         "retryPolicy": {
-            "parameters": {
-                "retryType": {},
-                "retryInterval": {},
-                "retryCount": {
-                    "type": "int"
-                }
-            }
+          "$ref": "#/$keywords/retryPolicy"
         },
         "errorAction": {
-            "parameters": {
-                "type": {}
-            },
-            "body": {
-                "request": {
-                    "$ref": "#/$keywords/request"
-                },
-                "queueMessage": {
-                    "$ref": "#/$keywords/queueMessage"
-                },
-                "serviceBusQueueMessage": {
-                    "$ref": "#/$keywords/serviceBusQueueMessage"
-                },
-                "serviceBusTopicMessage": {
-                    "$ref": "#/$keywords/serviceBusTopicMessage"
-                },
-                "retryPolicy": {
-                    "$ref": "#/$keywords/retryPolicy"
-                }
-            }
+          "$ref": "#/$keywords/errorAction"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Http",
+            "Https",
+            "StorageQueue",
+            "ServiceBusQueue",
+            "ServiceBusTopic"
+          ]
+        }
+      }
+    },
+    "request": {
+      "body": {
+        "authentication": {
+          "$ref": "#/$keywords/authentication"
         },
-        "recurrence": {
-            "parameters": {
-                "frequency": {},
-                "interval": {
-                    "type": "int"
-                },
-                "count": {
-                    "type": "int"
-                },
-                "endTime": {}
-            },
-            "body": {
-                "schedule": {
-                    "$ref": "#/$keywords/schedule"
-                }
-            }
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "method": {
+          "$ref": "#/$keywords/method"
+        },
+        "body": {
+          "$ref": "#/$keywords/body"
+        },
+        "headers": {
+          "$ref": "#/$keywords/headers"
+        }
+      }
+    },
+    "authentication": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type_1"
+        }
+      }
+    },
+    "type_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "ClientCertificate",
+            "ActiveDirectoryOAuth",
+            "Basic"
+          ]
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "method": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "body": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "headers": {
+      "body": {}
+    },
+    "queueMessage": {
+      "body": {
+        "storageAccount": {
+          "$ref": "#/$keywords/storageAccount"
+        },
+        "queueName": {
+          "$ref": "#/$keywords/queueName"
+        },
+        "sasToken": {
+          "$ref": "#/$keywords/sasToken"
+        },
+        "message": {
+          "$ref": "#/$keywords/message"
+        }
+      }
+    },
+    "storageAccount": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "queueName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sasToken": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "message": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceBusQueueMessage": {
+      "body": {
+        "authentication": {
+          "$ref": "#/$keywords/authentication_1"
+        },
+        "brokeredMessageProperties": {
+          "$ref": "#/$keywords/brokeredMessageProperties"
+        },
+        "customMessageProperties": {
+          "$ref": "#/$keywords/customMessageProperties"
+        },
+        "message": {
+          "$ref": "#/$keywords/message_1"
+        },
+        "namespace": {
+          "$ref": "#/$keywords/namespace"
+        },
+        "transportType": {
+          "$ref": "#/$keywords/transportType"
+        },
+        "queueName": {
+          "$ref": "#/$keywords/queueName_1"
+        }
+      }
+    },
+    "authentication_1": {
+      "body": {
+        "sasKey": {
+          "$ref": "#/$keywords/sasKey"
+        },
+        "sasKeyName": {
+          "$ref": "#/$keywords/sasKeyName"
+        },
+        "type": {
+          "$ref": "#/$keywords/type_1_2"
+        }
+      }
+    },
+    "sasKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sasKeyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "SharedAccessKey"
+          ]
+        }
+      }
+    },
+    "brokeredMessageProperties": {
+      "body": {
+        "contentType": {
+          "$ref": "#/$keywords/contentType"
+        },
+        "correlationId": {
+          "$ref": "#/$keywords/correlationId"
+        },
+        "forcePersistence": {
+          "$ref": "#/$keywords/forcePersistence"
+        },
+        "label": {
+          "$ref": "#/$keywords/label"
+        },
+        "messageId": {
+          "$ref": "#/$keywords/messageId"
+        },
+        "partitionKey": {
+          "$ref": "#/$keywords/partitionKey"
+        },
+        "replyTo": {
+          "$ref": "#/$keywords/replyTo"
+        },
+        "replyToSessionId": {
+          "$ref": "#/$keywords/replyToSessionId"
+        },
+        "scheduledEnqueueTimeUtc": {
+          "$ref": "#/$keywords/scheduledEnqueueTimeUtc"
+        },
+        "sessionId": {
+          "$ref": "#/$keywords/sessionId"
+        },
+        "timeToLive": {
+          "$ref": "#/$keywords/timeToLive"
+        },
+        "to": {
+          "$ref": "#/$keywords/to"
+        },
+        "viaPartitionKey": {
+          "$ref": "#/$keywords/viaPartitionKey"
+        }
+      }
+    },
+    "contentType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "correlationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "forcePersistence": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "label": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "messageId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partitionKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "replyTo": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "replyToSessionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "scheduledEnqueueTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sessionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "timeToLive": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "to": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "viaPartitionKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customMessageProperties": {
+      "body": {}
+    },
+    "message_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "namespace": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "transportType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "NetMessaging",
+            "AMQP"
+          ]
+        }
+      }
+    },
+    "queueName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceBusTopicMessage": {
+      "body": {
+        "authentication": {
+          "$ref": "#/$keywords/authentication_1_2"
+        },
+        "brokeredMessageProperties": {
+          "$ref": "#/$keywords/brokeredMessageProperties_1"
+        },
+        "customMessageProperties": {
+          "$ref": "#/$keywords/customMessageProperties_1"
+        },
+        "message": {
+          "$ref": "#/$keywords/message_1_2"
+        },
+        "namespace": {
+          "$ref": "#/$keywords/namespace_1"
+        },
+        "transportType": {
+          "$ref": "#/$keywords/transportType_1"
+        },
+        "topicPath": {
+          "$ref": "#/$keywords/topicPath"
+        }
+      }
+    },
+    "authentication_1_2": {
+      "body": {
+        "sasKey": {
+          "$ref": "#/$keywords/sasKey"
+        },
+        "sasKeyName": {
+          "$ref": "#/$keywords/sasKeyName"
+        },
+        "type": {
+          "$ref": "#/$keywords/type_1_2"
+        }
+      }
+    },
+    "brokeredMessageProperties_1": {
+      "body": {
+        "contentType": {
+          "$ref": "#/$keywords/contentType"
+        },
+        "correlationId": {
+          "$ref": "#/$keywords/correlationId"
+        },
+        "forcePersistence": {
+          "$ref": "#/$keywords/forcePersistence"
+        },
+        "label": {
+          "$ref": "#/$keywords/label"
+        },
+        "messageId": {
+          "$ref": "#/$keywords/messageId"
+        },
+        "partitionKey": {
+          "$ref": "#/$keywords/partitionKey"
+        },
+        "replyTo": {
+          "$ref": "#/$keywords/replyTo"
+        },
+        "replyToSessionId": {
+          "$ref": "#/$keywords/replyToSessionId"
+        },
+        "scheduledEnqueueTimeUtc": {
+          "$ref": "#/$keywords/scheduledEnqueueTimeUtc"
+        },
+        "sessionId": {
+          "$ref": "#/$keywords/sessionId"
+        },
+        "timeToLive": {
+          "$ref": "#/$keywords/timeToLive"
+        },
+        "to": {
+          "$ref": "#/$keywords/to"
+        },
+        "viaPartitionKey": {
+          "$ref": "#/$keywords/viaPartitionKey"
+        }
+      }
+    },
+    "customMessageProperties_1": {
+      "body": {}
+    },
+    "message_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "namespace_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "transportType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "NetMessaging",
+            "AMQP"
+          ]
+        }
+      }
+    },
+    "topicPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retryPolicy": {
+      "body": {
+        "retryType": {
+          "$ref": "#/$keywords/retryType"
+        },
+        "retryInterval": {
+          "$ref": "#/$keywords/retryInterval"
+        },
+        "retryCount": {
+          "$ref": "#/$keywords/retryCount"
+        }
+      }
+    },
+    "retryType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Fixed"
+          ]
+        }
+      }
+    },
+    "retryInterval": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retryCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "errorAction": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type_1_2_3"
+        },
+        "request": {
+          "$ref": "#/$keywords/request_1"
+        },
+        "queueMessage": {
+          "$ref": "#/$keywords/queueMessage_1"
+        },
+        "serviceBusQueueMessage": {
+          "$ref": "#/$keywords/serviceBusQueueMessage_1"
+        },
+        "serviceBusTopicMessage": {
+          "$ref": "#/$keywords/serviceBusTopicMessage_1"
+        },
+        "retryPolicy": {
+          "$ref": "#/$keywords/retryPolicy_1"
+        }
+      }
+    },
+    "type_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Http",
+            "Https",
+            "StorageQueue",
+            "ServiceBusQueue",
+            "ServiceBusTopic"
+          ]
+        }
+      }
+    },
+    "request_1": {
+      "body": {
+        "authentication": {
+          "$ref": "#/$keywords/authentication"
+        },
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "method": {
+          "$ref": "#/$keywords/method"
+        },
+        "body": {
+          "$ref": "#/$keywords/body"
+        },
+        "headers": {
+          "$ref": "#/$keywords/headers"
+        }
+      }
+    },
+    "queueMessage_1": {
+      "body": {
+        "storageAccount": {
+          "$ref": "#/$keywords/storageAccount"
+        },
+        "queueName": {
+          "$ref": "#/$keywords/queueName"
+        },
+        "sasToken": {
+          "$ref": "#/$keywords/sasToken"
+        },
+        "message": {
+          "$ref": "#/$keywords/message"
+        }
+      }
+    },
+    "serviceBusQueueMessage_1": {
+      "body": {
+        "authentication": {
+          "$ref": "#/$keywords/authentication_1"
+        },
+        "brokeredMessageProperties": {
+          "$ref": "#/$keywords/brokeredMessageProperties"
+        },
+        "customMessageProperties": {
+          "$ref": "#/$keywords/customMessageProperties"
+        },
+        "message": {
+          "$ref": "#/$keywords/message_1"
+        },
+        "namespace": {
+          "$ref": "#/$keywords/namespace"
+        },
+        "transportType": {
+          "$ref": "#/$keywords/transportType"
+        },
+        "queueName": {
+          "$ref": "#/$keywords/queueName_1"
+        }
+      }
+    },
+    "serviceBusTopicMessage_1": {
+      "body": {
+        "authentication": {
+          "$ref": "#/$keywords/authentication_1_2"
+        },
+        "brokeredMessageProperties": {
+          "$ref": "#/$keywords/brokeredMessageProperties_1"
+        },
+        "customMessageProperties": {
+          "$ref": "#/$keywords/customMessageProperties_1"
+        },
+        "message": {
+          "$ref": "#/$keywords/message_1_2"
+        },
+        "namespace": {
+          "$ref": "#/$keywords/namespace_1"
+        },
+        "transportType": {
+          "$ref": "#/$keywords/transportType_1"
+        },
+        "topicPath": {
+          "$ref": "#/$keywords/topicPath"
+        }
+      }
+    },
+    "retryPolicy_1": {
+      "body": {
+        "retryType": {
+          "$ref": "#/$keywords/retryType"
+        },
+        "retryInterval": {
+          "$ref": "#/$keywords/retryInterval"
+        },
+        "retryCount": {
+          "$ref": "#/$keywords/retryCount"
+        }
+      }
+    },
+    "recurrence": {
+      "body": {
+        "frequency": {
+          "$ref": "#/$keywords/frequency_1"
+        },
+        "interval": {
+          "$ref": "#/$keywords/interval_1"
+        },
+        "count": {
+          "$ref": "#/$keywords/count"
+        },
+        "endTime": {
+          "$ref": "#/$keywords/endTime"
         },
         "schedule": {
-            "body": {
-                "weekDays": {
-                    "$ref": "#/$keywords/weekDays"
-                },
-                "hours": {
-                    "$ref": "#/$keywords/hours"
-                },
-                "minutes": {
-                    "$ref": "#/$keywords/minutes"
-                },
-                "monthDays": {
-                    "$ref": "#/$keywords/monthDays"
-                },
-                "monthlyOccurrences": {
-                    "$ref": "#/$keywords/monthlyOccurrences"
-                }
-            }
-        },
+          "$ref": "#/$keywords/schedule"
+        }
+      }
+    },
+    "frequency_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Minute",
+            "Hour",
+            "Day",
+            "Week",
+            "Month"
+          ]
+        }
+      }
+    },
+    "interval_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "count": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "endTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "schedule": {
+      "body": {
         "weekDays": {
-            "propertyParameters": {
-                "value": {}
-            },
-            "array": true
+          "$ref": "#/$keywords/weekDays"
         },
         "hours": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/hours"
         },
         "minutes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/minutes"
         },
         "monthDays": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/monthDays"
         },
         "monthlyOccurrences": {
-            "parameters": {
-                "day": {},
-                "Occurrence": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
-        "state_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "status": {
-            "parameters": {
-                "executionCount": {
-                    "type": "int"
-                },
-                "failureCount": {
-                    "type": "int"
-                },
-                "faultedCount": {
-                    "type": "int"
-                },
-                "lastExecutionTime": {},
-                "nextExecutionTime": {}
-            }
+          "$ref": "#/$keywords/monthlyOccurrences"
         }
+      }
     },
-    "$resources": {
-        "jobCollections": {
-            "sku": {
-                "$ref": "#/$keywords/sku"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "quota": {
-                "$ref": "#/$keywords/quota"
-            }
-        },
-        "jobCollections/jobs": {
-            "startTime": {
-                "$ref": "#/$keywords/startTime"
-            },
-            "action": {
-                "$ref": "#/$keywords/action"
-            },
-            "recurrence": {
-                "$ref": "#/$keywords/recurrence"
-            },
-            "state": {
-                "$ref": "#/$keywords/state_2"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            }
+    "weekDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ]
         }
+      },
+      "array": true
+    },
+    "hours": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      },
+      "array": true
+    },
+    "minutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      },
+      "array": true
+    },
+    "monthDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      },
+      "array": true
+    },
+    "monthlyOccurrences": {
+      "body": {
+        "day": {
+          "$ref": "#/$keywords/day"
+        },
+        "Occurrence": {
+          "$ref": "#/$keywords/Occurrence"
+        }
+      },
+      "array": true
+    },
+    "day": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        }
+      }
+    },
+    "Occurrence": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "state_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled",
+            "Faulted",
+            "Completed"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "jobCollections": {
+      "sku": {
+        "$ref": "#/$keywords/sku"
+      },
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "quota": {
+        "$ref": "#/$keywords/quota"
+      }
+    },
+    "jobCollections/jobs": {
+      "startTime": {
+        "$ref": "#/$keywords/startTime"
+      },
+      "action": {
+        "$ref": "#/$keywords/action"
+      },
+      "recurrence": {
+        "$ref": "#/$keywords/recurrence"
+      },
+      "state": {
+        "$ref": "#/$keywords/state_1"
+      }
+    }
+  }
 }

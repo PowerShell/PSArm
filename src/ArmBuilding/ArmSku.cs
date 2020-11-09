@@ -18,16 +18,24 @@ namespace PSArm.ArmBuilding
         /// </summary>
         public IArmExpression Name { get; set; }
 
+        public IArmExpression Tier { get; set; }
+
+        public IArmExpression Size { get; set; }
+
+        public IArmExpression Family { get; set; }
+
+        public IArmExpression Capacity { get; set; }
+
         /// <summary>
         /// Instantiate the ARM parameters in this SKU with the given values.
         /// </summary>
         /// <param name="parameters">The parameter values to instantiate with.</param>
         /// <returns>A copy of this SKU with ARM parameters instantiated.</returns>
-        public ArmSku Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public ArmSku Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             return new ArmSku
             {
-                Name = Name.Instantiate(parameters),
+                Name = (IArmExpression)Name.Instantiate(parameters),
             };
         }
 

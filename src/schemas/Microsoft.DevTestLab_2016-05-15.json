@@ -1,2043 +1,2793 @@
 {
-    "$keywords": {
-        "defaultStorageAccount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "defaultPremiumStorageAccount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "artifactsStorageAccount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "premiumDataDiskStorageAccount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vaultName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "labStorageType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Standard",
-                        "Premium"
-                    ]
-                }
-            }
-        },
-        "createdDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "premiumDataDisks": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Disabled",
-                        "Enabled"
-                    ]
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "taskType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "weeklyRecurrence": {
-            "parameters": {
-                "time": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "weekdays": {
-                    "$ref": "#/$keywords/weekdays"
-                }
-            }
-        },
+  "$keywords": {
+    "labStorageType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard",
+            "Premium"
+          ]
+        }
+      }
+    },
+    "premiumDataDisks": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "taskType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "weeklyRecurrence": {
+      "body": {
         "weekdays": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/weekdays"
         },
-        "dailyRecurrence": {
-            "parameters": {
-                "time": {
-                    "type": "string"
-                }
-            }
+        "time": {
+          "$ref": "#/$keywords/time"
+        }
+      }
+    },
+    "weekdays": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "time": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dailyRecurrence": {
+      "body": {
+        "time": {
+          "$ref": "#/$keywords/time_1"
+        }
+      }
+    },
+    "time_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hourlyRecurrence": {
+      "body": {
+        "minute": {
+          "$ref": "#/$keywords/minute"
+        }
+      }
+    },
+    "minute": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "timeZoneId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "notificationSettings": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status_1"
         },
-        "hourlyRecurrence": {
-            "parameters": {
-                "minute": {
-                    "type": "int"
-                }
-            }
+        "timeInMinutes": {
+          "$ref": "#/$keywords/timeInMinutes"
         },
-        "timeZoneId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "webhookUrl": {
+          "$ref": "#/$keywords/webhookUrl"
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "timeInMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "webhookUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "VsoGit",
+            "GitHub"
+          ]
+        }
+      }
+    },
+    "folderPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "armTemplateFolderPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "branchRef": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "securityToken": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "provisioningState_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetCost": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status_1_2_3"
         },
-        "notificationSettings": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Disabled",
-                        "Enabled"
-                    ]
-                },
-                "timeInMinutes": {
-                    "type": "int"
-                },
-                "webhookUrl": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdDate_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "targetResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "sourceType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "VsoGit",
-                        "GitHub"
-                    ]
-                }
-            }
-        },
-        "folderPath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "armTemplateFolderPath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "branchRef": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "securityToken": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdDate_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "targetCost": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "target": {
-                    "type": "int"
-                },
-                "cycleStartDateTime": {},
-                "cycleEndDateTime": {},
-                "cycleType": {
-                    "enum": [
-                        "CalendarMonth",
-                        "Custom"
-                    ]
-                }
-            },
-            "body": {
-                "costThresholds": {
-                    "$ref": "#/$keywords/costThresholds"
-                }
-            }
+        "target": {
+          "$ref": "#/$keywords/target"
         },
         "costThresholds": {
-            "parameters": {
-                "thresholdId": {
-                    "type": "string"
-                },
-                "displayOnChart": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "sendNotificationWhenExceeded": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "notificationSent": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "percentageThreshold": {
-                    "$ref": "#/$keywords/percentageThreshold"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/costThresholds"
+        },
+        "cycleStartDateTime": {
+          "$ref": "#/$keywords/cycleStartDateTime"
+        },
+        "cycleEndDateTime": {
+          "$ref": "#/$keywords/cycleEndDateTime"
+        },
+        "cycleType": {
+          "$ref": "#/$keywords/cycleType"
+        }
+      }
+    },
+    "status_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "target": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "costThresholds": {
+      "body": {
+        "thresholdId": {
+          "$ref": "#/$keywords/thresholdId"
         },
         "percentageThreshold": {
-            "parameters": {
-                "thresholdValue": {}
-            }
+          "$ref": "#/$keywords/percentageThreshold"
         },
-        "labCostSummary": {
-            "parameters": {
-                "estimatedLabCost": {}
-            }
+        "displayOnChart": {
+          "$ref": "#/$keywords/displayOnChart"
         },
-        "labCostDetails": {
-            "parameters": {
-                "date": {},
-                "cost": {},
-                "costType": {
-                    "enum": [
-                        "Unavailable",
-                        "Reported",
-                        "Projected"
-                    ]
-                }
-            },
-            "array": true
+        "sendNotificationWhenExceeded": {
+          "$ref": "#/$keywords/sendNotificationWhenExceeded"
         },
-        "resourceCosts": {
-            "parameters": {
-                "resourcename": {
-                    "type": "string"
-                },
-                "resourceUId": {
-                    "type": "string"
-                },
-                "resourceCost": {},
-                "resourceType": {
-                    "type": "string"
-                },
-                "resourceOwner": {
-                    "type": "string"
-                },
-                "resourcePricingTier": {
-                    "type": "string"
-                },
-                "resourceStatus": {
-                    "type": "string"
-                },
-                "resourceId": {
-                    "type": "string"
-                },
-                "externalResourceId": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "currencyCode": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "startDateTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "endDateTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "createdDate_4": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState_4": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_4": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "vm": {
-            "parameters": {
-                "sourceVmId": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "windowsOsInfo": {
-                    "$ref": "#/$keywords/windowsOsInfo"
-                },
-                "linuxOsInfo": {
-                    "$ref": "#/$keywords/linuxOsInfo"
-                }
-            }
+        "notificationSent": {
+          "$ref": "#/$keywords/notificationSent"
+        }
+      },
+      "array": true
+    },
+    "thresholdId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "percentageThreshold": {
+      "body": {
+        "thresholdValue": {
+          "$ref": "#/$keywords/thresholdValue"
+        }
+      }
+    },
+    "thresholdValue": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "displayOnChart": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "sendNotificationWhenExceeded": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "notificationSent": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "cycleStartDateTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "cycleEndDateTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "cycleType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "CalendarMonth",
+            "Custom"
+          ]
+        }
+      }
+    },
+    "currencyCode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "startDateTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endDateTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vm": {
+      "body": {
+        "sourceVmId": {
+          "$ref": "#/$keywords/sourceVmId"
         },
         "windowsOsInfo": {
-            "parameters": {
-                "windowsOsState": {
-                    "enum": [
-                        "NonSysprepped",
-                        "SysprepRequested",
-                        "SysprepApplied"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/windowsOsInfo"
         },
         "linuxOsInfo": {
-            "parameters": {
-                "linuxOsState": {
-                    "enum": [
-                        "NonDeprovisioned",
-                        "DeprovisionRequested",
-                        "DeprovisionApplied"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/linuxOsInfo"
+        }
+      }
+    },
+    "sourceVmId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "windowsOsInfo": {
+      "body": {
+        "windowsOsState": {
+          "$ref": "#/$keywords/windowsOsState"
+        }
+      }
+    },
+    "windowsOsState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NonSysprepped",
+            "SysprepRequested",
+            "SysprepApplied"
+          ]
+        }
+      }
+    },
+    "linuxOsInfo": {
+      "body": {
+        "linuxOsState": {
+          "$ref": "#/$keywords/linuxOsState"
+        }
+      }
+    },
+    "linuxOsState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NonDeprovisioned",
+            "DeprovisionRequested",
+            "DeprovisionApplied"
+          ]
+        }
+      }
+    },
+    "vhd": {
+      "body": {
+        "imageName": {
+          "$ref": "#/$keywords/imageName"
         },
-        "vhd": {
-            "parameters": {
-                "imageName": {
-                    "type": "string"
-                },
-                "sysPrep": {
-                    "type": "bool"
-                },
-                "osType": {
-                    "enum": [
-                        "Windows",
-                        "Linux",
-                        "None"
-                    ]
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "author": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "creationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "managedImageId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_5": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_5": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "author_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "sysPrep": {
+          "$ref": "#/$keywords/sysPrep"
         },
         "osType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "creationDate_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "formulaContent": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "location": {
-                    "type": "string"
-                },
-                "tags": {},
-                "notes": {
-                    "type": "string"
-                },
-                "ownerObjectId": {
-                    "type": "string"
-                },
-                "ownerUserPrincipalName": {
-                    "type": "string"
-                },
-                "createdByUserId": {
-                    "type": "string"
-                },
-                "createdByUser": {
-                    "type": "string"
-                },
-                "createdDate": {},
-                "customImageId": {
-                    "type": "string"
-                },
-                "osType": {
-                    "type": "string"
-                },
-                "size": {
-                    "type": "string"
-                },
-                "userName": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "sshKey": {
-                    "type": "string"
-                },
-                "isAuthenticationWithSshKey": {
-                    "type": "bool"
-                },
-                "fqdn": {
-                    "type": "string"
-                },
-                "labSubnetName": {
-                    "type": "string"
-                },
-                "labVirtualNetworkId": {
-                    "type": "string"
-                },
-                "disallowPublicIpAddress": {
-                    "type": "bool"
-                },
-                "expirationDate": {},
-                "allowClaim": {
-                    "type": "bool"
-                },
-                "storageType": {
-                    "type": "string"
-                },
-                "virtualMachineCreationSource": {
-                    "enum": [
-                        "FromCustomImage",
-                        "FromGalleryImage"
-                    ]
-                },
-                "environmentId": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "type": "string"
-                },
-                "uniqueIdentifier": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "bulkCreationParameters": {
-                    "$ref": "#/$keywords/bulkCreationParameters"
-                },
-                "artifacts": {
-                    "$ref": "#/$keywords/artifacts"
-                },
-                "artifactDeploymentStatus": {
-                    "$ref": "#/$keywords/artifactDeploymentStatus"
-                },
-                "galleryImageReference": {
-                    "$ref": "#/$keywords/galleryImageReference"
-                },
-                "computeVm": {
-                    "$ref": "#/$keywords/computeVm"
-                },
-                "networkInterface": {
-                    "$ref": "#/$keywords/networkInterface"
-                },
-                "applicableSchedule": {
-                    "$ref": "#/$keywords/applicableSchedule"
-                }
-            }
-        },
-        "bulkCreationParameters": {
-            "parameters": {
-                "instanceCount": {
-                    "type": "int"
-                }
-            }
-        },
-        "artifacts": {
-            "parameters": {
-                "artifactId": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "deploymentStatusMessage": {
-                    "type": "string"
-                },
-                "vmExtensionStatusMessage": {
-                    "type": "string"
-                },
-                "installTime": {}
-            },
-            "body": {
-                "parameters": {
-                    "$ref": "#/$keywords/parameters"
-                }
-            },
-            "array": true
-        },
-        "parameters": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "artifactDeploymentStatus": {
-            "parameters": {
-                "deploymentStatus": {
-                    "type": "string"
-                },
-                "artifactsApplied": {
-                    "type": "int"
-                },
-                "totalArtifacts": {
-                    "type": "int"
-                }
-            }
-        },
-        "galleryImageReference": {
-            "parameters": {
-                "offer": {
-                    "type": "string"
-                },
-                "publisher": {
-                    "type": "string"
-                },
-                "sku": {
-                    "type": "string"
-                },
-                "osType": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                }
-            }
-        },
-        "computeVm": {
-            "parameters": {
-                "osType": {
-                    "type": "string"
-                },
-                "vmSize": {
-                    "type": "string"
-                },
-                "networkInterfaceId": {
-                    "type": "string"
-                },
-                "osDiskId": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "statuses": {
-                    "$ref": "#/$keywords/statuses"
-                },
-                "dataDiskIds": {
-                    "$ref": "#/$keywords/dataDiskIds"
-                },
-                "dataDisks": {
-                    "$ref": "#/$keywords/dataDisks"
-                }
-            }
-        },
-        "statuses": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "displayStatus": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "dataDiskIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "dataDisks": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "diskUri": {
-                    "type": "string"
-                },
-                "managedDiskId": {
-                    "type": "string"
-                },
-                "diskSizeGiB": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
-        "networkInterface": {
-            "parameters": {
-                "virtualNetworkId": {
-                    "type": "string"
-                },
-                "subnetId": {
-                    "type": "string"
-                },
-                "publicIpAddressId": {
-                    "type": "string"
-                },
-                "publicIpAddress": {
-                    "type": "string"
-                },
-                "privateIpAddress": {
-                    "type": "string"
-                },
-                "dnsName": {
-                    "type": "string"
-                },
-                "rdpAuthority": {
-                    "type": "string"
-                },
-                "sshAuthority": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "sharedPublicIpAddressConfiguration": {
-                    "$ref": "#/$keywords/sharedPublicIpAddressConfiguration"
-                }
-            }
-        },
-        "sharedPublicIpAddressConfiguration": {
-            "body": {
-                "inboundNatRules": {
-                    "$ref": "#/$keywords/inboundNatRules"
-                }
-            }
-        },
-        "inboundNatRules": {
-            "parameters": {
-                "transportProtocol": {
-                    "enum": [
-                        "Tcp",
-                        "Udp"
-                    ]
-                },
-                "frontendPort": {
-                    "type": "int"
-                },
-                "backendPort": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
-        "applicableSchedule": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "location": {
-                    "type": "string"
-                },
-                "tags": {}
-            },
-            "body": {
-                "labVmsShutdown": {
-                    "$ref": "#/$keywords/labVmsShutdown"
-                },
-                "labVmsStartup": {
-                    "$ref": "#/$keywords/labVmsShutdown"
-                }
-            }
-        },
-        "labVmsShutdown": {
-            "parameters": {
-                "status": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "taskType": {
-                    "type": "string"
-                },
-                "timeZoneId": {
-                    "type": "string"
-                },
-                "createdDate": {},
-                "targetResourceId": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "type": "string"
-                },
-                "uniqueIdentifier": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "location": {
-                    "type": "string"
-                },
-                "tags": {}
-            },
-            "body": {
-                "weeklyRecurrence": {
-                    "$ref": "#/$keywords/weeklyRecurrence"
-                },
-                "dailyRecurrence": {
-                    "$ref": "#/$keywords/dailyRecurrence"
-                },
-                "hourlyRecurrence": {
-                    "$ref": "#/$keywords/hourlyRecurrence"
-                },
-                "notificationSettings": {
-                    "$ref": "#/$keywords/notificationSettings"
-                }
-            }
-        },
-        "vm_2": {
-            "parameters": {
-                "labVmId": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_6": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_6": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "webHookUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "events": {
-            "parameters": {
-                "eventName": {
-                    "enum": [
-                        "AutoShutdown",
-                        "Cost"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "createdDate_5": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState_7": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_7": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description_4": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "status_2": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "factName": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "UserOwnedLabVmCount",
-                        "UserOwnedLabPremiumVmCount",
-                        "LabVmCount",
-                        "LabPremiumVmCount",
-                        "LabVmSize",
-                        "GalleryImage",
-                        "UserOwnedLabVmCountInSubnet",
-                        "LabTargetCost"
-                    ]
-                }
-            }
-        },
-        "factData": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "threshold": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "evaluatorType": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "AllowedValuesPolicy",
-                        "MaxValuePolicy"
-                    ]
-                }
-            }
-        },
-        "createdDate_6": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState_8": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_8": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "identity": {
-            "parameters": {
-                "principalName": {
-                    "type": "string"
-                },
-                "principalId": {
-                    "type": "string"
-                },
-                "tenantId": {
-                    "type": "string"
-                },
-                "objectId": {
-                    "type": "string"
-                },
-                "appId": {
-                    "type": "string"
-                }
-            }
-        },
-        "secretStore": {
-            "parameters": {
-                "keyVaultUri": {
-                    "type": "string"
-                },
-                "keyVaultId": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdDate_7": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState_9": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_9": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "diskSizeGiB": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "leasedByLabVmId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "diskBlobName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "diskUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdDate_8": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "hostCaching": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "managedDiskId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_10": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_10": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deploymentProperties": {
-            "parameters": {
-                "armTemplateId": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "parameters": {
-                    "$ref": "#/$keywords/parameters_2"
-                }
-            }
-        },
-        "parameters_2": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "armTemplateDisplayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "resourceGroupId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdByUser": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_11": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_11": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
+          "$ref": "#/$keywords/osType"
+        }
+      }
+    },
+    "imageName": {
+      "propertyParameters": {
         "value": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "type": "string"
+        }
+      }
+    },
+    "sysPrep": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows",
+            "Linux",
+            "None"
+          ]
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "author": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "managedImageId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "author_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "formulaContent": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties"
         },
-        "provisioningState_12": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
         },
-        "uniqueIdentifier_12": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "location": {
+          "$ref": "#/$keywords/location_1_2"
+        },
+        "tags": {
+          "$ref": "#/$keywords/tags_1_2"
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "bulkCreationParameters": {
+          "$ref": "#/$keywords/bulkCreationParameters"
         },
         "notes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/notes"
         },
         "ownerObjectId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/ownerObjectId"
         },
         "ownerUserPrincipalName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/ownerUserPrincipalName"
         },
         "createdByUserId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/createdByUserId"
         },
-        "createdByUser_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "createdByUser": {
+          "$ref": "#/$keywords/createdByUser"
         },
-        "createdDate_9": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "computeId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "createdDate": {
+          "$ref": "#/$keywords/createdDate_1"
         },
         "customImageId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/customImageId"
         },
-        "osType_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "osType": {
+          "$ref": "#/$keywords/osType_1_2"
         },
         "size": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/size"
         },
         "userName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/userName"
         },
         "password": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/password"
         },
         "sshKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/sshKey"
         },
         "isAuthenticationWithSshKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/isAuthenticationWithSshKey"
         },
         "fqdn": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/fqdn"
         },
         "labSubnetName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/labSubnetName"
         },
         "labVirtualNetworkId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/labVirtualNetworkId"
         },
         "disallowPublicIpAddress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/disallowPublicIpAddress"
         },
-        "artifacts_2": {
-            "parameters": {
-                "artifactId": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                },
-                "deploymentStatusMessage": {
-                    "type": "string"
-                },
-                "vmExtensionStatusMessage": {
-                    "type": "string"
-                },
-                "installTime": {}
-            },
-            "body": {
-                "parameters": {
-                    "$ref": "#/$keywords/parameters"
-                }
-            },
-            "array": true
+        "artifacts": {
+          "$ref": "#/$keywords/artifacts"
+        },
+        "artifactDeploymentStatus": {
+          "$ref": "#/$keywords/artifactDeploymentStatus"
+        },
+        "galleryImageReference": {
+          "$ref": "#/$keywords/galleryImageReference"
+        },
+        "computeVm": {
+          "$ref": "#/$keywords/computeVm"
+        },
+        "networkInterface": {
+          "$ref": "#/$keywords/networkInterface"
+        },
+        "applicableSchedule": {
+          "$ref": "#/$keywords/applicableSchedule"
         },
         "expirationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
+          "$ref": "#/$keywords/expirationDate"
         },
         "allowClaim": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/allowClaim"
         },
         "storageType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/storageType"
         },
         "virtualMachineCreationSource": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "FromCustomImage",
-                        "FromGalleryImage"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/virtualMachineCreationSource"
         },
         "environmentId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/environmentId"
         },
-        "provisioningState_13": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "provisioningState": {
+          "$ref": "#/$keywords/provisioningState_1_2_3_4_5"
         },
-        "uniqueIdentifier_13": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "allowedSubnets": {
-            "parameters": {
-                "resourceId": {
-                    "type": "string"
-                },
-                "labSubnetName": {
-                    "type": "string"
-                },
-                "allowPublicIp": {
-                    "enum": [
-                        "Default",
-                        "Deny",
-                        "Allow"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "description_5": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "externalProviderResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "externalSubnets": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "subnetOverrides": {
-            "parameters": {
-                "resourceId": {
-                    "type": "string"
-                },
-                "labSubnetName": {
-                    "type": "string"
-                },
-                "useInVmCreationPermission": {
-                    "enum": [
-                        "Default",
-                        "Deny",
-                        "Allow"
-                    ]
-                },
-                "usePublicIpAddressPermission": {
-                    "enum": [
-                        "Default",
-                        "Deny",
-                        "Allow"
-                    ]
-                },
-                "virtualNetworkPoolName": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "sharedPublicIpAddressConfiguration": {
-                    "$ref": "#/$keywords/sharedPublicIpAddressConfiguration_2"
-                }
-            },
-            "array": true
-        },
-        "sharedPublicIpAddressConfiguration_2": {
-            "body": {
-                "allowedPorts": {
-                    "$ref": "#/$keywords/allowedPorts"
-                }
-            }
-        },
-        "allowedPorts": {
-            "parameters": {
-                "transportProtocol": {
-                    "enum": [
-                        "Tcp",
-                        "Udp"
-                    ]
-                },
-                "backendPort": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
-        "createdDate_10": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState_14": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "uniqueIdentifier_14": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "uniqueIdentifier": {
+          "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5"
         }
+      }
     },
-    "$resources": {
-        "labs": {
-            "defaultStorageAccount": {
-                "$ref": "#/$keywords/defaultStorageAccount"
-            },
-            "defaultPremiumStorageAccount": {
-                "$ref": "#/$keywords/defaultPremiumStorageAccount"
-            },
-            "artifactsStorageAccount": {
-                "$ref": "#/$keywords/artifactsStorageAccount"
-            },
-            "premiumDataDiskStorageAccount": {
-                "$ref": "#/$keywords/premiumDataDiskStorageAccount"
-            },
-            "vaultName": {
-                "$ref": "#/$keywords/vaultName"
-            },
-            "labStorageType": {
-                "$ref": "#/$keywords/labStorageType"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate"
-            },
-            "premiumDataDisks": {
-                "$ref": "#/$keywords/premiumDataDisks"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier"
-            }
-        },
-        "schedules": {
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "taskType": {
-                "$ref": "#/$keywords/taskType"
-            },
-            "weeklyRecurrence": {
-                "$ref": "#/$keywords/weeklyRecurrence"
-            },
-            "dailyRecurrence": {
-                "$ref": "#/$keywords/dailyRecurrence"
-            },
-            "hourlyRecurrence": {
-                "$ref": "#/$keywords/hourlyRecurrence"
-            },
-            "timeZoneId": {
-                "$ref": "#/$keywords/timeZoneId"
-            },
-            "notificationSettings": {
-                "$ref": "#/$keywords/notificationSettings"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_2"
-            },
-            "targetResourceId": {
-                "$ref": "#/$keywords/targetResourceId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_2"
-            }
-        },
-        "labs/artifactsources": {
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            },
-            "uri": {
-                "$ref": "#/$keywords/uri"
-            },
-            "sourceType": {
-                "$ref": "#/$keywords/sourceType"
-            },
-            "folderPath": {
-                "$ref": "#/$keywords/folderPath"
-            },
-            "armTemplateFolderPath": {
-                "$ref": "#/$keywords/armTemplateFolderPath"
-            },
-            "branchRef": {
-                "$ref": "#/$keywords/branchRef"
-            },
-            "securityToken": {
-                "$ref": "#/$keywords/securityToken"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_3"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_3"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_3"
-            }
-        },
-        "labs/costs": {
-            "targetCost": {
-                "$ref": "#/$keywords/targetCost"
-            },
-            "labCostSummary": {
-                "$ref": "#/$keywords/labCostSummary"
-            },
-            "labCostDetails": {
-                "$ref": "#/$keywords/labCostDetails"
-            },
-            "resourceCosts": {
-                "$ref": "#/$keywords/resourceCosts"
-            },
-            "currencyCode": {
-                "$ref": "#/$keywords/currencyCode"
-            },
-            "startDateTime": {
-                "$ref": "#/$keywords/startDateTime"
-            },
-            "endDateTime": {
-                "$ref": "#/$keywords/endDateTime"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_4"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_4"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_4"
-            }
-        },
-        "labs/customimages": {
-            "vm": {
-                "$ref": "#/$keywords/vm"
-            },
-            "vhd": {
-                "$ref": "#/$keywords/vhd"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "author": {
-                "$ref": "#/$keywords/author"
-            },
-            "creationDate": {
-                "$ref": "#/$keywords/creationDate"
-            },
-            "managedImageId": {
-                "$ref": "#/$keywords/managedImageId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_5"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_5"
-            }
-        },
-        "labs/formulas": {
-            "description": {
-                "$ref": "#/$keywords/description_2"
-            },
-            "author": {
-                "$ref": "#/$keywords/author_2"
-            },
-            "osType": {
-                "$ref": "#/$keywords/osType"
-            },
-            "creationDate": {
-                "$ref": "#/$keywords/creationDate_2"
-            },
-            "formulaContent": {
-                "$ref": "#/$keywords/formulaContent"
-            },
-            "vm": {
-                "$ref": "#/$keywords/vm_2"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_6"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_6"
-            }
-        },
-        "labs/notificationchannels": {
-            "webHookUrl": {
-                "$ref": "#/$keywords/webHookUrl"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_3"
-            },
-            "events": {
-                "$ref": "#/$keywords/events"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_5"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_7"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_7"
-            }
-        },
-        "labs/policysets/policies": {
-            "description": {
-                "$ref": "#/$keywords/description_4"
-            },
-            "status": {
-                "$ref": "#/$keywords/status_2"
-            },
-            "factName": {
-                "$ref": "#/$keywords/factName"
-            },
-            "factData": {
-                "$ref": "#/$keywords/factData"
-            },
-            "threshold": {
-                "$ref": "#/$keywords/threshold"
-            },
-            "evaluatorType": {
-                "$ref": "#/$keywords/evaluatorType"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_6"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_8"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_8"
-            }
-        },
-        "labs/schedules": {
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "taskType": {
-                "$ref": "#/$keywords/taskType"
-            },
-            "weeklyRecurrence": {
-                "$ref": "#/$keywords/weeklyRecurrence"
-            },
-            "dailyRecurrence": {
-                "$ref": "#/$keywords/dailyRecurrence"
-            },
-            "hourlyRecurrence": {
-                "$ref": "#/$keywords/hourlyRecurrence"
-            },
-            "timeZoneId": {
-                "$ref": "#/$keywords/timeZoneId"
-            },
-            "notificationSettings": {
-                "$ref": "#/$keywords/notificationSettings"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_2"
-            },
-            "targetResourceId": {
-                "$ref": "#/$keywords/targetResourceId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_2"
-            }
-        },
-        "labs/servicerunners": {},
-        "labs/users": {
-            "identity": {
-                "$ref": "#/$keywords/identity"
-            },
-            "secretStore": {
-                "$ref": "#/$keywords/secretStore"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_7"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_9"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_9"
-            }
-        },
-        "labs/users/disks": {
-            "diskType": {
-                "$ref": "#/$keywords/labStorageType"
-            },
-            "diskSizeGiB": {
-                "$ref": "#/$keywords/diskSizeGiB"
-            },
-            "leasedByLabVmId": {
-                "$ref": "#/$keywords/leasedByLabVmId"
-            },
-            "diskBlobName": {
-                "$ref": "#/$keywords/diskBlobName"
-            },
-            "diskUri": {
-                "$ref": "#/$keywords/diskUri"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_8"
-            },
-            "hostCaching": {
-                "$ref": "#/$keywords/hostCaching"
-            },
-            "managedDiskId": {
-                "$ref": "#/$keywords/managedDiskId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_10"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_10"
-            }
-        },
-        "labs/users/environments": {
-            "deploymentProperties": {
-                "$ref": "#/$keywords/deploymentProperties"
-            },
-            "armTemplateDisplayName": {
-                "$ref": "#/$keywords/armTemplateDisplayName"
-            },
-            "resourceGroupId": {
-                "$ref": "#/$keywords/resourceGroupId"
-            },
-            "createdByUser": {
-                "$ref": "#/$keywords/createdByUser"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_11"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_11"
-            }
-        },
-        "labs/users/secrets": {
-            "value": {
-                "$ref": "#/$keywords/value"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_12"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_12"
-            }
-        },
-        "labs/virtualmachines": {
-            "notes": {
-                "$ref": "#/$keywords/notes"
-            },
-            "ownerObjectId": {
-                "$ref": "#/$keywords/ownerObjectId"
-            },
-            "ownerUserPrincipalName": {
-                "$ref": "#/$keywords/ownerUserPrincipalName"
-            },
-            "createdByUserId": {
-                "$ref": "#/$keywords/createdByUserId"
-            },
-            "createdByUser": {
-                "$ref": "#/$keywords/createdByUser_2"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_9"
-            },
-            "computeId": {
-                "$ref": "#/$keywords/computeId"
-            },
-            "customImageId": {
-                "$ref": "#/$keywords/customImageId"
-            },
-            "osType": {
-                "$ref": "#/$keywords/osType_2"
-            },
-            "size": {
-                "$ref": "#/$keywords/size"
-            },
-            "userName": {
-                "$ref": "#/$keywords/userName"
-            },
-            "password": {
-                "$ref": "#/$keywords/password"
-            },
-            "sshKey": {
-                "$ref": "#/$keywords/sshKey"
-            },
-            "isAuthenticationWithSshKey": {
-                "$ref": "#/$keywords/isAuthenticationWithSshKey"
-            },
-            "fqdn": {
-                "$ref": "#/$keywords/fqdn"
-            },
-            "labSubnetName": {
-                "$ref": "#/$keywords/labSubnetName"
-            },
-            "labVirtualNetworkId": {
-                "$ref": "#/$keywords/labVirtualNetworkId"
-            },
-            "disallowPublicIpAddress": {
-                "$ref": "#/$keywords/disallowPublicIpAddress"
-            },
-            "artifacts": {
-                "$ref": "#/$keywords/artifacts_2"
-            },
-            "artifactDeploymentStatus": {
-                "$ref": "#/$keywords/artifactDeploymentStatus"
-            },
-            "galleryImageReference": {
-                "$ref": "#/$keywords/galleryImageReference"
-            },
-            "computeVm": {
-                "$ref": "#/$keywords/computeVm"
-            },
-            "networkInterface": {
-                "$ref": "#/$keywords/networkInterface"
-            },
-            "applicableSchedule": {
-                "$ref": "#/$keywords/applicableSchedule"
-            },
-            "expirationDate": {
-                "$ref": "#/$keywords/expirationDate"
-            },
-            "allowClaim": {
-                "$ref": "#/$keywords/allowClaim"
-            },
-            "storageType": {
-                "$ref": "#/$keywords/storageType"
-            },
-            "virtualMachineCreationSource": {
-                "$ref": "#/$keywords/virtualMachineCreationSource"
-            },
-            "environmentId": {
-                "$ref": "#/$keywords/environmentId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_13"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_13"
-            }
-        },
-        "labs/virtualmachines/schedules": {
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "taskType": {
-                "$ref": "#/$keywords/taskType"
-            },
-            "weeklyRecurrence": {
-                "$ref": "#/$keywords/weeklyRecurrence"
-            },
-            "dailyRecurrence": {
-                "$ref": "#/$keywords/dailyRecurrence"
-            },
-            "hourlyRecurrence": {
-                "$ref": "#/$keywords/hourlyRecurrence"
-            },
-            "timeZoneId": {
-                "$ref": "#/$keywords/timeZoneId"
-            },
-            "notificationSettings": {
-                "$ref": "#/$keywords/notificationSettings"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_2"
-            },
-            "targetResourceId": {
-                "$ref": "#/$keywords/targetResourceId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_2"
-            }
-        },
-        "labs/virtualnetworks": {
-            "allowedSubnets": {
-                "$ref": "#/$keywords/allowedSubnets"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_5"
-            },
-            "externalProviderResourceId": {
-                "$ref": "#/$keywords/externalProviderResourceId"
-            },
-            "externalSubnets": {
-                "$ref": "#/$keywords/externalSubnets"
-            },
-            "subnetOverrides": {
-                "$ref": "#/$keywords/subnetOverrides"
-            },
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_10"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_14"
-            },
-            "uniqueIdentifier": {
-                "$ref": "#/$keywords/uniqueIdentifier_14"
-            }
+    "bulkCreationParameters": {
+      "body": {
+        "instanceCount": {
+          "$ref": "#/$keywords/instanceCount"
         }
+      }
+    },
+    "instanceCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "notes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ownerObjectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ownerUserPrincipalName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdByUserId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdByUser": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdDate_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customImageId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "size": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sshKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isAuthenticationWithSshKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "fqdn": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labSubnetName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labVirtualNetworkId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "disallowPublicIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "artifacts": {
+      "body": {
+        "artifactId": {
+          "$ref": "#/$keywords/artifactId"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters"
+        },
+        "status": {
+          "$ref": "#/$keywords/status_1_2_3_4"
+        },
+        "deploymentStatusMessage": {
+          "$ref": "#/$keywords/deploymentStatusMessage"
+        },
+        "vmExtensionStatusMessage": {
+          "$ref": "#/$keywords/vmExtensionStatusMessage"
+        },
+        "installTime": {
+          "$ref": "#/$keywords/installTime"
+        }
+      },
+      "array": true
+    },
+    "artifactId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "deploymentStatusMessage": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmExtensionStatusMessage": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "installTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "artifactDeploymentStatus": {
+      "body": {
+        "deploymentStatus": {
+          "$ref": "#/$keywords/deploymentStatus"
+        },
+        "artifactsApplied": {
+          "$ref": "#/$keywords/artifactsApplied"
+        },
+        "totalArtifacts": {
+          "$ref": "#/$keywords/totalArtifacts"
+        }
+      }
+    },
+    "deploymentStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "artifactsApplied": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "totalArtifacts": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "galleryImageReference": {
+      "body": {
+        "offer": {
+          "$ref": "#/$keywords/offer"
+        },
+        "publisher": {
+          "$ref": "#/$keywords/publisher"
+        },
+        "sku": {
+          "$ref": "#/$keywords/sku"
+        },
+        "osType": {
+          "$ref": "#/$keywords/osType_1_2_3"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "offer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publisher": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sku": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "computeVm": {
+      "body": {
+        "statuses": {
+          "$ref": "#/$keywords/statuses"
+        },
+        "osType": {
+          "$ref": "#/$keywords/osType_1_2_3_4"
+        },
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize"
+        },
+        "networkInterfaceId": {
+          "$ref": "#/$keywords/networkInterfaceId"
+        },
+        "osDiskId": {
+          "$ref": "#/$keywords/osDiskId"
+        },
+        "dataDiskIds": {
+          "$ref": "#/$keywords/dataDiskIds"
+        },
+        "dataDisks": {
+          "$ref": "#/$keywords/dataDisks"
+        }
+      }
+    },
+    "statuses": {
+      "body": {
+        "code": {
+          "$ref": "#/$keywords/code"
+        },
+        "displayStatus": {
+          "$ref": "#/$keywords/displayStatus"
+        },
+        "message": {
+          "$ref": "#/$keywords/message"
+        }
+      },
+      "array": true
+    },
+    "code": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "message": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "networkInterfaceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osDiskId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataDiskIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "dataDisks": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "diskUri": {
+          "$ref": "#/$keywords/diskUri"
+        },
+        "managedDiskId": {
+          "$ref": "#/$keywords/managedDiskId"
+        },
+        "diskSizeGiB": {
+          "$ref": "#/$keywords/diskSizeGiB"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "managedDiskId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskSizeGiB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "networkInterface": {
+      "body": {
+        "virtualNetworkId": {
+          "$ref": "#/$keywords/virtualNetworkId"
+        },
+        "subnetId": {
+          "$ref": "#/$keywords/subnetId"
+        },
+        "publicIpAddressId": {
+          "$ref": "#/$keywords/publicIpAddressId"
+        },
+        "publicIpAddress": {
+          "$ref": "#/$keywords/publicIpAddress"
+        },
+        "privateIpAddress": {
+          "$ref": "#/$keywords/privateIpAddress"
+        },
+        "dnsName": {
+          "$ref": "#/$keywords/dnsName"
+        },
+        "rdpAuthority": {
+          "$ref": "#/$keywords/rdpAuthority"
+        },
+        "sshAuthority": {
+          "$ref": "#/$keywords/sshAuthority"
+        },
+        "sharedPublicIpAddressConfiguration": {
+          "$ref": "#/$keywords/sharedPublicIpAddressConfiguration"
+        }
+      }
+    },
+    "virtualNetworkId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicIpAddressId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dnsName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rdpAuthority": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sshAuthority": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sharedPublicIpAddressConfiguration": {
+      "body": {
+        "inboundNatRules": {
+          "$ref": "#/$keywords/inboundNatRules"
+        }
+      }
+    },
+    "inboundNatRules": {
+      "body": {
+        "transportProtocol": {
+          "$ref": "#/$keywords/transportProtocol"
+        },
+        "frontendPort": {
+          "$ref": "#/$keywords/frontendPort"
+        },
+        "backendPort": {
+          "$ref": "#/$keywords/backendPort"
+        }
+      },
+      "array": true
+    },
+    "transportProtocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Tcp",
+            "Udp"
+          ]
+        }
+      }
+    },
+    "frontendPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "backendPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "applicableSchedule": {
+      "body": {
+        "location": {
+          "$ref": "#/$keywords/location"
+        },
+        "tags": {
+          "$ref": "#/$keywords/tags"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1"
+        }
+      }
+    },
+    "location": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tags": {
+      "body": {}
+    },
+    "properties_1": {
+      "body": {
+        "labVmsShutdown": {
+          "$ref": "#/$keywords/labVmsShutdown"
+        },
+        "labVmsStartup": {
+          "$ref": "#/$keywords/labVmsStartup"
+        }
+      }
+    },
+    "labVmsShutdown": {
+      "body": {
+        "location": {
+          "$ref": "#/$keywords/location_1"
+        },
+        "tags": {
+          "$ref": "#/$keywords/tags_1"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2"
+        }
+      }
+    },
+    "location_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tags_1": {
+      "body": {}
+    },
+    "properties_1_2": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
+        },
+        "taskType": {
+          "$ref": "#/$keywords/taskType"
+        },
+        "weeklyRecurrence": {
+          "$ref": "#/$keywords/weeklyRecurrence"
+        },
+        "dailyRecurrence": {
+          "$ref": "#/$keywords/dailyRecurrence"
+        },
+        "hourlyRecurrence": {
+          "$ref": "#/$keywords/hourlyRecurrence"
+        },
+        "timeZoneId": {
+          "$ref": "#/$keywords/timeZoneId"
+        },
+        "notificationSettings": {
+          "$ref": "#/$keywords/notificationSettings"
+        },
+        "targetResourceId": {
+          "$ref": "#/$keywords/targetResourceId"
+        },
+        "provisioningState": {
+          "$ref": "#/$keywords/provisioningState_1"
+        },
+        "uniqueIdentifier": {
+          "$ref": "#/$keywords/uniqueIdentifier_1"
+        }
+      }
+    },
+    "labVmsStartup": {
+      "body": {
+        "location": {
+          "$ref": "#/$keywords/location_1"
+        },
+        "tags": {
+          "$ref": "#/$keywords/tags_1"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1_2"
+        }
+      }
+    },
+    "expirationDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowClaim": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "storageType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualMachineCreationSource": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "FromCustomImage",
+            "FromGalleryImage"
+          ]
+        }
+      }
+    },
+    "environmentId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "location_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tags_1_2": {
+      "body": {}
+    },
+    "vm_1": {
+      "body": {
+        "labVmId": {
+          "$ref": "#/$keywords/labVmId"
+        }
+      }
+    },
+    "labVmId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "webHookUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "events": {
+      "body": {
+        "eventName": {
+          "$ref": "#/$keywords/eventName"
+        }
+      },
+      "array": true
+    },
+    "eventName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AutoShutdown",
+            "Cost"
+          ]
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "identity": {
+      "body": {
+        "principalName": {
+          "$ref": "#/$keywords/principalName"
+        },
+        "principalId": {
+          "$ref": "#/$keywords/principalId"
+        },
+        "tenantId": {
+          "$ref": "#/$keywords/tenantId"
+        },
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        },
+        "appId": {
+          "$ref": "#/$keywords/appId"
+        }
+      }
+    },
+    "principalName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "principalId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "objectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "appId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "secretStore": {
+      "body": {
+        "keyVaultUri": {
+          "$ref": "#/$keywords/keyVaultUri"
+        },
+        "keyVaultId": {
+          "$ref": "#/$keywords/keyVaultId"
+        }
+      }
+    },
+    "keyVaultUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7_8": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7_8": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "notes_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ownerObjectId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ownerUserPrincipalName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdByUserId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdByUser_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createdDate_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "customImageId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "size_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sshKey_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isAuthenticationWithSshKey_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "fqdn_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labSubnetName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labVirtualNetworkId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "disallowPublicIpAddress_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "artifacts_1": {
+      "body": {
+        "artifactId": {
+          "$ref": "#/$keywords/artifactId"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters"
+        },
+        "status": {
+          "$ref": "#/$keywords/status_1_2_3_4"
+        },
+        "deploymentStatusMessage": {
+          "$ref": "#/$keywords/deploymentStatusMessage"
+        },
+        "vmExtensionStatusMessage": {
+          "$ref": "#/$keywords/vmExtensionStatusMessage"
+        },
+        "installTime": {
+          "$ref": "#/$keywords/installTime"
+        }
+      },
+      "array": true
+    },
+    "artifactDeploymentStatus_1": {
+      "body": {
+        "deploymentStatus": {
+          "$ref": "#/$keywords/deploymentStatus"
+        },
+        "artifactsApplied": {
+          "$ref": "#/$keywords/artifactsApplied"
+        },
+        "totalArtifacts": {
+          "$ref": "#/$keywords/totalArtifacts"
+        }
+      }
+    },
+    "galleryImageReference_1": {
+      "body": {
+        "offer": {
+          "$ref": "#/$keywords/offer"
+        },
+        "publisher": {
+          "$ref": "#/$keywords/publisher"
+        },
+        "sku": {
+          "$ref": "#/$keywords/sku"
+        },
+        "osType": {
+          "$ref": "#/$keywords/osType_1_2_3"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "computeVm_1": {
+      "body": {
+        "statuses": {
+          "$ref": "#/$keywords/statuses"
+        },
+        "osType": {
+          "$ref": "#/$keywords/osType_1_2_3_4"
+        },
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize"
+        },
+        "networkInterfaceId": {
+          "$ref": "#/$keywords/networkInterfaceId"
+        },
+        "osDiskId": {
+          "$ref": "#/$keywords/osDiskId"
+        },
+        "dataDiskIds": {
+          "$ref": "#/$keywords/dataDiskIds"
+        },
+        "dataDisks": {
+          "$ref": "#/$keywords/dataDisks"
+        }
+      }
+    },
+    "networkInterface_1": {
+      "body": {
+        "virtualNetworkId": {
+          "$ref": "#/$keywords/virtualNetworkId"
+        },
+        "subnetId": {
+          "$ref": "#/$keywords/subnetId"
+        },
+        "publicIpAddressId": {
+          "$ref": "#/$keywords/publicIpAddressId"
+        },
+        "publicIpAddress": {
+          "$ref": "#/$keywords/publicIpAddress"
+        },
+        "privateIpAddress": {
+          "$ref": "#/$keywords/privateIpAddress"
+        },
+        "dnsName": {
+          "$ref": "#/$keywords/dnsName"
+        },
+        "rdpAuthority": {
+          "$ref": "#/$keywords/rdpAuthority"
+        },
+        "sshAuthority": {
+          "$ref": "#/$keywords/sshAuthority"
+        },
+        "sharedPublicIpAddressConfiguration": {
+          "$ref": "#/$keywords/sharedPublicIpAddressConfiguration"
+        }
+      }
+    },
+    "applicableSchedule_1": {
+      "body": {
+        "location": {
+          "$ref": "#/$keywords/location"
+        },
+        "tags": {
+          "$ref": "#/$keywords/tags"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties_1"
+        }
+      }
+    },
+    "expirationDate_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowClaim_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "storageType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualMachineCreationSource_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "FromCustomImage",
+            "FromGalleryImage"
+          ]
+        }
+      }
+    },
+    "environmentId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7_8_9": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7_8_9": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowedSubnets": {
+      "body": {
+        "resourceId": {
+          "$ref": "#/$keywords/resourceId"
+        },
+        "labSubnetName": {
+          "$ref": "#/$keywords/labSubnetName_1_2"
+        },
+        "allowPublicIp": {
+          "$ref": "#/$keywords/allowPublicIp"
+        }
+      },
+      "array": true
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labSubnetName_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowPublicIp": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Deny",
+            "Allow"
+          ]
+        }
+      }
+    },
+    "description_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "externalProviderResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "externalSubnets": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        }
+      },
+      "array": true
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subnetOverrides": {
+      "body": {
+        "resourceId": {
+          "$ref": "#/$keywords/resourceId_1"
+        },
+        "labSubnetName": {
+          "$ref": "#/$keywords/labSubnetName_1_2_3"
+        },
+        "useInVmCreationPermission": {
+          "$ref": "#/$keywords/useInVmCreationPermission"
+        },
+        "usePublicIpAddressPermission": {
+          "$ref": "#/$keywords/usePublicIpAddressPermission"
+        },
+        "sharedPublicIpAddressConfiguration": {
+          "$ref": "#/$keywords/sharedPublicIpAddressConfiguration_1"
+        },
+        "virtualNetworkPoolName": {
+          "$ref": "#/$keywords/virtualNetworkPoolName"
+        }
+      },
+      "array": true
+    },
+    "resourceId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "labSubnetName_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useInVmCreationPermission": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Deny",
+            "Allow"
+          ]
+        }
+      }
+    },
+    "usePublicIpAddressPermission": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Deny",
+            "Allow"
+          ]
+        }
+      }
+    },
+    "sharedPublicIpAddressConfiguration_1": {
+      "body": {
+        "allowedPorts": {
+          "$ref": "#/$keywords/allowedPorts"
+        }
+      }
+    },
+    "allowedPorts": {
+      "body": {
+        "transportProtocol": {
+          "$ref": "#/$keywords/transportProtocol_1"
+        },
+        "backendPort": {
+          "$ref": "#/$keywords/backendPort_1"
+        }
+      },
+      "array": true
+    },
+    "transportProtocol_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Tcp",
+            "Udp"
+          ]
+        }
+      }
+    },
+    "backendPort_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "virtualNetworkPoolName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7_8_9_10": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7_8_9_10": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "factName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "UserOwnedLabVmCount",
+            "UserOwnedLabPremiumVmCount",
+            "LabVmCount",
+            "LabPremiumVmCount",
+            "LabVmSize",
+            "GalleryImage",
+            "UserOwnedLabVmCountInSubnet",
+            "LabTargetCost"
+          ]
+        }
+      }
+    },
+    "factData": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "threshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "evaluatorType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AllowedValuesPolicy",
+            "MaxValuePolicy"
+          ]
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7_8_9_10_11": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard",
+            "Premium"
+          ]
+        }
+      }
+    },
+    "diskSizeGiB_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "leasedByLabVmId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskBlobName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskUri_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hostCaching": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "managedDiskId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7_8_9_10_11_12": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11_12": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "deploymentProperties": {
+      "body": {
+        "armTemplateId": {
+          "$ref": "#/$keywords/armTemplateId"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters_1"
+        }
+      }
+    },
+    "armTemplateId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3_4"
+        },
+        "value": {
+          "$ref": "#/$keywords/value_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "armTemplateDisplayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7_8_9_10_11_12_13": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11_12_13": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState_1_2_3_4_5_6_7_8_9_10_11_12_13_14": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11_12_13_14": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "labs": {
+      "labStorageType": {
+        "$ref": "#/$keywords/labStorageType"
+      },
+      "premiumDataDisks": {
+        "$ref": "#/$keywords/premiumDataDisks"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier"
+      }
+    },
+    "schedules": {
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "taskType": {
+        "$ref": "#/$keywords/taskType"
+      },
+      "weeklyRecurrence": {
+        "$ref": "#/$keywords/weeklyRecurrence"
+      },
+      "dailyRecurrence": {
+        "$ref": "#/$keywords/dailyRecurrence"
+      },
+      "hourlyRecurrence": {
+        "$ref": "#/$keywords/hourlyRecurrence"
+      },
+      "timeZoneId": {
+        "$ref": "#/$keywords/timeZoneId"
+      },
+      "notificationSettings": {
+        "$ref": "#/$keywords/notificationSettings"
+      },
+      "targetResourceId": {
+        "$ref": "#/$keywords/targetResourceId"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1"
+      }
+    },
+    "labs/artifactsources": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "uri": {
+        "$ref": "#/$keywords/uri"
+      },
+      "sourceType": {
+        "$ref": "#/$keywords/sourceType"
+      },
+      "folderPath": {
+        "$ref": "#/$keywords/folderPath"
+      },
+      "armTemplateFolderPath": {
+        "$ref": "#/$keywords/armTemplateFolderPath"
+      },
+      "branchRef": {
+        "$ref": "#/$keywords/branchRef"
+      },
+      "securityToken": {
+        "$ref": "#/$keywords/securityToken"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1_2"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2"
+      }
+    },
+    "labs/costs": {
+      "targetCost": {
+        "$ref": "#/$keywords/targetCost"
+      },
+      "currencyCode": {
+        "$ref": "#/$keywords/currencyCode"
+      },
+      "startDateTime": {
+        "$ref": "#/$keywords/startDateTime"
+      },
+      "endDateTime": {
+        "$ref": "#/$keywords/endDateTime"
+      },
+      "createdDate": {
+        "$ref": "#/$keywords/createdDate"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3"
+      }
+    },
+    "labs/customimages": {
+      "vm": {
+        "$ref": "#/$keywords/vm"
+      },
+      "vhd": {
+        "$ref": "#/$keywords/vhd"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "author": {
+        "$ref": "#/$keywords/author"
+      },
+      "managedImageId": {
+        "$ref": "#/$keywords/managedImageId"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4"
+      }
+    },
+    "labs/formulas": {
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "author": {
+        "$ref": "#/$keywords/author_1"
+      },
+      "osType": {
+        "$ref": "#/$keywords/osType_1"
+      },
+      "formulaContent": {
+        "$ref": "#/$keywords/formulaContent"
+      },
+      "vm": {
+        "$ref": "#/$keywords/vm_1"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6"
+      }
+    },
+    "labs/notificationchannels": {
+      "webHookUrl": {
+        "$ref": "#/$keywords/webHookUrl"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "events": {
+        "$ref": "#/$keywords/events"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7"
+      }
+    },
+    "labs/schedules": {
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "taskType": {
+        "$ref": "#/$keywords/taskType"
+      },
+      "weeklyRecurrence": {
+        "$ref": "#/$keywords/weeklyRecurrence"
+      },
+      "dailyRecurrence": {
+        "$ref": "#/$keywords/dailyRecurrence"
+      },
+      "hourlyRecurrence": {
+        "$ref": "#/$keywords/hourlyRecurrence"
+      },
+      "timeZoneId": {
+        "$ref": "#/$keywords/timeZoneId"
+      },
+      "notificationSettings": {
+        "$ref": "#/$keywords/notificationSettings"
+      },
+      "targetResourceId": {
+        "$ref": "#/$keywords/targetResourceId"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1"
+      }
+    },
+    "labs/servicerunners": {},
+    "labs/users": {
+      "identity": {
+        "$ref": "#/$keywords/identity"
+      },
+      "secretStore": {
+        "$ref": "#/$keywords/secretStore"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7_8"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7_8"
+      }
+    },
+    "labs/virtualmachines": {
+      "notes": {
+        "$ref": "#/$keywords/notes_1"
+      },
+      "ownerObjectId": {
+        "$ref": "#/$keywords/ownerObjectId_1"
+      },
+      "ownerUserPrincipalName": {
+        "$ref": "#/$keywords/ownerUserPrincipalName_1"
+      },
+      "createdByUserId": {
+        "$ref": "#/$keywords/createdByUserId_1"
+      },
+      "createdByUser": {
+        "$ref": "#/$keywords/createdByUser_1"
+      },
+      "createdDate": {
+        "$ref": "#/$keywords/createdDate_1_2"
+      },
+      "customImageId": {
+        "$ref": "#/$keywords/customImageId_1"
+      },
+      "osType": {
+        "$ref": "#/$keywords/osType_1_2_3_4_5"
+      },
+      "size": {
+        "$ref": "#/$keywords/size_1"
+      },
+      "userName": {
+        "$ref": "#/$keywords/userName_1"
+      },
+      "password": {
+        "$ref": "#/$keywords/password_1"
+      },
+      "sshKey": {
+        "$ref": "#/$keywords/sshKey_1"
+      },
+      "isAuthenticationWithSshKey": {
+        "$ref": "#/$keywords/isAuthenticationWithSshKey_1"
+      },
+      "fqdn": {
+        "$ref": "#/$keywords/fqdn_1"
+      },
+      "labSubnetName": {
+        "$ref": "#/$keywords/labSubnetName_1"
+      },
+      "labVirtualNetworkId": {
+        "$ref": "#/$keywords/labVirtualNetworkId_1"
+      },
+      "disallowPublicIpAddress": {
+        "$ref": "#/$keywords/disallowPublicIpAddress_1"
+      },
+      "artifacts": {
+        "$ref": "#/$keywords/artifacts_1"
+      },
+      "artifactDeploymentStatus": {
+        "$ref": "#/$keywords/artifactDeploymentStatus_1"
+      },
+      "galleryImageReference": {
+        "$ref": "#/$keywords/galleryImageReference_1"
+      },
+      "computeVm": {
+        "$ref": "#/$keywords/computeVm_1"
+      },
+      "networkInterface": {
+        "$ref": "#/$keywords/networkInterface_1"
+      },
+      "applicableSchedule": {
+        "$ref": "#/$keywords/applicableSchedule_1"
+      },
+      "expirationDate": {
+        "$ref": "#/$keywords/expirationDate_1"
+      },
+      "allowClaim": {
+        "$ref": "#/$keywords/allowClaim_1"
+      },
+      "storageType": {
+        "$ref": "#/$keywords/storageType_1"
+      },
+      "virtualMachineCreationSource": {
+        "$ref": "#/$keywords/virtualMachineCreationSource_1"
+      },
+      "environmentId": {
+        "$ref": "#/$keywords/environmentId_1"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7_8_9"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7_8_9"
+      }
+    },
+    "labs/virtualnetworks": {
+      "allowedSubnets": {
+        "$ref": "#/$keywords/allowedSubnets"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3"
+      },
+      "externalProviderResourceId": {
+        "$ref": "#/$keywords/externalProviderResourceId"
+      },
+      "externalSubnets": {
+        "$ref": "#/$keywords/externalSubnets"
+      },
+      "subnetOverrides": {
+        "$ref": "#/$keywords/subnetOverrides"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7_8_9_10"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7_8_9_10"
+      }
+    },
+    "labs/policysets/policies": {
+      "description": {
+        "$ref": "#/$keywords/description_1_2_3_4"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1_2_3_4_5"
+      },
+      "factName": {
+        "$ref": "#/$keywords/factName"
+      },
+      "factData": {
+        "$ref": "#/$keywords/factData"
+      },
+      "threshold": {
+        "$ref": "#/$keywords/threshold"
+      },
+      "evaluatorType": {
+        "$ref": "#/$keywords/evaluatorType"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7_8_9_10_11"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11"
+      }
+    },
+    "labs/users/disks": {
+      "diskType": {
+        "$ref": "#/$keywords/diskType"
+      },
+      "diskSizeGiB": {
+        "$ref": "#/$keywords/diskSizeGiB_1"
+      },
+      "leasedByLabVmId": {
+        "$ref": "#/$keywords/leasedByLabVmId"
+      },
+      "diskBlobName": {
+        "$ref": "#/$keywords/diskBlobName"
+      },
+      "diskUri": {
+        "$ref": "#/$keywords/diskUri_1"
+      },
+      "hostCaching": {
+        "$ref": "#/$keywords/hostCaching"
+      },
+      "managedDiskId": {
+        "$ref": "#/$keywords/managedDiskId_1"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7_8_9_10_11_12"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11_12"
+      }
+    },
+    "labs/users/environments": {
+      "deploymentProperties": {
+        "$ref": "#/$keywords/deploymentProperties"
+      },
+      "armTemplateDisplayName": {
+        "$ref": "#/$keywords/armTemplateDisplayName"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7_8_9_10_11_12_13"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11_12_13"
+      }
+    },
+    "labs/users/secrets": {
+      "value": {
+        "$ref": "#/$keywords/value_1_2"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1_2_3_4_5_6_7_8_9_10_11_12_13_14"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1_2_3_4_5_6_7_8_9_10_11_12_13_14"
+      }
+    },
+    "labs/virtualmachines/schedules": {
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "taskType": {
+        "$ref": "#/$keywords/taskType"
+      },
+      "weeklyRecurrence": {
+        "$ref": "#/$keywords/weeklyRecurrence"
+      },
+      "dailyRecurrence": {
+        "$ref": "#/$keywords/dailyRecurrence"
+      },
+      "hourlyRecurrence": {
+        "$ref": "#/$keywords/hourlyRecurrence"
+      },
+      "timeZoneId": {
+        "$ref": "#/$keywords/timeZoneId"
+      },
+      "notificationSettings": {
+        "$ref": "#/$keywords/notificationSettings"
+      },
+      "targetResourceId": {
+        "$ref": "#/$keywords/targetResourceId"
+      },
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState_1"
+      },
+      "uniqueIdentifier": {
+        "$ref": "#/$keywords/uniqueIdentifier_1"
+      }
+    }
+  }
 }

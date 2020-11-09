@@ -1,66 +1,65 @@
 {
-    "$keywords": {
-        "privateEndpoint": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "privateLinkServiceConnectionState": {
-            "parameters": {
-                "status": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "actionsRequired": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "linkedResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "privateEndpoint": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         }
+      }
     },
-    "$resources": {
-        "privateLinkScopes/privateEndpointConnections": {
-            "privateEndpoint": {
-                "$ref": "#/$keywords/privateEndpoint"
-            },
-            "privateLinkServiceConnectionState": {
-                "$ref": "#/$keywords/privateLinkServiceConnectionState"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "privateLinkScopes/scopedResources": {
-            "linkedResourceId": {
-                "$ref": "#/$keywords/linkedResourceId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            }
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "privateLinkServiceConnectionState": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
+        },
+        "description": {
+          "$ref": "#/$keywords/description"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "linkedResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "privateLinkScopes": {},
+    "privateLinkScopes/privateEndpointConnections": {
+      "privateEndpoint": {
+        "$ref": "#/$keywords/privateEndpoint"
+      },
+      "privateLinkServiceConnectionState": {
+        "$ref": "#/$keywords/privateLinkServiceConnectionState"
+      }
+    },
+    "privateLinkScopes/scopedResources": {
+      "linkedResourceId": {
+        "$ref": "#/$keywords/linkedResourceId"
+      }
+    }
+  }
 }

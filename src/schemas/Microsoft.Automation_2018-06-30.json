@@ -1,0 +1,213 @@
+{
+  "$keywords": {
+    "logVerbose": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "logProgress": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "runbookType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Script",
+            "Graph",
+            "PowerShellWorkflow",
+            "PowerShell",
+            "GraphPowerShellWorkflow",
+            "GraphPowerShell"
+          ]
+        }
+      }
+    },
+    "draft": {
+      "body": {
+        "inEdit": {
+          "$ref": "#/$keywords/inEdit"
+        },
+        "draftContentLink": {
+          "$ref": "#/$keywords/draftContentLink"
+        },
+        "creationTime": {
+          "$ref": "#/$keywords/creationTime"
+        },
+        "lastModifiedTime": {
+          "$ref": "#/$keywords/lastModifiedTime"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters"
+        },
+        "outputTypes": {
+          "$ref": "#/$keywords/outputTypes"
+        }
+      }
+    },
+    "inEdit": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "draftContentLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "contentHash": {
+          "$ref": "#/$keywords/contentHash"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentHash": {
+      "body": {
+        "algorithm": {
+          "$ref": "#/$keywords/algorithm"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      }
+    },
+    "algorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "creationTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "lastModifiedTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "outputTypes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "publishContentLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "contentHash": {
+          "$ref": "#/$keywords/contentHash"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logActivityTrace": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "contentLink": {
+      "body": {
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "contentHash": {
+          "$ref": "#/$keywords/contentHash"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "automationAccounts/runbooks": {
+      "logVerbose": {
+        "$ref": "#/$keywords/logVerbose"
+      },
+      "logProgress": {
+        "$ref": "#/$keywords/logProgress"
+      },
+      "runbookType": {
+        "$ref": "#/$keywords/runbookType"
+      },
+      "draft": {
+        "$ref": "#/$keywords/draft"
+      },
+      "publishContentLink": {
+        "$ref": "#/$keywords/publishContentLink"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "logActivityTrace": {
+        "$ref": "#/$keywords/logActivityTrace"
+      }
+    },
+    "automationAccounts/python2Packages": {
+      "contentLink": {
+        "$ref": "#/$keywords/contentLink"
+      }
+    },
+    "automationAccounts/runbooks/draft": {}
+  }
+}

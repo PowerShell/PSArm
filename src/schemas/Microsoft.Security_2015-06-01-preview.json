@@ -1,0 +1,248 @@
+{
+  "$keywords": {
+    "virtualMachines": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "ports": {
+          "$ref": "#/$keywords/ports"
+        },
+        "publicIpAddress": {
+          "$ref": "#/$keywords/publicIpAddress"
+        }
+      },
+      "array": true
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ports": {
+      "body": {
+        "number": {
+          "$ref": "#/$keywords/number"
+        },
+        "protocol": {
+          "$ref": "#/$keywords/protocol"
+        },
+        "allowedSourceAddressPrefix": {
+          "$ref": "#/$keywords/allowedSourceAddressPrefix"
+        },
+        "allowedSourceAddressPrefixes": {
+          "$ref": "#/$keywords/allowedSourceAddressPrefixes"
+        },
+        "maxRequestAccessDuration": {
+          "$ref": "#/$keywords/maxRequestAccessDuration"
+        }
+      },
+      "array": true
+    },
+    "number": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "protocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TCP",
+            "UDP",
+            "*"
+          ]
+        }
+      }
+    },
+    "allowedSourceAddressPrefix": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowedSourceAddressPrefixes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "maxRequestAccessDuration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requests": {
+      "body": {
+        "virtualMachines": {
+          "$ref": "#/$keywords/virtualMachines_1"
+        },
+        "startTimeUtc": {
+          "$ref": "#/$keywords/startTimeUtc"
+        },
+        "requestor": {
+          "$ref": "#/$keywords/requestor"
+        },
+        "justification": {
+          "$ref": "#/$keywords/justification"
+        }
+      },
+      "array": true
+    },
+    "virtualMachines_1": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        },
+        "ports": {
+          "$ref": "#/$keywords/ports_1"
+        }
+      },
+      "array": true
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ports_1": {
+      "body": {
+        "number": {
+          "$ref": "#/$keywords/number_1"
+        },
+        "allowedSourceAddressPrefix": {
+          "$ref": "#/$keywords/allowedSourceAddressPrefix_1"
+        },
+        "allowedSourceAddressPrefixes": {
+          "$ref": "#/$keywords/allowedSourceAddressPrefixes_1"
+        },
+        "endTimeUtc": {
+          "$ref": "#/$keywords/endTimeUtc"
+        },
+        "status": {
+          "$ref": "#/$keywords/status"
+        },
+        "statusReason": {
+          "$ref": "#/$keywords/statusReason"
+        },
+        "mappedPort": {
+          "$ref": "#/$keywords/mappedPort"
+        }
+      },
+      "array": true
+    },
+    "number_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "allowedSourceAddressPrefix_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowedSourceAddressPrefixes_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "endTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Revoked",
+            "Initiated"
+          ]
+        }
+      }
+    },
+    "statusReason": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Expired",
+            "UserRequested",
+            "NewerRequestInitiated"
+          ]
+        }
+      }
+    },
+    "mappedPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "startTimeUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requestor": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "justification": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "locations/jitNetworkAccessPolicies": {
+      "virtualMachines": {
+        "$ref": "#/$keywords/virtualMachines"
+      },
+      "requests": {
+        "$ref": "#/$keywords/requests"
+      }
+    },
+    "locations/applicationWhitelistings": {}
+  }
+}

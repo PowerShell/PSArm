@@ -39,7 +39,7 @@ namespace PSArm.Commands
 
         protected override void EndProcessing()
         {
-            var parameterValues = new Dictionary<string, IArmExpression>();
+            var parameterValues = new Dictionary<string, IArmValue>();
 
             if (Parameters != null)
             {
@@ -82,7 +82,7 @@ namespace PSArm.Commands
         public object GetDynamicParameters()
         {
             if (Template.Parameters == null
-                || Template.Parameters.Length == 0
+                || Template.Parameters.Count == 0
                 || ParameterSetName.Is(ParamSet_Hashtable))
             {
                 return null;

@@ -1,160 +1,183 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "type": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "creationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Updating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Canceled"
-                    ]
-                }
-            }
-        },
-        "actions": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "creationDate_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "scopeMapId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "credentials": {
-            "body": {
-                "activeDirectoryObject": {
-                    "$ref": "#/$keywords/activeDirectoryObject"
-                },
-                "certificates": {
-                    "$ref": "#/$keywords/certificates"
-                },
-                "passwords": {
-                    "$ref": "#/$keywords/passwords"
-                }
-            }
-        },
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "actions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "scopeMapId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "credentials": {
+      "body": {
         "activeDirectoryObject": {
-            "parameters": {
-                "objectId": {
-                    "type": "string"
-                },
-                "tenantId": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/activeDirectoryObject"
         },
         "certificates": {
-            "parameters": {
-                "name": {
-                    "enum": [
-                        "certificate1",
-                        "certificate2"
-                    ]
-                },
-                "expiry": {},
-                "thumbprint": {
-                    "type": "string"
-                },
-                "encodedPemCertificate": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/certificates"
         },
         "passwords": {
-            "parameters": {
-                "creationTime": {},
-                "expiry": {},
-                "name": {
-                    "enum": [
-                        "password1",
-                        "password2"
-                    ]
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "enabled",
-                        "disabled"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/passwords"
         }
+      }
     },
-    "$resources": {
-        "registries/scopeMaps": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "type": {
-                "$ref": "#/$keywords/type"
-            },
-            "creationDate": {
-                "$ref": "#/$keywords/creationDate"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "actions": {
-                "$ref": "#/$keywords/actions"
-            }
+    "activeDirectoryObject": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
         },
-        "registries/tokens": {
-            "creationDate": {
-                "$ref": "#/$keywords/creationDate_2"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "scopeMapId": {
-                "$ref": "#/$keywords/scopeMapId"
-            },
-            "credentials": {
-                "$ref": "#/$keywords/credentials"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            }
+        "tenantId": {
+          "$ref": "#/$keywords/tenantId"
         }
+      }
+    },
+    "objectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "certificates": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "expiry": {
+          "$ref": "#/$keywords/expiry"
+        },
+        "thumbprint": {
+          "$ref": "#/$keywords/thumbprint"
+        },
+        "encodedPemCertificate": {
+          "$ref": "#/$keywords/encodedPemCertificate"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "certificate1",
+            "certificate2"
+          ]
+        }
+      }
+    },
+    "expiry": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "thumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "encodedPemCertificate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "passwords": {
+      "body": {
+        "creationTime": {
+          "$ref": "#/$keywords/creationTime"
+        },
+        "expiry": {
+          "$ref": "#/$keywords/expiry_1"
+        },
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        }
+      },
+      "array": true
+    },
+    "creationTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "expiry_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "password1",
+            "password2"
+          ]
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "enabled",
+            "disabled"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "registries/scopeMaps": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "actions": {
+        "$ref": "#/$keywords/actions"
+      }
+    },
+    "registries/tokens": {
+      "scopeMapId": {
+        "$ref": "#/$keywords/scopeMapId"
+      },
+      "credentials": {
+        "$ref": "#/$keywords/credentials"
+      },
+      "status": {
+        "$ref": "#/$keywords/status"
+      }
+    }
+  }
 }

@@ -1,982 +1,1524 @@
 {
-    "$keywords": {
-        "autoStorage": {
-            "parameters": {
-                "storageAccountId": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "autoStorage": {
+      "body": {
+        "storageAccountId": {
+          "$ref": "#/$keywords/storageAccountId"
+        }
+      }
+    },
+    "storageAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "poolAllocationMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "BatchService",
+            "UserSubscription"
+          ]
+        }
+      }
+    },
+    "keyVaultReference": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         },
-        "poolAllocationMode": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "keyVaultReference": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "publicNetworkAccess": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "encryption": {
-            "parameters": {
-                "keySource": {}
-            },
-            "body": {
-                "keyVaultProperties": {
-                    "$ref": "#/$keywords/keyVaultProperties"
-                }
-            }
+        "url": {
+          "$ref": "#/$keywords/url"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "url": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicNetworkAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "encryption": {
+      "body": {
+        "keySource": {
+          "$ref": "#/$keywords/keySource"
         },
         "keyVaultProperties": {
-            "parameters": {
-                "keyIdentifier": {
-                    "type": "string"
-                }
-            }
-        },
-        "state": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "format": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "storageUrlExpiry": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "lastActivationTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "allowUpdates": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "defaultVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "thumbprintAlgorithm": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "thumbprint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "format_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "data": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "password": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "displayName_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "lastModified": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "creationTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "provisioningStateTransitionTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "allocationState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "allocationStateTransitionTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "vmSize": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deploymentConfiguration": {
-            "body": {
-                "cloudServiceConfiguration": {
-                    "$ref": "#/$keywords/cloudServiceConfiguration"
-                },
-                "virtualMachineConfiguration": {
-                    "$ref": "#/$keywords/virtualMachineConfiguration"
-                }
-            }
-        },
+          "$ref": "#/$keywords/keyVaultProperties"
+        }
+      }
+    },
+    "keySource": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Microsoft.Batch",
+            "Microsoft.KeyVault"
+          ]
+        }
+      }
+    },
+    "keyVaultProperties": {
+      "body": {
+        "keyIdentifier": {
+          "$ref": "#/$keywords/keyIdentifier"
+        }
+      }
+    },
+    "keyIdentifier": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "allowUpdates": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "defaultVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "thumbprintAlgorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "thumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "format": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Pfx",
+            "Cer"
+          ]
+        }
+      }
+    },
+    "data": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "deploymentConfiguration": {
+      "body": {
         "cloudServiceConfiguration": {
-            "parameters": {
-                "osFamily": {
-                    "type": "string"
-                },
-                "osVersion": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/cloudServiceConfiguration"
         },
         "virtualMachineConfiguration": {
-            "parameters": {
-                "nodeAgentSkuId": {
-                    "type": "string"
-                },
-                "licenseType": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "imageReference": {
-                    "$ref": "#/$keywords/imageReference"
-                },
-                "windowsConfiguration": {
-                    "$ref": "#/$keywords/windowsConfiguration"
-                },
-                "dataDisks": {
-                    "$ref": "#/$keywords/dataDisks"
-                },
-                "containerConfiguration": {
-                    "$ref": "#/$keywords/containerConfiguration"
-                },
-                "diskEncryptionConfiguration": {
-                    "$ref": "#/$keywords/diskEncryptionConfiguration"
-                }
-            }
+          "$ref": "#/$keywords/virtualMachineConfiguration"
+        }
+      }
+    },
+    "cloudServiceConfiguration": {
+      "body": {
+        "osFamily": {
+          "$ref": "#/$keywords/osFamily"
         },
+        "osVersion": {
+          "$ref": "#/$keywords/osVersion"
+        }
+      }
+    },
+    "osFamily": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualMachineConfiguration": {
+      "body": {
         "imageReference": {
-            "parameters": {
-                "publisher": {
-                    "type": "string"
-                },
-                "offer": {
-                    "type": "string"
-                },
-                "sku": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/imageReference"
+        },
+        "nodeAgentSkuId": {
+          "$ref": "#/$keywords/nodeAgentSkuId"
         },
         "windowsConfiguration": {
-            "parameters": {
-                "enableAutomaticUpdates": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/windowsConfiguration"
         },
         "dataDisks": {
-            "parameters": {
-                "lun": {
-                    "type": "int"
-                },
-                "caching": {},
-                "diskSizeGB": {
-                    "type": "int"
-                },
-                "storageAccountType": {}
-            },
-            "array": true
+          "$ref": "#/$keywords/dataDisks"
+        },
+        "licenseType": {
+          "$ref": "#/$keywords/licenseType"
         },
         "containerConfiguration": {
-            "parameters": {
-                "type": {}
-            },
-            "body": {
-                "containerImageNames": {
-                    "$ref": "#/$keywords/containerImageNames"
-                },
-                "containerRegistries": {
-                    "$ref": "#/$keywords/containerRegistries"
-                }
-            }
-        },
-        "containerImageNames": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "containerRegistries": {
-            "parameters": {
-                "registryServer": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/containerConfiguration"
         },
         "diskEncryptionConfiguration": {
-            "body": {
-                "targets": {
-                    "$ref": "#/$keywords/targets"
-                }
-            }
+          "$ref": "#/$keywords/diskEncryptionConfiguration"
+        }
+      }
+    },
+    "imageReference": {
+      "body": {
+        "publisher": {
+          "$ref": "#/$keywords/publisher"
         },
+        "offer": {
+          "$ref": "#/$keywords/offer"
+        },
+        "sku": {
+          "$ref": "#/$keywords/sku"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        },
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "publisher": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "offer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sku": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "nodeAgentSkuId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "windowsConfiguration": {
+      "body": {
+        "enableAutomaticUpdates": {
+          "$ref": "#/$keywords/enableAutomaticUpdates"
+        }
+      }
+    },
+    "enableAutomaticUpdates": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "dataDisks": {
+      "body": {
+        "lun": {
+          "$ref": "#/$keywords/lun"
+        },
+        "caching": {
+          "$ref": "#/$keywords/caching"
+        },
+        "diskSizeGB": {
+          "$ref": "#/$keywords/diskSizeGB"
+        },
+        "storageAccountType": {
+          "$ref": "#/$keywords/storageAccountType"
+        }
+      },
+      "array": true
+    },
+    "lun": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "caching": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "ReadOnly",
+            "ReadWrite"
+          ]
+        }
+      }
+    },
+    "diskSizeGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageAccountType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_LRS",
+            "Premium_LRS"
+          ]
+        }
+      }
+    },
+    "licenseType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "containerConfiguration": {
+      "body": {
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "containerImageNames": {
+          "$ref": "#/$keywords/containerImageNames"
+        },
+        "containerRegistries": {
+          "$ref": "#/$keywords/containerRegistries"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DockerCompatible"
+          ]
+        }
+      }
+    },
+    "containerImageNames": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "containerRegistries": {
+      "body": {
+        "registryServer": {
+          "$ref": "#/$keywords/registryServer"
+        },
+        "username": {
+          "$ref": "#/$keywords/username"
+        },
+        "password": {
+          "$ref": "#/$keywords/password_1"
+        }
+      },
+      "array": true
+    },
+    "registryServer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "username": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskEncryptionConfiguration": {
+      "body": {
         "targets": {
-            "propertyParameters": {
-                "value": {}
-            },
-            "array": true
-        },
-        "currentDedicatedNodes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "currentLowPriorityNodes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "scaleSettings": {
-            "body": {
-                "fixedScale": {
-                    "$ref": "#/$keywords/fixedScale"
-                },
-                "autoScale": {
-                    "$ref": "#/$keywords/autoScale"
-                }
-            }
-        },
+          "$ref": "#/$keywords/targets"
+        }
+      }
+    },
+    "targets": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "OsDisk",
+            "TemporaryDisk"
+          ]
+        }
+      },
+      "array": true
+    },
+    "scaleSettings": {
+      "body": {
         "fixedScale": {
-            "parameters": {
-                "resizeTimeout": {},
-                "targetDedicatedNodes": {
-                    "type": "int"
-                },
-                "targetLowPriorityNodes": {
-                    "type": "int"
-                },
-                "nodeDeallocationOption": {}
-            }
+          "$ref": "#/$keywords/fixedScale"
         },
         "autoScale": {
-            "parameters": {
-                "formula": {
-                    "type": "string"
-                },
-                "evaluationInterval": {}
-            }
+          "$ref": "#/$keywords/autoScale"
+        }
+      }
+    },
+    "fixedScale": {
+      "body": {
+        "resizeTimeout": {
+          "$ref": "#/$keywords/resizeTimeout"
         },
-        "autoScaleRun": {
-            "parameters": {
-                "evaluationTime": {},
-                "results": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "error": {
-                    "$ref": "#/$keywords/error"
-                }
-            }
+        "targetDedicatedNodes": {
+          "$ref": "#/$keywords/targetDedicatedNodes"
         },
-        "error": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            }
+        "targetLowPriorityNodes": {
+          "$ref": "#/$keywords/targetLowPriorityNodes"
         },
-        "details": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details"
-                }
-            },
-            "array": true
+        "nodeDeallocationOption": {
+          "$ref": "#/$keywords/nodeDeallocationOption"
+        }
+      }
+    },
+    "resizeTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetDedicatedNodes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "targetLowPriorityNodes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "nodeDeallocationOption": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Requeue",
+            "Terminate",
+            "TaskCompletion",
+            "RetainedData"
+          ]
+        }
+      }
+    },
+    "autoScale": {
+      "body": {
+        "formula": {
+          "$ref": "#/$keywords/formula"
         },
-        "interNodeCommunication": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "networkConfiguration": {
-            "parameters": {
-                "subnetId": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "endpointConfiguration": {
-                    "$ref": "#/$keywords/endpointConfiguration"
-                },
-                "publicIPAddressConfiguration": {
-                    "$ref": "#/$keywords/publicIPAddressConfiguration"
-                }
-            }
+        "evaluationInterval": {
+          "$ref": "#/$keywords/evaluationInterval"
+        }
+      }
+    },
+    "formula": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "evaluationInterval": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "interNodeCommunication": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "networkConfiguration": {
+      "body": {
+        "subnetId": {
+          "$ref": "#/$keywords/subnetId"
         },
         "endpointConfiguration": {
-            "body": {
-                "inboundNatPools": {
-                    "$ref": "#/$keywords/inboundNatPools"
-                }
-            }
-        },
-        "inboundNatPools": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "protocol": {},
-                "backendPort": {
-                    "type": "int"
-                },
-                "frontendPortRangeStart": {
-                    "type": "int"
-                },
-                "frontendPortRangeEnd": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "networkSecurityGroupRules": {
-                    "$ref": "#/$keywords/networkSecurityGroupRules"
-                }
-            },
-            "array": true
-        },
-        "networkSecurityGroupRules": {
-            "parameters": {
-                "priority": {
-                    "type": "int"
-                },
-                "access": {},
-                "sourceAddressPrefix": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "sourcePortRanges": {
-                    "$ref": "#/$keywords/sourcePortRanges"
-                }
-            },
-            "array": true
-        },
-        "sourcePortRanges": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/endpointConfiguration"
         },
         "publicIPAddressConfiguration": {
-            "parameters": {
-                "provision": {}
-            },
-            "body": {
-                "ipAddressIds": {
-                    "$ref": "#/$keywords/ipAddressIds"
-                }
-            }
+          "$ref": "#/$keywords/publicIPAddressConfiguration"
+        }
+      }
+    },
+    "subnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endpointConfiguration": {
+      "body": {
+        "inboundNatPools": {
+          "$ref": "#/$keywords/inboundNatPools"
+        }
+      }
+    },
+    "inboundNatPools": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "protocol": {
+          "$ref": "#/$keywords/protocol"
+        },
+        "backendPort": {
+          "$ref": "#/$keywords/backendPort"
+        },
+        "frontendPortRangeStart": {
+          "$ref": "#/$keywords/frontendPortRangeStart"
+        },
+        "frontendPortRangeEnd": {
+          "$ref": "#/$keywords/frontendPortRangeEnd"
+        },
+        "networkSecurityGroupRules": {
+          "$ref": "#/$keywords/networkSecurityGroupRules"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "protocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TCP",
+            "UDP"
+          ]
+        }
+      }
+    },
+    "backendPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "frontendPortRangeStart": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "frontendPortRangeEnd": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "networkSecurityGroupRules": {
+      "body": {
+        "priority": {
+          "$ref": "#/$keywords/priority"
+        },
+        "access": {
+          "$ref": "#/$keywords/access"
+        },
+        "sourceAddressPrefix": {
+          "$ref": "#/$keywords/sourceAddressPrefix"
+        },
+        "sourcePortRanges": {
+          "$ref": "#/$keywords/sourcePortRanges"
+        }
+      },
+      "array": true
+    },
+    "priority": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "access": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Deny"
+          ]
+        }
+      }
+    },
+    "sourceAddressPrefix": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourcePortRanges": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "publicIPAddressConfiguration": {
+      "body": {
+        "provision": {
+          "$ref": "#/$keywords/provision"
         },
         "ipAddressIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/ipAddressIds"
+        }
+      }
+    },
+    "provision": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "BatchManaged",
+            "UserManaged",
+            "NoPublicIPAddresses"
+          ]
+        }
+      }
+    },
+    "ipAddressIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "taskSlotsPerNode": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "taskSchedulingPolicy": {
+      "body": {
+        "nodeFillType": {
+          "$ref": "#/$keywords/nodeFillType"
+        }
+      }
+    },
+    "nodeFillType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Spread",
+            "Pack"
+          ]
+        }
+      }
+    },
+    "userAccounts": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
         },
-        "taskSlotsPerNode": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
+        "password": {
+          "$ref": "#/$keywords/password_1_2"
         },
-        "taskSchedulingPolicy": {
-            "parameters": {
-                "nodeFillType": {}
-            }
-        },
-        "userAccounts": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "elevationLevel": {}
-            },
-            "body": {
-                "linuxUserConfiguration": {
-                    "$ref": "#/$keywords/linuxUserConfiguration"
-                },
-                "windowsUserConfiguration": {
-                    "$ref": "#/$keywords/windowsUserConfiguration"
-                }
-            },
-            "array": true
+        "elevationLevel": {
+          "$ref": "#/$keywords/elevationLevel"
         },
         "linuxUserConfiguration": {
-            "parameters": {
-                "uid": {
-                    "type": "int"
-                },
-                "gid": {
-                    "type": "int"
-                },
-                "sshPrivateKey": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/linuxUserConfiguration"
         },
         "windowsUserConfiguration": {
-            "parameters": {
-                "loginMode": {}
-            }
+          "$ref": "#/$keywords/windowsUserConfiguration"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "elevationLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NonAdmin",
+            "Admin"
+          ]
+        }
+      }
+    },
+    "linuxUserConfiguration": {
+      "body": {
+        "uid": {
+          "$ref": "#/$keywords/uid"
         },
-        "metadata": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "gid": {
+          "$ref": "#/$keywords/gid"
         },
-        "startTask": {
-            "parameters": {
-                "commandLine": {
-                    "type": "string"
-                },
-                "maxTaskRetryCount": {
-                    "type": "int"
-                },
-                "waitForSuccess": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "resourceFiles": {
-                    "$ref": "#/$keywords/resourceFiles"
-                },
-                "environmentSettings": {
-                    "$ref": "#/$keywords/environmentSettings"
-                },
-                "userIdentity": {
-                    "$ref": "#/$keywords/userIdentity"
-                },
-                "containerSettings": {
-                    "$ref": "#/$keywords/containerSettings"
-                }
-            }
+        "sshPrivateKey": {
+          "$ref": "#/$keywords/sshPrivateKey"
+        }
+      }
+    },
+    "uid": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "gid": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "sshPrivateKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "windowsUserConfiguration": {
+      "body": {
+        "loginMode": {
+          "$ref": "#/$keywords/loginMode"
+        }
+      }
+    },
+    "loginMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Batch",
+            "Interactive"
+          ]
+        }
+      }
+    },
+    "metadata": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "startTask": {
+      "body": {
+        "commandLine": {
+          "$ref": "#/$keywords/commandLine"
         },
         "resourceFiles": {
-            "parameters": {
-                "autoStorageContainerName": {
-                    "type": "string"
-                },
-                "storageContainerUrl": {
-                    "type": "string"
-                },
-                "httpUrl": {
-                    "type": "string"
-                },
-                "blobPrefix": {
-                    "type": "string"
-                },
-                "filePath": {
-                    "type": "string"
-                },
-                "fileMode": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/resourceFiles"
         },
         "environmentSettings": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/environmentSettings"
         },
         "userIdentity": {
-            "parameters": {
-                "userName": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "autoUser": {
-                    "$ref": "#/$keywords/autoUser"
-                }
-            }
+          "$ref": "#/$keywords/userIdentity"
         },
-        "autoUser": {
-            "parameters": {
-                "scope": {},
-                "elevationLevel": {}
-            }
+        "maxTaskRetryCount": {
+          "$ref": "#/$keywords/maxTaskRetryCount"
+        },
+        "waitForSuccess": {
+          "$ref": "#/$keywords/waitForSuccess"
         },
         "containerSettings": {
-            "parameters": {
-                "containerRunOptions": {
-                    "type": "string"
-                },
-                "imageName": {
-                    "type": "string"
-                },
-                "workingDirectory": {}
-            },
-            "body": {
-                "registry": {
-                    "$ref": "#/$keywords/registry"
-                }
-            }
+          "$ref": "#/$keywords/containerSettings"
+        }
+      }
+    },
+    "commandLine": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceFiles": {
+      "body": {
+        "autoStorageContainerName": {
+          "$ref": "#/$keywords/autoStorageContainerName"
+        },
+        "storageContainerUrl": {
+          "$ref": "#/$keywords/storageContainerUrl"
+        },
+        "httpUrl": {
+          "$ref": "#/$keywords/httpUrl"
+        },
+        "blobPrefix": {
+          "$ref": "#/$keywords/blobPrefix"
+        },
+        "filePath": {
+          "$ref": "#/$keywords/filePath"
+        },
+        "fileMode": {
+          "$ref": "#/$keywords/fileMode"
+        }
+      },
+      "array": true
+    },
+    "autoStorageContainerName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageContainerUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "httpUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "blobPrefix": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "filePath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fileMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "environmentSettings": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "value": {
+          "$ref": "#/$keywords/value_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "userIdentity": {
+      "body": {
+        "userName": {
+          "$ref": "#/$keywords/userName"
+        },
+        "autoUser": {
+          "$ref": "#/$keywords/autoUser"
+        }
+      }
+    },
+    "userName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "autoUser": {
+      "body": {
+        "scope": {
+          "$ref": "#/$keywords/scope"
+        },
+        "elevationLevel": {
+          "$ref": "#/$keywords/elevationLevel_1"
+        }
+      }
+    },
+    "scope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Task",
+            "Pool"
+          ]
+        }
+      }
+    },
+    "elevationLevel_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NonAdmin",
+            "Admin"
+          ]
+        }
+      }
+    },
+    "maxTaskRetryCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "waitForSuccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "containerSettings": {
+      "body": {
+        "containerRunOptions": {
+          "$ref": "#/$keywords/containerRunOptions"
+        },
+        "imageName": {
+          "$ref": "#/$keywords/imageName"
         },
         "registry": {
-            "parameters": {
-                "registryServer": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/registry"
         },
-        "certificates": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "storeLocation": {},
-                "storeName": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "visibility": {
-                    "$ref": "#/$keywords/visibility"
-                }
-            },
-            "array": true
+        "workingDirectory": {
+          "$ref": "#/$keywords/workingDirectory"
+        }
+      }
+    },
+    "containerRunOptions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "imageName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "registry": {
+      "body": {
+        "registryServer": {
+          "$ref": "#/$keywords/registryServer"
+        },
+        "username": {
+          "$ref": "#/$keywords/username"
+        },
+        "password": {
+          "$ref": "#/$keywords/password_1"
+        }
+      }
+    },
+    "workingDirectory": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "TaskWorkingDirectory",
+            "ContainerImageDefault"
+          ]
+        }
+      }
+    },
+    "certificates": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2"
+        },
+        "storeLocation": {
+          "$ref": "#/$keywords/storeLocation"
+        },
+        "storeName": {
+          "$ref": "#/$keywords/storeName"
         },
         "visibility": {
-            "propertyParameters": {
-                "value": {}
-            },
-            "array": true
+          "$ref": "#/$keywords/visibility"
+        }
+      },
+      "array": true
+    },
+    "id_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storeLocation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "CurrentUser",
+            "LocalMachine"
+          ]
+        }
+      }
+    },
+    "storeName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "visibility": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "StartTask",
+            "Task",
+            "RemoteUser"
+          ]
+        }
+      },
+      "array": true
+    },
+    "applicationPackages": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3"
         },
-        "applicationPackages": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "applicationLicenses": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "resizeOperationStatus": {
-            "parameters": {
-                "targetDedicatedNodes": {
-                    "type": "int"
-                },
-                "targetLowPriorityNodes": {
-                    "type": "int"
-                },
-                "resizeTimeout": {},
-                "nodeDeallocationOption": {},
-                "startTime": {}
-            },
-            "body": {
-                "errors": {
-                    "$ref": "#/$keywords/errors"
-                }
-            }
-        },
-        "errors": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details_2"
-                }
-            },
-            "array": true
-        },
-        "details_2": {
-            "parameters": {
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "details": {
-                    "$ref": "#/$keywords/details_2"
-                }
-            },
-            "array": true
-        },
-        "mountConfiguration": {
-            "body": {
-                "azureBlobFileSystemConfiguration": {
-                    "$ref": "#/$keywords/azureBlobFileSystemConfiguration"
-                },
-                "nfsMountConfiguration": {
-                    "$ref": "#/$keywords/nfsMountConfiguration"
-                },
-                "cifsMountConfiguration": {
-                    "$ref": "#/$keywords/cifsMountConfiguration"
-                },
-                "azureFileShareConfiguration": {
-                    "$ref": "#/$keywords/azureFileShareConfiguration"
-                }
-            },
-            "array": true
-        },
+        "version": {
+          "$ref": "#/$keywords/version_1"
+        }
+      },
+      "array": true
+    },
+    "id_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applicationLicenses": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "mountConfiguration": {
+      "body": {
         "azureBlobFileSystemConfiguration": {
-            "parameters": {
-                "accountName": {
-                    "type": "string"
-                },
-                "containerName": {
-                    "type": "string"
-                },
-                "accountKey": {
-                    "type": "string"
-                },
-                "sasKey": {
-                    "type": "string"
-                },
-                "blobfuseOptions": {
-                    "type": "string"
-                },
-                "relativeMountPath": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/azureBlobFileSystemConfiguration"
         },
         "nfsMountConfiguration": {
-            "parameters": {
-                "source": {
-                    "type": "string"
-                },
-                "relativeMountPath": {
-                    "type": "string"
-                },
-                "mountOptions": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/nfsMountConfiguration"
         },
         "cifsMountConfiguration": {
-            "parameters": {
-                "username": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "relativeMountPath": {
-                    "type": "string"
-                },
-                "mountOptions": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/cifsMountConfiguration"
         },
         "azureFileShareConfiguration": {
-            "parameters": {
-                "accountName": {
-                    "type": "string"
-                },
-                "azureFileUrl": {
-                    "type": "string"
-                },
-                "accountKey": {
-                    "type": "string"
-                },
-                "relativeMountPath": {
-                    "type": "string"
-                },
-                "mountOptions": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/azureFileShareConfiguration"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "batchAccounts": {
-            "autoStorage": {
-                "$ref": "#/$keywords/autoStorage"
-            },
-            "poolAllocationMode": {
-                "$ref": "#/$keywords/poolAllocationMode"
-            },
-            "keyVaultReference": {
-                "$ref": "#/$keywords/keyVaultReference"
-            },
-            "publicNetworkAccess": {
-                "$ref": "#/$keywords/publicNetworkAccess"
-            },
-            "encryption": {
-                "$ref": "#/$keywords/encryption"
-            }
+    "azureBlobFileSystemConfiguration": {
+      "body": {
+        "accountName": {
+          "$ref": "#/$keywords/accountName"
         },
-        "batchAccounts/applications/versions": {
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "format": {
-                "$ref": "#/$keywords/format"
-            },
-            "storageUrl": {
-                "$ref": "#/$keywords/storageUrl"
-            },
-            "storageUrlExpiry": {
-                "$ref": "#/$keywords/storageUrlExpiry"
-            },
-            "lastActivationTime": {
-                "$ref": "#/$keywords/lastActivationTime"
-            }
+        "containerName": {
+          "$ref": "#/$keywords/containerName"
         },
-        "batchAccounts/applications": {
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            },
-            "allowUpdates": {
-                "$ref": "#/$keywords/allowUpdates"
-            },
-            "defaultVersion": {
-                "$ref": "#/$keywords/defaultVersion"
-            }
+        "accountKey": {
+          "$ref": "#/$keywords/accountKey"
         },
-        "batchAccounts/certificates": {
-            "thumbprintAlgorithm": {
-                "$ref": "#/$keywords/thumbprintAlgorithm"
-            },
-            "thumbprint": {
-                "$ref": "#/$keywords/thumbprint"
-            },
-            "format": {
-                "$ref": "#/$keywords/format_2"
-            },
-            "data": {
-                "$ref": "#/$keywords/data"
-            },
-            "password": {
-                "$ref": "#/$keywords/password"
-            }
+        "sasKey": {
+          "$ref": "#/$keywords/sasKey"
         },
-        "batchAccounts/pools": {
-            "displayName": {
-                "$ref": "#/$keywords/displayName_2"
-            },
-            "lastModified": {
-                "$ref": "#/$keywords/lastModified"
-            },
-            "creationTime": {
-                "$ref": "#/$keywords/creationTime"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "provisioningStateTransitionTime": {
-                "$ref": "#/$keywords/provisioningStateTransitionTime"
-            },
-            "allocationState": {
-                "$ref": "#/$keywords/allocationState"
-            },
-            "allocationStateTransitionTime": {
-                "$ref": "#/$keywords/allocationStateTransitionTime"
-            },
-            "vmSize": {
-                "$ref": "#/$keywords/vmSize"
-            },
-            "deploymentConfiguration": {
-                "$ref": "#/$keywords/deploymentConfiguration"
-            },
-            "currentDedicatedNodes": {
-                "$ref": "#/$keywords/currentDedicatedNodes"
-            },
-            "currentLowPriorityNodes": {
-                "$ref": "#/$keywords/currentLowPriorityNodes"
-            },
-            "scaleSettings": {
-                "$ref": "#/$keywords/scaleSettings"
-            },
-            "autoScaleRun": {
-                "$ref": "#/$keywords/autoScaleRun"
-            },
-            "interNodeCommunication": {
-                "$ref": "#/$keywords/interNodeCommunication"
-            },
-            "networkConfiguration": {
-                "$ref": "#/$keywords/networkConfiguration"
-            },
-            "taskSlotsPerNode": {
-                "$ref": "#/$keywords/taskSlotsPerNode"
-            },
-            "taskSchedulingPolicy": {
-                "$ref": "#/$keywords/taskSchedulingPolicy"
-            },
-            "userAccounts": {
-                "$ref": "#/$keywords/userAccounts"
-            },
-            "metadata": {
-                "$ref": "#/$keywords/metadata"
-            },
-            "startTask": {
-                "$ref": "#/$keywords/startTask"
-            },
-            "certificates": {
-                "$ref": "#/$keywords/certificates"
-            },
-            "applicationPackages": {
-                "$ref": "#/$keywords/applicationPackages"
-            },
-            "applicationLicenses": {
-                "$ref": "#/$keywords/applicationLicenses"
-            },
-            "resizeOperationStatus": {
-                "$ref": "#/$keywords/resizeOperationStatus"
-            },
-            "mountConfiguration": {
-                "$ref": "#/$keywords/mountConfiguration"
-            }
+        "blobfuseOptions": {
+          "$ref": "#/$keywords/blobfuseOptions"
+        },
+        "relativeMountPath": {
+          "$ref": "#/$keywords/relativeMountPath"
         }
+      }
+    },
+    "accountName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "containerName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accountKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sasKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "blobfuseOptions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relativeMountPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "nfsMountConfiguration": {
+      "body": {
+        "source": {
+          "$ref": "#/$keywords/source"
+        },
+        "relativeMountPath": {
+          "$ref": "#/$keywords/relativeMountPath_1"
+        },
+        "mountOptions": {
+          "$ref": "#/$keywords/mountOptions"
+        }
+      }
+    },
+    "source": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relativeMountPath_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "mountOptions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "cifsMountConfiguration": {
+      "body": {
+        "username": {
+          "$ref": "#/$keywords/username_1"
+        },
+        "source": {
+          "$ref": "#/$keywords/source_1"
+        },
+        "relativeMountPath": {
+          "$ref": "#/$keywords/relativeMountPath_1_2"
+        },
+        "mountOptions": {
+          "$ref": "#/$keywords/mountOptions_1"
+        },
+        "password": {
+          "$ref": "#/$keywords/password_1_2_3"
+        }
+      }
+    },
+    "username_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "source_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relativeMountPath_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "mountOptions_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "azureFileShareConfiguration": {
+      "body": {
+        "accountName": {
+          "$ref": "#/$keywords/accountName_1"
+        },
+        "azureFileUrl": {
+          "$ref": "#/$keywords/azureFileUrl"
+        },
+        "accountKey": {
+          "$ref": "#/$keywords/accountKey_1"
+        },
+        "relativeMountPath": {
+          "$ref": "#/$keywords/relativeMountPath_1_2_3"
+        },
+        "mountOptions": {
+          "$ref": "#/$keywords/mountOptions_1_2"
+        }
+      }
+    },
+    "accountName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "azureFileUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "accountKey_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "relativeMountPath_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "mountOptions_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "batchAccounts": {
+      "autoStorage": {
+        "$ref": "#/$keywords/autoStorage"
+      },
+      "poolAllocationMode": {
+        "$ref": "#/$keywords/poolAllocationMode"
+      },
+      "keyVaultReference": {
+        "$ref": "#/$keywords/keyVaultReference"
+      },
+      "publicNetworkAccess": {
+        "$ref": "#/$keywords/publicNetworkAccess"
+      },
+      "encryption": {
+        "$ref": "#/$keywords/encryption"
+      }
+    },
+    "batchAccounts/applications": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "allowUpdates": {
+        "$ref": "#/$keywords/allowUpdates"
+      },
+      "defaultVersion": {
+        "$ref": "#/$keywords/defaultVersion"
+      }
+    },
+    "batchAccounts/certificates": {
+      "thumbprintAlgorithm": {
+        "$ref": "#/$keywords/thumbprintAlgorithm"
+      },
+      "thumbprint": {
+        "$ref": "#/$keywords/thumbprint"
+      },
+      "format": {
+        "$ref": "#/$keywords/format"
+      },
+      "data": {
+        "$ref": "#/$keywords/data"
+      },
+      "password": {
+        "$ref": "#/$keywords/password"
+      }
+    },
+    "batchAccounts/pools": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName_1"
+      },
+      "vmSize": {
+        "$ref": "#/$keywords/vmSize"
+      },
+      "deploymentConfiguration": {
+        "$ref": "#/$keywords/deploymentConfiguration"
+      },
+      "scaleSettings": {
+        "$ref": "#/$keywords/scaleSettings"
+      },
+      "interNodeCommunication": {
+        "$ref": "#/$keywords/interNodeCommunication"
+      },
+      "networkConfiguration": {
+        "$ref": "#/$keywords/networkConfiguration"
+      },
+      "taskSlotsPerNode": {
+        "$ref": "#/$keywords/taskSlotsPerNode"
+      },
+      "taskSchedulingPolicy": {
+        "$ref": "#/$keywords/taskSchedulingPolicy"
+      },
+      "userAccounts": {
+        "$ref": "#/$keywords/userAccounts"
+      },
+      "metadata": {
+        "$ref": "#/$keywords/metadata"
+      },
+      "startTask": {
+        "$ref": "#/$keywords/startTask"
+      },
+      "certificates": {
+        "$ref": "#/$keywords/certificates"
+      },
+      "applicationPackages": {
+        "$ref": "#/$keywords/applicationPackages"
+      },
+      "applicationLicenses": {
+        "$ref": "#/$keywords/applicationLicenses"
+      },
+      "mountConfiguration": {
+        "$ref": "#/$keywords/mountConfiguration"
+      }
+    },
+    "batchAccounts/applications/versions": {}
+  }
 }

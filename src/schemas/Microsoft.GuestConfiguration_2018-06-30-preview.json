@@ -1,0 +1,86 @@
+{
+  "$keywords": {
+    "guestConfiguration": {
+      "body": {
+        "kind": {
+          "$ref": "#/$keywords/kind"
+        },
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        },
+        "configurationParameter": {
+          "$ref": "#/$keywords/configurationParameter"
+        },
+        "configurationSetting": {
+          "$ref": "#/$keywords/configurationSetting"
+        }
+      }
+    },
+    "kind": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DSC"
+          ]
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "configurationParameter": {
+      "body": {},
+      "array": true
+    },
+    "configurationSetting": {
+      "body": {
+        "allowModuleOverwrite": {
+          "$ref": "#/$keywords/allowModuleOverwrite"
+        }
+      }
+    },
+    "allowModuleOverwrite": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "True",
+            "False"
+          ]
+        }
+      }
+    },
+    "context": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "guestConfigurationAssignments": {
+      "guestConfiguration": {
+        "$ref": "#/$keywords/guestConfiguration"
+      },
+      "context": {
+        "$ref": "#/$keywords/context"
+      }
+    }
+  }
+}

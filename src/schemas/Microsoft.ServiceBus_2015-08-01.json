@@ -1,620 +1,578 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "createdAt": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "updatedAt": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "serviceBusEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createACSNamespace": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "rights": {
-            "propertyParameters": {
-                "value": {}
-            },
-            "array": true
-        },
-        "lockDuration": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "accessedAt": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "autoDeleteOnIdle": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "entityAvailabilityStatus": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "createdAt_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "defaultMessageTimeToLive": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "duplicateDetectionHistoryTimeWindow": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enableBatchedOperations": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "deadLetteringOnMessageExpiration": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enableExpress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enablePartitioning": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "isAnonymousAccessible": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "maxDeliveryCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "maxSizeInMegabytes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "messageCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "countDetails": {
-            "parameters": {
-                "activeMessageCount": {
-                    "type": "int"
-                },
-                "deadLetterMessageCount": {
-                    "type": "int"
-                },
-                "scheduledMessageCount": {
-                    "type": "int"
-                },
-                "transferDeadLetterMessageCount": {
-                    "type": "int"
-                },
-                "transferMessageCount": {
-                    "type": "int"
-                }
-            }
-        },
-        "requiresDuplicateDetection": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "requiresSession": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "sizeInBytes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "status_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "supportOrdering": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "updatedAt_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "accessedAt_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "autoDeleteOnIdle_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdAt_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "defaultMessageTimeToLive_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "duplicateDetectionHistoryTimeWindow_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enableBatchedOperations_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enableExpress_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "enablePartitioning_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "filteringMessagesBeforePublishing": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "isAnonymousAccessible_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "isExpress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "maxSizeInMegabytes_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "requiresDuplicateDetection_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "sizeInBytes_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "subscriptionCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "supportOrdering_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "updatedAt_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "accessedAt_3": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "autoDeleteOnIdle_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdAt_4": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "defaultMessageTimeToLive_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "deadLetteringOnFilterEvaluationExceptions": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "deadLetteringOnMessageExpiration_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "isReadOnly": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "lockDuration_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "maxDeliveryCount_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "messageCount_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "requiresSession_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "updatedAt_4": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Creating",
+            "Created",
+            "Activating",
+            "Enabling",
+            "Active",
+            "Disabling",
+            "Disabled",
+            "SoftDeleting",
+            "SoftDeleted",
+            "Removing",
+            "Removed",
+            "Failed"
+          ]
         }
+      }
     },
-    "$resources": {
-        "namespaces": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt"
-            },
-            "serviceBusEndpoint": {
-                "$ref": "#/$keywords/serviceBusEndpoint"
-            },
-            "createACSNamespace": {
-                "$ref": "#/$keywords/createACSNamespace"
-            },
-            "enabled": {
-                "$ref": "#/$keywords/enabled"
-            }
-        },
-        "namespaces/AuthorizationRules": {
-            "rights": {
-                "$ref": "#/$keywords/rights"
-            }
-        },
-        "namespaces/queues": {
-            "lockDuration": {
-                "$ref": "#/$keywords/lockDuration"
-            },
-            "accessedAt": {
-                "$ref": "#/$keywords/accessedAt"
-            },
-            "autoDeleteOnIdle": {
-                "$ref": "#/$keywords/autoDeleteOnIdle"
-            },
-            "entityAvailabilityStatus": {
-                "$ref": "#/$keywords/entityAvailabilityStatus"
-            },
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt_2"
-            },
-            "defaultMessageTimeToLive": {
-                "$ref": "#/$keywords/defaultMessageTimeToLive"
-            },
-            "duplicateDetectionHistoryTimeWindow": {
-                "$ref": "#/$keywords/duplicateDetectionHistoryTimeWindow"
-            },
-            "enableBatchedOperations": {
-                "$ref": "#/$keywords/enableBatchedOperations"
-            },
-            "deadLetteringOnMessageExpiration": {
-                "$ref": "#/$keywords/deadLetteringOnMessageExpiration"
-            },
-            "enableExpress": {
-                "$ref": "#/$keywords/enableExpress"
-            },
-            "enablePartitioning": {
-                "$ref": "#/$keywords/enablePartitioning"
-            },
-            "isAnonymousAccessible": {
-                "$ref": "#/$keywords/isAnonymousAccessible"
-            },
-            "maxDeliveryCount": {
-                "$ref": "#/$keywords/maxDeliveryCount"
-            },
-            "maxSizeInMegabytes": {
-                "$ref": "#/$keywords/maxSizeInMegabytes"
-            },
-            "messageCount": {
-                "$ref": "#/$keywords/messageCount"
-            },
-            "countDetails": {
-                "$ref": "#/$keywords/countDetails"
-            },
-            "requiresDuplicateDetection": {
-                "$ref": "#/$keywords/requiresDuplicateDetection"
-            },
-            "requiresSession": {
-                "$ref": "#/$keywords/requiresSession"
-            },
-            "sizeInBytes": {
-                "$ref": "#/$keywords/sizeInBytes"
-            },
-            "status": {
-                "$ref": "#/$keywords/status_2"
-            },
-            "supportOrdering": {
-                "$ref": "#/$keywords/supportOrdering"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt_2"
-            }
-        },
-        "namespaces/queues/authorizationRules": {
-            "rights": {
-                "$ref": "#/$keywords/rights"
-            }
-        },
-        "namespaces/topics": {
-            "accessedAt": {
-                "$ref": "#/$keywords/accessedAt_2"
-            },
-            "autoDeleteOnIdle": {
-                "$ref": "#/$keywords/autoDeleteOnIdle_2"
-            },
-            "entityAvailabilityStatus": {
-                "$ref": "#/$keywords/entityAvailabilityStatus"
-            },
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt_3"
-            },
-            "countDetails": {
-                "$ref": "#/$keywords/countDetails"
-            },
-            "defaultMessageTimeToLive": {
-                "$ref": "#/$keywords/defaultMessageTimeToLive_2"
-            },
-            "duplicateDetectionHistoryTimeWindow": {
-                "$ref": "#/$keywords/duplicateDetectionHistoryTimeWindow_2"
-            },
-            "enableBatchedOperations": {
-                "$ref": "#/$keywords/enableBatchedOperations_2"
-            },
-            "enableExpress": {
-                "$ref": "#/$keywords/enableExpress_2"
-            },
-            "enablePartitioning": {
-                "$ref": "#/$keywords/enablePartitioning_2"
-            },
-            "filteringMessagesBeforePublishing": {
-                "$ref": "#/$keywords/filteringMessagesBeforePublishing"
-            },
-            "isAnonymousAccessible": {
-                "$ref": "#/$keywords/isAnonymousAccessible_2"
-            },
-            "isExpress": {
-                "$ref": "#/$keywords/isExpress"
-            },
-            "maxSizeInMegabytes": {
-                "$ref": "#/$keywords/maxSizeInMegabytes_2"
-            },
-            "requiresDuplicateDetection": {
-                "$ref": "#/$keywords/requiresDuplicateDetection_2"
-            },
-            "sizeInBytes": {
-                "$ref": "#/$keywords/sizeInBytes_2"
-            },
-            "status": {
-                "$ref": "#/$keywords/status_2"
-            },
-            "subscriptionCount": {
-                "$ref": "#/$keywords/subscriptionCount"
-            },
-            "supportOrdering": {
-                "$ref": "#/$keywords/supportOrdering_2"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt_3"
-            }
-        },
-        "namespaces/topics/authorizationRules": {
-            "rights": {
-                "$ref": "#/$keywords/rights"
-            }
-        },
-        "namespaces/topics/subscriptions": {
-            "accessedAt": {
-                "$ref": "#/$keywords/accessedAt_3"
-            },
-            "autoDeleteOnIdle": {
-                "$ref": "#/$keywords/autoDeleteOnIdle_3"
-            },
-            "countDetails": {
-                "$ref": "#/$keywords/countDetails"
-            },
-            "createdAt": {
-                "$ref": "#/$keywords/createdAt_4"
-            },
-            "defaultMessageTimeToLive": {
-                "$ref": "#/$keywords/defaultMessageTimeToLive_3"
-            },
-            "deadLetteringOnFilterEvaluationExceptions": {
-                "$ref": "#/$keywords/deadLetteringOnFilterEvaluationExceptions"
-            },
-            "deadLetteringOnMessageExpiration": {
-                "$ref": "#/$keywords/deadLetteringOnMessageExpiration_2"
-            },
-            "enableBatchedOperations": {
-                "$ref": "#/$keywords/enableBatchedOperations_2"
-            },
-            "entityAvailabilityStatus": {
-                "$ref": "#/$keywords/entityAvailabilityStatus"
-            },
-            "isReadOnly": {
-                "$ref": "#/$keywords/isReadOnly"
-            },
-            "lockDuration": {
-                "$ref": "#/$keywords/lockDuration_2"
-            },
-            "maxDeliveryCount": {
-                "$ref": "#/$keywords/maxDeliveryCount_2"
-            },
-            "messageCount": {
-                "$ref": "#/$keywords/messageCount_2"
-            },
-            "requiresSession": {
-                "$ref": "#/$keywords/requiresSession_2"
-            },
-            "status": {
-                "$ref": "#/$keywords/status_2"
-            },
-            "updatedAt": {
-                "$ref": "#/$keywords/updatedAt_4"
-            }
+    "createACSNamespace": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
         }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "rights": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Manage",
+            "Send",
+            "Listen"
+          ]
+        }
+      },
+      "array": true
+    },
+    "lockDuration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "autoDeleteOnIdle": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "entityAvailabilityStatus": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Available",
+            "Limited",
+            "Renaming",
+            "Restoring",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "defaultMessageTimeToLive": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "duplicateDetectionHistoryTimeWindow": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enableBatchedOperations": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "deadLetteringOnMessageExpiration": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableExpress": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enablePartitioning": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isAnonymousAccessible": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "maxDeliveryCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxSizeInMegabytes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "requiresDuplicateDetection": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "requiresSession": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "status_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Creating",
+            "Deleting",
+            "Disabled",
+            "ReceiveDisabled",
+            "Renaming",
+            "Restoring",
+            "SendDisabled",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "supportOrdering": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "autoDeleteOnIdle_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "entityAvailabilityStatus_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Available",
+            "Limited",
+            "Renaming",
+            "Restoring",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "defaultMessageTimeToLive_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "duplicateDetectionHistoryTimeWindow_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enableBatchedOperations_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableExpress_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enablePartitioning_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "filteringMessagesBeforePublishing": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isAnonymousAccessible_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isExpress": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "maxSizeInMegabytes_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "requiresDuplicateDetection_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "status_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Creating",
+            "Deleting",
+            "Disabled",
+            "ReceiveDisabled",
+            "Renaming",
+            "Restoring",
+            "SendDisabled",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "supportOrdering_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "autoDeleteOnIdle_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultMessageTimeToLive_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "deadLetteringOnFilterEvaluationExceptions": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "deadLetteringOnMessageExpiration_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableBatchedOperations_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "entityAvailabilityStatus_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Available",
+            "Limited",
+            "Renaming",
+            "Restoring",
+            "Unknown"
+          ]
+        }
+      }
+    },
+    "isReadOnly": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "lockDuration_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxDeliveryCount_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "requiresSession_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "status_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Active",
+            "Creating",
+            "Deleting",
+            "Disabled",
+            "ReceiveDisabled",
+            "Renaming",
+            "Restoring",
+            "SendDisabled",
+            "Unknown"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "namespaces": {
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "createACSNamespace": {
+        "$ref": "#/$keywords/createACSNamespace"
+      },
+      "enabled": {
+        "$ref": "#/$keywords/enabled"
+      }
+    },
+    "namespaces/AuthorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/queues": {
+      "lockDuration": {
+        "$ref": "#/$keywords/lockDuration"
+      },
+      "autoDeleteOnIdle": {
+        "$ref": "#/$keywords/autoDeleteOnIdle"
+      },
+      "entityAvailabilityStatus": {
+        "$ref": "#/$keywords/entityAvailabilityStatus"
+      },
+      "defaultMessageTimeToLive": {
+        "$ref": "#/$keywords/defaultMessageTimeToLive"
+      },
+      "duplicateDetectionHistoryTimeWindow": {
+        "$ref": "#/$keywords/duplicateDetectionHistoryTimeWindow"
+      },
+      "enableBatchedOperations": {
+        "$ref": "#/$keywords/enableBatchedOperations"
+      },
+      "deadLetteringOnMessageExpiration": {
+        "$ref": "#/$keywords/deadLetteringOnMessageExpiration"
+      },
+      "enableExpress": {
+        "$ref": "#/$keywords/enableExpress"
+      },
+      "enablePartitioning": {
+        "$ref": "#/$keywords/enablePartitioning"
+      },
+      "isAnonymousAccessible": {
+        "$ref": "#/$keywords/isAnonymousAccessible"
+      },
+      "maxDeliveryCount": {
+        "$ref": "#/$keywords/maxDeliveryCount"
+      },
+      "maxSizeInMegabytes": {
+        "$ref": "#/$keywords/maxSizeInMegabytes"
+      },
+      "requiresDuplicateDetection": {
+        "$ref": "#/$keywords/requiresDuplicateDetection"
+      },
+      "requiresSession": {
+        "$ref": "#/$keywords/requiresSession"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1"
+      },
+      "supportOrdering": {
+        "$ref": "#/$keywords/supportOrdering"
+      }
+    },
+    "namespaces/topics": {
+      "autoDeleteOnIdle": {
+        "$ref": "#/$keywords/autoDeleteOnIdle_1"
+      },
+      "entityAvailabilityStatus": {
+        "$ref": "#/$keywords/entityAvailabilityStatus_1"
+      },
+      "defaultMessageTimeToLive": {
+        "$ref": "#/$keywords/defaultMessageTimeToLive_1"
+      },
+      "duplicateDetectionHistoryTimeWindow": {
+        "$ref": "#/$keywords/duplicateDetectionHistoryTimeWindow_1"
+      },
+      "enableBatchedOperations": {
+        "$ref": "#/$keywords/enableBatchedOperations_1"
+      },
+      "enableExpress": {
+        "$ref": "#/$keywords/enableExpress_1"
+      },
+      "enablePartitioning": {
+        "$ref": "#/$keywords/enablePartitioning_1"
+      },
+      "filteringMessagesBeforePublishing": {
+        "$ref": "#/$keywords/filteringMessagesBeforePublishing"
+      },
+      "isAnonymousAccessible": {
+        "$ref": "#/$keywords/isAnonymousAccessible_1"
+      },
+      "isExpress": {
+        "$ref": "#/$keywords/isExpress"
+      },
+      "maxSizeInMegabytes": {
+        "$ref": "#/$keywords/maxSizeInMegabytes_1"
+      },
+      "requiresDuplicateDetection": {
+        "$ref": "#/$keywords/requiresDuplicateDetection_1"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1_2"
+      },
+      "supportOrdering": {
+        "$ref": "#/$keywords/supportOrdering_1"
+      }
+    },
+    "namespaces/queues/authorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/topics/authorizationRules": {
+      "rights": {
+        "$ref": "#/$keywords/rights"
+      }
+    },
+    "namespaces/topics/subscriptions": {
+      "autoDeleteOnIdle": {
+        "$ref": "#/$keywords/autoDeleteOnIdle_1_2"
+      },
+      "defaultMessageTimeToLive": {
+        "$ref": "#/$keywords/defaultMessageTimeToLive_1_2"
+      },
+      "deadLetteringOnFilterEvaluationExceptions": {
+        "$ref": "#/$keywords/deadLetteringOnFilterEvaluationExceptions"
+      },
+      "deadLetteringOnMessageExpiration": {
+        "$ref": "#/$keywords/deadLetteringOnMessageExpiration_1"
+      },
+      "enableBatchedOperations": {
+        "$ref": "#/$keywords/enableBatchedOperations_1_2"
+      },
+      "entityAvailabilityStatus": {
+        "$ref": "#/$keywords/entityAvailabilityStatus_1_2"
+      },
+      "isReadOnly": {
+        "$ref": "#/$keywords/isReadOnly"
+      },
+      "lockDuration": {
+        "$ref": "#/$keywords/lockDuration_1"
+      },
+      "maxDeliveryCount": {
+        "$ref": "#/$keywords/maxDeliveryCount_1"
+      },
+      "requiresSession": {
+        "$ref": "#/$keywords/requiresSession_1"
+      },
+      "status": {
+        "$ref": "#/$keywords/status_1_2_3"
+      }
+    }
+  }
 }

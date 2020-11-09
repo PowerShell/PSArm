@@ -1,234 +1,192 @@
 {
-    "$keywords": {
-        "tenantId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "domainName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ldapsSettings": {
+      "body": {
+        "ldaps": {
+          "$ref": "#/$keywords/ldaps"
         },
-        "domainName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "pfxCertificate": {
+          "$ref": "#/$keywords/pfxCertificate"
         },
-        "vnetSiteId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "pfxCertificatePassword": {
+          "$ref": "#/$keywords/pfxCertificatePassword"
         },
-        "subnetId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "externalAccess": {
+          "$ref": "#/$keywords/externalAccess"
+        }
+      }
+    },
+    "ldaps": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "pfxCertificate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "pfxCertificatePassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "externalAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "notificationSettings": {
+      "body": {
+        "notifyGlobalAdmins": {
+          "$ref": "#/$keywords/notifyGlobalAdmins"
         },
-        "ldapsSettings": {
-            "parameters": {
-                "ldaps": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "pfxCertificate": {
-                    "type": "string"
-                },
-                "pfxCertificatePassword": {
-                    "type": "string"
-                },
-                "publicCertificate": {
-                    "type": "string"
-                },
-                "certificateThumbprint": {
-                    "type": "string"
-                },
-                "certificateNotAfter": {},
-                "externalAccess": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "externalAccessIpAddress": {
-                    "type": "string"
-                }
-            }
-        },
-        "healthLastEvaluated": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "healthMonitors": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "details": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "healthAlerts": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "issue": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
-                },
-                "raised": {},
-                "lastDetected": {},
-                "resolutionUri": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "notificationSettings": {
-            "parameters": {
-                "notifyGlobalAdmins": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "notifyDcAdmins": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            },
-            "body": {
-                "additionalRecipients": {
-                    "$ref": "#/$keywords/additionalRecipients"
-                }
-            }
+        "notifyDcAdmins": {
+          "$ref": "#/$keywords/notifyDcAdmins"
         },
         "additionalRecipients": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "domainSecuritySettings": {
-            "parameters": {
-                "ntlmV1": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "tlsV1": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                },
-                "syncNtlmPasswords": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "filteredSync": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "domainControllerIpAddress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "serviceStatus": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/additionalRecipients"
         }
+      }
     },
-    "$resources": {
-        "domainServices": {
-            "tenantId": {
-                "$ref": "#/$keywords/tenantId"
-            },
-            "domainName": {
-                "$ref": "#/$keywords/domainName"
-            },
-            "vnetSiteId": {
-                "$ref": "#/$keywords/vnetSiteId"
-            },
-            "subnetId": {
-                "$ref": "#/$keywords/subnetId"
-            },
-            "ldapsSettings": {
-                "$ref": "#/$keywords/ldapsSettings"
-            },
-            "healthLastEvaluated": {
-                "$ref": "#/$keywords/healthLastEvaluated"
-            },
-            "healthMonitors": {
-                "$ref": "#/$keywords/healthMonitors"
-            },
-            "healthAlerts": {
-                "$ref": "#/$keywords/healthAlerts"
-            },
-            "notificationSettings": {
-                "$ref": "#/$keywords/notificationSettings"
-            },
-            "domainSecuritySettings": {
-                "$ref": "#/$keywords/domainSecuritySettings"
-            },
-            "filteredSync": {
-                "$ref": "#/$keywords/filteredSync"
-            },
-            "domainControllerIpAddress": {
-                "$ref": "#/$keywords/domainControllerIpAddress"
-            },
-            "serviceStatus": {
-                "$ref": "#/$keywords/serviceStatus"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
+    "notifyGlobalAdmins": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
         }
+      }
+    },
+    "notifyDcAdmins": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "additionalRecipients": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "domainSecuritySettings": {
+      "body": {
+        "ntlmV1": {
+          "$ref": "#/$keywords/ntlmV1"
+        },
+        "tlsV1": {
+          "$ref": "#/$keywords/tlsV1"
+        },
+        "syncNtlmPasswords": {
+          "$ref": "#/$keywords/syncNtlmPasswords"
+        }
+      }
+    },
+    "ntlmV1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "tlsV1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "syncNtlmPasswords": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "filteredSync": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "domainServices": {
+      "domainName": {
+        "$ref": "#/$keywords/domainName"
+      },
+      "subnetId": {
+        "$ref": "#/$keywords/subnetId"
+      },
+      "ldapsSettings": {
+        "$ref": "#/$keywords/ldapsSettings"
+      },
+      "notificationSettings": {
+        "$ref": "#/$keywords/notificationSettings"
+      },
+      "domainSecuritySettings": {
+        "$ref": "#/$keywords/domainSecuritySettings"
+      },
+      "filteredSync": {
+        "$ref": "#/$keywords/filteredSync"
+      }
+    }
+  }
 }

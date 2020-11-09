@@ -1,359 +1,246 @@
 {
-    "$keywords": {
-        "hardwareProfile": {
-            "parameters": {
-                "hardwareType": {
-                    "enum": [
-                        "Cisco_UCS",
-                        "HPE"
-                    ]
-                },
-                "hanaInstanceSize": {
-                    "enum": [
-                        "S72m",
-                        "S144m",
-                        "S72",
-                        "S144",
-                        "S192",
-                        "S192m",
-                        "S192xm",
-                        "S96",
-                        "S112",
-                        "S224",
-                        "S224m",
-                        "S224om",
-                        "S224oo",
-                        "S224oom",
-                        "S224ooo",
-                        "S384",
-                        "S384m",
-                        "S384xm",
-                        "S384xxm",
-                        "S448",
-                        "S448m",
-                        "S448om",
-                        "S448oo",
-                        "S448oom",
-                        "S448ooo",
-                        "S576m",
-                        "S576xm",
-                        "S672",
-                        "S672m",
-                        "S672om",
-                        "S672oo",
-                        "S672oom",
-                        "S672ooo",
-                        "S768",
-                        "S768m",
-                        "S768xm",
-                        "S896",
-                        "S896m",
-                        "S896om",
-                        "S896oo",
-                        "S896oom",
-                        "S896ooo",
-                        "S960m"
-                    ]
-                }
-            }
-        },
-        "storageProfile": {
-            "parameters": {
-                "nfsIpAddress": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "osDisks": {
-                    "$ref": "#/$keywords/osDisks"
-                }
-            }
-        },
-        "osDisks": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "diskSizeGB": {
-                    "type": "int"
-                },
-                "lun": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
-        "osProfile": {
-            "parameters": {
-                "computerName": {
-                    "type": "string"
-                },
-                "osType": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                },
-                "sshPublicKey": {
-                    "type": "string"
-                }
-            }
-        },
-        "networkProfile": {
-            "parameters": {
-                "circuitId": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "networkInterfaces": {
-                    "$ref": "#/$keywords/networkInterfaces"
-                }
-            }
-        },
-        "networkInterfaces": {
-            "parameters": {
-                "ipAddress": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "hanaInstanceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "powerState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "starting",
-                        "started",
-                        "stopping",
-                        "stopped",
-                        "restarting",
-                        "unknown"
-                    ]
-                }
-            }
-        },
-        "proximityPlacementGroup": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hwRevision": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "partnerNodeId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Accepted",
-                        "Creating",
-                        "Updating",
-                        "Failed",
-                        "Succeeded",
-                        "Deleting",
-                        "Migrating"
-                    ]
-                }
-            }
-        },
-        "hanaSubnet": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hanaHostname": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hanaDbName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hanaDbSqlPort": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "hanaDbUsername": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hanaDbPassword": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hanaDbPasswordKeyVaultUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hanaDbCredentialsMsiId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "keyVaultId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "managedResourceGroupName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "logAnalyticsWorkspaceArmId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "enableCustomerAnalytics": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "logAnalyticsWorkspaceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "logAnalyticsWorkspaceSharedKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        }
+  "$keywords": {
+    "hardwareProfile": {
+      "body": {}
     },
-    "$resources": {
-        "hanaInstances": {
-            "hardwareProfile": {
-                "$ref": "#/$keywords/hardwareProfile"
-            },
-            "storageProfile": {
-                "$ref": "#/$keywords/storageProfile"
-            },
-            "osProfile": {
-                "$ref": "#/$keywords/osProfile"
-            },
-            "networkProfile": {
-                "$ref": "#/$keywords/networkProfile"
-            },
-            "hanaInstanceId": {
-                "$ref": "#/$keywords/hanaInstanceId"
-            },
-            "powerState": {
-                "$ref": "#/$keywords/powerState"
-            },
-            "proximityPlacementGroup": {
-                "$ref": "#/$keywords/proximityPlacementGroup"
-            },
-            "hwRevision": {
-                "$ref": "#/$keywords/hwRevision"
-            },
-            "partnerNodeId": {
-                "$ref": "#/$keywords/partnerNodeId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
-        },
-        "sapMonitors": {
-            "hanaSubnet": {
-                "$ref": "#/$keywords/hanaSubnet"
-            },
-            "hanaHostname": {
-                "$ref": "#/$keywords/hanaHostname"
-            },
-            "hanaDbName": {
-                "$ref": "#/$keywords/hanaDbName"
-            },
-            "hanaDbSqlPort": {
-                "$ref": "#/$keywords/hanaDbSqlPort"
-            },
-            "hanaDbUsername": {
-                "$ref": "#/$keywords/hanaDbUsername"
-            },
-            "hanaDbPassword": {
-                "$ref": "#/$keywords/hanaDbPassword"
-            },
-            "hanaDbPasswordKeyVaultUrl": {
-                "$ref": "#/$keywords/hanaDbPasswordKeyVaultUrl"
-            },
-            "hanaDbCredentialsMsiId": {
-                "$ref": "#/$keywords/hanaDbCredentialsMsiId"
-            },
-            "keyVaultId": {
-                "$ref": "#/$keywords/keyVaultId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "managedResourceGroupName": {
-                "$ref": "#/$keywords/managedResourceGroupName"
-            },
-            "logAnalyticsWorkspaceArmId": {
-                "$ref": "#/$keywords/logAnalyticsWorkspaceArmId"
-            },
-            "enableCustomerAnalytics": {
-                "$ref": "#/$keywords/enableCustomerAnalytics"
-            },
-            "logAnalyticsWorkspaceId": {
-                "$ref": "#/$keywords/logAnalyticsWorkspaceId"
-            },
-            "logAnalyticsWorkspaceSharedKey": {
-                "$ref": "#/$keywords/logAnalyticsWorkspaceSharedKey"
-            }
+    "storageProfile": {
+      "body": {
+        "osDisks": {
+          "$ref": "#/$keywords/osDisks"
         }
+      }
+    },
+    "osDisks": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "diskSizeGB": {
+          "$ref": "#/$keywords/diskSizeGB"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskSizeGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "osProfile": {
+      "body": {
+        "computerName": {
+          "$ref": "#/$keywords/computerName"
+        },
+        "sshPublicKey": {
+          "$ref": "#/$keywords/sshPublicKey"
+        }
+      }
+    },
+    "computerName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sshPublicKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "networkProfile": {
+      "body": {
+        "networkInterfaces": {
+          "$ref": "#/$keywords/networkInterfaces"
+        }
+      }
+    },
+    "networkInterfaces": {
+      "body": {
+        "ipAddress": {
+          "$ref": "#/$keywords/ipAddress"
+        }
+      },
+      "array": true
+    },
+    "ipAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerNodeId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hanaSubnet": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hanaHostname": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hanaDbName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hanaDbSqlPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "hanaDbUsername": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hanaDbPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hanaDbPasswordKeyVaultUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hanaDbCredentialsMsiId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logAnalyticsWorkspaceArmId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enableCustomerAnalytics": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "logAnalyticsWorkspaceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "logAnalyticsWorkspaceSharedKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "hanaInstances": {
+      "hardwareProfile": {
+        "$ref": "#/$keywords/hardwareProfile"
+      },
+      "storageProfile": {
+        "$ref": "#/$keywords/storageProfile"
+      },
+      "osProfile": {
+        "$ref": "#/$keywords/osProfile"
+      },
+      "networkProfile": {
+        "$ref": "#/$keywords/networkProfile"
+      },
+      "partnerNodeId": {
+        "$ref": "#/$keywords/partnerNodeId"
+      }
+    },
+    "sapMonitors": {
+      "hanaSubnet": {
+        "$ref": "#/$keywords/hanaSubnet"
+      },
+      "hanaHostname": {
+        "$ref": "#/$keywords/hanaHostname"
+      },
+      "hanaDbName": {
+        "$ref": "#/$keywords/hanaDbName"
+      },
+      "hanaDbSqlPort": {
+        "$ref": "#/$keywords/hanaDbSqlPort"
+      },
+      "hanaDbUsername": {
+        "$ref": "#/$keywords/hanaDbUsername"
+      },
+      "hanaDbPassword": {
+        "$ref": "#/$keywords/hanaDbPassword"
+      },
+      "hanaDbPasswordKeyVaultUrl": {
+        "$ref": "#/$keywords/hanaDbPasswordKeyVaultUrl"
+      },
+      "hanaDbCredentialsMsiId": {
+        "$ref": "#/$keywords/hanaDbCredentialsMsiId"
+      },
+      "keyVaultId": {
+        "$ref": "#/$keywords/keyVaultId"
+      },
+      "logAnalyticsWorkspaceArmId": {
+        "$ref": "#/$keywords/logAnalyticsWorkspaceArmId"
+      },
+      "enableCustomerAnalytics": {
+        "$ref": "#/$keywords/enableCustomerAnalytics"
+      },
+      "logAnalyticsWorkspaceId": {
+        "$ref": "#/$keywords/logAnalyticsWorkspaceId"
+      },
+      "logAnalyticsWorkspaceSharedKey": {
+        "$ref": "#/$keywords/logAnalyticsWorkspaceSharedKey"
+      }
+    }
+  }
 }

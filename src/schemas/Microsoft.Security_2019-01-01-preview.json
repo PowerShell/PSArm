@@ -1,0 +1,452 @@
+{
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "scopes": {
+      "body": {
+        "description": {
+          "$ref": "#/$keywords/description_1"
+        },
+        "scopePath": {
+          "$ref": "#/$keywords/scopePath"
+        }
+      },
+      "array": true
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "scopePath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sources": {
+      "body": {
+        "eventSource": {
+          "$ref": "#/$keywords/eventSource"
+        },
+        "ruleSets": {
+          "$ref": "#/$keywords/ruleSets"
+        }
+      },
+      "array": true
+    },
+    "eventSource": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Assessments",
+            "SubAssessments",
+            "Alerts"
+          ]
+        }
+      }
+    },
+    "ruleSets": {
+      "body": {
+        "rules": {
+          "$ref": "#/$keywords/rules"
+        }
+      },
+      "array": true
+    },
+    "rules": {
+      "body": {
+        "propertyJPath": {
+          "$ref": "#/$keywords/propertyJPath"
+        },
+        "propertyType": {
+          "$ref": "#/$keywords/propertyType"
+        },
+        "expectedValue": {
+          "$ref": "#/$keywords/expectedValue"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        }
+      },
+      "array": true
+    },
+    "propertyJPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "propertyType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "String",
+            "Integer",
+            "Number",
+            "Boolean"
+          ]
+        }
+      }
+    },
+    "expectedValue": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operator": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Equals",
+            "GreaterThan",
+            "GreaterThanOrEqualTo",
+            "LesserThan",
+            "LesserThanOrEqualTo",
+            "NotEquals",
+            "Contains",
+            "StartsWith",
+            "EndsWith"
+          ]
+        }
+      }
+    },
+    "actions": {
+      "body": {},
+      "array": true
+    },
+    "alertType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "expirationDateUtc": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "reason": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled",
+            "Expired"
+          ]
+        }
+      }
+    },
+    "comment": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "suppressionAlertsScope": {
+      "body": {
+        "allOf": {
+          "$ref": "#/$keywords/allOf"
+        }
+      }
+    },
+    "allOf": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
+        },
+        "field": {
+          "$ref": "#/$keywords/field"
+        }
+      },
+      "array": true
+    },
+    "additionalProperties": {
+      "body": {}
+    },
+    "field": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "remediationDescription": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "category": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Compute",
+            "Networking",
+            "Data",
+            "IdentityAndAccess",
+            "IoT"
+          ]
+        }
+      },
+      "array": true
+    },
+    "severity": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        }
+      }
+    },
+    "userImpact": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Low",
+            "Moderate",
+            "High"
+          ]
+        }
+      }
+    },
+    "implementationEffort": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Low",
+            "Moderate",
+            "High"
+          ]
+        }
+      }
+    },
+    "threats": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "accountBreach",
+            "dataExfiltration",
+            "dataSpillage",
+            "maliciousInsider",
+            "elevationOfPrivilege",
+            "threatResistance",
+            "missingCoverage",
+            "denialOfService"
+          ]
+        }
+      },
+      "array": true
+    },
+    "preview": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "assessmentType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "BuiltIn",
+            "CustomPolicy",
+            "CustomerManaged"
+          ]
+        }
+      }
+    },
+    "resourceDetails": {
+      "body": {}
+    },
+    "status": {
+      "body": {
+        "code": {
+          "$ref": "#/$keywords/code"
+        },
+        "cause": {
+          "$ref": "#/$keywords/cause"
+        },
+        "description": {
+          "$ref": "#/$keywords/description_1_2_3"
+        }
+      }
+    },
+    "code": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Healthy",
+            "Unhealthy",
+            "NotApplicable"
+          ]
+        }
+      }
+    },
+    "cause": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalData": {
+      "body": {}
+    },
+    "links": {
+      "body": {}
+    }
+  },
+  "$resources": {
+    "automations": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "isEnabled": {
+        "$ref": "#/$keywords/isEnabled"
+      },
+      "scopes": {
+        "$ref": "#/$keywords/scopes"
+      },
+      "sources": {
+        "$ref": "#/$keywords/sources"
+      },
+      "actions": {
+        "$ref": "#/$keywords/actions"
+      }
+    },
+    "alertsSuppressionRules": {
+      "alertType": {
+        "$ref": "#/$keywords/alertType"
+      },
+      "expirationDateUtc": {
+        "$ref": "#/$keywords/expirationDateUtc"
+      },
+      "reason": {
+        "$ref": "#/$keywords/reason"
+      },
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "comment": {
+        "$ref": "#/$keywords/comment"
+      },
+      "suppressionAlertsScope": {
+        "$ref": "#/$keywords/suppressionAlertsScope"
+      }
+    },
+    "assessmentMetadata": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "remediationDescription": {
+        "$ref": "#/$keywords/remediationDescription"
+      },
+      "category": {
+        "$ref": "#/$keywords/category"
+      },
+      "severity": {
+        "$ref": "#/$keywords/severity"
+      },
+      "userImpact": {
+        "$ref": "#/$keywords/userImpact"
+      },
+      "implementationEffort": {
+        "$ref": "#/$keywords/implementationEffort"
+      },
+      "threats": {
+        "$ref": "#/$keywords/threats"
+      },
+      "preview": {
+        "$ref": "#/$keywords/preview"
+      },
+      "assessmentType": {
+        "$ref": "#/$keywords/assessmentType"
+      }
+    },
+    "assessments": {
+      "resourceDetails": {
+        "$ref": "#/$keywords/resourceDetails"
+      },
+      "status": {
+        "$ref": "#/$keywords/status"
+      },
+      "additionalData": {
+        "$ref": "#/$keywords/additionalData"
+      },
+      "links": {
+        "$ref": "#/$keywords/links"
+      }
+    }
+  }
+}

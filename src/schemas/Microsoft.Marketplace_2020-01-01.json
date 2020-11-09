@@ -1,0 +1,65 @@
+{
+  "$keywords": {
+    "availability": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "enabled",
+            "disabled"
+          ]
+        }
+      }
+    },
+    "privateStoreId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eTag": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eTag_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "specificPlanIdsLimitation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    }
+  },
+  "$resources": {
+    "privateStores": {
+      "availability": {
+        "$ref": "#/$keywords/availability"
+      },
+      "privateStoreId": {
+        "$ref": "#/$keywords/privateStoreId"
+      },
+      "eTag": {
+        "$ref": "#/$keywords/eTag"
+      }
+    },
+    "privateStores/offers": {
+      "eTag": {
+        "$ref": "#/$keywords/eTag_1"
+      },
+      "specificPlanIdsLimitation": {
+        "$ref": "#/$keywords/specificPlanIdsLimitation"
+      }
+    }
+  }
+}

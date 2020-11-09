@@ -1,0 +1,110 @@
+{
+  "$keywords": {
+    "hybridComputeSettings": {
+      "body": {
+        "autoProvision": {
+          "$ref": "#/$keywords/autoProvision"
+        },
+        "resourceGroupName": {
+          "$ref": "#/$keywords/resourceGroupName"
+        },
+        "region": {
+          "$ref": "#/$keywords/region"
+        },
+        "proxyServer": {
+          "$ref": "#/$keywords/proxyServer"
+        },
+        "servicePrincipal": {
+          "$ref": "#/$keywords/servicePrincipal"
+        }
+      }
+    },
+    "autoProvision": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "On",
+            "Off"
+          ]
+        }
+      }
+    },
+    "resourceGroupName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "region": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "proxyServer": {
+      "body": {
+        "ip": {
+          "$ref": "#/$keywords/ip"
+        },
+        "port": {
+          "$ref": "#/$keywords/port"
+        }
+      }
+    },
+    "ip": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "port": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "servicePrincipal": {
+      "body": {
+        "applicationId": {
+          "$ref": "#/$keywords/applicationId"
+        },
+        "secret": {
+          "$ref": "#/$keywords/secret"
+        }
+      }
+    },
+    "applicationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "secret": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "authenticationDetails": {
+      "body": {}
+    }
+  },
+  "$resources": {
+    "connectors": {
+      "hybridComputeSettings": {
+        "$ref": "#/$keywords/hybridComputeSettings"
+      },
+      "authenticationDetails": {
+        "$ref": "#/$keywords/authenticationDetails"
+      }
+    },
+    "securityContacts": {}
+  }
+}

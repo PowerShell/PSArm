@@ -1,105 +1,67 @@
 {
-    "$keywords": {
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Creating",
-                        "Unavailable",
-                        "Running",
-                        "Deleting",
-                        "Deleted",
-                        "Stopping",
-                        "Stopped",
-                        "Starting",
-                        "Updating"
-                    ]
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Running",
-                        "Creating",
-                        "Deleting",
-                        "Succeeded",
-                        "Failed"
-                    ]
-                }
-            }
-        },
-        "uri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "dataIngestionUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "trustedExternalTenants": {
-            "parameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "softDeletePeriod": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "hotCachePeriod": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "statistics": {
-            "parameters": {
-                "size": {}
-            }
+  "$keywords": {
+    "trustedExternalTenants": {
+      "body": {
+        "value": {
+          "$ref": "#/$keywords/value"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "clusters": {
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "uri": {
-                "$ref": "#/$keywords/uri"
-            },
-            "dataIngestionUri": {
-                "$ref": "#/$keywords/dataIngestionUri"
-            },
-            "trustedExternalTenants": {
-                "$ref": "#/$keywords/trustedExternalTenants"
-            }
-        },
-        "clusters/databases": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "softDeletePeriod": {
-                "$ref": "#/$keywords/softDeletePeriod"
-            },
-            "hotCachePeriod": {
-                "$ref": "#/$keywords/hotCachePeriod"
-            },
-            "statistics": {
-                "$ref": "#/$keywords/statistics"
-            }
-        },
-        "clusters/databases/dataConnections": {}
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "softDeletePeriod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hotCachePeriod": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "statistics": {
+      "body": {
+        "size": {
+          "$ref": "#/$keywords/size"
+        }
+      }
+    },
+    "size": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
     }
+  },
+  "$resources": {
+    "clusters": {
+      "trustedExternalTenants": {
+        "$ref": "#/$keywords/trustedExternalTenants"
+      }
+    },
+    "clusters/databases": {
+      "softDeletePeriod": {
+        "$ref": "#/$keywords/softDeletePeriod"
+      },
+      "hotCachePeriod": {
+        "$ref": "#/$keywords/hotCachePeriod"
+      },
+      "statistics": {
+        "$ref": "#/$keywords/statistics"
+      }
+    },
+    "clusters/databases/dataConnections": {}
+  }
 }

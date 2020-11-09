@@ -1,225 +1,103 @@
 {
-    "$keywords": {
-        "certificates": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "distinguishedName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "domainVerificationToken": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "validityInYears": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "keySize": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "productType": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "autoRenew": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "signedCertificate": {
-            "parameters": {
-                "version": {
-                    "type": "int"
-                },
-                "serialNumber": {
-                    "type": "string"
-                },
-                "thumbprint": {
-                    "type": "string"
-                },
-                "subject": {
-                    "type": "string"
-                },
-                "notBefore": {},
-                "notAfter": {},
-                "signatureAlgorithm": {
-                    "type": "string"
-                },
-                "issuer": {
-                    "type": "string"
-                },
-                "rawData": {
-                    "type": "string"
-                }
-            }
-        },
-        "csr": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "serialNumber": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "lastCertificateIssuanceTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "expirationTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "isPrivateKeyExternal": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "appServiceCertificateNotRenewableReasons": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "RegistrationStatusNotSupportedForRenewal",
-                        "ExpirationNotInRenewalTimeRange",
-                        "SubscriptionNotActive"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "nextAutoRenewalTimeStamp": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "keyVaultId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "keyVaultSecretName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        }
+  "$keywords": {
+    "certificates": {
+      "body": {}
     },
-    "$resources": {
-        "certificateOrders": {
-            "certificates": {
-                "$ref": "#/$keywords/certificates"
-            },
-            "distinguishedName": {
-                "$ref": "#/$keywords/distinguishedName"
-            },
-            "domainVerificationToken": {
-                "$ref": "#/$keywords/domainVerificationToken"
-            },
-            "validityInYears": {
-                "$ref": "#/$keywords/validityInYears"
-            },
-            "keySize": {
-                "$ref": "#/$keywords/keySize"
-            },
-            "productType": {
-                "$ref": "#/$keywords/productType"
-            },
-            "autoRenew": {
-                "$ref": "#/$keywords/autoRenew"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "signedCertificate": {
-                "$ref": "#/$keywords/signedCertificate"
-            },
-            "csr": {
-                "$ref": "#/$keywords/csr"
-            },
-            "intermediate": {
-                "$ref": "#/$keywords/signedCertificate"
-            },
-            "root": {
-                "$ref": "#/$keywords/signedCertificate"
-            },
-            "serialNumber": {
-                "$ref": "#/$keywords/serialNumber"
-            },
-            "lastCertificateIssuanceTime": {
-                "$ref": "#/$keywords/lastCertificateIssuanceTime"
-            },
-            "expirationTime": {
-                "$ref": "#/$keywords/expirationTime"
-            },
-            "isPrivateKeyExternal": {
-                "$ref": "#/$keywords/isPrivateKeyExternal"
-            },
-            "appServiceCertificateNotRenewableReasons": {
-                "$ref": "#/$keywords/appServiceCertificateNotRenewableReasons"
-            },
-            "nextAutoRenewalTimeStamp": {
-                "$ref": "#/$keywords/nextAutoRenewalTimeStamp"
-            }
-        },
-        "certificateOrders/certificates": {
-            "keyVaultId": {
-                "$ref": "#/$keywords/keyVaultId"
-            },
-            "keyVaultSecretName": {
-                "$ref": "#/$keywords/keyVaultSecretName"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            }
+    "distinguishedName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "validityInYears": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1
+        }
+      }
+    },
+    "keySize": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 2048
+        }
+      }
+    },
+    "productType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "StandardDomainValidatedSsl",
+            "StandardDomainValidatedWildCardSsl"
+          ]
+        }
+      }
+    },
+    "autoRenew": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "csr": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultSecretName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "certificateOrders": {
+      "certificates": {
+        "$ref": "#/$keywords/certificates"
+      },
+      "distinguishedName": {
+        "$ref": "#/$keywords/distinguishedName"
+      },
+      "validityInYears": {
+        "$ref": "#/$keywords/validityInYears"
+      },
+      "keySize": {
+        "$ref": "#/$keywords/keySize"
+      },
+      "productType": {
+        "$ref": "#/$keywords/productType"
+      },
+      "autoRenew": {
+        "$ref": "#/$keywords/autoRenew"
+      },
+      "csr": {
+        "$ref": "#/$keywords/csr"
+      }
+    },
+    "certificateOrders/certificates": {
+      "keyVaultId": {
+        "$ref": "#/$keywords/keyVaultId"
+      },
+      "keyVaultSecretName": {
+        "$ref": "#/$keywords/keyVaultSecretName"
+      }
+    }
+  }
 }

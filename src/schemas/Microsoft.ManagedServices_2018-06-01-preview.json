@@ -1,157 +1,78 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "authorizations": {
-            "parameters": {
-                "principalId": {
-                    "type": "string"
-                },
-                "roleDefinitionId": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "registrationDefinitionName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "managedByTenantId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "managedByTenantName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "registrationDefinitionId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "registrationDefinition": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "propertyParameters": {
-                "description": {
-                    "type": "string"
-                },
-                "registrationDefinitionName": {
-                    "type": "string"
-                },
-                "provisioningState": {},
-                "manageeTenantId": {
-                    "type": "string"
-                },
-                "manageeTenantName": {
-                    "type": "string"
-                },
-                "managedByTenantId": {
-                    "type": "string"
-                },
-                "managedByTenantName": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "plan": {
-                    "$ref": "#/$keywords/plan"
-                },
-                "authorizations": {
-                    "$ref": "#/$keywords/authorizations_2"
-                }
-            }
-        },
-        "plan": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "publisher": {
-                    "type": "string"
-                },
-                "product": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                }
-            }
-        },
-        "authorizations_2": {
-            "parameters": {
-                "principalId": {
-                    "type": "string"
-                },
-                "roleDefinitionId": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "registrationDefinitions": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "authorizations": {
-                "$ref": "#/$keywords/authorizations"
-            },
-            "registrationDefinitionName": {
-                "$ref": "#/$keywords/registrationDefinitionName"
-            },
-            "managedByTenantId": {
-                "$ref": "#/$keywords/managedByTenantId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "managedByTenantName": {
-                "$ref": "#/$keywords/managedByTenantName"
-            }
+    "authorizations": {
+      "body": {
+        "principalId": {
+          "$ref": "#/$keywords/principalId"
         },
-        "registrationAssignments": {
-            "registrationDefinitionId": {
-                "$ref": "#/$keywords/registrationDefinitionId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "registrationDefinition": {
-                "$ref": "#/$keywords/registrationDefinition"
-            }
+        "roleDefinitionId": {
+          "$ref": "#/$keywords/roleDefinitionId"
         }
+      },
+      "array": true
+    },
+    "principalId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "roleDefinitionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "registrationDefinitionName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "managedByTenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "registrationDefinitionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "registrationDefinitions": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "authorizations": {
+        "$ref": "#/$keywords/authorizations"
+      },
+      "registrationDefinitionName": {
+        "$ref": "#/$keywords/registrationDefinitionName"
+      },
+      "managedByTenantId": {
+        "$ref": "#/$keywords/managedByTenantId"
+      }
+    },
+    "registrationAssignments": {
+      "registrationDefinitionId": {
+        "$ref": "#/$keywords/registrationDefinitionId"
+      }
+    }
+  }
 }

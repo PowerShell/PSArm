@@ -1,62 +1,44 @@
 {
-    "$keywords": {
-        "replicaCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "partitionCount": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "hostingMode": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "statusDetails": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "replicaCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1
         }
+      }
     },
-    "$resources": {
-        "searchServices": {
-            "replicaCount": {
-                "$ref": "#/$keywords/replicaCount"
-            },
-            "partitionCount": {
-                "$ref": "#/$keywords/partitionCount"
-            },
-            "hostingMode": {
-                "$ref": "#/$keywords/hostingMode"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "statusDetails": {
-                "$ref": "#/$keywords/statusDetails"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
+    "partitionCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 1
         }
+      }
+    },
+    "hostingMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "default",
+            "highDensity"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "searchServices": {
+      "replicaCount": {
+        "$ref": "#/$keywords/replicaCount"
+      },
+      "partitionCount": {
+        "$ref": "#/$keywords/partitionCount"
+      },
+      "hostingMode": {
+        "$ref": "#/$keywords/hostingMode"
+      }
+    }
+  }
 }

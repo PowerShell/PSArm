@@ -1,0 +1,1145 @@
+{
+  "$keywords": {
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "2.0",
+            "12.0"
+          ]
+        }
+      }
+    },
+    "administratorLogin": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorLoginPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "connectionType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Proxy",
+            "Redirect"
+          ]
+        }
+      }
+    },
+    "startIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endIpAddress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "collation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "createMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Copy",
+            "Default",
+            "NonReadableSecondary",
+            "OnlineSecondary",
+            "PointInTimeRestore",
+            "Recovery",
+            "Restore",
+            "RestoreLongTermRetentionBackup"
+          ]
+        }
+      }
+    },
+    "sourceDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseDeletionDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoveryServicesRecoveryPointResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "edition": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Web",
+            "Business",
+            "Basic",
+            "Standard",
+            "Premium",
+            "PremiumRS",
+            "Free",
+            "Stretch",
+            "DataWarehouse",
+            "System",
+            "System2",
+            "GeneralPurpose",
+            "BusinessCritical",
+            "Hyperscale"
+          ]
+        }
+      }
+    },
+    "maxSizeBytes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requestedServiceObjectiveId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "requestedServiceObjectiveName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "System",
+            "System0",
+            "System1",
+            "System2",
+            "System3",
+            "System4",
+            "System2L",
+            "System3L",
+            "System4L",
+            "Free",
+            "Basic",
+            "S0",
+            "S1",
+            "S2",
+            "S3",
+            "S4",
+            "S6",
+            "S7",
+            "S9",
+            "S12",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P6",
+            "P11",
+            "P15",
+            "PRS1",
+            "PRS2",
+            "PRS4",
+            "PRS6",
+            "DW100",
+            "DW200",
+            "DW300",
+            "DW400",
+            "DW500",
+            "DW600",
+            "DW1000",
+            "DW1200",
+            "DW1000c",
+            "DW1500",
+            "DW1500c",
+            "DW2000",
+            "DW2000c",
+            "DW3000",
+            "DW2500c",
+            "DW3000c",
+            "DW6000",
+            "DW5000c",
+            "DW6000c",
+            "DW7500c",
+            "DW10000c",
+            "DW15000c",
+            "DW30000c",
+            "DS100",
+            "DS200",
+            "DS300",
+            "DS400",
+            "DS500",
+            "DS600",
+            "DS1000",
+            "DS1200",
+            "DS1500",
+            "DS2000",
+            "ElasticPool"
+          ]
+        }
+      }
+    },
+    "elasticPoolName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "readScale": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "sampleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AdventureWorksLT"
+          ]
+        }
+      }
+    },
+    "zoneRedundant": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "edition_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Basic",
+            "Standard",
+            "Premium",
+            "GeneralPurpose",
+            "BusinessCritical"
+          ]
+        }
+      }
+    },
+    "dtu": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "databaseDtuMax": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "databaseDtuMin": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "storageMB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "zoneRedundant_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "partnerServer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ActiveDirectory"
+          ]
+        }
+      }
+    },
+    "login": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sid": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "autoExecuteValue": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled",
+            "Default"
+          ]
+        }
+      }
+    },
+    "auditingState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "auditLogsTableName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventTypesToAudit": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fullAuditLogsTableName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountResourceGroupName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountSecondaryKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountSubscriptionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageTableEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "New",
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "disabledAlerts": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emailAddresses": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "emailAccountAdmins": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "storageEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "useServerDefault": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "dataMaskingState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "exemptPrincipals": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "storageKeyType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "StorageAccessKey",
+            "SharedAccessKey"
+          ]
+        }
+      }
+    },
+    "storageKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorLogin_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "administratorLoginPassword_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "authenticationType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "SQL",
+            "ADPassword"
+          ]
+        }
+      }
+    },
+    "operationMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Import"
+          ]
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "auditingState_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "auditLogsTableName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "eventTypesToAudit_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fullAuditLogsTableName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "retentionDays_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountKey_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountResourceGroupName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountSecondaryKey_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountSubscriptionId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageTableEndpoint_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useServerDefault_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "securityEnabledAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "proxyDnsName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "proxyPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "visibility": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "useServerDefault_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "redirectionState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "state_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "aliasName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ruleState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "schemaName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "tableName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "columnName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maskingFunction": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "CCN",
+            "Email",
+            "Number",
+            "SSN",
+            "Text"
+          ]
+        }
+      }
+    },
+    "numberFrom": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "numberTo": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "prefixSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "suffixSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "replacementString": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "servers": {
+      "version": {
+        "$ref": "#/$keywords/version"
+      },
+      "administratorLogin": {
+        "$ref": "#/$keywords/administratorLogin"
+      },
+      "administratorLoginPassword": {
+        "$ref": "#/$keywords/administratorLoginPassword"
+      }
+    },
+    "servers/connectionPolicies": {
+      "connectionType": {
+        "$ref": "#/$keywords/connectionType"
+      }
+    },
+    "servers/firewallRules": {
+      "startIpAddress": {
+        "$ref": "#/$keywords/startIpAddress"
+      },
+      "endIpAddress": {
+        "$ref": "#/$keywords/endIpAddress"
+      }
+    },
+    "servers/databases": {
+      "collation": {
+        "$ref": "#/$keywords/collation"
+      },
+      "createMode": {
+        "$ref": "#/$keywords/createMode"
+      },
+      "sourceDatabaseId": {
+        "$ref": "#/$keywords/sourceDatabaseId"
+      },
+      "sourceDatabaseDeletionDate": {
+        "$ref": "#/$keywords/sourceDatabaseDeletionDate"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime"
+      },
+      "recoveryServicesRecoveryPointResourceId": {
+        "$ref": "#/$keywords/recoveryServicesRecoveryPointResourceId"
+      },
+      "edition": {
+        "$ref": "#/$keywords/edition"
+      },
+      "maxSizeBytes": {
+        "$ref": "#/$keywords/maxSizeBytes"
+      },
+      "requestedServiceObjectiveId": {
+        "$ref": "#/$keywords/requestedServiceObjectiveId"
+      },
+      "requestedServiceObjectiveName": {
+        "$ref": "#/$keywords/requestedServiceObjectiveName"
+      },
+      "elasticPoolName": {
+        "$ref": "#/$keywords/elasticPoolName"
+      },
+      "readScale": {
+        "$ref": "#/$keywords/readScale"
+      },
+      "sampleName": {
+        "$ref": "#/$keywords/sampleName"
+      },
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant"
+      }
+    },
+    "servers/elasticPools": {
+      "edition": {
+        "$ref": "#/$keywords/edition_1"
+      },
+      "dtu": {
+        "$ref": "#/$keywords/dtu"
+      },
+      "databaseDtuMax": {
+        "$ref": "#/$keywords/databaseDtuMax"
+      },
+      "databaseDtuMin": {
+        "$ref": "#/$keywords/databaseDtuMin"
+      },
+      "storageMB": {
+        "$ref": "#/$keywords/storageMB"
+      },
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant_1"
+      }
+    },
+    "servers/communicationLinks": {
+      "partnerServer": {
+        "$ref": "#/$keywords/partnerServer"
+      }
+    },
+    "servers/administrators": {
+      "administratorType": {
+        "$ref": "#/$keywords/administratorType"
+      },
+      "login": {
+        "$ref": "#/$keywords/login"
+      },
+      "sid": {
+        "$ref": "#/$keywords/sid"
+      },
+      "tenantId": {
+        "$ref": "#/$keywords/tenantId"
+      }
+    },
+    "servers/advisors": {
+      "autoExecuteValue": {
+        "$ref": "#/$keywords/autoExecuteValue"
+      }
+    },
+    "servers/disasterRecoveryConfiguration": {},
+    "servers/auditingPolicies": {
+      "auditingState": {
+        "$ref": "#/$keywords/auditingState"
+      },
+      "auditLogsTableName": {
+        "$ref": "#/$keywords/auditLogsTableName"
+      },
+      "eventTypesToAudit": {
+        "$ref": "#/$keywords/eventTypesToAudit"
+      },
+      "fullAuditLogsTableName": {
+        "$ref": "#/$keywords/fullAuditLogsTableName"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays"
+      },
+      "storageAccountKey": {
+        "$ref": "#/$keywords/storageAccountKey"
+      },
+      "storageAccountName": {
+        "$ref": "#/$keywords/storageAccountName"
+      },
+      "storageAccountResourceGroupName": {
+        "$ref": "#/$keywords/storageAccountResourceGroupName"
+      },
+      "storageAccountSecondaryKey": {
+        "$ref": "#/$keywords/storageAccountSecondaryKey"
+      },
+      "storageAccountSubscriptionId": {
+        "$ref": "#/$keywords/storageAccountSubscriptionId"
+      },
+      "storageTableEndpoint": {
+        "$ref": "#/$keywords/storageTableEndpoint"
+      }
+    },
+    "servers/databases/securityAlertPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state"
+      },
+      "disabledAlerts": {
+        "$ref": "#/$keywords/disabledAlerts"
+      },
+      "emailAddresses": {
+        "$ref": "#/$keywords/emailAddresses"
+      },
+      "emailAccountAdmins": {
+        "$ref": "#/$keywords/emailAccountAdmins"
+      },
+      "storageEndpoint": {
+        "$ref": "#/$keywords/storageEndpoint"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1"
+      },
+      "useServerDefault": {
+        "$ref": "#/$keywords/useServerDefault"
+      }
+    },
+    "servers/databases/dataMaskingPolicies": {
+      "dataMaskingState": {
+        "$ref": "#/$keywords/dataMaskingState"
+      },
+      "exemptPrincipals": {
+        "$ref": "#/$keywords/exemptPrincipals"
+      }
+    },
+    "servers/databases/geoBackupPolicies": {
+      "state": {
+        "$ref": "#/$keywords/state_1"
+      }
+    },
+    "servers/databases/extensions": {
+      "storageKeyType": {
+        "$ref": "#/$keywords/storageKeyType"
+      },
+      "storageKey": {
+        "$ref": "#/$keywords/storageKey"
+      },
+      "storageUri": {
+        "$ref": "#/$keywords/storageUri"
+      },
+      "administratorLogin": {
+        "$ref": "#/$keywords/administratorLogin_1"
+      },
+      "administratorLoginPassword": {
+        "$ref": "#/$keywords/administratorLoginPassword_1"
+      },
+      "authenticationType": {
+        "$ref": "#/$keywords/authenticationType"
+      },
+      "operationMode": {
+        "$ref": "#/$keywords/operationMode"
+      }
+    },
+    "servers/databases/transparentDataEncryption": {
+      "status": {
+        "$ref": "#/$keywords/status"
+      }
+    },
+    "servers/databases/advisors": {
+      "autoExecuteValue": {
+        "$ref": "#/$keywords/autoExecuteValue"
+      }
+    },
+    "servers/databases/auditingPolicies": {
+      "auditingState": {
+        "$ref": "#/$keywords/auditingState_1"
+      },
+      "auditLogsTableName": {
+        "$ref": "#/$keywords/auditLogsTableName_1"
+      },
+      "eventTypesToAudit": {
+        "$ref": "#/$keywords/eventTypesToAudit_1"
+      },
+      "fullAuditLogsTableName": {
+        "$ref": "#/$keywords/fullAuditLogsTableName_1"
+      },
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays_1_2"
+      },
+      "storageAccountKey": {
+        "$ref": "#/$keywords/storageAccountKey_1"
+      },
+      "storageAccountName": {
+        "$ref": "#/$keywords/storageAccountName_1"
+      },
+      "storageAccountResourceGroupName": {
+        "$ref": "#/$keywords/storageAccountResourceGroupName_1"
+      },
+      "storageAccountSecondaryKey": {
+        "$ref": "#/$keywords/storageAccountSecondaryKey_1"
+      },
+      "storageAccountSubscriptionId": {
+        "$ref": "#/$keywords/storageAccountSubscriptionId_1"
+      },
+      "storageTableEndpoint": {
+        "$ref": "#/$keywords/storageTableEndpoint_1"
+      },
+      "useServerDefault": {
+        "$ref": "#/$keywords/useServerDefault_1"
+      }
+    },
+    "servers/databases/connectionPolicies": {
+      "securityEnabledAccess": {
+        "$ref": "#/$keywords/securityEnabledAccess"
+      },
+      "proxyDnsName": {
+        "$ref": "#/$keywords/proxyDnsName"
+      },
+      "proxyPort": {
+        "$ref": "#/$keywords/proxyPort"
+      },
+      "visibility": {
+        "$ref": "#/$keywords/visibility"
+      },
+      "useServerDefault": {
+        "$ref": "#/$keywords/useServerDefault_1_2"
+      },
+      "redirectionState": {
+        "$ref": "#/$keywords/redirectionState"
+      },
+      "state": {
+        "$ref": "#/$keywords/state_1_2"
+      }
+    },
+    "servers/databases/dataMaskingPolicies/rules": {
+      "aliasName": {
+        "$ref": "#/$keywords/aliasName"
+      },
+      "ruleState": {
+        "$ref": "#/$keywords/ruleState"
+      },
+      "schemaName": {
+        "$ref": "#/$keywords/schemaName"
+      },
+      "tableName": {
+        "$ref": "#/$keywords/tableName"
+      },
+      "columnName": {
+        "$ref": "#/$keywords/columnName"
+      },
+      "maskingFunction": {
+        "$ref": "#/$keywords/maskingFunction"
+      },
+      "numberFrom": {
+        "$ref": "#/$keywords/numberFrom"
+      },
+      "numberTo": {
+        "$ref": "#/$keywords/numberTo"
+      },
+      "prefixSize": {
+        "$ref": "#/$keywords/prefixSize"
+      },
+      "suffixSize": {
+        "$ref": "#/$keywords/suffixSize"
+      },
+      "replacementString": {
+        "$ref": "#/$keywords/replacementString"
+      }
+    }
+  }
+}

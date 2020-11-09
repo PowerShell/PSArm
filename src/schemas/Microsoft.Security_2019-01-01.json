@@ -1,0 +1,20 @@
+{
+  "$keywords": {
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    }
+  },
+  "$resources": {
+    "settings": {},
+    "advancedThreatProtectionSettings": {
+      "isEnabled": {
+        "$ref": "#/$keywords/isEnabled"
+      }
+    }
+  }
+}

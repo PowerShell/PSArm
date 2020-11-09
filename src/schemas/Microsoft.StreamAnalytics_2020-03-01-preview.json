@@ -1,116 +1,78 @@
 {
-    "$keywords": {
-        "createdDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "clusterId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Failed",
-                        "Canceled",
-                        "InProgress"
-                    ]
-                }
-            }
-        },
-        "capacityAllocated": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "capacityAssigned": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "createdDate_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "manualPrivateLinkServiceConnections": {
-            "parameters": {
-                "privateLinkServiceId": {
-                    "type": "string"
-                },
-                "requestMessage": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "groupIds": {
-                    "$ref": "#/$keywords/groupIds"
-                },
-                "privateLinkServiceConnectionState": {
-                    "$ref": "#/$keywords/privateLinkServiceConnectionState"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Succeeded",
+            "Failed",
+            "Canceled",
+            "InProgress"
+          ]
+        }
+      }
+    },
+    "manualPrivateLinkServiceConnections": {
+      "body": {
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "properties": {
+      "body": {
+        "privateLinkServiceId": {
+          "$ref": "#/$keywords/privateLinkServiceId"
         },
         "groupIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/groupIds"
+        },
+        "requestMessage": {
+          "$ref": "#/$keywords/requestMessage"
         },
         "privateLinkServiceConnectionState": {
-            "parameters": {
-                "status": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "actionsRequired": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/privateLinkServiceConnectionState"
         }
+      }
     },
-    "$resources": {
-        "clusters": {
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate"
-            },
-            "clusterId": {
-                "$ref": "#/$keywords/clusterId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "capacityAllocated": {
-                "$ref": "#/$keywords/capacityAllocated"
-            },
-            "capacityAssigned": {
-                "$ref": "#/$keywords/capacityAssigned"
-            }
-        },
-        "clusters/privateEndpoints": {
-            "createdDate": {
-                "$ref": "#/$keywords/createdDate_2"
-            },
-            "manualPrivateLinkServiceConnections": {
-                "$ref": "#/$keywords/manualPrivateLinkServiceConnections"
-            }
+    "privateLinkServiceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "groupIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "requestMessage": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "privateLinkServiceConnectionState": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "clusters": {
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      }
+    },
+    "clusters/privateEndpoints": {
+      "manualPrivateLinkServiceConnections": {
+        "$ref": "#/$keywords/manualPrivateLinkServiceConnections"
+      }
+    }
+  }
 }

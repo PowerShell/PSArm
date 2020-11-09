@@ -1,104 +1,108 @@
 {
-    "$keywords": {
-        "workspaceResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "containedResources": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "referencedResources": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "applicationId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "parentResourceType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "parameters": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "provisioningState_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "template": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "workspaceResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "solutions": {
-            "workspaceResourceId": {
-                "$ref": "#/$keywords/workspaceResourceId"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "containedResources": {
-                "$ref": "#/$keywords/containedResources"
-            },
-            "referencedResources": {
-                "$ref": "#/$keywords/referencedResources"
-            }
-        },
-        "ManagementConfigurations": {
-            "applicationId": {
-                "$ref": "#/$keywords/applicationId"
-            },
-            "parentResourceType": {
-                "$ref": "#/$keywords/parentResourceType"
-            },
-            "parameters": {
-                "$ref": "#/$keywords/parameters"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState_2"
-            },
-            "template": {
-                "$ref": "#/$keywords/template"
-            }
+    "containedResources": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
+    },
+    "referencedResources": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "applicationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applicationId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parentResourceType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "template": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "solutions": {
+      "workspaceResourceId": {
+        "$ref": "#/$keywords/workspaceResourceId"
+      },
+      "containedResources": {
+        "$ref": "#/$keywords/containedResources"
+      },
+      "referencedResources": {
+        "$ref": "#/$keywords/referencedResources"
+      }
+    },
+    "ManagementAssociations": {
+      "applicationId": {
+        "$ref": "#/$keywords/applicationId"
+      }
+    },
+    "ManagementConfigurations": {
+      "applicationId": {
+        "$ref": "#/$keywords/applicationId_1"
+      },
+      "parentResourceType": {
+        "$ref": "#/$keywords/parentResourceType"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      },
+      "template": {
+        "$ref": "#/$keywords/template"
+      }
+    }
+  }
 }

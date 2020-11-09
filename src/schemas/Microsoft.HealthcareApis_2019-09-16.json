@@ -1,125 +1,161 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Deleting",
-                        "Succeeded",
-                        "Creating",
-                        "Accepted",
-                        "Verifying",
-                        "Updating",
-                        "Failed",
-                        "Canceled",
-                        "Deprovisioned"
-                    ]
-                }
-            }
+  "$keywords": {
+    "accessPolicies": {
+      "body": {
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
+        }
+      },
+      "array": true
+    },
+    "objectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "cosmosDbConfiguration": {
+      "body": {
+        "offerThroughput": {
+          "$ref": "#/$keywords/offerThroughput"
+        }
+      }
+    },
+    "offerThroughput": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "authenticationConfiguration": {
+      "body": {
+        "authority": {
+          "$ref": "#/$keywords/authority"
         },
-        "accessPolicies": {
-            "parameters": {
-                "objectId": {
-                    "type": "string",
-                    "pattern": "^(([0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}){1})+$"
-                }
-            },
-            "array": true
+        "audience": {
+          "$ref": "#/$keywords/audience"
         },
-        "cosmosDbConfiguration": {
-            "parameters": {
-                "offerThroughput": {
-                    "type": "int"
-                }
-            }
-        },
-        "authenticationConfiguration": {
-            "parameters": {
-                "authority": {
-                    "type": "string"
-                },
-                "audience": {
-                    "type": "string"
-                },
-                "smartProxyEnabled": {
-                    "type": "bool"
-                }
-            }
-        },
-        "corsConfiguration": {
-            "parameters": {
-                "maxAge": {
-                    "type": "int"
-                },
-                "allowCredentials": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "origins": {
-                    "$ref": "#/$keywords/origins"
-                },
-                "headers": {
-                    "$ref": "#/$keywords/headers"
-                },
-                "methods": {
-                    "$ref": "#/$keywords/methods"
-                }
-            }
-        },
+        "smartProxyEnabled": {
+          "$ref": "#/$keywords/smartProxyEnabled"
+        }
+      }
+    },
+    "authority": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "audience": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "smartProxyEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "corsConfiguration": {
+      "body": {
         "origins": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string",
-                    "pattern": "^(?:(?:(?:[hH][tT][tT][pP](?:[sS]|))\\:\\/\\/(?:[a-zA-Z0-9-]+[.]?)+(?:\\:[0-9]{1,5})?|[*]))$"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/origins"
         },
         "headers": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/headers"
         },
         "methods": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/methods"
         },
-        "exportConfiguration": {
-            "parameters": {
-                "storageAccountName": {
-                    "type": "string"
-                }
-            }
+        "maxAge": {
+          "$ref": "#/$keywords/maxAge"
+        },
+        "allowCredentials": {
+          "$ref": "#/$keywords/allowCredentials"
         }
+      }
     },
-    "$resources": {
-        "services": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "accessPolicies": {
-                "$ref": "#/$keywords/accessPolicies"
-            },
-            "cosmosDbConfiguration": {
-                "$ref": "#/$keywords/cosmosDbConfiguration"
-            },
-            "authenticationConfiguration": {
-                "$ref": "#/$keywords/authenticationConfiguration"
-            },
-            "corsConfiguration": {
-                "$ref": "#/$keywords/corsConfiguration"
-            },
-            "exportConfiguration": {
-                "$ref": "#/$keywords/exportConfiguration"
-            }
+    "origins": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
+    },
+    "headers": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "methods": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "maxAge": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "allowCredentials": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "exportConfiguration": {
+      "body": {
+        "storageAccountName": {
+          "$ref": "#/$keywords/storageAccountName"
+        }
+      }
+    },
+    "storageAccountName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "services": {
+      "accessPolicies": {
+        "$ref": "#/$keywords/accessPolicies"
+      },
+      "cosmosDbConfiguration": {
+        "$ref": "#/$keywords/cosmosDbConfiguration"
+      },
+      "authenticationConfiguration": {
+        "$ref": "#/$keywords/authenticationConfiguration"
+      },
+      "corsConfiguration": {
+        "$ref": "#/$keywords/corsConfiguration"
+      },
+      "exportConfiguration": {
+        "$ref": "#/$keywords/exportConfiguration"
+      }
+    }
+  }
 }

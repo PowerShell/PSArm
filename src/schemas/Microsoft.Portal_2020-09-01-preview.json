@@ -1,80 +1,123 @@
 {
-    "$keywords": {
-        "lenses": {
-            "parameters": {
-                "order": {
-                    "type": "int"
-                },
-                "metadata": {}
-            },
-            "body": {
-                "parts": {
-                    "$ref": "#/$keywords/parts"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "lenses": {
+      "body": {
+        "order": {
+          "$ref": "#/$keywords/order"
         },
         "parts": {
-            "body": {
-                "position": {
-                    "$ref": "#/$keywords/position"
-                },
-                "metadata": {
-                    "$ref": "#/$keywords/metadata"
-                }
-            },
-            "array": true
-        },
-        "position": {
-            "parameters": {
-                "x": {
-                    "type": "int"
-                },
-                "y": {
-                    "type": "int"
-                },
-                "rowSpan": {
-                    "type": "int"
-                },
-                "colSpan": {
-                    "type": "int"
-                },
-                "metadata": {}
-            }
+          "$ref": "#/$keywords/parts"
         },
         "metadata": {
-            "parameters": {
-                "type": {
-                    "type": "string"
-                }
-            }
-        },
-        "metadata_2": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "enforcePrivateMarkdownStorage": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+          "$ref": "#/$keywords/metadata_1_2"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "dashboards": {
-            "lenses": {
-                "$ref": "#/$keywords/lenses"
-            },
-            "metadata": {
-                "$ref": "#/$keywords/metadata_2"
-            }
-        },
-        "tenantConfigurations": {
-            "enforcePrivateMarkdownStorage": {
-                "$ref": "#/$keywords/enforcePrivateMarkdownStorage"
-            }
+    "order": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
         }
+      }
+    },
+    "parts": {
+      "body": {
+        "position": {
+          "$ref": "#/$keywords/position"
+        },
+        "metadata": {
+          "$ref": "#/$keywords/metadata_1"
+        }
+      },
+      "array": true
+    },
+    "position": {
+      "body": {
+        "x": {
+          "$ref": "#/$keywords/x"
+        },
+        "y": {
+          "$ref": "#/$keywords/y"
+        },
+        "rowSpan": {
+          "$ref": "#/$keywords/rowSpan"
+        },
+        "colSpan": {
+          "$ref": "#/$keywords/colSpan"
+        },
+        "metadata": {
+          "$ref": "#/$keywords/metadata"
+        }
+      }
+    },
+    "x": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "y": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "rowSpan": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "colSpan": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "metadata": {
+      "body": {}
+    },
+    "metadata_1": {
+      "body": {}
+    },
+    "metadata_1_2": {
+      "body": {}
+    },
+    "metadata_1_2_3": {
+      "body": {}
+    },
+    "enforcePrivateMarkdownStorage": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "dashboards": {
+      "lenses": {
+        "$ref": "#/$keywords/lenses"
+      },
+      "metadata": {
+        "$ref": "#/$keywords/metadata_1_2_3"
+      }
+    },
+    "tenantConfigurations": {
+      "enforcePrivateMarkdownStorage": {
+        "$ref": "#/$keywords/enforcePrivateMarkdownStorage"
+      }
+    }
+  }
 }

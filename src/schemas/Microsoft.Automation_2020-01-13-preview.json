@@ -1,34 +1,52 @@
 {
-    "$keywords": {
-        "privateEndpoint": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "privateLinkServiceConnectionState": {
-            "parameters": {
-                "status": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "actionsRequired": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "privateEndpoint": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         }
+      }
     },
-    "$resources": {
-        "automationAccounts/privateEndpointConnections": {
-            "privateEndpoint": {
-                "$ref": "#/$keywords/privateEndpoint"
-            },
-            "privateLinkServiceConnectionState": {
-                "$ref": "#/$keywords/privateLinkServiceConnectionState"
-            }
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "privateLinkServiceConnectionState": {
+      "body": {
+        "status": {
+          "$ref": "#/$keywords/status"
+        },
+        "description": {
+          "$ref": "#/$keywords/description"
+        }
+      }
+    },
+    "status": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "automationAccounts/privateEndpointConnections": {
+      "privateEndpoint": {
+        "$ref": "#/$keywords/privateEndpoint"
+      },
+      "privateLinkServiceConnectionState": {
+        "$ref": "#/$keywords/privateLinkServiceConnectionState"
+      }
+    }
+  }
 }

@@ -1,0 +1,1002 @@
+{
+  "$keywords": {
+    "clusterVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Windows",
+            "Linux"
+          ]
+        }
+      }
+    },
+    "tier": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard",
+            "Premium"
+          ]
+        }
+      }
+    },
+    "clusterDefinition": {
+      "body": {
+        "blueprint": {
+          "$ref": "#/$keywords/blueprint"
+        },
+        "kind": {
+          "$ref": "#/$keywords/kind"
+        },
+        "componentVersion": {
+          "$ref": "#/$keywords/componentVersion"
+        },
+        "configurations": {
+          "$ref": "#/$keywords/configurations"
+        }
+      }
+    },
+    "blueprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "kind": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "componentVersion": {
+      "body": {}
+    },
+    "configurations": {
+      "body": {}
+    },
+    "kafkaRestProperties": {
+      "body": {
+        "clientGroupInfo": {
+          "$ref": "#/$keywords/clientGroupInfo"
+        }
+      }
+    },
+    "clientGroupInfo": {
+      "body": {
+        "groupName": {
+          "$ref": "#/$keywords/groupName"
+        },
+        "groupId": {
+          "$ref": "#/$keywords/groupId"
+        }
+      }
+    },
+    "groupName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "groupId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "securityProfile": {
+      "body": {
+        "directoryType": {
+          "$ref": "#/$keywords/directoryType"
+        },
+        "domain": {
+          "$ref": "#/$keywords/domain"
+        },
+        "organizationalUnitDN": {
+          "$ref": "#/$keywords/organizationalUnitDN"
+        },
+        "ldapsUrls": {
+          "$ref": "#/$keywords/ldapsUrls"
+        },
+        "domainUsername": {
+          "$ref": "#/$keywords/domainUsername"
+        },
+        "domainUserPassword": {
+          "$ref": "#/$keywords/domainUserPassword"
+        },
+        "clusterUsersGroupDNs": {
+          "$ref": "#/$keywords/clusterUsersGroupDNs"
+        },
+        "aaddsResourceId": {
+          "$ref": "#/$keywords/aaddsResourceId"
+        },
+        "msiResourceId": {
+          "$ref": "#/$keywords/msiResourceId"
+        }
+      }
+    },
+    "directoryType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ActiveDirectory"
+          ]
+        }
+      }
+    },
+    "domain": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "organizationalUnitDN": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ldapsUrls": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "domainUsername": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "domainUserPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterUsersGroupDNs": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "aaddsResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "msiResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "computeProfile": {
+      "body": {
+        "roles": {
+          "$ref": "#/$keywords/roles"
+        }
+      }
+    },
+    "roles": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "minInstanceCount": {
+          "$ref": "#/$keywords/minInstanceCount"
+        },
+        "targetInstanceCount": {
+          "$ref": "#/$keywords/targetInstanceCount"
+        },
+        "autoscale": {
+          "$ref": "#/$keywords/autoscale"
+        },
+        "hardwareProfile": {
+          "$ref": "#/$keywords/hardwareProfile"
+        },
+        "osProfile": {
+          "$ref": "#/$keywords/osProfile"
+        },
+        "virtualNetworkProfile": {
+          "$ref": "#/$keywords/virtualNetworkProfile"
+        },
+        "dataDisksGroups": {
+          "$ref": "#/$keywords/dataDisksGroups"
+        },
+        "scriptActions": {
+          "$ref": "#/$keywords/scriptActions"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "minInstanceCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "targetInstanceCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "autoscale": {
+      "body": {
+        "capacity": {
+          "$ref": "#/$keywords/capacity"
+        },
+        "recurrence": {
+          "$ref": "#/$keywords/recurrence"
+        }
+      }
+    },
+    "capacity": {
+      "body": {
+        "minInstanceCount": {
+          "$ref": "#/$keywords/minInstanceCount_1"
+        },
+        "maxInstanceCount": {
+          "$ref": "#/$keywords/maxInstanceCount"
+        }
+      }
+    },
+    "minInstanceCount_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxInstanceCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "recurrence": {
+      "body": {
+        "timeZone": {
+          "$ref": "#/$keywords/timeZone"
+        },
+        "schedule": {
+          "$ref": "#/$keywords/schedule"
+        }
+      }
+    },
+    "timeZone": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "schedule": {
+      "body": {
+        "days": {
+          "$ref": "#/$keywords/days"
+        },
+        "timeAndCapacity": {
+          "$ref": "#/$keywords/timeAndCapacity"
+        }
+      },
+      "array": true
+    },
+    "days": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
+        }
+      },
+      "array": true
+    },
+    "timeAndCapacity": {
+      "body": {
+        "time": {
+          "$ref": "#/$keywords/time"
+        },
+        "minInstanceCount": {
+          "$ref": "#/$keywords/minInstanceCount_1_2"
+        },
+        "maxInstanceCount": {
+          "$ref": "#/$keywords/maxInstanceCount_1"
+        }
+      }
+    },
+    "time": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "minInstanceCount_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxInstanceCount_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "hardwareProfile": {
+      "body": {
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize"
+        }
+      }
+    },
+    "vmSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "osProfile": {
+      "body": {
+        "linuxOperatingSystemProfile": {
+          "$ref": "#/$keywords/linuxOperatingSystemProfile"
+        }
+      }
+    },
+    "linuxOperatingSystemProfile": {
+      "body": {
+        "username": {
+          "$ref": "#/$keywords/username"
+        },
+        "password": {
+          "$ref": "#/$keywords/password"
+        },
+        "sshProfile": {
+          "$ref": "#/$keywords/sshProfile"
+        }
+      }
+    },
+    "username": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "password": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sshProfile": {
+      "body": {
+        "publicKeys": {
+          "$ref": "#/$keywords/publicKeys"
+        }
+      }
+    },
+    "publicKeys": {
+      "body": {
+        "certificateData": {
+          "$ref": "#/$keywords/certificateData"
+        }
+      },
+      "array": true
+    },
+    "certificateData": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualNetworkProfile": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "subnet": {
+          "$ref": "#/$keywords/subnet"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "subnet": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "dataDisksGroups": {
+      "body": {
+        "disksPerNode": {
+          "$ref": "#/$keywords/disksPerNode"
+        }
+      },
+      "array": true
+    },
+    "disksPerNode": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "scriptActions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "uri": {
+          "$ref": "#/$keywords/uri"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageProfile": {
+      "body": {
+        "storageaccounts": {
+          "$ref": "#/$keywords/storageaccounts"
+        }
+      }
+    },
+    "storageaccounts": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "isDefault": {
+          "$ref": "#/$keywords/isDefault"
+        },
+        "container": {
+          "$ref": "#/$keywords/container"
+        },
+        "fileSystem": {
+          "$ref": "#/$keywords/fileSystem"
+        },
+        "key": {
+          "$ref": "#/$keywords/key"
+        },
+        "resourceId": {
+          "$ref": "#/$keywords/resourceId"
+        },
+        "msiResourceId": {
+          "$ref": "#/$keywords/msiResourceId_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isDefault": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "container": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fileSystem": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "msiResourceId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "diskEncryptionProperties": {
+      "body": {
+        "vaultUri": {
+          "$ref": "#/$keywords/vaultUri"
+        },
+        "keyName": {
+          "$ref": "#/$keywords/keyName"
+        },
+        "keyVersion": {
+          "$ref": "#/$keywords/keyVersion"
+        },
+        "encryptionAlgorithm": {
+          "$ref": "#/$keywords/encryptionAlgorithm"
+        },
+        "msiResourceId": {
+          "$ref": "#/$keywords/msiResourceId_1_2"
+        },
+        "encryptionAtHost": {
+          "$ref": "#/$keywords/encryptionAtHost"
+        }
+      }
+    },
+    "vaultUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "encryptionAlgorithm": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "RSA-OAEP",
+            "RSA-OAEP-256",
+            "RSA1_5"
+          ]
+        }
+      }
+    },
+    "msiResourceId_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "encryptionAtHost": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "encryptionInTransitProperties": {
+      "body": {
+        "isEncryptionInTransitEnabled": {
+          "$ref": "#/$keywords/isEncryptionInTransitEnabled"
+        }
+      }
+    },
+    "isEncryptionInTransitEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "minSupportedTlsVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "networkSettings": {
+      "body": {
+        "publicNetworkAccess": {
+          "$ref": "#/$keywords/publicNetworkAccess"
+        },
+        "outboundOnlyPublicNetworkAccessType": {
+          "$ref": "#/$keywords/outboundOnlyPublicNetworkAccessType"
+        }
+      }
+    },
+    "publicNetworkAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "InboundAndOutbound",
+            "OutboundOnly"
+          ]
+        }
+      }
+    },
+    "outboundOnlyPublicNetworkAccessType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "PublicLoadBalancer",
+            "UDR"
+          ]
+        }
+      }
+    },
+    "computeProfile_1": {
+      "body": {
+        "roles": {
+          "$ref": "#/$keywords/roles"
+        }
+      }
+    },
+    "installScriptActions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "uri": {
+          "$ref": "#/$keywords/uri_1"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters_1"
+        },
+        "roles": {
+          "$ref": "#/$keywords/roles_1"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "uri_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "roles_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "uninstallScriptActions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
+        },
+        "uri": {
+          "$ref": "#/$keywords/uri_1"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters_1"
+        },
+        "roles": {
+          "$ref": "#/$keywords/roles_1"
+        }
+      },
+      "array": true
+    },
+    "httpsEndpoints": {
+      "body": {
+        "accessModes": {
+          "$ref": "#/$keywords/accessModes"
+        },
+        "location": {
+          "$ref": "#/$keywords/location"
+        },
+        "destinationPort": {
+          "$ref": "#/$keywords/destinationPort"
+        },
+        "publicPort": {
+          "$ref": "#/$keywords/publicPort"
+        },
+        "subDomainSuffix": {
+          "$ref": "#/$keywords/subDomainSuffix"
+        },
+        "disableGatewayAuth": {
+          "$ref": "#/$keywords/disableGatewayAuth"
+        }
+      },
+      "array": true
+    },
+    "accessModes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "location": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "destinationPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "publicPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "subDomainSuffix": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "disableGatewayAuth": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "sshEndpoints": {
+      "body": {
+        "location": {
+          "$ref": "#/$keywords/location_1"
+        },
+        "destinationPort": {
+          "$ref": "#/$keywords/destinationPort_1"
+        },
+        "publicPort": {
+          "$ref": "#/$keywords/publicPort_1"
+        }
+      },
+      "array": true
+    },
+    "location_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "destinationPort_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "publicPort_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "applicationType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "errors": {
+      "body": {
+        "code": {
+          "$ref": "#/$keywords/code"
+        },
+        "message": {
+          "$ref": "#/$keywords/message"
+        }
+      },
+      "array": true
+    },
+    "code": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "message": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "clusters": {
+      "clusterVersion": {
+        "$ref": "#/$keywords/clusterVersion"
+      },
+      "osType": {
+        "$ref": "#/$keywords/osType"
+      },
+      "tier": {
+        "$ref": "#/$keywords/tier"
+      },
+      "clusterDefinition": {
+        "$ref": "#/$keywords/clusterDefinition"
+      },
+      "kafkaRestProperties": {
+        "$ref": "#/$keywords/kafkaRestProperties"
+      },
+      "securityProfile": {
+        "$ref": "#/$keywords/securityProfile"
+      },
+      "computeProfile": {
+        "$ref": "#/$keywords/computeProfile"
+      },
+      "storageProfile": {
+        "$ref": "#/$keywords/storageProfile"
+      },
+      "diskEncryptionProperties": {
+        "$ref": "#/$keywords/diskEncryptionProperties"
+      },
+      "encryptionInTransitProperties": {
+        "$ref": "#/$keywords/encryptionInTransitProperties"
+      },
+      "minSupportedTlsVersion": {
+        "$ref": "#/$keywords/minSupportedTlsVersion"
+      },
+      "networkSettings": {
+        "$ref": "#/$keywords/networkSettings"
+      }
+    },
+    "clusters/applications": {
+      "computeProfile": {
+        "$ref": "#/$keywords/computeProfile_1"
+      },
+      "installScriptActions": {
+        "$ref": "#/$keywords/installScriptActions"
+      },
+      "uninstallScriptActions": {
+        "$ref": "#/$keywords/uninstallScriptActions"
+      },
+      "httpsEndpoints": {
+        "$ref": "#/$keywords/httpsEndpoints"
+      },
+      "sshEndpoints": {
+        "$ref": "#/$keywords/sshEndpoints"
+      },
+      "applicationType": {
+        "$ref": "#/$keywords/applicationType"
+      },
+      "errors": {
+        "$ref": "#/$keywords/errors"
+      }
+    },
+    "clusters/extensions": {}
+  }
+}

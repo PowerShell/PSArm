@@ -1,0 +1,735 @@
+{
+  "$keywords": {
+    "dnsName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clientConnectionPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 19000
+        }
+      }
+    },
+    "httpGatewayConnectionPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 19080
+        }
+      }
+    },
+    "adminUserName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "adminPassword": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "loadBalancingRules": {
+      "body": {
+        "frontendPort": {
+          "$ref": "#/$keywords/frontendPort"
+        },
+        "backendPort": {
+          "$ref": "#/$keywords/backendPort"
+        },
+        "protocol": {
+          "$ref": "#/$keywords/protocol"
+        },
+        "probeProtocol": {
+          "$ref": "#/$keywords/probeProtocol"
+        },
+        "probeRequestPath": {
+          "$ref": "#/$keywords/probeRequestPath"
+        }
+      },
+      "array": true
+    },
+    "frontendPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "backendPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "protocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "tcp",
+            "udp"
+          ]
+        }
+      }
+    },
+    "probeProtocol": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "tcp",
+            "http",
+            "https"
+          ]
+        }
+      }
+    },
+    "probeRequestPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clients": {
+      "body": {
+        "isAdmin": {
+          "$ref": "#/$keywords/isAdmin"
+        },
+        "thumbprint": {
+          "$ref": "#/$keywords/thumbprint"
+        },
+        "commonName": {
+          "$ref": "#/$keywords/commonName"
+        },
+        "issuerThumbprint": {
+          "$ref": "#/$keywords/issuerThumbprint"
+        }
+      },
+      "array": true
+    },
+    "isAdmin": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "thumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "commonName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "issuerThumbprint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "azureActiveDirectory": {
+      "body": {
+        "tenantId": {
+          "$ref": "#/$keywords/tenantId"
+        },
+        "clusterApplication": {
+          "$ref": "#/$keywords/clusterApplication"
+        },
+        "clientApplication": {
+          "$ref": "#/$keywords/clientApplication"
+        }
+      }
+    },
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterApplication": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clientApplication": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fabricSettings": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterCodeVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterUpgradeMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Automatic",
+            "Manual"
+          ]
+        }
+      }
+    },
+    "clusterUpgradeDescription": {
+      "body": {
+        "forceRestart": {
+          "$ref": "#/$keywords/forceRestart"
+        },
+        "upgradeReplicaSetCheckTimeout": {
+          "$ref": "#/$keywords/upgradeReplicaSetCheckTimeout"
+        },
+        "healthCheckWaitDuration": {
+          "$ref": "#/$keywords/healthCheckWaitDuration"
+        },
+        "healthCheckStableDuration": {
+          "$ref": "#/$keywords/healthCheckStableDuration"
+        },
+        "healthCheckRetryTimeout": {
+          "$ref": "#/$keywords/healthCheckRetryTimeout"
+        },
+        "upgradeTimeout": {
+          "$ref": "#/$keywords/upgradeTimeout"
+        },
+        "upgradeDomainTimeout": {
+          "$ref": "#/$keywords/upgradeDomainTimeout"
+        },
+        "healthPolicy": {
+          "$ref": "#/$keywords/healthPolicy"
+        },
+        "deltaHealthPolicy": {
+          "$ref": "#/$keywords/deltaHealthPolicy"
+        }
+      }
+    },
+    "forceRestart": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "upgradeReplicaSetCheckTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "healthCheckWaitDuration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "healthCheckStableDuration": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "healthCheckRetryTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "upgradeTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "upgradeDomainTimeout": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "healthPolicy": {
+      "body": {
+        "maxPercentUnhealthyNodes": {
+          "$ref": "#/$keywords/maxPercentUnhealthyNodes"
+        },
+        "maxPercentUnhealthyApplications": {
+          "$ref": "#/$keywords/maxPercentUnhealthyApplications"
+        },
+        "applicationHealthPolicies": {
+          "$ref": "#/$keywords/applicationHealthPolicies"
+        }
+      }
+    },
+    "maxPercentUnhealthyNodes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxPercentUnhealthyApplications": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "applicationHealthPolicies": {
+      "body": {}
+    },
+    "deltaHealthPolicy": {
+      "body": {
+        "maxPercentDeltaUnhealthyNodes": {
+          "$ref": "#/$keywords/maxPercentDeltaUnhealthyNodes"
+        },
+        "maxPercentUpgradeDomainDeltaUnhealthyNodes": {
+          "$ref": "#/$keywords/maxPercentUpgradeDomainDeltaUnhealthyNodes"
+        },
+        "maxPercentDeltaUnhealthyApplications": {
+          "$ref": "#/$keywords/maxPercentDeltaUnhealthyApplications"
+        },
+        "applicationDeltaHealthPolicies": {
+          "$ref": "#/$keywords/applicationDeltaHealthPolicies"
+        }
+      }
+    },
+    "maxPercentDeltaUnhealthyNodes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxPercentUpgradeDomainDeltaUnhealthyNodes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxPercentDeltaUnhealthyApplications": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "applicationDeltaHealthPolicies": {
+      "body": {}
+    },
+    "isPrimary": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "vmInstanceCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "dataDiskSizeGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "placementProperties": {
+      "body": {}
+    },
+    "capacities": {
+      "body": {}
+    },
+    "applicationPorts": {
+      "body": {
+        "startPort": {
+          "$ref": "#/$keywords/startPort"
+        },
+        "endPort": {
+          "$ref": "#/$keywords/endPort"
+        }
+      }
+    },
+    "startPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "endPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "ephemeralPorts": {
+      "body": {
+        "startPort": {
+          "$ref": "#/$keywords/startPort"
+        },
+        "endPort": {
+          "$ref": "#/$keywords/endPort"
+        }
+      }
+    },
+    "vmSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmImagePublisher": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmImageOffer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmImageSku": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmImageVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmSecrets": {
+      "body": {
+        "sourceVault": {
+          "$ref": "#/$keywords/sourceVault"
+        },
+        "vaultCertificates": {
+          "$ref": "#/$keywords/vaultCertificates"
+        }
+      },
+      "array": true
+    },
+    "sourceVault": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vaultCertificates": {
+      "body": {
+        "certificateUrl": {
+          "$ref": "#/$keywords/certificateUrl"
+        },
+        "certificateStore": {
+          "$ref": "#/$keywords/certificateStore"
+        }
+      },
+      "array": true
+    },
+    "certificateUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "certificateStore": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmExtensions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
+        "forceUpdateTag": {
+          "$ref": "#/$keywords/forceUpdateTag"
+        },
+        "publisher": {
+          "$ref": "#/$keywords/publisher"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        },
+        "typeHandlerVersion": {
+          "$ref": "#/$keywords/typeHandlerVersion"
+        },
+        "autoUpgradeMinorVersion": {
+          "$ref": "#/$keywords/autoUpgradeMinorVersion"
+        },
+        "settings": {
+          "$ref": "#/$keywords/settings"
+        },
+        "protectedSettings": {
+          "$ref": "#/$keywords/protectedSettings"
+        },
+        "provisionAfterExtensions": {
+          "$ref": "#/$keywords/provisionAfterExtensions"
+        }
+      }
+    },
+    "forceUpdateTag": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publisher": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "typeHandlerVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "autoUpgradeMinorVersion": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "settings": {
+      "body": {}
+    },
+    "protectedSettings": {
+      "body": {}
+    },
+    "provisionAfterExtensions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    }
+  },
+  "$resources": {
+    "managedClusters": {
+      "dnsName": {
+        "$ref": "#/$keywords/dnsName"
+      },
+      "clientConnectionPort": {
+        "$ref": "#/$keywords/clientConnectionPort"
+      },
+      "httpGatewayConnectionPort": {
+        "$ref": "#/$keywords/httpGatewayConnectionPort"
+      },
+      "adminUserName": {
+        "$ref": "#/$keywords/adminUserName"
+      },
+      "adminPassword": {
+        "$ref": "#/$keywords/adminPassword"
+      },
+      "loadBalancingRules": {
+        "$ref": "#/$keywords/loadBalancingRules"
+      },
+      "clients": {
+        "$ref": "#/$keywords/clients"
+      },
+      "azureActiveDirectory": {
+        "$ref": "#/$keywords/azureActiveDirectory"
+      },
+      "fabricSettings": {
+        "$ref": "#/$keywords/fabricSettings"
+      },
+      "clusterCodeVersion": {
+        "$ref": "#/$keywords/clusterCodeVersion"
+      },
+      "clusterUpgradeMode": {
+        "$ref": "#/$keywords/clusterUpgradeMode"
+      },
+      "clusterUpgradeDescription": {
+        "$ref": "#/$keywords/clusterUpgradeDescription"
+      }
+    },
+    "managedClusters/nodeTypes": {
+      "isPrimary": {
+        "$ref": "#/$keywords/isPrimary"
+      },
+      "vmInstanceCount": {
+        "$ref": "#/$keywords/vmInstanceCount"
+      },
+      "dataDiskSizeGB": {
+        "$ref": "#/$keywords/dataDiskSizeGB"
+      },
+      "placementProperties": {
+        "$ref": "#/$keywords/placementProperties"
+      },
+      "capacities": {
+        "$ref": "#/$keywords/capacities"
+      },
+      "applicationPorts": {
+        "$ref": "#/$keywords/applicationPorts"
+      },
+      "ephemeralPorts": {
+        "$ref": "#/$keywords/ephemeralPorts"
+      },
+      "vmSize": {
+        "$ref": "#/$keywords/vmSize"
+      },
+      "vmImagePublisher": {
+        "$ref": "#/$keywords/vmImagePublisher"
+      },
+      "vmImageOffer": {
+        "$ref": "#/$keywords/vmImageOffer"
+      },
+      "vmImageSku": {
+        "$ref": "#/$keywords/vmImageSku"
+      },
+      "vmImageVersion": {
+        "$ref": "#/$keywords/vmImageVersion"
+      },
+      "vmSecrets": {
+        "$ref": "#/$keywords/vmSecrets"
+      },
+      "vmExtensions": {
+        "$ref": "#/$keywords/vmExtensions"
+      }
+    }
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "$keywords": {
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetScope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "subscription",
+            "managementGroup"
+          ]
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "resourceGroups": {
+      "body": {}
+    },
+    "versions": {
+      "body": {}
+    },
+    "layout": {
+      "body": {}
+    },
+    "displayName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "blueprintId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "scope": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1": {
+      "body": {}
+    },
+    "resourceGroups_1": {
+      "body": {}
+    },
+    "locks": {
+      "body": {
+        "mode": {
+          "$ref": "#/$keywords/mode"
+        },
+        "excludedPrincipals": {
+          "$ref": "#/$keywords/excludedPrincipals"
+        },
+        "excludedActions": {
+          "$ref": "#/$keywords/excludedActions"
+        }
+      }
+    },
+    "mode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "None",
+            "AllResourcesReadOnly",
+            "AllResourcesDoNotDelete"
+          ]
+        }
+      }
+    },
+    "excludedPrincipals": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "excludedActions": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "displayName_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "targetScope_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "subscription",
+            "managementGroup"
+          ]
+        }
+      }
+    },
+    "parameters_1_2": {
+      "body": {}
+    },
+    "resourceGroups_1_2": {
+      "body": {}
+    },
+    "blueprintName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "changeNotes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$resources": {
+    "blueprints": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "targetScope": {
+        "$ref": "#/$keywords/targetScope"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      },
+      "resourceGroups": {
+        "$ref": "#/$keywords/resourceGroups"
+      },
+      "versions": {
+        "$ref": "#/$keywords/versions"
+      },
+      "layout": {
+        "$ref": "#/$keywords/layout"
+      }
+    },
+    "blueprintAssignments": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName_1"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "blueprintId": {
+        "$ref": "#/$keywords/blueprintId"
+      },
+      "scope": {
+        "$ref": "#/$keywords/scope"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1"
+      },
+      "resourceGroups": {
+        "$ref": "#/$keywords/resourceGroups_1"
+      },
+      "locks": {
+        "$ref": "#/$keywords/locks"
+      }
+    },
+    "blueprints/artifacts": {},
+    "blueprints/versions": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName_1_2"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1_2"
+      },
+      "targetScope": {
+        "$ref": "#/$keywords/targetScope_1"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters_1_2"
+      },
+      "resourceGroups": {
+        "$ref": "#/$keywords/resourceGroups_1_2"
+      },
+      "blueprintName": {
+        "$ref": "#/$keywords/blueprintName"
+      },
+      "changeNotes": {
+        "$ref": "#/$keywords/changeNotes"
+      }
+    }
+  }
+}

@@ -1,160 +1,34 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Succeeded",
-                        "Failed",
-                        "Canceled",
-                        "Accepted",
-                        "Provisioning"
-                    ]
-                }
-            }
-        },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "NotYetRegistered",
-                        "ConnectedRecently",
-                        "NotConnectedRecently",
-                        "Disconnected",
-                        "Error"
-                    ]
-                }
-            }
-        },
-        "cloudId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "aadClientId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "aadTenantId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "reportedProperties": {
-            "parameters": {
-                "clusterName": {
-                    "type": "string"
-                },
-                "clusterId": {
-                    "type": "string"
-                },
-                "clusterVersion": {
-                    "type": "string"
-                },
-                "lastUpdated": {}
-            },
-            "body": {
-                "nodes": {
-                    "$ref": "#/$keywords/nodes"
-                }
-            }
-        },
-        "nodes": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "id": {},
-                "manufacturer": {
-                    "type": "string"
-                },
-                "model": {
-                    "type": "string"
-                },
-                "osName": {
-                    "type": "string"
-                },
-                "osVersion": {
-                    "type": "string"
-                },
-                "serialNumber": {
-                    "type": "string"
-                },
-                "coreCount": {},
-                "memoryInGiB": {}
-            },
-            "array": true
-        },
-        "trialDaysRemaining": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "billingModel": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "registrationTimestamp": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "lastSyncTimestamp": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "lastBillingTimestamp": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "aadClientId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "clusters": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "cloudId": {
-                "$ref": "#/$keywords/cloudId"
-            },
-            "aadClientId": {
-                "$ref": "#/$keywords/aadClientId"
-            },
-            "aadTenantId": {
-                "$ref": "#/$keywords/aadTenantId"
-            },
-            "reportedProperties": {
-                "$ref": "#/$keywords/reportedProperties"
-            },
-            "trialDaysRemaining": {
-                "$ref": "#/$keywords/trialDaysRemaining"
-            },
-            "billingModel": {
-                "$ref": "#/$keywords/billingModel"
-            },
-            "registrationTimestamp": {
-                "$ref": "#/$keywords/registrationTimestamp"
-            },
-            "lastSyncTimestamp": {
-                "$ref": "#/$keywords/lastSyncTimestamp"
-            },
-            "lastBillingTimestamp": {
-                "$ref": "#/$keywords/lastBillingTimestamp"
-            }
+    "aadTenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "reportedProperties": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "clusters": {
+      "aadClientId": {
+        "$ref": "#/$keywords/aadClientId"
+      },
+      "aadTenantId": {
+        "$ref": "#/$keywords/aadTenantId"
+      },
+      "reportedProperties": {
+        "$ref": "#/$keywords/reportedProperties"
+      }
+    }
+  }
 }

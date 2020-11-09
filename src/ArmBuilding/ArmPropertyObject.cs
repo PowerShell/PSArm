@@ -43,7 +43,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The parameter values to use for instantiation, keyed by parameter name.</param>
         /// <returns>A copy of the property element with parameter values instantiated.</returns>
-        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             return new ArmPropertyObject(PropertyName, InstantiateProperties(parameters))
             {
@@ -58,9 +58,9 @@ namespace PSArm.ArmBuilding
         public override JToken ToJson()
         {
             var json = new JObject();
-            foreach (KeyValuePair<string, IArmExpression> parameter in Parameters)
+            foreach (KeyValuePair<string, IArmValue> parameter in Parameters)
             {
-                json[parameter.Key] = parameter.Value.ToExpressionString();
+                json[parameter.Key] = parameter.Value.ToJson();
             }
 
             var properties = new JObject();
@@ -78,7 +78,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The parameter values to use for instantiation.</param>
         /// <returns>Copies of all properties with ARM parameters instantiated.</returns>
-        protected Dictionary<string, ArmPropertyInstance> InstantiateProperties(IReadOnlyDictionary<string, IArmExpression> parameters)
+        protected Dictionary<string, ArmPropertyInstance> InstantiateProperties(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             if (Properties == null)
             {

@@ -1,0 +1,558 @@
+{
+  "$keywords": {
+    "maxSizeBytes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "perDatabaseSettings": {
+      "body": {
+        "minCapacity": {
+          "$ref": "#/$keywords/minCapacity"
+        },
+        "maxCapacity": {
+          "$ref": "#/$keywords/maxCapacity"
+        }
+      }
+    },
+    "minCapacity": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "maxCapacity": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "zoneRedundant": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "licenseType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LicenseIncluded",
+            "BasePrice"
+          ]
+        }
+      }
+    },
+    "readWriteEndpoint": {
+      "body": {
+        "failoverPolicy": {
+          "$ref": "#/$keywords/failoverPolicy"
+        },
+        "failoverWithDataLossGracePeriodMinutes": {
+          "$ref": "#/$keywords/failoverWithDataLossGracePeriodMinutes"
+        }
+      }
+    },
+    "failoverPolicy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Manual",
+            "Automatic"
+          ]
+        }
+      }
+    },
+    "failoverWithDataLossGracePeriodMinutes": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "readOnlyEndpoint": {
+      "body": {
+        "failoverPolicy": {
+          "$ref": "#/$keywords/failoverPolicy_1"
+        }
+      }
+    },
+    "failoverPolicy_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        }
+      }
+    },
+    "partnerRegions": {
+      "body": {
+        "location": {
+          "$ref": "#/$keywords/location"
+        }
+      },
+      "array": true
+    },
+    "location": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "managedInstancePairs": {
+      "body": {
+        "primaryManagedInstanceId": {
+          "$ref": "#/$keywords/primaryManagedInstanceId"
+        },
+        "partnerManagedInstanceId": {
+          "$ref": "#/$keywords/partnerManagedInstanceId"
+        }
+      },
+      "array": true
+    },
+    "primaryManagedInstanceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerManagedInstanceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverKeyType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ServiceManaged",
+            "AzureKeyVault"
+          ]
+        }
+      }
+    },
+    "uri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverKeyName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serverKeyType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ServiceManaged",
+            "AzureKeyVault"
+          ]
+        }
+      }
+    },
+    "createMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Copy",
+            "Secondary",
+            "PointInTimeRestore",
+            "Restore",
+            "Recovery",
+            "RestoreExternalBackup",
+            "RestoreExternalBackupSecondary",
+            "RestoreLongTermRetentionBackup",
+            "OnlineSecondary"
+          ]
+        }
+      }
+    },
+    "collation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "maxSizeBytes_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "sampleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AdventureWorksLT",
+            "WideWorldImportersStd",
+            "WideWorldImportersFull"
+          ]
+        }
+      }
+    },
+    "elasticPoolId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorePointInTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceDatabaseDeletionDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoveryServicesRecoveryPointId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "longTermRetentionBackupResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recoverableDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "restorableDroppedDatabaseId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "catalogCollation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "DATABASE_DEFAULT",
+            "SQL_Latin1_General_CP1_CI_AS"
+          ]
+        }
+      }
+    },
+    "zoneRedundant_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "licenseType_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LicenseIncluded",
+            "BasePrice"
+          ]
+        }
+      }
+    },
+    "readScale": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "readReplicaCount": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "autoPauseDelay": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "minCapacity_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "storageContainerPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageContainerSasKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "storageAccountAccessKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "recurringScans": {
+      "body": {
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled"
+        },
+        "emailSubscriptionAdmins": {
+          "$ref": "#/$keywords/emailSubscriptionAdmins"
+        },
+        "emails": {
+          "$ref": "#/$keywords/emails"
+        }
+      }
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "emailSubscriptionAdmins": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "emails": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "retentionDays": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "baselineResults": {
+      "body": {
+        "result": {
+          "$ref": "#/$keywords/result"
+        }
+      },
+      "array": true
+    },
+    "result": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    }
+  },
+  "$resources": {
+    "servers/elasticPools": {
+      "maxSizeBytes": {
+        "$ref": "#/$keywords/maxSizeBytes"
+      },
+      "perDatabaseSettings": {
+        "$ref": "#/$keywords/perDatabaseSettings"
+      },
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant"
+      },
+      "licenseType": {
+        "$ref": "#/$keywords/licenseType"
+      }
+    },
+    "locations/instanceFailoverGroups": {
+      "readWriteEndpoint": {
+        "$ref": "#/$keywords/readWriteEndpoint"
+      },
+      "readOnlyEndpoint": {
+        "$ref": "#/$keywords/readOnlyEndpoint"
+      },
+      "partnerRegions": {
+        "$ref": "#/$keywords/partnerRegions"
+      },
+      "managedInstancePairs": {
+        "$ref": "#/$keywords/managedInstancePairs"
+      }
+    },
+    "managedInstances/keys": {
+      "serverKeyType": {
+        "$ref": "#/$keywords/serverKeyType"
+      },
+      "uri": {
+        "$ref": "#/$keywords/uri"
+      }
+    },
+    "managedInstances/encryptionProtector": {
+      "serverKeyName": {
+        "$ref": "#/$keywords/serverKeyName"
+      },
+      "serverKeyType": {
+        "$ref": "#/$keywords/serverKeyType_1"
+      }
+    },
+    "servers/databases": {
+      "createMode": {
+        "$ref": "#/$keywords/createMode"
+      },
+      "collation": {
+        "$ref": "#/$keywords/collation"
+      },
+      "maxSizeBytes": {
+        "$ref": "#/$keywords/maxSizeBytes_1"
+      },
+      "sampleName": {
+        "$ref": "#/$keywords/sampleName"
+      },
+      "elasticPoolId": {
+        "$ref": "#/$keywords/elasticPoolId"
+      },
+      "sourceDatabaseId": {
+        "$ref": "#/$keywords/sourceDatabaseId"
+      },
+      "restorePointInTime": {
+        "$ref": "#/$keywords/restorePointInTime"
+      },
+      "sourceDatabaseDeletionDate": {
+        "$ref": "#/$keywords/sourceDatabaseDeletionDate"
+      },
+      "recoveryServicesRecoveryPointId": {
+        "$ref": "#/$keywords/recoveryServicesRecoveryPointId"
+      },
+      "longTermRetentionBackupResourceId": {
+        "$ref": "#/$keywords/longTermRetentionBackupResourceId"
+      },
+      "recoverableDatabaseId": {
+        "$ref": "#/$keywords/recoverableDatabaseId"
+      },
+      "restorableDroppedDatabaseId": {
+        "$ref": "#/$keywords/restorableDroppedDatabaseId"
+      },
+      "catalogCollation": {
+        "$ref": "#/$keywords/catalogCollation"
+      },
+      "zoneRedundant": {
+        "$ref": "#/$keywords/zoneRedundant_1"
+      },
+      "licenseType": {
+        "$ref": "#/$keywords/licenseType_1"
+      },
+      "readScale": {
+        "$ref": "#/$keywords/readScale"
+      },
+      "readReplicaCount": {
+        "$ref": "#/$keywords/readReplicaCount"
+      },
+      "autoPauseDelay": {
+        "$ref": "#/$keywords/autoPauseDelay"
+      },
+      "minCapacity": {
+        "$ref": "#/$keywords/minCapacity_1"
+      }
+    },
+    "managedInstances/databases/vulnerabilityAssessments": {
+      "storageContainerPath": {
+        "$ref": "#/$keywords/storageContainerPath"
+      },
+      "storageContainerSasKey": {
+        "$ref": "#/$keywords/storageContainerSasKey"
+      },
+      "storageAccountAccessKey": {
+        "$ref": "#/$keywords/storageAccountAccessKey"
+      },
+      "recurringScans": {
+        "$ref": "#/$keywords/recurringScans"
+      }
+    },
+    "servers/databases/backupShortTermRetentionPolicies": {
+      "retentionDays": {
+        "$ref": "#/$keywords/retentionDays"
+      }
+    },
+    "managedInstances/databases/vulnerabilityAssessments/rules/baselines": {
+      "baselineResults": {
+        "$ref": "#/$keywords/baselineResults"
+      }
+    }
+  }
+}

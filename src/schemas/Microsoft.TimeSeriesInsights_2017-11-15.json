@@ -1,90 +1,151 @@
 {
-    "$keywords": {
-        "dataRetentionTime": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "storageLimitExceededBehavior": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "partitionKeyProperties": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {}
-            },
-            "array": true
-        },
-        "keyProperties": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {}
-            },
-            "array": true
-        },
-        "dataStringComparisonBehavior": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "principalObjectId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "roles": {
-            "propertyParameters": {
-                "value": {}
-            },
-            "array": true
+  "$keywords": {
+    "dataRetentionTime": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "environments": {
-            "dataRetentionTime": {
-                "$ref": "#/$keywords/dataRetentionTime"
-            },
-            "storageLimitExceededBehavior": {
-                "$ref": "#/$keywords/storageLimitExceededBehavior"
-            },
-            "partitionKeyProperties": {
-                "$ref": "#/$keywords/partitionKeyProperties"
-            }
-        },
-        "environments/eventSources": {},
-        "environments/referenceDataSets": {
-            "keyProperties": {
-                "$ref": "#/$keywords/keyProperties"
-            },
-            "dataStringComparisonBehavior": {
-                "$ref": "#/$keywords/dataStringComparisonBehavior"
-            }
-        },
-        "environments/accessPolicies": {
-            "principalObjectId": {
-                "$ref": "#/$keywords/principalObjectId"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "roles": {
-                "$ref": "#/$keywords/roles"
-            }
+    "storageLimitExceededBehavior": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "PurgeOldData",
+            "PauseIngress"
+          ]
         }
+      }
+    },
+    "partitionKeyProperties": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "type": {
+          "$ref": "#/$keywords/type"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "String"
+          ]
+        }
+      }
+    },
+    "keyProperties": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "type": {
+          "$ref": "#/$keywords/type_1"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "String",
+            "Double",
+            "Bool",
+            "DateTime"
+          ]
+        }
+      }
+    },
+    "dataStringComparisonBehavior": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Ordinal",
+            "OrdinalIgnoreCase"
+          ]
+        }
+      }
+    },
+    "principalObjectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "roles": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Reader",
+            "Contributor"
+          ]
+        }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "environments": {
+      "dataRetentionTime": {
+        "$ref": "#/$keywords/dataRetentionTime"
+      },
+      "storageLimitExceededBehavior": {
+        "$ref": "#/$keywords/storageLimitExceededBehavior"
+      },
+      "partitionKeyProperties": {
+        "$ref": "#/$keywords/partitionKeyProperties"
+      }
+    },
+    "environments/eventSources": {},
+    "environments/referenceDataSets": {
+      "keyProperties": {
+        "$ref": "#/$keywords/keyProperties"
+      },
+      "dataStringComparisonBehavior": {
+        "$ref": "#/$keywords/dataStringComparisonBehavior"
+      }
+    },
+    "environments/accessPolicies": {
+      "principalObjectId": {
+        "$ref": "#/$keywords/principalObjectId"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "roles": {
+        "$ref": "#/$keywords/roles"
+      }
+    }
+  }
 }

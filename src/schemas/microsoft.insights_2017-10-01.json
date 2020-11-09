@@ -1,74 +1,62 @@
 {
-    "$keywords": {
-        "planType": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "cap": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "resetHour": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "warningThreshold": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "stopSendNotificationWhenHitThreshold": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "stopSendNotificationWhenHitCap": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "maxHistoryCap": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "planType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "components/pricingPlans": {
-            "planType": {
-                "$ref": "#/$keywords/planType"
-            },
-            "cap": {
-                "$ref": "#/$keywords/cap"
-            },
-            "resetHour": {
-                "$ref": "#/$keywords/resetHour"
-            },
-            "warningThreshold": {
-                "$ref": "#/$keywords/warningThreshold"
-            },
-            "stopSendNotificationWhenHitThreshold": {
-                "$ref": "#/$keywords/stopSendNotificationWhenHitThreshold"
-            },
-            "stopSendNotificationWhenHitCap": {
-                "$ref": "#/$keywords/stopSendNotificationWhenHitCap"
-            },
-            "maxHistoryCap": {
-                "$ref": "#/$keywords/maxHistoryCap"
-            }
+    "cap": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
         }
+      }
+    },
+    "warningThreshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "stopSendNotificationWhenHitThreshold": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "stopSendNotificationWhenHitCap": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
     }
+  },
+  "$resources": {
+    "components/pricingPlans": {
+      "planType": {
+        "$ref": "#/$keywords/planType"
+      },
+      "cap": {
+        "$ref": "#/$keywords/cap"
+      },
+      "warningThreshold": {
+        "$ref": "#/$keywords/warningThreshold"
+      },
+      "stopSendNotificationWhenHitThreshold": {
+        "$ref": "#/$keywords/stopSendNotificationWhenHitThreshold"
+      },
+      "stopSendNotificationWhenHitCap": {
+        "$ref": "#/$keywords/stopSendNotificationWhenHitCap"
+      }
+    }
+  }
 }

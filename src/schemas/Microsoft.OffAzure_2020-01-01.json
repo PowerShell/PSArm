@@ -1,406 +1,223 @@
 {
-    "$keywords": {
-        "createdTimestamp": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "servicePrincipalIdentityDetails": {
+      "body": {
+        "tenantId": {
+          "$ref": "#/$keywords/tenantId"
         },
-        "updatedTimestamp": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "applicationId": {
+          "$ref": "#/$keywords/applicationId"
         },
-        "fqdn": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "objectId": {
+          "$ref": "#/$keywords/objectId"
         },
-        "functionalLevel": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
+        "audience": {
+          "$ref": "#/$keywords/audience"
         },
-        "status": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "aadAuthority": {
+          "$ref": "#/$keywords/aadAuthority"
         },
-        "runAsAccountId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "hostFqdnList": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "errors": {
-            "parameters": {
-                "id": {
-                    "type": "int"
-                },
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "possibleCauses": {
-                    "type": "string"
-                },
-                "recommendedAction": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
-                },
-                "summaryMessage": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "messageParameters": {}
-            },
-            "array": true
-        },
-        "createdTimestamp_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "updatedTimestamp_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "fqdn_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "runAsAccountId_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "version": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "errors_2": {
-            "parameters": {
-                "id": {
-                    "type": "int"
-                },
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "possibleCauses": {
-                    "type": "string"
-                },
-                "recommendedAction": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
-                },
-                "summaryMessage": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "messageParameters": {}
-            },
-            "array": true
-        },
-        "servicePrincipalIdentityDetails": {
-            "parameters": {
-                "tenantId": {
-                    "type": "string"
-                },
-                "applicationId": {
-                    "type": "string"
-                },
-                "objectId": {
-                    "type": "string"
-                },
-                "audience": {
-                    "type": "string"
-                },
-                "aadAuthority": {
-                    "type": "string"
-                },
-                "rawCertData": {
-                    "type": "string"
-                }
-            }
-        },
-        "agentDetails": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                },
-                "lastHeartBeatUtc": {},
-                "keyVaultUri": {
-                    "type": "string"
-                },
-                "keyVaultId": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceEndpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "discoverySolutionId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "applianceName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "createdTimestamp_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "updatedTimestamp_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "fqdn_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "port": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "runAsAccountId_3": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "version_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "perfStatisticsLevel": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "instanceUuid": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "errors_3": {
-            "parameters": {
-                "id": {
-                    "type": "int"
-                },
-                "code": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "possibleCauses": {
-                    "type": "string"
-                },
-                "recommendedAction": {
-                    "type": "string"
-                },
-                "severity": {
-                    "type": "string"
-                },
-                "summaryMessage": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "messageParameters": {}
-            },
-            "array": true
+        "rawCertData": {
+          "$ref": "#/$keywords/rawCertData"
         }
+      }
     },
-    "$resources": {
-        "HyperVSites/clusters": {
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp"
-            },
-            "fqdn": {
-                "$ref": "#/$keywords/fqdn"
-            },
-            "functionalLevel": {
-                "$ref": "#/$keywords/functionalLevel"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            },
-            "runAsAccountId": {
-                "$ref": "#/$keywords/runAsAccountId"
-            },
-            "hostFqdnList": {
-                "$ref": "#/$keywords/hostFqdnList"
-            },
-            "errors": {
-                "$ref": "#/$keywords/errors"
-            }
-        },
-        "HyperVSites/hosts": {
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp_2"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp_2"
-            },
-            "fqdn": {
-                "$ref": "#/$keywords/fqdn_2"
-            },
-            "runAsAccountId": {
-                "$ref": "#/$keywords/runAsAccountId_2"
-            },
-            "version": {
-                "$ref": "#/$keywords/version"
-            },
-            "errors": {
-                "$ref": "#/$keywords/errors_2"
-            }
-        },
-        "HyperVSites": {
-            "servicePrincipalIdentityDetails": {
-                "$ref": "#/$keywords/servicePrincipalIdentityDetails"
-            },
-            "agentDetails": {
-                "$ref": "#/$keywords/agentDetails"
-            },
-            "serviceEndpoint": {
-                "$ref": "#/$keywords/serviceEndpoint"
-            },
-            "discoverySolutionId": {
-                "$ref": "#/$keywords/discoverySolutionId"
-            },
-            "applianceName": {
-                "$ref": "#/$keywords/applianceName"
-            }
-        },
-        "VMwareSites": {
-            "servicePrincipalIdentityDetails": {
-                "$ref": "#/$keywords/servicePrincipalIdentityDetails"
-            },
-            "agentDetails": {
-                "$ref": "#/$keywords/agentDetails"
-            },
-            "serviceEndpoint": {
-                "$ref": "#/$keywords/serviceEndpoint"
-            },
-            "discoverySolutionId": {
-                "$ref": "#/$keywords/discoverySolutionId"
-            },
-            "applianceName": {
-                "$ref": "#/$keywords/applianceName"
-            }
-        },
-        "VMwareSites/vCenters": {
-            "createdTimestamp": {
-                "$ref": "#/$keywords/createdTimestamp_3"
-            },
-            "updatedTimestamp": {
-                "$ref": "#/$keywords/updatedTimestamp_3"
-            },
-            "fqdn": {
-                "$ref": "#/$keywords/fqdn_3"
-            },
-            "port": {
-                "$ref": "#/$keywords/port"
-            },
-            "runAsAccountId": {
-                "$ref": "#/$keywords/runAsAccountId_3"
-            },
-            "version": {
-                "$ref": "#/$keywords/version_2"
-            },
-            "perfStatisticsLevel": {
-                "$ref": "#/$keywords/perfStatisticsLevel"
-            },
-            "instanceUuid": {
-                "$ref": "#/$keywords/instanceUuid"
-            },
-            "errors": {
-                "$ref": "#/$keywords/errors_3"
-            }
+    "tenantId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "applicationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "objectId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "audience": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "aadAuthority": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rawCertData": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "agentDetails": {
+      "body": {
+        "keyVaultUri": {
+          "$ref": "#/$keywords/keyVaultUri"
+        },
+        "keyVaultId": {
+          "$ref": "#/$keywords/keyVaultId"
+        }
+      }
+    },
+    "keyVaultUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "keyVaultId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "discoverySolutionId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "applianceName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fqdn": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runAsAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "hostFqdnList": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "fqdn_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runAsAccountId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "fqdn_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "port": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "runAsAccountId_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "HyperVSites": {
+      "servicePrincipalIdentityDetails": {
+        "$ref": "#/$keywords/servicePrincipalIdentityDetails"
+      },
+      "agentDetails": {
+        "$ref": "#/$keywords/agentDetails"
+      },
+      "discoverySolutionId": {
+        "$ref": "#/$keywords/discoverySolutionId"
+      },
+      "applianceName": {
+        "$ref": "#/$keywords/applianceName"
+      }
+    },
+    "VMwareSites": {
+      "servicePrincipalIdentityDetails": {
+        "$ref": "#/$keywords/servicePrincipalIdentityDetails"
+      },
+      "agentDetails": {
+        "$ref": "#/$keywords/agentDetails"
+      },
+      "discoverySolutionId": {
+        "$ref": "#/$keywords/discoverySolutionId"
+      },
+      "applianceName": {
+        "$ref": "#/$keywords/applianceName"
+      }
+    },
+    "HyperVSites/clusters": {
+      "fqdn": {
+        "$ref": "#/$keywords/fqdn"
+      },
+      "runAsAccountId": {
+        "$ref": "#/$keywords/runAsAccountId"
+      },
+      "hostFqdnList": {
+        "$ref": "#/$keywords/hostFqdnList"
+      }
+    },
+    "HyperVSites/hosts": {
+      "fqdn": {
+        "$ref": "#/$keywords/fqdn_1"
+      },
+      "runAsAccountId": {
+        "$ref": "#/$keywords/runAsAccountId_1"
+      }
+    },
+    "VMwareSites/vCenters": {
+      "fqdn": {
+        "$ref": "#/$keywords/fqdn_1_2"
+      },
+      "port": {
+        "$ref": "#/$keywords/port"
+      },
+      "runAsAccountId": {
+        "$ref": "#/$keywords/runAsAccountId_1_2"
+      }
+    }
+  }
 }

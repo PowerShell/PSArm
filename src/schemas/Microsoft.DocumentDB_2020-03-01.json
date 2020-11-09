@@ -1,785 +1,1376 @@
 {
-    "$keywords": {
-        "consistencyPolicy": {
-            "parameters": {
-                "defaultConsistencyLevel": {},
-                "maxStalenessPrefix": {
-                    "type": "int"
-                },
-                "maxIntervalInSeconds": {
-                    "type": "int"
-                }
-            }
+  "$keywords": {
+    "consistencyPolicy": {
+      "body": {
+        "defaultConsistencyLevel": {
+          "$ref": "#/$keywords/defaultConsistencyLevel"
         },
-        "locations": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "locationName": {
-                    "type": "string"
-                },
-                "documentEndpoint": {
-                    "type": "string"
-                },
-                "provisioningState": {
-                    "type": "string"
-                },
-                "failoverPriority": {
-                    "type": "int"
-                },
-                "isZoneRedundant": {
-                    "type": "bool"
-                }
-            },
-            "array": true
+        "maxStalenessPrefix": {
+          "$ref": "#/$keywords/maxStalenessPrefix"
         },
-        "databaseAccountOfferType": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "maxIntervalInSeconds": {
+          "$ref": "#/$keywords/maxIntervalInSeconds"
+        }
+      }
+    },
+    "defaultConsistencyLevel": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Eventual",
+            "Session",
+            "BoundedStaleness",
+            "Strong",
+            "ConsistentPrefix"
+          ]
+        }
+      }
+    },
+    "maxStalenessPrefix": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "maxIntervalInSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "locations": {
+      "body": {
+        "locationName": {
+          "$ref": "#/$keywords/locationName"
         },
-        "ipRangeFilter": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+        "provisioningState": {
+          "$ref": "#/$keywords/provisioningState"
         },
-        "isVirtualNetworkFilterEnabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+        "failoverPriority": {
+          "$ref": "#/$keywords/failoverPriority"
         },
-        "enableAutomaticFailover": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+        "isZoneRedundant": {
+          "$ref": "#/$keywords/isZoneRedundant"
+        }
+      },
+      "array": true
+    },
+    "locationName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "failoverPriority": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "isZoneRedundant": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "databaseAccountOfferType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard"
+          ]
+        }
+      }
+    },
+    "ipRangeFilter": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "isVirtualNetworkFilterEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableAutomaticFailover": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "capabilities": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "virtualNetworkRules": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
         },
-        "capabilities": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "ignoreMissingVNetServiceEndpoint": {
+          "$ref": "#/$keywords/ignoreMissingVNetServiceEndpoint"
+        }
+      },
+      "array": true
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ignoreMissingVNetServiceEndpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableMultipleWriteLocations": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "enableCassandraConnector": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "connectorOffer": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Small"
+          ]
+        }
+      }
+    },
+    "disableKeyBasedMetadataWriteAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "keyVaultKeyUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicNetworkAccess": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "resource": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "virtualNetworkRules": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "ignoreMissingVNetServiceEndpoint": {
-                    "type": "bool"
-                }
-            },
-            "array": true
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "additionalProperties": {
+      "body": {}
+    },
+    "throughput": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resource_1": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2"
+        }
+      }
+    },
+    "id_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "enableMultipleWriteLocations": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3"
+        }
+      }
+    },
+    "id_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1_2": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "enableCassandraConnector": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4"
+        }
+      }
+    },
+    "id_1_2_3_4": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1_2_3": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "connectorOffer": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5"
+        }
+      }
+    },
+    "id_1_2_3_4_5": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1_2_3_4": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "disableKeyBasedMetadataWriteAccess": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "keyVaultKeyUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "publicNetworkAccess": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "resource": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "options": {
-            "parameters": {
-                "throughput": {
-                    "type": "string"
-                }
-            }
-        },
-        "resource_2": {
-            "parameters": {
-                "throughput": {
-                    "type": "int"
-                },
-                "minimumThroughput": {
-                    "type": "string"
-                },
-                "offerReplacePending": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "provisionedThroughputSettings": {
-                    "$ref": "#/$keywords/provisionedThroughputSettings"
-                }
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4_5": {
+      "body": {
+        "throughput": {
+          "$ref": "#/$keywords/throughput_1"
         },
         "provisionedThroughputSettings": {
-            "parameters": {
-                "maxThroughput": {
-                    "type": "int"
-                },
-                "targetMaxThroughput": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "autoUpgradePolicy": {
-                    "$ref": "#/$keywords/autoUpgradePolicy"
-                }
-            }
+          "$ref": "#/$keywords/provisionedThroughputSettings"
+        }
+      }
+    },
+    "throughput_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "provisionedThroughputSettings": {
+      "body": {
+        "maxThroughput": {
+          "$ref": "#/$keywords/maxThroughput"
         },
         "autoUpgradePolicy": {
-            "body": {
-                "throughputPolicy": {
-                    "$ref": "#/$keywords/throughputPolicy"
-                }
-            }
-        },
+          "$ref": "#/$keywords/autoUpgradePolicy"
+        }
+      }
+    },
+    "maxThroughput": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "autoUpgradePolicy": {
+      "body": {
         "throughputPolicy": {
-            "parameters": {
-                "isEnabled": {
-                    "type": "bool"
-                },
-                "incrementPercent": {
-                    "type": "int"
-                }
-            }
+          "$ref": "#/$keywords/throughputPolicy"
+        }
+      }
+    },
+    "throughputPolicy": {
+      "body": {
+        "isEnabled": {
+          "$ref": "#/$keywords/isEnabled"
         },
-        "resource_3": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "defaultTtl": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "indexingPolicy": {
-                    "$ref": "#/$keywords/indexingPolicy"
-                },
-                "partitionKey": {
-                    "$ref": "#/$keywords/partitionKey"
-                },
-                "uniqueKeyPolicy": {
-                    "$ref": "#/$keywords/uniqueKeyPolicy"
-                },
-                "conflictResolutionPolicy": {
-                    "$ref": "#/$keywords/conflictResolutionPolicy"
-                }
-            }
+        "incrementPercent": {
+          "$ref": "#/$keywords/incrementPercent"
+        }
+      }
+    },
+    "isEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "incrementPercent": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "resource_1_2_3_4_5_6": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6"
         },
         "indexingPolicy": {
-            "parameters": {
-                "automatic": {
-                    "type": "bool"
-                },
-                "indexingMode": {
-                    "enum": [
-                        "Consistent",
-                        "Lazy",
-                        "None"
-                    ]
-                }
-            },
-            "body": {
-                "includedPaths": {
-                    "$ref": "#/$keywords/includedPaths"
-                },
-                "excludedPaths": {
-                    "$ref": "#/$keywords/excludedPaths"
-                },
-                "compositeIndexes": {
-                    "$ref": "#/$keywords/compositeIndexes"
-                },
-                "spatialIndexes": {
-                    "$ref": "#/$keywords/spatialIndexes"
-                }
-            }
-        },
-        "includedPaths": {
-            "parameters": {
-                "path": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "indexes": {
-                    "$ref": "#/$keywords/indexes"
-                }
-            },
-            "array": true
-        },
-        "indexes": {
-            "parameters": {
-                "dataType": {
-                    "enum": [
-                        "String",
-                        "Number",
-                        "Point",
-                        "Polygon",
-                        "LineString",
-                        "MultiPolygon"
-                    ]
-                },
-                "precision": {
-                    "type": "int"
-                },
-                "kind": {
-                    "enum": [
-                        "Hash",
-                        "Range",
-                        "Spatial"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "excludedPaths": {
-            "parameters": {
-                "path": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "compositeIndexes": {
-            "parameters": {
-                "path": {
-                    "type": "string"
-                },
-                "order": {
-                    "enum": [
-                        "Ascending",
-                        "Descending"
-                    ]
-                }
-            },
-            "array": true
-        },
-        "spatialIndexes": {
-            "parameters": {
-                "path": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "types": {
-                    "$ref": "#/$keywords/types"
-                }
-            },
-            "array": true
-        },
-        "types": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Point",
-                        "LineString",
-                        "Polygon",
-                        "MultiPolygon"
-                    ]
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/indexingPolicy"
         },
         "partitionKey": {
-            "parameters": {
-                "kind": {
-                    "enum": [
-                        "Hash",
-                        "Range"
-                    ]
-                },
-                "version": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "paths": {
-                    "$ref": "#/$keywords/paths"
-                }
-            }
+          "$ref": "#/$keywords/partitionKey"
         },
-        "paths": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+        "defaultTtl": {
+          "$ref": "#/$keywords/defaultTtl"
         },
         "uniqueKeyPolicy": {
-            "body": {
-                "uniqueKeys": {
-                    "$ref": "#/$keywords/uniqueKeys"
-                }
-            }
-        },
-        "uniqueKeys": {
-            "body": {
-                "paths": {
-                    "$ref": "#/$keywords/paths_2"
-                }
-            },
-            "array": true
-        },
-        "paths_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/uniqueKeyPolicy"
         },
         "conflictResolutionPolicy": {
-            "parameters": {
-                "mode": {
-                    "enum": [
-                        "LastWriterWins",
-                        "Custom"
-                    ]
-                },
-                "conflictResolutionPath": {
-                    "type": "string"
-                },
-                "conflictResolutionProcedure": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/conflictResolutionPolicy"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "indexingPolicy": {
+      "body": {
+        "automatic": {
+          "$ref": "#/$keywords/automatic"
         },
-        "resource_4": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "body": {
-                    "type": "string"
-                }
-            }
+        "indexingMode": {
+          "$ref": "#/$keywords/indexingMode"
         },
-        "resource_5": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "body": {
-                    "type": "string"
-                }
-            }
+        "includedPaths": {
+          "$ref": "#/$keywords/includedPaths"
         },
-        "resource_6": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "body": {
-                    "type": "string"
-                },
-                "triggerType": {
-                    "enum": [
-                        "Pre",
-                        "Post"
-                    ]
-                },
-                "triggerOperation": {
-                    "enum": [
-                        "All",
-                        "Create",
-                        "Update",
-                        "Delete",
-                        "Replace"
-                    ]
-                }
-            }
+        "excludedPaths": {
+          "$ref": "#/$keywords/excludedPaths"
         },
-        "resource_7": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
+        "compositeIndexes": {
+          "$ref": "#/$keywords/compositeIndexes"
         },
-        "resource_8": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "shardKey": {}
-            },
-            "body": {
-                "indexes": {
-                    "$ref": "#/$keywords/indexes_2"
-                }
-            }
+        "spatialIndexes": {
+          "$ref": "#/$keywords/spatialIndexes"
+        }
+      }
+    },
+    "automatic": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "indexingMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Consistent",
+            "Lazy",
+            "None"
+          ]
+        }
+      }
+    },
+    "includedPaths": {
+      "body": {
+        "path": {
+          "$ref": "#/$keywords/path"
         },
-        "indexes_2": {
-            "body": {
-                "key": {
-                    "$ref": "#/$keywords/key"
-                },
-                "options": {
-                    "$ref": "#/$keywords/options_2"
-                }
-            },
-            "array": true
+        "indexes": {
+          "$ref": "#/$keywords/indexes"
+        }
+      },
+      "array": true
+    },
+    "path": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "indexes": {
+      "body": {
+        "dataType": {
+          "$ref": "#/$keywords/dataType"
         },
+        "precision": {
+          "$ref": "#/$keywords/precision"
+        },
+        "kind": {
+          "$ref": "#/$keywords/kind"
+        }
+      },
+      "array": true
+    },
+    "dataType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "String",
+            "Number",
+            "Point",
+            "Polygon",
+            "LineString",
+            "MultiPolygon"
+          ]
+        }
+      }
+    },
+    "precision": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "kind": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Hash",
+            "Range",
+            "Spatial"
+          ]
+        }
+      }
+    },
+    "excludedPaths": {
+      "body": {
+        "path": {
+          "$ref": "#/$keywords/path_1"
+        }
+      },
+      "array": true
+    },
+    "path_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "compositeIndexes": {
+      "body": {
+        "path": {
+          "$ref": "#/$keywords/path_1_2"
+        },
+        "order": {
+          "$ref": "#/$keywords/order"
+        }
+      },
+      "array": true
+    },
+    "path_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "order": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Ascending",
+            "Descending"
+          ]
+        }
+      }
+    },
+    "spatialIndexes": {
+      "body": {
+        "path": {
+          "$ref": "#/$keywords/path_1_2_3"
+        },
+        "types": {
+          "$ref": "#/$keywords/types"
+        }
+      },
+      "array": true
+    },
+    "path_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "types": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Point",
+            "LineString",
+            "Polygon",
+            "MultiPolygon"
+          ]
+        }
+      },
+      "array": true
+    },
+    "partitionKey": {
+      "body": {
+        "paths": {
+          "$ref": "#/$keywords/paths"
+        },
+        "kind": {
+          "$ref": "#/$keywords/kind_1"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "paths": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "kind_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Hash",
+            "Range"
+          ]
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "defaultTtl": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "uniqueKeyPolicy": {
+      "body": {
+        "uniqueKeys": {
+          "$ref": "#/$keywords/uniqueKeys"
+        }
+      }
+    },
+    "uniqueKeys": {
+      "body": {
+        "paths": {
+          "$ref": "#/$keywords/paths_1"
+        }
+      },
+      "array": true
+    },
+    "paths_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "conflictResolutionPolicy": {
+      "body": {
+        "mode": {
+          "$ref": "#/$keywords/mode"
+        },
+        "conflictResolutionPath": {
+          "$ref": "#/$keywords/conflictResolutionPath"
+        },
+        "conflictResolutionProcedure": {
+          "$ref": "#/$keywords/conflictResolutionProcedure"
+        }
+      }
+    },
+    "mode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "LastWriterWins",
+            "Custom"
+          ]
+        }
+      }
+    },
+    "conflictResolutionPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "conflictResolutionProcedure": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1_2_3_4_5": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
+        },
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4_5_6_7": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6_7"
+        },
+        "shardKey": {
+          "$ref": "#/$keywords/shardKey"
+        },
+        "indexes": {
+          "$ref": "#/$keywords/indexes_1"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6_7": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "shardKey": {
+      "body": {}
+    },
+    "indexes_1": {
+      "body": {
         "key": {
-            "body": {
-                "keys": {
-                    "$ref": "#/$keywords/keys"
-                }
-            }
+          "$ref": "#/$keywords/key"
         },
+        "options": {
+          "$ref": "#/$keywords/options_1_2_3_4_5_6"
+        }
+      },
+      "array": true
+    },
+    "key": {
+      "body": {
         "keys": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/keys"
+        }
+      }
+    },
+    "keys": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "options_1_2_3_4_5_6": {
+      "body": {
+        "expireAfterSeconds": {
+          "$ref": "#/$keywords/expireAfterSeconds"
         },
-        "options_2": {
-            "parameters": {
-                "expireAfterSeconds": {
-                    "type": "int"
-                },
-                "unique": {
-                    "type": "bool"
-                }
-            }
+        "unique": {
+          "$ref": "#/$keywords/unique"
+        }
+      }
+    },
+    "expireAfterSeconds": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "unique": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "options_1_2_3_4_5_6_7": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "resource_9": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4_5_6_7_8": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6_7_8"
         },
-        "resource_10": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "resource_11": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "defaultTtl": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "schema": {
-                    "$ref": "#/$keywords/schema"
-                }
-            }
+        "defaultTtl": {
+          "$ref": "#/$keywords/defaultTtl_1"
         },
         "schema": {
-            "body": {
-                "columns": {
-                    "$ref": "#/$keywords/columns"
-                },
-                "partitionKeys": {
-                    "$ref": "#/$keywords/partitionKeys"
-                },
-                "clusterKeys": {
-                    "$ref": "#/$keywords/clusterKeys"
-                }
-            }
-        },
+          "$ref": "#/$keywords/schema"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6_7_8": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultTtl_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "schema": {
+      "body": {
         "columns": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/columns"
         },
         "partitionKeys": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/partitionKeys"
         },
         "clusterKeys": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "orderBy": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "resource_12": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                }
-            }
-        },
-        "resource_13": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "defaultTtl": {
-                    "type": "int"
-                }
-            },
-            "body": {
-                "indexingPolicy": {
-                    "$ref": "#/$keywords/indexingPolicy"
-                },
-                "partitionKey": {
-                    "$ref": "#/$keywords/partitionKey"
-                },
-                "uniqueKeyPolicy": {
-                    "$ref": "#/$keywords/uniqueKeyPolicy"
-                },
-                "conflictResolutionPolicy": {
-                    "$ref": "#/$keywords/conflictResolutionPolicy"
-                }
-            }
+          "$ref": "#/$keywords/clusterKeys"
         }
+      }
     },
-    "$resources": {
-        "databaseAccounts": {
-            "consistencyPolicy": {
-                "$ref": "#/$keywords/consistencyPolicy"
-            },
-            "locations": {
-                "$ref": "#/$keywords/locations"
-            },
-            "databaseAccountOfferType": {
-                "$ref": "#/$keywords/databaseAccountOfferType"
-            },
-            "ipRangeFilter": {
-                "$ref": "#/$keywords/ipRangeFilter"
-            },
-            "isVirtualNetworkFilterEnabled": {
-                "$ref": "#/$keywords/isVirtualNetworkFilterEnabled"
-            },
-            "enableAutomaticFailover": {
-                "$ref": "#/$keywords/enableAutomaticFailover"
-            },
-            "capabilities": {
-                "$ref": "#/$keywords/capabilities"
-            },
-            "virtualNetworkRules": {
-                "$ref": "#/$keywords/virtualNetworkRules"
-            },
-            "enableMultipleWriteLocations": {
-                "$ref": "#/$keywords/enableMultipleWriteLocations"
-            },
-            "enableCassandraConnector": {
-                "$ref": "#/$keywords/enableCassandraConnector"
-            },
-            "connectorOffer": {
-                "$ref": "#/$keywords/connectorOffer"
-            },
-            "disableKeyBasedMetadataWriteAccess": {
-                "$ref": "#/$keywords/disableKeyBasedMetadataWriteAccess"
-            },
-            "keyVaultKeyUri": {
-                "$ref": "#/$keywords/keyVaultKeyUri"
-            },
-            "publicNetworkAccess": {
-                "$ref": "#/$keywords/publicNetworkAccess"
-            }
+    "columns": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
         },
-        "databaseAccounts/sqlDatabases": {
-            "resource": {
-                "$ref": "#/$keywords/resource"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "type": {
+          "$ref": "#/$keywords/type"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "partitionKeys": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2"
+        }
+      },
+      "array": true
+    },
+    "name_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterKeys": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1_2_3"
         },
-        "databaseAccounts/sqlDatabases/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "orderBy": {
+          "$ref": "#/$keywords/orderBy"
+        }
+      },
+      "array": true
+    },
+    "name_1_2_3": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "orderBy": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1_2_3_4_5_6_7_8": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "databaseAccounts/sqlDatabases/containers": {
-            "resource": {
-                "$ref": "#/$keywords/resource_3"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4_5_6_7_8_9": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6_7_8_9"
         },
-        "databaseAccounts/sqlDatabases/containers/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "indexingPolicy": {
+          "$ref": "#/$keywords/indexingPolicy_1"
         },
-        "databaseAccounts/sqlDatabases/containers/storedProcedures": {
-            "resource": {
-                "$ref": "#/$keywords/resource_4"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "partitionKey": {
+          "$ref": "#/$keywords/partitionKey_1"
         },
-        "databaseAccounts/sqlDatabases/containers/userDefinedFunctions": {
-            "resource": {
-                "$ref": "#/$keywords/resource_5"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "defaultTtl": {
+          "$ref": "#/$keywords/defaultTtl_1_2"
         },
-        "databaseAccounts/sqlDatabases/containers/triggers": {
-            "resource": {
-                "$ref": "#/$keywords/resource_6"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "uniqueKeyPolicy": {
+          "$ref": "#/$keywords/uniqueKeyPolicy_1"
         },
-        "databaseAccounts/mongodbDatabases": {
-            "resource": {
-                "$ref": "#/$keywords/resource_7"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "conflictResolutionPolicy": {
+          "$ref": "#/$keywords/conflictResolutionPolicy_1"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6_7_8_9": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "indexingPolicy_1": {
+      "body": {
+        "automatic": {
+          "$ref": "#/$keywords/automatic"
         },
-        "databaseAccounts/mongodbDatabases/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "indexingMode": {
+          "$ref": "#/$keywords/indexingMode"
         },
-        "databaseAccounts/mongodbDatabases/collections": {
-            "resource": {
-                "$ref": "#/$keywords/resource_8"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "includedPaths": {
+          "$ref": "#/$keywords/includedPaths"
         },
-        "databaseAccounts/mongodbDatabases/collections/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "excludedPaths": {
+          "$ref": "#/$keywords/excludedPaths"
         },
-        "databaseAccounts/tables": {
-            "resource": {
-                "$ref": "#/$keywords/resource_9"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "compositeIndexes": {
+          "$ref": "#/$keywords/compositeIndexes"
         },
-        "databaseAccounts/tables/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "spatialIndexes": {
+          "$ref": "#/$keywords/spatialIndexes"
+        }
+      }
+    },
+    "partitionKey_1": {
+      "body": {
+        "paths": {
+          "$ref": "#/$keywords/paths"
         },
-        "databaseAccounts/cassandraKeyspaces": {
-            "resource": {
-                "$ref": "#/$keywords/resource_10"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "kind": {
+          "$ref": "#/$keywords/kind_1"
         },
-        "databaseAccounts/cassandraKeyspaces/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "version": {
+          "$ref": "#/$keywords/version"
+        }
+      }
+    },
+    "defaultTtl_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "uniqueKeyPolicy_1": {
+      "body": {
+        "uniqueKeys": {
+          "$ref": "#/$keywords/uniqueKeys"
+        }
+      }
+    },
+    "conflictResolutionPolicy_1": {
+      "body": {
+        "mode": {
+          "$ref": "#/$keywords/mode"
         },
-        "databaseAccounts/cassandraKeyspaces/tables": {
-            "resource": {
-                "$ref": "#/$keywords/resource_11"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "conflictResolutionPath": {
+          "$ref": "#/$keywords/conflictResolutionPath"
         },
-        "databaseAccounts/cassandraKeyspaces/tables/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "conflictResolutionProcedure": {
+          "$ref": "#/$keywords/conflictResolutionProcedure"
+        }
+      }
+    },
+    "options_1_2_3_4_5_6_7_8_9": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "databaseAccounts/gremlinDatabases": {
-            "resource": {
-                "$ref": "#/$keywords/resource_12"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4_5_6_7_8_9_10": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6_7_8_9_10"
         },
-        "databaseAccounts/gremlinDatabases/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "body": {
+          "$ref": "#/$keywords/body"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6_7_8_9_10": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "body": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1_2_3_4_5_6_7_8_9_10": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "databaseAccounts/gremlinDatabases/graphs": {
-            "resource": {
-                "$ref": "#/$keywords/resource_13"
-            },
-            "options": {
-                "$ref": "#/$keywords/options"
-            }
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4_5_6_7_8_9_10_11": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6_7_8_9_10_11"
         },
-        "databaseAccounts/gremlinDatabases/graphs/throughputSettings": {
-            "resource": {
-                "$ref": "#/$keywords/resource_2"
-            }
+        "body": {
+          "$ref": "#/$keywords/body_1"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6_7_8_9_10_11": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "body_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "options_1_2_3_4_5_6_7_8_9_10_11": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
         },
-        "databaseAccounts/notebookWorkspaces": {}
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
+    },
+    "resource_1_2_3_4_5_6_7_8_9_10_11_12": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1_2_3_4_5_6_7_8_9_10_11_12"
+        },
+        "body": {
+          "$ref": "#/$keywords/body_1_2"
+        },
+        "triggerType": {
+          "$ref": "#/$keywords/triggerType"
+        },
+        "triggerOperation": {
+          "$ref": "#/$keywords/triggerOperation"
+        }
+      }
+    },
+    "id_1_2_3_4_5_6_7_8_9_10_11_12": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "body_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "triggerType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Pre",
+            "Post"
+          ]
+        }
+      }
+    },
+    "triggerOperation": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "All",
+            "Create",
+            "Update",
+            "Delete",
+            "Replace"
+          ]
+        }
+      }
+    },
+    "options_1_2_3_4_5_6_7_8_9_10_11_12": {
+      "body": {
+        "additionalProperties": {
+          "$ref": "#/$keywords/additionalProperties"
+        },
+        "throughput": {
+          "$ref": "#/$keywords/throughput"
+        }
+      }
     }
+  },
+  "$resources": {
+    "databaseAccounts": {
+      "consistencyPolicy": {
+        "$ref": "#/$keywords/consistencyPolicy"
+      },
+      "locations": {
+        "$ref": "#/$keywords/locations"
+      },
+      "databaseAccountOfferType": {
+        "$ref": "#/$keywords/databaseAccountOfferType"
+      },
+      "ipRangeFilter": {
+        "$ref": "#/$keywords/ipRangeFilter"
+      },
+      "isVirtualNetworkFilterEnabled": {
+        "$ref": "#/$keywords/isVirtualNetworkFilterEnabled"
+      },
+      "enableAutomaticFailover": {
+        "$ref": "#/$keywords/enableAutomaticFailover"
+      },
+      "capabilities": {
+        "$ref": "#/$keywords/capabilities"
+      },
+      "virtualNetworkRules": {
+        "$ref": "#/$keywords/virtualNetworkRules"
+      },
+      "enableMultipleWriteLocations": {
+        "$ref": "#/$keywords/enableMultipleWriteLocations"
+      },
+      "enableCassandraConnector": {
+        "$ref": "#/$keywords/enableCassandraConnector"
+      },
+      "connectorOffer": {
+        "$ref": "#/$keywords/connectorOffer"
+      },
+      "disableKeyBasedMetadataWriteAccess": {
+        "$ref": "#/$keywords/disableKeyBasedMetadataWriteAccess"
+      },
+      "keyVaultKeyUri": {
+        "$ref": "#/$keywords/keyVaultKeyUri"
+      },
+      "publicNetworkAccess": {
+        "$ref": "#/$keywords/publicNetworkAccess"
+      }
+    },
+    "databaseAccounts/sqlDatabases": {
+      "resource": {
+        "$ref": "#/$keywords/resource"
+      },
+      "options": {
+        "$ref": "#/$keywords/options"
+      }
+    },
+    "databaseAccounts/mongodbDatabases": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1"
+      }
+    },
+    "databaseAccounts/tables": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2"
+      }
+    },
+    "databaseAccounts/cassandraKeyspaces": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3"
+      }
+    },
+    "databaseAccounts/gremlinDatabases": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4"
+      }
+    },
+    "databaseAccounts/notebookWorkspaces": {},
+    "databaseAccounts/sqlDatabases/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/sqlDatabases/containers": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5_6"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/mongodbDatabases/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/mongodbDatabases/collections": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5_6_7"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4_5_6_7"
+      }
+    },
+    "databaseAccounts/tables/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/cassandraKeyspaces/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/cassandraKeyspaces/tables": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5_6_7_8"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4_5_6_7_8"
+      }
+    },
+    "databaseAccounts/gremlinDatabases/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/gremlinDatabases/graphs": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5_6_7_8_9"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4_5_6_7_8_9"
+      }
+    },
+    "databaseAccounts/sqlDatabases/containers/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/sqlDatabases/containers/storedProcedures": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5_6_7_8_9_10"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4_5_6_7_8_9_10"
+      }
+    },
+    "databaseAccounts/sqlDatabases/containers/userDefinedFunctions": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5_6_7_8_9_10_11"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4_5_6_7_8_9_10_11"
+      }
+    },
+    "databaseAccounts/sqlDatabases/containers/triggers": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5_6_7_8_9_10_11_12"
+      },
+      "options": {
+        "$ref": "#/$keywords/options_1_2_3_4_5_6_7_8_9_10_11_12"
+      }
+    },
+    "databaseAccounts/mongodbDatabases/collections/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/cassandraKeyspaces/tables/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    },
+    "databaseAccounts/gremlinDatabases/graphs/throughputSettings": {
+      "resource": {
+        "$ref": "#/$keywords/resource_1_2_3_4_5"
+      }
+    }
+  }
 }

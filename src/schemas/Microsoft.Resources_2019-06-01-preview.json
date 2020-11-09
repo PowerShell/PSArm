@@ -1,60 +1,64 @@
 {
-    "$keywords": {
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "artifacts": {
-            "parameters": {
-                "path": {
-                    "type": "string"
-                },
-                "kind": {}
-            },
-            "array": true
-        },
-        "description_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "template": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "templateSpecs": {
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            }
-        },
-        "templateSpecs/versions": {
-            "artifacts": {
-                "$ref": "#/$keywords/artifacts"
-            },
-            "description": {
-                "$ref": "#/$keywords/description_2"
-            },
-            "template": {
-                "$ref": "#/$keywords/template"
-            }
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "artifacts": {
+      "body": {
+        "path": {
+          "$ref": "#/$keywords/path"
+        }
+      },
+      "array": true
+    },
+    "path": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "description_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "template": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "templateSpecs": {
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      }
+    },
+    "templateSpecs/versions": {
+      "artifacts": {
+        "$ref": "#/$keywords/artifacts"
+      },
+      "description": {
+        "$ref": "#/$keywords/description_1"
+      },
+      "template": {
+        "$ref": "#/$keywords/template"
+      }
+    }
+  }
 }

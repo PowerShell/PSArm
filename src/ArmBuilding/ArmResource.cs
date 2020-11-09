@@ -126,7 +126,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The values to instantiate ARM parameters with.</param>
         /// <returns>A copy of the resource with parameter values instantiated.</returns>
-        public ArmResource Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public ArmResource Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             Dictionary<string, ArmPropertyInstance> properties = null;
             if (Properties != null)
@@ -144,7 +144,7 @@ namespace PSArm.ArmBuilding
                 subResources = new Dictionary<IArmExpression, ArmResource>();
                 foreach (KeyValuePair<IArmExpression, ArmResource> resource in Subresources)
                 {
-                    subResources[resource.Key.Instantiate(parameters)] = resource.Value.Instantiate(parameters);
+                    subResources[(IArmExpression)resource.Key.Instantiate(parameters)] = resource.Value.Instantiate(parameters);
                 }
             }
 
@@ -154,7 +154,7 @@ namespace PSArm.ArmBuilding
                 dependsOn = new List<IArmExpression>();
                 foreach (IArmExpression dependency in DependsOn)
                 {
-                    dependsOn.Add(dependency.Instantiate(parameters));
+                    dependsOn.Add((IArmExpression)dependency.Instantiate(parameters));
                 }
             }
 
@@ -162,11 +162,11 @@ namespace PSArm.ArmBuilding
             {
                 ApiVersion = ApiVersion,
                 Type = Type,
-                Name = Name.Instantiate(parameters),
-                Location = Location?.Instantiate(parameters),
+                Name = (IArmExpression)Name.Instantiate(parameters),
+                Location = (IArmExpression)Location?.Instantiate(parameters),
                 Properties = properties,
                 Subresources = subResources,
-                Kind = Kind?.Instantiate(parameters),
+                Kind = (IArmExpression)Kind?.Instantiate(parameters),
                 Sku = Sku?.Instantiate(parameters),
                 DependsOn = dependsOn,
             };

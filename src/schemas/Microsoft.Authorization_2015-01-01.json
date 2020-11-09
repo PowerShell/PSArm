@@ -1,32 +1,33 @@
 {
-    "$keywords": {
-        "level": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "NotSpecified",
-                        "CanNotDelete",
-                        "ReadOnly"
-                    ]
-                }
-            }
-        },
-        "notes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "level": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "NotSpecified",
+            "CanNotDelete",
+            "ReadOnly"
+          ]
         }
+      }
     },
-    "$resources": {
-        "locks": {
-            "level": {
-                "$ref": "#/$keywords/level"
-            },
-            "notes": {
-                "$ref": "#/$keywords/notes"
-            }
+    "notes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     }
+  },
+  "$resources": {
+    "locks": {
+      "level": {
+        "$ref": "#/$keywords/level"
+      },
+      "notes": {
+        "$ref": "#/$keywords/notes"
+      }
+    }
+  }
 }

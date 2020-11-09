@@ -1,145 +1,123 @@
 {
-    "$keywords": {
-        "asAdministrators": {
-            "body": {
-                "members": {
-                    "$ref": "#/$keywords/members"
-                }
-            }
-        },
+  "$keywords": {
+    "asAdministrators": {
+      "body": {
         "members": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "backupBlobContainerUri": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "gatewayDetails": {
-            "parameters": {
-                "gatewayResourceId": {
-                    "type": "string"
-                },
-                "gatewayObjectId": {
-                    "type": "string"
-                },
-                "dmtsClusterUri": {
-                    "type": "string"
-                }
-            }
-        },
-        "ipV4FirewallSettings": {
-            "parameters": {
-                "enablePowerBIService": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "firewallRules": {
-                    "$ref": "#/$keywords/firewallRules"
-                }
-            }
-        },
-        "firewallRules": {
-            "parameters": {
-                "firewallRuleName": {
-                    "type": "string"
-                },
-                "rangeStart": {
-                    "type": "string"
-                },
-                "rangeEnd": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "querypoolConnectionMode": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Paused",
-                        "Suspended",
-                        "Provisioning",
-                        "Updating",
-                        "Suspending",
-                        "Pausing",
-                        "Resuming",
-                        "Preparing",
-                        "Scaling"
-                    ]
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Paused",
-                        "Suspended",
-                        "Provisioning",
-                        "Updating",
-                        "Suspending",
-                        "Pausing",
-                        "Resuming",
-                        "Preparing",
-                        "Scaling"
-                    ]
-                }
-            }
-        },
-        "serverFullName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/members"
         }
+      }
     },
-    "$resources": {
-        "servers": {
-            "asAdministrators": {
-                "$ref": "#/$keywords/asAdministrators"
-            },
-            "backupBlobContainerUri": {
-                "$ref": "#/$keywords/backupBlobContainerUri"
-            },
-            "gatewayDetails": {
-                "$ref": "#/$keywords/gatewayDetails"
-            },
-            "ipV4FirewallSettings": {
-                "$ref": "#/$keywords/ipV4FirewallSettings"
-            },
-            "querypoolConnectionMode": {
-                "$ref": "#/$keywords/querypoolConnectionMode"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "serverFullName": {
-                "$ref": "#/$keywords/serverFullName"
-            }
+    "members": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
+    },
+    "backupBlobContainerUri": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "gatewayDetails": {
+      "body": {
+        "gatewayResourceId": {
+          "$ref": "#/$keywords/gatewayResourceId"
+        }
+      }
+    },
+    "gatewayResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ipV4FirewallSettings": {
+      "body": {
+        "firewallRules": {
+          "$ref": "#/$keywords/firewallRules"
+        },
+        "enablePowerBIService": {
+          "$ref": "#/$keywords/enablePowerBIService"
+        }
+      }
+    },
+    "firewallRules": {
+      "body": {
+        "firewallRuleName": {
+          "$ref": "#/$keywords/firewallRuleName"
+        },
+        "rangeStart": {
+          "$ref": "#/$keywords/rangeStart"
+        },
+        "rangeEnd": {
+          "$ref": "#/$keywords/rangeEnd"
+        }
+      },
+      "array": true
+    },
+    "firewallRuleName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rangeStart": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rangeEnd": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enablePowerBIService": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "querypoolConnectionMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "All",
+            "ReadOnly"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "servers": {
+      "asAdministrators": {
+        "$ref": "#/$keywords/asAdministrators"
+      },
+      "backupBlobContainerUri": {
+        "$ref": "#/$keywords/backupBlobContainerUri"
+      },
+      "gatewayDetails": {
+        "$ref": "#/$keywords/gatewayDetails"
+      },
+      "ipV4FirewallSettings": {
+        "$ref": "#/$keywords/ipV4FirewallSettings"
+      },
+      "querypoolConnectionMode": {
+        "$ref": "#/$keywords/querypoolConnectionMode"
+      }
+    }
+  }
 }

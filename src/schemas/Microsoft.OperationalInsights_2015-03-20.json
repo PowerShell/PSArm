@@ -1,115 +1,128 @@
 {
-    "$keywords": {
-        "containers": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "tables": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "storageAccount": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "key": {
-                    "type": "string"
-                }
-            }
-        },
-        "status": {
-            "parameters": {
-                "state": {
-                    "enum": [
-                        "OK",
-                        "ERROR"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            }
-        },
-        "category": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "query": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "version": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "tags": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "containers": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "workspaces/storageInsightConfigs": {
-            "containers": {
-                "$ref": "#/$keywords/containers"
-            },
-            "tables": {
-                "$ref": "#/$keywords/tables"
-            },
-            "storageAccount": {
-                "$ref": "#/$keywords/storageAccount"
-            },
-            "status": {
-                "$ref": "#/$keywords/status"
-            }
-        },
-        "workspaces/savedSearches": {
-            "category": {
-                "$ref": "#/$keywords/category"
-            },
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            },
-            "query": {
-                "$ref": "#/$keywords/query"
-            },
-            "version": {
-                "$ref": "#/$keywords/version"
-            },
-            "tags": {
-                "$ref": "#/$keywords/tags"
-            }
+    "tables": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
+    },
+    "storageAccount": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "key": {
+          "$ref": "#/$keywords/key"
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "category": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "query": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "tags": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "workspaces/storageInsightConfigs": {
+      "containers": {
+        "$ref": "#/$keywords/containers"
+      },
+      "tables": {
+        "$ref": "#/$keywords/tables"
+      },
+      "storageAccount": {
+        "$ref": "#/$keywords/storageAccount"
+      }
+    },
+    "workspaces/savedSearches": {
+      "category": {
+        "$ref": "#/$keywords/category"
+      },
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "query": {
+        "$ref": "#/$keywords/query"
+      },
+      "version": {
+        "$ref": "#/$keywords/version"
+      },
+      "tags": {
+        "$ref": "#/$keywords/tags"
+      }
+    }
+  }
 }

@@ -1,72 +1,26 @@
 {
-    "$keywords": {
-        "administration": {
-            "body": {
-                "members": {
-                    "$ref": "#/$keywords/members"
-                }
-            }
-        },
+  "$keywords": {
+    "administration": {
+      "body": {
         "members": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "state": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Paused",
-                        "Suspended",
-                        "Provisioning",
-                        "Updating",
-                        "Suspending",
-                        "Pausing",
-                        "Resuming",
-                        "Preparing",
-                        "Scaling"
-                    ]
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Deleting",
-                        "Succeeded",
-                        "Failed",
-                        "Paused",
-                        "Suspended",
-                        "Provisioning",
-                        "Updating",
-                        "Suspending",
-                        "Pausing",
-                        "Resuming",
-                        "Preparing",
-                        "Scaling"
-                    ]
-                }
-            }
+          "$ref": "#/$keywords/members"
         }
+      }
     },
-    "$resources": {
-        "capacities": {
-            "administration": {
-                "$ref": "#/$keywords/administration"
-            },
-            "state": {
-                "$ref": "#/$keywords/state"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            }
+    "members": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      },
+      "array": true
     }
+  },
+  "$resources": {
+    "capacities": {
+      "administration": {
+        "$ref": "#/$keywords/administration"
+      }
+    }
+  }
 }

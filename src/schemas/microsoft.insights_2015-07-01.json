@@ -1,84 +1,138 @@
 {
-    "$keywords": {
-        "storageAccountId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "storageAccountId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceBusRuleId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "metrics": {
+      "body": {
+        "timeGrain": {
+          "$ref": "#/$keywords/timeGrain"
         },
-        "serviceBusRuleId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "metrics": {
-            "parameters": {
-                "timeGrain": {},
-                "enabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "retentionPolicy": {
-                    "$ref": "#/$keywords/retentionPolicy"
-                }
-            },
-            "array": true
+        "enabled": {
+          "$ref": "#/$keywords/enabled"
         },
         "retentionPolicy": {
-            "parameters": {
-                "enabled": {
-                    "type": "bool"
-                },
-                "days": {
-                    "type": "int"
-                }
-            }
-        },
-        "logs": {
-            "parameters": {
-                "category": {
-                    "type": "string"
-                },
-                "enabled": {
-                    "type": "bool"
-                }
-            },
-            "body": {
-                "retentionPolicy": {
-                    "$ref": "#/$keywords/retentionPolicy"
-                }
-            },
-            "array": true
-        },
-        "workspaceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/retentionPolicy"
         }
+      },
+      "array": true
     },
-    "$resources": {
-        "diagnosticSettings": {
-            "storageAccountId": {
-                "$ref": "#/$keywords/storageAccountId"
-            },
-            "serviceBusRuleId": {
-                "$ref": "#/$keywords/serviceBusRuleId"
-            },
-            "metrics": {
-                "$ref": "#/$keywords/metrics"
-            },
-            "logs": {
-                "$ref": "#/$keywords/logs"
-            },
-            "workspaceId": {
-                "$ref": "#/$keywords/workspaceId"
-            }
+    "timeGrain": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "enabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "retentionPolicy": {
+      "body": {
+        "enabled": {
+          "$ref": "#/$keywords/enabled_1"
+        },
+        "days": {
+          "$ref": "#/$keywords/days"
+        }
+      }
+    },
+    "enabled_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "days": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "logs": {
+      "body": {
+        "category": {
+          "$ref": "#/$keywords/category"
+        },
+        "enabled": {
+          "$ref": "#/$keywords/enabled_1_2"
+        },
+        "retentionPolicy": {
+          "$ref": "#/$keywords/retentionPolicy_1"
+        }
+      },
+      "array": true
+    },
+    "category": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "enabled_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "retentionPolicy_1": {
+      "body": {
+        "enabled": {
+          "$ref": "#/$keywords/enabled_1"
+        },
+        "days": {
+          "$ref": "#/$keywords/days"
+        }
+      }
+    },
+    "workspaceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "diagnosticSettings": {
+      "storageAccountId": {
+        "$ref": "#/$keywords/storageAccountId"
+      },
+      "serviceBusRuleId": {
+        "$ref": "#/$keywords/serviceBusRuleId"
+      },
+      "metrics": {
+        "$ref": "#/$keywords/metrics"
+      },
+      "logs": {
+        "$ref": "#/$keywords/logs"
+      },
+      "workspaceId": {
+        "$ref": "#/$keywords/workspaceId"
+      }
+    }
+  }
 }

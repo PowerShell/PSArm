@@ -41,7 +41,7 @@ namespace PSArm.Commands
 
                     try
                     {
-                        WriteObject(new ArmDependsOn(ArmTypeConversion.Convert(result.BaseObject)));
+                        WriteObject(new ArmDependsOn((IArmExpression)ArmTypeConversion.Convert(result.BaseObject)));
                     }
                     catch
                     {

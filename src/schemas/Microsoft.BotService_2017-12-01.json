@@ -1,229 +1,190 @@
 {
-    "$keywords": {
-        "displayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "description": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "iconUrl": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "endpoint": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "endpointVersion": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "msaAppId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "configuredChannels": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "enabledChannels": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "developerAppInsightKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "developerAppInsightsApiKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "developerAppInsightsApplicationId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "luisAppIds": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "luisKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "channelName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "clientId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "settingId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "clientSecret": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "scopes": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceProviderId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceProviderDisplayName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "parameters": {
-            "parameters": {
-                "key": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "displayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
     },
-    "$resources": {
-        "botServices": {
-            "displayName": {
-                "$ref": "#/$keywords/displayName"
-            },
-            "description": {
-                "$ref": "#/$keywords/description"
-            },
-            "iconUrl": {
-                "$ref": "#/$keywords/iconUrl"
-            },
-            "endpoint": {
-                "$ref": "#/$keywords/endpoint"
-            },
-            "endpointVersion": {
-                "$ref": "#/$keywords/endpointVersion"
-            },
-            "msaAppId": {
-                "$ref": "#/$keywords/msaAppId"
-            },
-            "configuredChannels": {
-                "$ref": "#/$keywords/configuredChannels"
-            },
-            "enabledChannels": {
-                "$ref": "#/$keywords/enabledChannels"
-            },
-            "developerAppInsightKey": {
-                "$ref": "#/$keywords/developerAppInsightKey"
-            },
-            "developerAppInsightsApiKey": {
-                "$ref": "#/$keywords/developerAppInsightsApiKey"
-            },
-            "developerAppInsightsApplicationId": {
-                "$ref": "#/$keywords/developerAppInsightsApplicationId"
-            },
-            "luisAppIds": {
-                "$ref": "#/$keywords/luisAppIds"
-            },
-            "luisKey": {
-                "$ref": "#/$keywords/luisKey"
-            }
-        },
-        "botServices/channels": {
-            "channelName": {
-                "$ref": "#/$keywords/channelName"
-            }
-        },
-        "botServices/Connections": {
-            "clientId": {
-                "$ref": "#/$keywords/clientId"
-            },
-            "settingId": {
-                "$ref": "#/$keywords/settingId"
-            },
-            "clientSecret": {
-                "$ref": "#/$keywords/clientSecret"
-            },
-            "scopes": {
-                "$ref": "#/$keywords/scopes"
-            },
-            "serviceProviderId": {
-                "$ref": "#/$keywords/serviceProviderId"
-            },
-            "serviceProviderDisplayName": {
-                "$ref": "#/$keywords/serviceProviderDisplayName"
-            },
-            "parameters": {
-                "$ref": "#/$keywords/parameters"
-            }
+    "description": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "iconUrl": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endpoint": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "msaAppId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "developerAppInsightKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "developerAppInsightsApiKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "developerAppInsightsApplicationId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "luisAppIds": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "luisKey": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clientId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clientSecret": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "scopes": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceProviderId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceProviderDisplayName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters": {
+      "body": {
+        "key": {
+          "$ref": "#/$keywords/key"
+        },
+        "value": {
+          "$ref": "#/$keywords/value"
+        }
+      },
+      "array": true
+    },
+    "key": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "value": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "botServices": {
+      "displayName": {
+        "$ref": "#/$keywords/displayName"
+      },
+      "description": {
+        "$ref": "#/$keywords/description"
+      },
+      "iconUrl": {
+        "$ref": "#/$keywords/iconUrl"
+      },
+      "endpoint": {
+        "$ref": "#/$keywords/endpoint"
+      },
+      "msaAppId": {
+        "$ref": "#/$keywords/msaAppId"
+      },
+      "developerAppInsightKey": {
+        "$ref": "#/$keywords/developerAppInsightKey"
+      },
+      "developerAppInsightsApiKey": {
+        "$ref": "#/$keywords/developerAppInsightsApiKey"
+      },
+      "developerAppInsightsApplicationId": {
+        "$ref": "#/$keywords/developerAppInsightsApplicationId"
+      },
+      "luisAppIds": {
+        "$ref": "#/$keywords/luisAppIds"
+      },
+      "luisKey": {
+        "$ref": "#/$keywords/luisKey"
+      }
+    },
+    "botServices/channels": {},
+    "botServices/Connections": {
+      "clientId": {
+        "$ref": "#/$keywords/clientId"
+      },
+      "clientSecret": {
+        "$ref": "#/$keywords/clientSecret"
+      },
+      "scopes": {
+        "$ref": "#/$keywords/scopes"
+      },
+      "serviceProviderId": {
+        "$ref": "#/$keywords/serviceProviderId"
+      },
+      "serviceProviderDisplayName": {
+        "$ref": "#/$keywords/serviceProviderDisplayName"
+      },
+      "parameters": {
+        "$ref": "#/$keywords/parameters"
+      }
+    }
+  }
 }

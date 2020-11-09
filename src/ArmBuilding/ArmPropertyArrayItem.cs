@@ -37,7 +37,7 @@ namespace PSArm.ArmBuilding
         /// </summary>
         /// <param name="parameters">The values to instantiate parameters with.</param>
         /// <returns>A copy of this element with ARM parameters instantiated.</returns>
-        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmExpression> parameters)
+        public override ArmPropertyInstance Instantiate(IReadOnlyDictionary<string, IArmValue> parameters)
         {
             return new ArmPropertyArrayItem(PropertyName, InstantiateProperties(parameters))
             {

@@ -1,225 +1,144 @@
 {
-    "$keywords": {
-        "ApplicationId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "AppId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "Application_Type": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "web",
-                        "other"
-                    ]
-                }
-            }
-        },
-        "Flow_Type": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "Request_Source": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "InstrumentationKey": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "CreationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "TenantId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "HockeyAppId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "HockeyAppToken": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "SamplingPercentage": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "ConnectionString": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "RetentionInDays": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "DisableIpMasking": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "ImmediatePurgeDataOn30Days": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "WorkspaceResourceId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "LaMigrationDate": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "PrivateLinkScopedResources": {
-            "parameters": {
-                "ResourceId": {
-                    "type": "string"
-                },
-                "ScopeId": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "publicNetworkAccessForIngestion": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Enabled",
-                        "Disabled"
-                    ]
-                }
-            }
-        },
-        "IngestionMode": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "ApplicationInsights",
-                        "ApplicationInsightsWithDiagnosticSettings",
-                        "LogAnalytics"
-                    ]
-                }
-            }
+  "$keywords": {
+    "Application_Type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "web",
+            "other"
+          ]
         }
+      }
     },
-    "$resources": {
-        "components": {
-            "ApplicationId": {
-                "$ref": "#/$keywords/ApplicationId"
-            },
-            "AppId": {
-                "$ref": "#/$keywords/AppId"
-            },
-            "Application_Type": {
-                "$ref": "#/$keywords/Application_Type"
-            },
-            "Flow_Type": {
-                "$ref": "#/$keywords/Flow_Type"
-            },
-            "Request_Source": {
-                "$ref": "#/$keywords/Request_Source"
-            },
-            "InstrumentationKey": {
-                "$ref": "#/$keywords/InstrumentationKey"
-            },
-            "CreationDate": {
-                "$ref": "#/$keywords/CreationDate"
-            },
-            "TenantId": {
-                "$ref": "#/$keywords/TenantId"
-            },
-            "HockeyAppId": {
-                "$ref": "#/$keywords/HockeyAppId"
-            },
-            "HockeyAppToken": {
-                "$ref": "#/$keywords/HockeyAppToken"
-            },
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "SamplingPercentage": {
-                "$ref": "#/$keywords/SamplingPercentage"
-            },
-            "ConnectionString": {
-                "$ref": "#/$keywords/ConnectionString"
-            },
-            "RetentionInDays": {
-                "$ref": "#/$keywords/RetentionInDays"
-            },
-            "DisableIpMasking": {
-                "$ref": "#/$keywords/DisableIpMasking"
-            },
-            "ImmediatePurgeDataOn30Days": {
-                "$ref": "#/$keywords/ImmediatePurgeDataOn30Days"
-            },
-            "WorkspaceResourceId": {
-                "$ref": "#/$keywords/WorkspaceResourceId"
-            },
-            "LaMigrationDate": {
-                "$ref": "#/$keywords/LaMigrationDate"
-            },
-            "PrivateLinkScopedResources": {
-                "$ref": "#/$keywords/PrivateLinkScopedResources"
-            },
-            "publicNetworkAccessForIngestion": {
-                "$ref": "#/$keywords/publicNetworkAccessForIngestion"
-            },
-            "publicNetworkAccessForQuery": {
-                "$ref": "#/$keywords/publicNetworkAccessForIngestion"
-            },
-            "IngestionMode": {
-                "$ref": "#/$keywords/IngestionMode"
-            }
+    "Flow_Type": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Bluefield"
+          ]
         }
+      }
+    },
+    "Request_Source": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "rest"
+          ]
+        }
+      }
+    },
+    "HockeyAppId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "SamplingPercentage": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "DisableIpMasking": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "ImmediatePurgeDataOn30Days": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "WorkspaceResourceId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "publicNetworkAccessForIngestion": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "publicNetworkAccessForQuery": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "IngestionMode": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "ApplicationInsights",
+            "ApplicationInsightsWithDiagnosticSettings",
+            "LogAnalytics"
+          ]
+        }
+      }
     }
+  },
+  "$resources": {
+    "components": {
+      "Application_Type": {
+        "$ref": "#/$keywords/Application_Type"
+      },
+      "Flow_Type": {
+        "$ref": "#/$keywords/Flow_Type"
+      },
+      "Request_Source": {
+        "$ref": "#/$keywords/Request_Source"
+      },
+      "HockeyAppId": {
+        "$ref": "#/$keywords/HockeyAppId"
+      },
+      "SamplingPercentage": {
+        "$ref": "#/$keywords/SamplingPercentage"
+      },
+      "DisableIpMasking": {
+        "$ref": "#/$keywords/DisableIpMasking"
+      },
+      "ImmediatePurgeDataOn30Days": {
+        "$ref": "#/$keywords/ImmediatePurgeDataOn30Days"
+      },
+      "WorkspaceResourceId": {
+        "$ref": "#/$keywords/WorkspaceResourceId"
+      },
+      "publicNetworkAccessForIngestion": {
+        "$ref": "#/$keywords/publicNetworkAccessForIngestion"
+      },
+      "publicNetworkAccessForQuery": {
+        "$ref": "#/$keywords/publicNetworkAccessForQuery"
+      },
+      "IngestionMode": {
+        "$ref": "#/$keywords/IngestionMode"
+      }
+    }
+  }
 }

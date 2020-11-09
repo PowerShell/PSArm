@@ -1,130 +1,200 @@
 {
-    "$keywords": {
-        "category": {
-            "propertyParameters": {
-                "value": {}
-            }
+  "$keywords": {
+    "category": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Cost"
+          ]
+        }
+      }
+    },
+    "amount": {
+      "propertyParameters": {
+        "value": {
+          "type": "number",
+          "default": 0.0
+        }
+      }
+    },
+    "timeGrain": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Monthly",
+            "Quarterly",
+            "Annually",
+            "BillingMonth",
+            "BillingQuarter",
+            "BillingAnnual"
+          ]
+        }
+      }
+    },
+    "timePeriod": {
+      "body": {
+        "startDate": {
+          "$ref": "#/$keywords/startDate"
         },
-        "amount": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "timeGrain": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "Monthly",
-                        "Quarterly",
-                        "Annually",
-                        "BillingMonth",
-                        "BillingQuarter",
-                        "BillingAnnual"
-                    ]
-                }
-            }
-        },
-        "timePeriod": {
-            "parameters": {
-                "startDate": {},
-                "endDate": {}
-            }
-        },
-        "filter": {
-            "body": {
-                "and": {
-                    "$ref": "#/$keywords/and"
-                },
-                "not": {
-                    "$ref": "#/$keywords/not"
-                },
-                "dimensions": {
-                    "$ref": "#/$keywords/dimensions"
-                },
-                "tags": {
-                    "$ref": "#/$keywords/dimensions"
-                }
-            }
-        },
+        "endDate": {
+          "$ref": "#/$keywords/endDate"
+        }
+      }
+    },
+    "startDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "endDate": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "filter": {
+      "body": {
         "and": {
-            "body": {
-                "dimensions": {
-                    "$ref": "#/$keywords/dimensions"
-                },
-                "tags": {
-                    "$ref": "#/$keywords/dimensions"
-                }
-            },
-            "array": true
-        },
-        "dimensions": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "operator": {}
-            },
-            "body": {
-                "values": {
-                    "$ref": "#/$keywords/values"
-                }
-            }
-        },
-        "values": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
+          "$ref": "#/$keywords/and"
         },
         "not": {
-            "body": {
-                "dimensions": {
-                    "$ref": "#/$keywords/dimensions"
-                },
-                "tags": {
-                    "$ref": "#/$keywords/dimensions"
-                }
-            }
+          "$ref": "#/$keywords/not"
         },
-        "currentSpend": {
-            "parameters": {
-                "amount": {},
-                "unit": {
-                    "type": "string"
-                }
-            }
+        "dimensions": {
+          "$ref": "#/$keywords/dimensions_1"
         },
-        "notifications": {
-            "propertyParameters": {
-                "value": {}
-            }
+        "tags": {
+          "$ref": "#/$keywords/tags_1"
         }
+      }
     },
-    "$resources": {
-        "budgets": {
-            "category": {
-                "$ref": "#/$keywords/category"
-            },
-            "amount": {
-                "$ref": "#/$keywords/amount"
-            },
-            "timeGrain": {
-                "$ref": "#/$keywords/timeGrain"
-            },
-            "timePeriod": {
-                "$ref": "#/$keywords/timePeriod"
-            },
-            "filter": {
-                "$ref": "#/$keywords/filter"
-            },
-            "currentSpend": {
-                "$ref": "#/$keywords/currentSpend"
-            },
-            "notifications": {
-                "$ref": "#/$keywords/notifications"
-            }
+    "and": {
+      "body": {
+        "dimensions": {
+          "$ref": "#/$keywords/dimensions"
+        },
+        "tags": {
+          "$ref": "#/$keywords/tags"
         }
+      },
+      "array": true
+    },
+    "dimensions": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        },
+        "values": {
+          "$ref": "#/$keywords/values"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "operator": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "In"
+          ]
+        }
+      }
+    },
+    "values": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "tags": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        },
+        "values": {
+          "$ref": "#/$keywords/values"
+        }
+      }
+    },
+    "not": {
+      "body": {
+        "dimensions": {
+          "$ref": "#/$keywords/dimensions"
+        },
+        "tags": {
+          "$ref": "#/$keywords/tags"
+        }
+      }
+    },
+    "dimensions_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        },
+        "values": {
+          "$ref": "#/$keywords/values"
+        }
+      }
+    },
+    "tags_1": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "operator": {
+          "$ref": "#/$keywords/operator"
+        },
+        "values": {
+          "$ref": "#/$keywords/values"
+        }
+      }
+    },
+    "notifications": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "budgets": {
+      "category": {
+        "$ref": "#/$keywords/category"
+      },
+      "amount": {
+        "$ref": "#/$keywords/amount"
+      },
+      "timeGrain": {
+        "$ref": "#/$keywords/timeGrain"
+      },
+      "timePeriod": {
+        "$ref": "#/$keywords/timePeriod"
+      },
+      "filter": {
+        "$ref": "#/$keywords/filter"
+      },
+      "notifications": {
+        "$ref": "#/$keywords/notifications"
+      }
+    }
+  }
 }

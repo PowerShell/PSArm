@@ -1,92 +1,145 @@
 {
-    "$keywords": {
-        "pipelineId": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "organization": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "project": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "bootstrapConfiguration": {
-            "body": {
-                "repository": {
-                    "$ref": "#/$keywords/repository"
-                },
-                "template": {
-                    "$ref": "#/$keywords/template"
-                }
-            }
-        },
+  "$keywords": {
+    "organization": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        }
+      }
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "project": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        }
+      }
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "bootstrapConfiguration": {
+      "body": {
         "repository": {
-            "parameters": {
-                "repositoryType": {
-                    "enum": [
-                        "gitHub",
-                        "vstsGit"
-                    ]
-                },
-                "id": {
-                    "type": "string"
-                },
-                "defaultBranch": {
-                    "type": "string"
-                }
-            },
-            "body": {
-                "authorization": {
-                    "$ref": "#/$keywords/authorization"
-                }
-            }
-        },
-        "authorization": {
-            "parameters": {
-                "authorizationType": {},
-                "parameters": {}
-            }
+          "$ref": "#/$keywords/repository"
         },
         "template": {
-            "parameters": {
-                "id": {
-                    "type": "string"
-                },
-                "parameters": {}
-            }
+          "$ref": "#/$keywords/template"
         }
+      }
     },
-    "$resources": {
-        "pipelines": {
-            "pipelineId": {
-                "$ref": "#/$keywords/pipelineId"
-            },
-            "organization": {
-                "$ref": "#/$keywords/organization"
-            },
-            "project": {
-                "$ref": "#/$keywords/project"
-            },
-            "bootstrapConfiguration": {
-                "$ref": "#/$keywords/bootstrapConfiguration"
-            }
+    "repository": {
+      "body": {
+        "repositoryType": {
+          "$ref": "#/$keywords/repositoryType"
+        },
+        "id": {
+          "$ref": "#/$keywords/id"
+        },
+        "defaultBranch": {
+          "$ref": "#/$keywords/defaultBranch"
+        },
+        "authorization": {
+          "$ref": "#/$keywords/authorization"
+        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
         }
+      }
+    },
+    "repositoryType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "gitHub",
+            "vstsGit"
+          ]
+        }
+      }
+    },
+    "id": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultBranch": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "authorization": {
+      "body": {
+        "authorizationType": {
+          "$ref": "#/$keywords/authorizationType"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters"
+        }
+      }
+    },
+    "authorizationType": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "personalAccessToken"
+          ]
+        }
+      }
+    },
+    "parameters": {
+      "body": {}
+    },
+    "properties": {
+      "body": {}
+    },
+    "template": {
+      "body": {
+        "id": {
+          "$ref": "#/$keywords/id_1"
+        },
+        "parameters": {
+          "$ref": "#/$keywords/parameters_1"
+        }
+      }
+    },
+    "id_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "parameters_1": {
+      "body": {}
     }
+  },
+  "$resources": {
+    "pipelines": {
+      "organization": {
+        "$ref": "#/$keywords/organization"
+      },
+      "project": {
+        "$ref": "#/$keywords/project"
+      },
+      "bootstrapConfiguration": {
+        "$ref": "#/$keywords/bootstrapConfiguration"
+      }
+    }
+  }
 }

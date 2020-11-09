@@ -1,142 +1,192 @@
 {
-    "$keywords": {
-        "originHostHeader": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+  "$keywords": {
+    "originHostHeader": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "originPath": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "contentTypesToCompress": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "array": true
+    },
+    "isCompressionEnabled": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isHttpAllowed": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "isHttpsAllowed": {
+      "propertyParameters": {
+        "value": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "queryStringCachingBehavior": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "IgnoreQueryString",
+            "BypassCaching",
+            "UseQueryString",
+            "NotSet"
+          ]
+        }
+      }
+    },
+    "origins": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
         },
-        "originPath": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
-        },
-        "contentTypesToCompress": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            },
-            "array": true
-        },
-        "isCompressionEnabled": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "isHttpAllowed": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "isHttpsAllowed": {
-            "propertyParameters": {
-                "value": {
-                    "type": "bool"
-                }
-            }
-        },
-        "queryStringCachingBehavior": {
-            "propertyParameters": {
-                "value": {}
-            }
-        },
-        "origins": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "hostName": {
-                    "type": "string"
-                },
-                "httpPort": {
-                    "type": "int"
-                },
-                "httpsPort": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
+        "properties": {
+          "$ref": "#/$keywords/properties"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "properties": {
+      "body": {
         "hostName": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/hostName"
         },
         "httpPort": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
+          "$ref": "#/$keywords/httpPort"
         },
         "httpsPort": {
-            "propertyParameters": {
-                "value": {
-                    "type": "int"
-                }
-            }
-        },
-        "hostName_2": {
-            "propertyParameters": {
-                "value": {
-                    "type": "string"
-                }
-            }
+          "$ref": "#/$keywords/httpsPort"
         }
+      }
     },
-    "$resources": {
-        "profiles": {},
-        "profiles/endpoints": {
-            "originHostHeader": {
-                "$ref": "#/$keywords/originHostHeader"
-            },
-            "originPath": {
-                "$ref": "#/$keywords/originPath"
-            },
-            "contentTypesToCompress": {
-                "$ref": "#/$keywords/contentTypesToCompress"
-            },
-            "isCompressionEnabled": {
-                "$ref": "#/$keywords/isCompressionEnabled"
-            },
-            "isHttpAllowed": {
-                "$ref": "#/$keywords/isHttpAllowed"
-            },
-            "isHttpsAllowed": {
-                "$ref": "#/$keywords/isHttpsAllowed"
-            },
-            "queryStringCachingBehavior": {
-                "$ref": "#/$keywords/queryStringCachingBehavior"
-            },
-            "origins": {
-                "$ref": "#/$keywords/origins"
-            }
-        },
-        "profiles/endpoints/origins": {
-            "hostName": {
-                "$ref": "#/$keywords/hostName"
-            },
-            "httpPort": {
-                "$ref": "#/$keywords/httpPort"
-            },
-            "httpsPort": {
-                "$ref": "#/$keywords/httpsPort"
-            }
-        },
-        "profiles/endpoints/customDomains": {
-            "hostName": {
-                "$ref": "#/$keywords/hostName_2"
-            }
+    "hostName": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
         }
+      }
+    },
+    "httpPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "httpsPort": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "hostName_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "httpPort_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "httpsPort_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "hostName_1_2": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "profiles": {},
+    "profiles/endpoints": {
+      "originHostHeader": {
+        "$ref": "#/$keywords/originHostHeader"
+      },
+      "originPath": {
+        "$ref": "#/$keywords/originPath"
+      },
+      "contentTypesToCompress": {
+        "$ref": "#/$keywords/contentTypesToCompress"
+      },
+      "isCompressionEnabled": {
+        "$ref": "#/$keywords/isCompressionEnabled"
+      },
+      "isHttpAllowed": {
+        "$ref": "#/$keywords/isHttpAllowed"
+      },
+      "isHttpsAllowed": {
+        "$ref": "#/$keywords/isHttpsAllowed"
+      },
+      "queryStringCachingBehavior": {
+        "$ref": "#/$keywords/queryStringCachingBehavior"
+      },
+      "origins": {
+        "$ref": "#/$keywords/origins"
+      }
+    },
+    "profiles/endpoints/origins": {
+      "hostName": {
+        "$ref": "#/$keywords/hostName_1"
+      },
+      "httpPort": {
+        "$ref": "#/$keywords/httpPort_1"
+      },
+      "httpsPort": {
+        "$ref": "#/$keywords/httpsPort_1"
+      }
+    },
+    "profiles/endpoints/customDomains": {
+      "hostName": {
+        "$ref": "#/$keywords/hostName_1_2"
+      }
+    }
+  }
 }

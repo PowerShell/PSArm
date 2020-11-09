@@ -1,163 +1,324 @@
 {
-    "$keywords": {
-        "provisioningState": {
-            "propertyParameters": {
-                "value": {
-                    "enum": [
-                        "AdminUpdating",
-                        "Creating",
-                        "Deleting",
-                        "Failed",
-                        "Succeeded",
-                        "Updating"
-                    ]
-                }
-            }
-        },
-        "clusterProfile": {
-            "parameters": {
-                "pullSecret": {
-                    "type": "string"
-                },
-                "domain": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "string"
-                },
-                "resourceGroupId": {
-                    "type": "string"
-                }
-            }
-        },
-        "consoleProfile": {
-            "parameters": {
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "servicePrincipalProfile": {
-            "parameters": {
-                "clientId": {
-                    "type": "string"
-                },
-                "clientSecret": {
-                    "type": "string"
-                }
-            }
-        },
-        "networkProfile": {
-            "parameters": {
-                "podCidr": {
-                    "type": "string"
-                },
-                "serviceCidr": {
-                    "type": "string"
-                }
-            }
-        },
-        "masterProfile": {
-            "parameters": {
-                "vmSize": {
-                    "enum": [
-                        "Standard_D2s_v3",
-                        "Standard_D4s_v3",
-                        "Standard_D8s_v3"
-                    ]
-                },
-                "subnetId": {
-                    "type": "string"
-                }
-            }
-        },
-        "workerProfiles": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "vmSize": {
-                    "enum": [
-                        "Standard_D2s_v3",
-                        "Standard_D4s_v3",
-                        "Standard_D8s_v3"
-                    ]
-                },
-                "diskSizeGB": {
-                    "type": "int"
-                },
-                "subnetId": {
-                    "type": "string"
-                },
-                "count": {
-                    "type": "int"
-                }
-            },
-            "array": true
-        },
-        "apiserverProfile": {
-            "parameters": {
-                "visibility": {
-                    "enum": [
-                        "Private",
-                        "Public"
-                    ]
-                },
-                "url": {
-                    "type": "string"
-                },
-                "ip": {
-                    "type": "string"
-                }
-            }
-        },
-        "ingressProfiles": {
-            "parameters": {
-                "name": {
-                    "type": "string"
-                },
-                "visibility": {
-                    "enum": [
-                        "Private",
-                        "Public"
-                    ]
-                },
-                "ip": {
-                    "type": "string"
-                }
-            },
-            "array": true
+  "$keywords": {
+    "provisioningState": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "AdminUpdating",
+            "Creating",
+            "Deleting",
+            "Failed",
+            "Succeeded",
+            "Updating"
+          ]
         }
+      }
     },
-    "$resources": {
-        "openShiftClusters": {
-            "provisioningState": {
-                "$ref": "#/$keywords/provisioningState"
-            },
-            "clusterProfile": {
-                "$ref": "#/$keywords/clusterProfile"
-            },
-            "consoleProfile": {
-                "$ref": "#/$keywords/consoleProfile"
-            },
-            "servicePrincipalProfile": {
-                "$ref": "#/$keywords/servicePrincipalProfile"
-            },
-            "networkProfile": {
-                "$ref": "#/$keywords/networkProfile"
-            },
-            "masterProfile": {
-                "$ref": "#/$keywords/masterProfile"
-            },
-            "workerProfiles": {
-                "$ref": "#/$keywords/workerProfiles"
-            },
-            "apiserverProfile": {
-                "$ref": "#/$keywords/apiserverProfile"
-            },
-            "ingressProfiles": {
-                "$ref": "#/$keywords/ingressProfiles"
-            }
+    "clusterProfile": {
+      "body": {
+        "pullSecret": {
+          "$ref": "#/$keywords/pullSecret"
+        },
+        "domain": {
+          "$ref": "#/$keywords/domain"
+        },
+        "version": {
+          "$ref": "#/$keywords/version"
+        },
+        "resourceGroupId": {
+          "$ref": "#/$keywords/resourceGroupId"
         }
+      }
+    },
+    "pullSecret": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "domain": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "version": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "resourceGroupId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "consoleProfile": {
+      "body": {
+        "url": {
+          "$ref": "#/$keywords/url"
+        }
+      }
+    },
+    "url": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "servicePrincipalProfile": {
+      "body": {
+        "clientId": {
+          "$ref": "#/$keywords/clientId"
+        },
+        "clientSecret": {
+          "$ref": "#/$keywords/clientSecret"
+        }
+      }
+    },
+    "clientId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "clientSecret": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "networkProfile": {
+      "body": {
+        "podCidr": {
+          "$ref": "#/$keywords/podCidr"
+        },
+        "serviceCidr": {
+          "$ref": "#/$keywords/serviceCidr"
+        }
+      }
+    },
+    "podCidr": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceCidr": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "masterProfile": {
+      "body": {
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize"
+        },
+        "subnetId": {
+          "$ref": "#/$keywords/subnetId"
+        }
+      }
+    },
+    "vmSize": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_D2s_v3",
+            "Standard_D4s_v3",
+            "Standard_D8s_v3"
+          ]
+        }
+      }
+    },
+    "subnetId": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "workerProfiles": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name"
+        },
+        "vmSize": {
+          "$ref": "#/$keywords/vmSize_1"
+        },
+        "diskSizeGB": {
+          "$ref": "#/$keywords/diskSizeGB"
+        },
+        "subnetId": {
+          "$ref": "#/$keywords/subnetId_1"
+        },
+        "count": {
+          "$ref": "#/$keywords/count"
+        }
+      },
+      "array": true
+    },
+    "name": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "vmSize_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Standard_D2s_v3",
+            "Standard_D4s_v3",
+            "Standard_D8s_v3"
+          ]
+        }
+      }
+    },
+    "diskSizeGB": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "subnetId_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "count": {
+      "propertyParameters": {
+        "value": {
+          "type": "int",
+          "default": 0
+        }
+      }
+    },
+    "apiserverProfile": {
+      "body": {
+        "visibility": {
+          "$ref": "#/$keywords/visibility"
+        },
+        "url": {
+          "$ref": "#/$keywords/url_1"
+        },
+        "ip": {
+          "$ref": "#/$keywords/ip"
+        }
+      }
+    },
+    "visibility": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Private",
+            "Public"
+          ]
+        }
+      }
+    },
+    "url_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ip": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ingressProfiles": {
+      "body": {
+        "name": {
+          "$ref": "#/$keywords/name_1"
+        },
+        "visibility": {
+          "$ref": "#/$keywords/visibility_1"
+        },
+        "ip": {
+          "$ref": "#/$keywords/ip_1"
+        }
+      },
+      "array": true
+    },
+    "name_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "visibility_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string",
+          "enum": [
+            "Private",
+            "Public"
+          ]
+        }
+      }
+    },
+    "ip_1": {
+      "propertyParameters": {
+        "value": {
+          "type": "string"
+        }
+      }
     }
+  },
+  "$resources": {
+    "openShiftClusters": {
+      "provisioningState": {
+        "$ref": "#/$keywords/provisioningState"
+      },
+      "clusterProfile": {
+        "$ref": "#/$keywords/clusterProfile"
+      },
+      "consoleProfile": {
+        "$ref": "#/$keywords/consoleProfile"
+      },
+      "servicePrincipalProfile": {
+        "$ref": "#/$keywords/servicePrincipalProfile"
+      },
+      "networkProfile": {
+        "$ref": "#/$keywords/networkProfile"
+      },
+      "masterProfile": {
+        "$ref": "#/$keywords/masterProfile"
+      },
+      "workerProfiles": {
+        "$ref": "#/$keywords/workerProfiles"
+      },
+      "apiserverProfile": {
+        "$ref": "#/$keywords/apiserverProfile"
+      },
+      "ingressProfiles": {
+        "$ref": "#/$keywords/ingressProfiles"
+      }
+    }
+  }
 }

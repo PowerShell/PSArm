@@ -3,10 +3,12 @@ using PSArm.ArmBuilding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace PSArm.Expression
 {
+    [TypeConverter(typeof(ArmTypeConverter))]
     public interface IArmValue : IArmElement
     {
         /// <summary>
@@ -17,6 +19,7 @@ namespace PSArm.Expression
         IArmValue Instantiate(IReadOnlyDictionary<string, IArmValue> parameters);
     }
 
+    [TypeConverter(typeof(ArmTypeConverter))]
     public class ArmObject : IArmValue, IDictionary<string, IArmValue>
     {
         private readonly Dictionary<string, IArmValue> _dict;
@@ -112,6 +115,7 @@ namespace PSArm.Expression
         }
     }
 
+    [TypeConverter(typeof(ArmTypeConverter))]
     public class ArmArray : IArmValue, IList<IArmValue>
     {
         private readonly List<IArmValue> _list;

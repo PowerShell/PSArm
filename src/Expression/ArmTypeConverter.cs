@@ -3,6 +3,7 @@
 // All rights reserved.
 
 using System;
+using System.Collections;
 using System.Management.Automation;
 
 namespace PSArm.Expression
@@ -25,6 +26,12 @@ namespace PSArm.Expression
 
                 case bool _:
                     return destinationType.IsAssignableFrom(typeof(ArmBoolLiteral));
+
+                case Hashtable _:
+                    return destinationType.IsAssignableFrom(typeof(ArmObject));
+
+                case Array _:
+                    return destinationType.IsAssignableFrom(typeof(ArmArray));
 
                 default:
                     return false;

@@ -37,10 +37,6 @@ param(
   [string]$ubuntuOSVersion = '18.04-LTS',
 
   [Parameter()]
-  [string]
-  $dnsLabelPrefix,
-
-  [Parameter()]
   [ValidateSet('WestUS2', 'CentralUS')]
   $location
 )
@@ -112,7 +108,7 @@ Arm {
       }
     }
   }
-  Resource $publicIpAddressName -Provider 'Microsoft.Network' -Type 'publicIpAddresses' -ApiVersion '2020-06-01' -Location $location {
+  Resource $publicIpAddressName -Provider 'Microsoft.Network' -Type 'publicIPAddresses' -ApiVersion '2020-06-01' -Location $location {
     Sku 'Basic' -Tier 'Regional'
     Properties {
       PublicIpAllocationMethod 'Dynamic'
@@ -123,10 +119,34 @@ Arm {
   }
   Resource $VMName -Provider 'Microsoft.Compute' -Type 'virtualMachines' -ApiVersion '2020-06-01' -Location $location {
     Properties {
-      HardwareProfile -VmSize $VmSize 
-      StorageProfile -OsDisk @{'createOption' = 'fromImage'; 'managedDisk' = @{'storageAccountType' = $osDiskType}} -ImageReference @{'publisher' = 'Canonical'; 'offer' = 'UbuntuServer'; 'sku' = $ubuntuOSVersion; 'version' = 'latest'} 
-      NetworkProfile -NetworkInterfaces @(@{'id' = resourceId 'Microsoft.Network/networkInterfaces' $networkInterfaceName}) 
-      OsProfile -ComputerName $vmName -AdminUsername $adminUsername -AdminPassword $adminPasswordOrKey -LinuxConfiguration $(if ($AuthenticationType -eq 'password') { $null } else { $linuxConfiguration }) 
+      HardwareProfile {
+        VmSize $VmSize 
+      }
+      StorageProfile {
+        OsDisk {
+          CreateOption 'fromImage'
+          ManagedDisk {
+            StorageAccountType $osDiskType
+          }
+        }
+        ImageReference {
+          Publisher 'Canonical'
+          Offer 'UbuntuServer'
+          Sku $ubuntuOSVersion
+          Version 'latest'
+        } 
+      }
+      NetworkProfile {
+        NetworkInterface {
+          Id (resourceId 'Microsoft.Network/networkInterfaces' $networkInterfaceName) 
+        }
+      }
+      OsProfile {
+        ComputerName $vmName
+        AdminUsername $adminUsername
+        AdminPassword $adminPasswordOrKey
+        LinuxConfiguration $(if ($AuthenticationType -eq 'password') { $null } else { $linuxConfiguration })
+      }
     }
     DependsOn (resourceId 'Microsoft.Network/networkInterfaces/' $networkInterfaceName)
   }

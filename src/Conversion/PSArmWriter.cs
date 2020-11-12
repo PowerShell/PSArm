@@ -75,25 +75,25 @@ namespace PSArm.Conversion
 
             if (_template.Parameters != null && _template.Parameters.Count > 0)
             {
-                WriteParameter(_template.Parameters[0]);
+                WriteParameterDeclaration(_template.Parameters[0]);
 
                 for (int i = 1; i < _template.Parameters.Count; i++)
                 {
                     Write(",");
                     WriteLine(lineCount: 2);
-                    WriteParameter(_template.Parameters[i]);
+                    WriteParameterDeclaration(_template.Parameters[i]);
                 }
             }
 
             if (_template.Variables != null && _template.Variables.Count > 0)
             {
-                WriteVariable(_template.Variables[0]);
+                WriteVariableDeclaration(_template.Variables[0]);
 
                 for (int i = 1; i < _template.Variables.Count; i++)
                 {
                     Write(",");
                     WriteLine(lineCount: 2);
-                    WriteVariable(_template.Variables[i]);
+                    WriteVariableDeclaration(_template.Variables[i]);
                 }
             }
 
@@ -103,7 +103,7 @@ namespace PSArm.Conversion
             WriteLine(lineCount: 2);
         }
 
-        private void WriteParameter(ArmParameter parameter)
+        private void WriteParameterDeclaration(ArmParameter parameter)
         {
             WriteAllowedValues(parameter.AllowedValues);
             WriteParameterType(parameter.GetType());
@@ -150,7 +150,7 @@ namespace PSArm.Conversion
             WriteValue(defaultValue, includeParens: true);
         }
 
-        private void WriteVariable(ArmVariable variable)
+        private void WriteVariableDeclaration(ArmVariable variable)
         {
             Write("[ArmVariable]");
             WriteLine();
@@ -314,30 +314,39 @@ namespace PSArm.Conversion
             Write(Pascal(name));
             Write(" ");
 
-            if (pObject.Parameters != null && pObject.Parameters.Count > 0)
+            bool hasParameters = pObject.Parameters != null && pObject.Parameters.Count > 0;
+            bool hasProperties = pObject.Properties != null && pObject.Properties.Count > 0;
+
+            if (hasParameters && pObject.Parameters.TryGetValue("name", out IArmValue propertyName))
             {
-                foreach (KeyValuePair<string, IArmValue> parameter in pObject.Parameters)
-                {
-                    Write("-");
-                    Write(Pascal(parameter.Key));
-                    Write(" ");
-                    WriteValue(parameter.Value, includeParens: true);
-                    Write(" ");
-                }
+                WriteValue(propertyName);
+                Write(" ");
             }
 
-            if (pObject.Properties != null && pObject.Properties.Count > 0)
+            if (hasParameters || hasProperties)
             {
                 OpenBlock();
-                bool first = true;
-                foreach (KeyValuePair<string, ArmPropertyInstance> subProperty in pObject.Properties)
+                if (hasParameters)
                 {
-                    if (!first)
+                    bool first = true;
+                    foreach (KeyValuePair<string, IArmValue> parameter in pObject.Parameters)
                     {
-                        WriteLine();
+                        if (parameter.Key.Is("name")) { continue; }
+                        if (!first) { WriteLine(); }
+                        WriteAsProperty(parameter.Key, parameter.Value);
+                        first = false;
                     }
-                    WriteProperty(subProperty.Key, subProperty.Value);
-                    first = false;
+                }
+
+                if (hasProperties)
+                {
+                    bool first = true;
+                    foreach (KeyValuePair<string, ArmPropertyInstance> subProperty in pObject.Properties)
+                    {
+                        if (!first) { WriteLine(); }
+                        WriteProperty(subProperty.Key, subProperty.Value);
+                        first = false;
+                    }
                 }
                 CloseBlock();
             }
@@ -350,6 +359,59 @@ namespace PSArm.Conversion
             {
                 WriteProperty(itemName, item);
                 WriteLine();
+            }
+        }
+
+        private void WriteAsProperty(string name, IArmValue value)
+        {
+            string cmdName = Pascal(name);
+            switch (value)
+            {
+                case IArmExpression expression:
+                    WriteAsProperty(cmdName, expression);
+                    return;
+
+                case ArmObject obj:
+                    WriteAsProperty(cmdName, obj);
+                    return;
+
+                case ArmArray array:
+                    WriteAsProperty(Depluralize(cmdName), array);
+                    return;
+            }
+        }
+
+        private void WriteAsProperty(string name, IArmExpression expression)
+        {
+            Write(name);
+            Write(" ");
+            WriteValue(expression, includeParens: true);
+        }
+
+        private void WriteAsProperty(string name, ArmObject obj)
+        {
+            Write(name);
+            Write(" ");
+
+            OpenBlock();
+            bool first = true;
+            foreach (KeyValuePair<string, IArmValue> entry in obj)
+            {
+                if (!first) { WriteLine(); }
+                WriteAsProperty(entry.Key, entry.Value);
+                first = false;
+            }
+            CloseBlock();
+        }
+
+        private void WriteAsProperty(string name, ArmArray array)
+        {
+            bool first = true;
+            foreach (IArmValue item in array)
+            {
+                if (!first) { WriteLine(); }
+                WriteAsProperty(name, item);
+                first = false;
             }
         }
 
@@ -401,190 +463,201 @@ namespace PSArm.Conversion
             Write("'");
         }
 
+        private void WriteInteger(long value)
+        {
+            Write(value.ToString());
+        }
+
+        private void WriteBoolean(bool value)
+        {
+            if (value)
+            {
+                Write("$true");
+            }
+            else
+            {
+                Write("$false");
+            }
+        }
+
         private void WriteValue(IArmValue value, bool includeParens = false)
         {
-            Write(ConvertFromValue(value, includeParens));
-        }
-
-        private string ConvertFromValue(IArmValue armValue, bool includeParens = false)
-        {
-            var sb = new StringBuilder();
-            ConvertFromValue(sb, armValue, includeParens);
-            return sb.ToString();
-        }
-
-        private void ConvertFromValue(StringBuilder sb, IArmValue armValue, bool includeParens = false)
-        {
-            switch (armValue)
+            switch (value)
             {
                 case IArmExpression expression:
-                    ConvertFromValue(sb, expression, includeParens);
+                    WriteValue(expression, includeParens);
                     break;
 
                 case ArmObject armObject:
-                    ConvertFromValue(sb, armObject);
+                    WriteValue(armObject);
                     break;
 
                 case ArmArray armArray:
-                    ConvertFromValue(sb, armArray);
+                    WriteValue(armArray);
                     break;
 
                 default:
-                    throw new ArgumentException($"Argument '{nameof(armValue)}' is of unsupported value type '{armValue.GetType().FullName}'");
+                    throw new ArgumentException($"Argument '{nameof(value)}' is of unsupported value type '{value.GetType().FullName}'");
             }
         }
 
-        private void ConvertFromValue(StringBuilder sb, ArmObject armObject)
+        private void WriteValue(ArmObject armObject)
         {
-            sb.Append("@{");
-
+            Write("@{");
             bool first = true;
             foreach (KeyValuePair<string, IArmValue> entry in armObject)
             {
-                if (!first)
-                {
-                    sb.Append("; ");
-                }
-
-                sb.Append("'").Append(entry.Key.Replace("'", "''")).Append("'")
-                    .Append(" = ")
-                    .Append(ConvertFromValue(entry.Value));
-
+                if (!first) { Write(";");  }
+                WriteString(entry.Key);
+                Write(" = ");
+                WriteValue(entry.Value);
                 first = false;
             }
-
-            sb.Append("}");
+            Write("}");
         }
 
-        private void ConvertFromValue(StringBuilder sb, ArmArray armArray)
+        private void WriteValue(ArmArray armArray)
         {
-            sb.Append("@(");
-            
-            if (armArray.Count == 0)
+            Write("@(");
+            bool first = true;
+            foreach (IArmValue item in armArray)
             {
-                sb.Append(")");
-                return;
+                if (!first) { Write(","); }
+                WriteValue(item);
+                first = false;
             }
-
-            sb.Append(ConvertFromValue(armArray[0]));
-
-            for (int i = 1; i < armArray.Count; i++)
-            {
-                sb.Append(", ");
-                sb.Append(ConvertFromValue(armArray[i]));
-            }
-
-            sb.Append(")");
+            Write(")");
         }
 
-        private void ConvertFromValue(StringBuilder sb, IArmExpression armExpression, bool includeParens = false)
+        private void WriteValue(IArmExpression expression, bool includeParens)
         {
-            switch (armExpression)
+            switch (expression)
             {
                 case ArmParameter parameter:
-                    sb.Append("$").Append(parameter.Name);
+                    WriteValue(parameter);
                     return;
 
                 case ArmVariable variable:
-                    sb.Append("$").Append(variable.Name);
+                    WriteValue(variable);
                     return;
 
                 case ArmLiteral literal:
-                    ConvertFromValue(sb, literal);
+                    WriteValue(literal);
                     return;
 
                 case ArmFunctionCall call:
-                    ConvertFromValue(sb, call, includeParens);
+                    WriteValue(call, includeParens);
                     return;
 
                 case ArmMemberAccess memberAccess:
-                    ConvertFromValue(sb, memberAccess);
+                    WriteValue(memberAccess);
                     return;
 
                 case ArmIndexAccess indexAccess:
-                    ConvertFromValue(sb, indexAccess);
+                    WriteValue(indexAccess);
                     return;
 
                 default:
-                    throw new ArgumentException($"Cannot convert unsupported ARM expression of type: '{armExpression.GetType().FullName}'");
+                    throw new ArgumentException($"Cannot convert unsupported ARM expression of type: '{expression.GetType().FullName}'");
             }
         }
 
-        private void ConvertFromValue(StringBuilder sb, ArmFunctionCall call, bool includeParens = false)
+        private void WriteValue(ArmParameter parameter)
+        {
+            WriteVariable(parameter.Name);
+        }
+
+        private void WriteValue(ArmVariable variable)
+        {
+            WriteVariable(variable.Name);
+        }
+
+        private void WriteValue(ArmLiteral literal)
+        {
+            switch (literal)
+            {
+                case ArmStringLiteral str:
+                    WriteValue(str);
+                    return;
+
+                case ArmIntLiteral integer:
+                    WriteValue(integer);
+                    return;
+
+                case ArmBoolLiteral boolean:
+                    WriteValue(boolean);
+                    return;
+
+                default:
+                    throw new ArgumentException($"Cannot convert unsupported ARM literal type: '{literal.GetType().FullName}'");
+            }
+        }
+
+        private void WriteValue(ArmStringLiteral str)
+        {
+            WriteString(str.Value);
+        }
+
+        private void WriteValue(ArmIntLiteral integer)
+        {
+            WriteInteger(integer.Value);
+        }
+
+        private void WriteValue(ArmBoolLiteral boolean)
+        {
+            WriteBoolean(boolean.Value);
+        }
+
+        private void WriteValue(ArmFunctionCall call, bool includeParens = false)
         {
             if (call.FunctionName.Is("parameters")
                 || call.FunctionName.Is("variables"))
             {
-                sb.Append("$").Append(((ArmStringLiteral)call.Arguments[0]).Value);
+                WriteVariable(((ArmStringLiteral)call.Arguments[0]).Value);
                 return;
             }
 
             if (includeParens)
             {
-                sb.Append("(");
+                Write("(");
             }
 
-            sb.Append(call.FunctionName);
+            Write(call.FunctionName);
 
             if (call.Arguments == null || call.Arguments.Length == 0)
             {
                 if (includeParens)
                 {
-                    sb.Append(")");
+                    Write(")");
                 }
                 return;
             }
 
             foreach (IArmExpression value in call.Arguments)
             {
-                sb.Append(" ");
-                ConvertFromValue(sb, value, includeParens: true);
+                Write(" ");
+                WriteValue(value, includeParens: true);
             }
 
             if (includeParens)
             {
-                sb.Append(")");
+                Write(")");
             }
         }
 
-        private void ConvertFromValue(StringBuilder sb, ArmMemberAccess memberAccess)
+        private void WriteValue(ArmMemberAccess memberAccess)
         {
-            ConvertFromValue(sb, memberAccess.Expression, includeParens: true);
-            sb.Append(".").Append(memberAccess.Member);
+            WriteValue(memberAccess.Expression, includeParens: true);
+            Write(".");
+            Write(memberAccess.Member);
         }
 
-        private void ConvertFromValue(StringBuilder sb, ArmIndexAccess indexAccess)
+        private void WriteValue(ArmIndexAccess indexAccess)
         {
-            ConvertFromValue(sb, indexAccess.Expression, includeParens: true);
-            sb.Append("[").Append(indexAccess.Index).Append("]");
-        }
-
-        private void ConvertFromValue(StringBuilder sb, ArmLiteral literal)
-        {
-            switch (literal)
-            {
-                case ArmStringLiteral str:
-                    sb.Append("'").Append(str.Value).Append("'");
-                    return;
-
-                case ArmIntLiteral intVal:
-                    sb.Append(intVal.Value);
-                    return;
-
-                case ArmBoolLiteral boolVal:
-                    if (boolVal.Value)
-                    {
-                        sb.Append("$true");
-                    }
-                    else
-                    {
-                        sb.Append("$false");
-                    }
-                    return;
-
-                default:
-                    throw new ArgumentException($"Cannot convert unsupported ARM literal type: '{literal.GetType().FullName}'");
-            }
+            WriteValue(indexAccess.Expression, includeParens: true);
+            Write("[");
+            WriteInteger(indexAccess.Index);
+            Write("]");
         }
 
         private void OpenBlock()
@@ -623,10 +696,9 @@ namespace PSArm.Conversion
             WriteIndent();
         }
 
-        private PSArmWriter Write(string s)
+        private void Write(string s)
         {
             _writer.Write(s);
-            return this;
         }
 
         private void Indent()

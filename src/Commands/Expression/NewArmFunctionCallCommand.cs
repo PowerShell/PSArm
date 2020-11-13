@@ -19,5 +19,10 @@ namespace PSArm.Commands.Expression
 
         [Parameter(ValueFromRemainingArguments = true)]
         public IArmExpression[] Arguments { get; set; }
+
+        protected override IArmExpression[] GetArguments()
+        {
+            return Arguments;
+        }
     }
 }

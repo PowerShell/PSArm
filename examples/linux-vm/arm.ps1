@@ -150,7 +150,6 @@ Arm {
     }
     DependsOn (resourceId 'Microsoft.Network/networkInterfaces/' $networkInterfaceName)
   }
-  Output 'adminUsername' -Type 'string' -Value $adminUsername
   Output 'hostname' -Type 'string' -Value (reference $publicIPAddressName).dnsSettings.fqdn
   Output 'sshCommand' -Type 'string' -Value (concat 'ssh ' $adminUsername '@' (reference $publicIPAddressName).dnsSettings.fqdn)
 }

@@ -20,13 +20,14 @@ BeforeAll {
     {
         param(
             $ReferenceObject,
-            $DifferenceObject
+            $DifferenceObject,
+            [string]$Path
         )
 
         # Object handling
         if ($ReferenceObject -is [System.Collections.IDictionary])
         {
-            $DifferenceObject | Should -BeOfType 'System.Collections.IDictionary'
+            $DifferenceObject | Should -BeOfType 'System.Collections.IDictionary' -Because "Path: $Path"
 
             $differenceKeys = [System.Collections.Generic.HashSet[string]]::new([string[]]$DifferenceObject.get_Keys())
 
@@ -34,13 +35,13 @@ BeforeAll {
             {
                 $differenceKeys.Remove($entry.Key)
 
-                $DifferenceObject.ContainsKey($entry.Key) | Should -BeTrue -Because "Difference object should have all keys in reference object"
+                $DifferenceObject.ContainsKey($entry.Key) | Should -BeTrue -Because "Difference object should have key '$($entry.Key)' from reference object. Path: $Path"
 
                 $differenceValue = $DifferenceObject[$entry.Key]
-                Assert-JsonEqual -ReferenceObject $entry.Value -DifferenceObject $differenceValue
+                Assert-JsonEqual -ReferenceObject $entry.Value -DifferenceObject $differenceValue -Path "$Path/$($entry.Key)"
             }
 
-            $differenceKeys | Should -HaveCount 0 -Because "Extra keys '$($differenceKeys -join ', ')' should not exist"
+            $differenceKeys | Should -HaveCount 0 -Because "Extra keys '$($differenceKeys -join ', ')' should not exist. Path: $Path"
 
             return
         }
@@ -48,19 +49,19 @@ BeforeAll {
         # Array handling
         if ($ReferenceObject -is [array])
         {
-            $DifferenceObject | Should -BeOfType 'System.Array'
-            $DifferenceObject | Should -HaveCount $ReferenceObject.Count -Because "Difference object size $($DifferenceObject.Count) should be $($ReferenceObject.Count)"
+            $DifferenceObject -is [array] | Should -BeTrue -Because "Path: $Path"
+            $DifferenceObject | Should -HaveCount $ReferenceObject.Count -Because "Difference object size $($DifferenceObject.Count) should be $($ReferenceObject.Count). Path: $Path"
 
             for ($i = 0; $i -lt $ReferenceObject.Count; $i++)
             {
-                Assert-JsonEqual -ReferenceObject ($ReferenceObject[$i]) -DifferenceObject ($ReferenceObject[$i])
+                Assert-JsonEqual -ReferenceObject ($ReferenceObject[$i]) -DifferenceObject ($ReferenceObject[$i]) -Path "$Path[$i]"
             }
 
             return
         }
 
         # At this point we only really expect primitives, since the input was JSON
-        $DifferenceObject | Should -BeExactly $ReferenceObject
+        $DifferenceObject | Should -BeExactly $ReferenceObject -Because "Path: $Path"
     }
 }
 
@@ -71,6 +72,6 @@ Describe "Full ARM template conversions using examples" {
         $armObject = & $ScriptPath
         $generatedJson = $armObject.ToJson().ToString() | ConvertFrom-Json -AsHashtable
         $referenceJson = Get-Content -Raw -LiteralPath $TemplatePath | ConvertFrom-Json -AsHashtable
-        Assert-JsonEqual -ReferenceObject $referenceJson -DifferenceObject $generatedJson
+        Assert-JsonEqual -ReferenceObject $referenceJson -DifferenceObject $generatedJson -Path "#"
     }
 }

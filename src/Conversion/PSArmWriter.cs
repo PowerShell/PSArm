@@ -73,8 +73,10 @@ namespace PSArm.Conversion
             Indent();
             WriteLine();
 
+            bool wroteParameters = false;
             if (_template.Parameters != null && _template.Parameters.Count > 0)
             {
+                wroteParameters = true;
                 WriteParameterDeclaration(_template.Parameters[0]);
 
                 for (int i = 1; i < _template.Parameters.Count; i++)
@@ -87,6 +89,12 @@ namespace PSArm.Conversion
 
             if (_template.Variables != null && _template.Variables.Count > 0)
             {
+                if (wroteParameters)
+                {
+                    Write(",");
+                    WriteLine(lineCount: 2);
+                }
+
                 WriteVariableDeclaration(_template.Variables[0]);
 
                 for (int i = 1; i < _template.Variables.Count; i++)
@@ -184,8 +192,11 @@ namespace PSArm.Conversion
             WriteString(typeParts[1]);
             Write(" -ApiVersion ");
             WriteString(resource.ApiVersion);
-            Write(" -Location ");
-            WriteValue(resource.Location, includeParens: true);
+            if (resource.Location != null)
+            {
+                Write(" -Location ");
+                WriteValue(resource.Location, includeParens: true);
+            }
             if (resource.Kind != null)
             {
                 Write(" -Kind ");

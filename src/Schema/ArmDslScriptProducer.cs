@@ -3,6 +3,7 @@
 // All rights reserved.
 
 using Newtonsoft.Json.Converters;
+using PSArm.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,10 +110,27 @@ namespace PSArm.Schema
             Newline();
 
             bool wroteParameters = false;
+            int bodyPos = 0;
             if (keyword.Parameters != null && keyword.Parameters.Count > 0)
             {
                 wroteParameters = true;
-                Intersperse(JoinParams, WriteParameter, keyword.Parameters.Values);
+                bool first = true;
+                foreach (ArmDslParameterSchema parameter in keyword.Parameters.Values)
+                {
+                    if (!first) { JoinParams(); }
+
+                    if (parameter.Name.Is("name"))
+                    {
+                        WriteParameter(parameter, position: 0, mandatory: true);
+                        bodyPos = 1;
+                    }
+                    else
+                    {
+                        WriteParameter(parameter);
+                    }
+
+                    first = false;
+                }
             }
 
             if (keyword.PropertyParameters != null && keyword.PropertyParameters.Count > 0)
@@ -120,9 +138,9 @@ namespace PSArm.Schema
                 if (wroteParameters)
                 {
                     JoinParams();
-                    Intersperse(JoinParams, WriteParameter, keyword.PropertyParameters.Values);
                 }
-                else if (keyword.PropertyParameters.Count == 1)
+
+                if (keyword.PropertyParameters.Count == 1)
                 {
                     WriteParameter(keyword.PropertyParameters.Values.First(), position: 0, mandatory: true);
                 }
@@ -140,8 +158,7 @@ namespace PSArm.Schema
                     JoinParams();
                 }
 
-                // Body written with position 0 since no other parameters are mandatory for body keywords
-                WriteParameter("Body", "scriptblock", enums: null, position: 0, mandatory: false);
+                WriteParameter("Body", "scriptblock", enums: null, position: bodyPos, mandatory: false);
             }
 
             _indent--;

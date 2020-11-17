@@ -53,8 +53,7 @@ function Assert-StructurallyEqual
 
     if ($JsonObject -is [Newtonsoft.Json.Linq.JValue])
     {
-        $value = Get-JValueValue -Value $JsonObject
-        $value | Should -Be $ComparisonObject -Because "$value should equal $ComparisonObject at '$Path'"
+        $JsonObject.Value | Should -Be $ComparisonObject -Because "$value should equal $ComparisonObject at '$Path'"
         return
     }
 
@@ -89,51 +88,4 @@ function Assert-EquivalentToTemplate
     }
 
     Assert-StructurallyEqual -JsonObject $generatedJson -ComparisonObject $template
-}
-
-function Get-JValueValue
-{
-    param(
-        [Parameter(Mandatory)]
-        [Newtonsoft.Json.Linq.JValue]
-        $Value
-    )
-
-    if ($null -eq $Value)
-    {
-        return $null
-    }
-
-    switch ($Value.Type)
-    {
-        Boolean
-        {
-            return $Value.ToBoolean()
-        }
-
-        Float
-        {
-            return $Value.ToSingle()
-        }
-
-        Integer
-        {
-            return $Value.ToInt64()
-        }
-
-        Null
-        {
-            return $null
-        }
-
-        String
-        {
-            return $Value.ToString()
-        }
-
-        default
-        {
-            throw "Unsupported JValue type '$($Value.Type)'"
-        }
-    }
 }

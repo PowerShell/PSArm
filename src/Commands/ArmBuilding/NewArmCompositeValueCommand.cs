@@ -26,10 +26,15 @@ namespace PSArm.Commands.ArmBuilding
         protected override void EndProcessing()
         {
             var result = new ArmParameterizedProperty(Name);
-            foreach (DictionaryEntry parameter in Parameters)
+
+            if (Parameters != null)
             {
-                result.Parameters[parameter.Key.ToString()] = ArmTypeConversion.Convert(parameter.Value);
+                foreach (DictionaryEntry parameter in Parameters)
+                {
+                    result.Parameters[parameter.Key.ToString()] = ArmTypeConversion.Convert(parameter.Value);
+                }
             }
+
             if (Properties != null)
             {
                 foreach (DictionaryEntry property in Properties)
@@ -37,6 +42,7 @@ namespace PSArm.Commands.ArmBuilding
                     result.Parameters[property.Key.ToString()] = ArmTypeConversion.Convert(property.Value);
                 }
             }
+
             WriteObject(result);
         }
     }

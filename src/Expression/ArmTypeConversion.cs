@@ -3,6 +3,7 @@
 // All rights reserved.
 
 using System;
+using System.Collections;
 using System.Management.Automation;
 using System.Security;
 
@@ -39,6 +40,12 @@ namespace PSArm.Expression
 
                 case bool b:
                     return new ArmBoolLiteral(b);
+
+                case IDictionary dict:
+                    return ConvertDictionary(dict);
+
+                case IEnumerable enumerable:
+                    return ConvertEnumerable(enumerable);
 
                 default:
                     throw new ArgumentException($"Unable to covert value '{obj}' of type '{obj.GetType()}' to IArmExpression");
@@ -88,6 +95,26 @@ namespace PSArm.Expression
             }
 
             throw new ArgumentException($"Cannot convert type '{type}' to known ARM type");
+        }
+
+        private static ArmObject ConvertDictionary(IDictionary dict)
+        {
+            var armObj = new ArmObject();
+            foreach (DictionaryEntry entry in dict)
+            {
+                armObj[entry.Key.ToString()] = Convert(entry.Value);
+            }
+            return armObj;
+        }
+
+        private static ArmArray ConvertEnumerable(IEnumerable enumerable)
+        {
+            var armArr = new ArmArray();
+            foreach (object item in enumerable)
+            {
+                armArr.Add(Convert(item));
+            }
+            return armArr;
         }
     }
 

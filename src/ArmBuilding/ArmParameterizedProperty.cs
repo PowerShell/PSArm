@@ -44,7 +44,10 @@ namespace PSArm.ArmBuilding
             var jObj = new JObject();
             foreach (KeyValuePair<string, IArmValue> parameter in Parameters)
             {
-                jObj[parameter.Key] = parameter.Value.ToJson();
+                if (parameter.Value != null)
+                {
+                    jObj[parameter.Key] = parameter.Value.ToJson();
+                }
             }
             return jObj;
         }

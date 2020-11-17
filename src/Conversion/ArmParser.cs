@@ -369,7 +369,7 @@ namespace PSArm.Conversion
             switch (jToken)
             {
                 case JValue value:
-                    return ReadArmExpression(value);
+                    return ReadArmValue(value);
 
                 case JObject jObject:
                     return ReadArmObject(jObject);
@@ -379,6 +379,24 @@ namespace PSArm.Conversion
 
                 default:
                     throw new ArgumentOutOfRangeException($"Unknown type of argument '{jToken}': '{jToken.GetType().FullName}'");
+            }
+        }
+
+        private IArmExpression ReadArmValue(JValue value)
+        {
+            switch (value.Type)
+            {
+                case JTokenType.Null:
+                    return null;
+
+                case JTokenType.Boolean:
+                    return new ArmBoolLiteral(value.Value<bool>());
+
+                case JTokenType.Integer:
+                    return new ArmIntLiteral(value.Value<long>());
+
+                default:
+                    return ReadArmExpression(value);
             }
         }
 
@@ -411,9 +429,14 @@ namespace PSArm.Conversion
             return (IArmExpression)ReadValue(exprStr);
         }
 
+        private IArmExpression ReadArmExpression(JValue jValue)
+        {
+            return _armExpressionParser.ParseExpression(jValue.Value<string>());
+        }
+
         private IArmExpression ReadArmExpression(JToken jToken)
         {
-            return _armExpressionParser.ParseExpression(CoerceJTokenToValue<string>(jToken));
+            return ReadArmExpression((JValue)jToken);
         }
 
         private T CoerceJTokenToValue<T>(JToken jToken)

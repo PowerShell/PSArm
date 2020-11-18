@@ -34,7 +34,8 @@ param(
 
   [Parameter()]
   [ValidateSet('12.04.5-LTS', '14.04.5-LTS', '16.04.0-LTS', '18.04-LTS')]
-  [string]$ubuntuOSVersion = '18.04-LTS',
+  [string]
+  $ubuntuOSVersion = '18.04-LTS',
 
   [Parameter()]
   [ValidateSet('WestUS2', 'CentralUS')]

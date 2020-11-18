@@ -18,12 +18,12 @@
     {
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2020-06-01",
-      "name": "[variables('networkInterfaceName')]",
+      "name": "simpleLinuxVMNetInt",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
-        "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
-        "[resourceId('Microsoft.Network/publicIpAddresses/', variables('publicIpAddressName'))]"
+        "[resourceId('Microsoft.Network/networkSecurityGroups/', 'SecGroupNet')]",
+        "[resourceId('Microsoft.Network/virtualNetworks/', 'vNet')]",
+        "[resourceId('Microsoft.Network/publicIpAddresses/', 'simpleLinuxVMPublicIP')]"
       ],
       "properties": {
         "ipConfigurations": [
@@ -35,20 +35,20 @@
               },
               "privateIPAllocationMethod": "Dynamic",
               "publicIpAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'simpleLinuxVMPublicIP')]"
               }
             }
           }
         ],
         "networkSecurityGroup": {
-          "id": "[resourceId('Microsoft.Network/networkSecurityGroups',parameters('networkSecurityGroupName'))]"
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'SecGroupNet')]"
         }
       }
     },
     {
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2020-06-01",
-      "name": "[parameters('networkSecurityGroupName')]",
+      "name": "SecGroupNet",
       "location": "[parameters('location')]",
       "properties": {
         "securityRules": [
@@ -71,19 +71,19 @@
     {
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2020-06-01",
-      "name": "[parameters('virtualNetworkName')]",
+      "name": "vNet",
       "location": "[parameters('location')]",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[variables('addressPrefix')]"
+            "10.1.0.0/16"
           ]
         },
         "subnets": [
           {
-            "name": "[parameters('subnetName')]",
+            "name": "Subnet",
             "properties": {
-              "addressPrefix": "[variables('subnetAddressPrefix')]",
+              "addressPrefix": "10.1.0.0/24",
               "privateEndpointNetworkPolicies": "Enabled",
               "privateLinkServiceNetworkPolicies": "Enabled"
             }
@@ -94,7 +94,7 @@
     {
       "type": "Microsoft.Network/publicIpAddresses",
       "apiVersion": "2020-06-01",
-      "name": "[variables('publicIpAddressName')]",
+      "name": "simpleLinuxVMPublicIP",
       "location": "[parameters('location')]",
       "sku": {
         "name": "Basic",
@@ -112,41 +112,41 @@
     {
       "type": "Microsoft.Compute/virtualMachines",
       "apiVersion": "2020-06-01",
-      "name": "[parameters('vmName')]",
+      "name": "simpleLinuxVM",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
+        "[resourceId('Microsoft.Network/networkInterfaces/', 'simpleLinuxVMNetInt')]"
       ],
       "properties": {
         "hardwareProfile": {
-          "vmSize": "[parameters('VmSize')]"
+          "vmSize": "Standard_B2s"
         },
         "storageProfile": {
           "osDisk": {
             "createOption": "fromImage",
             "managedDisk": {
-              "storageAccountType": "[variables('osDiskType')]"
+              "storageAccountType": "Standard_LRS"
             }
           },
           "imageReference": {
             "publisher": "Canonical",
             "offer": "UbuntuServer",
-            "sku": "[parameters('ubuntuOSVersion')]",
+            "sku": "18.04-LTS",
             "version": "latest"
           }
         },
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', 'simpleLinuxVMNetInt')]"
             }
           ]
         },
         "osProfile": {
-          "computerName": "[parameters('vmName')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPasswordOrKey')]",
-          "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]"
+          "computerName": "simpleLinuxVM",
+          "adminUsername": "test",
+          "adminPassword": "notarealpassword",
+          "linuxConfiguration": null
         }
       }
     }

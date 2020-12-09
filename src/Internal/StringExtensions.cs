@@ -3,6 +3,7 @@
 // All rights reserved.
 
 using System;
+using System.ComponentModel;
 
 namespace PSArm.Internal
 {
@@ -32,6 +33,25 @@ namespace PSArm.Internal
             return char.IsLower(s[0])
                 ? s
                 : char.ToLower(s[0]) + s.Substring(1);
+        }
+
+        public static string Pascal(this string s)
+        {
+            return char.IsUpper(s[0])
+                ? s
+                : char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        public static string Depluralize(this string s)
+        {
+            int lastIdx = s.Length - 1;
+
+            if (s[lastIdx] != 's')
+            {
+                return s;
+            }
+
+            return s.Substring(0, lastIdx);
         }
     }
 }

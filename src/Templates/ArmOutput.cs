@@ -1,4 +1,5 @@
 ﻿using PSArm.Templates.Primitives;
+using PSArm.Templates.Visitors;
 
 namespace PSArm.Templates
 {
@@ -22,5 +23,7 @@ namespace PSArm.Templates
             get => (IArmString)this[ArmTemplateKeys.Value];
             set => this[ArmTemplateKeys.Value] = (ArmElement)value;
         }
+
+        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitOutput(this);
     }
 }

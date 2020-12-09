@@ -1,35 +1,29 @@
 ﻿using Newtonsoft.Json.Linq;
+using PSArm.Templates.Visitors;
+using PSArm.Types;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace PSArm.Templates.Primitives
 {
-    public class ArmArray<TArmItem> : ArmElement, IList<TArmItem> where TArmItem : ArmElement
+    [TypeConverter(typeof(ArmElementConverter))]
+    public class ArmArray : ArmElement, IList<ArmElement>, IReadOnlyList<ArmElement>
     {
-        private readonly List<TArmItem> _items;
+        private readonly List<ArmElement> _items;
 
         public ArmArray()
         {
-            _items = new List<TArmItem>();
+            _items = new List<ArmElement>();
         }
 
-        public TArmItem this[int index] { get => _items[index]; set => _items[index] = value; }
+        public ArmElement this[int index] { get => _items[index]; set => _items[index] = value; }
 
         public int Count => _items.Count;
 
         public bool IsReadOnly => false;
 
-        public override JToken ToJson()
-        {
-            var jArr = new JArray();
-            foreach (TArmItem item in this)
-            {
-                jArr.Add(item.ToJson());
-            }
-            return jArr;
-        }
-
-        public void Add(TArmItem item)
+        public void Add(ArmElement item)
         {
             _items.Add(item);
         }
@@ -39,32 +33,32 @@ namespace PSArm.Templates.Primitives
             _items.Clear();
         }
 
-        public bool Contains(TArmItem item)
+        public bool Contains(ArmElement item)
         {
             return _items.Contains(item);
         }
 
-        public void CopyTo(TArmItem[] array, int arrayIndex)
+        public void CopyTo(ArmElement[] array, int arrayIndex)
         {
             _items.CopyTo(array, arrayIndex);
         }
 
-        public IEnumerator<TArmItem> GetEnumerator()
+        public IEnumerator<ArmElement> GetEnumerator()
         {
             return _items.GetEnumerator();
         }
 
-        public int IndexOf(TArmItem item)
+        public int IndexOf(ArmElement item)
         {
             return _items.IndexOf(item);
         }
 
-        public void Insert(int index, TArmItem item)
+        public void Insert(int index, ArmElement item)
         {
             _items.Insert(index, item);
         }
 
-        public bool Remove(TArmItem item)
+        public bool Remove(ArmElement item)
         {
             return _items.Remove(item);
         }
@@ -78,9 +72,62 @@ namespace PSArm.Templates.Primitives
         {
             return GetEnumerator();
         }
+
+        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitArray(this);
     }
 
-    public class ArmArray : ArmArray<ArmElement>
+    public class ArmArray<TElement> : ArmArray, IList<TElement>, IReadOnlyList<TElement> where TElement : ArmElement
     {
+        private ArmArray This => this;
+
+        TElement IReadOnlyList<TElement>.this[int index] => ((IList<TElement>)this)[index];
+
+        TElement IList<TElement>.this[int index]
+        { 
+            get => (TElement)This[index];
+            set => This[index] = value;
+        }
+
+        public void Add(TElement item)
+        {
+            This.Add(item);
+        }
+
+        public bool Contains(TElement item)
+        {
+            return This.Contains(item);
+        }
+
+        public void CopyTo(TElement[] array, int arrayIndex)
+        {
+            IEnumerator<TElement> enumerator = ((IEnumerable<TElement>)this).GetEnumerator();
+            for (int i = arrayIndex; enumerator.MoveNext(); i++)
+            {
+                array[i] = enumerator.Current;
+            }
+        }
+
+        public int IndexOf(TElement item)
+        {
+            return This.IndexOf(item);
+        }
+
+        public void Insert(int index, TElement item)
+        {
+            This.Insert(index, item);
+        }
+
+        public bool Remove(TElement item)
+        {
+            return This.Remove(item);
+        }
+
+        IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()
+        {
+            foreach (TElement element in This)
+            {
+                yield return element;
+            }
+        }
     }
 }

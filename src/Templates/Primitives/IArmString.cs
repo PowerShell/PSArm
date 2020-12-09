@@ -1,7 +1,13 @@
-﻿namespace PSArm.Templates.Primitives
+﻿using PSArm.Types;
+using System.ComponentModel;
+
+namespace PSArm.Templates.Primitives
 {
-    public interface IArmString
+    [TypeConverter(typeof(ArmStringConverter))]
+    public interface IArmString : IArmExpression
     {
-        string ToString();
+        string ToExpressionString();
+
+        string ToIdentifierString();
     }
 }

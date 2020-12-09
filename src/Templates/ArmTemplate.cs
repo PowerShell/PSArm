@@ -1,4 +1,5 @@
 ﻿using PSArm.Templates.Primitives;
+using PSArm.Templates.Visitors;
 
 namespace PSArm.Templates
 {
@@ -16,9 +17,9 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.ContentVersion] = (ArmElement)value;
         }
 
-        public ArmOutput Outputs
+        public ArmObject<ArmOutput> Outputs
         {
-            get => (ArmOutput)this[ArmTemplateKeys.Outputs];
+            get => (ArmObject<ArmOutput>)this[ArmTemplateKeys.Outputs];
             set => this[ArmTemplateKeys.Outputs] = value;
         }
 
@@ -28,9 +29,9 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.Parameters] = value;
         }
 
-        public ArmObject Variables
+        public ArmObject<ArmVariable> Variables
         {
-            get => (ArmObject)this[ArmTemplateKeys.Variables];
+            get => (ArmObject<ArmVariable>)this[ArmTemplateKeys.Variables];
             set => this[ArmTemplateKeys.Variables] = value;
         }
 
@@ -39,5 +40,7 @@ namespace PSArm.Templates
             get => (ArmArray<ArmResource>)this[ArmTemplateKeys.Resources];
             set => this[ArmTemplateKeys.Resources] = value;
         }
+
+        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitTemplate(this);
     }
 }

@@ -13,9 +13,9 @@ namespace PSArm.Serialization
 {
     public class ArmParser
     {
-        private static readonly ArmStringValue s_defaultVersion = new ArmStringValue("1.0.0.0");
+        private static readonly ArmStringLiteral s_defaultVersion = new ArmStringLiteral("1.0.0.0");
 
-        private static readonly ArmStringValue s_defaultSchema = new ArmStringValue("https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#");
+        private static readonly ArmStringLiteral s_defaultSchema = new ArmStringLiteral("https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#");
 
         private readonly ArmExpressionParser _armExpressionParser;
 
@@ -90,7 +90,7 @@ namespace PSArm.Serialization
 
             if (templateObject.TryGetValue("$schema", out JToken schemaValue))
             {
-                template.Schema = new ArmStringValue(((JValue)schemaValue).Value<string>());
+                template.Schema = new ArmStringLiteral(CoerceJTokenToValue<string>(schemaValue));
             }
             else
             {
@@ -99,7 +99,7 @@ namespace PSArm.Serialization
 
             if (templateObject.TryGetValue("contentVersion", out JToken contentVersionValue))
             {
-                template.ContentVersion = new ArmStringValue(((JValue)contentVersionValue).Value<string>());
+                template.ContentVersion = new ArmStringLiteral(CoerceJTokenToValue<string>(contentVersionValue));
             }
             else
             {
@@ -133,7 +133,7 @@ namespace PSArm.Serialization
         {
             foreach (KeyValuePair<string, JToken> entry in jObj)
             {
-                var key = new ArmStringValue(entry.Key);
+                var key = new ArmStringLiteral(entry.Key);
                 armObj[key] = convert(entry.Key, entry.Value);
             }
             return armObj;
@@ -177,7 +177,7 @@ namespace PSArm.Serialization
 
         private ArmParameter ReadTypedParameter<T>(string parameterName, JObject parameterObject)
         {
-            var parameter = new ArmParameter(new ArmStringValue(parameterName));
+            var parameter = new ArmParameter(new ArmStringLiteral(parameterName));
 
             if (parameterObject.TryGetValue("defaultValue", out JToken defaultValue))
             {
@@ -194,7 +194,7 @@ namespace PSArm.Serialization
 
         private ArmVariable ReadVariable(string variableName, JToken variableObject)
         {
-            return new ArmVariable(new ArmStringValue(variableName), ReadValue(variableObject));
+            return new ArmVariable(new ArmStringLiteral(variableName), ReadValue(variableObject));
         }
 
         private ArmResource ReadResource(JToken resourceToken)
@@ -204,8 +204,8 @@ namespace PSArm.Serialization
             var resource = new ArmResource
             {
                 Name = ReadArmExpression(resourceObject["name"]),
-                ApiVersion = new ArmStringValue(CoerceJTokenToValue<string>(resourceToken["apiVersion"])),
-                Type = new ArmStringValue(CoerceJTokenToValue<string>(resourceToken["type"])),
+                ApiVersion = new ArmStringLiteral(CoerceJTokenToValue<string>(resourceToken["apiVersion"])),
+                Type = new ArmStringLiteral(CoerceJTokenToValue<string>(resourceToken["type"])),
             };
 
             if (resourceObject.TryGetValue("location", out JToken locationObject))
@@ -284,15 +284,15 @@ namespace PSArm.Serialization
                 switch (entry.Value)
                 {
                     case JObject objectProperty:
-                        armObject[new ArmStringValue(entry.Key)] = ReadArmObject(objectProperty);
+                        armObject[new ArmStringLiteral(entry.Key)] = ReadArmObject(objectProperty);
                         continue;
 
                     case JArray arrayProperty:
-                        armObject[new ArmStringValue(entry.Key)] = ReadArmArray(arrayProperty);
+                        armObject[new ArmStringLiteral(entry.Key)] = ReadArmArray(arrayProperty);
                         continue;
 
                     case JValue valueProperty:
-                        armObject[new ArmStringValue(entry.Key)] = ReadArmValue(valueProperty);
+                        armObject[new ArmStringLiteral(entry.Key)] = ReadArmValue(valueProperty);
                         continue;
 
                     default:
@@ -341,13 +341,13 @@ namespace PSArm.Serialization
             switch (value.Type)
             {
                 case JTokenType.Null:
-                    return ArmNullValue.Value;
+                    return ArmNullLiteral.Value;
 
                 case JTokenType.Boolean:
-                    return ArmBooleanValue.FromBool(value.Value<bool>());
+                    return ArmBooleanLiteral.FromBool(value.Value<bool>());
 
                 case JTokenType.Integer:
-                    return new ArmIntegerValue(value.Value<long>());
+                    return new ArmIntegerLiteral(value.Value<long>());
 
                 default:
                     return (ArmElement)ReadArmExpression(value);
@@ -360,7 +360,7 @@ namespace PSArm.Serialization
 
             foreach (KeyValuePair<string, JToken> entry in jObject)
             {
-                armObject[new ArmStringValue(entry.Key)] = ReadValue(entry.Value);
+                armObject[new ArmStringLiteral(entry.Key)] = ReadValue(entry.Value);
             }
 
             return armObject;

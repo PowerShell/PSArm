@@ -19,19 +19,19 @@ namespace PSArm.Serialization
             return arr;
         }
 
-        public JToken VisitBooleanValue(ArmBooleanValue booleanValue) => new JValue(booleanValue.Value);
+        public JToken VisitBooleanValue(ArmBooleanLiteral booleanValue) => new JValue(booleanValue.Value);
 
-        public JToken VisitDoubleValue(ArmDoubleValue doubleValue) => new JValue(doubleValue.Value);
+        public JToken VisitDoubleValue(ArmDoubleLiteral doubleValue) => new JValue(doubleValue.Value);
 
         public JToken VisitFunctionCall(ArmFunctionCallExpression functionCall) => VisitArmString(functionCall);
 
         public JToken VisitIndexAccess(ArmIndexAccessExpression indexAccess) => VisitArmString(indexAccess);
 
-        public JToken VisitIntegerValue(ArmIntegerValue integerValue) => new JValue(integerValue);
+        public JToken VisitIntegerValue(ArmIntegerLiteral integerValue) => new JValue(integerValue);
 
         public JToken VisitMemberAccess(ArmMemberAccessExpression memberAccess) => VisitArmString(memberAccess);
 
-        public JToken VisitNullValue(ArmNullValue nullValue) => JValue.CreateNull();
+        public JToken VisitNullValue(ArmNullLiteral nullValue) => JValue.CreateNull();
 
         public JToken VisitObject(ArmObject obj)
         {
@@ -53,7 +53,7 @@ namespace PSArm.Serialization
 
         public JToken VisitSku(ArmSku sku) => VisitObject(sku);
 
-        public JToken VisitStringValue(ArmStringValue stringValue) => new JValue(stringValue.Value);
+        public JToken VisitStringValue(ArmStringLiteral stringValue) => new JValue(stringValue.Value);
 
         public JToken VisitTemplate(ArmTemplate template) => VisitObject(template);
 

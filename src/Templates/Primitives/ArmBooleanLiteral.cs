@@ -5,15 +5,15 @@ using System.ComponentModel;
 namespace PSArm.Templates.Primitives
 {
     [TypeConverter(typeof(ArmElementConverter))]
-    public class ArmBooleanValue : ArmValue<bool>
+    public class ArmBooleanLiteral : ArmLiteral<bool>
     {
-        public static ArmBooleanValue True { get; } = new ArmBooleanValue(true);
+        public static ArmBooleanLiteral True { get; } = new ArmBooleanLiteral(true);
 
-        public static ArmBooleanValue False { get; } = new ArmBooleanValue(false);
+        public static ArmBooleanLiteral False { get; } = new ArmBooleanLiteral(false);
 
-        public static ArmBooleanValue FromBool(bool value) => value ? True : False;
+        public static ArmBooleanLiteral FromBool(bool value) => value ? True : False;
 
-        private ArmBooleanValue(bool value) : base(value, ArmType.Bool)
+        private ArmBooleanLiteral(bool value) : base(value, ArmType.Bool)
         {
         }
 

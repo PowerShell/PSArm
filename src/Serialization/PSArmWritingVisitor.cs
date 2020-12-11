@@ -60,13 +60,13 @@ namespace PSArm.Serialization
             throw new InvalidOperationException($"Cannot directly visit arrays");
         }
 
-        public object VisitBooleanValue(ArmBooleanValue booleanValue)
+        public object VisitBooleanValue(ArmBooleanLiteral booleanValue)
         {
             booleanValue.Visit(_expressionWriter);
             return null;
         }
 
-        public object VisitDoubleValue(ArmDoubleValue doubleValue)
+        public object VisitDoubleValue(ArmDoubleLiteral doubleValue)
         {
             doubleValue.Visit(_expressionWriter);
             return null;
@@ -84,7 +84,7 @@ namespace PSArm.Serialization
             return null;
         }
 
-        public object VisitIntegerValue(ArmIntegerValue integerValue)
+        public object VisitIntegerValue(ArmIntegerLiteral integerValue)
         {
             integerValue.Visit(_expressionWriter);
             return null;
@@ -96,7 +96,7 @@ namespace PSArm.Serialization
             return null;
         }
 
-        public object VisitNullValue(ArmNullValue nullValue)
+        public object VisitNullValue(ArmNullLiteral nullValue)
         {
             nullValue.Visit(_expressionWriter);
             return null;
@@ -144,8 +144,8 @@ namespace PSArm.Serialization
         public object VisitParameterDeclaration(ArmParameter parameter)
         {
             WriteAllowedValues(parameter.AllowedValues);
-            WriteParameterType((ArmStringValue)parameter.Type);
-            WriteVariable(((ArmStringValue)parameter.Name).Value);
+            WriteParameterType(parameter.Type.CoerceToLiteral());
+            WriteVariable(parameter.Name.CoerceToString());
             WriteDefaultValue(parameter.DefaultValue);
             return null;
         }
@@ -160,7 +160,7 @@ namespace PSArm.Serialization
         {
             Write("Resource ");
             WriteExpression(resource.Name);
-            string[] typeParts = ((ArmStringValue)resource.Type).Value.Split(s_armTypeSeparators, count: 2);
+            string[] typeParts = resource.Type.CoerceToString().Split(s_armTypeSeparators, count: 2);
             Write(" -Provider ");
             WriteString(typeParts[0]);
             Write(" -Type ");
@@ -294,7 +294,7 @@ namespace PSArm.Serialization
             return null;
         }
 
-        public object VisitStringValue(ArmStringValue stringValue)
+        public object VisitStringValue(ArmStringLiteral stringValue)
         {
             stringValue.Visit(_expressionWriter);
             return null;
@@ -317,7 +317,7 @@ namespace PSArm.Serialization
         {
             Write("[ArmVariable]");
             WriteLine();
-            WriteVariable(((ArmStringValue)variable.Name).Value);
+            WriteVariable(variable.Name.CoerceToString());
             Write(" = ");
             variable.Value.Visit(_expressionWriter);
             return null;
@@ -389,7 +389,7 @@ namespace PSArm.Serialization
             WriteLine();
         }
 
-        private void WriteParameterType(ArmStringValue typeName)
+        private void WriteParameterType(ArmStringLiteral typeName)
         {
             Write("[ArmParameter[");
             Write(typeName.Value);
@@ -484,7 +484,7 @@ namespace PSArm.Serialization
 
         private void WriteKeyword(IArmString keyword)
         {
-            Write(((ArmStringValue)keyword).Value.Pascal());
+            Write(keyword.CoerceToString().Pascal());
         }
 
         private void OpenBlock()

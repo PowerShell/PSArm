@@ -13,7 +13,7 @@ namespace PSArm.Templates.Operations
             GetIndexBinder binder,
             DynamicMetaObject[] indexes)
         {
-            var indexAccess = new ArmIndexAccessExpression((ArmOperation)originalExpressionMO.Value, new ArmIntegerValue((long)indexes[0].Value));
+            var indexAccess = new ArmIndexAccessExpression((ArmOperation)originalExpressionMO.Value, new ArmIntegerLiteral((long)indexes[0].Value));
             var expression = Expression.Constant(indexAccess);
             var restrictions = originalExpressionMO.Restrictions.Merge(binder.FallbackGetIndex(originalExpressionMO, indexes).Restrictions);
             return new DynamicMetaObject(expression, restrictions);

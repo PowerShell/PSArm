@@ -12,7 +12,7 @@ namespace PSArm.Templates.Operations
             DynamicMetaObject originalExpressionMO,
             GetMemberBinder binder)
         {
-            var memberAccess = new ArmMemberAccessExpression((ArmOperation)originalExpressionMO.Value, new ArmStringValue(binder.Name));
+            var memberAccess = new ArmMemberAccessExpression((ArmOperation)originalExpressionMO.Value, new ArmStringLiteral(binder.Name));
             var expression = Expression.Constant(memberAccess);
             BindingRestrictions restrictions = originalExpressionMO.Restrictions.Merge(binder.FallbackGetMember(originalExpressionMO).Restrictions);
             return new DynamicMetaObject(expression, restrictions);

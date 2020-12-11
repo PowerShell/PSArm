@@ -12,14 +12,14 @@ namespace PSArm.Types
             switch (value)
             {
                 case string str:
-                    armString = new ArmStringValue(str);
+                    armString = new ArmStringLiteral(str);
                     return true;
 
                 case ArmOperation expr:
                     armString = expr;
                     return true;
 
-                case ArmStringValue strVal:
+                case ArmStringLiteral strVal:
                     armString = strVal;
                     return true;
 
@@ -36,7 +36,7 @@ namespace PSArm.Types
         {
             if (value is null)
             {
-                armElement = ArmNullValue.Value;
+                armElement = ArmNullLiteral.Value;
                 return true;
             }
 
@@ -46,7 +46,7 @@ namespace PSArm.Types
                 case TypeCode.String:
                 case TypeCode.DateTime:
                 case TypeCode.Char:
-                    armElement = new ArmStringValue(value.ToString());
+                    armElement = new ArmStringLiteral(value.ToString());
                     return true;
 
                 case TypeCode.Int32:
@@ -57,17 +57,17 @@ namespace PSArm.Types
                 case TypeCode.UInt16:
                 case TypeCode.Byte:
                 case TypeCode.SByte:
-                    armElement = new ArmIntegerValue((long)value);
+                    armElement = new ArmIntegerLiteral((long)value);
                     return true;
 
                 case TypeCode.Single:
                 case TypeCode.Double:
                 case TypeCode.Decimal:
-                    armElement = new ArmDoubleValue((double)value);
+                    armElement = new ArmDoubleLiteral((double)value);
                     return true;
 
                 case TypeCode.DBNull:
-                    armElement = ArmNullValue.Value;
+                    armElement = ArmNullLiteral.Value;
                     return true;
             }
 

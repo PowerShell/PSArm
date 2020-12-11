@@ -4,11 +4,11 @@ using PSArm.Types;
 namespace PSArm.Templates.Primitives
 {
 
-    public abstract class ArmValue : ArmExpression
+    public abstract class ArmLiteral : ArmExpression
     {
         private readonly object _value;
 
-        protected ArmValue(object value, ArmType armType)
+        protected ArmLiteral(object value, ArmType armType)
         {
             _value = value;
             ArmType = armType;
@@ -19,9 +19,9 @@ namespace PSArm.Templates.Primitives
         public object GetValue() => _value;
     }
 
-    public abstract class ArmValue<T> : ArmValue
+    public abstract class ArmLiteral<T> : ArmLiteral
     {
-        protected ArmValue(T value, ArmType armType)
+        protected ArmLiteral(T value, ArmType armType)
             : base(value, armType)
         {
             Value = value;
@@ -36,7 +36,7 @@ namespace PSArm.Templates.Primitives
                 return true;
             }
 
-            if (!(obj is ArmValue<T> armVal))
+            if (!(obj is ArmLiteral<T> armVal))
             {
                 return false;
             }

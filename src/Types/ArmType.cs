@@ -33,19 +33,19 @@ namespace PSArm.Types
 
         private const string ArmType_Array = "array";
 
-        private static readonly ArmStringValue s_string = new ArmStringValue(ArmType_String);
+        private static readonly ArmStringLiteral s_string = new ArmStringLiteral(ArmType_String);
 
-        private static readonly ArmStringValue s_secureString = new ArmStringValue(ArmType_SecureString);
+        private static readonly ArmStringLiteral s_secureString = new ArmStringLiteral(ArmType_SecureString);
 
-        private static readonly ArmStringValue s_int = new ArmStringValue(ArmType_Int);
+        private static readonly ArmStringLiteral s_int = new ArmStringLiteral(ArmType_Int);
 
-        private static readonly ArmStringValue s_bool = new ArmStringValue(ArmType_Bool);
+        private static readonly ArmStringLiteral s_bool = new ArmStringLiteral(ArmType_Bool);
 
-        private static readonly ArmStringValue s_object = new ArmStringValue(ArmType_Object);
+        private static readonly ArmStringLiteral s_object = new ArmStringLiteral(ArmType_Object);
 
-        private static readonly ArmStringValue s_secureObject = new ArmStringValue(ArmType_SecureObject);
+        private static readonly ArmStringLiteral s_secureObject = new ArmStringLiteral(ArmType_SecureObject);
 
-        private static readonly ArmStringValue s_array = new ArmStringValue(ArmType_Array);
+        private static readonly ArmStringLiteral s_array = new ArmStringLiteral(ArmType_Array);
 
         public static string AsString(this ArmType type)
         {
@@ -77,7 +77,7 @@ namespace PSArm.Types
             }
         }
 
-        public static ArmStringValue AsArmString(this ArmType type)
+        public static ArmStringLiteral AsArmString(this ArmType type)
         {
             switch (type)
             {

@@ -4,46 +4,46 @@ namespace PSArm.Templates
 {
     internal static class ArmTemplateKeys
     {
-        internal static ArmStringValue ApiVersion { get; } = new ArmStringValue(nameof(ApiVersion));
+        internal static ArmStringLiteral ApiVersion { get; } = new ArmStringLiteral(nameof(ApiVersion));
 
-        internal static ArmStringValue Type { get; } = new ArmStringValue(nameof(Type));
+        internal static ArmStringLiteral Type { get; } = new ArmStringLiteral(nameof(Type));
 
-        internal static ArmStringValue Name { get; } = new ArmStringValue(nameof(Name));
+        internal static ArmStringLiteral Name { get; } = new ArmStringLiteral(nameof(Name));
 
-        internal static ArmStringValue Location { get; } = new ArmStringValue(nameof(Location));
+        internal static ArmStringLiteral Location { get; } = new ArmStringLiteral(nameof(Location));
 
-        internal static ArmStringValue Kind { get; } = new ArmStringValue(nameof(Kind));
+        internal static ArmStringLiteral Kind { get; } = new ArmStringLiteral(nameof(Kind));
 
-        internal static ArmStringValue Properties { get; } = new ArmStringValue(nameof(Properties));
+        internal static ArmStringLiteral Properties { get; } = new ArmStringLiteral(nameof(Properties));
 
-        internal static ArmStringValue Resources { get; } = new ArmStringValue(nameof(Resources));
+        internal static ArmStringLiteral Resources { get; } = new ArmStringLiteral(nameof(Resources));
 
-        internal static ArmStringValue Sku { get; } = new ArmStringValue(nameof(Sku));
+        internal static ArmStringLiteral Sku { get; } = new ArmStringLiteral(nameof(Sku));
 
-        internal static ArmStringValue DependsOn { get; } = new ArmStringValue(nameof(DependsOn));
+        internal static ArmStringLiteral DependsOn { get; } = new ArmStringLiteral(nameof(DependsOn));
 
-        internal static ArmStringValue Tier { get; } = new ArmStringValue(nameof(Tier));
+        internal static ArmStringLiteral Tier { get; } = new ArmStringLiteral(nameof(Tier));
 
-        internal static ArmStringValue Size { get; } = new ArmStringValue(nameof(Size));
+        internal static ArmStringLiteral Size { get; } = new ArmStringLiteral(nameof(Size));
 
-        internal static ArmStringValue Family { get; } = new ArmStringValue(nameof(Family));
+        internal static ArmStringLiteral Family { get; } = new ArmStringLiteral(nameof(Family));
 
-        internal static ArmStringValue Capacity { get; } = new ArmStringValue(nameof(Capacity));
+        internal static ArmStringLiteral Capacity { get; } = new ArmStringLiteral(nameof(Capacity));
 
-        internal static ArmStringValue Value { get; } = new ArmStringValue(nameof(Value));
+        internal static ArmStringLiteral Value { get; } = new ArmStringLiteral(nameof(Value));
 
-        internal static ArmStringValue DefaultValue { get; } = new ArmStringValue(nameof(DefaultValue));
+        internal static ArmStringLiteral DefaultValue { get; } = new ArmStringLiteral(nameof(DefaultValue));
 
-        internal static ArmStringValue AllowedValues { get; } = new ArmStringValue(nameof(AllowedValues));
+        internal static ArmStringLiteral AllowedValues { get; } = new ArmStringLiteral(nameof(AllowedValues));
 
-        internal static ArmStringValue Schema { get; } = new ArmStringValue(nameof(Schema));
+        internal static ArmStringLiteral Schema { get; } = new ArmStringLiteral(nameof(Schema));
 
-        internal static ArmStringValue ContentVersion { get; } = new ArmStringValue(nameof(ContentVersion));
+        internal static ArmStringLiteral ContentVersion { get; } = new ArmStringLiteral(nameof(ContentVersion));
 
-        internal static ArmStringValue Outputs { get; } = new ArmStringValue(nameof(Outputs));
+        internal static ArmStringLiteral Outputs { get; } = new ArmStringLiteral(nameof(Outputs));
 
-        internal static ArmStringValue Parameters { get; } = new ArmStringValue(nameof(Parameters));
+        internal static ArmStringLiteral Parameters { get; } = new ArmStringLiteral(nameof(Parameters));
 
-        internal static ArmStringValue Variables { get; } = new ArmStringValue(nameof(Variables));
+        internal static ArmStringLiteral Variables { get; } = new ArmStringLiteral(nameof(Variables));
     }
 }

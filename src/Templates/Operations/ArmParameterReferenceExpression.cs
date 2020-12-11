@@ -6,7 +6,7 @@ namespace PSArm.Templates.Operations
 {
     public abstract class ArmParameterReferenceExpression : ArmReferenceExpression<ArmParameter>
     {
-        private static readonly ArmStringValue s_parameterReferenceFunction = new ArmStringValue("parameter");
+        private static readonly ArmStringLiteral s_parameterReferenceFunction = new ArmStringLiteral("parameter");
 
         protected ArmParameterReferenceExpression(ArmParameter parameter)
             : base(s_parameterReferenceFunction, parameter)

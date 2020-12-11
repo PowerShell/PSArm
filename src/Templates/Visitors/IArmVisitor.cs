@@ -8,15 +8,15 @@ namespace PSArm.Templates.Visitors
 {
     public interface IArmVisitor<out TResult>
     {
-        TResult VisitStringValue(ArmStringValue stringValue);
+        TResult VisitStringValue(ArmStringLiteral stringValue);
 
-        TResult VisitNullValue(ArmNullValue nullValue);
+        TResult VisitNullValue(ArmNullLiteral nullValue);
 
-        TResult VisitIntegerValue(ArmIntegerValue integerValue);
+        TResult VisitIntegerValue(ArmIntegerLiteral integerValue);
 
-        TResult VisitDoubleValue(ArmDoubleValue doubleValue);
+        TResult VisitDoubleValue(ArmDoubleLiteral doubleValue);
 
-        TResult VisitBooleanValue(ArmBooleanValue booleanValue);
+        TResult VisitBooleanValue(ArmBooleanLiteral booleanValue);
 
         TResult VisitArray(ArmArray array);
 

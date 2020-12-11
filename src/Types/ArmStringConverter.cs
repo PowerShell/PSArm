@@ -22,7 +22,7 @@ namespace PSArm.Types
             Type sourceType = sourceValue.GetType();
 
             return sourceType == typeof(string)
-                || sourceType == typeof(ArmStringValue)
+                || sourceType == typeof(ArmStringLiteral)
                 || typeof(ArmOperation).IsAssignableFrom(sourceType);
         }
 
@@ -36,9 +36,9 @@ namespace PSArm.Types
             switch (sourceValue)
             {
                 case string str:
-                    return new ArmStringValue(str);
+                    return new ArmStringLiteral(str);
 
-                case ArmStringValue armStr:
+                case ArmStringLiteral armStr:
                     return armStr;
 
                 case ArmOperation armExpr:

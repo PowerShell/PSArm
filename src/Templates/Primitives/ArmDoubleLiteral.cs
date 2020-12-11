@@ -5,9 +5,9 @@ using System.ComponentModel;
 namespace PSArm.Templates.Primitives
 {
     [TypeConverter(typeof(ArmElementConverter))]
-    public class ArmDoubleValue : ArmValue<double>
+    public class ArmDoubleLiteral : ArmLiteral<double>
     {
-        public ArmDoubleValue(double value) : base(value, ArmType.Double)
+        public ArmDoubleLiteral(double value) : base(value, ArmType.Double)
         {
         }
 

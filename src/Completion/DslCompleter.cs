@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Language;
 using PSArm.Commands;
+using PSArm.Commands.Template;
 using PSArm.Internal;
 using PSArm.Schema;
 
@@ -26,17 +27,17 @@ namespace PSArm.Completion
             { "%", true },
         };
 
-        private static CmdletInfo s_armInfo = new CmdletInfo("New-ArmTemplate", typeof(NewArmTemplateCommand));
+        private static CmdletInfo s_armInfo = new CmdletInfo("New-ArmTemplate", typeof(NewPSArmTemplateCommand));
 
-        private static CmdletInfo s_resourceInfo = new CmdletInfo("New-ArmResource", typeof(NewArmResourceCommand));
+        private static CmdletInfo s_resourceInfo = new CmdletInfo("New-ArmResource", typeof(NewPSArmResourceCommand));
 
-        private static CmdletInfo s_outputInfo = new CmdletInfo("New-ArmOutput", typeof(NewArmOutputCommand));
+        private static CmdletInfo s_outputInfo = new CmdletInfo("New-ArmOutput", typeof(NewPSArmOutputCommand));
 
-        private static CmdletInfo s_propertiesInfo = new CmdletInfo("New-ArmProperties", typeof(NewArmPropertiesCommand));
+        private static CmdletInfo s_propertiesInfo = new CmdletInfo("New-ArmProperties", typeof(NewPSArmPropertiesCommand));
 
-        private static CmdletInfo s_dependsOnInfo = new CmdletInfo("New-ArmDependsOn", typeof(NewArmDependsOnCommand));
+        private static CmdletInfo s_dependsOnInfo = new CmdletInfo("New-ArmDependsOn", typeof(NewPSArmDependsOnCommand));
 
-        private static CmdletInfo s_skuInfo = new CmdletInfo("New-ArmSku", typeof(NewArmSkuCommand));
+        private static CmdletInfo s_skuInfo = new CmdletInfo("New-ArmSku", typeof(NewPSArmSkuCommand));
 
         private static readonly char[] s_typeSplitChars = new [] { '/' };
 

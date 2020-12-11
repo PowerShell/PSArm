@@ -1,4 +1,5 @@
-﻿using PSArm.Templates.Operations;
+﻿using PSArm.Internal;
+using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using System;
 using System.Collections.Generic;
@@ -11,20 +12,20 @@ namespace PSArm.Serialization
         {
             if (s.Length == 0)
             {
-                return new ArmStringValue(string.Empty);
+                return new ArmStringLiteral(string.Empty);
             }
 
             if (s.Length == 1              // All strings of length 1 are literals
                 || s[0] != '['             // ARM expressions start with '['
                 || s[s.Length - 1] != ']') // ARM expressions end with ']'
             {
-                return new ArmStringValue(s);
+                return new ArmStringLiteral(s);
             }
 
             // Starting with '[[' indicates an escaped literal
             if (s[1] == '[')
             {
-                return new ArmStringValue(s.Substring(1));
+                return new ArmStringLiteral(s.Substring(1));
             }
 
             return ParseWithTokenizer(s);
@@ -56,7 +57,7 @@ namespace PSArm.Serialization
                     {
                         throw Error($"Expected a literal token but found a string in '{tokenizer.Input}' at index {tokenizer.PreviousIndex}");
                     }
-                    return new ArmStringValue(((ArmExpressionStringToken)token).Value);
+                    return new ArmStringLiteral(token.CoerceToString());
 
                 case ArmExpressionTokenType.Identifier:
                     return ParseIdentifierExpression(ref tokenizer, (ArmExpressionIdentifierToken)token);
@@ -97,15 +98,15 @@ namespace PSArm.Serialization
                         break;
 
                     case ArmExpressionTokenType.String:
-                        arguments.Add(new ArmStringValue(((ArmExpressionStringToken)token).Value));
+                        arguments.Add(new ArmStringLiteral(token.CoerceToString()));
                         break;
 
                     case ArmExpressionTokenType.Integer:
-                        arguments.Add(new ArmIntegerValue(((ArmExpressionIntegerToken)token).Value));
+                        arguments.Add(new ArmIntegerLiteral(token.CoerceToLong()));
                         break;
 
                     case ArmExpressionTokenType.Boolean:
-                        arguments.Add(ArmBooleanValue.FromBool(((ArmExpressionBooleanToken)token).Value));
+                        arguments.Add(ArmBooleanLiteral.FromBool(token.CoerceToBool()));
                         break;
 
                     case ArmExpressionTokenType.CloseParen:
@@ -135,7 +136,7 @@ namespace PSArm.Serialization
                 }
             }
 
-            return new ArmFunctionCallExpression(new ArmStringValue(identifier.Identifier), arguments.ToArray());
+            return new ArmFunctionCallExpression(new ArmStringLiteral(identifier.Identifier), arguments.ToArray());
         }
 
         private ArmOperation ParseDotExpression(ref ArmExpressionTokenizer tokenizer, ArmOperation lhs)
@@ -149,7 +150,7 @@ namespace PSArm.Serialization
                     switch (token.Type)
                     {
                         case ArmExpressionTokenType.Identifier:
-                            return ParseDotExpression(ref tokenizer, new ArmMemberAccessExpression(lhs, new ArmStringValue(((ArmExpressionIdentifierToken)token).Identifier)));
+                            return ParseDotExpression(ref tokenizer, new ArmMemberAccessExpression(lhs, new ArmStringLiteral(((ArmExpressionIdentifierToken)token).Identifier)));
 
                         default:
                             throw Error($"Expected token of type '{ArmExpressionTokenType.Identifier}' after '.' but instead got '{token}' at index {tokenizer.PreviousIndex} in input '{tokenizer.Input}'");

@@ -5,9 +5,9 @@ using System.ComponentModel;
 namespace PSArm.Templates.Primitives
 {
     [TypeConverter(typeof(ArmElementConverter))]
-    public sealed class ArmIntegerValue : ArmValue<long>
+    public sealed class ArmIntegerLiteral : ArmLiteral<long>
     {
-        public ArmIntegerValue(long value) : base(value, ArmType.Int)
+        public ArmIntegerLiteral(long value) : base(value, ArmType.Int)
         {
         }
 

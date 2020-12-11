@@ -1,4 +1,5 @@
-﻿using PSArm.Templates;
+﻿using PSArm.Internal;
+using PSArm.Templates;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
@@ -51,7 +52,7 @@ namespace PSArm.Serialization
             return null;
         }
 
-        public object VisitBooleanValue(ArmBooleanValue booleanValue)
+        public object VisitBooleanValue(ArmBooleanLiteral booleanValue)
         {
             if (booleanValue.Value)
             {
@@ -64,7 +65,7 @@ namespace PSArm.Serialization
             return null;
         }
 
-        public object VisitDoubleValue(ArmDoubleValue doubleValue)
+        public object VisitDoubleValue(ArmDoubleLiteral doubleValue)
         {
             Write(doubleValue.Value.ToString());
             return null;
@@ -77,7 +78,7 @@ namespace PSArm.Serialization
                 Write("(");
             }
 
-            Write(((ArmStringValue)functionCall.Function).Value);
+            Write(functionCall.Function.CoerceToString());
 
             _needParensStack.Push(true);
 
@@ -121,7 +122,7 @@ namespace PSArm.Serialization
             return null;
         }
 
-        public object VisitIntegerValue(ArmIntegerValue integerValue)
+        public object VisitIntegerValue(ArmIntegerLiteral integerValue)
         {
             Write(integerValue.Value.ToString());
             return null;
@@ -137,12 +138,12 @@ namespace PSArm.Serialization
 
             Write(".");
 
-            Write(((ArmStringValue)memberAccess.Member).Value);
+            Write(memberAccess.Member.CoerceToString());
 
             return null;
         }
 
-        public object VisitNullValue(ArmNullValue nullValue)
+        public object VisitNullValue(ArmNullLiteral nullValue)
         {
             Write("$null");
             return null;
@@ -159,7 +160,7 @@ namespace PSArm.Serialization
                     Write(";");
                 }
 
-                ((ArmStringValue)entry.Key).Visit(this);
+                entry.Key.CoerceToLiteral().Visit(this);
                 Write("=");
                 entry.Value.Visit(this);
 
@@ -183,7 +184,7 @@ namespace PSArm.Serialization
         public object VisitParameterReference(ArmParameterReferenceExpression parameterReference)
         {
             Write("$");
-            Write(((ArmStringValue)parameterReference.ReferenceName).Value);
+            Write(parameterReference.ReferenceName.CoerceToString());
             return null;
         }
 
@@ -197,7 +198,7 @@ namespace PSArm.Serialization
             throw CreateInvalidException(sku);
         }
 
-        public object VisitStringValue(ArmStringValue stringValue)
+        public object VisitStringValue(ArmStringLiteral stringValue)
         {
             Write("'");
             Write(stringValue.Value.Replace("'", "''"));
@@ -218,7 +219,7 @@ namespace PSArm.Serialization
         public object VisitVariableReference(ArmVariableReferenceExpression variableReference)
         {
             Write("$");
-            Write(((ArmStringValue)variableReference.ReferenceName).Value);
+            Write(variableReference.ReferenceName.CoerceToString());
             return null;
         }
 

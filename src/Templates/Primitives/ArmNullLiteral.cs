@@ -5,11 +5,11 @@ using System.ComponentModel;
 namespace PSArm.Templates.Primitives
 {
     [TypeConverter(typeof(ArmElementConverter))]
-    public sealed class ArmNullValue : ArmValue<object>
+    public sealed class ArmNullLiteral : ArmLiteral<object>
     {
-        public static new ArmNullValue Value { get; } = new ArmNullValue();
+        public static new ArmNullLiteral Value { get; } = new ArmNullLiteral();
 
-        private ArmNullValue() : base(null, ArmType.Object)
+        private ArmNullLiteral() : base(null, ArmType.Object)
         {
         }
 

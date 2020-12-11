@@ -1,4 +1,5 @@
-﻿using PSArm.Templates.Operations;
+﻿using PSArm.Internal;
+using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
 using PSArm.Types;
@@ -40,7 +41,7 @@ namespace PSArm.Templates
 
         public ArmParameterReferenceExpression GetReference()
         {
-            string typeName = ((ArmStringValue)Type).Value;
+            string typeName = Type.CoerceToString();
             if (!ArmTypeConversion.TryConvertToArmType(typeName, out ArmType? armType))
             {
                 throw new InvalidOperationException($"Cannot create reference for ARM parameter of invalid type '{typeName}'");

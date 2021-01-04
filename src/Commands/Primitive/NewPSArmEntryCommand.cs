@@ -8,10 +8,12 @@ using System.Text;
 
 namespace PSArm.Commands.Primitive
 {
-    [Alias("RawEntry")]
+    [Alias(Name)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Entry", DefaultParameterSetName = "Value")]
     public class NewPSArmEntryCommand : PSArmKeywordCommand
     {
+        internal const string Name = "RawEntry";
+
         [Parameter(Mandatory = true, Position = 0)]
         public IArmString Key { get; set; }
 

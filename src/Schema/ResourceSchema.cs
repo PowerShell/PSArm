@@ -40,7 +40,7 @@ namespace PSArm.Schema
         {
             _typeLoader = typeLoader;
             _resourceTypeLocation = resourceTypeLocation;
-            _typeLazy = new Lazy<ResourceType>(this.LoadResourceType);
+            _typeLazy = new Lazy<ResourceType>(LoadResourceType);
             _propertiesLazy = new Lazy<ResourcePropertyProfile>(CreatePropertyProfile);
             Name = providerName;
             Namespace = providerNamespace;
@@ -59,6 +59,10 @@ namespace PSArm.Schema
 
         public HashSet<string> SupportedResourceProperties => _propertiesLazy.Value.TopLevelDefaultProperties;
 
+        public string Discriminator => _propertiesLazy.Value.Discriminator;
+
+        public IReadOnlyDictionary<string, ITypeReference> DiscriminatedSubtypes => _propertiesLazy.Value.DiscriminatedSubtypes;
+
         private ResourceType LoadResourceType()
         {
             return _typeLoader.LoadResourceType(_resourceTypeLocation);
@@ -69,24 +73,51 @@ namespace PSArm.Schema
             switch (BicepType.Body.Type)
             {
                 case ObjectType objectBody:
-                    var table = new Dictionary<string, TypeBase>();
-                    var defaults = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                    foreach (KeyValuePair<string, ObjectProperty> propertyEntry in objectBody.Properties)
-                    {
-                        if (s_defaultTopLevelProperties.Contains(propertyEntry.Key))
-                        {
-                            defaults.Add(propertyEntry.Key);
-                            continue;
-                        }
+                    return AssemblePropertyProfile(
+                        objectBody.Properties,
+                        additionalProperties: objectBody.AdditionalProperties?.Type);
 
-                        table[propertyEntry.Key] = propertyEntry.Value.Type.Type;
-                    }
-                    return new ResourcePropertyProfile(table, defaults);
+                case DiscriminatedObjectType discriminatedBody:
+                    return AssemblePropertyProfile(
+                        discriminatedBody.BaseProperties,
+                        discriminator: discriminatedBody.Discriminator,
+                        discriminatedSubtypes: discriminatedBody.Elements);
 
                 default:
-                    Console.WriteLine($"No body generated for property of type '{BicepType.Body.Type.GetType()}'");
-                    return null;
+                    throw new InvalidOperationException($"No body generated for property of type '{BicepType.Body.Type.GetType()}'");
             }
+        }
+
+        private ResourcePropertyProfile AssemblePropertyProfile(
+            IDictionary<string, ObjectProperty> baseProperties,
+            TypeBase additionalProperties = null,
+            string discriminator = null,
+            IDictionary<string, ITypeReference> discriminatedSubtypes = null)
+        {
+            if (additionalProperties is not null)
+            {
+                if (additionalProperties is not ObjectType)
+                {
+
+                }
+            }
+
+            var table = new Dictionary<string, TypeBase>();
+            var defaults = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (KeyValuePair<string, ObjectProperty> propertyEntry in baseProperties)
+            {
+                if (s_defaultTopLevelProperties.Contains(propertyEntry.Key))
+                {
+                    defaults.Add(propertyEntry.Key);
+                    continue;
+                }
+
+                table[propertyEntry.Key] = propertyEntry.Value.Type.Type;
+            }
+
+            return discriminator is null
+                ? new ResourcePropertyProfile(table, defaults)
+                : new ResourcePropertyProfile(table, defaults, discriminator, discriminatedSubtypes);
         }
 
         private class ResourcePropertyProfile
@@ -99,9 +130,24 @@ namespace PSArm.Schema
                 TopLevelDefaultProperties = topLevelDefaultProperties;
             }
 
+            public ResourcePropertyProfile(
+                IReadOnlyDictionary<string, TypeBase> propertyTable,
+                HashSet<string> topLevelDefaultProperties,
+                string discriminator,
+                IDictionary<string, ITypeReference> discriminatedSubtypes)
+                : this(propertyTable, topLevelDefaultProperties)
+            {
+                Discriminator = discriminator;
+                DiscriminatedSubtypes = (IReadOnlyDictionary<string, ITypeReference>)discriminatedSubtypes;
+            }
+
             public IReadOnlyDictionary<string, TypeBase> PropertyTable { get; }
 
             public HashSet<string> TopLevelDefaultProperties { get; }
+
+            public string Discriminator { get; }
+
+            public IReadOnlyDictionary<string, ITypeReference> DiscriminatedSubtypes { get; }
         }
     }
 }

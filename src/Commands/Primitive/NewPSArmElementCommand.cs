@@ -8,7 +8,7 @@ namespace PSArm.Commands.Primitive
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Element", DefaultParameterSetName = "Value")]
     public class NewPSArmElementCommand : PSArmKeywordCommand
     {
-        internal const string Name = "RawElement";
+        internal const string Name = "ArmElement";
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Value")]
         public ArmElement Value { get; set; }

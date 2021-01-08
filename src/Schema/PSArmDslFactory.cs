@@ -1,6 +1,7 @@
 ﻿using Azure.Bicep.Types.Concrete;
 using PSArm.Commands.Primitive;
 using PSArm.Serialization;
+using PSArm.Templates.Primitives;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,10 @@ namespace PSArm.Schema
 {
     public class PSArmDslFactory
     {
-        public Dictionary<string, ScriptBlock> CreateResourceDslContext(IReadOnlyDictionary<string, TypeBase> resourceSchema)
+        public Dictionary<string, ScriptBlock> CreateResourceDslContext(
+            IReadOnlyDictionary<string, TypeBase> resourceSchema,
+            string discriminator,
+            IReadOnlyDictionary<string, ITypeReference> discriminatedSubtypes)
         {
             var functionDictionary = new Dictionary<string, ScriptBlock>();
 
@@ -24,6 +28,11 @@ namespace PSArm.Schema
                 }
             }
 
+            // TODO: Implemente discriminated properties
+            // - Ensure a discriminator parameter is available on the resource command
+            // - Define a function that conditionally defines the correct keywords depending on the discriminator and add it to the context table here
+            // - Dot-source that function with the discriminator parameter when the resource is invoked
+
             return functionDictionary;
         }
     }
@@ -31,6 +40,8 @@ namespace PSArm.Schema
     internal class PSArmDslWriter
     {
         private const string BodyKeywordBodyParameter = "Body";
+
+        private static readonly char[] s_badFunctionPrefixes = new[] { '@' };
 
         private readonly PowerShellWriter _writer;
 
@@ -43,15 +54,31 @@ namespace PSArm.Schema
         }
 
         public void WriteSchemaDefinition(string keyword, TypeBase resourceSchema)
-            => WriteKeywordDefinitionBody(keyword, resourceSchema, forArray: false);
+        {
+            string sanitizedKeyword = keyword.Trim(s_badFunctionPrefixes);
+            _keywordsInScope.Push(new ScopedKeyword(sanitizedKeyword, resourceSchema));
+            WriteKeywordDefinitionBody(sanitizedKeyword, resourceSchema, forArray: false);
+            _keywordsInScope.Pop();
+        }
 
         private void WriteKeywordDefinition(string keyword, TypeBase schema, bool forArray = false)
         {
-            _writer.OpenFunction(keyword);
+            string sanitizedKeyword = keyword.Trim(s_badFunctionPrefixes);
 
-            WriteKeywordDefinitionBody(keyword, schema, forArray);
+            if (IsKeywordAlreadyDefinedInScope(sanitizedKeyword, schema))
+            {
+                return;
+            }
+
+            _keywordsInScope.Push(new ScopedKeyword(sanitizedKeyword, schema));
+
+            _writer.OpenFunction(sanitizedKeyword);
+
+            WriteKeywordDefinitionBody(sanitizedKeyword, schema, forArray);
 
             _writer.CloseFunction();
+
+            _keywordsInScope.Pop();
         }
 
         private void WriteKeywordDefinitionBody(string keyword, TypeBase schema, bool forArray)
@@ -95,10 +122,11 @@ namespace PSArm.Schema
         {
             if (forArray)
             {
-                throw new InvalidOperationException($"Unsupported nested array type for keyword '{keyword}'");
+                WriteArrayBodyKeywordDefinition(keyword, array.ItemType.Type, nestingDepth: 2);
+                return;
             }
 
-            WriteKeywordDefinition(keyword, array.ItemType.Type, forArray: true);
+            WriteKeywordDefinitionBody(keyword, array.ItemType.Type, forArray: true);
         }
 
         private void WriteKeywordDefinitionBody(string keyword, DiscriminatedObjectType discriminatedType, bool forArray)
@@ -110,6 +138,110 @@ namespace PSArm.Schema
             //  - Define the functions for the base properties
             //  - Conditionally define the subclass properties
             //  - Invoke the call as normal
+
+            // Define the body and discriminator parameters
+            _writer.OpenParamBlock()
+                .OpenAttribute("Parameter")
+                        .Write("Mandatory = $true, Position = 0")
+                        .CloseAttribute()
+                        .WriteLine()
+                    .WriteType("scriptblock")
+                        .WriteLine()
+                    .WriteVariable(BodyKeywordBodyParameter)
+                    .Write(",")
+                    .WriteLine()
+                .OpenAttribute("Parameter")
+                        .Write("Mandatory = $true")
+                        .CloseAttribute()
+                        .WriteLine()
+                    .OpenAttribute("ValidateSet")
+                        .Intersperse(
+                            entry => _writer.Write(entry),
+                            ", ",
+                            (IReadOnlyCollection<string>)discriminatedType.Elements.Keys)
+                        .CloseAttribute()
+                        .WriteLine()
+                    .WriteType("string")
+                        .WriteLine()
+                    .WriteVariable(discriminatedType.Discriminator)
+                .CloseParamBlock()
+                .WriteLine();
+
+            // Define all the common base properties as functions
+            bool needNewline = false;
+            foreach (KeyValuePair<string, ObjectProperty> baseProperty in discriminatedType.BaseProperties)
+            {
+                if (needNewline)
+                {
+                    _writer.WriteLine();
+                }
+
+                WriteKeywordDefinition(baseProperty.Key, baseProperty.Value.Type.Type);
+
+                needNewline = true;
+            }
+
+            // Conditionally define the functions in a switch statement
+            _writer
+                .Write("switch (")
+                    .WriteVariable(discriminatedType.Discriminator)
+                    .Write(")")
+                .OpenBlock();
+
+            needNewline = false;
+            foreach (KeyValuePair<string, ITypeReference> discriminatedSchemaEntry in discriminatedType.Elements)
+            {
+                if (needNewline)
+                {
+                    _writer.WriteLine();
+                }
+
+                _writer.WriteValue(discriminatedSchemaEntry.Key)
+                    .OpenBlock();
+
+                TypeBase discriminatedSchema = discriminatedSchemaEntry.Value.Type;
+                switch (discriminatedSchema)
+                {
+                    case ObjectType objectType:
+                        foreach (KeyValuePair<string, ObjectProperty> discriminatedProperty in objectType.Properties)
+                        {
+                            if (discriminatedProperty.Key.Equals(discriminatedType.Discriminator))
+                            {
+                                continue;
+                            }
+
+                            if (needNewline)
+                            {
+                                _writer.WriteLine();
+                            }
+
+                            WriteKeywordDefinition(discriminatedProperty.Key, discriminatedProperty.Value.Type.Type);
+
+                            needNewline = true;
+                        }
+                        break;
+
+                    default:
+                        throw new InvalidOperationException($"Unsupported discriminated schema entry of type '{discriminatedSchema.GetType()}'");
+                }
+
+                _writer.CloseBlock();
+
+                needNewline = true;
+            }
+
+            _writer
+                .CloseBlock()
+                .WriteLine();
+
+            _writer
+                .WriteCommand(NewPSArmEntryCommand.Name)
+                    .WriteParameter(nameof(NewPSArmEntryCommand.Key))
+                        .WriteSpace()
+                        .WriteValue(keyword)
+                    .WriteParameter(nameof(NewPSArmEntryCommand.Body))
+                        .WriteSpace()
+                        .WriteVariable(BodyKeywordBodyParameter);
         }
 
         private void WriteKeywordDefinitionBody(string keyword, ObjectType objectType, bool forArray)
@@ -120,11 +252,11 @@ namespace PSArm.Schema
                         .CloseAttribute()
                         .WriteLine()
                     .WriteType("scriptblock")
+                        .WriteLine()
                     .WriteVariable(BodyKeywordBodyParameter)
                 .CloseParamBlock()
                 .WriteLine();
 
-            _keywordsInScope.Push(new ScopedKeyword(keyword, objectType));
             foreach (KeyValuePair<string, ObjectProperty> entry in objectType.Properties)
             {
                 WriteKeywordDefinition(entry.Key, entry.Value.Type.Type);
@@ -134,8 +266,10 @@ namespace PSArm.Schema
             _writer
                 .WriteCommand(NewPSArmEntryCommand.Name)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Key))
+                        .WriteSpace()
                         .WriteValue(keyword)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Body))
+                        .WriteSpace()
                         .WriteVariable(BodyKeywordBodyParameter);
         }
 
@@ -163,10 +297,10 @@ namespace PSArm.Schema
             _writer
                 .WriteCommand(NewPSArmEntryCommand.Name)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Key))
-                        .Write(" ")
+                        .WriteSpace()
                         .WriteValue(keyword)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Value))
-                        .Write(" ")
+                        .WriteSpace()
                         .WriteVariable("Value");
 
             if (forArray)
@@ -177,45 +311,64 @@ namespace PSArm.Schema
 
         private void WriteKeywordDefinitionBody(string keyword, ResourceType resource, bool forArray)
         {
-
+            throw new InvalidOperationException($"Cannot define a keyword for resource types");
         }
 
         private void WriteKeywordDefinitionBody(string keyword, StringLiteralType stringLiteral, bool forArray)
         {
-
+            WriteKeywordDefinitionBodyForEnumValues(keyword, new string[] { stringLiteral.Value }, forArray);
         }
 
         private void WriteKeywordDefinitionBody(string keyword, UnionType union, bool forArray)
         {
             IReadOnlyList<string> enumValues = GetEnumValuesFromUnionElements(union.Elements);
+            WriteKeywordDefinitionBodyForEnumValues(keyword, enumValues, forArray);
+        }
+
+        private void WriteKeywordDefinitionBodyForEnumValues(string keyword, IReadOnlyList<string> enumValues, bool forArray)
+        {
+            // TODO: Move from ValidateSet to an ARM-enlightened validation function
 
             _writer
                 .OpenParamBlock()
                     .OpenAttribute("Parameter")
                         .Write("Mandatory = $true, Position = 0")
                         .CloseAttribute()
+                        .WriteLine()
                     .OpenAttribute("ValidateSet")
                         .Intersperse(
                             (s) => _writer.WriteValue(s),
-                            () => _writer.Write(", "),
+                            ", ",
                             enumValues)
                         .CloseAttribute()
+                        .WriteLine()
                     .WriteType("string")
+                        .WriteLine()
                     .WriteVariable("Value")
                     .CloseParamBlock()
                 .WriteLine()
                 .WriteCommand(NewPSArmEntryCommand.Name)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Key))
-                        .Write(" ")
+                        .WriteSpace()
                         .WriteValue(keyword)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Value))
-                        .Write(" ")
+                        .WriteSpace()
                         .WriteVariable("Value");
 
             if (forArray)
             {
                 _writer.WriteParameter(nameof(NewPSArmEntryCommand.Array));
             }
+        }
+
+        private void WriteKeywordNestedFunctionDefinitions(ObjectType objectSchema)
+        {
+
+        }
+
+        private void WriteKeywordNestedFunctionDefinitions(DiscriminatedObjectType discriminatedSchema)
+        {
+
         }
 
         private IReadOnlyList<string> GetEnumValuesFromUnionElements(IReadOnlyList<ITypeReference> elementTypes)
@@ -265,6 +418,20 @@ namespace PSArm.Schema
             }
         }
 
+        private bool IsKeywordAlreadyDefinedInScope(string keyword, TypeBase schema)
+        {
+            foreach (ScopedKeyword scopedKeyword in _keywordsInScope)
+            {
+                if (scopedKeyword.Keyword.Equals(keyword)
+                    && scopedKeyword.Schema.Equals(schema))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private readonly struct ScopedKeyword
         {
             public ScopedKeyword(
@@ -289,7 +456,7 @@ namespace PSArm.Schema
             var factory = new PSArmDslFactory();
             foreach (ResourceSchema schema in index.GetResourceSchemas())
             {
-                factory.CreateResourceDslContext(schema.Properties);
+                factory.CreateResourceDslContext(schema.Properties, schema.Discriminator, schema.DiscriminatedSubtypes);
             }
         }
     }

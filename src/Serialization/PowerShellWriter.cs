@@ -74,12 +74,14 @@ namespace PSArm.Serialization
                 .Write("]");
         }
 
+        public PowerShellWriter WriteSpace() => Write(" ");
+
         public PowerShellWriter Intersperse<T>(
             Action<T> writeElement,
             Action writeSeparator,
             IReadOnlyCollection<T> elements)
         {
-            if (elements == null
+            if (elements is null
                 || elements.Count == 0)
             {
                 return this;
@@ -94,6 +96,35 @@ namespace PSArm.Serialization
                 }
 
                 writeElement(element);
+
+                needsSeparator = true;
+            }
+
+            return this;
+        }
+
+        public PowerShellWriter Intersperse(
+            Action<string> writeElement,
+            string separator,
+            IReadOnlyCollection<string> elements)
+        {
+            if (elements is null
+                || elements.Count == 0)
+            {
+                return this;
+            }
+
+            bool needsSeparator = false;
+            foreach (string element in elements)
+            {
+                if (needsSeparator)
+                {
+                    Write(separator);
+                }
+
+                writeElement(element);
+
+                needsSeparator = true;
             }
 
             return this;

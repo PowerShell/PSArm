@@ -26,11 +26,20 @@ namespace PSArm.Commands.Primitive
         [Parameter]
         public SwitchParameter Array { get; set; }
 
+        [Parameter(ParameterSetName = "Body")]
+        public SwitchParameter ArrayBody { get; set; }
+
         protected override void EndProcessing()
         {
             if (Value != null)
             {
                 WriteArmValueEntry(Key, Value, isArrayElement: Array);
+                return;
+            }
+
+            if (ArrayBody)
+            {
+                WriteArmArrayEntry<ArmArray>(Key, Body, isArrayElement: Array);
                 return;
             }
 

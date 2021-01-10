@@ -98,9 +98,10 @@ namespace PSArm.Schema
             {
                 if (additionalProperties is not ObjectType)
                 {
-
                 }
             }
+
+            // TODO: Additional properties
 
             var table = new Dictionary<string, TypeBase>();
             var defaults = new HashSet<string>(StringComparer.OrdinalIgnoreCase);

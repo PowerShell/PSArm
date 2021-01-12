@@ -203,7 +203,12 @@ namespace PSArm.Schema
 
             WriteKeywordNestedFunctionDefinitions(discriminatedType, discriminatorName);
 
-            WritePrimitiveInvocation(armKey, KeywordArgumentKind.Body, arrayDepth);
+            WritePrimitiveInvocation(
+                armKey,
+                KeywordArgumentKind.Body,
+                arrayDepth,
+                discriminatorKey: discriminatedType.Discriminator,
+                discriminatorVariable: discriminatorName);
         }
 
         private void WriteKeywordDefinitionBody(string armKey, ObjectType objectType, int arrayDepth)
@@ -322,20 +327,20 @@ namespace PSArm.Schema
             KeywordArgumentKind argumentKind,
             int arrayDepth,
             string discriminatorKey = null,
-            string discriminatorValue = null)
+            string discriminatorVariable = null)
         {
             switch (arrayDepth)
             {
                 case 0:
-                    WritePrimitiveInvocation(keyword, argumentKind, discriminatorKey: discriminatorKey, discriminatorValue: discriminatorValue);
+                    WritePrimitiveInvocation(keyword, argumentKind, discriminatorKey: discriminatorKey, discriminatorVariable: discriminatorVariable);
                     return;
 
                 case 1:
-                    WritePrimitiveInvocation(keyword, argumentKind, KeywordArrayKind.Entry, discriminatorKey, discriminatorValue);
+                    WritePrimitiveInvocation(keyword, argumentKind, KeywordArrayKind.Entry, discriminatorKey, discriminatorVariable);
                     return;
 
                 default:
-                    WritePrimitiveInvocation(keyword, KeywordArgumentKind.Body, KeywordArrayKind.NestedBody, discriminatorKey, discriminatorValue);
+                    WritePrimitiveInvocation(keyword, KeywordArgumentKind.Body, KeywordArrayKind.NestedBody, discriminatorKey, discriminatorVariable);
                     return;
             }
         }
@@ -345,7 +350,7 @@ namespace PSArm.Schema
             KeywordArgumentKind argumentKind,
             KeywordArrayKind arrayKind = KeywordArrayKind.None,
             string discriminatorKey = null,
-            string discriminatorValue = null)
+            string discriminatorVariable = null)
         {
             _writer
                 .WriteCommand(NewPSArmEntryCommand.Name)
@@ -361,7 +366,7 @@ namespace PSArm.Schema
                         .WriteValue(discriminatorKey)
                     .WriteParameter(nameof(NewPSArmEntryCommand.DiscriminatorValue))
                         .WriteSpace()
-                        .WriteValue(discriminatorValue);
+                        .WriteVariable(discriminatorVariable);
             }
 
             switch (argumentKind)

@@ -2,6 +2,8 @@
 using Azure.Bicep.Types.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Management.Automation;
 
 namespace PSArm.Schema
 {
@@ -31,6 +33,8 @@ namespace PSArm.Schema
 
         private readonly Lazy<ResourcePropertyProfile> _propertiesLazy;
 
+        private readonly Lazy<ResourceDslDefinition> _dslDefinitionsLazy;
+
         public ResourceSchema(
             ITypeLoader typeLoader,
             TypeLocation resourceTypeLocation,
@@ -42,6 +46,7 @@ namespace PSArm.Schema
             _resourceTypeLocation = resourceTypeLocation;
             _typeLazy = new Lazy<ResourceType>(LoadResourceType);
             _propertiesLazy = new Lazy<ResourcePropertyProfile>(CreatePropertyProfile);
+            _dslDefinitionsLazy = new Lazy<ResourceDslDefinition>(CreateResourceDefinition);
             Name = providerName;
             Namespace = providerNamespace;
             ApiVersion = apiVersion;
@@ -62,6 +67,12 @@ namespace PSArm.Schema
         public string Discriminator => _propertiesLazy.Value.Discriminator;
 
         public IReadOnlyDictionary<string, ITypeReference> DiscriminatedSubtypes => _propertiesLazy.Value.DiscriminatedSubtypes;
+
+        public string[] AllowedDiscriminatorValues => _propertiesLazy.Value.AllowedDiscriminatorValues;
+
+        public Dictionary<string, ScriptBlock> KeywordDefinitions => _dslDefinitionsLazy.Value.ResourceKeywordDefinitions;
+
+        public IReadOnlyDictionary<string, Dictionary<string, ScriptBlock>> DiscriminatedKeywords => _dslDefinitionsLazy.Value.DiscriminatedKeywordDefinitions;
 
         private ResourceType LoadResourceType()
         {
@@ -143,6 +154,12 @@ namespace PSArm.Schema
             throw new ArgumentException($"Expected ObjectType schema but instead got schema of type '{typeBase.GetType()}'");
         }
 
+        private ResourceDslDefinition CreateResourceDefinition()
+        {
+            return new PSArmDslFactory()
+                .CreateResourceDslDefinition(Properties, DiscriminatedSubtypes);
+        }
+
         private class ResourcePropertyProfile
         {
             public ResourcePropertyProfile(
@@ -162,6 +179,7 @@ namespace PSArm.Schema
             {
                 Discriminator = discriminator;
                 DiscriminatedSubtypes = (IReadOnlyDictionary<string, ITypeReference>)discriminatedSubtypes;
+                AllowedDiscriminatorValues = discriminatedSubtypes.Keys.ToArray();
             }
 
             public IReadOnlyDictionary<string, TypeBase> PropertyTable { get; }
@@ -171,6 +189,8 @@ namespace PSArm.Schema
             public string Discriminator { get; }
 
             public IReadOnlyDictionary<string, ITypeReference> DiscriminatedSubtypes { get; }
+
+            public string[] AllowedDiscriminatorValues { get; }
         }
     }
 }

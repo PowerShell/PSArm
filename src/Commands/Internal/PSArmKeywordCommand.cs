@@ -1,5 +1,6 @@
 ﻿using PSArm.Templates.Builders;
 using PSArm.Templates.Primitives;
+using System;
 using System.Collections.ObjectModel;
 using System.Management.Automation;
 
@@ -112,6 +113,20 @@ namespace PSArm.Commands.Internal
                     key,
                     AggregateArmObject(objectBuilder, body),
                     isArrayElement));
+        }
+
+        protected void ThrowTerminatingError(
+            Exception exception,
+            string errorId,
+            ErrorCategory errorCategory,
+            object target = null)
+        {
+            ThrowTerminatingError(
+                new ErrorRecord(
+                    exception,
+                    errorId,
+                    errorCategory,
+                    target));
         }
     }
 }

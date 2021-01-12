@@ -9,31 +9,91 @@ using System.Management.Automation;
 
 namespace PSArm.Schema
 {
+    public class ResourceDslDefinition
+    {
+        public ResourceDslDefinition(
+            Dictionary<string, ScriptBlock> resourceKeywordDefinitions)
+            : this(resourceKeywordDefinitions, discriminatedKeywordDefinitions: null)
+        {
+        }
+
+        public ResourceDslDefinition(
+            Dictionary<string, ScriptBlock> resourceKeywordDefinitions,
+            IReadOnlyDictionary<string, Dictionary<string, ScriptBlock>> discriminatedKeywordDefinitions)
+        {
+            ResourceKeywordDefinitions = resourceKeywordDefinitions;
+            DiscriminatedKeywordDefinitions = discriminatedKeywordDefinitions;
+        }
+
+        public Dictionary<string, ScriptBlock> ResourceKeywordDefinitions { get; }
+
+        public IReadOnlyDictionary<string, Dictionary<string, ScriptBlock>> DiscriminatedKeywordDefinitions { get; }
+    }
+
     public class PSArmDslFactory
     {
-        public Dictionary<string, ScriptBlock> CreateResourceDslContext(
+        internal const string DiscriminatedResourceFunctionName = "DefineDiscriminatedKeywords";
+
+        public ResourceDslDefinition CreateResourceDslDefinition(
             IReadOnlyDictionary<string, TypeBase> resourceSchema,
-            string discriminator,
             IReadOnlyDictionary<string, ITypeReference> discriminatedSubtypes)
         {
-            var functionDictionary = new Dictionary<string, ScriptBlock>();
+            var functionDictionary = CreateDslDefinitionFromSchema(resourceSchema);
 
-            foreach (KeyValuePair<string, TypeBase> propertySchemaEntry in resourceSchema)
+            if (discriminatedSubtypes is null)
+            {
+                return new ResourceDslDefinition(functionDictionary);
+            }
+
+            // If we have discriminated subtypes for a resource,
+            // define extra function contexts for those.
+            // When invoked, these will then be combined before invocation based on the provided discriminator.
+            var discriminatedFunctions = new Dictionary<string, Dictionary<string, ScriptBlock>>(discriminatedSubtypes.Count);
+            foreach (KeyValuePair<string, ITypeReference> discriminatedSubtype in discriminatedSubtypes)
+            {
+                if (discriminatedSubtype.Value.Type is not ObjectType objectSchema)
+                {
+                    throw new ArgumentException($"Discriminated subtype expected to be of type '{typeof(ObjectType)}' but instead got '{discriminatedSubtype.Value.Type.GetType()}'");
+                }
+
+                discriminatedFunctions[discriminatedSubtype.Key] = CreateDslDefinitionFromSchema(objectSchema.Properties);
+            }
+
+            return new ResourceDslDefinition(functionDictionary, discriminatedFunctions);
+        }
+
+        private Dictionary<string, ScriptBlock> CreateDslDefinitionFromSchema(IReadOnlyDictionary<string, TypeBase> schemaProperties)
+        {
+            var functionDict = new Dictionary<string, ScriptBlock>();
+
+            foreach (KeyValuePair<string, TypeBase> propertySchemaEntry in schemaProperties)
             {
                 using (var sw = new StringWriter())
                 {
                     var writer = new PSArmDslWriter(sw);
-                    writer.WriteSchemaDefinition(propertySchemaEntry.Key, propertySchemaEntry.Value, out string sanitizedKeyword);
-                    functionDictionary[sanitizedKeyword] = ScriptBlock.Create(sw.ToString());
+                    writer.WriteSchemaDefinition(propertySchemaEntry.Key, propertySchemaEntry.Value, out string functionName);
+                    functionDict[functionName] = ScriptBlock.Create(sw.ToString());
                 }
             }
 
-            // TODO: Implement discriminated properties
-            // - Ensure a discriminator parameter is available on the resource command
-            // - Define a function that conditionally defines the correct keywords depending on the discriminator and add it to the context table here
-            // - Dot-source that function with the discriminator parameter when the resource is invoked
+            return functionDict;
+        }
 
-            return functionDictionary;
+        private Dictionary<string, ScriptBlock> CreateDslDefinitionFromSchema(IDictionary<string, ObjectProperty> schemaProperties)
+        {
+            var functionDict = new Dictionary<string, ScriptBlock>();
+
+            foreach (KeyValuePair<string, ObjectProperty> propertySchemaEntry in schemaProperties)
+            {
+                using (var sw = new StringWriter())
+                {
+                    var writer = new PSArmDslWriter(sw);
+                    writer.WriteSchemaDefinition(propertySchemaEntry.Key, propertySchemaEntry.Value.Type.Type, out string functionName);
+                    functionDict[functionName] = ScriptBlock.Create(sw.ToString());
+                }
+            }
+
+            return functionDict;
         }
     }
 
@@ -257,31 +317,52 @@ namespace PSArm.Schema
                 .WriteLine();
         }
 
-        private void WritePrimitiveInvocation(string keyword, KeywordArgumentKind argumentKind, int arrayDepth)
+        private void WritePrimitiveInvocation(
+            string keyword,
+            KeywordArgumentKind argumentKind,
+            int arrayDepth,
+            string discriminatorKey = null,
+            string discriminatorValue = null)
         {
             switch (arrayDepth)
             {
                 case 0:
-                    WritePrimitiveInvocation(keyword, argumentKind);
+                    WritePrimitiveInvocation(keyword, argumentKind, discriminatorKey: discriminatorKey, discriminatorValue: discriminatorValue);
                     return;
 
                 case 1:
-                    WritePrimitiveInvocation(keyword, argumentKind, KeywordArrayKind.Entry);
+                    WritePrimitiveInvocation(keyword, argumentKind, KeywordArrayKind.Entry, discriminatorKey, discriminatorValue);
                     return;
 
                 default:
-                    WritePrimitiveInvocation(keyword, KeywordArgumentKind.Body, KeywordArrayKind.NestedBody);
+                    WritePrimitiveInvocation(keyword, KeywordArgumentKind.Body, KeywordArrayKind.NestedBody, discriminatorKey, discriminatorValue);
                     return;
             }
         }
 
-        private void WritePrimitiveInvocation(string keyword, KeywordArgumentKind argumentKind, KeywordArrayKind arrayKind = KeywordArrayKind.None)
+        private void WritePrimitiveInvocation(
+            string keyword,
+            KeywordArgumentKind argumentKind,
+            KeywordArrayKind arrayKind = KeywordArrayKind.None,
+            string discriminatorKey = null,
+            string discriminatorValue = null)
         {
             _writer
                 .WriteCommand(NewPSArmEntryCommand.Name)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Key))
                         .WriteSpace()
                         .WriteValue(keyword);
+
+            if (discriminatorKey is not null)
+            {
+                _writer
+                    .WriteParameter(nameof(NewPSArmEntryCommand.DiscriminatorKey))
+                        .WriteSpace()
+                        .WriteValue(discriminatorKey)
+                    .WriteParameter(nameof(NewPSArmEntryCommand.DiscriminatorValue))
+                        .WriteSpace()
+                        .WriteValue(discriminatorValue);
+            }
 
             switch (argumentKind)
             {
@@ -329,74 +410,97 @@ namespace PSArm.Schema
                 needNewline = true;
             }
 
+            WriteDiscriminatedKeywordDefinitions(discriminatorName, discriminatedType.Discriminator, (IReadOnlyDictionary<string, ITypeReference>)discriminatedType.Elements);
+        }
+
+        private void WriteDiscriminatedKeywordDefinitions(string discriminatorVariable, string discriminatorKey, IReadOnlyDictionary<string, ITypeReference> discriminatedElements)
+        {
             // Conditionally define the functions in a switch statement
-            if (discriminatedType.Elements.Count > 0)
+            if (discriminatedElements.Count == 0)
             {
-                _writer
-                    .Write("switch (")
-                        .WriteVariable(discriminatorName)
-                        .Write(")")
-                    .OpenBlock();
+                return;
+            }
 
-                needNewline = false;
-                foreach (KeyValuePair<string, ITypeReference> discriminatedSchemaEntry in discriminatedType.Elements)
+            _writer
+                .WriteLine()
+                .Write("switch (")
+                    .WriteVariable(discriminatorVariable)
+                    .Write(")")
+                .OpenBlock();
+
+            bool needNewline = false;
+            foreach (KeyValuePair<string, ITypeReference> discriminatedSchemaEntry in discriminatedElements)
+            {
+                if (needNewline)
                 {
-                    if (needNewline)
-                    {
-                        _writer.WriteLine();
-                    }
-
-                    TypeBase discriminatedSchema = discriminatedSchemaEntry.Value.Type;
-                    switch (discriminatedSchema)
-                    {
-                        case ObjectType objectType:
-                            if (objectType.Properties.Count > 0)
-                            {
-                                _writer.WriteValue(discriminatedSchemaEntry.Key)
-                                    .OpenBlock();
-
-                                foreach (KeyValuePair<string, ObjectProperty> discriminatedProperty in objectType.Properties)
-                                {
-                                    if (discriminatedProperty.Key.Equals(discriminatedType.Discriminator))
-                                    {
-                                        continue;
-                                    }
-
-                                    if (needNewline)
-                                    {
-                                        _writer.WriteLine();
-                                    }
-
-                                    WriteKeywordDefinition(discriminatedProperty.Key, discriminatedProperty.Value.Type.Type);
-
-                                    needNewline = true;
-                                }
-
-                                _writer.CloseBlock();
-                            }
-                            break;
-
-                        default:
-                            throw new InvalidOperationException($"Unsupported discriminated schema entry of type '{discriminatedSchema.GetType()}'");
-                    }
-
-                    needNewline = true;
+                    _writer.WriteLine();
                 }
 
-                _writer
-                    .CloseBlock()
-                    .WriteLine();
+                TypeBase discriminatedSchema = discriminatedSchemaEntry.Value.Type;
+                switch (discriminatedSchema)
+                {
+                    case ObjectType objectType:
+                        if (objectType.Properties.Count == 0)
+                        {
+                            continue;
+                        }
+
+                        _writer.WriteValue(discriminatedSchemaEntry.Key)
+                            .OpenBlock();
+
+                        foreach (KeyValuePair<string, ObjectProperty> discriminatedProperty in objectType.Properties)
+                        {
+                            if (discriminatedProperty.Key.Equals(discriminatorKey))
+                            {
+                                continue;
+                            }
+
+                            if (needNewline)
+                            {
+                                _writer.WriteLine();
+                            }
+
+                            WriteKeywordDefinition(discriminatedProperty.Key, discriminatedProperty.Value.Type.Type);
+
+                            needNewline = true;
+                        }
+
+                        _writer
+                            .WriteLine()
+                            .Write("break")
+                            .CloseBlock();
+                        break;
+
+                    default:
+                        throw new InvalidOperationException($"Unsupported discriminated schema entry of type '{discriminatedSchema.GetType()}'");
+                }
+
+                needNewline = true;
             }
+
+            _writer
+                .CloseBlock()
+                .WriteLine();
         }
 
         private void WriteKeywordNestedFunctionDefinitions(ObjectType objectType)
         {
-            // TODO: Additional properties
-
             foreach (KeyValuePair<string, ObjectProperty> entry in objectType.Properties)
             {
                 WriteKeywordDefinition(entry.Key, entry.Value.Type.Type);
                 _writer.WriteLine(lineCount: 2);
+            }
+
+            // TODO: Handle additional properties more intelligently when the type is not ObjectType
+            if (TryGetObjectSchema(objectType.AdditionalProperties, out ObjectType additionalProperties))
+            {
+                // TODO: Ensure the additional properties type doesn't itself have additional properties...
+
+                foreach (KeyValuePair<string, ObjectProperty> entry in additionalProperties.Properties)
+                {
+                    WriteKeywordDefinition(entry.Key, entry.Value.Type.Type);
+                    _writer.WriteLine(lineCount: 2);
+                }
             }
         }
 
@@ -420,6 +524,21 @@ namespace PSArm.Schema
             }
 
             return values;
+        }
+
+        private bool TryGetObjectSchema(ITypeReference typeRef, out ObjectType objectType) => TryGetObjectSchema(typeRef?.Type, out objectType);
+
+        private bool TryGetObjectSchema(TypeBase type, out ObjectType objectType)
+        {
+            if (type is null
+                || type is not ObjectType obj)
+            {
+                objectType = null;
+                return false;
+            }
+
+            objectType = obj;
+            return true;
         }
 
         private bool TryGetTypeNameForBuiltin(BuiltInTypeKind kind, out string typeName)
@@ -509,7 +628,7 @@ namespace PSArm.Schema
             var factory = new PSArmDslFactory();
             foreach (ResourceSchema schema in index.GetResourceSchemas())
             {
-                factory.CreateResourceDslContext(schema.Properties, schema.Discriminator, schema.DiscriminatedSubtypes);
+                factory.CreateResourceDslDefinition(schema.Properties, schema.DiscriminatedSubtypes);
             }
         }
     }

@@ -94,15 +94,6 @@ namespace PSArm.Schema
             string discriminator = null,
             IDictionary<string, ITypeReference> discriminatedSubtypes = null)
         {
-            if (additionalProperties is not null)
-            {
-                if (additionalProperties is not ObjectType)
-                {
-                }
-            }
-
-            // TODO: Additional properties
-
             var table = new Dictionary<string, TypeBase>();
             var defaults = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ObjectProperty> propertyEntry in baseProperties)
@@ -116,9 +107,40 @@ namespace PSArm.Schema
                 table[propertyEntry.Key] = propertyEntry.Value.Type.Type;
             }
 
+            if (TryGetObjectSchema(additionalProperties, out ObjectType additionalPropertiesSchema))
+            {
+                foreach (KeyValuePair<string, ObjectProperty> additionalPropertyEntry in additionalPropertiesSchema.Properties)
+                {
+                    if (s_defaultTopLevelProperties.Contains(additionalPropertyEntry.Key))
+                    {
+                        defaults.Add(additionalPropertyEntry.Key);
+                        continue;
+                    }
+
+                    table[additionalPropertyEntry.Key] = additionalPropertyEntry.Value.Type.Type;
+                }
+            }
+
             return discriminator is null
                 ? new ResourcePropertyProfile(table, defaults)
                 : new ResourcePropertyProfile(table, defaults, discriminator, discriminatedSubtypes);
+        }
+
+        private bool TryGetObjectSchema(TypeBase typeBase, out ObjectType objectType)
+        {
+            if (typeBase is null)
+            {
+                objectType = null;
+                return false;
+            }
+
+            if (typeBase is ObjectType obj)
+            {
+                objectType = obj;
+                return true;
+            }
+
+            throw new ArgumentException($"Expected ObjectType schema but instead got schema of type '{typeBase.GetType()}'");
         }
 
         private class ResourcePropertyProfile

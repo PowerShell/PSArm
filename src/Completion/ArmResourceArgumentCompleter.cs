@@ -2,13 +2,17 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using PSArm.Commands.Template;
+using PSArm.Internal;
 using PSArm.Schema;
+using PSArm.Templates.Primitives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Language;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace PSArm.Completion
@@ -37,75 +41,134 @@ namespace PSArm.Completion
         /// <returns></returns>
         public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
-            if (IsString(parameterName, "Provider"))
-            {
-                var completions = new List<CompletionResult>();
-                string apiVersion = fakeBoundParameters.Contains("ApiVersion")
-                    ? (string)fakeBoundParameters["ApiVersion"]
-                    : null;
+            (string provider, string type, string apiVersion) = GetConstrainingParameters(fakeBoundParameters);
 
-                foreach (string providerName in DslLoader.Instance.ListSchemaProviders(apiVersion))
+            if (IsString(parameterName, nameof(NewPSArmResourceCommand.Provider)))
+            {
+                var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
                 {
-                    if (string.IsNullOrEmpty(providerName))
+                    if (apiVersion is not null
+                        && !resource.ApiVersion.StartsWith(apiVersion))
                     {
                         continue;
                     }
 
-                    if (providerName.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
+                    if (type is not null
+                        && !resource.Name.StartsWith(type))
                     {
-                        completions.Add(new CompletionResult(providerName, providerName, CompletionResultType.ParameterValue, providerName));
+                        continue;
                     }
+
+                    if (wordToComplete is not null
+                        && !resource.Namespace.StartsWith(wordToComplete))
+                    {
+                        continue;
+                    }
+
+                    providerCompletions.Add(resource.Namespace);
                 }
 
-                return completions;
+                return GetCompletionResultsFromStrings(providerCompletions);
             }
 
-            if (IsString(parameterName, "Type"))
+            if (IsString(parameterName, nameof(NewPSArmResourceCommand.Type)))
             {
-                var completions = new List<CompletionResult>();
-
-                string apiVersion = (string)fakeBoundParameters["ApiVersion"];
-                string provider = (string)fakeBoundParameters["Provider"];
-
-                // We can't hope to load all schemas, if we have no version
-                if (apiVersion == null || provider == null)
+                var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
                 {
-                    return Enumerable.Empty<CompletionResult>();
-                }
-
-                if (DslLoader.Instance.TryLoadDsl(provider, apiVersion, out ArmProviderDslInfo dslInfo))
-                {
-                    foreach (string resourceType in dslInfo.ProviderSchema.Resources.Keys)
+                    if (apiVersion is not null
+                        && !resource.ApiVersion.StartsWith(apiVersion))
                     {
-                        if (resourceType.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
-                        {
-                            completions.Add(new CompletionResult(resourceType, resourceType, CompletionResultType.ParameterValue, resourceType));
-                        }
+                        continue;
                     }
+
+                    if (provider is not null
+                        && !resource.Namespace.StartsWith(provider))
+                    {
+                        continue;
+                    }
+
+                    if (wordToComplete is not null
+                        && !resource.Name.StartsWith(wordToComplete))
+                    {
+                        continue;
+                    }
+
+                    providerCompletions.Add(resource.Name);
                 }
 
-                return completions;
+                return GetCompletionResultsFromStrings(providerCompletions);
             }
 
-            if (IsString(parameterName, "ApiVersion"))
+            if (IsString(parameterName, nameof(NewPSArmResourceCommand.ApiVersion)))
             {
-                string providerName = fakeBoundParameters.Contains("Provider")
-                    ? (string)fakeBoundParameters["Provider"]
-                    : null;
-
-                var completions = new List<CompletionResult>();
-                foreach (string apiVersion in DslLoader.Instance.ListSchemaVersions(providerName))
+                var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
                 {
-                    if (apiVersion.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase))
+                    if (provider is not null
+                        && !resource.Namespace.StartsWith(provider))
                     {
-                        completions.Add(new CompletionResult(apiVersion, apiVersion, CompletionResultType.ParameterValue, apiVersion));
+                        continue;
                     }
+
+                    if (type is not null
+                        && !resource.Name.StartsWith(type))
+                    {
+                        continue;
+                    }
+
+                    if (wordToComplete is not null
+                        && !resource.ApiVersion.StartsWith(wordToComplete))
+                    {
+                        continue;
+                    }
+
+                    providerCompletions.Add(resource.ApiVersion);
                 }
 
-                return completions;
+                return GetCompletionResultsFromStrings(providerCompletions);
             }
 
             return null;
+        }
+
+        private (string provider, string type, string apiVersion) GetConstrainingParameters(IDictionary fakeBoundParameters)
+        {
+            string provider = null;
+            string type = null;
+            string apiVersion = null;
+
+            if (fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Provider), out IArmString providerArmStr)
+                && providerArmStr is ArmStringLiteral providerLiteral)
+            {
+                provider = providerLiteral.Value;
+            }
+
+            if (fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Type), out IArmString typeArmStr)
+                && typeArmStr is ArmStringLiteral typeLiteral)
+            {
+                type = typeLiteral.Value;
+            }
+
+            if (fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.ApiVersion), out IArmString apiVersionArmStr)
+                && apiVersionArmStr is ArmStringLiteral apiVersionLiteral)
+            {
+                apiVersion = apiVersionLiteral.Value;
+            }
+
+            return (provider, type, apiVersion);
+        }
+
+        private static IEnumerable<CompletionResult> GetCompletionResultsFromStrings(IReadOnlyCollection<string> stringValues)
+        {
+            var completions = new CompletionResult[stringValues.Count];
+            int i = 0;
+            foreach (string str in stringValues)
+            {
+                completions[i] = new CompletionResult(str, str, CompletionResultType.ParameterValue, str);
+            }
+            return completions;
         }
 
         private static bool IsString(string str, string expected)

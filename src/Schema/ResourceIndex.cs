@@ -13,6 +13,8 @@ namespace PSArm.Schema
 
         private readonly Lazy<ResourceIndexResult> _resourceSchemasLazy;
 
+        private readonly Lazy<IReadOnlyDictionary<string, TypeLocation>> _typeLocationTableLazy;
+
         private IQueryable<ResourceSchema> ResourceSchemas => _resourceSchemasLazy.Value.ResourcesQueryable;
 
         private IReadOnlyDictionary<string, IReadOnlyDictionary<string, IReadOnlyDictionary<string, ResourceSchema>>> ResourceSchemaTable => _resourceSchemasLazy.Value.ResourcesDictionary;
@@ -25,8 +27,11 @@ namespace PSArm.Schema
         public ResourceIndex(ITypeLoader typeLoader)
         {
             _typeLoader = typeLoader;
+            _typeLocationTableLazy = new Lazy<IReadOnlyDictionary<string, TypeLocation>>(GetAllAvailableTypeLocations);
             _resourceSchemasLazy = new Lazy<ResourceIndexResult>(LoadResourceSchemas);
         }
+
+        private IReadOnlyDictionary<string, TypeLocation> AvailableTypeLocationList => _typeLocationTableLazy.Value;
 
         public IQueryable<ResourceSchema> GetResourceSchemas() => ResourceSchemas;
 
@@ -44,10 +49,9 @@ namespace PSArm.Schema
 
         private ResourceIndexResult LoadResourceSchemas()
         {
-            IReadOnlyDictionary<string, TypeLocation> typeLocations = _typeLoader.ListAllAvailableTypes();
-            var providerList = new List<ResourceSchema>(typeLocations.Count);
+            var providerList = new List<ResourceSchema>(AvailableTypeLocationList.Count);
             var resourceNamespaces = new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyDictionary<string, ResourceSchema>>>();
-            foreach (KeyValuePair<string, TypeLocation> resourceType in typeLocations)
+            foreach (KeyValuePair<string, TypeLocation> resourceType in AvailableTypeLocationList)
             {
                 (string providerNamespace, string providerName, string apiVersion) = GetResourceNameComponents(resourceType.Key);
 
@@ -72,7 +76,7 @@ namespace PSArm.Schema
                     ((Dictionary<string, IReadOnlyDictionary<string, ResourceSchema>>)resourceNamespace)[providerName] = resourceApiSet;
                 }
 
-                if (!resourceApiSet.TryGetValue(apiVersion, out ResourceSchema resourceSchema))
+                if (!resourceApiSet.TryGetValue(apiVersion, out ResourceSchema _))
                 {
                     ((Dictionary<string, ResourceSchema>)resourceApiSet)[apiVersion] = resource;
                 }
@@ -83,6 +87,11 @@ namespace PSArm.Schema
                 ResourcesQueryable = providerList.AsQueryable(),
                 ResourcesDictionary = resourceNamespaces,
             };
+        }
+
+        private IReadOnlyDictionary<string, TypeLocation> GetAllAvailableTypeLocations()
+        {
+            return _typeLoader.ListAllAvailableTypes();
         }
 
         private static (string, string, string) GetResourceNameComponents(string resourceIndexKey)

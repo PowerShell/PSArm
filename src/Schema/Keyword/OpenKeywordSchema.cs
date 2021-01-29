@@ -1,9 +1,10 @@
 ﻿using Azure.Bicep.Types.Concrete;
+using PSArm.Completion;
 using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
 {
-    public sealed class OpenKeywordSchema : DslKeywordSchema
+    internal sealed class OpenKeywordSchema : DslKeywordSchema
     {
         public static OpenKeywordSchema Value { get; } = new OpenKeywordSchema();
 
@@ -11,6 +12,6 @@ namespace PSArm.Schema.Keyword
         {
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(object context) => null;
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context) => null;
     }
 }

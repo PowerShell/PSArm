@@ -1,11 +1,12 @@
 ﻿using Azure.Bicep.Types.Concrete;
+using PSArm.Completion;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
 {
-    public class BicepDiscriminatedObjectKeywordSchema : BicepKeywordSchema<DiscriminatedObjectType>
+    internal class BicepDiscriminatedObjectKeywordSchema : BicepKeywordSchema<DiscriminatedObjectType>
     {
         private readonly Lazy<Dictionary<string, DslKeywordSchema>> _commonKeywords;
 
@@ -18,9 +19,8 @@ namespace PSArm.Schema.Keyword
             _commonKeywords = new Lazy<Dictionary<string, DslKeywordSchema>>(BuildCommonKeywordDictionary);
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(object context)
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context)
         {
-            var discriminatorValue = (string)context;
             return _discriminatedInnerKeywords.GetOrAdd(discriminatorValue, BuildDiscriminatedKeywordDictionary);
         }
 

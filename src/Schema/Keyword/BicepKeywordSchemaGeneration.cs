@@ -3,7 +3,7 @@ using System;
 
 namespace PSArm.Schema.Keyword
 {
-    public static class BicepKeywordSchemaGeneration
+    internal static class BicepKeywordSchemaGeneration
     {
         public static DslKeywordSchema GetKeywordSchemaForBicepType(TypeBase bicepType)
         {

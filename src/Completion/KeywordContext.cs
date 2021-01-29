@@ -2,6 +2,8 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using PSArm.Internal;
+using PSArm.Templates.Primitives;
 using System.Collections.Generic;
 using System.Management.Automation.Language;
 
@@ -77,6 +79,37 @@ namespace PSArm.Completion
         /// The smallest containing command AST containing the cursor.
         /// </summary>
         public CommandAst ContainingCommandAst { get; set; }
+
+        public string GetDiscriminatorValue(string discriminatorName)
+        {
+            if (ContainingCommandAst.CommandElements == null)
+            {
+                return null;
+            }
+
+            bool expectingDiscriminator = false;
+            foreach (CommandElementAst commandElement in ContainingCommandAst.CommandElements)
+            {
+                if (commandElement is CommandParameterAst parameterAst
+                    && parameterAst.ParameterName.Is(discriminatorName))
+                {
+                    if (parameterAst.Argument != null)
+                    {
+                        return (parameterAst.Argument as StringConstantExpressionAst)?.Value;
+                    }
+
+                    expectingDiscriminator = true;
+                    continue;
+                }
+
+                if (expectingDiscriminator)
+                {
+                    return (commandElement as StringConstantExpressionAst)?.Value;
+                }
+            }
+
+            return null;
+        }
     }
 
 }

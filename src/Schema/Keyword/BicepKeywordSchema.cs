@@ -2,7 +2,7 @@
 
 namespace PSArm.Schema.Keyword
 {
-    public abstract class BicepKeywordSchema<TBicepType> : DslKeywordSchema where TBicepType : TypeBase
+    internal abstract class BicepKeywordSchema<TBicepType> : DslKeywordSchema where TBicepType : TypeBase
     {
         public BicepKeywordSchema(TBicepType bicepType)
         {

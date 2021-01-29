@@ -1,4 +1,5 @@
 ﻿using Azure.Bicep.Types.Concrete;
+using PSArm.Completion;
 using PSArm.Schema.Keyword;
 using System;
 using System.Collections.Concurrent;
@@ -8,26 +9,19 @@ using System.Text;
 
 namespace PSArm.Schema
 {
-    public class ResourceKeywordSchema : DslKeywordSchema
+    internal class ResourceKeywordSchema : DslKeywordSchema
     {
         private static readonly ConcurrentDictionary<ArmResourceName, ResourceKeywordCache> s_resourceKeywordCaches;
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(object context)
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context)
         {
-            var resourceName = (ArmResourceName)context;
-
             if (!ResourceIndex.SharedInstance.TryGetResourceSchema(
-                resourceName.Namespace,
-                resourceName.Type,
-                resourceName.ApiVersion,
+                context.ResourceNamespace,
+                context.ResourceTypeName,
+                context.ResourceApiVersion,
                 out ResourceSchema resource))
             {
                 return null;
-            }
-
-            if (resource.Discriminator == null)
-            {
-                return resource.Properties;
             }
         }
     }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using PSArm.Completion;
+using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
 {
-    public class StaticKeywordSchema : DslKeywordSchema
+    internal class StaticKeywordSchema : DslKeywordSchema
     {
         private readonly IReadOnlyDictionary<string, DslKeywordSchema> _innerKeywords;
 
@@ -12,6 +13,6 @@ namespace PSArm.Schema.Keyword
             _innerKeywords = schema;
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(object context) => _innerKeywords;
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context) => _innerKeywords;
     }
 }

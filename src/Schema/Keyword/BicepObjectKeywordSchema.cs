@@ -1,10 +1,11 @@
 ﻿using Azure.Bicep.Types.Concrete;
+using PSArm.Completion;
 using System;
 using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
 {
-    public class BicepObjectKeywordSchema : BicepKeywordSchema<ObjectType>
+    internal class BicepObjectKeywordSchema : BicepKeywordSchema<ObjectType>
     {
         private readonly Lazy<IReadOnlyDictionary<string, DslKeywordSchema>> _innerKeywordsLazy;
 
@@ -14,7 +15,7 @@ namespace PSArm.Schema.Keyword
             _innerKeywordsLazy = new Lazy<IReadOnlyDictionary<string, DslKeywordSchema>>(BuildInnerKeywordDict);
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(object context) => _innerKeywordsLazy.Value;
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context) => _innerKeywordsLazy.Value;
 
         private IReadOnlyDictionary<string, DslKeywordSchema> BuildInnerKeywordDict()
         {

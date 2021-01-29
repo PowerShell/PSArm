@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using PSArm.Completion;
+using System.Collections.Generic;
 using System.Text;
 
 namespace PSArm.Schema
 {
-    public abstract class DslKeywordSchema
+    internal abstract class DslKeywordSchema
     {
-        public abstract IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(object context);
+        public abstract IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context);
     }
 }

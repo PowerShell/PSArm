@@ -8,10 +8,12 @@ using System.Text;
 
 namespace PSArm.Commands.Template
 {
-    [Alias("Sku")]
+    [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Sku")]
     public class NewPSArmSkuCommand : PSArmKeywordCommand
     {
+        internal const string KeywordName = "Sku";
+
         [Parameter(Position = 0, Mandatory = true)]
         public IArmString Name { get; set; }
 

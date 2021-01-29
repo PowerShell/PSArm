@@ -4,11 +4,11 @@ using System.Management.Automation;
 
 namespace PSArm.Commands.Primitive
 {
-    [Alias(Name)]
+    [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Element", DefaultParameterSetName = "Value")]
     public class NewPSArmElementCommand : PSArmKeywordCommand
     {
-        internal const string Name = "ArmElement";
+        internal const string KeywordName = "ArmElement";
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Value")]
         public ArmElement Value { get; set; }

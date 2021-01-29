@@ -353,7 +353,7 @@ namespace PSArm.Schema
             string discriminatorVariable = null)
         {
             _writer
-                .WriteCommand(NewPSArmEntryCommand.Name)
+                .WriteCommand(NewPSArmEntryCommand.KeywordName)
                     .WriteParameter(nameof(NewPSArmEntryCommand.Key))
                         .WriteSpace()
                         .WriteValue(keyword);

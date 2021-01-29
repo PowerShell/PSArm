@@ -53,33 +53,30 @@ namespace PSArm.Schema
             var resourceNamespaces = new Dictionary<string, IReadOnlyDictionary<string, IReadOnlyDictionary<string, ResourceSchema>>>();
             foreach (KeyValuePair<string, TypeLocation> resourceType in AvailableTypeLocationList)
             {
-                (string providerNamespace, string providerName, string apiVersion) = GetResourceNameComponents(resourceType.Key);
+                var resourceName = ArmResourceName.CreateFromFullyQualifiedName(resourceType.Key);
 
                 var resource = new ResourceSchema(
                     _typeLoader,
                     resourceType.Value,
-                    providerNamespace,
-                    providerName,
-                    apiVersion);
+                    resourceName.Namespace,
+                    resourceName.Type,
+                    resourceName.ApiVersion);
 
                 providerList.Add(resource);
 
-                if (!resourceNamespaces.TryGetValue(providerNamespace, out IReadOnlyDictionary<string, IReadOnlyDictionary<string, ResourceSchema>> resourceNamespace))
+                if (!resourceNamespaces.TryGetValue(resourceName.Namespace, out IReadOnlyDictionary<string, IReadOnlyDictionary<string, ResourceSchema>> resourceNamespace))
                 {
                     resourceNamespace = new Dictionary<string, IReadOnlyDictionary<string, ResourceSchema>>();
-                    resourceNamespaces[providerNamespace] = resourceNamespace;
+                    resourceNamespaces[resourceName.Namespace] = resourceNamespace;
                 }
 
-                if (!resourceNamespace.TryGetValue(providerName, out IReadOnlyDictionary<string, ResourceSchema> resourceApiSet))
+                if (!resourceNamespace.TryGetValue(resourceName.Type, out IReadOnlyDictionary<string, ResourceSchema> resourceApiSet))
                 {
                     resourceApiSet = new Dictionary<string, ResourceSchema>();
-                    ((Dictionary<string, IReadOnlyDictionary<string, ResourceSchema>>)resourceNamespace)[providerName] = resourceApiSet;
+                    ((Dictionary<string, IReadOnlyDictionary<string, ResourceSchema>>)resourceNamespace)[resourceName.Type] = resourceApiSet;
                 }
 
-                if (!resourceApiSet.TryGetValue(apiVersion, out ResourceSchema _))
-                {
-                    ((Dictionary<string, ResourceSchema>)resourceApiSet)[apiVersion] = resource;
-                }
+                ((Dictionary<string, ResourceSchema>)resourceApiSet)[resourceName.ApiVersion] = resource;
             }
 
             return new ResourceIndexResult
@@ -92,17 +89,6 @@ namespace PSArm.Schema
         private IReadOnlyDictionary<string, TypeLocation> GetAllAvailableTypeLocations()
         {
             return _typeLoader.ListAllAvailableTypes();
-        }
-
-        private static (string, string, string) GetResourceNameComponents(string resourceIndexKey)
-        {
-            int providerNameStartIndex = resourceIndexKey.IndexOf('/') + 1;
-            int apiVersionStartIndex = resourceIndexKey.IndexOf('@', providerNameStartIndex) + 1;
-
-            string providerNamespace = resourceIndexKey.Substring(0, providerNameStartIndex - 1);
-            string providerName = resourceIndexKey.Substring(providerNameStartIndex, apiVersionStartIndex - providerNameStartIndex - 1);
-            string providerApiVersion = resourceIndexKey.Substring(apiVersionStartIndex);
-            return (providerNamespace, providerName, providerApiVersion);
         }
 
         private struct ResourceIndexResult

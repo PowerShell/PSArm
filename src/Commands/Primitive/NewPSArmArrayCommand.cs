@@ -9,11 +9,11 @@ using System.Text;
 
 namespace PSArm.Commands.Primitive
 {
-    [Alias(Name)]
+    [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Array", DefaultParameterSetName = "Body")]
     public class NewPSArmArrayCommand : PSArmKeywordCommand
     {
-        public const string Name = "ArmArray";
+        public const string KeywordName = "ArmArray";
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Body")]
         public ScriptBlock Body { get; set; }

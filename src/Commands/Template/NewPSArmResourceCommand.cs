@@ -13,10 +13,12 @@ using System.Text;
 
 namespace PSArm.Commands.Template
 {
-    [Alias("Resource")]
+    [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Resource")]
     public class NewPSArmResourceCommand : PSArmKeywordCommand, IDynamicParameters
     {
+        internal const string KeywordName = "Resource";
+
         private ResourceSchema _resourceSchema;
 
         private RuntimeDefinedParameterDictionary _dynamicParameters;

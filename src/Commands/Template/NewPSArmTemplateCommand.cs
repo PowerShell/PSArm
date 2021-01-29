@@ -7,10 +7,12 @@ using System.Text;
 
 namespace PSArm.Commands.Template
 {
-    [Alias("Arm")]
+    [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Template")]
     public class NewPSArmTemplateCommand : PSArmKeywordCommand
     {
+        internal const string KeywordName = "Arm";
+
         [Parameter(Mandatory = true, Position = 0)]
         public ScriptBlock Body { get; set; }
 

@@ -8,10 +8,12 @@ using System.Text;
 
 namespace PSArm.Commands.Template
 {
-    [Alias("DependsOn")]
+    [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "DependsOn", DefaultParameterSetName = "Value")]
     public class NewPSArmDependsOnCommand : PSArmKeywordCommand
     {
+        internal const string KeywordName = "DependsOn";
+
         [Parameter(Position = 0, Mandatory = true, ParameterSetName = "Value")]
         public IArmString[] Value { get; set; }
 

@@ -41,21 +41,21 @@ namespace PSArm.Completion
         /// <returns></returns>
         public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
-            (string provider, string type, string apiVersion) = GetConstrainingParameters(fakeBoundParameters);
+            ArmResourceName resourceName = GetResourceNameFromParameters(fakeBoundParameters);
 
             if (IsString(parameterName, nameof(NewPSArmResourceCommand.Provider)))
             {
                 var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
                 {
-                    if (apiVersion is not null
-                        && !resource.ApiVersion.StartsWith(apiVersion))
+                    if (resourceName.ApiVersion is not null
+                        && !resource.ApiVersion.StartsWith(resourceName.ApiVersion))
                     {
                         continue;
                     }
 
-                    if (type is not null
-                        && !resource.Name.StartsWith(type))
+                    if (resourceName.Type is not null
+                        && !resource.Name.StartsWith(resourceName.Type))
                     {
                         continue;
                     }
@@ -77,14 +77,14 @@ namespace PSArm.Completion
                 var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
                 {
-                    if (apiVersion is not null
-                        && !resource.ApiVersion.StartsWith(apiVersion))
+                    if (resourceName.ApiVersion is not null
+                        && !resource.ApiVersion.StartsWith(resourceName.ApiVersion))
                     {
                         continue;
                     }
 
-                    if (provider is not null
-                        && !resource.Namespace.StartsWith(provider))
+                    if (resourceName.Namespace is not null
+                        && !resource.Namespace.StartsWith(resourceName.Namespace))
                     {
                         continue;
                     }
@@ -106,14 +106,14 @@ namespace PSArm.Completion
                 var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
                 {
-                    if (provider is not null
-                        && !resource.Namespace.StartsWith(provider))
+                    if (resourceName.Namespace is not null
+                        && !resource.Namespace.StartsWith(resourceName.Namespace))
                     {
                         continue;
                     }
 
-                    if (type is not null
-                        && !resource.Name.StartsWith(type))
+                    if (resourceName.Type is not null
+                        && !resource.Name.StartsWith(resourceName.Type))
                     {
                         continue;
                     }
@@ -133,31 +133,13 @@ namespace PSArm.Completion
             return null;
         }
 
-        private (string provider, string type, string apiVersion) GetConstrainingParameters(IDictionary fakeBoundParameters)
+        private ArmResourceName GetResourceNameFromParameters(IDictionary fakeBoundParameters)
         {
-            string provider = null;
-            string type = null;
-            string apiVersion = null;
+            fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Provider), out IArmString provider);
+            fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Type), out IArmString type);
+            fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.ApiVersion), out IArmString apiVersion);
 
-            if (fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Provider), out IArmString providerArmStr)
-                && providerArmStr is ArmStringLiteral providerLiteral)
-            {
-                provider = providerLiteral.Value;
-            }
-
-            if (fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Type), out IArmString typeArmStr)
-                && typeArmStr is ArmStringLiteral typeLiteral)
-            {
-                type = typeLiteral.Value;
-            }
-
-            if (fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.ApiVersion), out IArmString apiVersionArmStr)
-                && apiVersionArmStr is ArmStringLiteral apiVersionLiteral)
-            {
-                apiVersion = apiVersionLiteral.Value;
-            }
-
-            return (provider, type, apiVersion);
+            return ArmResourceName.CreateFromArmStrings(provider, type, apiVersion);
         }
 
         private static IEnumerable<CompletionResult> GetCompletionResultsFromStrings(IReadOnlyCollection<string> stringValues)

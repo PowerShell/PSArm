@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Language;
+using Azure.Bicep.Types.Concrete;
 using PSArm.Commands;
 using PSArm.Commands.Template;
 using PSArm.Internal;
@@ -217,13 +218,12 @@ namespace PSArm.Completion
                 return null;
             }
 
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmProviderDslInfo dslInfo)
-                || !dslInfo.ProviderSchema.Resources.TryGetValue(context.ResourceTypeName, out ArmDslResourceSchema resource))
+            if (!ResourceIndex.SharedInstance.TryGetResourceSchema(context.ResourceNamespace, context.ResourceTypeName, context.ResourceApiVersion, out ResourceSchema resourceSchema))
             {
                 return null;
             }
 
-            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resource.PSKeywordSchema, forParameter: true);
+            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resourceSchema, forParameter: true);
 
             if (immediateSchema == null
                 || !immediateSchema.TryGetValue(commandName, out ArmDslKeywordSchema keywordForContext))
@@ -379,7 +379,7 @@ namespace PSArm.Completion
             }
 
             // Deeper keywords
-            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resourceSchema.PSKeywordSchema);
+            TypeBase immediateSchema = GetCurrentKeywordSchema(context, resourceSchema.PSKeywordSchema);
             return CompleteKeywordsFromList(context, immediateSchema.Values);
         }
 
@@ -404,9 +404,9 @@ namespace PSArm.Completion
             return completions;
         }
 
-        private static IReadOnlyDictionary<string, ArmDslKeywordSchema> GetCurrentKeywordSchema(
+        private static TypeBase GetCurrentKeywordSchema(
             KeywordContext context,
-            IReadOnlyDictionary<string, ArmDslKeywordSchema> initialKeywordSchema,
+            ResourceSchema resourceSchema,
             bool forParameter = false)
         {
             string immediateKeyword = null;
@@ -419,9 +419,13 @@ namespace PSArm.Completion
                 }
             }
 
-            IReadOnlyDictionary<string, ArmDslKeywordSchema> currSchema = initialKeywordSchema;
+            TypeBase currSchema = resourceSchema.BicepType;
             for (int i = 3; i < context.KeywordStack.Count; i++)
             {
+                switch (currSchema)
+                {
+                }
+
                 if (currSchema == null)
                 {
                     return null;

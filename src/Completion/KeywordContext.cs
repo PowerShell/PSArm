@@ -17,13 +17,13 @@ namespace PSArm.Completion
     {
         public KeywordContext()
         {
-            KeywordStack = new List<string>();
+            KeywordStack = new List<CommandAst>();
         }
 
         /// <summary>
         /// The DSL keywords by scope, from the bottom up.
         /// </summary>
-        public List<string> KeywordStack { get; }
+        public List<CommandAst> KeywordStack { get; }
 
         /// <summary>
         /// The ARM resource type namespace we're in.

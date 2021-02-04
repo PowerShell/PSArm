@@ -7,7 +7,7 @@ namespace PSArm.Schema.Keyword
 {
     internal class ResourceKeywordSchema : DslKeywordSchema
     {
-        private static readonly ConcurrentDictionary<ArmResourceName, ResourceKeywordCache> s_resourceKeywordCaches = new ConcurrentDictionary<ArmResourceName, ResourceKeywordCache>();;
+        private static readonly ConcurrentDictionary<ArmResourceName, ResourceKeywordCache> s_resourceKeywordCaches = new ConcurrentDictionary<ArmResourceName, ResourceKeywordCache>();
 
         public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context)
         {

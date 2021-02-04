@@ -13,6 +13,7 @@ using PSArm.Commands;
 using PSArm.Commands.Template;
 using PSArm.Internal;
 using PSArm.Schema;
+using PSArm.Schema.Keyword;
 
 namespace PSArm.Completion
 {
@@ -22,38 +23,6 @@ namespace PSArm.Completion
     /// </summary>
     public static class DslCompleter
     {
-        private static Dictionary<string, bool> s_ignoredCommands = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
-        {
-            { "ForEach-Object", true },
-            { "%", true },
-        };
-
-        private static CmdletInfo s_armInfo = new CmdletInfo("New-ArmTemplate", typeof(NewPSArmTemplateCommand));
-
-        private static CmdletInfo s_resourceInfo = new CmdletInfo("New-ArmResource", typeof(NewPSArmResourceCommand));
-
-        private static CmdletInfo s_outputInfo = new CmdletInfo("New-ArmOutput", typeof(NewPSArmOutputCommand));
-
-        private static CmdletInfo s_dependsOnInfo = new CmdletInfo("New-ArmDependsOn", typeof(NewPSArmDependsOnCommand));
-
-        private static CmdletInfo s_skuInfo = new CmdletInfo("New-ArmSku", typeof(NewPSArmSkuCommand));
-
-        private static readonly char[] s_typeSplitChars = new [] { '/' };
-
-        private static readonly IReadOnlyDictionary<string, CmdletInfo> s_topLevelKeywords = new Dictionary<string, CmdletInfo>
-        {
-            { "Resource", s_resourceInfo },
-            { "Output", s_outputInfo },
-        };
-
-        private static readonly IReadOnlyDictionary<string, CmdletInfo> s_resourceKeywords = new Dictionary<string, CmdletInfo>
-        {
-            { "Resource", s_resourceInfo },
-            { "Properties", s_propertiesInfo },
-            { "DependsOn", s_dependsOnInfo },
-            { "Sku", s_skuInfo },
-        };
-
         /// <summary>
         /// Add ARM DSL completions to the front of the completion result collection.
         /// May clobber other results if DSL completions are determined to be of low relevance.
@@ -205,6 +174,7 @@ namespace PSArm.Completion
         private static Collection<CompletionResult> CompleteParameters(KeywordContext context)
         {
             string commandName = context?.ContainingCommandAst?.GetCommandName();
+
             if (commandName == null)
             {
                 return null;
@@ -404,7 +374,7 @@ namespace PSArm.Completion
 
         private static TypeBase GetCurrentKeywordSchema(
             KeywordContext context,
-            ResourceSchema resourceSchema,
+            DslKeywordSchema schema,
             bool forParameter = false)
         {
             string immediateKeyword = null;
@@ -525,21 +495,23 @@ namespace PSArm.Completion
                 {
                     string commandName = commandAst.GetCommandName();
 
-                    // This is error prone, instead we should build the stack and sift out commands after the fact
-                    if (!s_ignoredCommands.ContainsKey(commandName))
+                    if (commandName is null)
                     {
-                        context.KeywordStack.Add(commandName);
+                        continue;
+                    }
 
-                        if (string.Equals(commandName, "Resource", StringComparison.OrdinalIgnoreCase))
-                        {
-                            SetContextResourceInfo(context, commandAst);
-                        }
-                        else if (string.Equals(commandName, "Arm", StringComparison.OrdinalIgnoreCase)
-                            || string.Equals(commandName, "New-ArmTemplate", StringComparison.OrdinalIgnoreCase))
-                        {
-                            foundArmKeyword = true;
-                            break;
-                        }
+                    context.KeywordStack.Add(commandAst);
+
+                    if (commandName.Is(NewPSArmResourceCommand.KeywordName)
+                        || commandName.Is("New-PSArmResource"))
+                    {
+                        SetContextResourceInfo(context, commandAst);
+                    }
+                    else if (commandName.Is(NewPSArmTemplateCommand.KeywordName)
+                        || commandName.Is("New-PSArmTemplate"))
+                    {
+                        foundArmKeyword = true;
+                        break;
                     }
                 }
 
@@ -551,10 +523,7 @@ namespace PSArm.Completion
                 return null;
             }
 
-            if (context.KeywordStack.Count > 1)
-            {
-                context.KeywordStack.Reverse();
-            }
+            context.KeywordStack.Reverse();
 
             return context;
         }
@@ -569,15 +538,15 @@ namespace PSArm.Completion
                 if (element is CommandParameterAst parameterAst)
                 {
                     expect = 0;
-                    if (parameterAst.ParameterName.Is("Type"))
+                    if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Type)))
                     {
                         expect = 1;
                     }
-                    else if (parameterAst.ParameterName.Is("ApiVersion"))
+                    else if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.ApiVersion)))
                     {
                         expect = 2;
                     }
-                    else if (parameterAst.ParameterName.Is("Provider"))
+                    else if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Provider)))
                     {
                         expect = 3;
                     }

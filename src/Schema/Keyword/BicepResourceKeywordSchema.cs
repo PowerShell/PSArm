@@ -1,17 +1,13 @@
-﻿using Azure.Bicep.Types.Concrete;
+﻿
 using PSArm.Completion;
-using PSArm.Schema.Keyword;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
-namespace PSArm.Schema
+namespace PSArm.Schema.Keyword
 {
     internal class ResourceKeywordSchema : DslKeywordSchema
     {
-        private static readonly ConcurrentDictionary<ArmResourceName, ResourceKeywordCache> s_resourceKeywordCaches;
+        private static readonly ConcurrentDictionary<ArmResourceName, ResourceKeywordCache> s_resourceKeywordCaches = new ConcurrentDictionary<ArmResourceName, ResourceKeywordCache>();;
 
         public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context)
         {
@@ -23,44 +19,12 @@ namespace PSArm.Schema
             {
                 return null;
             }
-        }
-    }
 
-    public abstract class ResourceKeywordCache
-    {
-        protected ResourceKeywordCache(ResourceSchema resource)
-        {
-            Resource = resource;
-        }
+            ResourceKeywordCache cache = s_resourceKeywordCaches.GetOrAdd(
+                new ArmResourceName(context.ResourceNamespace, context.ResourceTypeName, context.ResourceApiVersion),
+                (resourceName) => resource.Discriminator != null ? new DiscriminatedResourceKeywordCache(resource) : new ObjectResourceKeywordCache(resource));
 
-        protected ResourceSchema Resource { get; }
-
-        public abstract IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords();
-    }
-
-    public class ObjectResourceKeywordCache : ResourceKeywordCache
-    {
-        private Lazy<IReadOnlyDictionary<string, DslKeywordSchema>> _keywordsLazy;
-
-        public ObjectResourceKeywordCache(ResourceSchema resource)
-            : base(resource)
-        {
-            _keywordsLazy = new Lazy<IReadOnlyDictionary<string, DslKeywordSchema>>(GetKeywordTableFromResource);
-        }
-
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords()
-        {
-            return _keywordsLazy.Value;
-        }
-
-        private IReadOnlyDictionary<string, DslKeywordSchema> GetKeywordTableFromResource()
-        {
-            var dict = new Dictionary<string, DslKeywordSchema>();
-            foreach (KeyValuePair<string, TypeBase> property in Resource.Properties)
-            {
-                dict[property.Key] = BicepKeywordSchemaGeneration.GetKeywordSchemaForBicepType(property.Value);
-            }
-            return dict;
+            return cache.GetInnerKeywords(context);
         }
     }
 }

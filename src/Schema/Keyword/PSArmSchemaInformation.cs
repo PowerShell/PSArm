@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PSArm.Schema.Keyword
 {
-    public static class PSArmSchemaInformation
+    internal static class PSArmSchemaInformation
     {
         public static DslKeywordSchema PSArmSchema { get; } = new StaticKeywordSchema(new Dictionary<string, DslKeywordSchema>
         {

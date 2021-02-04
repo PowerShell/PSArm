@@ -34,8 +34,6 @@ namespace PSArm.Completion
 
         private static CmdletInfo s_outputInfo = new CmdletInfo("New-ArmOutput", typeof(NewPSArmOutputCommand));
 
-        private static CmdletInfo s_propertiesInfo = new CmdletInfo("New-ArmProperties", typeof(NewPSArmPropertiesCommand));
-
         private static CmdletInfo s_dependsOnInfo = new CmdletInfo("New-ArmDependsOn", typeof(NewPSArmDependsOnCommand));
 
         private static CmdletInfo s_skuInfo = new CmdletInfo("New-ArmSku", typeof(NewPSArmSkuCommand));

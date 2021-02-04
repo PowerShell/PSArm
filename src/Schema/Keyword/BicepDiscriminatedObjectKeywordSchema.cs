@@ -21,6 +21,14 @@ namespace PSArm.Schema.Keyword
 
         public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context)
         {
+            string discriminatorValue = context.GetDiscriminatorValue(BicepType.Discriminator);
+
+            if (discriminatorValue is null
+                || !BicepType.Elements.ContainsKey(discriminatorValue))
+            {
+                return null;
+            }
+
             return _discriminatedInnerKeywords.GetOrAdd(discriminatorValue, BuildDiscriminatedKeywordDictionary);
         }
 

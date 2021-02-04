@@ -1,11 +1,12 @@
-﻿using PSArm.Templates.Primitives;
+﻿using PSArm.Internal;
+using PSArm.Templates.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PSArm.Schema
 {
-    public readonly struct ArmResourceName
+    public readonly struct ArmResourceName : IEquatable<ArmResourceName>
     {
         public static ArmResourceName CreateFromFullyQualifiedName(string fullyQualifiedName)
         {
@@ -38,5 +39,23 @@ namespace PSArm.Schema
         public readonly string Type;
 
         public readonly string ApiVersion;
+
+        public bool Equals(ArmResourceName other)
+        {
+            return string.Equals(Namespace, other.Namespace, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(Type, other.Type, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(ApiVersion, other.ApiVersion, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCodeHelpers.CombineHashCodes(Namespace, Type, ApiVersion);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ArmResourceName otherARN
+                && Equals(otherARN);
+        }
     }
 }

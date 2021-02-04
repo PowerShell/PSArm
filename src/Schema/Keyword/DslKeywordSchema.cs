@@ -1,8 +1,7 @@
 ﻿using PSArm.Completion;
 using System.Collections.Generic;
-using System.Text;
 
-namespace PSArm.Schema
+namespace PSArm.Schema.Keyword
 {
     internal abstract class DslKeywordSchema
     {

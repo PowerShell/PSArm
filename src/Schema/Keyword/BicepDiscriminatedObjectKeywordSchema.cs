@@ -19,7 +19,7 @@ namespace PSArm.Schema.Keyword
             _commonKeywords = new Lazy<Dictionary<string, DslKeywordSchema>>(BuildCommonKeywordDictionary);
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context)
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context)
         {
             string discriminatorValue = context.GetDiscriminatorValue(BicepType.Discriminator);
 

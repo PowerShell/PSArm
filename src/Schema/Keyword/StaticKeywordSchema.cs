@@ -13,6 +13,6 @@ namespace PSArm.Schema.Keyword
             _innerKeywords = schema;
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context) => _innerKeywords;
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context) => _innerKeywords;
     }
 }

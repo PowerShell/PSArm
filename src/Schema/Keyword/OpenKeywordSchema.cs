@@ -12,6 +12,6 @@ namespace PSArm.Schema.Keyword
         {
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context) => null;
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context) => null;
     }
 }

@@ -15,7 +15,7 @@ namespace PSArm.Schema.Keyword
             _innerKeywordsLazy = new Lazy<IReadOnlyDictionary<string, DslKeywordSchema>>(BuildInnerKeywordDict);
         }
 
-        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context) => _innerKeywordsLazy.Value;
+        public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context) => _innerKeywordsLazy.Value;
 
         private IReadOnlyDictionary<string, DslKeywordSchema> BuildInnerKeywordDict()
         {

@@ -79,36 +79,11 @@ namespace PSArm.Completion
             Hashtable options,
             out bool clobberCompletions)
         {
-            // Go backward through the tokens to determine if we're positioned where a new command should be
-            Token lastToken = null;
-            int lastTokenIndex = -1;
-            for (int i = tokens.Count - 1; i >= 0; i--)
-            {
-                Token currToken = tokens[i];
+            KeywordResult? result = GetCurrentKeyword(ast, tokens, cursorPosition);
 
-                if (currToken.Extent.EndScriptPosition.LineNumber < cursorPosition.LineNumber
-                    || (currToken.Extent.EndScriptPosition.LineNumber == cursorPosition.LineNumber
-                        && currToken.Extent.EndScriptPosition.ColumnNumber <= cursorPosition.ColumnNumber))
-                {
-                    if (lastToken == null)
-                    {
-                        lastTokenIndex = i;
-                        lastToken = currToken;
-                        break;
-                    }
-                }
-            }
+            Token lastToken = result?.Frame.ParentContext?.LastToken;
 
-            if (lastToken == null)
-            {
-                clobberCompletions = false;
-                return null;
-            }
-
-            // This is the clever magical bit where we get all the information we need to really provide a completion
-            KeywordContext context = GetKeywordContext(ast, tokens, lastTokenIndex, cursorPosition);
-
-            if (context == null)
+            if (lastToken is null)
             {
                 clobberCompletions = false;
                 return null;
@@ -128,7 +103,7 @@ namespace PSArm.Completion
 
                 case TokenKind.Identifier:
                 case TokenKind.Command:
-                    if (context.ContainingCommandAst == null
+                    if (keyword.ContainingCommandAst == null
                         || (context.ContainingCommandAst.CommandElements[0] == context.ContainingAst
                             && cursorPosition.Offset == context.ContainingAst.Extent.EndOffset))
                     {
@@ -140,7 +115,7 @@ namespace PSArm.Completion
                     return CompleteParameters(context);
 
                 case TokenKind.Generic:
-                    if (lastToken.Extent.EndOffset == cursorPosition.Offset)
+                    if (context.LastToken.Extent.EndOffset == cursorPosition.Offset)
                     {
                         clobberCompletions = true;
                         return CompleteParameters(context);
@@ -156,22 +131,44 @@ namespace PSArm.Completion
             return null;
         }
 
-        private static CommandAst GetFirstParentCommandAst(Ast ast)
+        private static KeywordResult? GetCurrentKeyword(Ast ast, IReadOnlyList<Token> tokens, IScriptPosition cursorPosition)
         {
-            do
+            KeywordContext context = KeywordContext.BuildFromInput(ast, tokens, cursorPosition);
+
+            if (context is null)
             {
-                if (ast is CommandAst commandAst)
+                return null;
+            }
+
+            DslKeywordSchema currentSchema = PSArmSchemaInformation.PSArmSchema;
+            KeywordContextFrame currentFrame = null;
+            for (int i = 0; i < context.KeywordStack.Count; i++)
+            {
+                KeywordContextFrame frame = context.KeywordStack[i];
+
+                string commandName = frame.CommandAst.GetCommandName();
+
+                if (commandName is null)
                 {
-                    return commandAst;
+                    continue;
                 }
 
-                ast = ast.Parent;
-            } while (ast != null);
+                IReadOnlyDictionary<string, DslKeywordSchema> subschemas = currentSchema.GetInnerKeywords(frame);
 
-            return null;
+                if (subschemas is null
+                    || !subschemas.TryGetValue(commandName, out DslKeywordSchema subschema))
+                {
+                    continue;
+                }
+
+                currentSchema = subschema;
+                currentFrame = frame;
+            }
+
+            return new KeywordResult(currentSchema, currentFrame);
         }
 
-        private static Collection<CompletionResult> CompleteParameters(KeywordContext context)
+        private static Collection<CompletionResult> CompleteParameters(KeywordResult keyword)
         {
             string commandName = context?.ContainingCommandAst?.GetCommandName();
 
@@ -423,163 +420,19 @@ namespace PSArm.Completion
             return currSchema;
         }
 
-        private static KeywordContext GetKeywordContext(
-            Ast ast,
-            IReadOnlyList<Token> tokens,
-            int lastTokenIndex,
-            IScriptPosition cursorPosition)
+        private readonly struct KeywordResult
         {
-            // Go through and find the first token before us that isn't a newline.
-            // When the cursor is at the end of an open scriptblock
-            // it falls beyond that scriptblock's extent,
-            // meaning we must backtrack to find the real context for a completion
-            Token lastToken = tokens[lastTokenIndex];
-            Token lastNonNewlineToken = null;
-            for (int i = lastTokenIndex; i >= 0; i--)
+            public KeywordResult(
+                DslKeywordSchema schema,
+                KeywordContextFrame frame)
             {
-                Token currToken = tokens[i];
-                if (currToken.Kind != TokenKind.NewLine)
-                {
-                    lastNonNewlineToken = currToken;
-                    break;
-                }
+                Schema = schema;
+                Frame = frame;
             }
 
-            // Set our effective position based on what came before us
-            IScriptPosition effectiveCompletionPosition;
-            switch (lastNonNewlineToken.Kind)
-            {
-                case TokenKind.Identifier:
-                case TokenKind.Generic:
-                case TokenKind.Command:
-                    effectiveCompletionPosition = lastToken.Extent.EndScriptPosition;
-                    break;
+            public DslKeywordSchema Schema { get; }
 
-                default:
-                    effectiveCompletionPosition = lastNonNewlineToken.Extent.EndScriptPosition;
-                    break;
-            }
-
-            // Now find the AST we're in
-            var visitor = new FindAstFromPositionVisitor(effectiveCompletionPosition);
-            ast.Visit(visitor);
-            Ast containingAst = visitor.GetAst();
-
-            if (containingAst == null)
-            {
-                return null;
-            }
-
-            // Find the command AST that we're in
-            CommandAst containingCommandAst = GetFirstParentCommandAst(containingAst);
-
-            var context = new KeywordContext
-            {
-                ContainingAst = containingAst,
-                ContainingCommandAst = containingCommandAst,
-                FullAst = ast,
-                LastTokenIndex = lastTokenIndex,
-                LastToken = lastToken,
-                LastNonNewlineToken = lastNonNewlineToken,
-                Tokens = tokens,
-                Position = cursorPosition
-            };
-
-            // Now build a stack of the keyword context we're in
-            Ast currAst = containingAst;
-            bool foundArmKeyword = false;
-            do
-            {
-                if (currAst is ScriptBlockExpressionAst sbAst
-                    && sbAst.Parent is CommandAst commandAst)
-                {
-                    string commandName = commandAst.GetCommandName();
-
-                    if (commandName is null)
-                    {
-                        continue;
-                    }
-
-                    context.KeywordStack.Add(commandAst);
-
-                    if (commandName.Is(NewPSArmResourceCommand.KeywordName)
-                        || commandName.Is("New-PSArmResource"))
-                    {
-                        SetContextResourceInfo(context, commandAst);
-                    }
-                    else if (commandName.Is(NewPSArmTemplateCommand.KeywordName)
-                        || commandName.Is("New-PSArmTemplate"))
-                    {
-                        foundArmKeyword = true;
-                        break;
-                    }
-                }
-
-                currAst = currAst.Parent;
-            } while (currAst != null);
-
-            if (!foundArmKeyword)
-            {
-                return null;
-            }
-
-            context.KeywordStack.Reverse();
-
-            return context;
-        }
-
-        private static void SetContextResourceInfo(KeywordContext context, CommandAst commandAst)
-        {
-            int expect = 0;
-            for (int i = 0; i < commandAst.CommandElements.Count; i++)
-            {
-                CommandElementAst element = commandAst.CommandElements[i];
-
-                if (element is CommandParameterAst parameterAst)
-                {
-                    expect = 0;
-                    if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Type)))
-                    {
-                        expect = 1;
-                    }
-                    else if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.ApiVersion)))
-                    {
-                        expect = 2;
-                    }
-                    else if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Provider)))
-                    {
-                        expect = 3;
-                    }
-
-                    continue;
-                }
-
-                switch (expect)
-                {
-                    case 1:
-                        if (element is StringConstantExpressionAst typeStrExpr)
-                        {
-                            context.ResourceTypeName = typeStrExpr.Value;
-                        }
-                        break;
-
-                    case 2:
-                        if (element is StringConstantExpressionAst apiVersionStrExpr)
-                        {
-                            context.ResourceApiVersion = apiVersionStrExpr.Value;
-                        }
-                        break;
-
-                    case 3:
-                        if (element is StringConstantExpressionAst providerStrExpr)
-                        {
-                            context.ResourceNamespace = providerStrExpr.Value;
-                        }
-                        break;
-                }
-
-                expect = 0;
-            }
+            public KeywordContextFrame Frame { get; }
         }
     }
 }

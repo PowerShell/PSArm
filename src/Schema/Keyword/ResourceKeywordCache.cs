@@ -12,6 +12,6 @@ namespace PSArm.Schema.Keyword
 
         protected ResourceSchema Resource { get; }
 
-        public abstract IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContext context);
+        public abstract IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context);
     }
 }

@@ -89,6 +89,8 @@ namespace PSArm.Completion
                 return null;
             }
 
+            KeywordResult keyword = result.Value;
+
             switch (lastToken.Kind)
             {
                 case TokenKind.NewLine:
@@ -99,32 +101,30 @@ namespace PSArm.Completion
                 case TokenKind.AtParen:
                 case TokenKind.DollarParen:
                     clobberCompletions = false;
-                    return CompleteKeywords(context);
+                    return CompleteKeywords(keyword);
 
                 case TokenKind.Identifier:
                 case TokenKind.Command:
-                    if (keyword.ContainingCommandAst == null
-                        || (context.ContainingCommandAst.CommandElements[0] == context.ContainingAst
-                            && cursorPosition.Offset == context.ContainingAst.Extent.EndOffset))
+                    if (keyword.Frame.ParentContext.HasCommandAtPosition(cursorPosition))
                     {
                         clobberCompletions = false;
-                        return CompleteKeywords(context);
+                        return CompleteKeywords(keyword);
                     }
 
                     clobberCompletions = true;
-                    return CompleteParameters(context);
+                    return CompleteParameters(keyword, cursorPosition);
 
                 case TokenKind.Generic:
-                    if (context.LastToken.Extent.EndOffset == cursorPosition.Offset)
+                    if (lastToken.Extent.EndOffset == cursorPosition.Offset)
                     {
                         clobberCompletions = true;
-                        return CompleteParameters(context);
+                        return CompleteParameters(keyword, cursorPosition);
                     }
                     break;
 
                 case TokenKind.Parameter:
                     clobberCompletions = true;
-                    return CompleteParameters(context);
+                    return CompleteParameters(keyword, cursorPosition);
             }
 
             clobberCompletions = false;
@@ -168,68 +168,47 @@ namespace PSArm.Completion
             return new KeywordResult(currentSchema, currentFrame);
         }
 
-        private static Collection<CompletionResult> CompleteParameters(KeywordResult keyword)
+        private static Collection<CompletionResult> CompleteParameters(
+            KeywordResult keyword,
+            IScriptPosition cursorPosition)
         {
-            string commandName = context?.ContainingCommandAst?.GetCommandName();
-
-            if (commandName == null)
-            {
-                return null;
-            }
-
-            if (context.ResourceNamespace == null || context.KeywordStack.Count < 3)
-            {
-                // Fall back to the parameter completer
-                return null;
-            }
-
-            if (!ResourceIndex.SharedInstance.TryGetResourceSchema(context.ResourceNamespace, context.ResourceTypeName, context.ResourceApiVersion, out ResourceSchema resourceSchema))
-            {
-                return null;
-            }
-
-            IReadOnlyDictionary<string, ArmDslKeywordSchema> immediateSchema = GetCurrentKeywordSchema(context, resourceSchema, forParameter: true);
-
-            if (immediateSchema == null
-                || !immediateSchema.TryGetValue(commandName, out ArmDslKeywordSchema keywordForContext))
-            {
-                return null;
-            }
-
             // If we're still on the last token, we need to look further back
-            Token beforeToken = context.LastToken;
-            if (context.Position.Offset == context.LastToken.Extent.EndOffset)
+            Token lastToken = keyword.Frame.ParentContext.LastToken;
+            if (cursorPosition.Offset == lastToken.Extent.EndOffset)
             {
-                beforeToken = context.Tokens[context.LastTokenIndex - 1];
+                lastToken = keyword.Frame.ParentContext.Tokens[keyword.Frame.ParentContext.LastTokenIndex - 1];
             }
 
-            return beforeToken.Kind == TokenKind.Parameter
-                ? CompleteParameterValues(context, keywordForContext.PSKeyword.Parameters, beforeToken)
-                : CompleteParameterNames(context, keywordForContext.PSKeyword.Parameters, keywordForContext.Body != null);
+            return lastToken.Kind == TokenKind.Parameter
+                ? CompleteParameterValues(keyword, lastToken)
+                : CompleteParameterNames(keyword);
         }
 
         private static Collection<CompletionResult> CompleteParameterValues(
-            KeywordContext context,
-            IReadOnlyDictionary<string, PSDslParameterInfo> parameters,
+            KeywordResult keyword,
             Token precedingToken)
         {
+            if (keyword.Schema.Parameters is null)
+            {
+                return null;
+            }
+
             string parameterName = precedingToken.Text.Substring(1);
 
-            foreach (KeyValuePair<string, PSDslParameterInfo> parameter in parameters)
+            foreach (KeyValuePair<string, DslParameterInfo> parameter in keyword.Schema.Parameters)
             {
                 if (string.Equals(parameter.Key, parameterName, StringComparison.OrdinalIgnoreCase)
-                    && parameter.Value.Parameter.Enum != null)
+                    && parameter.Value.Values != null)
                 {
                     var completions = new Collection<CompletionResult>();
-                    foreach (object enumOption in parameter.Value.Parameter.Enum)
+                    foreach (string enumOption in parameter.Value.Values)
                     {
-                        string str = enumOption.ToString();
                         completions.Add(
                             new CompletionResult(
-                                str,
-                                str,
+                                enumOption,
+                                enumOption,
                                 CompletionResultType.ParameterValue,
-                                str));
+                                enumOption));
                     }
                     return completions;
                 }
@@ -239,17 +218,21 @@ namespace PSArm.Completion
         }
 
         private static Collection<CompletionResult> CompleteParameterNames(
-            KeywordContext context,
-            IReadOnlyDictionary<string, PSDslParameterInfo> parameters,
-            bool hasBody)
+            KeywordResult keyword)
         {
-            string prefix = context.LastToken.Kind == TokenKind.Parameter
-                ? context.LastToken.Text.Substring(1)
+            if (keyword.Schema.Parameters is null)
+            {
+                return null;
+            }
+
+            Token lastToken = keyword.Frame.ParentContext.LastToken;
+            string prefix = lastToken.Kind == TokenKind.Parameter
+                ? lastToken.Text.Substring(1)
                 : null;
 
             var completions = new Collection<CompletionResult>();
 
-            foreach (KeyValuePair<string, PSDslParameterInfo> parameter in parameters)
+            foreach (KeyValuePair<string, DslParameterInfo> parameter in keyword.Schema.Parameters)
             {
                 if (prefix != null
                     && !parameter.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
@@ -258,7 +241,7 @@ namespace PSArm.Completion
                 }
 
                 string completionText = $"-{parameter.Key}";
-                string completionToolTip = $"[{parameter.Value.Parameter.Type}] {parameter.Key}";
+                string completionToolTip = $"[{parameter.Value.Type}] {parameter.Key}";
                 completions.Add(
                     new CompletionResult(
                         completionText,
@@ -267,7 +250,8 @@ namespace PSArm.Completion
                         completionToolTip));
             }
 
-            if (hasBody && (prefix == null || "Body".StartsWith(prefix)))
+            if (keyword.Schema.Parameters.ContainsKey("Body")
+                && (prefix == null || "Body".StartsWith(prefix)))
             {
                 completions.Add(
                     new CompletionResult(
@@ -304,60 +288,18 @@ namespace PSArm.Completion
                 return completions;
         }
 
-        private static Collection<CompletionResult> CompleteKeywords(KeywordContext context)
+        private static Collection<CompletionResult> CompleteKeywords(KeywordResult keyword)
         {
-            // Not in an Arm block
-            if (context == null)
-            {
-                return null;
-            }
+            Token lastToken = keyword.Frame.ParentContext.LastToken;
 
-            // Top level keyword completions
-            if (context.KeywordStack.Count == 1)
-            {
-                return CompleteCmdletKeywords(context, s_topLevelKeywords);
-            }
-
-            // Resource completions
-            if (context.KeywordStack.Count == 2)
-            {
-                // Offer top level intra-resource keywords
-                return CompleteCmdletKeywords(context, s_resourceKeywords);
-            }
-
-            // Now within a resource DSL
-
-            if (!DslLoader.Instance.TryLoadDsl(context.ResourceNamespace, context.ResourceApiVersion, out ArmProviderDslInfo provider))
-            {
-                return null;
-            }
-
-            if (!provider.ProviderSchema.Resources.TryGetValue(context.ResourceTypeName, out ArmDslResourceSchema resourceSchema))
-            {
-                return null;
-            }
-
-            // Top level resource keywords
-            if (context.KeywordStack.Count == 3)
-            {
-                return CompleteKeywordsFromList(context, resourceSchema.Keywords.Values);
-            }
-
-            // Deeper keywords
-            TypeBase immediateSchema = GetCurrentKeywordSchema(context, resourceSchema.PSKeywordSchema);
-            return CompleteKeywordsFromList(context, immediateSchema.Values);
-        }
-
-        private static Collection<CompletionResult> CompleteKeywordsFromList(KeywordContext context, IEnumerable<ArmDslKeywordSchema> keywords)
-        {
-            string keywordPrefix = context.LastToken.Kind == TokenKind.Identifier
-                ? context.LastToken.Text
+            string keywordPrefix = lastToken.Kind == TokenKind.Identifier
+                ? lastToken.Text
                 : null;
 
             var completions = new Collection<CompletionResult>();
-            foreach (ArmDslKeywordSchema keyword in keywords)
+            foreach (KeyValuePair<string, DslKeywordSchema> innerKeyword in keyword.Schema.GetInnerKeywords(keyword.Frame))
             {
-                string keywordName = keyword.PSKeyword.Name;
+                string keywordName = innerKeyword.Key;
                 if (keywordPrefix != null && !keywordName.StartsWith(keywordPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
@@ -367,57 +309,6 @@ namespace PSArm.Completion
             }
 
             return completions;
-        }
-
-        private static TypeBase GetCurrentKeywordSchema(
-            KeywordContext context,
-            DslKeywordSchema schema,
-            bool forParameter = false)
-        {
-            string immediateKeyword = null;
-            if (forParameter)
-            {
-                immediateKeyword = context.ContainingCommandAst.GetCommandName();
-                if (immediateKeyword == null)
-                {
-                    return null;
-                }
-            }
-
-            TypeBase currSchema = resourceSchema.BicepType;
-            for (int i = 3; i < context.KeywordStack.Count; i++)
-            {
-                switch (currSchema)
-                {
-                }
-
-                if (currSchema == null)
-                {
-                    return null;
-                }
-
-                string keyword = context.KeywordStack[i];
-
-                if (forParameter
-                    && string.Equals(keyword, immediateKeyword, StringComparison.OrdinalIgnoreCase))
-                {
-                    break;
-                }
-
-                if (!currSchema.TryGetValue(keyword, out ArmDslKeywordSchema schemaItem))
-                {
-                    return null;
-                }
-
-                if (schemaItem.Body == null)
-                {
-                    return null;
-                }
-
-                currSchema = schemaItem.PSKeywordSchema;
-            }
-
-            return currSchema;
         }
 
         private readonly struct KeywordResult

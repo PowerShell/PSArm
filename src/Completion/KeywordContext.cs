@@ -172,6 +172,13 @@ namespace PSArm.Completion
         /// </summary>
         public CommandAst ContainingCommandAst { get; private set; }
 
+        public bool HasCommandAtPosition(IScriptPosition position)
+        {
+            return ContainingCommandAst is null
+                || ContainingCommandAst.CommandElements[0] == ContainingAst
+                    && position.Offset == ContainingAst.Extent.EndOffset;
+        }
+
         private static CommandAst GetFirstParentCommandAst(Ast ast)
         {
             do

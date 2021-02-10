@@ -6,11 +6,13 @@ namespace PSArm.Schema.Keyword
 {
     internal sealed class OpenKeywordSchema : DslKeywordSchema
     {
-        public static OpenKeywordSchema Value { get; } = new OpenKeywordSchema();
-
-        private OpenKeywordSchema()
+        public OpenKeywordSchema(
+            IReadOnlyDictionary<string, DslParameterInfo> parameters)
         {
+            Parameters = parameters;
         }
+
+        public override IReadOnlyDictionary<string, DslParameterInfo> Parameters { get; }
 
         public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context) => null;
     }

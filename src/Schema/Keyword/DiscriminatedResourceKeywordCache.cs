@@ -38,7 +38,7 @@ namespace PSArm.Schema.Keyword
             var dict = new Dictionary<string, DslKeywordSchema>(Resource.Properties.Count);
             foreach (KeyValuePair<string, TypeBase> property in Resource.Properties)
             {
-                dict[property.Key] = BicepKeywordSchemaGeneration.GetKeywordSchemaForBicepType(property.Value);
+                dict[property.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(property.Value);
             }
             return dict;
         }
@@ -55,7 +55,7 @@ namespace PSArm.Schema.Keyword
             var dict = new Dictionary<string, DslKeywordSchema>(_commonKeywordsLazy.Value);
             foreach (KeyValuePair<string, ObjectProperty> discriminatedProperty in objectType.Properties)
             {
-                dict[discriminatedProperty.Key] = BicepKeywordSchemaGeneration.GetKeywordSchemaForBicepType(discriminatedProperty.Value.Type.Type);
+                dict[discriminatedProperty.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(discriminatedProperty.Value.Type.Type);
             }
             return dict;
         }

@@ -7,7 +7,9 @@ namespace PSArm.Schema.Keyword
     {
         public abstract IEnumerable<string> GetParameterNames(KeywordContextFrame context);
 
-        public abstract DslParameterInfo GetParameterValueInfo(KeywordContextFrame context, string parameterName);
+        public abstract IEnumerable<string> GetParameterValues(KeywordContextFrame context, string parameterName);
+
+        public abstract string GetParameterType(KeywordContextFrame context, string parameterName);
 
         public abstract IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context);
     }

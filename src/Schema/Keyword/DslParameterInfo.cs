@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
 {
@@ -20,8 +18,8 @@ namespace PSArm.Schema.Keyword
 
         public string Name { get; }
 
-        public IReadOnlyList<string> Values { get; }
-
         public string Type { get; }
+
+        public IReadOnlyList<string> Values { get; }
     }
 }

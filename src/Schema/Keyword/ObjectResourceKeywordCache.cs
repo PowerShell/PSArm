@@ -26,7 +26,7 @@ namespace PSArm.Schema.Keyword
             var dict = new Dictionary<string, DslKeywordSchema>();
             foreach (KeyValuePair<string, TypeBase> property in Resource.Properties)
             {
-                dict[property.Key] = BicepKeywordSchemaGeneration.GetKeywordSchemaForBicepType(property.Value);
+                dict[property.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(property.Value);
             }
             return dict;
         }

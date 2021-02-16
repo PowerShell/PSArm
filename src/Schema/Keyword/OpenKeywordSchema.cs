@@ -4,15 +4,12 @@ using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
 {
-    internal sealed class OpenKeywordSchema : DslKeywordSchema
+    internal sealed class OpenKeywordSchema : KnownParametersSchema
     {
-        public OpenKeywordSchema(
-            IReadOnlyDictionary<string, DslParameterInfo> parameters)
+        public OpenKeywordSchema(IReadOnlyDictionary<string, DslParameterInfo> parameters)
+            : base(parameters)
         {
-            Parameters = parameters;
         }
-
-        public override IReadOnlyDictionary<string, DslParameterInfo> Parameters { get; }
 
         public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context) => null;
     }

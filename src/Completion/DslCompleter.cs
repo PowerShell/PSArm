@@ -188,39 +188,35 @@ namespace PSArm.Completion
             KeywordResult keyword,
             Token precedingToken)
         {
-            if (keyword.Schema.Parameters is null)
+            string parameterName = precedingToken.Text.Substring(1);
+
+            IEnumerable<string> values = keyword.Schema.GetParameterValues(keyword.Frame, parameterName);
+
+            if (values is null)
             {
                 return null;
             }
 
-            string parameterName = precedingToken.Text.Substring(1);
-
-            foreach (KeyValuePair<string, DslParameterInfo> parameter in keyword.Schema.Parameters)
+            var completions = new Collection<CompletionResult>();
+            foreach (string value in values)
             {
-                if (string.Equals(parameter.Key, parameterName, StringComparison.OrdinalIgnoreCase)
-                    && parameter.Value.Values != null)
-                {
-                    var completions = new Collection<CompletionResult>();
-                    foreach (string enumOption in parameter.Value.Values)
-                    {
-                        completions.Add(
-                            new CompletionResult(
-                                enumOption,
-                                enumOption,
-                                CompletionResultType.ParameterValue,
-                                enumOption));
-                    }
-                    return completions;
-                }
+                completions.Add(
+                    new CompletionResult(
+                        value,
+                        value,
+                        CompletionResultType.ParameterValue,
+                        value));
             }
 
-            return null;
+            return completions;
         }
 
         private static Collection<CompletionResult> CompleteParameterNames(
             KeywordResult keyword)
         {
-            if (keyword.Schema.Parameters is null)
+            IEnumerable<string> parameterNames = keyword.Schema.GetParameterNames(keyword.Frame);
+
+            if (parameterNames is null)
             {
                 return null;
             }
@@ -232,33 +228,24 @@ namespace PSArm.Completion
 
             var completions = new Collection<CompletionResult>();
 
-            foreach (KeyValuePair<string, DslParameterInfo> parameter in keyword.Schema.Parameters)
+            foreach (string parameterName in parameterNames)
             {
                 if (prefix != null
-                    && !parameter.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    && !parameterName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
 
-                string completionText = $"-{parameter.Key}";
-                string completionToolTip = $"[{parameter.Value.Type}] {parameter.Key}";
+                string parameterType = keyword.Schema.GetParameterType(keyword.Frame, parameterName);
+
+                string completionText = $"-{parameterName}";
+                string completionToolTip = $"[{parameterType}] {parameterName}";
                 completions.Add(
                     new CompletionResult(
                         completionText,
-                        parameter.Key,
+                        parameterName,
                         CompletionResultType.ParameterName,
                         completionToolTip));
-            }
-
-            if (keyword.Schema.Parameters.ContainsKey("Body")
-                && (prefix == null || "Body".StartsWith(prefix)))
-            {
-                completions.Add(
-                    new CompletionResult(
-                        "-Body",
-                        "Body",
-                        CompletionResultType.ParameterName,
-                        "[scriptblock] Body"));
             }
 
             return completions;

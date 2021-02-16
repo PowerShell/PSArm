@@ -23,6 +23,9 @@ namespace PSArm.Internal
             return string.Equals(thisStr, thatStr, StringComparison.OrdinalIgnoreCase);
         }
 
+        public static bool HasPrefix(this string s, string prefix)
+            => s.StartsWith(prefix, StringComparison.OrdinalIgnoreCase);
+
         /// <summary>
         /// Convert a string from PascalCase to camelCase.
         /// </summary>

@@ -5,6 +5,7 @@
 using PSArm.Commands.Template;
 using PSArm.Internal;
 using PSArm.Schema;
+using PSArm.Schema.Keyword;
 using PSArm.Templates.Primitives;
 using System;
 using System.Collections;
@@ -42,95 +43,8 @@ namespace PSArm.Completion
         public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
             ArmResourceName resourceName = GetResourceNameFromParameters(fakeBoundParameters);
-
-            if (IsString(parameterName, nameof(NewPSArmResourceCommand.Provider)))
-            {
-                var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
-                {
-                    if (resourceName.ApiVersion is not null
-                        && !resource.ApiVersion.StartsWith(resourceName.ApiVersion))
-                    {
-                        continue;
-                    }
-
-                    if (resourceName.Type is not null
-                        && !resource.Name.StartsWith(resourceName.Type))
-                    {
-                        continue;
-                    }
-
-                    if (wordToComplete is not null
-                        && !resource.Namespace.StartsWith(wordToComplete))
-                    {
-                        continue;
-                    }
-
-                    providerCompletions.Add(resource.Namespace);
-                }
-
-                return GetCompletionResultsFromStrings(providerCompletions);
-            }
-
-            if (IsString(parameterName, nameof(NewPSArmResourceCommand.Type)))
-            {
-                var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
-                {
-                    if (resourceName.ApiVersion is not null
-                        && !resource.ApiVersion.StartsWith(resourceName.ApiVersion))
-                    {
-                        continue;
-                    }
-
-                    if (resourceName.Namespace is not null
-                        && !resource.Namespace.StartsWith(resourceName.Namespace))
-                    {
-                        continue;
-                    }
-
-                    if (wordToComplete is not null
-                        && !resource.Name.StartsWith(wordToComplete))
-                    {
-                        continue;
-                    }
-
-                    providerCompletions.Add(resource.Name);
-                }
-
-                return GetCompletionResultsFromStrings(providerCompletions);
-            }
-
-            if (IsString(parameterName, nameof(NewPSArmResourceCommand.ApiVersion)))
-            {
-                var providerCompletions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                foreach (ResourceSchema resource in ResourceIndex.SharedInstance.GetResourceSchemas())
-                {
-                    if (resourceName.Namespace is not null
-                        && !resource.Namespace.StartsWith(resourceName.Namespace))
-                    {
-                        continue;
-                    }
-
-                    if (resourceName.Type is not null
-                        && !resource.Name.StartsWith(resourceName.Type))
-                    {
-                        continue;
-                    }
-
-                    if (wordToComplete is not null
-                        && !resource.ApiVersion.StartsWith(wordToComplete))
-                    {
-                        continue;
-                    }
-
-                    providerCompletions.Add(resource.ApiVersion);
-                }
-
-                return GetCompletionResultsFromStrings(providerCompletions);
-            }
-
-            return null;
+            return GetCompletionResultsFromStrings(
+                ResourceKeywordSchema.Value.GetParameterValues(parameterName, resourceName.Namespace, resourceName.Type, resourceName.ApiVersion));
         }
 
         private ArmResourceName GetResourceNameFromParameters(IDictionary fakeBoundParameters)
@@ -142,13 +56,12 @@ namespace PSArm.Completion
             return ArmResourceName.CreateFromArmStrings(provider, type, apiVersion);
         }
 
-        private static IEnumerable<CompletionResult> GetCompletionResultsFromStrings(IReadOnlyCollection<string> stringValues)
+        private static IEnumerable<CompletionResult> GetCompletionResultsFromStrings(IEnumerable<string> stringValues)
         {
-            var completions = new CompletionResult[stringValues.Count];
-            int i = 0;
+            var completions = new List<CompletionResult>();
             foreach (string str in stringValues)
             {
-                completions[i] = new CompletionResult(str, str, CompletionResultType.ParameterValue, str);
+                completions.Add(new CompletionResult(str, str, CompletionResultType.ParameterValue, str));
             }
             return completions;
         }

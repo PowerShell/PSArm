@@ -3,19 +3,20 @@ using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
 {
-    internal class StaticKeywordSchema : DslKeywordSchema
+    internal class StaticKeywordSchema : KnownParametersSchema
     {
         private readonly IReadOnlyDictionary<string, DslKeywordSchema> _innerKeywords;
 
-        internal StaticKeywordSchema(
+        public StaticKeywordSchema(
             IReadOnlyDictionary<string, DslParameterInfo> parameters,
             IReadOnlyDictionary<string, DslKeywordSchema> schema)
+            : base(parameters)
         {
-            Parameters = parameters;
             _innerKeywords = schema;
         }
 
-        public override IReadOnlyDictionary<string, DslParameterInfo> Parameters { get; }
+        public override IEnumerable<string> GetParameterNames(KeywordContextFrame context)
+            => Parameters.Keys;
 
         public override IReadOnlyDictionary<string, DslKeywordSchema> GetInnerKeywords(KeywordContextFrame context) => _innerKeywords;
     }

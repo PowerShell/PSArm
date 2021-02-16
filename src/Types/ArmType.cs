@@ -136,6 +136,5 @@ namespace PSArm.Types
                     throw new InvalidOperationException($"Cannot convert unsupported ARM type: '{armType}'");
             }
         }
-
     }
 }

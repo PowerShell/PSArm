@@ -92,7 +92,6 @@ task Build {
         "$BinDir/*.pdb",
         "$SrcDir/$ModuleName.psd1",
         "$SrcDir/ArmBuiltins.psm1",
-        "$SrcDir/schemas",
         "$SrcDir/OnImport.ps1"
     )
 

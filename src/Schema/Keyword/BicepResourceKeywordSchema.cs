@@ -13,7 +13,7 @@ namespace PSArm.Schema.Keyword
 {
     internal class ResourceKeywordSchema : KnownParametersSchema
     {
-        public static ResourceKeywordSchema Value { get; }
+        public static ResourceKeywordSchema Value { get; } = new ResourceKeywordSchema();
 
         private static readonly ConcurrentDictionary<ArmResourceName, ResourceKeywordCache> s_resourceKeywordCaches = new ConcurrentDictionary<ArmResourceName, ResourceKeywordCache>();
 
@@ -58,21 +58,21 @@ namespace PSArm.Schema.Keyword
             {
                 FilterForName(ref resources, typeValue);
                 FilterForApiVersion(ref resources, apiVersionValue);
-                return resources.Select(r => r.Namespace);
+                return resources.Select(r => r.Namespace).Distinct();
             }
 
             if (parameterName.Is(nameof(NewPSArmResourceCommand.Type)))
             {
                 FilterForNamespace(ref resources, namespaceValue);
                 FilterForApiVersion(ref resources, apiVersionValue);
-                return resources.Select(r => r.Name);
+                return resources.Select(r => r.Name).Distinct();
             }
 
             if (parameterName.Is(nameof(NewPSArmResourceCommand.ApiVersion)))
             {
                 FilterForNamespace(ref resources, namespaceValue);
                 FilterForName(ref resources, typeValue);
-                return resources.Select(r => r.ApiVersion);
+                return resources.Select(r => r.ApiVersion).Distinct();
             }
 
             return null;

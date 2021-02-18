@@ -42,6 +42,15 @@ namespace PSArm.Schema
             out ResourceSchema resourceSchema)
         {
             resourceSchema = null;
+
+            if (providerNamespace is null
+                || providerName is null
+                || apiVersion is null)
+            {
+                resourceSchema = null;
+                return false;
+            }
+
             return ResourceSchemaTable.TryGetValue(providerNamespace, out IReadOnlyDictionary<string, IReadOnlyDictionary<string, ResourceSchema>> namespaceTable)
                 && namespaceTable.TryGetValue(providerName, out IReadOnlyDictionary<string, ResourceSchema> providerTable)
                 && providerTable.TryGetValue(apiVersion, out resourceSchema);

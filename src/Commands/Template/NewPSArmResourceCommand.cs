@@ -140,9 +140,9 @@ namespace PSArm.Commands.Template
             }
 
             if (ResourceIndex.SharedInstance.TryGetResourceSchema(
-                    Provider.CoerceToString(),
-                    Type.CoerceToString(),
-                    ApiVersion.CoerceToString(),
+                    Provider?.CoerceToString(),
+                    Type?.CoerceToString(),
+                    ApiVersion?.CoerceToString(),
                     out resourceSchema))
             {
                 _resourceSchema = resourceSchema;

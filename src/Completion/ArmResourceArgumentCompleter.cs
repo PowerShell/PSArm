@@ -43,17 +43,23 @@ namespace PSArm.Completion
         public IEnumerable<CompletionResult> CompleteArgument(string commandName, string parameterName, string wordToComplete, CommandAst commandAst, IDictionary fakeBoundParameters)
         {
             ArmResourceName resourceName = GetResourceNameFromParameters(fakeBoundParameters);
-            return GetCompletionResultsFromStrings(
-                ResourceKeywordSchema.Value.GetParameterValues(parameterName, resourceName.Namespace, resourceName.Type, resourceName.ApiVersion));
+            IEnumerable<string> completionStrings = ResourceKeywordSchema.Value.GetParameterValues(parameterName, resourceName.Namespace, resourceName.Type, resourceName.ApiVersion);
+
+            if (!string.IsNullOrEmpty(wordToComplete))
+            {
+                completionStrings = completionStrings.Where(s => s.StartsWith(wordToComplete, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return GetCompletionResultsFromStrings(completionStrings);
         }
 
         private ArmResourceName GetResourceNameFromParameters(IDictionary fakeBoundParameters)
         {
-            fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Provider), out IArmString provider);
-            fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.Type), out IArmString type);
-            fakeBoundParameters.TryGetValue(nameof(NewPSArmResourceCommand.ApiVersion), out IArmString apiVersion);
+            var provider = fakeBoundParameters[nameof(NewPSArmResourceCommand.Provider)] as string;
+            var type = fakeBoundParameters[nameof(NewPSArmResourceCommand.Type)] as string;
+            var apiVersion = fakeBoundParameters[nameof(NewPSArmResourceCommand.ApiVersion)] as string;
 
-            return ArmResourceName.CreateFromArmStrings(provider, type, apiVersion);
+            return new ArmResourceName(provider, type, apiVersion);
         }
 
         private static IEnumerable<CompletionResult> GetCompletionResultsFromStrings(IEnumerable<string> stringValues)
@@ -64,11 +70,6 @@ namespace PSArm.Completion
                 completions.Add(new CompletionResult(str, str, CompletionResultType.ParameterValue, str));
             }
             return completions;
-        }
-
-        private static bool IsString(string str, string expected)
-        {
-            return string.Equals(str, expected, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

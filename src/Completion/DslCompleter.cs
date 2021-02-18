@@ -153,7 +153,7 @@ namespace PSArm.Completion
                     continue;
                 }
 
-                IReadOnlyDictionary<string, DslKeywordSchema> subschemas = currentSchema.GetInnerKeywords(frame);
+                IReadOnlyDictionary<string, DslKeywordSchema> subschemas = currentSchema.GetInnerKeywords(currentFrame);
 
                 if (subschemas is null
                     || !subschemas.TryGetValue(commandName, out DslKeywordSchema subschema))
@@ -163,6 +163,11 @@ namespace PSArm.Completion
 
                 currentSchema = subschema;
                 currentFrame = frame;
+            }
+
+            if (currentFrame is null || currentSchema is null)
+            {
+                return null;
             }
 
             return new KeywordResult(currentSchema, currentFrame);
@@ -188,6 +193,11 @@ namespace PSArm.Completion
             KeywordResult keyword,
             Token precedingToken)
         {
+            if (keyword.Schema == ResourceKeywordSchema.Value)
+            {
+                return null;
+            }
+
             string parameterName = precedingToken.Text.Substring(1);
 
             IEnumerable<string> values = keyword.Schema.GetParameterValues(keyword.Frame, parameterName);

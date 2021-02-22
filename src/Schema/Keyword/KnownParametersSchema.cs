@@ -13,6 +13,8 @@ namespace PSArm.Schema.Keyword
 
         protected IReadOnlyDictionary<string, DslParameterInfo> Parameters { get; }
 
+        public override bool ShouldUseDefaultParameterCompletions => true;
+
         public override IEnumerable<string> GetParameterNames(KeywordContextFrame context)
             => Parameters.Keys;
 

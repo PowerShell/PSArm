@@ -59,7 +59,7 @@ namespace PSArm.Completion
 
             // Set our effective position based on what came before us
             IScriptPosition effectiveCompletionPosition;
-            switch (lastNonNewlineToken.Kind)
+            switch (lastToken.Kind)
             {
                 case TokenKind.Identifier:
                 case TokenKind.Generic:
@@ -68,7 +68,7 @@ namespace PSArm.Completion
                     break;
 
                 default:
-                    effectiveCompletionPosition = lastNonNewlineToken.Extent.EndScriptPosition;
+                    effectiveCompletionPosition = lastToken.Extent.StartScriptPosition;
                     break;
             }
 

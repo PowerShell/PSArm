@@ -5,6 +5,8 @@ namespace PSArm.Schema.Keyword
 {
     internal abstract class DslKeywordSchema
     {
+        public abstract bool ShouldUseDefaultParameterCompletions { get; }
+
         public abstract IEnumerable<string> GetParameterNames(KeywordContextFrame context);
 
         public abstract IEnumerable<string> GetParameterValues(KeywordContextFrame context, string parameterName);

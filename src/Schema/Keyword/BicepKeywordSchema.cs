@@ -13,6 +13,8 @@ namespace PSArm.Schema.Keyword
             BicepType = bicepType;
         }
 
+        public override bool ShouldUseDefaultParameterCompletions => false;
+
         public TBicepType BicepType { get; }
     }
 }

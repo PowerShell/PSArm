@@ -177,6 +177,11 @@ namespace PSArm.Completion
             KeywordResult keyword,
             IScriptPosition cursorPosition)
         {
+            if (keyword.Schema.ShouldUseDefaultParameterCompletions)
+            {
+                return null;
+            }
+
             // If we're still on the last token, we need to look further back
             Token lastToken = keyword.Frame.ParentContext.LastToken;
             if (cursorPosition.Offset == lastToken.Extent.EndOffset)
@@ -259,30 +264,6 @@ namespace PSArm.Completion
             }
 
             return completions;
-        }
-
-        private static Collection<CompletionResult> CompleteCmdletKeywords(
-            KeywordContext context,
-            IReadOnlyDictionary<string, CmdletInfo> keywords)
-        {
-                string prefix = context.LastToken.Kind == TokenKind.Identifier
-                    ? context.LastToken.Text
-                    : null;
-
-                var completions = new Collection<CompletionResult>();
-                foreach (KeyValuePair<string, CmdletInfo> keyword in keywords)
-                {
-                    if (prefix == null || keyword.Key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-                    {
-                        completions.Add(
-                            new CompletionResult(
-                                keyword.Key,
-                                keyword.Key,
-                                CompletionResultType.Command,
-                                keyword.Value.Definition));
-                    }
-                }
-                return completions;
         }
 
         private static Collection<CompletionResult> CompleteKeywords(KeywordResult keyword)

@@ -10,7 +10,7 @@ namespace PSArm.Schema.Keyword
         public StaticKeywordSchema(
             IReadOnlyDictionary<string, DslParameterInfo> parameters,
             IReadOnlyDictionary<string, DslKeywordSchema> schema)
-            : base(parameters)
+            : base(parameters, useParametersForCompletions: false)
         {
             _innerKeywords = schema;
         }

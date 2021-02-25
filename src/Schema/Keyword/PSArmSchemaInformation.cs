@@ -16,7 +16,8 @@ namespace PSArm.Schema.Keyword
                     {
                         { NewPSArmResourceCommand.KeywordName, ResourceKeywordSchema.Value },
                         { NewPSArmOutputCommand.KeywordName, new OpenKeywordSchema(
-                            KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmOutputCommand))) }
+                            KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmOutputCommand)),
+                            useParametersForCompletions: false) }
                     })},
             });
     }

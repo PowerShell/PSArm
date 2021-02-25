@@ -19,12 +19,17 @@ namespace PSArm.Commands.Template
     {
         internal const string KeywordName = "Resource";
 
+        private static readonly HashSet<string> s_builtinParameters = new HashSet<string>(new[]
+        {
+            "Type",
+            "ApiVersion",
+            "DependsOn",
+            "Sku",
+        }, StringComparer.OrdinalIgnoreCase);
+
         private ResourceSchema _resourceSchema;
 
         private RuntimeDefinedParameterDictionary _dynamicParameters;
-
-        [Parameter(Position = 0, Mandatory = true)]
-        public IArmString Name { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
         [Parameter(Mandatory = true)]
@@ -96,6 +101,11 @@ namespace PSArm.Commands.Template
 
             foreach (string defaultParameterName in resourceSchema.SupportedResourceProperties)
             {
+                if (s_builtinParameters.Contains(defaultParameterName))
+                {
+                    continue;
+                }
+
                 var parameter = new RuntimeDefinedParameter
                 {
                     Name = defaultParameterName,
@@ -154,7 +164,7 @@ namespace PSArm.Commands.Template
 
         private Dictionary<string, ScriptBlock> GetDslKeywordDefinitions(ResourceSchema resourceSchema)
         {
-            if (resourceSchema.Discriminator is not null)
+            if (resourceSchema.Discriminator is null)
             {
                 return resourceSchema.KeywordDefinitions;
             }

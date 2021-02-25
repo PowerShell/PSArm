@@ -5,15 +5,18 @@ namespace PSArm.Schema.Keyword
 {
     internal abstract class KnownParametersSchema : DslKeywordSchema
     {
+        private readonly bool _useParametersForCompletions;
+
         public KnownParametersSchema(
-            IReadOnlyDictionary<string, DslParameterInfo> parameters)
+            IReadOnlyDictionary<string, DslParameterInfo> parameters,
+            bool useParametersForCompletions)
         {
             Parameters = parameters;
         }
 
         protected IReadOnlyDictionary<string, DslParameterInfo> Parameters { get; }
 
-        public override bool ShouldUseDefaultParameterCompletions => true;
+        public override bool ShouldUseDefaultParameterCompletions => _useParametersForCompletions;
 
         public override IEnumerable<string> GetParameterNames(KeywordContextFrame context)
             => Parameters.Keys;

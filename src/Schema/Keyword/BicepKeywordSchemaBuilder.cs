@@ -25,7 +25,7 @@ namespace PSArm.Schema.Keyword
 
         protected override DslKeywordSchema VisitBuiltin(BuiltInType armBuiltin)
         {
-            return new OpenKeywordSchema(s_parameterBuilder.Visit(armBuiltin));
+            return new OpenKeywordSchema(s_parameterBuilder.Visit(armBuiltin), useParametersForCompletions: false);
         }
 
         protected override DslKeywordSchema VisitDiscriminatedObject(DiscriminatedObjectType armDiscriminatedObject)
@@ -45,12 +45,12 @@ namespace PSArm.Schema.Keyword
 
         protected override DslKeywordSchema VisitString(StringLiteralType armString)
         {
-            return new OpenKeywordSchema(s_parameterBuilder.Visit(armString));
+            return new OpenKeywordSchema(s_parameterBuilder.Visit(armString), useParametersForCompletions: true);
         }
 
         protected override DslKeywordSchema VisitUnion(UnionType armUnion)
         {
-            return new OpenKeywordSchema(s_parameterBuilder.Visit(armUnion));
+            return new OpenKeywordSchema(s_parameterBuilder.Visit(armUnion), useParametersForCompletions: true);
         }
     }
 }

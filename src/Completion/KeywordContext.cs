@@ -22,60 +22,10 @@ namespace PSArm.Completion
             IReadOnlyList<Token> tokens,
             IScriptPosition cursorPosition)
         {
-            // Go backward through the tokens to determine if we're positioned where a new command should be
-            Token lastToken = null;
-            int lastTokenIndex = -1;
-            for (int i = tokens.Count - 1; i >= 0; i--)
-            {
-                Token currToken = tokens[i];
-
-                if (currToken.Extent.EndScriptPosition.LineNumber < cursorPosition.LineNumber
-                    || (currToken.Extent.EndScriptPosition.LineNumber == cursorPosition.LineNumber
-                        && currToken.Extent.EndScriptPosition.ColumnNumber <= cursorPosition.ColumnNumber))
-                {
-                    if (lastToken == null)
-                    {
-                        lastTokenIndex = i;
-                        lastToken = currToken;
-                        break;
-                    }
-                }
-            }
-
-            // Go through and find the first token before us that isn't a newline.
-            // When the cursor is at the end of an open scriptblock
-            // it falls beyond that scriptblock's extent,
-            // meaning we must backtrack to find the real context for a completion
-            Token lastNonNewlineToken = null;
-            for (int i = lastTokenIndex; i >= 0; i--)
-            {
-                Token currToken = tokens[i];
-                if (currToken.Kind != TokenKind.NewLine)
-                {
-                    lastNonNewlineToken = currToken;
-                    break;
-                }
-            }
-
-            // Set our effective position based on what came before us
-            IScriptPosition effectiveCompletionPosition;
-            switch (lastToken.Kind)
-            {
-                case TokenKind.Identifier:
-                case TokenKind.Generic:
-                case TokenKind.Command:
-                    effectiveCompletionPosition = lastToken.Extent.EndScriptPosition;
-                    break;
-
-                default:
-                    effectiveCompletionPosition = lastToken.Extent.StartScriptPosition;
-                    break;
-            }
-
             // Now find the AST we're in
-            var visitor = new FindAstFromPositionVisitor(effectiveCompletionPosition);
-            ast.Visit(visitor);
-            Ast containingAst = visitor.GetAst();
+            CompletionPositionContext positionContext = GetEffectiveScriptPosition(cursorPosition, tokens);
+
+            Ast containingAst = FindAstFromPositionVisitor.GetContainingAstOfPosition(ast, positionContext.LastNonNewlineToken.Extent.EndScriptPosition);
 
             if (containingAst is null)
             {
@@ -90,9 +40,10 @@ namespace PSArm.Completion
                 ContainingAst = containingAst,
                 ContainingCommandAst = containingCommandAst,
                 FullAst = ast,
-                LastTokenIndex = lastTokenIndex,
-                LastToken = lastToken,
-                LastNonNewlineToken = lastNonNewlineToken,
+                LastTokenIndex = positionContext.LastTokenIndex,
+                LastToken = positionContext.LastToken,
+                LastNonNewlineToken = positionContext.LastNonNewlineToken,
+                EffectivePositionToken = positionContext.EffectivePositionToken,
                 Tokens = tokens,
                 Position = cursorPosition
             };
@@ -162,6 +113,8 @@ namespace PSArm.Completion
         /// </summary>
         public Token LastNonNewlineToken { get; private set; }
 
+        public Token EffectivePositionToken { get; private set; }
+
         /// <summary>
         /// The position of the cursor.
         /// </summary>
@@ -192,6 +145,81 @@ namespace PSArm.Completion
             } while (ast != null);
 
             return null;
+        }
+
+        private static CompletionPositionContext GetEffectiveScriptPosition(
+            IScriptPosition cursorPosition,
+            IReadOnlyList<Token> tokens)
+        {
+            // Go backward through the tokens to determine if we're positioned where a new command should be
+            Token lastToken = null;
+            int lastTokenIndex = -1;
+            for (int i = tokens.Count - 1; i >= 0; i--)
+            {
+                Token currToken = tokens[i];
+
+                if (currToken.Extent.EndScriptPosition.LineNumber < cursorPosition.LineNumber
+                    || (currToken.Extent.EndScriptPosition.LineNumber == cursorPosition.LineNumber
+                        && currToken.Extent.EndScriptPosition.ColumnNumber <= cursorPosition.ColumnNumber))
+                {
+                    if (lastToken == null)
+                    {
+                        lastTokenIndex = i;
+                        lastToken = currToken;
+                        break;
+                    }
+                }
+            }
+
+            if (lastToken.Kind != TokenKind.NewLine)
+            {
+                return new CompletionPositionContext(lastToken, lastToken, lastToken, lastTokenIndex);
+            }
+
+            // Go through and find the first token before us that isn't a newline.
+            // When the cursor is at the end of an open scriptblock
+            // it falls beyond that scriptblock's extent,
+            // meaning we must backtrack to find the real context for a completion
+            Token lastNonNewlineToken = null;
+            Token firstEndNewlineToken = lastToken;
+            for (int i = lastTokenIndex; i >= 0; i--)
+            {
+                Token currToken = tokens[i];
+                if (currToken.Kind != TokenKind.NewLine)
+                {
+                    lastNonNewlineToken = currToken;
+                    break;
+                }
+
+                // This becomes the last token we saw moving backward
+                // So when we see a non-newline token, this is the one just after that
+                firstEndNewlineToken = currToken;
+            }
+
+            return new CompletionPositionContext(lastToken, lastNonNewlineToken, firstEndNewlineToken, lastTokenIndex);
+        }
+
+        private readonly struct CompletionPositionContext
+        {
+            public CompletionPositionContext(
+                Token lastToken,
+                Token lastNonNewlineToken,
+                Token effectivePositionToken,
+                int lastTokenIndex)
+            {
+                LastToken = lastToken;
+                LastNonNewlineToken = lastNonNewlineToken;
+                EffectivePositionToken = effectivePositionToken;
+                LastTokenIndex = lastTokenIndex;
+            }
+
+            public readonly Token LastToken;
+
+            public readonly Token LastNonNewlineToken;
+
+            public readonly Token EffectivePositionToken;
+
+            public readonly int LastTokenIndex;
         }
     }
 }

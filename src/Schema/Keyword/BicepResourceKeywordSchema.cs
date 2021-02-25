@@ -18,7 +18,7 @@ namespace PSArm.Schema.Keyword
         private static readonly ConcurrentDictionary<ArmResourceName, ResourceKeywordCache> s_resourceKeywordCaches = new ConcurrentDictionary<ArmResourceName, ResourceKeywordCache>();
 
         private ResourceKeywordSchema()
-            : base(KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmResourceCommand)))
+            : base(KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmResourceCommand)), useParametersForCompletions: false)
         {
         }
 

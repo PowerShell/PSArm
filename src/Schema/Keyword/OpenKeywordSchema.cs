@@ -6,8 +6,10 @@ namespace PSArm.Schema.Keyword
 {
     internal sealed class OpenKeywordSchema : KnownParametersSchema
     {
-        public OpenKeywordSchema(IReadOnlyDictionary<string, DslParameterInfo> parameters)
-            : base(parameters)
+        public OpenKeywordSchema(
+            IReadOnlyDictionary<string, DslParameterInfo> parameters,
+            bool useParametersForCompletions)
+            : base(parameters, useParametersForCompletions)
         {
         }
 

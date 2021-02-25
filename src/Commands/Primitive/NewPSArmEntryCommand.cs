@@ -20,21 +20,20 @@ namespace PSArm.Commands.Primitive
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Value")]
         public ArmElement Value { get; set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Body_Object")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Body_Array")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Body")]
         public ScriptBlock Body { get; set; }
 
         [Parameter]
         public SwitchParameter Array { get; set; }
 
-        [Parameter(ParameterSetName = "Body_Array")]
+        [Parameter(ParameterSetName = "Body")]
         public SwitchParameter ArrayBody { get; set; }
 
-        [Parameter(ParameterSetName = "Body_Object")]
+        [Parameter(ParameterSetName = "Body")]
         [ValidateNotNullOrEmpty]
         public string DiscriminatorKey { get; set; }
 
-        [Parameter(ParameterSetName = "Body_Object")]
+        [Parameter(ParameterSetName = "Body")]
         [ValidateNotNullOrEmpty]
         public string DiscriminatorValue { get; set; }
 

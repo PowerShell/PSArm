@@ -64,6 +64,9 @@ namespace PSArm.Commands.Template
 
             var armResource = new ConstructingArmBuilder<ArmResource>();
 
+            armResource.AddSingleElement(ArmTemplateKeys.ApiVersion, (ArmElement)ApiVersion);
+            armResource.AddSingleElement(ArmTemplateKeys.Type, ComposeResourceTypeElement());
+
             foreach (KeyValuePair<string, RuntimeDefinedParameter> dynamicParameter in _dynamicParameters)
             {
                 if (resourceSchema.Discriminator is not null
@@ -87,7 +90,7 @@ namespace PSArm.Commands.Template
                 armResource.AddEntry(armEntry);
             }
 
-            WriteObject(armResource);
+            WriteObject(new ArmEntry(ArmTemplateKeys.Resources, armResource.Build(), isArrayElement: true));
         }
 
         public object GetDynamicParameters()
@@ -139,6 +142,14 @@ namespace PSArm.Commands.Template
             }
 
             return _dynamicParameters;
+        }
+
+        private ArmElement ComposeResourceTypeElement()
+        {
+            string provider = Provider.CoerceToString();
+            string type = Type.CoerceToString();
+
+            return new ArmStringLiteral($"{provider}/{type}");
         }
 
         private bool TryGetResourceSchema(out ResourceSchema resourceSchema)

@@ -89,6 +89,13 @@ namespace PSArm.Templates.Primitives
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitObject(this);
+
+        protected ArmElement GetElementOrNull(IArmString key)
+        {
+            return TryGetValue(key, out ArmElement value)
+                ? value
+                : null;
+        }
     }
 
     public class ArmObject<TValue> : ArmObject, IDictionary<IArmString, TValue>, IReadOnlyDictionary<IArmString, TValue> where TValue : ArmElement
@@ -165,6 +172,13 @@ namespace PSArm.Templates.Primitives
             {
                 yield return new KeyValuePair<IArmString, TValue>(entry.Key, (TValue)entry.Value);
             }
+        }
+
+        protected new TValue GetElementOrNull(IArmString key)
+        {
+            return TryGetValue(key, out TValue value)
+                ? value
+                : default;
         }
     }
 }

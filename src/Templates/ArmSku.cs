@@ -7,31 +7,31 @@ namespace PSArm.Templates
     {
         public IArmString Name
         {
-            get => (IArmString)this[ArmTemplateKeys.Name];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Name);
             set => this[ArmTemplateKeys.Name] = (ArmElement)value;
         }
 
         public IArmString Tier
         {
-            get => (IArmString)this[ArmTemplateKeys.Tier];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Tier);
             set => this[ArmTemplateKeys.Tier] = (ArmElement)value;
         }
 
         public IArmString Size
         {
-            get => (IArmString)this[ArmTemplateKeys.Size];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Size);
             set => this[ArmTemplateKeys.Size] = (ArmElement)value;
         }
 
         public IArmString Family
         {
-            get => (IArmString)this[ArmTemplateKeys.Family];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Family);
             set => this[ArmTemplateKeys.Family] = (ArmElement)value;
         }
 
         public IArmString Capacity
         {
-            get => (IArmString)this[ArmTemplateKeys.Capacity];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Capacity);
             set => this[ArmTemplateKeys.Capacity] = (ArmElement)value;
         }
 

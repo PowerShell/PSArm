@@ -1,21 +1,17 @@
-﻿using PSArm.Templates.Visitors;
+﻿using PSArm.Templates.Operations;
+using PSArm.Templates.Visitors;
 using PSArm.Types;
 using System.ComponentModel;
 
 namespace PSArm.Templates.Primitives
 {
     [TypeConverter(typeof(ArmElementConverter))]
-    public sealed class ArmNullLiteral : ArmLiteral<object>
+    public sealed class ArmNullLiteral : ArmFunctionCallExpression
     {
-        public static new ArmNullLiteral Value { get; } = new ArmNullLiteral();
+        public static ArmNullLiteral Value { get; } = new ArmNullLiteral();
 
-        private ArmNullLiteral() : base(null, ArmType.Object)
+        private ArmNullLiteral() : base(new ArmStringLiteral("json"), new [] { new ArmStringLiteral("null") })
         {
-        }
-
-        public override string ToInnerExpressionString()
-        {
-            return "json('null')";
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitNullValue(this);

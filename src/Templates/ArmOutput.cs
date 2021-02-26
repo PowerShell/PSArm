@@ -14,13 +14,13 @@ namespace PSArm.Templates
 
         public IArmString Type
         {
-            get => (IArmString)this[ArmTemplateKeys.Type];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Type);
             set => this[ArmTemplateKeys.Type] = (ArmElement)value;
         }
 
         public IArmString Value
         {
-            get => (IArmString)this[ArmTemplateKeys.Value];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Value);
             set => this[ArmTemplateKeys.Value] = (ArmElement)value;
         }
 

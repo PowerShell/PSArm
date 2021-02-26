@@ -31,13 +31,18 @@ namespace PSArm.Serialization
 
         public JToken VisitMemberAccess(ArmMemberAccessExpression memberAccess) => VisitArmString(memberAccess);
 
-        public JToken VisitNullValue(ArmNullLiteral nullValue) => JValue.CreateNull();
+        public JToken VisitNullValue(ArmNullLiteral nullValue) => VisitFunctionCall(nullValue);
 
         public JToken VisitObject(ArmObject obj)
         {
             var jObj = new JObject();
             foreach (KeyValuePair<IArmString, ArmElement> entry in obj)
             {
+                if (entry.Value is null)
+                {
+                    continue;
+                }
+
                 jObj[entry.Key.ToExpressionString()] = entry.Value.Visit(this);
             }
             return jObj;
@@ -57,7 +62,7 @@ namespace PSArm.Serialization
 
         public JToken VisitTemplate(ArmTemplate template) => VisitObject(template);
 
-        public JToken VisitVariableDeclaration(ArmVariable variable) => variable.Value.Visit(this);
+        public JToken VisitVariableDeclaration(ArmVariable variable) => variable.Value?.Visit(this);
 
         public JToken VisitVariableReference(ArmVariableReferenceExpression variableReference) => VisitArmString(variableReference);
 

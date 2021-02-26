@@ -21,19 +21,19 @@ namespace PSArm.Templates
 
         public IArmString Type
         {
-            get => (IArmString)this[ArmTemplateKeys.Type];
+            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Type);
             set => this[ArmTemplateKeys.Type] = (ArmElement)value;
         }
 
         public ArmElement DefaultValue
         {
-            get => this[ArmTemplateKeys.DefaultValue];
+            get => GetElementOrNull(ArmTemplateKeys.DefaultValue);
             set => this[ArmTemplateKeys.DefaultValue] = value;
         }
 
         public ArmArray AllowedValues
         {
-            get => (ArmArray)this[ArmTemplateKeys.AllowedValues];
+            get => (ArmArray)GetElementOrNull(ArmTemplateKeys.AllowedValues);
             set => this[ArmTemplateKeys.AllowedValues] = value;
         }
 

@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+
+// Copyright (c) Microsoft Corporation.
+
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

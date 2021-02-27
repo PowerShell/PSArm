@@ -1,4 +1,7 @@
-﻿using PSArm.Templates.Visitors;
+
+// Copyright (c) Microsoft Corporation.
+
+using PSArm.Templates.Visitors;
 using PSArm.Types;
 using System.ComponentModel;
 

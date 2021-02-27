@@ -1,3 +1,6 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+
 Import-Module "$PSScriptRoot/../BuildHelper.psm1"
 
 function New-Catalog

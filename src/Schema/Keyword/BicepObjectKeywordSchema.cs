@@ -1,4 +1,7 @@
-﻿using Azure.Bicep.Types.Concrete;
+
+// Copyright (c) Microsoft Corporation.
+
+using Azure.Bicep.Types.Concrete;
 using PSArm.Completion;
 using PSArm.Internal;
 using System;

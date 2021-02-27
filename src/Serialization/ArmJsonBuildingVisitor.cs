@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+
+// Copyright (c) Microsoft Corporation.
+
+using Newtonsoft.Json.Linq;
 using PSArm.Templates;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;

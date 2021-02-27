@@ -1,4 +1,7 @@
-﻿using PSArm.Schema.Keyword;
+
+// Copyright (c) Microsoft Corporation.
+
+using PSArm.Schema.Keyword;
 using System;
 using System.Collections.Generic;
 using System.Management.Automation;

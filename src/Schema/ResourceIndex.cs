@@ -1,4 +1,7 @@
-﻿using Azure.Bicep.Types.Az;
+
+// Copyright (c) Microsoft Corporation.
+
+using Azure.Bicep.Types.Az;
 using System;
 using System.Collections.Generic;
 using System.Linq;

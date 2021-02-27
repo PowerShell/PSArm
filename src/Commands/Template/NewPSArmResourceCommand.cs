@@ -1,4 +1,7 @@
-﻿using PSArm.Commands.Internal;
+
+// Copyright (c) Microsoft Corporation.
+
+using PSArm.Commands.Internal;
 using PSArm.Completion;
 using PSArm.Internal;
 using PSArm.Schema;

@@ -1,4 +1,7 @@
-﻿using System;
+
+// Copyright (c) Microsoft Corporation.
+
+using System;
 using System.Security;
 
 namespace PSArm.Types

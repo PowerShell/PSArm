@@ -13,11 +13,7 @@ param(
 
     [Parameter()]
     [string]
-    $RepoRoot = $PWD,
-
-    [Parameter()]
-    [string[]]
-    $ExcludePaths = @('out')
+    $RepoRoot = ((Resolve-Path "$PSScriptRoot/../").Path)
 )
 
 if (-not $PSHeader)
@@ -25,7 +21,6 @@ if (-not $PSHeader)
     $PSHeader = @'
 
 # Copyright (c) Microsoft Corporation.
-# All rights reserved.
 
 
 '@
@@ -38,7 +33,6 @@ if (-not $CSharpHeader)
     $CSharpHeader = @'
 
 // Copyright (c) Microsoft Corporation.
-// All rights reserved.
 
 
 '@
@@ -46,10 +40,9 @@ if (-not $CSharpHeader)
 
 $csharpHeaderTrimmed = $CSharpHeader.Trim()
 
-$ExcludePaths = $ExcludePaths | ForEach-Object { "$RepoRoot/$_" }
-
-:loop foreach ($file in Get-ChildItem -Path $RepoRoot -Recurse -Exclude $ExcludePaths)
+:loop foreach ($file in Get-ChildItem -Path $RepoRoot -Recurse)
 {
+    Write-Verbose "Looking at file '$file'"
     if ($file -is [System.IO.DirectoryInfo])
     {
         continue
@@ -88,5 +81,6 @@ $ExcludePaths = $ExcludePaths | ForEach-Object { "$RepoRoot/$_" }
         }
     }
 
+    Write-Host "Adding copyright header to '$file'"
     Set-Content -Path $file.FullName -Value $content -NoNewline -Encoding $encoding
 }

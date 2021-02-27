@@ -1,4 +1,7 @@
-﻿namespace PSArm.Templates.Primitives
+
+// Copyright (c) Microsoft Corporation.
+
+namespace PSArm.Templates.Primitives
 {
     public class ArmEntry
     {

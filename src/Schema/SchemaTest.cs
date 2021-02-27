@@ -1,4 +1,7 @@
-﻿namespace PSArm.Schema
+
+// Copyright (c) Microsoft Corporation.
+
+namespace PSArm.Schema
 {
     public static class SchemaTest
     {

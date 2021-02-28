@@ -29,11 +29,10 @@ namespace PSArm.Commands.Template
         protected override void EndProcessing()
         {
             WriteArmValueEntry(
-                Name, 
-                new ArmOutput(Name)
+                ArmTemplateKeys.Outputs,
+                new ArmObject
                 {
-                    Type = Type,
-                    Value = Value,
+                    [Name] = new ArmOutput(Name) { Type = Type, Value = Value }
                 });
         }
     }

@@ -25,7 +25,26 @@ namespace PSArm.Templates.Builders
 
         public ArmBuilder<TObject> AddSingleElement(IArmString key, ArmElement value)
         {
-            _armObject.Add(key, value);
+            if (!_armObject.TryGetValue(key, out ArmElement existingValue))
+            {
+                _armObject[key] = value;
+            }
+            else if (existingValue is ArmObject existingObject
+                && value is ArmObject newObject)
+            {
+                foreach (KeyValuePair<IArmString, ArmElement> newEntry in newObject)
+                {
+                    existingObject.Add(newEntry);
+                }
+            }
+            else
+            {
+                // This will throw because the key already exists
+                // for now we let the underlying dictionary do this,
+                // since the error makes sense
+                _armObject.Add(key, value);
+            }
+
             return this;
         }
 

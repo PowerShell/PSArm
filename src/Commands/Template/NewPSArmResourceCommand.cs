@@ -24,6 +24,7 @@ namespace PSArm.Commands.Template
 
         private static readonly HashSet<string> s_builtinParameters = new HashSet<string>(new[]
         {
+            "Name",
             "Type",
             "ApiVersion",
             "DependsOn",
@@ -33,6 +34,9 @@ namespace PSArm.Commands.Template
         private ResourceSchema _resourceSchema;
 
         private RuntimeDefinedParameterDictionary _dynamicParameters;
+
+        [Parameter(Position = 0, Mandatory = true)]
+        public IArmString Name { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
         [Parameter(Mandatory = true)]

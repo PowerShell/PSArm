@@ -3,7 +3,6 @@
 
 using Azure.Bicep.Types.Concrete;
 using PSArm.Completion;
-using PSArm.Schema.Keyword;
 using System;
 using System.Collections.Generic;
 

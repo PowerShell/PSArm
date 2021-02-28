@@ -9,7 +9,6 @@ using PSArm.Templates.Visitors;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace PSArm.Serialization
 {

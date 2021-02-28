@@ -1,7 +1,6 @@
 
 // Copyright (c) Microsoft Corporation.
 
-using Newtonsoft.Json.Linq;
 using PSArm.Types;
 
 namespace PSArm.Templates.Primitives

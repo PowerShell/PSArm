@@ -2,7 +2,6 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Serialization;
-using System.Runtime.CompilerServices;
 
 namespace PSArm.Internal
 {

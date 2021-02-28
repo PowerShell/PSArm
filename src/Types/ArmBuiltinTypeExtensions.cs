@@ -2,10 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 
 using Azure.Bicep.Types.Concrete;
-using PSArm.Templates.Primitives;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSArm.Types
 {

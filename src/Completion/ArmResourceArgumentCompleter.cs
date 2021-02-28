@@ -3,18 +3,14 @@
 // All rights reserved.
 
 using PSArm.Commands.Template;
-using PSArm.Internal;
 using PSArm.Schema;
 using PSArm.Schema.Keyword;
-using PSArm.Templates.Primitives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Language;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace PSArm.Completion
 {

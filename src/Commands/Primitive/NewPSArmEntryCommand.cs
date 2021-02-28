@@ -5,9 +5,7 @@ using PSArm.Commands.Internal;
 using PSArm.Templates.Builders;
 using PSArm.Templates.Primitives;
 using System;
-using System.Collections.Generic;
 using System.Management.Automation;
-using System.Text;
 
 namespace PSArm.Commands.Primitive
 {

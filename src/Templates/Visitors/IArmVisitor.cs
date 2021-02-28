@@ -3,9 +3,6 @@
 
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSArm.Templates.Visitors
 {

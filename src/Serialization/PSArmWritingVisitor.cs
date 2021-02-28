@@ -9,9 +9,6 @@ using PSArm.Templates.Visitors;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Management.Automation.Language;
-using System.Security;
-using System.Text;
 
 namespace PSArm.Serialization
 {

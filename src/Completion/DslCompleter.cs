@@ -8,11 +8,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Language;
-using Azure.Bicep.Types.Concrete;
-using PSArm.Commands;
-using PSArm.Commands.Template;
-using PSArm.Internal;
-using PSArm.Schema;
 using PSArm.Schema.Keyword;
 
 namespace PSArm.Completion

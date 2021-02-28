@@ -1,7 +1,6 @@
 
 // Copyright (c) Microsoft Corporation.
 
-using Newtonsoft.Json.Linq;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;

@@ -2,12 +2,8 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
-using PSArm.Internal;
-using PSArm.Templates.Primitives;
 using System.Collections.Generic;
 using System.Management.Automation.Language;
-using System.Net.Sockets;
-using System.Security.Cryptography;
 
 namespace PSArm.Completion
 {

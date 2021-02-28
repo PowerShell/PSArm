@@ -1,5 +1,4 @@
-﻿
-# Copyright (c) Microsoft Corporation.
+﻿# Copyright (c) Microsoft Corporation.
 # All rights reserved.
 
 [CmdletBinding(DefaultParameterSetName = "Build")]

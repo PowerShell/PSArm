@@ -1,3 +1,6 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+
 BeforeDiscovery {
     # Test cases come from the examples folder
     $exampleDir = (Resolve-Path "$PSScriptRoot/../../examples").Path

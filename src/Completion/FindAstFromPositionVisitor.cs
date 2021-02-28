@@ -11,6 +11,19 @@ namespace PSArm.Completion
     /// </summary>
     internal class FindAstFromPositionVisitor : AstVisitor2
     {
+        public static Ast GetContainingAstOfPosition(Ast fullAst, IScriptPosition position)
+        {
+            var visitor = new FindAstFromPositionVisitor(position);
+            fullAst.Visit(visitor);
+            return visitor.GetAst();
+        }
+
+        public static Ast GetContainingAstOfPosition(Ast fullAst, int line, int column)
+        {
+            var position = new ScriptPosition(scriptName: null, line, column, line: null);
+            return GetContainingAstOfPosition(fullAst, position);
+        }
+
         private readonly IScriptPosition _position;
 
         private Ast _astAtPosition;
@@ -122,7 +135,25 @@ namespace PSArm.Completion
 
         public override AstVisitAction VisitReturnStatement(ReturnStatementAst returnStatementAst) => VisitAst(returnStatementAst);
 
-        public override AstVisitAction VisitScriptBlock(ScriptBlockAst scriptBlockAst) => VisitAst(scriptBlockAst);
+        public override AstVisitAction VisitScriptBlock(ScriptBlockAst scriptBlockAst)
+        {
+            if (!AstContainsPosition(scriptBlockAst))
+            {
+                return AstVisitAction.SkipChildren;
+            }
+
+            // If the scriptblock is closed and we're on the closing brace
+            // then we're not *in* that scriptblock
+            if (scriptBlockAst.Extent.Text.EndsWith("}")
+                && scriptBlockAst.Extent.EndLineNumber == _position.LineNumber
+                && scriptBlockAst.Extent.EndColumnNumber == _position.ColumnNumber)
+            {
+                return AstVisitAction.SkipChildren;
+            }
+
+            _astAtPosition = scriptBlockAst;
+            return AstVisitAction.Continue;
+        }
 
         public override AstVisitAction VisitScriptBlockExpression(ScriptBlockExpressionAst scriptBlockExpressionAst) => VisitAst(scriptBlockExpressionAst);
 

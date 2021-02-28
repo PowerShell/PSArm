@@ -1,3 +1,6 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+
 param(
   [Parameter(Mandatory)]
   [string]

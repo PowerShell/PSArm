@@ -1,3 +1,6 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+
 if (Get-Command Invoke-Build -ErrorAction Ignore)
 {
     return

@@ -1,3 +1,6 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+
 function add
 {
    if ($args.Count -lt 2){ throw 'Not enough parameters provided' }

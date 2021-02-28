@@ -22,6 +22,9 @@ namespace PSArm.Internal
             return string.Equals(thisStr, thatStr, StringComparison.OrdinalIgnoreCase);
         }
 
+        public static bool HasPrefix(this string s, string prefix)
+            => s.StartsWith(prefix, StringComparison.OrdinalIgnoreCase);
+
         /// <summary>
         /// Convert a string from PascalCase to camelCase.
         /// </summary>
@@ -32,6 +35,25 @@ namespace PSArm.Internal
             return char.IsLower(s[0])
                 ? s
                 : char.ToLower(s[0]) + s.Substring(1);
+        }
+
+        public static string Pascal(this string s)
+        {
+            return char.IsUpper(s[0])
+                ? s
+                : char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        public static string Depluralize(this string s)
+        {
+            int lastIdx = s.Length - 1;
+
+            if (s[lastIdx] != 's')
+            {
+                return s;
+            }
+
+            return s.Substring(0, lastIdx);
         }
     }
 }

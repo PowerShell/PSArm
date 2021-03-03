@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "psarm",
+      "version": "0.1.0.0",
+      "psarm-psversion": "7.2.0-preview.3"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "properties": {
+        "addressPrefix": "10.0.0.0/24"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2019-11-01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "myConfig",
+            "properties": {
+              "subnet": {
+                "id": "banana"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "nicResourceId": {
+      "type": "string",
+      "value": "duck"
+    }
+  }
+}

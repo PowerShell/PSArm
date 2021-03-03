@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Company>Microsoft Corporation</Company>
+    <Copyright>(c) Microsoft Corporation</Copyright>
+
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>

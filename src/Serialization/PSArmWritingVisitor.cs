@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Internal;
+using PSArm.Schema;
 using PSArm.Templates;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
@@ -9,6 +10,7 @@ using PSArm.Templates.Visitors;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PSArm.Serialization
 {
@@ -38,9 +40,14 @@ namespace PSArm.Serialization
             }
         }
 
+        private const string IndentStr = "  ";
+
         private static readonly char[] s_armTypeSeparators = new[] { '/' };
 
-        private const string IndentStr = "  ";
+        private static readonly IReadOnlyDictionary<ArmStringLiteral, string> s_resourceDefaultParameters = ResourceSchema.DefaultTopLevelProperties
+            .Where(p => p != "type" && p != "apiVersion")
+            .Select(p => new ArmStringLiteral(p))
+            .ToDictionary(p => p, p => p.Value.PascalCase());
 
         private readonly TextWriter _writer;
 
@@ -167,15 +174,13 @@ namespace PSArm.Serialization
             WriteString(typeParts[1]);
             Write(" -ApiVersion ");
             WriteExpression(resource.ApiVersion);
-            if (resource.Location != null)
+            foreach (KeyValuePair<ArmStringLiteral, string> defaultParameter in s_resourceDefaultParameters)
             {
-                Write(" -Location ");
-                WriteExpression(resource.Location);
-            }
-            if (resource.Kind != null)
-            {
-                Write(" -Kind ");
-                WriteExpression(resource.Kind);
+                if (resource.TryGetValue(defaultParameter.Key, out ArmElement value))
+                {
+                    Write($" -{defaultParameter.Value} ");
+                    WriteExpression(value);
+                }
             }
             Write(" ");
 
@@ -484,7 +489,7 @@ namespace PSArm.Serialization
 
         private void WriteKeyword(IArmString keyword)
         {
-            Write(keyword.CoerceToString().Pascal());
+            Write(keyword.CoerceToString().PascalCase());
         }
 
         private void OpenBlock()

@@ -30,14 +30,14 @@ namespace PSArm.Internal
         /// </summary>
         /// <param name="s">The string to convert.</param>
         /// <returns>The camel-cased string.</returns>
-        public static string UnPascal(this string s)
+        public static string CamelCase(this string s)
         {
             return char.IsLower(s[0])
                 ? s
                 : char.ToLower(s[0]) + s.Substring(1);
         }
 
-        public static string Pascal(this string s)
+        public static string PascalCase(this string s)
         {
             return char.IsUpper(s[0])
                 ? s

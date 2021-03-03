@@ -26,18 +26,6 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.Name] = (ArmElement)value;
         }
 
-        public IArmString Location
-        {
-            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Location);
-            set => this[ArmTemplateKeys.Location] = (ArmElement)value;
-        }
-
-        public IArmString Kind
-        {
-            get => (IArmString)GetElementOrNull(ArmTemplateKeys.Kind);
-            set => this[ArmTemplateKeys.Kind] = (ArmElement)value;
-        }
-
         public ArmObject Properties
         {
             get => (ArmObject)GetElementOrNull(ArmTemplateKeys.Properties);

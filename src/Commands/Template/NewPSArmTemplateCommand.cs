@@ -3,6 +3,12 @@
 
 using PSArm.Commands.Internal;
 using PSArm.Templates;
+using PSArm.Templates.Builders;
+using PSArm.Templates.Metadata;
+using PSArm.Templates.Primitives;
+using System;
+using System.Collections;
+using System.IO;
 using System.Management.Automation;
 
 namespace PSArm.Commands.Template
@@ -13,12 +19,28 @@ namespace PSArm.Commands.Template
     {
         internal const string KeywordName = "Arm";
 
+        [Parameter]
+        public string Name { get; set; }
+
         [Parameter(Mandatory = true, Position = 0)]
         public ScriptBlock Body { get; set; }
 
         protected override void EndProcessing()
         {
-            WriteArmObjectElement<ArmTemplate>(Body);
+            string templateName = Name;
+            if (templateName is null)
+            {
+                try
+                {
+                    templateName = Path.GetFileNameWithoutExtension(MyInvocation.ScriptName);
+                }
+                catch
+                {
+                    // If we fail, just proceed with templateName = null
+                }
+            }
+
+            WriteArmObjectElement(new ArmBuilder<ArmTemplate>(new ArmTemplate(templateName)), Body);
         }
     }
 }

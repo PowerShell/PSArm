@@ -2,12 +2,9 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Commands.Internal;
+using PSArm.Execution;
 using PSArm.Templates;
 using PSArm.Templates.Builders;
-using PSArm.Templates.Metadata;
-using PSArm.Templates.Primitives;
-using System;
-using System.Collections;
 using System.IO;
 using System.Management.Automation;
 
@@ -32,7 +29,8 @@ namespace PSArm.Commands.Template
             {
                 try
                 {
-                    templateName = Path.GetFileNameWithoutExtension(MyInvocation.ScriptName);
+                    templateName = Path.GetFileName(MyInvocation.ScriptName);
+                    templateName = templateName.Substring(0, templateName.Length - PSArmTemplateExecutor.PSArmFileExtension.Length);
                 }
                 catch
                 {

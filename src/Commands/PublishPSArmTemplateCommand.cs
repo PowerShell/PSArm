@@ -14,9 +14,11 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
+using System.Management.Automation.Host;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PSArm.Commands
@@ -26,7 +28,7 @@ namespace PSArm.Commands
     {
         private const string DefaultTemplateName = "template.json";
 
-        private const string TemplateSigningApiUri = "https://management.azure.com/providers/Microsoft.Resources/calculateTemplateHash?api-version=2020-06-01?api-version=2020-06-01";
+        private const string TemplateSigningApiUri = "https://management.azure.com/providers/Microsoft.Resources/calculateTemplateHash?api-version=2020-06-01";
 
         private readonly PSArmTemplateExecutor.Builder _templateExecutorBuilder;
 
@@ -84,10 +86,12 @@ namespace PSArm.Commands
             ArmNestedTemplate aggregatedTemplate = null;
             using (var pwsh = PowerShell.Create(RunspaceMode.CurrentRunspace))
             {
+                WriteVerbose("Building template executor");
                 PSArmTemplateExecutor templateExecutor = _templateExecutorBuilder.Build(pwsh);
                 try
                 {
-                    aggregatedTemplate = templateExecutor.EvaluatePSArmTemplates();
+                    WriteVerbose("Finding and evaluating templates");
+                    aggregatedTemplate = templateExecutor.EvaluatePSArmTemplates(Parameters);
                 }
                 catch (InvalidOperationException e)
                 {
@@ -122,10 +126,16 @@ namespace PSArm.Commands
                     "TemplateCreationFailed",
                     ErrorCategory.InvalidOperation);
             }
+
+            if (PassThru)
+            {
+                WriteObject(aggregatedTemplate);
+            }
         }
 
         private async Task<ArmNestedTemplate> RunIOOperationsAsync(ArmNestedTemplate template)
         {
+            Host.UI.WriteVerboseLine("Signing template");
             template = await SignTemplate(template).ConfigureAwait(false);
 
             if (!NoWriteFile)
@@ -140,32 +150,52 @@ namespace PSArm.Commands
         {
             string outPath = GetOutPath();
 
-            using var streamWriter = new StreamWriter(outPath, append: false, Encoding.UTF8);
-            using var jsonWriter = new JsonTextWriter(streamWriter);
+            using var file = new FileStream(outPath, FileMode.Create, FileAccess.Write, FileShare.Read, bufferSize: 4096, useAsync: true);
+            using var writer = new StreamWriter(file, Encoding.UTF8);
+            using var jsonWriter = new JsonTextWriter(writer)
+            {
+                Formatting = Formatting.Indented,
+            };
+
+            Host.UI.WriteVerboseLine($"Writing template to '{outPath}'");
 
             await template.ToJson().WriteToAsync(jsonWriter).ConfigureAwait(false);
+            await jsonWriter.FlushAsync().ConfigureAwait(false);
         }
 
         private async Task<ArmNestedTemplate> SignTemplate(ArmNestedTemplate template)
         {
+            Host.UI.WriteVerboseLine("Getting Azure token");
             string token = GetAzureToken();
 
             using var stream = new MemoryStream();
-            using var textReader = new StreamWriter(stream);
-            using var jsonWriter = new JsonTextWriter(textReader);
-            using var httpClient = new HttpClient
+            using var writer = new StreamWriter(stream, Encoding.UTF8);
+            using var jsonWriter = new JsonTextWriter(writer);
+            using var httpClient = new HttpClient(new VerboseHttpLoggingHandler(Host.UI, new HttpClientHandler()))
             {
                 DefaultRequestHeaders =
                 {
                     Authorization = new AuthenticationHeaderValue("Bearer", token),
-                }
+                },
             };
 
             await template.ToJson().WriteToAsync(jsonWriter).ConfigureAwait(false);
+            await jsonWriter.FlushAsync();
+            stream.Seek(0, SeekOrigin.Begin);
 
-            var body = new StreamContent(stream);
+            var body = new StreamContent(stream)
+            {
+                Headers =
+                {
+                    ContentType = new MediaTypeHeaderValue("application/json")
+                    {
+                        CharSet = "utf-8"
+                    },
+                },
+            };
 
-            HttpResponseMessage response = await httpClient.PostAsync(TemplateSigningApiUri, body).ConfigureAwait(false);
+            Host.UI.WriteVerboseLine("Initiating HTTP request");
+            using HttpResponseMessage response = await httpClient.PostAsync(TemplateSigningApiUri, body).ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
 
@@ -175,6 +205,7 @@ namespace PSArm.Commands
             using var jsonReader = new JsonTextReader(streamReader);
             string hash = await GetHashFromJsonResponse(jsonReader).ConfigureAwait(false);
 
+            Host.UI.WriteVerboseLine($"Adding hash '{hash}' to template");
             ((PSArmTopLevelTemplateMetadata)template.Metadata).GeneratorMetadata.TemplateHash = new ArmStringLiteral(hash);
 
             return template;
@@ -275,19 +306,55 @@ namespace PSArm.Commands
         {
             string pwd = SessionState.Path.CurrentFileSystemLocation.Path;
 
+            string path;
             if (OutFile is null)
             {
-                return Path.Combine(pwd, DefaultTemplateName);
+                path = Path.Combine(pwd, DefaultTemplateName);
+            }
+            else if (Path.IsPathRooted(OutFile))
+            {
+                path = OutFile;
+            }
+            else
+            {
+                path = Path.Combine(pwd, OutFile);
             }
 
-            return Path.IsPathRooted(OutFile)
-                ? OutFile
-                : Path.Combine(pwd, OutFile);
+            return Path.GetFullPath(path);
         }
 
         private void ThrowTerminatingError(Exception e, string errorId, ErrorCategory errorCategory, object targetObject = null)
         {
             ThrowTerminatingError(new ErrorRecord(e, errorId, errorCategory, targetObject));
+        }
+
+        private class VerboseHttpLoggingHandler : DelegatingHandler
+        {
+            PSHostUserInterface _psUI;
+
+            public VerboseHttpLoggingHandler(PSHostUserInterface psUI, HttpMessageHandler innerHandler)
+                : base(innerHandler)
+            {
+                _psUI = psUI;
+            }
+
+            protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+            {
+                _psUI.WriteVerboseLine($"Sending {request.Method} request to '{request.RequestUri}'");
+                _psUI.WriteVerboseLine("Body:");
+                _psUI.WriteVerboseLine(await request.Content.ReadAsStringAsync().ConfigureAwait(false));
+
+                HttpResponseMessage response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
+
+                _psUI.WriteVerboseLine($"Got response: {response}");
+                if (response.Content is not null)
+                {
+                    _psUI.WriteVerboseLine("Body:");
+                    _psUI.WriteVerboseLine(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+                }
+
+                return response;
+            }
         }
     }
 }

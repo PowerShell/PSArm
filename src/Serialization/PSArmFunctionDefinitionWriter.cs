@@ -57,7 +57,7 @@ namespace PSArm.Serialization
             OpenBlock();
 
             WriteParameterCheck(function.MinimumArguments, function.MaximumArguments);
-            Write("Call ");
+            Write("RawCall ");
             Write(function.Name);
             Write(" -Arguments ");
             Write("$args");

@@ -1,6 +1,7 @@
 
 // Copyright (c) Microsoft Corporation.
 
+using PSArm.Templates.Metadata;
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
 
@@ -12,11 +13,18 @@ namespace PSArm.Templates
 
         private static readonly ArmStringLiteral s_defaultContentVersion = new ArmStringLiteral("1.0.0.0");
 
-        public ArmTemplate()
+        public ArmTemplate(string templateName) : this()
+        {
+            TemplateName = templateName;
+        }
+
+        private protected ArmTemplate()
         {
             Schema = s_defaultSchema;
             ContentVersion = s_defaultContentVersion;
         }
+
+        public string TemplateName { get; }
 
         public IArmString Schema
         {
@@ -28,6 +36,12 @@ namespace PSArm.Templates
         {
             get => (IArmString)GetElementOrNull(ArmTemplateKeys.ContentVersion);
             set => this[ArmTemplateKeys.ContentVersion] = (ArmElement)value;
+        }
+
+        public ArmMetadata Metadata
+        {
+            get => (ArmMetadata)GetElementOrNull(ArmTemplateKeys.Metadata);
+            set => this[ArmTemplateKeys.Metadata] = value;
         }
 
         public ArmObject<ArmOutput> Outputs

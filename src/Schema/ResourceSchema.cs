@@ -12,7 +12,7 @@ namespace PSArm.Schema
 {
     public class ResourceSchema
     {
-        private static readonly HashSet<string> s_defaultTopLevelProperties = new HashSet<string>(new[]
+        public static IReadOnlyList<string> DefaultTopLevelProperties { get; } = new[]
         {
             "id",
             "name",
@@ -26,7 +26,9 @@ namespace PSArm.Schema
             "kind",
             "plan",
             "copy"
-        }, StringComparer.OrdinalIgnoreCase);
+        };
+
+        private static readonly HashSet<string> s_defaultTopLevelProperties = new HashSet<string>(DefaultTopLevelProperties, StringComparer.OrdinalIgnoreCase);
 
         private readonly ITypeLoader _typeLoader;
 

@@ -27,31 +27,51 @@ namespace PSArm.Serialization
             _armExpressionParser = new ArmExpressionParser();
         }
 
-        public ArmTemplate ParseString(string str)
+        public ArmTemplate ParseString(string templateName, string str)
         {
             using (var reader = new StringReader(str))
             {
-                return ParseStream(reader);
+                return ParseStream(templateName, reader);
             }
         }
 
         public async Task<ArmTemplate> ParseUriAsync(Uri uri)
         {
+            string templateName = null;
+            try
+            {
+                templateName = Path.GetFileNameWithoutExtension(uri.LocalPath);
+            }
+            catch
+            {
+                // templateName will be null if we fail to parse the URI somehow
+            }
+
             using (var webClient = new WebClient())
-            using (Stream stream = await webClient.OpenReadTaskAsync(uri))
+            using (Stream stream = await webClient.OpenReadTaskAsync(uri).ConfigureAwait(false))
             using (var reader = new StreamReader(stream))
             {
-                return await ParseStreamAsync(reader);
+                return await ParseStreamAsync(templateName, reader).ConfigureAwait(false);
             }
         }
 
         public ArmTemplate ParseUri(Uri uri)
         {
+            string templateName = null;
+            try
+            {
+                templateName = Path.GetFileNameWithoutExtension(uri.LocalPath);
+            }
+            catch
+            {
+                // templateName will be null if we fail to parse the URI somehow
+            }
+
             using (var webClient = new WebClient())
             using (Stream stream = webClient.OpenRead(uri))
             using (var reader = new StreamReader(stream))
             {
-                return ParseStream(reader);
+                return ParseStream(templateName, reader);
             }
         }
 
@@ -59,7 +79,7 @@ namespace PSArm.Serialization
         {
             using (StreamReader file = File.OpenText(path))
             {
-                return await ParseStreamAsync(file);
+                return await ParseStreamAsync(Path.GetFileNameWithoutExtension(path), file).ConfigureAwait(false);
             }
         }
 
@@ -67,29 +87,29 @@ namespace PSArm.Serialization
         {
             using (StreamReader file = File.OpenText(path))
             {
-                return ParseStream(file);
+                return ParseStream(Path.GetFileNameWithoutExtension(path), file);
             }
         }
 
-        public ArmTemplate ParseStream(TextReader reader)
+        public ArmTemplate ParseStream(string templateName, TextReader reader)
         {
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ParseJObject((JObject)JToken.ReadFrom(jsonReader));
+                return ParseJObject(templateName, (JObject)JToken.ReadFrom(jsonReader));
             }
         }
 
-        public async Task<ArmTemplate> ParseStreamAsync(TextReader reader)
+        public async Task<ArmTemplate> ParseStreamAsync(string templateName, TextReader reader)
         {
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return ParseJObject((JObject)(await JToken.ReadFromAsync(jsonReader)));
+                return ParseJObject(templateName, (JObject)(await JToken.ReadFromAsync(jsonReader).ConfigureAwait(false)));
             }
         }
 
-        public ArmTemplate ParseJObject(JObject templateObject)
+        public ArmTemplate ParseJObject(string templateName, JObject templateObject)
         {
-            var template = new ArmTemplate();
+            var template = new ArmTemplate(templateName);
 
             if (templateObject.TryGetValue("$schema", out JToken schemaValue))
             {
@@ -213,7 +233,7 @@ namespace PSArm.Serialization
 
             if (resourceObject.TryGetValue("location", out JToken locationObject))
             {
-                resource.Location = ReadArmExpression(locationObject);
+                resource[ArmTemplateKeys.Location] = (ArmElement)ReadArmExpression(locationObject);
             }
 
             if (resourceObject.TryGetValue("dependsOn", out JToken dependsOnArray))
@@ -223,7 +243,7 @@ namespace PSArm.Serialization
 
             if (resourceObject.TryGetValue("kind", out JToken kindToken))
             {
-                resource.Kind = ReadArmExpression(kindToken);
+                resource[ArmTemplateKeys.Kind] = (ArmElement)ReadArmExpression(kindToken);
             }
 
             if (resourceObject.TryGetValue("sku", out JToken skuObject))

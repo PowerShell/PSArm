@@ -1,7 +1,6 @@
 
 // Copyright (c) Microsoft Corporation.
 
-using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using System;
 using System.Collections;
@@ -18,14 +17,6 @@ namespace PSArm.Types
                     armString = new ArmStringLiteral(str);
                     return true;
 
-                case ArmOperation expr:
-                    armString = expr;
-                    return true;
-
-                case ArmStringLiteral strVal:
-                    armString = strVal;
-                    return true;
-
                 case IArmString armStr:
                     armString = armStr;
                     return true;
@@ -35,11 +26,11 @@ namespace PSArm.Types
             return false;
         }
 
-        public static bool TryConvertToArmElement(object value, out ArmElement armElement)
+        public static bool TryConvertToArmExpression(object value, out ArmExpression armExpression)
         {
             if (value is null)
             {
-                armElement = ArmNullLiteral.Value;
+                armExpression = ArmNullLiteral.Value;
                 return true;
             }
 
@@ -49,7 +40,7 @@ namespace PSArm.Types
                 case TypeCode.String:
                 case TypeCode.DateTime:
                 case TypeCode.Char:
-                    armElement = new ArmStringLiteral(value.ToString());
+                    armExpression = new ArmStringLiteral(value.ToString());
                     return true;
 
                 case TypeCode.Int32:
@@ -60,18 +51,36 @@ namespace PSArm.Types
                 case TypeCode.UInt16:
                 case TypeCode.Byte:
                 case TypeCode.SByte:
-                    armElement = new ArmIntegerLiteral((long)value);
+                    armExpression = new ArmIntegerLiteral((long)value);
                     return true;
 
                 case TypeCode.Single:
                 case TypeCode.Double:
                 case TypeCode.Decimal:
-                    armElement = new ArmDoubleLiteral((double)value);
+                    armExpression = new ArmDoubleLiteral((double)value);
                     return true;
 
                 case TypeCode.DBNull:
-                    armElement = ArmNullLiteral.Value;
+                    armExpression = ArmNullLiteral.Value;
                     return true;
+            }
+
+            if (value is ArmExpression inputArmExpression)
+            {
+                armExpression = inputArmExpression;
+                return true;
+            }
+
+            armExpression = null;
+            return false;
+        }
+
+        public static bool TryConvertToArmElement(object value, out ArmElement armElement)
+        {
+            if (TryConvertToArmExpression(value, out ArmExpression armExpression))
+            {
+                armElement = armExpression;
+                return true;
             }
 
             switch (value)

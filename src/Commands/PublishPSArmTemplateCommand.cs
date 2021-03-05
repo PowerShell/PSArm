@@ -101,7 +101,7 @@ namespace PSArm.Commands
             }
 
             // Set the PowerShell version for telemetry
-            string psVersion = (string)((Hashtable)SessionState.PSVariable.GetValue("PSVersionTable"))["PSVersion"];
+            string psVersion = ((Hashtable)SessionState.PSVariable.GetValue("PSVersionTable"))["PSVersion"].ToString();
             ((PSArmTopLevelTemplateMetadata)aggregatedTemplate.Metadata).GeneratorMetadata.PowerShellVersion = new ArmStringLiteral(psVersion);
 
             try

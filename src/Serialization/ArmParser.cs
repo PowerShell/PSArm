@@ -27,11 +27,11 @@ namespace PSArm.Serialization
             _armExpressionParser = new ArmExpressionParser();
         }
 
-        public ArmTemplate ParseString(string str)
+        public ArmTemplate ParseString(string templateName, string str)
         {
             using (var reader = new StringReader(str))
             {
-                return ParseStream(templateName: null, reader);
+                return ParseStream(templateName, reader);
             }
         }
 

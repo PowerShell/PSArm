@@ -32,9 +32,12 @@ namespace PSArm.Commands
 
         private readonly PSArmTemplateExecutor.Builder _templateExecutorBuilder;
 
+        private readonly CancellationTokenSource _cancellationSource;
+
         public PublishPSArmTemplateCommand()
         {
             _templateExecutorBuilder = new PSArmTemplateExecutor.Builder();
+            _cancellationSource = new CancellationTokenSource();
         }
 
         [SupportsWildcards]
@@ -64,6 +67,11 @@ namespace PSArm.Commands
         {
             foreach (string path in TemplatePath)
             {
+                if (_cancellationSource.IsCancellationRequested)
+                {
+                    break;
+                }
+
                 Collection<string> paths = GetResolvedProviderPathFromPSPath(path, out ProviderInfo provider);
 
                 if (provider.Name != "FileSystem")
@@ -91,7 +99,11 @@ namespace PSArm.Commands
                 try
                 {
                     WriteVerbose("Finding and evaluating templates");
-                    aggregatedTemplate = templateExecutor.EvaluatePSArmTemplates(Parameters);
+                    aggregatedTemplate = templateExecutor.EvaluatePSArmTemplates(Parameters, _cancellationSource.Token);
+                }
+                catch (OperationCanceledException)
+                {
+                    return;
                 }
                 catch (InvalidOperationException e)
                 {
@@ -106,7 +118,11 @@ namespace PSArm.Commands
 
             try
             {
-                aggregatedTemplate = RunIOOperationsAsync(aggregatedTemplate).GetAwaiter().GetResult();
+                aggregatedTemplate = RunIOOperationsAsync(aggregatedTemplate, _cancellationSource.Token).GetAwaiter().GetResult();
+            }
+            catch (OperationCanceledException)
+            {
+                return;
             }
             catch (HttpRequestException httpException)
             {
@@ -137,20 +153,25 @@ namespace PSArm.Commands
             }
         }
 
-        private async Task<ArmNestedTemplate> RunIOOperationsAsync(ArmNestedTemplate template)
+        protected override void StopProcessing()
+        {
+            _cancellationSource.Cancel();
+        }
+
+        private async Task<ArmNestedTemplate> RunIOOperationsAsync(ArmNestedTemplate template, CancellationToken cancellationToken)
         {
             Host.UI.WriteVerboseLine("Signing template");
-            template = await SignTemplate(template).ConfigureAwait(false);
+            template = await SignTemplate(template, cancellationToken).ConfigureAwait(false);
 
             if (!NoWriteFile)
             {
-                await WriteTemplate(template).ConfigureAwait(false);
+                await WriteTemplate(template, cancellationToken).ConfigureAwait(false);
             }
 
             return template;
         }
 
-        private async Task WriteTemplate(ArmNestedTemplate template)
+        private async Task WriteTemplate(ArmNestedTemplate template, CancellationToken cancellationToken)
         {
             string outPath = GetOutPath();
 
@@ -163,14 +184,14 @@ namespace PSArm.Commands
 
             Host.UI.WriteVerboseLine($"Writing template to '{outPath}'");
 
-            await template.ToJson().WriteToAsync(jsonWriter).ConfigureAwait(false);
-            await jsonWriter.FlushAsync().ConfigureAwait(false);
+            await template.ToJson().WriteToAsync(jsonWriter, cancellationToken).ConfigureAwait(false);
+            await jsonWriter.FlushAsync(cancellationToken).ConfigureAwait(false);
         }
 
-        private async Task<ArmNestedTemplate> SignTemplate(ArmNestedTemplate template)
+        private async Task<ArmNestedTemplate> SignTemplate(ArmNestedTemplate template, CancellationToken cancellationToken)
         {
             Host.UI.WriteVerboseLine("Getting Azure token");
-            string token = GetAzureToken();
+            string token = GetAzureToken(cancellationToken);
 
             using var stream = new MemoryStream();
             using var writer = new StreamWriter(stream, Encoding.UTF8);
@@ -183,8 +204,8 @@ namespace PSArm.Commands
                 },
             };
 
-            await template.ToJson().WriteToAsync(jsonWriter).ConfigureAwait(false);
-            await jsonWriter.FlushAsync();
+            await template.ToJson().WriteToAsync(jsonWriter, cancellationToken).ConfigureAwait(false);
+            await jsonWriter.FlushAsync(cancellationToken);
             stream.Seek(0, SeekOrigin.Begin);
 
             var body = new StreamContent(stream)
@@ -199,7 +220,7 @@ namespace PSArm.Commands
             };
 
             Host.UI.WriteVerboseLine("Initiating HTTP request");
-            using HttpResponseMessage response = await httpClient.PostAsync(TemplateSigningApiUri, body).ConfigureAwait(false);
+            using HttpResponseMessage response = await httpClient.PostAsync(TemplateSigningApiUri, body, cancellationToken).ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
 
@@ -207,7 +228,7 @@ namespace PSArm.Commands
 
             using var streamReader = new StreamReader(responseBody);
             using var jsonReader = new JsonTextReader(streamReader);
-            string hash = await GetHashFromJsonResponse(jsonReader).ConfigureAwait(false);
+            string hash = await GetHashFromJsonResponse(jsonReader, cancellationToken).ConfigureAwait(false);
 
             Host.UI.WriteVerboseLine($"Adding hash '{hash}' to template");
             ((PSArmTopLevelTemplateMetadata)template.Metadata).GeneratorMetadata.TemplateHash = new ArmStringLiteral(hash);
@@ -215,14 +236,14 @@ namespace PSArm.Commands
             return template;
         }
 
-        private async Task<string> GetHashFromJsonResponse(JsonTextReader jsonReader)
+        private async Task<string> GetHashFromJsonResponse(JsonTextReader jsonReader, CancellationToken cancellationToken)
         {
-            JObject body = await JObject.LoadAsync(jsonReader).ConfigureAwait(false);
+            JObject body = await JObject.LoadAsync(jsonReader, cancellationToken).ConfigureAwait(false);
 
             return ((body["templateHash"] as JValue)?.Value as string) ?? throw new InvalidOperationException($"Did not get template hash value from signing API");
         }
 
-        private string GetAzureToken()
+        private string GetAzureToken(CancellationToken cancellationToken)
         {
             // If we have a token given, just use that
             if (AzureToken is not null)
@@ -236,6 +257,8 @@ namespace PSArm.Commands
             bool hasAzCli = true;
             using (var pwsh = PowerShell.Create(RunspaceMode.CurrentRunspace))
             {
+                cancellationToken.Register(() => pwsh.Stop());
+
                 // First try Azure PowerShell's Get-AzAccessToken
                 try
                 {
@@ -249,6 +272,8 @@ namespace PSArm.Commands
                 {
                     hasAzPS = false;
                 }
+
+                cancellationToken.ThrowIfCancellationRequested();
 
                 if (!pwsh.HadErrors && token is not null)
                 {
@@ -273,6 +298,8 @@ namespace PSArm.Commands
                 {
                     hasAzCli = false;
                 }
+
+                cancellationToken.ThrowIfCancellationRequested();
 
                 if (!pwsh.HadErrors && token is not null)
                 {

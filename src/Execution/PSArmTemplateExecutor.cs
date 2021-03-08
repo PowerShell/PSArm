@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Management.Automation;
+using System.Threading;
 
 namespace PSArm.Execution
 {
@@ -59,22 +60,23 @@ namespace PSArm.Execution
             _pwsh = pwsh;
         }
 
-        public ArmNestedTemplate EvaluatePSArmTemplates(IDictionary parameters)
+        public ArmNestedTemplate EvaluatePSArmTemplates(IDictionary parameters, CancellationToken cancellationToken)
         {
             _nestedTemplateBuilder.Clear();
-            EvaluateAndCollectPSArmTemplates(_templatePaths, parameters, currDepth: 0);
+            cancellationToken.Register(() => _pwsh.Stop());
+            EvaluateAndCollectPSArmTemplates(_templatePaths, parameters, currDepth: 0, cancellationToken);
             return _nestedTemplateBuilder.Build();
         }
 
-        private void EvaluateAndCollectPSArmTemplates(IEnumerable<string> templatePaths, IDictionary parameters, int currDepth)
+        private void EvaluateAndCollectPSArmTemplates(IEnumerable<string> templatePaths, IDictionary parameters, int currDepth, CancellationToken cancellationToken)
         {
             foreach (string templatePath in templatePaths)
             {
-                EvaluateAndCollectPSArmTemplate(templatePath, parameters, currDepth);
+                EvaluateAndCollectPSArmTemplate(templatePath, parameters, currDepth, cancellationToken);
             }
         }
 
-        private void EvaluateAndCollectPSArmTemplate(string templatePath, IDictionary parameters, int currDepth)
+        private void EvaluateAndCollectPSArmTemplate(string templatePath, IDictionary parameters, int currDepth, CancellationToken cancellationToken)
         {
             if (currDepth > MaxTemplateDirectoryDepth)
             {
@@ -96,7 +98,7 @@ namespace PSArm.Execution
             // If the file is a directory, recursively enumerate the files
             if ((fileAttrs & FileAttributes.Directory) != 0)
             {
-                EvaluateAndCollectPSArmTemplates(Directory.EnumerateFileSystemEntries(templatePath), parameters, currDepth + 1);
+                EvaluateAndCollectPSArmTemplates(Directory.EnumerateFileSystemEntries(templatePath), parameters, currDepth + 1, cancellationToken);
                 return;
             }
 
@@ -106,13 +108,13 @@ namespace PSArm.Execution
                 return;
             }
 
-            foreach (ArmTemplate template in EvaluatePSArmTemplateScript(templatePath, parameters))
+            foreach (ArmTemplate template in EvaluatePSArmTemplateScript(templatePath, parameters, cancellationToken))
             {
                 _nestedTemplateBuilder.AddTemplate(template);
             }
         }
 
-        private IEnumerable<ArmTemplate> EvaluatePSArmTemplateScript(string scriptPath, IDictionary parameters)
+        private IEnumerable<ArmTemplate> EvaluatePSArmTemplateScript(string scriptPath, IDictionary parameters, CancellationToken cancellationToken)
         {
             _pwsh.Commands.Clear();
 
@@ -125,9 +127,9 @@ namespace PSArm.Execution
 
             foreach (PSObject result in _pwsh.Invoke())
             {
-                if (_pwsh.HadErrors)
+                if (_pwsh.HadErrors || _pwsh.InvocationStateInfo.State == PSInvocationState.Stopped)
                 {
-                    throw new RuntimeException($"Errors occurred running script '{scriptPath}'. Template creation stopped.");
+                    break;
                 }
 
                 if (result.BaseObject is ArmTemplate template)
@@ -135,6 +137,13 @@ namespace PSArm.Execution
                     yield return template;
                 }
             }
+
+            if (_pwsh.HadErrors)
+            {
+                throw new RuntimeException($"Errors occurred running script '{scriptPath}'. Template creation stopped.");
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
         }
     }
 }

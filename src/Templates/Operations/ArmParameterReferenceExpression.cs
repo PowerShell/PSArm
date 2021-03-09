@@ -4,6 +4,7 @@
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
 using System;
+using System.Collections.Generic;
 
 namespace PSArm.Templates.Operations
 {
@@ -29,5 +30,17 @@ namespace PSArm.Templates.Operations
         }
 
         public override Type ParameterType => typeof(TParam);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+        {
+            if (parameters is null)
+            {
+                return this;
+            }
+
+            return parameters.TryGetValue(ReferenceName, out ArmElement value)
+                ? value
+                : this;
+        }
     }
 }

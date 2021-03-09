@@ -3,6 +3,7 @@
 
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
+using System.Collections.Generic;
 
 namespace PSArm.Templates.Operations
 {
@@ -16,5 +17,8 @@ namespace PSArm.Templates.Operations
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitVariableReference(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => this;
     }
 }

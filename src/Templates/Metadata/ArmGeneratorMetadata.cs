@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Templates.Primitives;
+using System.Collections.Generic;
 
 namespace PSArm.Templates.Metadata
 {
@@ -24,5 +25,8 @@ namespace PSArm.Templates.Metadata
             get => GetElementOrNull(ArmTemplateKeys.TemplateHash);
             set => this[ArmTemplateKeys.TemplateHash] = value;
         }
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmGeneratorMetadata(), parameters);
     }
 }

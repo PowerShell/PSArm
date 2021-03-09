@@ -1,6 +1,9 @@
 
 // Copyright (c) Microsoft Corporation.
 
+using PSArm.Templates.Primitives;
+using System.Collections.Generic;
+
 namespace PSArm.Templates.Metadata
 {
     public class PSArmTopLevelTemplateMetadata : ArmMetadata
@@ -15,5 +18,8 @@ namespace PSArm.Templates.Metadata
             get => (PSArmGeneratorMetadata)GetElementOrNull(ArmTemplateKeys.GeneratorKey);
             set => this[ArmTemplateKeys.GeneratorKey] = value;
         }
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new PSArmTopLevelTemplateMetadata(), parameters);
     }
 }

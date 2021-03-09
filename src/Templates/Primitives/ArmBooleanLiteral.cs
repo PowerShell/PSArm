@@ -3,6 +3,7 @@
 
 using PSArm.Templates.Visitors;
 using PSArm.Types;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace PSArm.Templates.Primitives
@@ -26,5 +27,8 @@ namespace PSArm.Templates.Primitives
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitBooleanValue(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => this;
     }
 }

@@ -563,5 +563,9 @@ namespace PSArm.Serialization
                 _writer.Write(IndentStr);
             }
         }
+
+        public object VisitNestedTemplate(ArmNestedTemplate nestedTemplate) => VisitTemplate(nestedTemplate);
+
+        public object VisitTemplateResource(ArmTemplateResource templateResource) => VisitResource(templateResource);
     }
 }

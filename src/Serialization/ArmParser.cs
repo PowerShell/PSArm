@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PSArm.Templates;
 using PSArm.Templates.Primitives;
+using PSArm.Types;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Threading;
+using System.Security;
 using System.Threading.Tasks;
 
 namespace PSArm.Serialization
@@ -184,16 +184,19 @@ namespace PSArm.Serialization
             switch (type)
             {
                 case "string":
-                case "securestring":
                     return ReadTypedParameter<string>(parameterName, parameterObject);
+                case "securestring":
+                    return ReadTypedParameter<SecureString>(parameterName, parameterObject);
                 case "int":
-                    return ReadTypedParameter<long>(parameterName, parameterObject);
+                    return ReadTypedParameter<int>(parameterName, parameterObject);
                 case "bool":
                     return ReadTypedParameter<bool>(parameterName, parameterObject);
                 case "object":
+                    return ReadTypedParameter<object>(parameterName, parameterObject);
                 case "secureobject":
-                    return ReadTypedParameter<Hashtable>(parameterName, parameterObject);
+                    return ReadTypedParameter<SecureObject>(parameterName, parameterObject);
                 case "array":
+                    return ReadTypedParameter<Array>(parameterName, parameterObject);
                 default:
                     throw new ArgumentException($"Unsupported type '{type}' on ARM parameter '{parameterName}'");
             }
@@ -201,7 +204,7 @@ namespace PSArm.Serialization
 
         private ArmParameter ReadTypedParameter<T>(string parameterName, JObject parameterObject)
         {
-            var parameter = new ArmParameter(new ArmStringLiteral(parameterName));
+            var parameter = new ArmParameter<T>(new ArmStringLiteral(parameterName));
 
             if (parameterObject.TryGetValue("defaultValue", out JToken defaultValue))
             {

@@ -18,7 +18,6 @@ namespace PSArm.Execution
         private static readonly Type[] s_armParameterCtorArgTypes = new[] { typeof(IArmString) };
 
         private readonly PowerShell _pwsh;
-        private bool _disposedValue;
 
         public TemplateScriptBlockTransformer(PowerShell pwsh)
         {

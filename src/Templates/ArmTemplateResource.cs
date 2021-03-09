@@ -2,6 +2,8 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Templates.Primitives;
+using PSArm.Templates.Visitors;
+using System.Collections.Generic;
 
 namespace PSArm.Templates
 {
@@ -27,5 +29,10 @@ namespace PSArm.Templates
             get => (ArmTemplate)((ArmObject)GetElementOrNull(ArmTemplateKeys.Properties))?[ArmTemplateKeys.Template];
             set => ((ArmObject)this[ArmTemplateKeys.Properties])[ArmTemplateKeys.Template] = value;
         }
+
+        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitTemplateResource(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmTemplateResource((IArmString)Name.Instantiate(parameters)), parameters);
     }
 }

@@ -7,6 +7,7 @@ using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
 using PSArm.Types;
 using System;
+using System.Collections.Generic;
 using System.Security;
 
 namespace PSArm.Templates
@@ -80,6 +81,9 @@ namespace PSArm.Templates
         }
 
         IArmString IArmReferenceable.ReferenceName => Name;
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmParameter((IArmString)Name.Instantiate(parameters), (IArmString)Type.Instantiate(parameters)), parameters);
     }
 
     public class ArmParameter<T> : ArmParameter
@@ -87,6 +91,9 @@ namespace PSArm.Templates
         public ArmParameter(IArmString name) : base(name, GetArmType())
         {
         }
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmParameter<T>((IArmString)Name.Instantiate(parameters)), parameters);
 
         private static IArmString GetArmType()
         {

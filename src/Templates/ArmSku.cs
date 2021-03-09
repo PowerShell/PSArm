@@ -3,6 +3,7 @@
 
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
+using System.Collections.Generic;
 
 namespace PSArm.Templates
 {
@@ -39,5 +40,8 @@ namespace PSArm.Templates
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitSku(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmSku(), parameters);
     }
 }

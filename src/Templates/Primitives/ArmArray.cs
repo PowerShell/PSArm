@@ -76,6 +76,18 @@ namespace PSArm.Templates.Primitives
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitArray(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmArray(), parameters);
+
+        protected ArmArray InstantiateIntoCopy(ArmArray target, IReadOnlyDictionary<IArmString, ArmElement> parameters)
+        {
+            foreach (ArmElement element in this)
+            {
+                target.Add((ArmElement)element.Instantiate(parameters));
+            }
+            return target;
+        }
     }
 
     public class ArmArray<TElement> : ArmArray, IList<TElement>, IReadOnlyList<TElement> where TElement : ArmElement
@@ -123,6 +135,9 @@ namespace PSArm.Templates.Primitives
         {
             return This.Remove(item);
         }
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => (ArmArray<TElement>)InstantiateIntoCopy(new ArmArray<TElement>(), parameters);
 
         IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()
         {

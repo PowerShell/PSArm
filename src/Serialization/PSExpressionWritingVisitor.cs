@@ -145,6 +145,8 @@ namespace PSArm.Serialization
             return null;
         }
 
+        public object VisitNestedTemplate(ArmNestedTemplate nestedTemplate) => VisitTemplate(nestedTemplate);
+
         public object VisitNullValue(ArmNullLiteral nullValue)
         {
             Write("$null");
@@ -212,6 +214,8 @@ namespace PSArm.Serialization
         {
             throw CreateInvalidException(template);
         }
+
+        public object VisitTemplateResource(ArmTemplateResource templateResource) => VisitResource(templateResource);
 
         public object VisitVariableDeclaration(ArmVariable variable)
         {

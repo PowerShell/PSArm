@@ -7,6 +7,7 @@ using System.Dynamic;
 namespace PSArm.Templates.Operations
 {
     using PSArm.Templates.Visitors;
+    using System.Collections.Generic;
     using System.Linq.Expressions;
 
     public class ArmIndexAccessExpression : ArmOperation
@@ -43,5 +44,12 @@ namespace PSArm.Templates.Operations
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitIndexAccess(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+        {
+            return new ArmIndexAccessExpression(
+                (ArmOperation)InnerExpression.Instantiate(parameters),
+                (ArmExpression)Index.Instantiate(parameters));
+        }
     }
 }

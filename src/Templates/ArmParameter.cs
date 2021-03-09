@@ -15,9 +15,10 @@ namespace PSArm.Templates
     {
         public static explicit operator ArmParameterReferenceExpression(ArmParameter parameter) => parameter.GetReference();
 
-        public ArmParameter(IArmString name)
+        public ArmParameter(IArmString name, IArmString type)
         {
             Name = name;
+            Type = type;
         }
 
         public IArmString Name { get; }
@@ -25,7 +26,7 @@ namespace PSArm.Templates
         public IArmString Type
         {
             get => (IArmString)GetElementOrNull(ArmTemplateKeys.Type);
-            set => this[ArmTemplateKeys.Type] = (ArmElement)value;
+            private set => this[ArmTemplateKeys.Type] = (ArmElement)value;
         }
 
         public ArmElement DefaultValue
@@ -79,5 +80,22 @@ namespace PSArm.Templates
         }
 
         IArmString IArmReferenceable.ReferenceName => Name;
+    }
+
+    public class ArmParameter<T> : ArmParameter
+    {
+        public ArmParameter(IArmString name) : base(name, GetArmType())
+        {
+        }
+
+        private static IArmString GetArmType()
+        {
+            if (!ArmTypeConversion.TryConvertToArmType(typeof(T), out ArmType? armType))
+            {
+                throw new ArgumentException($"The type '{typeof(T)}' is not a valid ARM parameter type");
+            }
+
+            return armType.Value.AsArmString();
+        }
     }
 }

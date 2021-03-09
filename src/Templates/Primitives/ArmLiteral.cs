@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Types;
+using System.Collections.Generic;
 
 namespace PSArm.Templates.Primitives
 {
@@ -19,6 +20,9 @@ namespace PSArm.Templates.Primitives
         public ArmType ArmType { get; }
 
         public object GetValue() => _value;
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => this;
     }
 
     public abstract class ArmLiteral<T> : ArmLiteral

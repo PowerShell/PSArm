@@ -4,6 +4,7 @@
 using PSArm.Templates.Primitives;
 using System;
 using System.Collections;
+using System.Management.Automation;
 
 namespace PSArm.Types
 {
@@ -77,6 +78,11 @@ namespace PSArm.Types
 
         public static bool TryConvertToArmElement(object value, out ArmElement armElement)
         {
+            if (value is PSObject psObj)
+            {
+                value = psObj.BaseObject;
+            }
+
             if (TryConvertToArmExpression(value, out ArmExpression armExpression))
             {
                 armElement = armExpression;

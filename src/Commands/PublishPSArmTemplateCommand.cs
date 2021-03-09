@@ -8,8 +8,10 @@ using PSArm.Execution;
 using PSArm.Templates;
 using PSArm.Templates.Metadata;
 using PSArm.Templates.Primitives;
+using PSArm.Types;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -91,6 +93,20 @@ namespace PSArm.Commands
 
         protected override void EndProcessing()
         {
+            IReadOnlyDictionary<IArmString, ArmElement> armParameters = null;
+            try
+            {
+                armParameters = GetTemplateParameters();
+            }
+            catch (Exception e)
+            {
+                ThrowTerminatingError(
+                    e,
+                    "TemplateParameterConversionError",
+                    ErrorCategory.InvalidArgument,
+                    Parameters);
+            }
+
             ArmNestedTemplate aggregatedTemplate = null;
             using (var pwsh = PowerShell.Create(RunspaceMode.CurrentRunspace))
             {
@@ -111,6 +127,9 @@ namespace PSArm.Commands
                     return;
                 }
             }
+
+            // Now instantiate the template
+            aggregatedTemplate = (ArmNestedTemplate)aggregatedTemplate.Instantiate(armParameters);
 
             // Set the PowerShell version for telemetry
             string psVersion = ((Hashtable)SessionState.PSVariable.GetValue("PSVersionTable"))["PSVersion"].ToString();
@@ -241,6 +260,32 @@ namespace PSArm.Commands
             JObject body = await JObject.LoadAsync(jsonReader, cancellationToken).ConfigureAwait(false);
 
             return ((body["templateHash"] as JValue)?.Value as string) ?? throw new InvalidOperationException($"Did not get template hash value from signing API");
+        }
+
+        private IReadOnlyDictionary<IArmString, ArmElement> GetTemplateParameters()
+        {
+            if (Parameters is null)
+            {
+                return null;
+            }
+
+            var parameters = new Dictionary<IArmString, ArmElement>();
+            foreach (DictionaryEntry entry in Parameters)
+            {
+                if (!ArmElementConversion.TryConvertToArmString(entry.Key, out IArmString key))
+                {
+                    throw new ArgumentException($"Cannot convert hashtable key '{entry.Key}' of type '{entry.Key.GetType()}' to ARM string");
+                }
+
+                if (!ArmElementConversion.TryConvertToArmElement(entry.Value, out ArmElement value))
+                {
+                    throw new ArgumentException($"Cannot convert hashtable value '{entry.Value}' of type '{entry.Value.GetType()}' to ARM element");
+                }
+
+                parameters[key] = value;
+            }
+
+            return parameters;
         }
 
         private string GetAzureToken(CancellationToken cancellationToken)

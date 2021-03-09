@@ -3,6 +3,7 @@
 
 using PSArm.Templates.Metadata;
 using PSArm.Templates.Primitives;
+using PSArm.Templates.Visitors;
 using System.Collections.Generic;
 
 namespace PSArm.Templates
@@ -43,5 +44,10 @@ namespace PSArm.Templates
         {
             Metadata = new PSArmTopLevelTemplateMetadata();
         }
+
+        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitNestedTemplate(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmNestedTemplate(), parameters);
     }
 }

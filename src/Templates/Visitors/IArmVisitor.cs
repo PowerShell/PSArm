@@ -34,6 +34,10 @@ namespace PSArm.Templates.Visitors
 
         TResult VisitTemplate(ArmTemplate template);
 
+        TResult VisitNestedTemplate(ArmNestedTemplate nestedTemplate);
+
+        TResult VisitTemplateResource(ArmTemplateResource templateResource);
+
         TResult VisitOutput(ArmOutput output);
 
         TResult VisitResource(ArmResource resource);

@@ -4,6 +4,7 @@
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
+using System.Collections.Generic;
 
 namespace PSArm.Templates
 {
@@ -25,7 +26,9 @@ namespace PSArm.Templates
 
         public ArmVariableReferenceExpression GetReference() => new ArmVariableReferenceExpression(this);
 
-        IArmString IArmReferenceable.ReferenceName => Name;
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => this;
 
+        IArmString IArmReferenceable.ReferenceName => Name;
     }
 }

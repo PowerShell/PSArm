@@ -15,7 +15,7 @@ namespace PSArm.Templates.Operations
             Arguments = new List<ArmExpression>();
         }
 
-        public ArmFunctionCallExpression(IArmString function, ArmExpression[] arguments)
+        public ArmFunctionCallExpression(IArmString function, IReadOnlyList<ArmExpression> arguments)
             : this()
         {
             Function = function;
@@ -46,5 +46,18 @@ namespace PSArm.Templates.Operations
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitFunctionCall(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+        {
+            var args = new ArmExpression[Arguments.Count];
+            for (int i = 0; i < Arguments.Count; i++)
+            {
+                args[i] = (ArmExpression)Arguments[i].Instantiate(parameters);
+            }
+
+            return new ArmFunctionCallExpression(
+                (IArmString)Function.Instantiate(parameters),
+                args);
+        }
     }
 }

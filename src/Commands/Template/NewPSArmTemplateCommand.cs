@@ -5,6 +5,8 @@ using PSArm.Commands.Internal;
 using PSArm.Execution;
 using PSArm.Templates;
 using PSArm.Templates.Builders;
+using PSArm.Templates.Primitives;
+using System;
 using System.IO;
 using System.Management.Automation;
 
@@ -38,7 +40,37 @@ namespace PSArm.Commands.Template
                 }
             }
 
-            WriteArmObjectElement(new ArmBuilder<ArmTemplate>(new ArmTemplate(templateName)), Body);
+            ScriptBlock transformedBody;
+            ArmObject<ArmParameter> armParameters;
+            ArmObject<ArmVariable> armVariables;
+
+            using (var pwsh = PowerShell.Create(RunspaceMode.CurrentRunspace))
+            {
+                try
+                {
+                    transformedBody = new TemplateScriptBlockTransformer(pwsh).GetDeparameterizedTemplateScriptBlock(
+                        Body,
+                        out armParameters,
+                        out armVariables);
+                }
+                catch (Exception e)
+                {
+                    ThrowTerminatingError(
+                        new ErrorRecord(
+                            e,
+                            "TemplateScriptBlockTransformationFailure",
+                            ErrorCategory.InvalidArgument,
+                            Body));
+                    return;
+                }
+            }
+
+            ArmTemplate template = AggregateArmObject(new ArmBuilder<ArmTemplate>(new ArmTemplate(templateName)), transformedBody);
+
+            template.Parameters = armParameters;
+            template.Variables = armVariables;
+
+            WriteObject(template);
         }
     }
 }

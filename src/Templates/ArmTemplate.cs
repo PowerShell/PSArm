@@ -4,6 +4,7 @@
 using PSArm.Templates.Metadata;
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
+using System.Collections.Generic;
 
 namespace PSArm.Templates
 {
@@ -69,5 +70,12 @@ namespace PSArm.Templates
         }
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitTemplate(this);
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+        {
+            var template = (ArmTemplate)InstantiateIntoCopy(new ArmTemplate(TemplateName), parameters);
+            template.Remove(ArmTemplateKeys.Parameters);
+            return template;
+        }
     }
 }

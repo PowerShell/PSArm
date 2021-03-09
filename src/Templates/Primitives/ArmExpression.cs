@@ -7,7 +7,7 @@ using System.ComponentModel;
 namespace PSArm.Templates.Primitives
 {
     [TypeConverter(typeof(ArmExpressionConverter))]
-    public interface IArmExpression
+    public interface IArmExpression : IArmElement
     {
         string ToInnerExpressionString();
     }

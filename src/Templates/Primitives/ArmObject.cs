@@ -91,11 +91,24 @@ namespace PSArm.Templates.Primitives
 
         public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitObject(this);
 
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmObject(), parameters);
+
         protected ArmElement GetElementOrNull(IArmString key)
         {
             return TryGetValue(key, out ArmElement value)
                 ? value
                 : null;
+        }
+
+        protected ArmObject InstantiateIntoCopy(ArmObject target, IReadOnlyDictionary<IArmString, ArmElement> parameters)
+        {
+            foreach (KeyValuePair<IArmString, ArmElement> entry in this)
+            {
+                target[(IArmString)entry.Key.Instantiate(parameters)] = (ArmElement)entry.Value.Instantiate(parameters);
+            }
+
+            return target;
         }
     }
 
@@ -166,6 +179,9 @@ namespace PSArm.Templates.Primitives
             value = (TValue)element;
             return true;
         }
+
+        public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
+            => InstantiateIntoCopy(new ArmObject<TValue>(), parameters);
 
         IEnumerator<KeyValuePair<IArmString, TValue>> IEnumerable<KeyValuePair<IArmString, TValue>>.GetEnumerator()
         {

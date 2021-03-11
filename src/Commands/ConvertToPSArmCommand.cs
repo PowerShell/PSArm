@@ -74,6 +74,7 @@ namespace PSArm.Commands
                             "OutFileExists",
                             ErrorCategory.ResourceExists,
                             OutFile);
+                        return;
                     }
 
                     File.Delete(outFile);

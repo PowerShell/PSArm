@@ -76,12 +76,11 @@ namespace PSArm.Commands.Primitive
 
         private void ThrowArgumentError(string argumentName)
         {
-            ThrowTerminatingError(
-                new ErrorRecord(
-                    new ArgumentException($"The parameter '{argumentName}' must be provided"),
-                    "MissingRequiredParameter",
-                    ErrorCategory.ObjectNotFound,
-                    targetObject: this));
+            this.ThrowTerminatingError(
+                new ArgumentException($"The parameter '{argumentName}' must be provided"),
+                "MissingRequiredParameter",
+                ErrorCategory.ObjectNotFound,
+                target: this);
         }
     }
 }

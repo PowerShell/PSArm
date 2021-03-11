@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 // All rights reserved.
 
+using PSArm.Templates;
 using PSArm.Templates.Operations;
 using System;
 using System.Collections.Generic;
@@ -36,8 +37,8 @@ namespace PSArm.Types
 
         private static IReadOnlyDictionary<string, Type> s_armTypeAccelerators = new Dictionary<string, Type>
         {
-            { ArmVariable, typeof(ArmVariableReferenceExpression) },
-            { ArmParameter, typeof(ArmParameterReferenceExpression<>) },
+            { ArmVariable, typeof(ArmVariable) },
+            { ArmParameter, typeof(ArmParameter<>) },
             { SecureObject, typeof(SecureObject) },
         };
 

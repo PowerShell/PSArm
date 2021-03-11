@@ -117,19 +117,5 @@ namespace PSArm.Commands.Internal
                     AggregateArmObject(objectBuilder, body),
                     isArrayElement));
         }
-
-        protected void ThrowTerminatingError(
-            Exception exception,
-            string errorId,
-            ErrorCategory errorCategory,
-            object target = null)
-        {
-            ThrowTerminatingError(
-                new ErrorRecord(
-                    exception,
-                    errorId,
-                    errorCategory,
-                    target));
-        }
     }
 }

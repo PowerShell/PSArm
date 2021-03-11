@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace PSArm.Serialization
 {
@@ -32,9 +33,12 @@ namespace PSArm.Serialization
             }
         }
 
-        public static void WriteToFile(string path, ArmTemplate template)
+        public static void WriteToFile(string path, ArmTemplate template) => WriteToFile(path, template, FileMode.Create);
+
+        public static void WriteToFile(string path, ArmTemplate template, FileMode fileMode)
         {
-            using (var writer = new StreamWriter(path))
+            using (var file = new FileStream(path, fileMode, FileAccess.Write, FileShare.Read))
+            using (var writer = new StreamWriter(file, Encoding.UTF8))
             {
                 WriteToTextWriter(writer, template);
             }
@@ -44,8 +48,16 @@ namespace PSArm.Serialization
 
         private static readonly char[] s_armTypeSeparators = new[] { '/' };
 
+        private static readonly IReadOnlyList<string> s_skippedResourceProperties = new string[]
+        {
+            "type",
+            "apiVersion",
+            "sku",
+            "dependsOn",
+        };
+
         private static readonly IReadOnlyDictionary<ArmStringLiteral, string> s_resourceDefaultParameters = ResourceSchema.DefaultTopLevelProperties
-            .Where(p => p != "type" && p != "apiVersion")
+            .Where(p => !s_skippedResourceProperties.Contains(p, StringComparer.OrdinalIgnoreCase))
             .Select(p => new ArmStringLiteral(p))
             .ToDictionary(p => p, p => p.Value.PascalCase());
 
@@ -120,9 +132,16 @@ namespace PSArm.Serialization
                     WriteLine();
                 }
 
-                WriteKeyword(entry.Key);
-                Write(" ");
-                entry.Value.Visit(this);
+                if (entry.Value is ArmArray array)
+                {
+                    WriteArray(entry.Key, array);
+                }
+                else
+                {
+                    WriteKeyword(entry.Key);
+                    Write(" ");
+                    entry.Value.Visit(this);
+                }
 
                 needSeparator = true;
             }
@@ -200,7 +219,7 @@ namespace PSArm.Serialization
                     WriteLine();
                 }
 
-                Write("Properties ");
+                Write("properties ");
                 OpenBlock();
 
                 bool needSeparator = false;
@@ -259,6 +278,7 @@ namespace PSArm.Serialization
 
                     Write("DependsOn ");
                     WriteExpression(dependsOn);
+                    needSeparator = true;
                 }
             }
 
@@ -311,8 +331,10 @@ namespace PSArm.Serialization
             OpenBlock();
 
             WriteParametersAndVariables(template.Parameters, template.Variables);
-            WriteResources(template.Resources);
-            WriteOutputs(template.Outputs);
+
+            bool needSeparator = false;
+            WriteResources(template.Resources, ref needSeparator);
+            WriteOutputs(template.Outputs, ref needSeparator);
 
             CloseBlock();
             return null;
@@ -324,7 +346,7 @@ namespace PSArm.Serialization
             WriteLine();
             WriteVariable(variable.Name.CoerceToString());
             Write(" = ");
-            variable.Value.Visit(_expressionWriter);
+            WriteDefaultValue(variable.Value);
             return null;
         }
 
@@ -373,6 +395,11 @@ namespace PSArm.Serialization
                     needSeparator = true;
                 }
             }
+
+            Dedent();
+            WriteLine();
+            Write(")");
+            WriteLine(lineCount: 2);
         }
 
         private void WriteAllowedValues(IReadOnlyList<ArmElement> allowedValues)
@@ -410,45 +437,68 @@ namespace PSArm.Serialization
             }
 
             Write(" = ");
+            _expressionWriter.EnterDefaultValue();
             WriteExpression(defaultValue);
+            _expressionWriter.ExitDefaultValue();
         }
 
-        private void WriteResources(IReadOnlyList<ArmResource> resources)
+        private void WriteResources(IReadOnlyList<ArmResource> resources, ref bool needSeparator)
         {
             if (resources == null || resources.Count == 0)
             {
                 return;
             }
 
-            bool needSeparator = false;
             foreach (ArmResource resource in resources)
             {
                 if (needSeparator)
                 {
-                    WriteLine();
+                    WriteLine(lineCount: 2);
                 }
 
                 resource.Visit(this);
+                needSeparator = true;
             }
         }
 
-        private void WriteOutputs(IReadOnlyDictionary<IArmString, ArmOutput> outputs)
+        private void WriteOutputs(IReadOnlyDictionary<IArmString, ArmOutput> outputs, ref bool needSeparator)
         {
             if (outputs == null || outputs.Count == 0)
             {
                 return;
             }
 
-            bool needSeparator = false;
+            bool first = true;
             foreach (KeyValuePair<IArmString, ArmOutput> output in outputs)
             {
                 if (needSeparator)
                 {
-                    WriteLine();
+                    // This groups the outputs nicely
+                    WriteLine(lineCount: first ? 2 : 1);
                 }
 
                 output.Value.Visit(this);
                 needSeparator = true;
+                first = false;
+            }
+        }
+
+        private void WriteArray(IArmString key, ArmArray values)
+        {
+            bool needsSeparator = false;
+
+            foreach (ArmElement element in values)
+            {
+                if (needsSeparator)
+                {
+                    WriteLine();
+                }
+
+                WriteKeyword(key);
+                Write(" ");
+                element.Visit(this);
+
+                needsSeparator = true;
             }
         }
 
@@ -489,7 +539,7 @@ namespace PSArm.Serialization
 
         private void WriteKeyword(IArmString keyword)
         {
-            Write(keyword.CoerceToString().PascalCase());
+            Write(keyword.CoerceToString());
         }
 
         private void OpenBlock()

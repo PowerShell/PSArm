@@ -78,12 +78,11 @@ namespace PSArm.Commands
 
                 if (provider.Name != "FileSystem")
                 {
-                    ThrowTerminatingError(
-                        new ErrorRecord(
-                            new InvalidOperationException($"Cannot read PSArm file from non-filesystem provider '{provider}' from path '{path}'"),
-                            "InvalidPSArmProviderPath",
-                            ErrorCategory.InvalidArgument,
-                            path));
+                    this.ThrowTerminatingError(
+                        new InvalidOperationException($"Cannot read PSArm file from non-filesystem provider '{provider}' from path '{path}'"),
+                        "InvalidPSArmProviderPath",
+                        ErrorCategory.InvalidArgument,
+                        path);
                     return;
                 }
 
@@ -100,7 +99,7 @@ namespace PSArm.Commands
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(
+                this.ThrowTerminatingError(
                     e,
                     "TemplateParameterConversionError",
                     ErrorCategory.InvalidArgument,
@@ -123,7 +122,7 @@ namespace PSArm.Commands
                 }
                 catch (InvalidOperationException e)
                 {
-                    ThrowTerminatingError(new ErrorRecord(e, "TemplateEvaluationError", ErrorCategory.InvalidOperation, TemplatePath));
+                    this.ThrowTerminatingError(e, "TemplateEvaluationError", ErrorCategory.InvalidOperation, TemplatePath);
                     return;
                 }
             }
@@ -145,14 +144,14 @@ namespace PSArm.Commands
             }
             catch (HttpRequestException httpException)
             {
-                ThrowTerminatingError(
+                this.ThrowTerminatingError(
                     httpException,
                     "TemplateHashRequestFailed",
                     ErrorCategory.ConnectionError);
             }
             catch (IOException ioException)
             {
-                ThrowTerminatingError(
+                this.ThrowTerminatingError(
                     ioException,
                     "TemplateFileWriteFailed",
                     ErrorCategory.WriteError,
@@ -160,7 +159,7 @@ namespace PSArm.Commands
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(
+                this.ThrowTerminatingError(
                     e,
                     "TemplateCreationFailed",
                     ErrorCategory.InvalidOperation);
@@ -372,7 +371,7 @@ namespace PSArm.Commands
 
         private void ThrowUnableToGetTokenError(string message)
         {
-            ThrowTerminatingError(
+            this.ThrowTerminatingError(
                 new ArgumentException($"Unable to automatically acquire Azure token: '{message}"),
                 "NoAzToken",
                 ErrorCategory.PermissionDenied);
@@ -397,11 +396,6 @@ namespace PSArm.Commands
             }
 
             return Path.GetFullPath(path);
-        }
-
-        private void ThrowTerminatingError(Exception e, string errorId, ErrorCategory errorCategory, object targetObject = null)
-        {
-            ThrowTerminatingError(new ErrorRecord(e, errorId, errorCategory, targetObject));
         }
 
         private class VerboseHttpLoggingHandler : DelegatingHandler

@@ -57,7 +57,7 @@ namespace PSArm.Commands.Template
             {
                 var resourceId = $"{Provider}/{Type}@{ApiVersion}";
                 var exception = new KeyNotFoundException($"Unable to find resource '{resourceId}'");
-                ThrowTerminatingError(
+                this.ThrowTerminatingError(
                     exception,
                     "ResourceNotFound",
                     ErrorCategory.ObjectNotFound,
@@ -189,7 +189,7 @@ namespace PSArm.Commands.Template
             {
                 // This should be impossible since the parameter is mandatory, but nevertheless...
                 var exception = new ArgumentException($"The '{resourceSchema.Discriminator}' parameter must be provided");
-                ThrowTerminatingError(exception, "DiscriminatorParameterMissing", ErrorCategory.InvalidArgument, target: this);
+                this.ThrowTerminatingError(exception, "DiscriminatorParameterMissing", ErrorCategory.InvalidArgument, target: this);
                 return null;
             }
 
@@ -200,14 +200,14 @@ namespace PSArm.Commands.Template
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(e, "InvalidDiscriminatorType", ErrorCategory.InvalidArgument, target: discriminatorParameter);
+                this.ThrowTerminatingError(e, "InvalidDiscriminatorType", ErrorCategory.InvalidArgument, target: discriminatorParameter);
                 return null;
             }
 
             if (!resourceSchema.DiscriminatedKeywords.TryGetValue(discriminatorValue, out Dictionary<string, ScriptBlock> discriminatedKeywords))
             {
                 // This shouldn't be possible due to the ValidateSet attribute, but we handle it anyway
-                ThrowTerminatingError(
+                this.ThrowTerminatingError(
                     new KeyNotFoundException($"'{discriminatorValue}' is not a valid value for parameter '{resourceSchema.Discriminator}'"),
                     "InvalidDiscriminatorValue",
                     ErrorCategory.InvalidArgument,

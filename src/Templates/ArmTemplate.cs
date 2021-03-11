@@ -53,7 +53,7 @@ namespace PSArm.Templates
 
         public ArmObject<ArmParameter> Parameters
         {
-            get => (ArmObject<ArmParameter>)GetElementOrNull(ArmTemplateKeys.Outputs);
+            get => (ArmObject<ArmParameter>)GetElementOrNull(ArmTemplateKeys.Parameters);
             set => this[ArmTemplateKeys.Parameters] = value;
         }
 

@@ -30,7 +30,7 @@ namespace PSArm.Serialization
 
         public JToken VisitIndexAccess(ArmIndexAccessExpression indexAccess) => VisitArmString(indexAccess);
 
-        public JToken VisitIntegerValue(ArmIntegerLiteral integerValue) => new JValue(integerValue);
+        public JToken VisitIntegerValue(ArmIntegerLiteral integerValue) => new JValue(integerValue.Value);
 
         public JToken VisitMemberAccess(ArmMemberAccessExpression memberAccess) => VisitArmString(memberAccess);
 

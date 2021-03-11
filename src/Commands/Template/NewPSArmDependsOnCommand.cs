@@ -36,9 +36,9 @@ namespace PSArm.Commands.Template
 
             foreach (PSObject output in InvokeBody(Body))
             {
-                if (output is IArmString armString)
+                if (LanguagePrimitives.TryConvertTo(output, typeof(IArmString), out object result))
                 {
-                    array.Add((ArmElement)armString);
+                    array.Add((ArmElement)result);
                 }
             }
 

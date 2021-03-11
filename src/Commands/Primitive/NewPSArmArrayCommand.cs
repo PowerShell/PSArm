@@ -35,12 +35,11 @@ namespace PSArm.Commands.Primitive
                 object currVal = Values[i];
                 if (!ArmElementConversion.TryConvertToArmElement(currVal, out ArmElement element))
                 {
-                    ThrowTerminatingError(
-                        new ErrorRecord(
-                            new InvalidCastException($"Unable to convert value '{currVal}' of type '{currVal.GetType()}' to type '{typeof(ArmElement)}'"),
-                            "InvalidArmTypeCase",
-                            ErrorCategory.InvalidArgument,
-                            currVal));
+                    this.ThrowTerminatingError(
+                        new InvalidCastException($"Unable to convert value '{currVal}' of type '{currVal.GetType()}' to type '{typeof(ArmElement)}'"),
+                        "InvalidArmTypeCase",
+                        ErrorCategory.InvalidArgument,
+                        currVal);
                     return;
                 }
                 armArray.Add(element);

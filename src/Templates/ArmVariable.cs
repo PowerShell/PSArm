@@ -12,6 +12,8 @@ namespace PSArm.Templates
     {
         public static explicit operator ArmVariableReferenceExpression(ArmVariable variable) => variable.GetReference();
 
+        public static explicit operator ArmExpression(ArmVariable variable) => (ArmVariableReferenceExpression)variable;
+
         public ArmVariable(IArmString name, ArmElement value)
         {
             Name = name;

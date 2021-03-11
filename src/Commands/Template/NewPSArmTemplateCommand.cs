@@ -55,12 +55,7 @@ namespace PSArm.Commands.Template
                 }
                 catch (Exception e)
                 {
-                    ThrowTerminatingError(
-                        new ErrorRecord(
-                            e,
-                            "TemplateScriptBlockTransformationFailure",
-                            ErrorCategory.InvalidArgument,
-                            Body));
+                    this.ThrowTerminatingError(e, "TemplateScriptBlockTransformationFailure", ErrorCategory.InvalidArgument, Body);
                     return;
                 }
             }

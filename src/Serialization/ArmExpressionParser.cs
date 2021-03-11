@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Internal;
+using PSArm.Templates;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using System;
@@ -11,6 +12,22 @@ namespace PSArm.Serialization
 {
     internal struct ArmExpressionParser
     {
+        private const string ParametersFunction = "parameters";
+
+        private const string VariablesFunction = "variables";
+
+        private readonly IReadOnlyDictionary<string, ArmParameter> _parameters;
+
+        private readonly IReadOnlyDictionary<string, ArmVariable> _variables;
+
+        public ArmExpressionParser(
+            IReadOnlyDictionary<string, ArmParameter> parameters,
+            IReadOnlyDictionary<string, ArmVariable> variables)
+        {
+            _parameters = parameters;
+            _variables = variables;
+        }
+
         public IArmString ParseExpression(string s)
         {
             if (s.Length == 0)
@@ -137,6 +154,18 @@ namespace PSArm.Serialization
                     default:
                         throw Error($"Expected an expression delimiter but instead got '{token}' in input '{tokenizer.Input}' at index {tokenizer.PreviousIndex}");
                 }
+            }
+
+            if (identifier.Identifier.Is(ParametersFunction))
+            {
+                var parameterName = ((IArmString)arguments[0]).CoerceToString();
+                return new ArmParameterReferenceExpression(_parameters[parameterName]);
+            }
+
+            if (identifier.Identifier.Is(VariablesFunction))
+            {
+                var variableName = ((IArmString)arguments[0]).CoerceToString();
+                return new ArmVariableReferenceExpression(_variables[variableName]);
             }
 
             return new ArmFunctionCallExpression(new ArmStringLiteral(identifier.Identifier), arguments.ToArray());

@@ -47,12 +47,14 @@ namespace PSArm.Commands
         [Parameter(Mandatory = true, ValueFromPipeline = true)]
         public string[] TemplatePath { get; set; }
 
-        [Parameter()]
+        [ValidateNotNullOrEmpty]
+        [Parameter]
         public string AzureToken { get; set; }
 
         [Parameter]
         public Hashtable Parameters { get; set; }
 
+        [ValidateNotNullOrEmpty]
         [Parameter]
         public string OutFile { get; set; }
 

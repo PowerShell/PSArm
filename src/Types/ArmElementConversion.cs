@@ -52,13 +52,13 @@ namespace PSArm.Types
                 case TypeCode.UInt16:
                 case TypeCode.Byte:
                 case TypeCode.SByte:
-                    armExpression = new ArmIntegerLiteral((long)value);
+                    armExpression = new ArmIntegerLiteral(Convert.ToInt64(value));
                     return true;
 
                 case TypeCode.Single:
                 case TypeCode.Double:
                 case TypeCode.Decimal:
-                    armExpression = new ArmDoubleLiteral((double)value);
+                    armExpression = new ArmDoubleLiteral(Convert.ToDouble(value));
                     return true;
 
                 case TypeCode.DBNull:

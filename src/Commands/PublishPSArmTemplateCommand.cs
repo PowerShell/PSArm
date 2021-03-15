@@ -122,9 +122,20 @@ namespace PSArm.Commands
                 {
                     return;
                 }
-                catch (InvalidOperationException e)
+                catch (TemplateExecutionException templateException)
                 {
-                    this.ThrowTerminatingError(e, "TemplateEvaluationError", ErrorCategory.InvalidOperation, TemplatePath);
+                    ThrowTerminatingError(templateException.ErrorRecord);
+                    return;
+                }
+                catch (RuntimeException runtimeException)
+                {
+                    ThrowTerminatingError(
+                        new ErrorRecord(runtimeException.ErrorRecord, runtimeException));
+                    return;
+                }
+                catch (InvalidOperationException invalidOpException)
+                {
+                    this.ThrowTerminatingError(invalidOpException, "TemplateEvaluationError", ErrorCategory.InvalidOperation, TemplatePath);
                     return;
                 }
             }

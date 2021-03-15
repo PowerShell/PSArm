@@ -43,6 +43,7 @@ namespace PSArm.Commands.Template
             ScriptBlock transformedBody;
             ArmObject<ArmParameter> armParameters;
             ArmObject<ArmVariable> armVariables;
+            object[] psArgsArray;
 
             using (var pwsh = PowerShell.Create(RunspaceMode.CurrentRunspace))
             {
@@ -51,7 +52,8 @@ namespace PSArm.Commands.Template
                     transformedBody = new TemplateScriptBlockTransformer(pwsh).GetDeparameterizedTemplateScriptBlock(
                         Body,
                         out armParameters,
-                        out armVariables);
+                        out armVariables,
+                        out psArgsArray);
                 }
                 catch (Exception e)
                 {
@@ -60,10 +62,20 @@ namespace PSArm.Commands.Template
                 }
             }
 
-            ArmTemplate template = AggregateArmObject(new ArmBuilder<ArmTemplate>(new ArmTemplate(templateName)), transformedBody);
+            var template = new ArmTemplate(templateName)
+            {
+                Variables = armVariables,
+                Parameters = armParameters,
+            };
 
-            template.Parameters = armParameters;
-            template.Variables = armVariables;
+            var templateBuilder = new ArmBuilder<ArmTemplate>(template);
+            foreach (PSObject output in InvokeCommand.InvokeScript(useLocalScope: true, transformedBody, input: null, psArgsArray))
+            {
+                if (output.BaseObject is ArmEntry armEntry)
+                {
+                    templateBuilder.AddEntry(armEntry);
+                }
+            }
 
             WriteObject(template);
         }

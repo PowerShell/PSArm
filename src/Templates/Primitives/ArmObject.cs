@@ -105,6 +105,11 @@ namespace PSArm.Templates.Primitives
         {
             foreach (KeyValuePair<IArmString, ArmElement> entry in this)
             {
+                if (entry.Value is null)
+                {
+                    continue;
+                }
+
                 target[(IArmString)entry.Key.Instantiate(parameters)] = (ArmElement)entry.Value.Instantiate(parameters);
             }
 

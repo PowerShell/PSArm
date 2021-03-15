@@ -27,7 +27,8 @@ namespace PSArm.Execution
         public ScriptBlock GetDeparameterizedTemplateScriptBlock(
             ScriptBlock scriptBlock,
             out ArmObject<ArmParameter> armParameters,
-            out ArmObject<ArmVariable> armVariables)
+            out ArmObject<ArmVariable> armVariables,
+            out object[] psArgsArray)
         {
             var ast = (ScriptBlockAst)scriptBlock.Ast;
 
@@ -35,12 +36,14 @@ namespace PSArm.Execution
             {
                 armParameters = null;
                 armVariables = null;
+                psArgsArray = null;
                 return scriptBlock;
             }
 
             var parameters = new ArmObject<ArmParameter>();
             var variables = new ArmObject<ArmVariable>();
             var parameterAsts = new List<ParameterAst>();
+            var argList = new List<ArmElement>();
 
             // We would prefer not to clone ASTs, since doing so can lead to variable table issues that we can't handle
             bool mustCloneParameterAsts = false;
@@ -56,6 +59,7 @@ namespace PSArm.Execution
                 {
                     variables[armVariable.Name] = armVariable;
                     parameterAsts.Add(parameter);
+                    argList.Add(armVariable);
                     continue;
                 }
 
@@ -63,6 +67,7 @@ namespace PSArm.Execution
                 {
                     parameters[armParameter.Name] = armParameter;
                     parameterAsts.Add(newParameterAst);
+                    argList.Add(armParameter);
 
                     if (!ReferenceEquals(newParameterAst, parameter))
                     {
@@ -77,6 +82,7 @@ namespace PSArm.Execution
 
             armParameters = parameters;
             armVariables = variables;
+            psArgsArray = argList.ToArray();
 
             if (!mustCloneParameterAsts)
             {

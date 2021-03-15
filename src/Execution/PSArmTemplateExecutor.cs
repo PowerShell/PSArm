@@ -140,7 +140,8 @@ namespace PSArm.Execution
 
             if (_pwsh.HadErrors)
             {
-                throw new RuntimeException($"Errors occurred running script '{scriptPath}'. Template creation stopped.");
+                ErrorRecord error = _pwsh.Streams.Error[0];
+                throw new TemplateExecutionException(error);
             }
 
             cancellationToken.ThrowIfCancellationRequested();

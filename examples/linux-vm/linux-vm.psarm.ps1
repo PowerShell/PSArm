@@ -64,6 +64,7 @@ $linuxConfiguration = @{
 
 Arm {
   param(
+    [ValidateSet('mydns', 'anotherdns')]
     [ArmParameter[string]]
     $dnsLabelPrefix = (toLower (concat 'simplelinuxvm-' (uniqueString (resourceGroup).id))),
     
@@ -76,39 +77,58 @@ Arm {
 
   Resource $networkInterfaceName -Provider 'Microsoft.Network' -Type 'networkInterfaces' -ApiVersion '2020-06-01' -Location $location {
     Properties {
-      IpConfiguration -Name 'ipconfig1' {
-        Subnet -Id $subnetRef 
-        PrivateIPAllocationMethod 'Dynamic'
-        PublicIpAddress -Id (resourceId 'Microsoft.Network/publicIPAddresses' $publicIPAddressName) 
+      IpConfigurations {
+        name 'ipconfig1'
+        properties {
+          subnet {
+            id $subnetRef 
+          }
+          PrivateIPAllocationMethod 'Dynamic'
+          PublicIpAddress {
+            id (resourceId 'Microsoft.Network/publicIPAddresses' $publicIPAddressName) 
+          }
+        }
       }
       
-      NetworkSecurityGroup -Id (resourceId 'Microsoft.Network/networkSecurityGroups' $networkSecurityGroupName) 
+      NetworkSecurityGroup {
+        id (resourceId 'Microsoft.Network/networkSecurityGroups' $networkSecurityGroupName) 
+      }
     }
-    DependsOn (resourceId 'Microsoft.Network/networkSecurityGroups/' $networkSecurityGroupName)
-    DependsOn (resourceId 'Microsoft.Network/virtualNetworks/' $virtualNetworkName)
-    DependsOn (resourceId 'Microsoft.Network/publicIpAddresses/' $publicIpAddressName)
+    DependsOn @(
+      resourceId 'Microsoft.Network/networkSecurityGroups/' $networkSecurityGroupName
+      resourceId 'Microsoft.Network/virtualNetworks/' $virtualNetworkName
+      resourceId 'Microsoft.Network/publicIpAddresses/' $publicIpAddressName
+    )
   }
   Resource $networkSecurityGroupName -Provider 'Microsoft.Network' -Type 'networkSecurityGroups' -ApiVersion '2020-06-01' -Location $location {
     Properties {
-      SecurityRule -Name 'SSH' {
-        Priority '1000'
-        Protocol 'TCP'
-        Access 'Allow'
-        Direction 'Inbound'
-        SourceAddressPrefix '*'
-        SourcePortRange '*'
-        DestinationAddressPrefix '*'
-        DestinationPortRange '22'
+      SecurityRules {
+        name 'SSH'
+        properties {
+          Priority '1000'
+          Protocol 'TCP'
+          Access 'Allow'
+          Direction 'Inbound'
+          SourceAddressPrefix '*'
+          SourcePortRange '*'
+          DestinationAddressPrefix '*'
+          DestinationPortRange '22'
+        }
       }
     }
   }
   Resource $virtualNetworkName -Provider 'Microsoft.Network' -Type 'virtualNetworks' -ApiVersion '2020-06-01' -Location $location {
     Properties {
-      AddressSpace -AddressPrefixes @($addressPrefix) 
-      Subnet -Name $subnetName {
-        AddressPrefix $subnetAddressPrefix
-        PrivateEndpointNetworkPolicies 'Enabled'
-        PrivateLinkServiceNetworkPolicies 'Enabled'
+      AddressSpace {
+        AddressPrefixes $addressPrefix
+      }
+      Subnets {
+        name $subnetName
+        properties {
+          AddressPrefix $subnetAddressPrefix
+          PrivateEndpointNetworkPolicies 'Enabled'
+          PrivateLinkServiceNetworkPolicies 'Enabled'
+        }
       }
     }
   }
@@ -117,7 +137,9 @@ Arm {
     Properties {
       PublicIpAllocationMethod 'Dynamic'
       PublicIPAddressVersion 'IPv4'
-      DnsSettings -DomainNameLabel $dnsLabelPrefix 
+      DnsSettings {
+        domainNameLabel $dnsLabelPrefix 
+      }
       IdleTimeoutInMinutes '4'
     }
   }
@@ -141,7 +163,7 @@ Arm {
         } 
       }
       NetworkProfile {
-        NetworkInterface {
+        NetworkInterfaces {
           Id (resourceId 'Microsoft.Network/networkInterfaces' $networkInterfaceName) 
         }
       }
@@ -149,7 +171,18 @@ Arm {
         ComputerName $vmName
         AdminUsername $adminUsername
         AdminPassword $adminPasswordOrKey
-        LinuxConfiguration $(if ($AuthenticationType -eq 'password') { $null } else { $linuxConfiguration })
+        if ($AuthenticationType -eq 'SSHPublicKey')
+        {
+          linuxConfiguration {
+            disablePasswordAuthentication $true
+            ssh {
+              publicKeys {
+                path "/home/$AdminUsername/.ssh/authorized_keys"
+                keyData $AdminPasswordOrKey
+              }
+            }
+          }
+        }
       }
     }
     DependsOn (resourceId 'Microsoft.Network/networkInterfaces/' $networkInterfaceName)

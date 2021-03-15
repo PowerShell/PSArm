@@ -2,6 +2,13 @@ variables:
   # Avoid expensive initialization of dotnet cli, see: https://donovanbrown.com/post/Stop-wasting-time-during-NET-Core-builds
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
+resources:
+  repositories:
+    - repository: ComplianceRepo
+      type: github
+      endpoint: ComplianceGHRepo
+      name: PowerShell/compliance
+
 stages:
 
   - template: templates/buildAndTest.yaml
@@ -10,7 +17,11 @@ stages:
     dependsOn: Build
     jobs:
       - job: Compliance
-        pool: 'Package ES CodeHub Lab E'
+        pool:
+          name: 'Package ES Standard Build'
+          demands: DotNetFramework
+        variables:
+        - group: ESRP
         steps:
           - template: templates/steps/download.yaml
           - template: templates/steps/compliance.yaml
@@ -20,7 +31,11 @@ stages:
     jobs:
       - job: CodeSigning
         displayName: Code Signing
-        pool: 'Package ES CodeHub Lab E'
+        pool:
+          name: 'Package ES Standard Build'
+          demands: DotNetFramework
+        variables:
+        - group: ESRP
         steps:
           - template: templates/steps/download.yaml
           - template: templates/steps/codeSigning.yaml

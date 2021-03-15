@@ -2,79 +2,26 @@ steps:
 
 # See https://docs.microsoft.com/en-us/azure/security/develop/yaml-configuration for configuration of these tasks
 
-- task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-  displayName: 'Component Detection'
-  inputs:
-    ignoreDirectories: out
-    snapshotForceEnabled: true
-    failOnAlert: true
-  continueOnError: true
+- checkout: ComplianceRepo
+  displayName: 'Checkout the ComplianceRepo'
 
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-antimalware.AntiMalware@3
-  displayName: 'Run Defender Scan'
-  inputs:
-    EnableServices: true
-  continueOnError: true
+- checkout: self
 
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
-  displayName: 'Run CredScan'
-  inputs:
-    toolMajorVersion: V2
-    debugMode: false
-  continueOnError: true
-
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
-  displayName: 'Run BinSkim'
-  inputs:
-    InputType: Basic
-    AnalyzeTarget: '$(System.ArtifactsDirectory)\out\PSArm\*.dll'
+- template: assembly-module-compliance.yml@ComplianceRepo
+  parameters:
+    # binskim
+    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/*.dll'
     AnalyzeSymPath: 'SRV*'
-    AnalyzeVerbose: true
-    AnalyzeHashes: true
-    AnalyzeStatistics: true
-  continueOnError: true
-
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@1
-  displayName: 'Run PoliCheck'
-  inputs:
-    targetType: F
-    optionsFC: 0
-    optionsXS: 0
-    optionsPE: '1|2|3|4'
-    optionsHMENABLE: 0
-    toolVersion: Latest
-  continueOnError: true
-
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
-  displayName: 'Publish Security Analysis Logs to Build Artifacts'
-  continueOnError: true
-
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
-  displayName: 'TSA upload to Codebase: PSArm_202009 Stamp: Azure'
-  inputs:
-    codebase: Existing
+    # Component governance
+    sourceScanPath: '$(Build.SourcesDirectory)/PSArm'
+    # CredScan
+    suppressionsFile: ''
+    # TermCheck AKA PoliCheck
+    targetArgument: '$(Build.SourcesDirectory)/PSArm'
+    optionsUEPATH: '$(Build.SourcesDirectory)/PSArm/tools/release/UserExclusions.xml'
+    optionsRulesDBPath: ''
+    optionsFTPath: '$(Build.SourcesDirectory)/PSArm/tools/release/FileTypeSet.xml'
+    # TSA upload
     codeBaseName: PSArm_202009
-    tsaVersion: TsaV2
-    uploadAPIScan: true
-    uploadBinSkim: true
-    uploadCredScan: true
-    uploadFortifySCA: false
-    uploadFxCop: false
-    uploadModernCop: false
-    uploadPoliCheck: true
-    uploadPREfast: false
-    uploadRoslyn: false
-    uploadTSLint: false
-    uploadAsync: true
-  continueOnError: true
-
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
-  displayName: 'Create Security Analysis Report'
-  inputs:
-    TsvFile: false
+    # Turn off ApiScan
     APIScan: false
-    BinSkim: false
-    CredScan: true
-    PoliCheck: true
-    PoliCheckBreakOn: Severity2Above
-  continueOnError: true

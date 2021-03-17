@@ -8,4 +8,4 @@ steps:
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}
-      psArmPath: '$(System.ArtifactsDirectory)/out/PSArm'
+      psArmPath: '$(System.ArtifactsDirectory)/PSArm'

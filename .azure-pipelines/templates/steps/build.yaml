@@ -6,5 +6,5 @@ steps:
     displayName: Build Module
 
   - pwsh: |
-      Write-Host "##vso[artifact.upload containerfolder=out;artifactname=out;]${env:Build_SourcesDirectory}/out"
+      Write-Host "##vso[artifact.upload containerfolder=out;artifactname=PSArm;]${env:Build_SourcesDirectory}/out/PSArm"
     displayName: Upload

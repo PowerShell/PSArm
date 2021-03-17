@@ -6,13 +6,13 @@ steps:
 - checkout: self
 
 - pwsh: |
-    tree /f /a "$(Build.ArtifactsStagingDirectory)"
+    tree /f /a '$(Build.ArtifactStagingDirectory)'
   displayName: Show artifacts directory
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
-    buildOutputPath: "$(Build.ArtifactsStagingDirectory)/PSArm"
-    signOutputPath: "$(Build.ArtifactsStagingDirectory)/FirstPartySigned"
+    buildOutputPath: '$(Build.ArtifactStagingDirectory)/PSArm'
+    signOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
     alwaysCopy: true
     certificateId: 'CP-230012' # Authenticode certificate
     useMinimatch: true # Enable globbing
@@ -22,8 +22,8 @@ steps:
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
-    buildOutputPath: "$(Build.ArtifactsStagingDirectory)/FirstPartySigned"
-    signOutputPath: "$(Build.ArtifactsStagingDirectory)/ThirdPartySigned"
+    buildOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
+    signOutputPath: '$(Build.ArtifactStagingDirectory)/ThirdPartySigned'
     alwaysCopy: true
     certificateId: 'CP-231522' # Third-party certificate
     useMinimatch: true # This enables the use of globbing
@@ -31,10 +31,10 @@ steps:
       PSArm/Newtonsoft.Json.dll
 
 - pwsh: |
-    Import-Module "$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1"
-    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/ThirdPartySigned"
+    Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'
+    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/ThirdPartySigned'
   displayName: Validate that files are signed
 
-- publish: "$(Build.ArtifactsStagingDirectory)/ThirdPartySigned"
+- publish: '$(Build.ArtifactStagingDirectory)/ThirdPartySigned'
   artifact: PSArm
   displayName: Publish signed artifacts

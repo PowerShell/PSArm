@@ -18,7 +18,7 @@ stages:
     jobs:
       - job: Compliance
         pool:
-          name: 'Package ES Standard Build'
+          name: Package ES Standard Build
           demands: DotNetFramework
         variables:
         - group: ESRP
@@ -32,7 +32,7 @@ stages:
       - job: CodeSigning
         displayName: Code Signing
         pool:
-          name: 'Package ES Standard Build'
+          name: Package ES Standard Build
           demands: DotNetFramework
         variables:
         - group: ESRP

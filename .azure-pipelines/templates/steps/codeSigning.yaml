@@ -1,38 +1,30 @@
 steps:
 
+- checkout: ComplianceRepo
+  displayName: 'Checkout the ComplianceRepo'
+
+- checkout: self
+
 - pwsh: |
-    tree /f /a "$(System.ArtifactsDirectory)"
+    tree /f /a '$(Build.ArtifactsStagingDirectory)'
   displayName: Show artifacts directory
 
-- pwsh: |
-    $signedPath = "$(Build.ArtifactStagingDirectory)\temp\PSArm"
-    if (-not (Test-Path $signedPath))
-    {
-        New-Item $signedPath -ItemType Directory -Verbose
-    }
-  displayName: Ensure signing temp directory exists
-
-- task: PkgESCodeSign@10
-  displayName: Sign Assemblies
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-  inputs:
-    signConfigXml: '$(Build.SourcesDirectory)\tools\release\codeSigning.xml'
-    inPathRoot: '$(System.ArtifactsDirectory)'
-    outPathRoot: '$(System.ArtifactsDirectory)\temp'
+- template: EsrpSign.yml@ComplianceRepo
+  parameters:
+    buildOutputPath: '$(Build.ArtifactsStagingDirectory)/PSArm'
+    signOutputPath: '$(Build.ArtifactsStagingDirectory)/FirstPartySigned'
+    alwaysCopy: true
+    certificateId: 'CP-230012' # Authenticode certificate
+    useMinimatch: true # Enable globbing
+    pattern: |
+      PSArm/PSArm.dll
+      PSArm/*.{ps1,psm1,psd1,ps1xml}
 
 - pwsh: |
-    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/temp"
+    Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'
+    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/FirstPartySigned'
   displayName: Validate that files are signed
 
-- pwsh: |
-    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Copy-SignedFiles -OriginalDirPath "$(Build.ArtifactStagingDirectory)/out" -SignedDirPath "$(System.ArtifactsDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
-  displayName: 'Copy signed files into place'
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: PSArm'
-  inputs:
-    artifactName: signed
-    pathToPublish: '$(Build.ArtifactStagingDirectory)\signed'
+- publish: '$(Build.ArtifactsStagingDirectory)/FirstPartySigned'
+  artifact: PSArm
+  displayName: Publish signed artifacts

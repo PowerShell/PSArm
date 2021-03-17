@@ -6,13 +6,13 @@ steps:
 - checkout: self
 
 - pwsh: |
-    tree /f /a '$(Build.ArtifactsStagingDirectory)'
+    tree /f /a "$(Build.ArtifactsStagingDirectory)"
   displayName: Show artifacts directory
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
-    buildOutputPath: '$(Build.ArtifactsStagingDirectory)/PSArm'
-    signOutputPath: '$(Build.ArtifactsStagingDirectory)/FirstPartySigned'
+    buildOutputPath: "$(Build.ArtifactsStagingDirectory)/PSArm"
+    signOutputPath: "$(Build.ArtifactsStagingDirectory)/FirstPartySigned"
     alwaysCopy: true
     certificateId: 'CP-230012' # Authenticode certificate
     useMinimatch: true # Enable globbing
@@ -21,10 +21,10 @@ steps:
       PSArm/*.{ps1,psm1,psd1,ps1xml}
 
 - pwsh: |
-    Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'
-    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/FirstPartySigned'
+    Import-Module "$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1"
+    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/FirstPartySigned"
   displayName: Validate that files are signed
 
-- publish: '$(Build.ArtifactsStagingDirectory)/FirstPartySigned'
+- publish: "$(Build.ArtifactsStagingDirectory)/FirstPartySigned"
   artifact: PSArm
   displayName: Publish signed artifacts

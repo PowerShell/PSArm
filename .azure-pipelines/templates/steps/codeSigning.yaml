@@ -20,11 +20,21 @@ steps:
       PSArm/PSArm.dll
       PSArm/*.{ps1,psm1,psd1,ps1xml}
 
+- template: EsrpSign.yml@ComplianceRepo
+  parameters:
+    buildOutputPath: "$(Build.ArtifactsStagingDirectory)/FirstPartySigned"
+    signOutputPath: "$(Build.ArtifactsStagingDirectory)/ThirdPartySigned"
+    alwaysCopy: true
+    certificateId: 'CP-231522' # Third-party certificate
+    useMinimatch: true # This enables the use of globbing
+    pattern: |
+      PSArm/Newtonsoft.Json.dll
+
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1"
-    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/FirstPartySigned"
+    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/ThirdPartySigned"
   displayName: Validate that files are signed
 
-- publish: "$(Build.ArtifactsStagingDirectory)/FirstPartySigned"
+- publish: "$(Build.ArtifactsStagingDirectory)/ThirdPartySigned"
   artifact: PSArm
   displayName: Publish signed artifacts

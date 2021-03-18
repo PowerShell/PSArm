@@ -36,7 +36,7 @@ stages:
       variables:
       - group: ESRP
       steps:
-        - template: templates/steps/compliance.yaml
+        - template: templates/steps/releaseCompliance.yaml
 
   # TODO: Automate release publication by implementing the template steps
   # - stage: Publish

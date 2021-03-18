@@ -1,6 +1,6 @@
 steps:
 
-# See https://docs.microsoft.com/en-us/azure/security/develop/yaml-configuration for configuration of these tasks
+# From https://github.com/PowerShell/Compliance
 
 - checkout: ComplianceRepo
   displayName: 'Checkout the ComplianceRepo'

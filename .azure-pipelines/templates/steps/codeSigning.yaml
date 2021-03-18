@@ -1,5 +1,7 @@
 steps:
 
+# From https://github.com/PowerShell/Compliance
+
 - checkout: ComplianceRepo
   displayName: 'Checkout the ComplianceRepo'
 

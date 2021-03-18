@@ -1,0 +1,17 @@
+steps:
+
+- checkout: ComplianceRepo
+  displayName: 'Checkout the ComplianceRepo'
+
+- checkout: self
+
+- template: download.yaml
+  parameters:
+    artifact: unsigned
+
+- template: logArtifacts.yaml
+
+- template: ci-compliance.yml@ComplianceRepo
+  parameters:
+    # CredScan
+    suppressionsFile: ''

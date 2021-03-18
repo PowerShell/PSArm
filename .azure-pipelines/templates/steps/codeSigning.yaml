@@ -1,38 +1,44 @@
 steps:
 
-- pwsh: |
-    tree /f /a "$(System.ArtifactsDirectory)"
-  displayName: Show artifacts directory
+# From https://github.com/PowerShell/Compliance
+
+- checkout: ComplianceRepo
+  displayName: 'Checkout the ComplianceRepo'
+
+- checkout: self
+
+- template: download.yaml
+  parameters:
+    artifact: unsigned
+
+- template: logArtifacts.yaml
+
+- template: EsrpSign.yml@ComplianceRepo
+  parameters:
+    buildOutputPath: '$(Build.ArtifactStagingDirectory)/unsigned'
+    signOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
+    alwaysCopy: true
+    certificateId: 'CP-230012' # Authenticode certificate
+    useMinimatch: true # Enable globbing
+    pattern: |
+      PSArm/PSArm.dll
+      PSArm/*.{ps1,psm1,psd1,ps1xml}
+
+- template: EsrpSign.yml@ComplianceRepo
+  parameters:
+    buildOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
+    signOutputPath: '$(Build.ArtifactStagingDirectory)/signed'
+    alwaysCopy: true
+    certificateId: 'CP-231522' # Third-party certificate
+    useMinimatch: true # This enables the use of globbing
+    pattern: |
+      PSArm/Newtonsoft.Json.dll
 
 - pwsh: |
-    $signedPath = "$(Build.ArtifactStagingDirectory)\temp\PSArm"
-    if (-not (Test-Path $signedPath))
-    {
-        New-Item $signedPath -ItemType Directory -Verbose
-    }
-  displayName: Ensure signing temp directory exists
-
-- task: PkgESCodeSign@10
-  displayName: Sign Assemblies
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-  inputs:
-    signConfigXml: '$(Build.SourcesDirectory)\tools\release\codeSigning.xml'
-    inPathRoot: '$(System.ArtifactsDirectory)'
-    outPathRoot: '$(System.ArtifactsDirectory)\temp'
-
-- pwsh: |
-    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Assert-FilesAreSigned -Path "$(System.ArtifactsDirectory)/temp"
+    Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'
+    Assert-FilesAreSigned -Path '$(Build.ArtifactStagingDirectory)/signed/PSArm'
   displayName: Validate that files are signed
 
-- pwsh: |
-    Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Copy-SignedFiles -OriginalDirPath "$(Build.ArtifactStagingDirectory)/out" -SignedDirPath "$(System.ArtifactsDirectory)/temp" -Destination "$(Build.ArtifactStagingDirectory)/signed"
-  displayName: 'Copy signed files into place'
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: PSArm'
-  inputs:
-    artifactName: signed
-    pathToPublish: '$(Build.ArtifactStagingDirectory)\signed'
+- publish: '$(Build.ArtifactStagingDirectory)/signed'
+  artifact: signed
+  displayName: Publish signed artifacts

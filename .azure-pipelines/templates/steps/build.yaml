@@ -1,10 +1,10 @@
-steps:
+steps: 
 
-  - pwsh: |
-      ./tools/ensureInvokeBuildInstalled.ps1
-      Invoke-Build Build
-    displayName: Build Module
+- pwsh: |
+    ./tools/ensureInvokeBuildInstalled.ps1
+    Invoke-Build Build
+  displayName: Build Module
 
-  - pwsh: |
-      Write-Host "##vso[artifact.upload containerfolder=out;artifactname=out;]${env:Build_SourcesDirectory}/out"
-    displayName: Upload
+- publish: '$(Build.SourcesDirectory)/out'
+  artifact: unsigned
+  displayName: Publish unsigned artifacts

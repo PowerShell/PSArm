@@ -1,6 +1,10 @@
 steps:
 
+- template: download.yaml
+  parameters:
+    artifact: signed
+
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Publish-Module -ModulePath "$(System.ArtifactsDirectory)/out/PSArm"
+    Publish-Module -ModulePath "$(Build.ArtifactStagingDirectory)/signed/PSArm"
   displayName: 'Publish to PSGallery'

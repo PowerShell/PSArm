@@ -4,7 +4,10 @@ parameters:
   default: false
 
 steps:
-  - template: download.yaml
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Build Artifacts: PSArm'
+    inputs:
+      artifactName: PSArm
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}

@@ -1,7 +1,6 @@
 variables:
   # Avoid expensive initialization of dotnet cli, see: https://donovanbrown.com/post/Stop-wasting-time-during-NET-Core-builds
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-  ESRP_TEMPLATE_SHOULD_SIGN: 1
 
 resources:
   repositories:
@@ -14,21 +13,8 @@ stages:
 
   - template: templates/buildAndTest.yaml
 
-  - stage: Compliance
-    dependsOn: Build
-    jobs:
-      - job: Compliance
-        pool:
-          name: Package ES Standard Build
-          demands: DotNetFramework
-        variables:
-        - group: ESRP
-        steps:
-          - template: templates/steps/download.yaml
-          - template: templates/steps/compliance.yaml
-
   - stage: Signing
-    dependsOn: Compliance
+    dependsOn: Build
     jobs:
       - job: CodeSigning
         displayName: Code Signing
@@ -38,8 +24,19 @@ stages:
         variables:
         - group: ESRP
         steps:
-          - template: templates/steps/download.yaml
           - template: templates/steps/codeSigning.yaml
+
+  - stage: Compliance
+    dependsOn: Signing
+    jobs:
+      - job: Compliance
+        pool:
+          name: Package ES Standard Build
+          demands: DotNetFramework
+        variables:
+        - group: ESRP
+        steps:
+          - template: templates/steps/compliance.yaml
 
   # TODO: Automate release publication by implementing the template steps
   # - stage: Publish

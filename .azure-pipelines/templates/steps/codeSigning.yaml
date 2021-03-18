@@ -5,6 +5,11 @@ steps:
 
 - checkout: self
 
+- task: DownloadBuildArtifacts@0
+  displayName: 'Download Build Artifacts: PSArm'
+  inputs:
+    artifactName: PSArm
+
 - pwsh: |
     tree /f /a '$(Build.ArtifactStagingDirectory)'
   displayName: Show artifacts directory

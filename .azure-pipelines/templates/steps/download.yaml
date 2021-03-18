@@ -8,5 +8,5 @@ steps:
 - task: DownloadBuildArtifacts@0
   displayName: 'Download artifact: ${{ parameters.artifact }}'
   inputs:
-    artifact: ${{ parameters.artifact }}
+    artifact: '${{ parameters.artifact }}'
     path: '$(Build.ArtifactStagingDirectory)'

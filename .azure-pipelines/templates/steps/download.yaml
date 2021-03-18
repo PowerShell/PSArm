@@ -5,8 +5,8 @@ parameters:
 
 steps:
 
-- task: DownloadBuildArtifacts@0
+- task: DownloadPipelineArtifact@2
   displayName: 'Download artifact: ${{ parameters.artifact }}'
   inputs:
-    artifactName: ${{ parameters.artifact }}
+    artifact: ${{ parameters.artifact }}
     path: '$(Build.ArtifactStagingDirectory)'

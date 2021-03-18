@@ -16,7 +16,7 @@ steps:
 - template: assembly-module-compliance.yml@ComplianceRepo
   parameters:
     # binskim
-    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/signed/PSArm/*.dll'
+    AnalyzeTarget: '$(Pipeline.Workspace)/signed/PSArm/*.dll'
     AnalyzeSymPath: 'SRV*'
     # Component governance
     sourceScanPath: '$(Build.SourcesDirectory)/PSArm'

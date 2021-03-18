@@ -13,8 +13,8 @@ steps:
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
-    buildOutputPath: '$(Build.ArtifactStagingDirectory)/unsigned'
-    signOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
+    buildOutputPath: '$(Pipeline.Workspace)/unsigned'
+    signOutputPath: '$(Pipeline.Workspace)/FirstPartySigned'
     alwaysCopy: true
     certificateId: 'CP-230012' # Authenticode certificate
     useMinimatch: true # Enable globbing
@@ -24,8 +24,8 @@ steps:
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
-    buildOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
-    signOutputPath: '$(Build.ArtifactStagingDirectory)/signed'
+    buildOutputPath: '$(Pipeline.Workspace)/FirstPartySigned'
+    signOutputPath: '$(Pipeline.Workspace)/signed'
     alwaysCopy: true
     certificateId: 'CP-231522' # Third-party certificate
     useMinimatch: true # This enables the use of globbing
@@ -37,6 +37,6 @@ steps:
     Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/signed/PSArm'
   displayName: Validate that files are signed
 
-- publish: '$(Build.ArtifactStagingDirectory)/signed'
+- publish: '$(Pipeline.Workspace)/signed'
   artifact: signed
   displayName: Publish signed artifacts

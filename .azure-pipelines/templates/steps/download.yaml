@@ -9,4 +9,4 @@ steps:
   displayName: 'Download artifact: ${{ parameters.artifact }}'
   inputs:
     artifact: ${{ parameters.artifact }}
-    path: '$(Build.ArtifactStagingDirectory)'
+    path: '$(Build.ArtifactStagingDirectory)/${{ parameters.artifact }}'

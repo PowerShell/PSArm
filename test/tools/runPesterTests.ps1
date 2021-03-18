@@ -8,39 +8,50 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+Import-Module -Name Pester
 Import-Module "$PSScriptRoot/../../tools/BuildHelper.psm1"
 Import-Module -Name $PSArmPath
 Import-Module -Name "$PSScriptRoot/TestHelper.psm1"
 
-Push-Location "$PSScriptRoot/../../"
-try
+Write-Log "PSModulePath: '$env:PSModulePath'"
+Write-Log "PSArmPath: '$PSArmPath'"
+
+$armDepsDir = join-path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
+if (Test-Path $armDepsDir)
 {
-    Write-Log "PSModulePath: '$env:PSModulePath'"
-    Write-Log "PSArmPath: '$PSArmPath'"
+    Write-Log "PSArmDeps: '$(Get-ChildItem $armDepsDir)'"
+}
+else
+{
+    Write-Log "PSArmDeps directory not found"
+}
 
-    $armDepsDir = join-path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
-    if (Test-Path $armDepsDir)
-    {
-        Write-Log "PSArmDeps: '$(Get-ChildItem $armDepsDir)'"
-    }
-    else
-    {
-        Write-Log "PSArmDeps directory not found"
-    }
+$repoRoot = (Resolve-Path "$PSScriptRoot/../../").Path
+$testsPath = Join-Path $repoRoot "test/pester"
+$testResultsPath = Join-Path $repoRoot "testResults.xml"
 
-    if ($CI)
-    {
-        Invoke-Pester -Path "./test/pester" -CI
-        return
+$config = [PesterConfiguration]@{
+    Run = @{
+        Path = $testsPath
+        PassThru = $true
     }
-
-    $testResults = Invoke-Pester -Path "./test/pester" -PassThru
-    if ($testResults.Failed)
-    {
-        throw "Pester tests failed. See output for details"
+    Output = @{
+        Verbosity = 'Detailed'
     }
 }
-finally
+
+if ($CI)
 {
-    Pop-Location
+    $config.TestResult = @{
+        Enabled = $true
+        OutputFormat = 'NUnitXml'
+        OutputPath = $testResultsPath
+    }
+}
+
+$testResults = Invoke-Pester -Configuration $config
+
+if ($testResults.Failed -ne $false)
+{
+    throw "Pester tests failed. See output for details"
 }

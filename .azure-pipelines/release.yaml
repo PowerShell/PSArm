@@ -11,32 +11,32 @@ resources:
 
 stages:
 
-  - template: templates/buildAndTest.yaml
+- template: templates/buildAndTest.yaml
 
-  - stage: Signing
-    dependsOn: Build
-    jobs:
-      - job: CodeSigning
-        displayName: Code Signing
-        pool:
-          name: Package ES Standard Build
-          demands: DotNetFramework
-        variables:
-        - group: ESRP
-        steps:
-          - template: templates/steps/codeSigning.yaml
+- stage: Signing
+  dependsOn: Build
+  jobs:
+    - job: CodeSigning
+      displayName: Code Signing
+      pool:
+        name: Package ES Standard Build
+        demands: DotNetFramework
+      variables:
+      - group: ESRP
+      steps:
+        - template: templates/steps/codeSigning.yaml
 
-  - stage: Compliance
-    dependsOn: Signing
-    jobs:
-      - job: Compliance
-        pool:
-          name: Package ES Standard Build
-          demands: DotNetFramework
-        variables:
-        - group: ESRP
-        steps:
-          - template: templates/steps/compliance.yaml
+- stage: Compliance
+  dependsOn: Signing
+  jobs:
+    - job: Compliance
+      pool:
+        name: Package ES Standard Build
+        demands: DotNetFramework
+      variables:
+      - group: ESRP
+      steps:
+        - template: templates/steps/compliance.yaml
 
   # TODO: Automate release publication by implementing the template steps
   # - stage: Publish

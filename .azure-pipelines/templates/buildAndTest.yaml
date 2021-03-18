@@ -1,38 +1,38 @@
 stages:
 
-  - stage: Build
-    jobs:
-      - job: Build
-        pool:
-          vmImage: windows-latest
-        steps:
-        - template: steps/build.yaml
+- stage: Build
+  jobs:
+    - job: Build
+      pool:
+        vmImage: windows-latest
+      steps:
+      - template: steps/build.yaml
 
-  - stage: Tests
-    dependsOn: Build
-    jobs:
-      - job:
-        strategy:
-          matrix:
-            'Ubuntu | PowerShell 7':
-              vmImage: ubuntu-18.04
-            'macOS | PowerShell 7':
-              vmImage: macOS-10.15
-            'Windows | PowerShell 7':
-              vmImage: windows-latest
-        pool:
-          vmImage: $[variables['vmImage']]
-        steps:
-        - template: steps/tests.yaml
-      - job:
-        strategy:
-          matrix:
-            'Windows | PowerShell 5.1':
-              vmImage: windows-latest
-              useWinPS: true
-        pool:
-          vmImage: $[ variables['vmImage'] ]
-        steps:
-        - template: steps/tests.yaml
-          parameters:
+- stage: Tests
+  dependsOn: Build
+  jobs:
+    - job:
+      strategy:
+        matrix:
+          'Ubuntu | PowerShell 7':
+            vmImage: ubuntu-18.04
+          'macOS | PowerShell 7':
+            vmImage: macOS-10.15
+          'Windows | PowerShell 7':
+            vmImage: windows-latest
+      pool:
+        vmImage: $[variables['vmImage']]
+      steps:
+      - template: steps/tests.yaml
+    - job:
+      strategy:
+        matrix:
+          'Windows | PowerShell 5.1':
+            vmImage: windows-latest
             useWinPS: true
+      pool:
+        vmImage: $[ variables['vmImage'] ]
+      steps:
+      - template: steps/tests.yaml
+        parameters:
+          useWinPS: true

@@ -1,14 +1,16 @@
 parameters:
+
 - name: useWinPS
   type: boolean
   default: false
 
 steps:
+
 - template: download.yaml
   parameters:
     artifact: unsigned
 
-  - template: pester.yaml
-    parameters:
-      useWinPS: ${{ parameters.useWinPS }}
-      psArmPath: '$(Build.ArtifactStagingDirectory)/unsigned/PSArm'
+- template: pester.yaml
+  parameters:
+    useWinPS: ${{ parameters.useWinPS }}
+    psArmPath: '$(Build.ArtifactStagingDirectory)/unsigned/PSArm'

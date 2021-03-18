@@ -10,9 +10,7 @@ steps:
   inputs:
     artifactName: unsigned
 
-- pwsh: |
-    tree /f /a '$(Build.ArtifactStagingDirectory)'
-  displayName: Show artifacts directory
+- template: logArtifacts.yaml
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:

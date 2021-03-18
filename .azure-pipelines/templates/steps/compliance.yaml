@@ -12,6 +12,8 @@ steps:
   inputs:
     artifactName: signed
 
+- template: logArtifacts.yaml
+
 - template: assembly-module-compliance.yml@ComplianceRepo
   parameters:
     # binskim

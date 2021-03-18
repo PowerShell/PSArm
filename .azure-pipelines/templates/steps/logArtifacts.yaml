@@ -1,0 +1,5 @@
+steps:
+
+- pwsh: |
+    tree /f /a '$(Build.ArtifactStagingDirectory)'
+  displayName: Show artifacts directory

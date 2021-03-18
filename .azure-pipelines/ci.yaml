@@ -14,6 +14,7 @@ stages:
   - template: templates/buildAndTest.yaml
 
   - stage: Compliance
+    dependsOn: Build
     jobs:
       - job: Compliance
         steps:

@@ -3,5 +3,11 @@ variables:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
 stages:
+
   - template: templates/buildAndTest.yaml
-  - template: templates/ciCompliance.yaml
+
+  - stage: Compliance
+    jobs:
+      - job: Compliance
+        steps:
+        - template: templates/steps/ciCompliance.yaml

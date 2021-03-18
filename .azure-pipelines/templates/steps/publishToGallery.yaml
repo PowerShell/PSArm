@@ -1,6 +1,11 @@
 steps:
 
+- download: current
+  artifact: signed
+  path: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Download signed artifacts'
+
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"
-    Publish-Module -ModulePath "$(Pipeline.Workspace)/signed/PSArm"
+    Publish-Module -ModulePath "$(Build.ArtifactStagingDirectory)/signed/PSArm"
   displayName: 'Publish to PSGallery'

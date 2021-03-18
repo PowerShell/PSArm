@@ -1,5 +1,5 @@
 steps:
 
 - pwsh: |
-    tree /f /a '$(Pipeline.Workspace)'
+    tree /f /a '$(Build.ArtifactStagingDirectory)'
   displayName: Show artifacts directory

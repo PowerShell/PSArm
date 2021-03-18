@@ -9,6 +9,7 @@ steps:
 
 - download: current
   artifact: signed
+  path: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Download Build Artifacts: signed'
 
 - template: logArtifacts.yaml
@@ -16,7 +17,7 @@ steps:
 - template: assembly-module-compliance.yml@ComplianceRepo
   parameters:
     # binskim
-    AnalyzeTarget: '$(Pipeline.Workspace)/signed/PSArm/*.dll'
+    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/signed/PSArm/*.dll'
     AnalyzeSymPath: 'SRV*'
     # Component governance
     sourceScanPath: '$(Build.SourcesDirectory)/PSArm'

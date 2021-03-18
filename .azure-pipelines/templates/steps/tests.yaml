@@ -6,9 +6,10 @@ parameters:
 steps:
   - download: current
     artifact: unsigned
+    path: '$(Build.ArtifactStagingDirectory)'
     displayName: 'Download Build Artifacts: unsigned'
 
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}
-      psArmPath: '$(Pipeline.Workspace)/unsigned/PSArm'
+      psArmPath: '$(Build.ArtifactStagingDirectory)/unsigned/PSArm'

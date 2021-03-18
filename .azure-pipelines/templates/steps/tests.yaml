@@ -4,10 +4,9 @@ parameters:
   default: false
 
 steps:
-  - download: current
+- template: download.yaml
+  parameters:
     artifact: unsigned
-    path: '$(Build.ArtifactStagingDirectory)'
-    displayName: 'Download Build Artifacts: unsigned'
 
   - template: pester.yaml
     parameters:

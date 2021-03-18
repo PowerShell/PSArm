@@ -1,0 +1,11 @@
+parameters:
+  - name: artifact
+    type: string
+
+steps:
+
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download artifact: ${{ parameters.artifact }}'
+    inputs:
+      artifact: ${{ parameters.artifact }}
+      path: '$(Build.ArtifactStagingDirectory)'

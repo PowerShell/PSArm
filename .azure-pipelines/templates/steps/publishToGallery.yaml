@@ -1,9 +1,8 @@
 steps:
 
-- download: current
-  artifact: signed
-  path: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Download signed artifacts'
+- template: download.yaml
+  parameters:
+    artifact: signed
 
 - pwsh: |
     Import-Module "$(Build.SourcesDirectory)/tools/release/ReleaseTools.psm1"

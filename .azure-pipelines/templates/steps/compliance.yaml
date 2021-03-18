@@ -7,10 +7,9 @@ steps:
 
 - checkout: self
 
-- download: current
-  artifact: signed
-  path: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Download Build Artifacts: signed'
+- template: download.yaml
+  parameters:
+    artifact: signed
 
 - template: logArtifacts.yaml
 

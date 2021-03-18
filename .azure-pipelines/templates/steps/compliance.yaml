@@ -8,14 +8,14 @@ steps:
 - checkout: self
 
 - task: DownloadBuildArtifacts@0
-  displayName: 'Download Build Artifacts: ThirdPartySigned'
+  displayName: 'Download Build Artifacts: signed'
   inputs:
-    artifactName: ThirdPartySigned
+    artifactName: signed
 
 - template: assembly-module-compliance.yml@ComplianceRepo
   parameters:
     # binskim
-    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/*.dll'
+    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/signed/*.dll'
     AnalyzeSymPath: 'SRV*'
     # Component governance
     sourceScanPath: '$(Build.SourcesDirectory)/PSArm'

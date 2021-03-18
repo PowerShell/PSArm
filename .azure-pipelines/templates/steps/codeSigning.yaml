@@ -6,9 +6,9 @@ steps:
 - checkout: self
 
 - task: DownloadBuildArtifacts@0
-  displayName: 'Download Build Artifacts: PSArm'
+  displayName: 'Download Build Artifacts: unsigned'
   inputs:
-    artifactName: PSArm
+    artifactName: unsigned
 
 - pwsh: |
     tree /f /a '$(Build.ArtifactStagingDirectory)'
@@ -16,7 +16,7 @@ steps:
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
-    buildOutputPath: '$(Build.ArtifactStagingDirectory)/PSArm'
+    buildOutputPath: '$(Build.ArtifactStagingDirectory)/unsigned'
     signOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
     alwaysCopy: true
     certificateId: 'CP-230012' # Authenticode certificate
@@ -28,7 +28,7 @@ steps:
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
     buildOutputPath: '$(Build.ArtifactStagingDirectory)/FirstPartySigned'
-    signOutputPath: '$(Build.ArtifactStagingDirectory)/ThirdPartySigned'
+    signOutputPath: '$(Build.ArtifactStagingDirectory)/signed'
     alwaysCopy: true
     certificateId: 'CP-231522' # Third-party certificate
     useMinimatch: true # This enables the use of globbing
@@ -37,9 +37,9 @@ steps:
 
 - pwsh: |
     Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'
-    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/ThirdPartySigned'
+    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/signed'
   displayName: Validate that files are signed
 
-- publish: '$(Build.ArtifactStagingDirectory)/ThirdPartySigned'
-  artifact: PSArm
+- publish: '$(Build.ArtifactStagingDirectory)/signed'
+  artifact: signed
   displayName: Publish signed artifacts

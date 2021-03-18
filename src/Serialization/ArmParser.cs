@@ -29,8 +29,8 @@ namespace PSArm.Serialization
 
         public ArmParser()
         {
-            _parameters = new Dictionary<string, ArmParameter>();
-            _variables = new Dictionary<string, ArmVariable>();
+            _parameters = new Dictionary<string, ArmParameter>(StringComparer.OrdinalIgnoreCase);
+            _variables = new Dictionary<string, ArmVariable>(StringComparer.OrdinalIgnoreCase);
             _armExpressionParser = new ArmExpressionParser(_parameters, _variables);
         }
 

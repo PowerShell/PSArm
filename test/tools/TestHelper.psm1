@@ -64,7 +64,7 @@ function Assert-EquivalentToTemplate
 {
     param(
         [Parameter(Mandatory)]
-        [PSArm.ArmBuilding.IArmElement]
+        [PSArm.Templates.Primitives.ArmElement]
         $GeneratedObject,
 
         [Parameter(Mandatory, ParameterSetName="Definition")]

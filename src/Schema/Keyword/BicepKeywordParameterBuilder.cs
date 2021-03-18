@@ -15,7 +15,7 @@ namespace PSArm.Schema.Keyword
         private static readonly ConcurrentDictionary<BuiltInTypeKind, IReadOnlyDictionary<string, DslParameterInfo>> s_builtinParameters =
             new ConcurrentDictionary<BuiltInTypeKind, IReadOnlyDictionary<string, DslParameterInfo>>();
 
-        private static readonly IReadOnlyDictionary<string, DslParameterInfo> s_bodyParameters = new Dictionary<string, DslParameterInfo>
+        private static readonly IReadOnlyDictionary<string, DslParameterInfo> s_bodyParameters = new Dictionary<string, DslParameterInfo>(StringComparer.OrdinalIgnoreCase)
         {
             { "Body", new DslParameterInfo("Body", "scriptblock") },
         };
@@ -28,7 +28,10 @@ namespace PSArm.Schema.Keyword
         protected override IReadOnlyDictionary<string, DslParameterInfo> VisitBuiltin(BuiltInType armBuiltin)
         {
             return s_builtinParameters.GetOrAdd(armBuiltin.Kind, kind =>
-                new Dictionary<string, DslParameterInfo> { { "Value", new DslParameterInfo("Value", kind.AsPowerShellTypeString()) } });
+                new Dictionary<string, DslParameterInfo>(StringComparer.OrdinalIgnoreCase)
+                {
+                    { "Value", new DslParameterInfo("Value", kind.AsPowerShellTypeString()) }
+                });
         }
 
         protected override IReadOnlyDictionary<string, DslParameterInfo> VisitDiscriminatedObject(DiscriminatedObjectType armDiscriminatedObject)
@@ -48,7 +51,7 @@ namespace PSArm.Schema.Keyword
 
         protected override IReadOnlyDictionary<string, DslParameterInfo> VisitString(StringLiteralType armString)
         {
-            return new Dictionary<string, DslParameterInfo>
+            return new Dictionary<string, DslParameterInfo>(StringComparer.OrdinalIgnoreCase)
             {
                 { "Value", new DslParameterInfo("Value", "string", new [] { armString.Value })  },
             };
@@ -67,7 +70,7 @@ namespace PSArm.Schema.Keyword
                 values.Add(stringLiteral.Value);
             }
 
-            return new Dictionary<string, DslParameterInfo>
+            return new Dictionary<string, DslParameterInfo>(StringComparer.OrdinalIgnoreCase)
             {
                 { "Value", new DslParameterInfo("Value", "string", values) },
             };

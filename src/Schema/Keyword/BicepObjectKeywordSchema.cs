@@ -43,7 +43,7 @@ namespace PSArm.Schema.Keyword
 
         private IReadOnlyDictionary<string, DslKeywordSchema> BuildInnerKeywordDict()
         {
-            var dict = new Dictionary<string, DslKeywordSchema>();
+            Dictionary<string, DslKeywordSchema> dict = new Dictionary<string, DslKeywordSchema>(StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ObjectProperty> property in BicepType.Properties)
             {
                 dict[property.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(property.Value.Type.Type);

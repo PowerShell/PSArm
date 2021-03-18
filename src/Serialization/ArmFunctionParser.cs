@@ -48,7 +48,7 @@ namespace PSArm.Serialization
 
         public Dictionary<string, ArmBuiltinFunction> ParseFromJToken(JToken functionSpecDocument)
         {
-            var functions = new Dictionary<string, ArmBuiltinFunction>();
+            var functions = new Dictionary<string, ArmBuiltinFunction>(StringComparer.OrdinalIgnoreCase);
 
             var signatureArray = (JArray)((JObject)functionSpecDocument)["functionSignatures"];
             foreach (JObject entry in signatureArray)

@@ -69,6 +69,7 @@ namespace PSArm.Commands.Template
 
             var armResource = new ConstructingArmBuilder<ArmResource>();
 
+            armResource.AddSingleElement(ArmTemplateKeys.Name, (ArmElement)Name);
             armResource.AddSingleElement(ArmTemplateKeys.ApiVersion, (ArmElement)ApiVersion);
             armResource.AddSingleElement(ArmTemplateKeys.Type, ComposeResourceTypeElement());
 
@@ -215,7 +216,7 @@ namespace PSArm.Commands.Template
                 return null;
             }
 
-            var keywords = new Dictionary<string, ScriptBlock>(resourceSchema.KeywordDefinitions);
+            var keywords = new Dictionary<string, ScriptBlock>(resourceSchema.KeywordDefinitions, StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ScriptBlock> keywordDefinition in discriminatedKeywords)
             {
                 keywords[keywordDefinition.Key] = keywordDefinition.Value;

@@ -62,11 +62,17 @@ namespace PSArm.Commands.Template
                 }
             }
 
-            var template = new ArmTemplate(templateName)
+            var template = new ArmTemplate(templateName);
+
+            if (armParameters is not null && armParameters.Count > 0)
             {
-                Variables = armVariables,
-                Parameters = armParameters,
-            };
+                template.Parameters = armParameters;
+            }
+
+            if (armVariables is not null && armVariables.Count > 0)
+            {
+                template.Variables = armVariables;
+            }
 
             var templateBuilder = new ArmBuilder<ArmTemplate>(template);
             foreach (PSObject output in InvokeCommand.InvokeScript(useLocalScope: true, transformedBody, input: null, psArgsArray))

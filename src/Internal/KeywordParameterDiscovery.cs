@@ -20,7 +20,7 @@ namespace PSArm.Internal
                 throw new ArgumentException($"Type '{type}' must describe a PowerShell cmdlet.");
             }
 
-            var parameters = new Dictionary<string, DslParameterInfo>();
+            var parameters = new Dictionary<string, DslParameterInfo>(StringComparer.OrdinalIgnoreCase);
 
             foreach (PropertyInfo property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy))
             {

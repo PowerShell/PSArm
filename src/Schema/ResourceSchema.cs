@@ -110,7 +110,7 @@ namespace PSArm.Schema
             string discriminator = null,
             IDictionary<string, ITypeReference> discriminatedSubtypes = null)
         {
-            var table = new Dictionary<string, TypeBase>();
+            var table = new Dictionary<string, TypeBase>(StringComparer.OrdinalIgnoreCase);
             var defaults = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ObjectProperty> propertyEntry in baseProperties)
             {

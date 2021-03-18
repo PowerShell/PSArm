@@ -5,7 +5,8 @@ steps:
 
 - checkout: self
 
-- download: unsigned
+- download: current
+  artifact: unsigned
   displayName: 'Download Build Artifacts: unsigned'
 
 - template: logArtifacts.yaml

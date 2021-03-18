@@ -4,7 +4,8 @@ parameters:
   default: false
 
 steps:
-  - download: unsigned
+  - download: current
+    artifact: unsigned
     displayName: 'Download Build Artifacts: unsigned'
 
   - template: pester.yaml

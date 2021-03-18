@@ -6,8 +6,9 @@ stages:
 
   - template: templates/buildAndTest.yaml
 
-  - stage: Compliance
-    jobs:
-      - job: Compliance
-        steps:
-        - template: templates/steps/ciCompliance.yaml
+# TODO: Work out when we need to run this and how
+#  - stage: Compliance
+#    jobs:
+#      - job: Compliance
+#        steps:
+#        - template: templates/steps/ciCompliance.yaml

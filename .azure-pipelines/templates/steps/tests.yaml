@@ -5,10 +5,10 @@ parameters:
 
 steps:
   - task: DownloadBuildArtifacts@0
-    displayName: 'Download Build Artifacts: PSArm'
+    displayName: 'Download Build Artifacts: unsigned'
     inputs:
-      artifactName: PSArm
+      artifactName: unsigned
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}
-      psArmPath: '$(System.ArtifactsDirectory)/PSArm'
+      psArmPath: '$(System.ArtifactsDirectory)/unsigned/PSArm'

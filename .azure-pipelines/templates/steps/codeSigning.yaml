@@ -20,8 +20,8 @@ steps:
     certificateId: 'CP-230012' # Authenticode certificate
     useMinimatch: true # Enable globbing
     pattern: |
-      PSArm.dll
-      *.{ps1,psm1,psd1,ps1xml}
+      PSArm/PSArm.dll
+      PSArm/*.{ps1,psm1,psd1,ps1xml}
 
 - template: EsrpSign.yml@ComplianceRepo
   parameters:
@@ -31,11 +31,11 @@ steps:
     certificateId: 'CP-231522' # Third-party certificate
     useMinimatch: true # This enables the use of globbing
     pattern: |
-      Newtonsoft.Json.dll
+      PSArm/Newtonsoft.Json.dll
 
 - pwsh: |
     Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'
-    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/signed'
+    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/signed/PSArm'
   displayName: Validate that files are signed
 
 - publish: '$(Build.ArtifactStagingDirectory)/signed'

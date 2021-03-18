@@ -11,4 +11,4 @@ steps:
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}
-      psArmPath: '$(System.ArtifactsDirectory)/unsigned/PSArm'
+      psArmPath: '$(Pipeline.Workspace)/unsigned/PSArm'

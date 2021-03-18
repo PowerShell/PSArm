@@ -34,7 +34,7 @@ steps:
 
 - pwsh: |
     Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'
-    Assert-FilesAreSigned -Path '$(System.ArtifactsDirectory)/signed/PSArm'
+    Assert-FilesAreSigned -Path '$(Pipeline.Workspace)/signed/PSArm'
   displayName: Validate that files are signed
 
 - publish: '$(Pipeline.Workspace)/signed'

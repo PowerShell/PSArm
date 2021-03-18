@@ -7,10 +7,8 @@ steps:
 
 - checkout: self
 
-- task: DownloadBuildArtifacts@0
+- download: signed
   displayName: 'Download Build Artifacts: signed'
-  inputs:
-    artifactName: signed
 
 - template: logArtifacts.yaml
 

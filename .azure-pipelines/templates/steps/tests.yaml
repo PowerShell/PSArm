@@ -4,10 +4,9 @@ parameters:
   default: false
 
 steps:
-  - task: DownloadBuildArtifacts@0
+  - download: unsigned
     displayName: 'Download Build Artifacts: unsigned'
-    inputs:
-      artifactName: unsigned
+
   - template: pester.yaml
     parameters:
       useWinPS: ${{ parameters.useWinPS }}

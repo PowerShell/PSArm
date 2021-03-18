@@ -3,11 +3,11 @@
 
 Describe "PSArm type accelerators" {
     It "Defines an ArmVariable type accelerator" {
-        [ArmVariable].FullName | Should -BeExactly 'PSArm.Expression.ArmVariable'
+        [ArmVariable].FullName | Should -BeExactly 'PSArm.Templates.ArmVariable'
     }
 
     It "Defines a generic ArmParameter type accelerator" {
-        [ArmParameter].FullName | Should -BeExactly 'PSArm.Expression.ArmParameter`1'
+        [ArmParameter].FullName | Should -BeExactly 'PSArm.Templates.ArmParameter`1'
         [ArmParameter[string]].GenericTypeArguments[0].FullName | Should -BeExactly 'System.String'
     }
 }

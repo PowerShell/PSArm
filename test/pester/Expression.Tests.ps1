@@ -39,7 +39,7 @@ Describe "Arm expression tests" {
 
     It "Creates the expected expression: <Expected>" -TestCases $testCases {
         param(
-            [PSArm.Expression.IArmExpression]
+            [PSArm.Templates.Primitives.ArmExpression]
             $Expression,
 
             [string]

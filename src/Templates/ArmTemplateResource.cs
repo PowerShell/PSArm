@@ -12,6 +12,7 @@ namespace PSArm.Templates
         private static readonly ArmStringLiteral s_type = new ArmStringLiteral("Microsoft.Resources/deployments");
         private static readonly ArmStringLiteral s_apiVersion = new ArmStringLiteral("2019-10-01");
         private static readonly ArmStringLiteral s_incrementalMode = new ArmStringLiteral("Incremental");
+        private static readonly ArmStringLiteral s_inner = new ArmStringLiteral("inner");
 
         public ArmTemplateResource(IArmString name)
         {
@@ -21,6 +22,10 @@ namespace PSArm.Templates
             this[ArmTemplateKeys.Properties] = new ArmObject
             {
                 [ArmTemplateKeys.Mode] = s_incrementalMode,
+                [ArmTemplateKeys.ExpressionEvaluationOptions] = new ArmObject
+                {
+                    [ArmTemplateKeys.Scope] = s_inner,
+                },
             };
         }
 

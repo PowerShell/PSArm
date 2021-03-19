@@ -9,7 +9,7 @@ namespace PSArm.Templates.Operations
 {
     public class ArmVariableReferenceExpression : ArmReferenceExpression<ArmVariable>
     {
-        private static readonly ArmStringLiteral s_variableReferenceFunction = new ArmStringLiteral("variable");
+        private static readonly ArmStringLiteral s_variableReferenceFunction = new ArmStringLiteral("variables");
 
         public ArmVariableReferenceExpression(ArmVariable variable)
             : base(s_variableReferenceFunction, variable)

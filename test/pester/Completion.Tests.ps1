@@ -93,7 +93,7 @@ Describe "PSArm completions" {
                 @{ Completion = 'properties' }
                 @{ Completion = 'etag' }
                 @{ Completion = 'DependsOn' }
-                @{ Completion = 'Sku' }
+                @{ Completion = 'ArmSku' }
                 @{ Completion = 'Resource' }
             )
         }

@@ -4,6 +4,7 @@
 using Azure.Bicep.Types.Concrete;
 using PSArm.Commands.Primitive;
 using PSArm.Serialization;
+using PSArm.Templates.Primitives;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -206,30 +207,9 @@ namespace PSArm.Schema
                     .OpenAttribute("Parameter")
                         .Write("Position = 0, Mandatory = $true")
                         .CloseAttribute()
-                        .WriteLine();
-
-            if (enumeratedValues != null)
-            {
-                // TODO: Move from ValidateSet to an ARM-enlightened validation function
-                _writer
-                    .OpenAttribute("ValidateSet")
-                        .Intersperse(
-                            e => _writer.WriteValue(e),
-                            ", ",
-                            enumeratedValues)
-                        .CloseAttribute()
-                        .WriteLine();
-            }
-
-            if (builtinTypeKind != null
-                && TryGetTypeNameForBuiltin(builtinTypeKind.Value, out string typeName))
-            {
-                _writer
-                    .WriteType(typeName)
-                        .WriteLine();
-            }
-
-            _writer
+                        .WriteLine()
+                    .WriteType(typeof(ArmExpression).FullName)
+                        .WriteLine()
                 .WriteVariable(KeywordValueParameter)
                 .CloseParamBlock()
                 .WriteLine();

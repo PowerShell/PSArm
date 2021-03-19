@@ -8,12 +8,11 @@ BeforeDiscovery {
 
     $testCases = $examples | ForEach-Object {
         $basePath = $_.FullName
-        $scriptPath = Join-Path -Path $basePath -ChildPath 'test.ps1'
         $templatePath = Join-Path -Path $basePath -ChildPath 'template.json'
 
-        if ((Test-Path -LiteralPath $scriptPath) -and (Test-Path -LiteralPath $templatePath))
+        if (Test-Path -LiteralPath $templatePath)
         {
-            @{ Name = $_.Name; ScriptPath = $scriptPath; TemplatePath = $templatePath }
+            @{ Name = $_.Name; ExamplePath = $basePath }
         }
     }
 }
@@ -70,11 +69,19 @@ BeforeAll {
 
 Describe "Full ARM template conversions using examples" {
     It "Example <Name>: PSArm script at <ScriptPath> evaluates equivalently to <TemplatePath>" -TestCases $testCases {
-        param([string]$Name, [string]$ScriptPath, [string]$TemplatePath)
+        param([string]$Name, [string]$ExamplePath)
 
-        $armObject = & $ScriptPath
+        $templatePath = Join-Path -Path $ExamplePath -ChildPath 'template.json'
+        $parameterPath = Join-Path -Path $ExamplePath -ChildPath 'parameters.json'
+
+        if (Test-Path $parameterPath)
+        {
+            $parameters = Get-Content -Raw $parameterPath | ConvertFrom-Json -AsHashtable
+        }
+
+        $armObject = Publish-PSArmTemplate -TemplatePath $ExamplePath -Parameters $parameters -NoWriteFile -NoHashTemplate -PassThru
         $generatedJson = $armObject.ToJson().ToString() | ConvertFrom-Json -AsHashtable
-        $referenceJson = Get-Content -Raw -LiteralPath $TemplatePath | ConvertFrom-Json -AsHashtable
+        $referenceJson = Get-Content -Raw -LiteralPath $templatePath | ConvertFrom-Json -AsHashtable
         Assert-JsonEqual -ReferenceObject $referenceJson -DifferenceObject $generatedJson -Path "#"
     }
 }

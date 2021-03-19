@@ -67,6 +67,11 @@ namespace PSArm.Commands
         [Parameter]
         public SwitchParameter NoWriteFile { get; set; }
 
+        [Parameter]
+        public SwitchParameter NoHashTemplate { get; set; }
+
+        private bool Verbose => Parameters.ContainsKey("Verbose");
+
         protected override void ProcessRecord()
         {
             foreach (string path in TemplatePath)
@@ -191,8 +196,11 @@ namespace PSArm.Commands
 
         private async Task<ArmNestedTemplate> RunIOOperationsAsync(ArmNestedTemplate template, CancellationToken cancellationToken)
         {
-            Host.UI.WriteVerboseLine("Signing template");
-            template = await SignTemplate(template, cancellationToken).ConfigureAwait(false);
+            if (!NoHashTemplate)
+            {
+                SafeWriteVerbose("Signing template");
+                template = await AddHashToTemplate(template, cancellationToken).ConfigureAwait(false);
+            }
 
             if (!NoWriteFile)
             {
@@ -213,27 +221,25 @@ namespace PSArm.Commands
                 Formatting = Formatting.Indented,
             };
 
-            Host.UI.WriteVerboseLine($"Writing template to '{outPath}'");
+            SafeWriteVerbose($"Writing template to '{outPath}'");
 
             await template.ToJson().WriteToAsync(jsonWriter, cancellationToken).ConfigureAwait(false);
             await jsonWriter.FlushAsync(cancellationToken).ConfigureAwait(false);
         }
 
-        private async Task<ArmNestedTemplate> SignTemplate(ArmNestedTemplate template, CancellationToken cancellationToken)
+        private async Task<ArmNestedTemplate> AddHashToTemplate(ArmNestedTemplate template, CancellationToken cancellationToken)
         {
-            Host.UI.WriteVerboseLine("Getting Azure token");
+            SafeWriteVerbose("Getting Azure token");
             string token = GetAzureToken(cancellationToken);
 
             using var stream = new MemoryStream();
             using var writer = new StreamWriter(stream, Encoding.UTF8);
             using var jsonWriter = new JsonTextWriter(writer);
-            using var httpClient = new HttpClient(new VerboseHttpLoggingHandler(Host.UI, new HttpClientHandler()))
-            {
-                DefaultRequestHeaders =
-                {
-                    Authorization = new AuthenticationHeaderValue("Bearer", token),
-                },
-            };
+
+            using var httpClient = Verbose
+                ? new HttpClient(new VerboseHttpLoggingHandler(Host.UI, new HttpClientHandler()))
+                : new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             await template.ToJson().WriteToAsync(jsonWriter, cancellationToken).ConfigureAwait(false);
             await jsonWriter.FlushAsync(cancellationToken);
@@ -250,7 +256,7 @@ namespace PSArm.Commands
                 },
             };
 
-            Host.UI.WriteVerboseLine("Initiating HTTP request");
+            SafeWriteVerbose("Initiating HTTP request");
             using HttpResponseMessage response = await httpClient.PostAsync(TemplateSigningApiUri, body, cancellationToken).ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
@@ -261,7 +267,7 @@ namespace PSArm.Commands
             using var jsonReader = new JsonTextReader(streamReader);
             string hash = await GetHashFromJsonResponse(jsonReader, cancellationToken).ConfigureAwait(false);
 
-            Host.UI.WriteVerboseLine($"Adding hash '{hash}' to template");
+            SafeWriteVerbose($"Adding hash '{hash}' to template");
             ((PSArmTopLevelTemplateMetadata)template.Metadata).GeneratorMetadata.TemplateHash = new ArmStringLiteral(hash);
 
             return template;
@@ -317,6 +323,7 @@ namespace PSArm.Commands
                 cancellationToken.Register(() => pwsh.Stop());
 
                 // First try Azure PowerShell's Get-AzAccessToken
+                SafeWriteVerbose("Attempting to get Azure token with 'Get-AzAccessToken'");
                 try
                 {
                     token = pwsh
@@ -340,6 +347,7 @@ namespace PSArm.Commands
                 // Next try the az CLI
                 pwsh.Commands.Clear();
                 
+                SafeWriteVerbose("Attempting to get Azure token with 'az account get-access-token'");
                 try
                 {
                     token = pwsh
@@ -366,17 +374,17 @@ namespace PSArm.Commands
                 if (hasAzPS)
                 {
                     ThrowUnableToGetTokenError(
-                        $"Run 'Login-AzAccount' to login and enable token acquisition, or provide a token manually with the {nameof(AzureToken)} parameter");
+                        $"Unable to automatically get Azure token. Run 'Login-AzAccount' to login and enable token acquisition, or provide a token manually with the {nameof(AzureToken)} parameter");
                 }
 
                 if (hasAzCli)
                 {
                     ThrowUnableToGetTokenError(
-                        $"Run 'az login' to login and enable token acquisition, or provide a token manually with the {nameof(AzureToken)} parameter");
+                        $"Unable to automatically get Azure token. Run 'az login' to login and enable token acquisition, or provide a token manually with the {nameof(AzureToken)} parameter");
                 }
 
                 ThrowUnableToGetTokenError(
-                    $"Install either Azure PowerShell or the az CLI and login to enable token acquisition, or provide a token manually with the {nameof(AzureToken)} parameter");
+                    $"Unable to automatically get Azure token. Install either Azure PowerShell or the az CLI and login to enable token acquisition, or provide a token manually with the {nameof(AzureToken)} parameter");
 
                 return null;
             }
@@ -409,6 +417,14 @@ namespace PSArm.Commands
             }
 
             return Path.GetFullPath(path);
+        }
+
+        private void SafeWriteVerbose(string message)
+        {
+            if (Verbose)
+            {
+                Host.UI.WriteVerboseLine(message);
+            }
         }
 
         private class VerboseHttpLoggingHandler : DelegatingHandler

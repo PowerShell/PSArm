@@ -22,7 +22,7 @@ namespace PSArm.Templates.Primitives
 
         public abstract IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters);
 
-        public override string ToString()
+        public string ToJsonString()
         {
             return ToJson().ToString();
         }

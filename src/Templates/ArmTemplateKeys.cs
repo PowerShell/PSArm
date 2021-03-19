@@ -65,5 +65,9 @@ namespace PSArm.Templates
         internal static ArmStringLiteral Template { get; } = new ArmStringLiteral(nameof(Template).CamelCase());
 
         internal static ArmStringLiteral Mode { get; } = new ArmStringLiteral(nameof(Mode).CamelCase());
+
+        internal static ArmStringLiteral ExpressionEvaluationOptions { get; } = new ArmStringLiteral(nameof(ExpressionEvaluationOptions).CamelCase());
+
+        internal static ArmStringLiteral Scope { get; } = new ArmStringLiteral(nameof(Scope).CamelCase());
     }
 }

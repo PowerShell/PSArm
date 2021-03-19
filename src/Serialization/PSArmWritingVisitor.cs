@@ -1,6 +1,7 @@
 
 // Copyright (c) Microsoft Corporation.
 
+using PSArm.Commands.Template;
 using PSArm.Internal;
 using PSArm.Schema;
 using PSArm.Templates;
@@ -289,7 +290,7 @@ namespace PSArm.Serialization
 
         public object VisitSku(ArmSku sku)
         {
-            Write("Sku ");
+            Write($"{NewPSArmSkuCommand.KeywordName} ");
             WriteExpression(sku.Name);
 
             if (sku.Capacity != null)

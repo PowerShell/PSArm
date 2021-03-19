@@ -70,7 +70,23 @@ namespace PSArm.Commands
         [Parameter]
         public SwitchParameter NoHashTemplate { get; set; }
 
-        private bool Verbose => Parameters.ContainsKey("Verbose");
+        private bool Verbose => MyInvocation.BoundParameters.ContainsKey("Verbose");
+
+        protected override void BeginProcessing()
+        {
+            if (!NoWriteFile)
+            {
+                string outPath = GetOutPath();
+                if (!Force && File.Exists(outPath))
+                {
+                    this.ThrowTerminatingError(
+                        new IOException($"File '{outPath}' already exists. Use the -{nameof(Force)} switch to overwrite it."),
+                        "TemplateAlreadyExists",
+                        ErrorCategory.ResourceExists,
+                        OutFile);
+                }
+            }
+        }
 
         protected override void ProcessRecord()
         {
@@ -214,7 +230,9 @@ namespace PSArm.Commands
         {
             string outPath = GetOutPath();
 
-            using var file = new FileStream(outPath, FileMode.Create, FileAccess.Write, FileShare.Read, bufferSize: 4096, useAsync: true);
+            FileMode writeMode = Force ? FileMode.Create : FileMode.CreateNew;
+
+            using var file = new FileStream(outPath, writeMode, FileAccess.Write, FileShare.Read, bufferSize: 4096, useAsync: true);
             using var writer = new StreamWriter(file, Encoding.UTF8);
             using var jsonWriter = new JsonTextWriter(writer)
             {

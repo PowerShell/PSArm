@@ -5,8 +5,7 @@
     "_generator": {
       "name": "psarm",
       "version": "0.1.0.0",
-      "psarm-psversion": "7.2.0-preview.3",
-      "templateHash": "3825868765742598616"
+      "psarm-psversion": "7.2.0-preview.3"
     }
   },
   "resources": [

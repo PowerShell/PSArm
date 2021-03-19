@@ -51,7 +51,7 @@ if ($CI)
 
 $testResults = Invoke-Pester -Configuration $config
 
-if (-not (Test-Path $testResultsPath) -or $testResults.Failed -ne $false)
+if ($null -eq $testResults -or $testResults.Failed -or ($CI -and -not (Test-Path $testResultsPath)))
 {
     throw "Pester tests failed. See output for details"
 }

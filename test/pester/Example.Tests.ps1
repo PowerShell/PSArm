@@ -80,8 +80,15 @@ Describe "Full ARM template conversions using examples" {
         }
 
         $armObject = Publish-PSArmTemplate -TemplatePath $ExamplePath -Parameters $parameters -NoWriteFile -NoHashTemplate -PassThru
+
+        # Deal with PSVersion separately since otherwise tests run across powershell versions will fail
+        $metadataPSVersion = $armObject.Metadata.GeneratorMetadata['psarm-psversion'].Value
+        $armObject.Metadata.GeneratorMetadata.Remove('psarm-psversion')
+
         $generatedJson = $armObject.ToJson().ToString() | ConvertFrom-Json -AsHashtable
         $referenceJson = Get-Content -Raw -LiteralPath $templatePath | ConvertFrom-Json -AsHashtable
+
         Assert-JsonEqual -ReferenceObject $referenceJson -DifferenceObject $generatedJson -Path "#"
+        $metadataPSVersion | Should -BeExactly $PSVersionTable.PSVersion
     }
 }

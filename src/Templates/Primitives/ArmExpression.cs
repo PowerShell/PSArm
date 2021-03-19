@@ -16,5 +16,7 @@ namespace PSArm.Templates.Primitives
     public abstract class ArmExpression : ArmElement, IArmExpression
     {
         public abstract string ToInnerExpressionString();
+
+        public override string ToString() => ToJsonString();
     }
 }

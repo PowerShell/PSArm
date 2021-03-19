@@ -2,6 +2,22 @@ variables:
   # Avoid expensive initialization of dotnet cli, see: https://donovanbrown.com/post/Stop-wasting-time-during-NET-Core-builds
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
+resources:
+  repositories:
+  - repository: ComplianceRepo
+    type: github
+    endpoint: ComplianceGHRepo
+    name: PowerShell/Compliance
+
 stages:
+
   - template: templates/buildAndTest.yaml
-  - template: templates/ciCompliance.yaml
+
+  - stage: Compliance
+    dependsOn: Build
+    jobs:
+      - job: Compliance
+        pool:
+          vmImage: windows-latest
+        steps:
+        - template: templates/steps/ciCompliance.yaml

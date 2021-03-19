@@ -1,0 +1,5 @@
+{
+    "AdminUsername": "test",
+    "AuthenticationType": "password",
+    "AdminPasswordOrKey": "notarealpassword"
+}

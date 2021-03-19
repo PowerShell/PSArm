@@ -37,7 +37,7 @@ namespace PSArm.Schema.Keyword
 
         private Dictionary<string, DslKeywordSchema> BuildCommonKeywordDictionary()
         {
-            var dict = new Dictionary<string, DslKeywordSchema>(Resource.Properties.Count);
+            Dictionary<string, DslKeywordSchema> dict = GetBaseKeywordDictionary();
             foreach (KeyValuePair<string, TypeBase> property in Resource.Properties)
             {
                 dict[property.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(property.Value);
@@ -54,7 +54,7 @@ namespace PSArm.Schema.Keyword
                 throw new ArgumentException($"Discriminated schema element has non-object type '{discriminatedType.GetType()}'");
             }
 
-            var dict = new Dictionary<string, DslKeywordSchema>(_commonKeywordsLazy.Value);
+            var dict = new Dictionary<string, DslKeywordSchema>(_commonKeywordsLazy.Value, StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ObjectProperty> discriminatedProperty in objectType.Properties)
             {
                 dict[discriminatedProperty.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(discriminatedProperty.Value.Type.Type);

@@ -73,9 +73,49 @@ namespace PSArm.Templates
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
         {
-            var template = (ArmTemplate)InstantiateIntoCopy(new ArmTemplate(TemplateName), parameters);
+            IReadOnlyDictionary<IArmString, ArmElement> localParameters = GetLocalParameters(parameters);
+
+            if (localParameters is null)
+            {
+                return this;
+            }
+
+            var template = (ArmTemplate)InstantiateIntoCopy(new ArmTemplate(TemplateName), localParameters);
             template.Remove(ArmTemplateKeys.Parameters);
             return template;
+        }
+
+        private Dictionary<IArmString, ArmElement> GetLocalParameters(IReadOnlyDictionary<IArmString, ArmElement> globalParameters)
+        {
+            Dictionary<IArmString, ArmElement> parameters = null;
+
+            if (globalParameters is not null)
+            {
+                parameters = new Dictionary<IArmString, ArmElement>(globalParameters.Count);
+
+                foreach (KeyValuePair<IArmString, ArmElement> globalParameter in globalParameters)
+                {
+                    parameters[globalParameter.Key] = globalParameter.Value;
+                }
+            }
+
+            if (Parameters is not null)
+            {
+                if (parameters is null)
+                {
+                    parameters = new Dictionary<IArmString, ArmElement>(globalParameters.Count);
+                }
+
+                foreach (KeyValuePair<IArmString, ArmParameter> localParameter in (IReadOnlyDictionary<IArmString, ArmParameter>)Parameters)
+                {
+                    if (localParameter.Value.DefaultValue is not null)
+                    {
+                        parameters[localParameter.Key] = localParameter.Value.DefaultValue;
+                    }
+                }
+            }
+
+            return parameters;
         }
     }
 }

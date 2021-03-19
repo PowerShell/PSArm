@@ -25,7 +25,7 @@ namespace PSArm.Schema.Keyword
 
         private IReadOnlyDictionary<string, DslKeywordSchema> GetKeywordTableFromResource()
         {
-            var dict = new Dictionary<string, DslKeywordSchema>();
+            Dictionary<string, DslKeywordSchema> dict = GetBaseKeywordDictionary();
             foreach (KeyValuePair<string, TypeBase> property in Resource.Properties)
             {
                 dict[property.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(property.Value);

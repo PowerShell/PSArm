@@ -27,7 +27,7 @@ namespace PSArm.Schema
             // If we have discriminated subtypes for a resource,
             // define extra function contexts for those.
             // When invoked, these will then be combined before invocation based on the provided discriminator.
-            var discriminatedFunctions = new Dictionary<string, Dictionary<string, ScriptBlock>>(discriminatedSubtypes.Count);
+            var discriminatedFunctions = new Dictionary<string, Dictionary<string, ScriptBlock>>(discriminatedSubtypes.Count, StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ITypeReference> discriminatedSubtype in discriminatedSubtypes)
             {
                 if (discriminatedSubtype.Value.Type is not ObjectType objectSchema)
@@ -43,7 +43,7 @@ namespace PSArm.Schema
 
         private Dictionary<string, ScriptBlock> CreateDslDefinitionFromSchema(IReadOnlyDictionary<string, TypeBase> schemaProperties)
         {
-            var functionDict = new Dictionary<string, ScriptBlock>();
+            var functionDict = new Dictionary<string, ScriptBlock>(StringComparer.OrdinalIgnoreCase);
 
             foreach (KeyValuePair<string, TypeBase> propertySchemaEntry in schemaProperties)
             {
@@ -60,7 +60,7 @@ namespace PSArm.Schema
 
         private Dictionary<string, ScriptBlock> CreateDslDefinitionFromSchema(IDictionary<string, ObjectProperty> schemaProperties)
         {
-            var functionDict = new Dictionary<string, ScriptBlock>();
+            var functionDict = new Dictionary<string, ScriptBlock>(StringComparer.OrdinalIgnoreCase);
 
             foreach (KeyValuePair<string, ObjectProperty> propertySchemaEntry in schemaProperties)
             {

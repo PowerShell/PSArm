@@ -1,6 +1,7 @@
 
 // Copyright (c) Microsoft Corporation.
 
+using PSArm.Internal;
 using PSArm.Templates.Visitors;
 using PSArm.Types;
 using System.ComponentModel;
@@ -14,9 +15,17 @@ namespace PSArm.Templates.Primitives
         {
         }
 
-        public string ToExpressionString() => Value;
+        public string ToExpressionString()
+        {
+            string value = Value;
+            if (value.StartsWith("[") && value.EndsWith("]"))
+            {
+                value = $"[{value}";
+            }
+            return value.Replace("\"", "\\\"");
+        }
 
-        public string ToIdentifierString() => Value;
+        public string ToIdentifierString() => Value.CamelCase();
 
         public override string ToInnerExpressionString() => $"'{Value}'";
 

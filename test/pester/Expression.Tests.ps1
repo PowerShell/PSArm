@@ -16,30 +16,30 @@ Describe "Arm expression tests" {
             Expected = "[concat('storage', uniqueString(resourceGroup().id))]"
         }
         @{
-            Expression = [PSArm.Expression.ArmStringLiteral]'hello'
+            Expression = [PSArm.Templates.Primitives.ArmStringLiteral]'hello'
             Expected = "hello"
         }
         @{
-            Expression = [PSArm.Expression.ArmStringLiteral]'[things]'
+            Expression = [PSArm.Templates.Primitives.ArmStringLiteral]'[things]'
             Expected = "[[things]"
         }
         @{
-            Expression = [PSArm.Expression.ArmStringLiteral]'[something] else'
+            Expression = [PSArm.Templates.Primitives.ArmStringLiteral]'[something] else'
             Expected = "[something] else"
         }
         @{
-            Expression = [PSArm.Expression.ArmStringLiteral]'something [else]'
+            Expression = [PSArm.Templates.Primitives.ArmStringLiteral]'something [else]'
             Expected = "something [else]"
         }
         @{
-            Expression = [PSArm.Expression.ArmStringLiteral]'"quoted"'
+            Expression = [PSArm.Templates.Primitives.ArmStringLiteral]'"quoted"'
             Expected = '\"quoted\"'
         }
     )
 
     It "Creates the expected expression: <Expected>" -TestCases $testCases {
         param(
-            [PSArm.Expression.IArmExpression]
+            [PSArm.Templates.Primitives.ArmExpression]
             $Expression,
 
             [string]

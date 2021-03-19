@@ -105,7 +105,7 @@ Arm {
       SecurityRules {
         name 'SSH'
         properties {
-          Priority '1000'
+          Priority 1000
           Protocol 'TCP'
           Access 'Allow'
           Direction 'Inbound'
@@ -133,14 +133,14 @@ Arm {
     }
   }
   Resource $publicIpAddressName -Provider 'Microsoft.Network' -Type 'publicIPAddresses' -ApiVersion '2020-06-01' -Location $location {
-    Sku 'Basic' -Tier 'Regional'
+    ArmSku 'Basic' -Tier 'Regional'
     Properties {
       PublicIpAllocationMethod 'Dynamic'
       PublicIPAddressVersion 'IPv4'
       DnsSettings {
         domainNameLabel $dnsLabelPrefix 
       }
-      IdleTimeoutInMinutes '4'
+      IdleTimeoutInMinutes 4
     }
   }
   Resource $VMName -Provider 'Microsoft.Compute' -Type 'virtualMachines' -ApiVersion '2020-06-01' -Location $location {

@@ -10,7 +10,7 @@ namespace PSArm.Templates.Operations
 {
     public class ArmParameterReferenceExpression : ArmReferenceExpression<ArmParameter>
     {
-        private static readonly ArmStringLiteral s_parameterReferenceFunction = new ArmStringLiteral("parameter");
+        private static readonly ArmStringLiteral s_parameterReferenceFunction = new ArmStringLiteral("parameters");
 
         public ArmParameterReferenceExpression(ArmParameter parameter)
             : base(s_parameterReferenceFunction, parameter)

@@ -60,7 +60,7 @@ namespace PSArm.Schema.Keyword
 
         private Dictionary<string, DslKeywordSchema> BuildCommonKeywordDictionary()
         {
-            var dict = new Dictionary<string, DslKeywordSchema>(BicepType.BaseProperties.Count);
+            var dict = new Dictionary<string, DslKeywordSchema>(BicepType.BaseProperties.Count, StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ObjectProperty> property in BicepType.BaseProperties)
             {
                 dict[property.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(property.Value.Type.Type);
@@ -77,7 +77,7 @@ namespace PSArm.Schema.Keyword
                 throw new ArgumentException($"Discriminated schema element has non-object type '{discriminatedType.GetType()}'");
             }
 
-            var dict = new Dictionary<string, DslKeywordSchema>(_commonKeywords.Value);
+            var dict = new Dictionary<string, DslKeywordSchema>(_commonKeywords.Value, StringComparer.OrdinalIgnoreCase);
             foreach (KeyValuePair<string, ObjectProperty> discriminatedProperty in objectType.Properties)
             {
                 dict[discriminatedProperty.Key] = BicepKeywordSchemaBuilder.GetKeywordSchemaForBicepType(discriminatedProperty.Value.Type.Type);
@@ -87,7 +87,7 @@ namespace PSArm.Schema.Keyword
 
         private IReadOnlyDictionary<string, DslParameterInfo> BuildParameterDictionary()
         {
-            return new Dictionary<string, DslParameterInfo>
+            return new Dictionary<string, DslParameterInfo>(StringComparer.OrdinalIgnoreCase)
             {
                 { "Body", new DslParameterInfo("Body", "scriptblock") },
                 { BicepType.Discriminator, new DslParameterInfo(BicepType.Discriminator, "string", BicepType.Elements.Keys.ToArray()) },

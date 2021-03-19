@@ -17,8 +17,6 @@ Describe "PSArm completions" {
             ExpectedCompletions = @(
                 @{ Completion = '-Name'; ListItem = 'Name' }
                 @{ Completion = '-Type'; ListItem = 'Type' }
-                @{ Completion = '-Location'; ListItem = 'Location' }
-                @{ Completion = '-Kind'; ListItem = 'Kind' }
                 @{ Completion = '-Provider'; ListItem = 'Provider' }
                 @{ Completion = '-Body'; ListItem = 'Body' }
                 @{ Completion = '-ApiVersion'; ListItem = 'ApiVersion' }
@@ -88,42 +86,40 @@ Describe "PSArm completions" {
         @{
             StringToComplete = '
                 Arm {
-                    Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                    Resource banana -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
                         '
             Type = 'Command'
             ExpectedCompletions = @(
-                @{ Completion = 'Properties' }
-                @{ Completion = 'Resource' }
+                @{ Completion = 'properties' }
+                @{ Completion = 'etag' }
                 @{ Completion = 'DependsOn' }
-                @{ Completion = 'Sku' }
+                @{ Completion = 'ArmSku' }
+                @{ Completion = 'Resource' }
             )
         }
         @{
             StringToComplete = '
                 Arm {
-                    Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                    Resource ''banana'' -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
                         Properties {
                             '
             Type = 'Command'
             ExpectedCompletions = @(
-                @{ Completion = 'Subnet' }
-                @{ Completion = 'NetworkSecurityGroup' }
-                @{ Completion = 'PrivateEndpoint' }
-                @{ Completion = 'IpConfiguration' }
+                @{ Completion = 'virtualMachine' }
+                @{ Completion = 'networkSecurityGroup' }
+                @{ Completion = 'privateEndpoint' }
+                @{ Completion = 'ipConfigurations' }
             )
         }
         @{
             StringToComplete = '
                 Arm {
                     Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
-                        Properties {
-                            IpConfiguration -'
+                        properties {
+                            IpConfigurations -'
             Type = 'ParameterName'
             ExpectedCompletions = @(
-                @{ Completion = '-Name'; ListItem = 'Name' }
-                @{ Completion = '-Id'; ListItem = 'Id' }
-                @{ Completion = '-PrivateIPAddress'; ListItem = 'PrivateIPAddress' }
-                @{ Completion = '-PrivateIPAllocationMethod'; ListItem = 'PrivateIPAllocationMethod' }
+                @{ Completion = '-Body'; ListItem = 'Body' }
             )
         }
         @{
@@ -131,7 +127,22 @@ Describe "PSArm completions" {
                 Arm {
                     Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
                         Properties {
-                            IpConfiguration -PrivateIPAllocationMethod '
+                            ipConfigurations {
+                                properties {
+                                    privateIPAllocationMethod -'
+            Type = 'ParameterName'
+            ExpectedCompletions = @(
+                @{ Completion = '-Value'; ListItem = 'Value' }
+            )
+        }
+        @{
+            StringToComplete = '
+                Arm {
+                    Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                        Properties {
+                            ipConfigurations {
+                                properties {
+                                    privateIPAllocationMethod -Value '
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = 'Static' }

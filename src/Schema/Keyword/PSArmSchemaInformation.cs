@@ -3,6 +3,7 @@
 
 using PSArm.Commands.Template;
 using PSArm.Internal;
+using System;
 using System.Collections.Generic;
 
 namespace PSArm.Schema.Keyword
@@ -11,11 +12,11 @@ namespace PSArm.Schema.Keyword
     {
         public static DslKeywordSchema PSArmSchema { get; } = new StaticKeywordSchema(
             parameters: null,
-            new Dictionary<string, DslKeywordSchema>
+            new Dictionary<string, DslKeywordSchema>(StringComparer.OrdinalIgnoreCase)
             {
                 { NewPSArmTemplateCommand.KeywordName, new StaticKeywordSchema(
                     KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmTemplateCommand)),
-                    new Dictionary<string, DslKeywordSchema>
+                    new Dictionary<string, DslKeywordSchema>(StringComparer.OrdinalIgnoreCase)
                     {
                         { NewPSArmResourceCommand.KeywordName, ResourceKeywordSchema.Value },
                         { NewPSArmOutputCommand.KeywordName, new OpenKeywordSchema(
@@ -23,5 +24,13 @@ namespace PSArm.Schema.Keyword
                             useParametersForCompletions: false) }
                     })},
             });
+
+        public static DslKeywordSchema SkuSchema { get; } = new OpenKeywordSchema(
+            KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmSkuCommand)),
+            useParametersForCompletions: true);
+
+        public static DslKeywordSchema DependsOnSchema { get; } = new OpenKeywordSchema(
+            KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmDependsOnCommand)),
+            useParametersForCompletions: true);
     }
 }

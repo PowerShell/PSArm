@@ -1,6 +1,7 @@
 
 // Copyright (c) Microsoft Corporation.
 
+using PSArm.Templates;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using System;
@@ -26,6 +27,8 @@ namespace PSArm.Types
 
             return sourceType == typeof(string)
                 || sourceType == typeof(ArmStringLiteral)
+                || sourceType == typeof(ArmParameter)
+                || sourceType == typeof(ArmVariable)
                 || typeof(ArmOperation).IsAssignableFrom(sourceType);
         }
 
@@ -46,6 +49,12 @@ namespace PSArm.Types
 
                 case ArmOperation armExpr:
                     return armExpr;
+
+                case ArmParameter armParameter:
+                    return (ArmParameterReferenceExpression)armParameter;
+
+                case ArmVariable armVariable:
+                    return (ArmVariableReferenceExpression)armVariable;
 
                 default:
                     throw new InvalidCastException($"Unable to cast value '{sourceValue}' of type '{sourceValue.GetType()}' to type '{destinationType}'");

@@ -12,7 +12,7 @@ namespace PSArm.Commands.Template
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Sku")]
     public class NewPSArmSkuCommand : PSArmKeywordCommand
     {
-        internal const string KeywordName = "Sku";
+        internal const string KeywordName = "ArmSku";
 
         [Parameter(Position = 0, Mandatory = true)]
         public IArmString Name { get; set; }

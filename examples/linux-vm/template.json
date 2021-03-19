@@ -1,164 +1,176 @@
-{
+﻿{
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "dnsLabelPrefix": {
-      "type": "string",
-      "defaultValue": "[toLower(concat('simplelinuxvm-', uniqueString(resourceGroup().id)))]"
-    },
-    "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]"
+  "metadata": {
+    "_generator": {
+      "name": "psarm",
+      "version": "0.1.0.0"
     }
-  },
-  "variables": {
-    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'vNet', 'Subnet')]"
   },
   "resources": [
     {
-      "type": "Microsoft.Network/networkInterfaces",
-      "apiVersion": "2020-06-01",
-      "name": "simpleLinuxVMNetInt",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/networkSecurityGroups/', 'SecGroupNet')]",
-        "[resourceId('Microsoft.Network/virtualNetworks/', 'vNet')]",
-        "[resourceId('Microsoft.Network/publicIpAddresses/', 'simpleLinuxVMPublicIP')]"
-      ],
+      "name": "linux-vm",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
       "properties": {
-        "ipConfigurations": [
-          {
-            "name": "ipconfig1",
-            "properties": {
-              "subnet": {
-                "id": "[variables('subnetRef')]"
-              },
-              "privateIPAllocationMethod": "Dynamic",
-              "publicIpAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'simpleLinuxVMPublicIP')]"
-              }
-            }
-          }
-        ],
-        "networkSecurityGroup": {
-          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'SecGroupNet')]"
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2020-06-01",
-      "name": "SecGroupNet",
-      "location": "[parameters('location')]",
-      "properties": {
-        "securityRules": [
-          {
-            "name": "SSH",
-            "properties": {
-              "priority": 1000,
-              "protocol": "TCP",
-              "access": "Allow",
-              "direction": "Inbound",
-              "sourceAddressPrefix": "*",
-              "sourcePortRange": "*",
-              "destinationAddressPrefix": "*",
-              "destinationPortRange": "22"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2020-06-01",
-      "name": "vNet",
-      "location": "[parameters('location')]",
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "10.1.0.0/16"
-          ]
+        "mode": "Incremental",
+        "expressionEvaluationOptions": {
+          "scope": "inner"
         },
-        "subnets": [
-          {
-            "name": "Subnet",
-            "properties": {
-              "addressPrefix": "10.1.0.0/24",
-              "privateEndpointNetworkPolicies": "Enabled",
-              "privateLinkServiceNetworkPolicies": "Enabled"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "Microsoft.Network/publicIpAddresses",
-      "apiVersion": "2020-06-01",
-      "name": "simpleLinuxVMPublicIP",
-      "location": "[parameters('location')]",
-      "sku": {
-        "name": "Basic",
-        "tier": "Regional"
-      },
-      "properties": {
-        "publicIpAllocationMethod": "Dynamic",
-        "publicIPAddressVersion": "IPv4",
-        "dnsSettings": {
-          "domainNameLabel": "[parameters('dnsLabelPrefix')]"
-        },
-        "idleTimeoutInMinutes": 4
-      }
-    },
-    {
-      "type": "Microsoft.Compute/virtualMachines",
-      "apiVersion": "2020-06-01",
-      "name": "simpleLinuxVM",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/networkInterfaces/', 'simpleLinuxVMNetInt')]"
-      ],
-      "properties": {
-        "hardwareProfile": {
-          "vmSize": "Standard_B2s"
-        },
-        "storageProfile": {
-          "osDisk": {
-            "createOption": "fromImage",
-            "managedDisk": {
-              "storageAccountType": "Standard_LRS"
-            }
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "variables": {
+            "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'vNet', 'Subnet')]"
           },
-          "imageReference": {
-            "publisher": "Canonical",
-            "offer": "UbuntuServer",
-            "sku": "18.04-LTS",
-            "version": "latest"
-          }
-        },
-        "networkProfile": {
-          "networkInterfaces": [
+          "resources": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', 'simpleLinuxVMNetInt')]"
+              "name": "simpleLinuxVMNetInt",
+              "apiVersion": "2020-06-01",
+              "type": "Microsoft.Network/networkInterfaces",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "ipConfigurations": [
+                  {
+                    "name": "ipconfig1",
+                    "properties": {
+                      "subnet": {
+                        "id": "[variables('subnetRef')]"
+                      },
+                      "privateIPAllocationMethod": "Dynamic",
+                      "publicIPAddress": {
+                        "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'simpleLinuxVMPublicIP')]"
+                      }
+                    }
+                  }
+                ],
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'SecGroupNet')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups/', 'SecGroupNet')]",
+                "[resourceId('Microsoft.Network/virtualNetworks/', 'vNet')]",
+                "[resourceId('Microsoft.Network/publicIpAddresses/', 'simpleLinuxVMPublicIP')]"
+              ]
+            },
+            {
+              "name": "SecGroupNet",
+              "apiVersion": "2020-06-01",
+              "type": "Microsoft.Network/networkSecurityGroups",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "securityRules": [
+                  {
+                    "name": "SSH",
+                    "properties": {
+                      "priority": 1000,
+                      "protocol": "TCP",
+                      "access": "Allow",
+                      "direction": "Inbound",
+                      "sourceAddressPrefix": "*",
+                      "sourcePortRange": "*",
+                      "destinationAddressPrefix": "*",
+                      "destinationPortRange": "22"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "vNet",
+              "apiVersion": "2020-06-01",
+              "type": "Microsoft.Network/virtualNetworks",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "addressSpace": {
+                  "addressPrefixes": [
+                    "10.1.0.0/16"
+                  ]
+                },
+                "subnets": [
+                  {
+                    "name": "Subnet",
+                    "properties": {
+                      "addressPrefix": "10.1.0.0/24",
+                      "privateEndpointNetworkPolicies": "Enabled",
+                      "privateLinkServiceNetworkPolicies": "Enabled"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "simpleLinuxVMPublicIP",
+              "apiVersion": "2020-06-01",
+              "type": "Microsoft.Network/publicIPAddresses",
+              "location": "[resourceGroup().location]",
+              "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+              },
+              "properties": {
+                "publicIPAllocationMethod": "Dynamic",
+                "publicIPAddressVersion": "IPv4",
+                "dnsSettings": {
+                  "domainNameLabel": "[toLower(concat('simplelinuxvm-', uniqueString(resourceGroup().id)))]"
+                },
+                "idleTimeoutInMinutes": 4
+              }
+            },
+            {
+              "name": "simpleLinuxVM",
+              "apiVersion": "2020-06-01",
+              "type": "Microsoft.Compute/virtualMachines",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "hardwareProfile": {
+                  "vmSize": "Standard_B2s"
+                },
+                "storageProfile": {
+                  "osDisk": {
+                    "createOption": "fromImage",
+                    "managedDisk": {
+                      "storageAccountType": "Standard_LRS"
+                    }
+                  },
+                  "imageReference": {
+                    "publisher": "Canonical",
+                    "offer": "UbuntuServer",
+                    "sku": "18.04-LTS",
+                    "version": "latest"
+                  }
+                },
+                "networkProfile": {
+                  "networkInterfaces": [
+                    {
+                      "id": "[resourceId('Microsoft.Network/networkInterfaces', 'simpleLinuxVMNetInt')]"
+                    }
+                  ]
+                },
+                "osProfile": {
+                  "computerName": "simpleLinuxVM",
+                  "adminUsername": "test",
+                  "adminPassword": "notarealpassword"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces/', 'simpleLinuxVMNetInt')]"
+              ]
             }
-          ]
-        },
-        "osProfile": {
-          "computerName": "simpleLinuxVM",
-          "adminUsername": "test",
-          "adminPassword": "notarealpassword",
-          "linuxConfiguration": null
+          ],
+          "outputs": {
+            "hostname": {
+              "type": "string",
+              "value": "[reference('simpleLinuxVMPublicIP').dnsSettings.fqdn]"
+            },
+            "sshCommand": {
+              "type": "string",
+              "value": "[concat('ssh ', 'test', '@', reference('simpleLinuxVMPublicIP').dnsSettings.fqdn)]"
+            }
+          }
         }
       }
     }
-  ],
-  "outputs": {
-    "hostname": {
-      "type": "string",
-      "value": "[reference('simpleLinuxVMPublicIP').dnsSettings.fqdn]"
-    },
-    "sshCommand": {
-      "type": "string",
-      "value": "[concat('ssh ', 'test', '@', reference('simpleLinuxVMPublicIP').dnsSettings.fqdn)]"
-    }
-  }
+  ]
 }

@@ -100,7 +100,7 @@ namespace PSArm.Schema
 
         private IReadOnlyDictionary<string, TypeLocation> GetAllAvailableTypeLocations()
         {
-            return _typeLoader.ListAllAvailableTypes();
+            return _typeLoader.GetIndexedTypes().Types;
         }
 
         private struct ResourceIndexResult

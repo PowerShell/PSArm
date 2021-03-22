@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'PSArm.dll'
+RootModule = if ($PSEdition -eq 'Core'){'Core/PSArm.dll'}else{'Desktop/PSArm.dll'}
 
 # Version number of this module.
 ModuleVersion = '0.1.0'
@@ -36,7 +36,7 @@ allowing you to create ARM templates in pure PowerShell.
 '@
 
 # Minimum version of the PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '5.1'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''

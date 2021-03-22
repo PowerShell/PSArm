@@ -5,6 +5,13 @@ param(
     [ValidateSet('Debug', 'Release')]
     $Configuration = 'Debug',
 
+    [ValidateSet('netcoreapp3.1','net471')]
+    [string[]]
+    $TargetFrameworks = ($(if($false -eq $IsWindows){'netcoreapp3.1'}else{'netcoreapp3.1','net471'})),
+
+    [string[]]
+    $TestPowerShell = ($(if($false -eq $IsWindows){'pwsh'}else{'pwsh','powershell'})),
+
     [switch]
     $RunTestsInProcess,
 
@@ -22,14 +29,15 @@ $ErrorActionPreference = 'Stop'
 $RequiredTestModules = @(
     @{ ModuleName = 'Pester'; ModuleVersion = '5.0' }
 )
-$TargetFrameworks = 'net452','netstandard2.0'
-$NetTarget = 'netstandard2.0'
+$ModuleDirs = @{
+    'net471' = 'Desktop'
+    'netcoreapp3.1' = 'Core'
+}
 $ModuleName = "PSArm"
-$DotnetLibName = $moduleName
-$OutDir = "$PSScriptRoot/out/$moduleName"
+$OutDir = "$PSScriptRoot/out/$ModuleName"
 $SrcDir = "$PSScriptRoot/src"
+$BinDir = "$SrcDir/bin/$Configuration"
 $DotnetSrcDir = $srcDir
-$BinDir = "$srcDir/bin/$Configuration/$netTarget/publish"
 $TempDependenciesLocation = Join-Path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
 $TempModulesLocation = Join-Path $TempDependenciesLocation 'Modules'
 
@@ -74,8 +82,10 @@ task Build {
     Push-Location $DotnetSrcDir
     try
     {
-        dotnet restore
-        dotnet publish -f $NetTarget
+        foreach ($framework in $TargetFrameworks)
+        {
+            dotnet publish -c $Configuration -f $framework
+        }
     }
     finally
     {
@@ -87,18 +97,31 @@ task Build {
         Remove-Item -Path $OutDir -Recurse -Force
     }
 
-    $assets = @(
-        "$BinDir/*.dll",
-        "$BinDir/*.pdb",
+    # Copy shared assets
+
+    $sharedAssets = @(
         "$SrcDir/$ModuleName.psd1",
         "$SrcDir/ArmBuiltins.psm1",
         "$SrcDir/OnImport.ps1"
     )
 
     New-Item -ItemType Directory -Path $OutDir
-    foreach ($path in $assets)
+
+    foreach ($path in $sharedAssets)
     {
         Copy-Item -Recurse -Path $path -Destination $OutDir
+    }
+
+    # Create powershell-version-specific asset deployments
+
+    foreach ($framework in $TargetFrameworks)
+    {
+        $fullBinDir = "$BinDir/$framework/publish"
+        $destination = "$OutDir/$($ModuleDirs[$framework])"
+
+        New-Item -ItemType Directory -Path $destination
+        Copy-Item -Recurse -Path "$fullBinDir/*.dll" -Destination $destination
+        Copy-Item -Recurse -Path "$fullBinDir/*.pdb" -Destination $destination
     }
 }
 
@@ -137,7 +160,10 @@ task TestPester InstallRequiredTestModules,{
 
             Write-Log "Invoking in subprocess: 'pwsh $pwshArgs'"
 
-            exec { & (Get-PwshPath) @pwshArgs }
+            foreach ($pwsh in $TestPowerShell)
+            {
+                exec { & $pwsh @pwshArgs }
+            }
         }
     }
     finally

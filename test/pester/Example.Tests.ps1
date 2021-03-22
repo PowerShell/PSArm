@@ -18,53 +18,7 @@ BeforeDiscovery {
 }
 
 BeforeAll {
-    function Assert-JsonEqual
-    {
-        param(
-            $ReferenceObject,
-            $DifferenceObject,
-            [string]$Path
-        )
-
-        # Object handling
-        if ($ReferenceObject -is [System.Collections.IDictionary])
-        {
-            $DifferenceObject | Should -BeOfType 'System.Collections.IDictionary' -Because "Path: $Path"
-
-            $differenceKeys = [System.Collections.Generic.HashSet[string]]::new([string[]]$DifferenceObject.get_Keys())
-
-            foreach ($entry in $ReferenceObject.GetEnumerator())
-            {
-                $differenceKeys.Remove($entry.Key)
-
-                $DifferenceObject.ContainsKey($entry.Key) | Should -BeTrue -Because "Difference object should have key '$($entry.Key)' from reference object. Path: $Path"
-
-                $differenceValue = $DifferenceObject[$entry.Key]
-                Assert-JsonEqual -ReferenceObject $entry.Value -DifferenceObject $differenceValue -Path "$Path/$($entry.Key)"
-            }
-
-            $differenceKeys | Should -HaveCount 0 -Because "Extra keys '$($differenceKeys -join ', ')' should not exist. Path: $Path"
-
-            return
-        }
-
-        # Array handling
-        if ($ReferenceObject -is [array])
-        {
-            $DifferenceObject -is [array] | Should -BeTrue -Because "Path: $Path"
-            $DifferenceObject | Should -HaveCount $ReferenceObject.Count -Because "Difference object size $($DifferenceObject.Count) should be $($ReferenceObject.Count). Path: $Path"
-
-            for ($i = 0; $i -lt $ReferenceObject.Count; $i++)
-            {
-                Assert-JsonEqual -ReferenceObject ($ReferenceObject[$i]) -DifferenceObject ($ReferenceObject[$i]) -Path "$Path[$i]"
-            }
-
-            return
-        }
-
-        # At this point we only really expect primitives, since the input was JSON
-        $DifferenceObject | Should -BeExactly $ReferenceObject -Because "Path: $Path"
-    }
+    Import-Module "$PSScriptRoot/../tools/TestHelper.psm1"
 }
 
 Describe "Full ARM template conversions using examples" {
@@ -76,7 +30,7 @@ Describe "Full ARM template conversions using examples" {
 
         if (Test-Path $parameterPath)
         {
-            $parameters = Get-Content -Raw $parameterPath | ConvertFrom-Json -AsHashtable
+            $parameters = Get-Content -Raw $parameterPath | ConvertFrom-Json
         }
 
         $armObject = Publish-PSArmTemplate -TemplatePath $ExamplePath -Parameters $parameters -NoWriteFile -NoHashTemplate -PassThru
@@ -85,10 +39,10 @@ Describe "Full ARM template conversions using examples" {
         $metadataPSVersion = $armObject.Metadata.GeneratorMetadata['psarm-psversion'].Value
         $armObject.Metadata.GeneratorMetadata.Remove('psarm-psversion')
 
-        $generatedJson = $armObject.ToJson().ToString() | ConvertFrom-Json -AsHashtable
-        $referenceJson = Get-Content -Raw -LiteralPath $templatePath | ConvertFrom-Json -AsHashtable
+        $generatedJson = $armObject.ToJson()
+        $referenceJson = Get-Content -Raw -LiteralPath $templatePath | ConvertFrom-Json
 
-        Assert-JsonEqual -ReferenceObject $referenceJson -DifferenceObject $generatedJson -Path "#"
+        Assert-StructurallyEqual -ComparisonObject $referenceJson -JsonObject $generatedJson
         $metadataPSVersion | Should -BeExactly $PSVersionTable.PSVersion
     }
 }

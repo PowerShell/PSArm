@@ -9,6 +9,9 @@ param(
     [string[]]
     $TargetFrameworks = ($(if($false -eq $IsWindows){'netcoreapp3.1'}else{'netcoreapp3.1','net471'})),
 
+    [string[]]
+    $TestPowerShell = ($(if($false -eq $IsWindows){'pwsh'}else{'pwsh','powershell'})),
+
     [switch]
     $RunTestsInProcess,
 
@@ -157,7 +160,10 @@ task TestPester InstallRequiredTestModules,{
 
             Write-Log "Invoking in subprocess: 'pwsh $pwshArgs'"
 
-            exec { & (Get-PwshPath) @pwshArgs }
+            foreach ($pwsh in $TestPowerShell)
+            {
+                exec { & $pwsh @pwshArgs }
+            }
         }
     }
     finally

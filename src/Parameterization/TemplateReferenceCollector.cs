@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.
 
+using PSArm.Internal;
 using PSArm.Templates;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
@@ -26,8 +27,8 @@ namespace PSArm.Parameterization
                 foreach (ArmParameter parameter in armParameters)
                 {
                     _referenceCollectingVisitor.Reset();
-                    parameter.DefaultValue.RunVisit(_referenceCollectingVisitor);
-                    parameters[parameter] = _referenceCollectingVisitor.Parameters;
+                    parameter.DefaultValue?.RunVisit(_referenceCollectingVisitor);
+                    parameters[parameter] = _referenceCollectingVisitor.Parameters.ShallowClone();
                 }
             }
 
@@ -37,7 +38,7 @@ namespace PSArm.Parameterization
                 {
                     _referenceCollectingVisitor.Reset();
                     variable.Value.RunVisit(_referenceCollectingVisitor);
-                    variables[variable] = _referenceCollectingVisitor.Variables;
+                    variables[variable] = _referenceCollectingVisitor.Variables.ShallowClone();
                 }
             }
 

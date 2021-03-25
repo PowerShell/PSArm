@@ -15,10 +15,13 @@ namespace PSArm.Parameterization
     {
         private readonly IReadOnlyDictionary<TParameter, IReadOnlyDictionary<IArmString, List<TParameterReference>>> _parameterReferenceTable;
 
+        private readonly IReadOnlyDictionary<IArmString, TParameter> _parameterTable;
+
         public TemplateParserParameterConstructor(
             IReadOnlyDictionary<TParameter, IReadOnlyDictionary<IArmString, List<TParameterReference>>> parameterReferenceTable)
         {
             _parameterReferenceTable = parameterReferenceTable;
+            _parameterTable = CreateParameterTable(parameterReferenceTable.Keys);
         }
 
         public ArmObject<TParameter> ConstructParameters() => ConstructParameters(_parameterReferenceTable);
@@ -38,9 +41,12 @@ namespace PSArm.Parameterization
             // Go through and set the referenced value in each reference
             foreach (IReadOnlyDictionary<IArmString, List<TParameterReference>> referenceSet in _parameterReferenceTable.Values)
             {
-                foreach (TParameterReference reference in referenceSet[parameter.ReferenceName])
+                foreach (List<TParameterReference> references in referenceSet.Values)
                 {
-                    reference.ReferencedValue = parameter;
+                    foreach (TParameterReference reference in references)
+                    {
+                        reference.ReferencedValue = _parameterTable[reference.ReferenceName];
+                    }
                 }
             }
 
@@ -50,6 +56,16 @@ namespace PSArm.Parameterization
         protected override IArmString GetParameterName(TParameter parameter)
         {
             return parameter.ReferenceName;
+        }
+
+        private static IReadOnlyDictionary<IArmString, TParameter> CreateParameterTable(IEnumerable<TParameter> parameters)
+        {
+            var dict = new Dictionary<IArmString, TParameter>();
+            foreach (TParameter parameter in parameters)
+            {
+                dict[parameter.ReferenceName] = parameter;
+            }
+            return dict;
         }
     }
 }

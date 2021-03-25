@@ -1,4 +1,7 @@
-﻿using PSArm.Internal;
+
+// Copyright (c) Microsoft Corporation.
+
+using PSArm.Internal;
 using PSArm.Templates;
 using PSArm.Types;
 using System.Management.Automation.Language;

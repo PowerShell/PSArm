@@ -1,4 +1,7 @@
-﻿using PSArm.Templates;
+
+// Copyright (c) Microsoft Corporation.
+
+using PSArm.Templates;
 using PSArm.Templates.Primitives;
 using PSArm.Types;
 using System;

@@ -51,7 +51,7 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.DependsOn] = value;
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitResource(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitResource(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => InstantiateIntoCopy(new ArmResource(), parameters);

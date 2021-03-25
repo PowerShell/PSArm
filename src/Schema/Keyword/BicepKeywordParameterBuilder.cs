@@ -2,7 +2,6 @@
 // Copyright (c) Microsoft Corporation.
 
 using Azure.Bicep.Types.Concrete;
-using PSArm.Internal;
 using PSArm.Types;
 using System;
 using System.Collections.Concurrent;

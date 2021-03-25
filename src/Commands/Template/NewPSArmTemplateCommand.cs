@@ -3,6 +3,7 @@
 
 using PSArm.Commands.Internal;
 using PSArm.Execution;
+using PSArm.Parameterization;
 using PSArm.Templates;
 using PSArm.Templates.Builders;
 using PSArm.Templates.Primitives;

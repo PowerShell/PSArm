@@ -16,7 +16,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
-using System.Management.Automation.Host;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;

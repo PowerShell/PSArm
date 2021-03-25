@@ -43,7 +43,7 @@ namespace PSArm.Templates.Operations
             return $"{InnerExpression.ToInnerExpressionString()}[{Index.ToInnerExpressionString()}]";
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitIndexAccess(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitIndexAccess(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
         {

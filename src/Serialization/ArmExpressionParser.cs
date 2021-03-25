@@ -2,7 +2,6 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Internal;
-using PSArm.Templates;
 using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using System;
@@ -15,18 +14,6 @@ namespace PSArm.Serialization
         private const string ParametersFunction = "parameters";
 
         private const string VariablesFunction = "variables";
-
-        private readonly IReadOnlyDictionary<string, ArmParameter> _parameters;
-
-        private readonly IReadOnlyDictionary<string, ArmVariable> _variables;
-
-        public ArmExpressionParser(
-            IReadOnlyDictionary<string, ArmParameter> parameters,
-            IReadOnlyDictionary<string, ArmVariable> variables)
-        {
-            _parameters = parameters;
-            _variables = variables;
-        }
 
         public IArmString ParseExpression(string s)
         {
@@ -158,14 +145,12 @@ namespace PSArm.Serialization
 
             if (identifier.Identifier.Is(ParametersFunction))
             {
-                var parameterName = ((IArmString)arguments[0]).CoerceToString();
-                return new ArmParameterReferenceExpression(_parameters[parameterName]);
+                return new ArmParameterReferenceExpression((IArmString)arguments[0]);
             }
 
             if (identifier.Identifier.Is(VariablesFunction))
             {
-                var variableName = ((IArmString)arguments[0]).CoerceToString();
-                return new ArmVariableReferenceExpression(_variables[variableName]);
+                return new ArmVariableReferenceExpression((IArmString)arguments[0]);
             }
 
             return new ArmFunctionCallExpression(new ArmStringLiteral(identifier.Identifier), arguments.ToArray());

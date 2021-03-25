@@ -61,7 +61,7 @@ namespace PSArm.Serialization
                     Write(",");
                 }
 
-                element.Visit(this);
+                element.RunVisit(this);
 
                 needSeparator = true;
             }
@@ -104,7 +104,7 @@ namespace PSArm.Serialization
                 foreach (ArmExpression expr in functionCall.Arguments)
                 {
                     Write(" ");
-                    expr.Visit(this);
+                    expr.RunVisit(this);
                 }
             }
 
@@ -122,10 +122,10 @@ namespace PSArm.Serialization
         {
             _needParensStack.Push(true);
 
-            indexAccess.InnerExpression.Visit(this);
+            indexAccess.InnerExpression.RunVisit(this);
 
             Write("[");
-            indexAccess.Index.Visit(this);
+            indexAccess.Index.RunVisit(this);
             Write("]");
 
             _needParensStack.Pop();
@@ -143,7 +143,7 @@ namespace PSArm.Serialization
         {
             _needParensStack.Push(true);
 
-            memberAccess.InnerExpression.Visit(this);
+            memberAccess.InnerExpression.RunVisit(this);
 
             _needParensStack.Pop();
 
@@ -173,9 +173,9 @@ namespace PSArm.Serialization
                     Write(";");
                 }
 
-                entry.Key.CoerceToLiteral().Visit(this);
+                entry.Key.CoerceToLiteral().RunVisit(this);
                 Write("=");
-                entry.Value.Visit(this);
+                entry.Value.RunVisit(this);
 
                 needSeparator = true;
             }

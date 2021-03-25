@@ -4,9 +4,7 @@
 using PSArm.Commands.Internal;
 using PSArm.Serialization;
 using System;
-using System.Collections.Generic;
 using System.Management.Automation;
-using System.Text;
 
 namespace PSArm.Commands
 {

@@ -39,7 +39,7 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.Capacity] = (ArmElement)value;
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitSku(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitSku(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => InstantiateIntoCopy(new ArmSku(), parameters);

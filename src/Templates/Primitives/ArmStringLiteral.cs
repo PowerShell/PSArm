@@ -29,6 +29,6 @@ namespace PSArm.Templates.Primitives
 
         public override string ToInnerExpressionString() => $"'{Value}'";
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitStringValue(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitStringValue(this);
     }
 }

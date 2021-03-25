@@ -41,7 +41,7 @@ namespace PSArm.Templates.Operations
             return $"{InnerExpression.ToInnerExpressionString()}.{Member.ToIdentifierString()}";
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitMemberAccess(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitMemberAccess(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
         {

@@ -119,7 +119,7 @@ namespace PSArm.Templates
             {
                 if (parameters is null)
                 {
-                    parameters = new Dictionary<IArmString, ArmElement>(globalParameters.Count);
+                    parameters = new Dictionary<IArmString, ArmElement>(Parameters.Count);
                 }
 
                 foreach (KeyValuePair<IArmString, ArmParameter> localParameter in (IReadOnlyDictionary<IArmString, ArmParameter>)Parameters)

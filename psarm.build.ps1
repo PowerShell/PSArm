@@ -9,9 +9,6 @@ param(
     [string[]]
     $TargetFrameworks = ($(if($false -eq $IsWindows){'netcoreapp3.1'}else{'netcoreapp3.1','net471'})),
 
-    [string[]]
-    $TestPowerShell = ($(if($false -eq $IsWindows){'pwsh'}else{'pwsh','powershell'})),
-
     [switch]
     $RunTestsInProcess,
 
@@ -19,7 +16,10 @@ param(
     $RunTestsInCIMode,
 
     [string]
-    $TestPSArmPath
+    $TestPSArmPath,
+
+    [string[]]
+    $TestPowerShell = ($(if($false -eq $IsWindows){'pwsh'}elseif($RunTestsInCIMode){'pwsh'}else{'pwsh','powershell'}))
 )
 
 Import-Module "$PSScriptRoot/tools/BuildHelper.psm1"

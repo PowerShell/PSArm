@@ -26,8 +26,9 @@ Import-Module "$PSScriptRoot/tools/BuildHelper.psm1"
 
 $ErrorActionPreference = 'Stop'
 
-$RequiredTestModules = @(
+$DependencyModules = @(
     @{ ModuleName = 'Pester'; ModuleVersion = '5.0' }
+    @{ ModuleName = 'platyPS'; ModuleVersion = '0.14.1' }
 )
 $ModuleDirs = @{
     'net471' = 'Desktop'
@@ -37,16 +38,18 @@ $ModuleName = "PSArm"
 $OutDir = "$PSScriptRoot/out/$ModuleName"
 $SrcDir = "$PSScriptRoot/src"
 $BinDir = "$SrcDir/bin/$Configuration"
+$DocDir = "$PSScriptRoot/docs"
 $DotnetSrcDir = $srcDir
 $TempDependenciesLocation = Join-Path ([System.IO.Path]::GetTempPath()) 'PSArmDeps'
 $TempModulesLocation = Join-Path $TempDependenciesLocation 'Modules'
+$script:OldModulePath = $env:PSModulePath
 
 Write-Log "TempDepsDir: '$TempDependenciesLocation'"
 Write-Log "TempModDir: '$TempModulesLocation'"
 
 function Get-PwshPath
 {
-    return (Get-Process -Id $PID).PAth
+    return (Get-Process -Id $PID).Path
 }
 
 function Remove-ModuleDependencies
@@ -57,13 +60,9 @@ function Remove-ModuleDependencies
     }
 }
 
-task InstallTestDependencies InstallRequiredTestModules
-
-task InstallRequiredTestModules {
-    Remove-ModuleDependencies
-
-    $alreadyInstalled = Get-Module -ListAvailable -FullyQualifiedName $RequiredTestModules
-    $needToInstall = $RequiredTestModules | Where-Object { $_.ModuleName -notin $alreadyInstalled.Name }
+task InstallDependencies {
+    $alreadyInstalled = Get-Module -ListAvailable -FullyQualifiedName $DependencyModules
+    $needToInstall = $DependencyModules | Where-Object { $_.ModuleName -notin $alreadyInstalled.Name }
 
     foreach ($module in $needToInstall)
     {
@@ -71,6 +70,7 @@ task InstallRequiredTestModules {
         {
             New-Item -Path $TempModulesLocation -ItemType Directory
             Write-Log "Created directory '$TempModulesLocation'"
+            $env:PSModulePath = "$TempModulesLocation$([System.IO.Path]::PathSeparator)${env:PSModulePath}"
         }
 
         Write-Log "Installing module '$($module.ModuleName)' to '$TempModulesLocation'"
@@ -78,7 +78,14 @@ task InstallRequiredTestModules {
     }
 }
 
-task Build {
+task CleanDependencies {
+    Remove-ModuleDependencies
+    $env:PSModulePath = $script:OldModulePath
+}
+
+task Build BuildModule,BuildHelp
+
+task BuildModule {
     Push-Location $DotnetSrcDir
     try
     {
@@ -125,9 +132,14 @@ task Build {
     }
 }
 
+task BuildHelp {
+    Import-Module platyPS -MinimumVersion '0.14.1'
+    New-ExternalHelp -Path $DocDir -OutputPath "$OutDir/en-US"
+}
+
 task Test TestPester
 
-task TestPester InstallRequiredTestModules,{
+task TestPester InstallDependencies,{
     # Run tests in a new process so that the built module isn't stuck in the calling process
     $testScriptPath = "$PSScriptRoot/test/tools/runPesterTests.ps1"
 
@@ -172,4 +184,4 @@ task TestPester InstallRequiredTestModules,{
     }
 }
 
-task . Build,Test
+task . InstallDependencies,Build,Test,CleanDependencies

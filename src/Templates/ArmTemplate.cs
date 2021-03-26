@@ -83,16 +83,19 @@ namespace PSArm.Templates
             var template = (ArmTemplate)InstantiateIntoCopy(new ArmTemplate(TemplateName), localParameters);
 
             // Sift through any parameters declared here and remove any we instantiated
-            ArmObject<ArmParameter> templateParameters = template.Parameters;
-            foreach (IArmString localParameter in localParameters.Keys)
+            if (template.Parameters is not null)
             {
-                templateParameters.Remove(localParameter);
-            }
+                ArmObject<ArmParameter> templateParameters = template.Parameters;
+                foreach (IArmString localParameter in localParameters.Keys)
+                {
+                    templateParameters.Remove(localParameter);
+                }
 
-            // If we instantiated all parameters, remove the parameter block
-            if (templateParameters.Count == 0)
-            {
-                template.Remove(ArmTemplateKeys.Parameters);
+                // If we instantiated all parameters, remove the parameter block
+                if (templateParameters.Count == 0)
+                {
+                    template.Remove(ArmTemplateKeys.Parameters);
+                }
             }
 
             return template;

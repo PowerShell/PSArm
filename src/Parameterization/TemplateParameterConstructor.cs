@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PSArm.Parameterization
 {
-    internal abstract class TemplateParameterConstructor<TArmParameter, TParameters, TParameter, TParameterName>
+    internal abstract class TemplateParameterConstructor<TArmParameter, TParameters, TParameter, TParameterName, TEvaluationState>
         where TArmParameter : ArmElement, IArmReferenceable
     {
         public ArmObject<TArmParameter> ConstructParameters(TParameters parameters)
@@ -16,9 +16,10 @@ namespace PSArm.Parameterization
             IReadOnlyDictionary<TParameter, IReadOnlyList<TParameterName>> referenceTable = CollectReferences(parameters);
 
             var parameterBlock = new ArmObject<TArmParameter>();
+            TEvaluationState evaluationState = CreateEvaluationState();
             foreach (TParameter parameter in GetParameterEvaluationOrder(referenceTable))
             {
-                TArmParameter armParameter = EvaluateParameter(parameter);
+                TArmParameter armParameter = EvaluateParameter(evaluationState, parameter);
                 parameterBlock[armParameter.ReferenceName] = armParameter;
             }
             return parameterBlock;
@@ -26,9 +27,11 @@ namespace PSArm.Parameterization
 
         protected abstract IReadOnlyDictionary<TParameter, IReadOnlyList<TParameterName>> CollectReferences(TParameters parameters);
 
-        protected abstract TArmParameter EvaluateParameter(TParameter parameter);
+        protected abstract TArmParameter EvaluateParameter(TEvaluationState evaluationState, TParameter parameter);
 
         protected abstract TParameterName GetParameterName(TParameter parameter);
+
+        protected abstract TEvaluationState CreateEvaluationState();
 
         private IEnumerable<TParameter> GetParameterEvaluationOrder(IReadOnlyDictionary<TParameter, IReadOnlyList<TParameterName>> referenceTable)
         {

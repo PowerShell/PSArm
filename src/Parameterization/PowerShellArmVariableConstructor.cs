@@ -11,14 +11,14 @@ namespace PSArm.Parameterization
 {
     internal class PowerShellArmVariableConstructor : PowerShellArmTemplateParameterConstructor<ArmVariable>
     {
-        public PowerShellArmVariableConstructor(PowerShell pwsh, HashSet<string> parameterNames)
-            : base(pwsh, parameterNames)
+        public PowerShellArmVariableConstructor(HashSet<string> parameterNames)
+            : base(parameterNames)
         {
         }
 
-        protected override ArmVariable EvaluateParameter(ParameterAst parameter)
+        protected override ArmVariable EvaluateParameter(List<PSVariable> variables, ParameterAst parameter)
         {
-            return new ArmVariable(new ArmStringLiteral(GetParameterName(parameter)), GetParameterValue(parameter));
+            return new ArmVariable(new ArmStringLiteral(GetParameterName(parameter)), GetParameterValue(parameter, variables));
         }
     }
 }

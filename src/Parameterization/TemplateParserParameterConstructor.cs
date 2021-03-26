@@ -9,7 +9,7 @@ using System.Linq;
 namespace PSArm.Parameterization
 {
     internal class TemplateParserParameterConstructor<TParameter, TParameterReference>
-        : TemplateParameterConstructor<TParameter, IReadOnlyDictionary<TParameter, IReadOnlyDictionary<IArmString, List<TParameterReference>>>, TParameter, IArmString>
+        : TemplateParameterConstructor<TParameter, IReadOnlyDictionary<TParameter, IReadOnlyDictionary<IArmString, List<TParameterReference>>>, TParameter, IArmString, object>
         where TParameter : ArmElement, IArmReferenceable
         where TParameterReference : ArmReferenceExpression<TParameter>
     {
@@ -36,7 +36,7 @@ namespace PSArm.Parameterization
             return referenceTable;
         }
 
-        protected override TParameter EvaluateParameter(TParameter parameter)
+        protected override TParameter EvaluateParameter(object evaluationState, TParameter parameter)
         {
             // Go through and set the referenced value in each reference
             foreach (IReadOnlyDictionary<IArmString, List<TParameterReference>> referenceSet in _parameterReferenceTable.Values)
@@ -66,6 +66,11 @@ namespace PSArm.Parameterization
                 dict[parameter.ReferenceName] = parameter;
             }
             return dict;
+        }
+
+        protected override object CreateEvaluationState()
+        {
+            return null;
         }
     }
 }

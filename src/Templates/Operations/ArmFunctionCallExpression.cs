@@ -3,6 +3,7 @@
 
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Text;
 
@@ -49,6 +50,11 @@ namespace PSArm.Templates.Operations
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
         {
+            if (Arguments is null)
+            {
+                return this;
+            }
+
             var args = new ArmExpression[Arguments.Count];
             for (int i = 0; i < Arguments.Count; i++)
             {

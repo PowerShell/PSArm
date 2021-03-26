@@ -18,6 +18,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -315,6 +316,11 @@ namespace PSArm.Commands
 
                 if (!ArmElementConversion.TryConvertToArmElement(entry.Value, out ArmElement value))
                 {
+                    if (entry.Value is SecureString)
+                    {
+                        throw new ArgumentException($"Cannot provide secure string values for template publication. Provide these at template deployment time");
+                    }
+
                     throw new ArgumentException($"Cannot convert hashtable value '{entry.Value}' of type '{entry.Value.GetType()}' to ARM element");
                 }
 

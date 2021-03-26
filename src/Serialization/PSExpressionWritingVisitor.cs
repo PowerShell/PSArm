@@ -18,36 +18,21 @@ namespace PSArm.Serialization
 
         private readonly Stack<bool> _needParensStack;
 
-        private int _defaultValueStackDepth;
-
         public PSExpressionWritingVisitor(TextWriter textWriter)
         {
             _writer = textWriter;
             _needParensStack = new Stack<bool>();
             _needParensStack.Push(false);
-            _defaultValueStackDepth = -1;
         }
 
         public void EnterParens()
         {
-            _needParensStack.Push(_needParensStack.Count != _defaultValueStackDepth);
+            _needParensStack.Push(true);
         }
 
         public void ExitParens()
         {
             _needParensStack.Pop();
-        }
-
-        public void EnterDefaultValue()
-        {
-            _writer.Write("(");
-            _defaultValueStackDepth = _needParensStack.Count;
-        }
-
-        public void ExitDefaultValue()
-        {
-            _writer.Write(")");
-            _defaultValueStackDepth = -1;
         }
 
         public object VisitArray(ArmArray array)
@@ -246,6 +231,13 @@ namespace PSArm.Serialization
         private void Write(string value)
         {
             _writer.Write(value);
+        }
+
+        private enum ParensNeeded
+        {
+            None,
+            Functions,
+            DefaultValue,
         }
     }
 }

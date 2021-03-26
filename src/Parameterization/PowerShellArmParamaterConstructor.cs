@@ -21,13 +21,13 @@ namespace PSArm.Parameterization
 
         private readonly HashSet<string> _parametersWithAllowedValues;
 
-        public PowerShellArmParameterConstructor(PowerShell pwsh, HashSet<string> parameterNames, HashSet<string> parametersWithAllowedValues)
-            : base(pwsh, parameterNames)
+        public PowerShellArmParameterConstructor(HashSet<string> parameterNames, HashSet<string> parametersWithAllowedValues)
+            : base(parameterNames)
         {
             _parametersWithAllowedValues = parametersWithAllowedValues;
         }
 
-        protected override ArmParameter EvaluateParameter(ParameterAst parameter)
+        protected override ArmParameter EvaluateParameter(List<PSVariable> variables, ParameterAst parameter)
         {
             Type parameterType = GetParameterGenericType(parameter);
 
@@ -42,7 +42,7 @@ namespace PSArm.Parameterization
 
             if (parameter.DefaultValue is not null)
             {
-                armParameter.DefaultValue = GetParameterValue(parameter);
+                armParameter.DefaultValue = GetParameterValue(parameter, variables);
             }
 
             if (TryGetAllowedValues(parameter, out ArmArray allowedValues))

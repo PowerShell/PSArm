@@ -14,35 +14,41 @@ using System.Management.Automation.Language;
 namespace PSArm.Parameterization
 {
     internal abstract class PowerShellArmTemplateParameterConstructor
-        <TArmParameter> : TemplateParameterConstructor<TArmParameter, ParamBlockAst, ParameterAst, string>
+        <TArmParameter> : TemplateParameterConstructor<TArmParameter, ParamBlockAst, ParameterAst, string, List<PSVariable>>
         where TArmParameter : ArmElement, IArmReferenceable
     {
-
-        protected readonly PowerShell _pwsh;
 
         private readonly HashSet<string> _parameterNames;
 
         public PowerShellArmTemplateParameterConstructor(
-            PowerShell pwsh,
             HashSet<string> parameterNames)
         {
-            _pwsh = pwsh;
             _parameterNames = parameterNames;
         }
 
+        protected override List<PSVariable> CreateEvaluationState()
+        {
+            return new List<PSVariable>(_parameterNames.Count);
+        }
 
-        protected ArmElement GetParameterValue(ParameterAst parameter)
+        protected ArmElement GetParameterValue(ParameterAst parameter, List<PSVariable> variables)
         {
             if (parameter.DefaultValue is null)
             {
                 return null;
             }
 
-            _pwsh.Commands.Clear();
-
-            Collection<PSObject> result = _pwsh.AddScript(parameter.DefaultValue.Extent.Text).Invoke();
+            // We need to supply the predefined variables here, so must use the ScriptBlock.InvokeWithContext() method
+            // This relies on this method being executed on the pipeline thread
+            // So any attempt to make this asynchronous or parallelize it will lead to subtle bugs
+            Collection<PSObject> result = ScriptBlock
+                .Create(parameter.DefaultValue.Extent.Text)
+                .InvokeWithContext(functionsToDefine: null, variables);
 
             object input = result.Count == 1 ? result[0] : result;
+
+            // Define the variable for use in the next parameter evaluation
+            variables.Add(new PSVariable(parameter.Name.VariablePath.UserPath, input));
 
             if (!ArmElementConversion.TryConvertToArmElement(input, out ArmElement armElement))
             {
@@ -71,7 +77,7 @@ namespace PSArm.Parameterization
                         continue;
                     }
 
-                    parameter.DefaultValue.Visit(visitor);
+                    parameter.DefaultValue?.Visit(visitor);
                     results[parameter] = visitor.References.Keys.ToList();
                     visitor.Reset();
                 }

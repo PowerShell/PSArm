@@ -41,11 +41,11 @@ namespace PSArm.Parameterization
 
             // We need to evaluate parameters first
             var parametersWithAllowedValues = new HashSet<string>();
-            armParameters = new PowerShellArmParameterConstructor(_pwsh, parameterAsts, parametersWithAllowedValues)
+            armParameters = new PowerShellArmParameterConstructor(parameterAsts, parametersWithAllowedValues)
                 .ConstructParameters(ast.ParamBlock);
 
             // Now do variables
-            armVariables = new PowerShellArmVariableConstructor(_pwsh, variableAsts)
+            armVariables = new PowerShellArmVariableConstructor(variableAsts)
                 .ConstructParameters(ast.ParamBlock);
 
             psArgsArray = BuildInvocationArgumentArray(argsIndex, armParameters, armVariables);

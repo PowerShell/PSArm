@@ -2,14 +2,14 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Templates.Primitives;
+using PSArm.Templates.Visitors;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq.Expressions;
+
 
 namespace PSArm.Templates.Operations
 {
-    using PSArm.Templates.Visitors;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
-
     public class ArmIndexAccessExpression : ArmOperation
     {
         internal static DynamicMetaObject CreateMetaObject(
@@ -17,9 +17,30 @@ namespace PSArm.Templates.Operations
             GetIndexBinder binder,
             DynamicMetaObject[] indexes)
         {
-            var indexAccess = new ArmIndexAccessExpression((ArmOperation)originalExpressionMO.Value, new ArmIntegerLiteral((long)indexes[0].Value));
-            var expression = Expression.Constant(indexAccess);
+            // Generate an expression like this:
+            //
+            //     new ArmIndexAccessExpression((ArmOperation)dynamicObject, new ArmIntegerLiteral(indexes[0]))
+            //
+            var expression = Expression.New(
+                typeof(ArmIndexAccessExpression).GetConstructor(new[] { typeof(ArmOperation), typeof(ArmExpression) }),
+                new Expression[]
+                {
+                    Expression.Convert(
+                        // Note that here we must use the magic value of originalExpressionMO.Expression
+                        // Otherwise we'll get the value for the first metadata object that activates this method forever (it's cached)
+                        originalExpressionMO.Expression,
+                        typeof(ArmOperation)),
+                    Expression.New(
+                        typeof(ArmIntegerLiteral).GetConstructor(new[] { typeof(long) }),
+                        new Expression[]
+                        {
+                            Expression.Convert(indexes[0].Expression, typeof(long))
+                        })
+                });
+
+
             var restrictions = originalExpressionMO.Restrictions.Merge(binder.FallbackGetIndex(originalExpressionMO, indexes).Restrictions);
+
             return new DynamicMetaObject(expression, restrictions);
         }
 

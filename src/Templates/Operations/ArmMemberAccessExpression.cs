@@ -2,22 +2,43 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Templates.Primitives;
+using PSArm.Templates.Visitors;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq.Expressions;
+
 
 namespace PSArm.Templates.Operations
 {
-    using PSArm.Templates.Visitors;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
-
     public class ArmMemberAccessExpression : ArmOperation
     {
         internal static DynamicMetaObject CreateMetaObject(
             DynamicMetaObject originalExpressionMO,
             GetMemberBinder binder)
         {
-            var memberAccess = new ArmMemberAccessExpression((ArmOperation)originalExpressionMO.Value, new ArmStringLiteral(binder.Name));
-            var expression = Expression.Constant(memberAccess);
+            // Generate an expression like this:
+            //
+            //     new ArmMemberAccessExpression((ArmOperation)dynamicObject, new ArmStringLiteral(binderName))
+            //
+            var expression = Expression.New(
+                typeof(ArmMemberAccessExpression).GetConstructor(new[] { typeof(ArmOperation), typeof(IArmString) }),
+                new Expression[]
+                {
+                    Expression.Convert(
+                        // Note that here we must use the magic value of originalExpressionMO.Expression
+                        // Otherwise we'll get the value for the first metadata object that activates this method forever (it's cached)
+                        originalExpressionMO.Expression,
+                        typeof(ArmOperation)),
+                    Expression.New(
+                        typeof(ArmStringLiteral).GetConstructor(new[] { typeof(string) }),
+                        new Expression[]
+                        {
+                            Expression.Property(
+                                Expression.Constant(binder),
+                                nameof(binder.Name))
+                        })
+                });
+
             BindingRestrictions restrictions = originalExpressionMO.Restrictions.Merge(binder.FallbackGetMember(originalExpressionMO).Restrictions);
             return new DynamicMetaObject(expression, restrictions);
         }

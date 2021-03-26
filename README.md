@@ -52,7 +52,7 @@ In particular, high level goals are:
 
 Full, tested examples are available in the [examples directory](examples).
 
-A simple example for creating a network interface, which can be found [here](examples/network-interface):
+A simple example for creating a network interface, which can also be found [here](examples/network-interface):
 
 ```powershell
 # network-interface.psarm.ps1

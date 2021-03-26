@@ -21,7 +21,7 @@ namespace PSArm.Serialization
         public static void WriteToTextWriter(TextWriter textWriter, ArmTemplate template)
         {
             var visitor = new PSArmWritingVisitor(textWriter);
-            template.Visit(visitor);
+            template.RunVisit(visitor);
             textWriter.Flush();
         }
 
@@ -82,43 +82,43 @@ namespace PSArm.Serialization
 
         public object VisitBooleanValue(ArmBooleanLiteral booleanValue)
         {
-            booleanValue.Visit(_expressionWriter);
+            booleanValue.RunVisit(_expressionWriter);
             return null;
         }
 
         public object VisitDoubleValue(ArmDoubleLiteral doubleValue)
         {
-            doubleValue.Visit(_expressionWriter);
+            doubleValue.RunVisit(_expressionWriter);
             return null;
         }
 
         public object VisitFunctionCall(ArmFunctionCallExpression functionCall)
         {
-            functionCall.Visit(_expressionWriter);
+            functionCall.RunVisit(_expressionWriter);
             return null;
         }
 
         public object VisitIndexAccess(ArmIndexAccessExpression indexAccess)
         {
-            indexAccess.Visit(_expressionWriter);
+            indexAccess.RunVisit(_expressionWriter);
             return null;
         }
 
         public object VisitIntegerValue(ArmIntegerLiteral integerValue)
         {
-            integerValue.Visit(_expressionWriter);
+            integerValue.RunVisit(_expressionWriter);
             return null;
         }
 
         public object VisitMemberAccess(ArmMemberAccessExpression memberAccess)
         {
-            memberAccess.Visit(_expressionWriter);
+            memberAccess.RunVisit(_expressionWriter);
             return null;
         }
 
         public object VisitNullValue(ArmNullLiteral nullValue)
         {
-            nullValue.Visit(_expressionWriter);
+            nullValue.RunVisit(_expressionWriter);
             return null;
         }
 
@@ -141,7 +141,9 @@ namespace PSArm.Serialization
                 {
                     WriteKeyword(entry.Key);
                     Write(" ");
-                    entry.Value.Visit(this);
+                    _expressionWriter.EnterParens();
+                    entry.Value.RunVisit(this);
+                    _expressionWriter.ExitParens();
                 }
 
                 needSeparator = true;
@@ -179,7 +181,7 @@ namespace PSArm.Serialization
 
         public object VisitParameterReference(ArmParameterReferenceExpression parameterReference)
         {
-            parameterReference.Visit(_expressionWriter);
+            parameterReference.RunVisit(_expressionWriter);
             return null;
         }
 
@@ -196,7 +198,8 @@ namespace PSArm.Serialization
             WriteExpression(resource.ApiVersion);
             foreach (KeyValuePair<ArmStringLiteral, string> defaultParameter in s_resourceDefaultParameters)
             {
-                if (resource.TryGetValue(defaultParameter.Key, out ArmElement value))
+                if (!defaultParameter.Value.Is("Name")
+                    && resource.TryGetValue(defaultParameter.Key, out ArmElement value))
                 {
                     Write($" -{defaultParameter.Value} ");
                     WriteExpression(value);
@@ -209,7 +212,7 @@ namespace PSArm.Serialization
             bool needNewline = false;
             if (resource.Sku != null)
             {
-                resource.Sku.Visit(this);
+                resource.Sku.RunVisit(this);
                 needNewline = true;
             }
 
@@ -255,7 +258,7 @@ namespace PSArm.Serialization
                         WriteLine();
                     }
 
-                    subResource.Value.Visit(this);
+                    subResource.Value.RunVisit(this);
                     needSeparator = true;
                 }
 
@@ -269,6 +272,9 @@ namespace PSArm.Serialization
                     WriteLine();
                 }
 
+                Write("DependsOn @(");
+                Indent();
+                WriteLine();
                 bool needSeparator = false;
                 foreach (ArmElement dependsOn in resource.DependsOn)
                 {
@@ -277,10 +283,12 @@ namespace PSArm.Serialization
                         WriteLine();
                     }
 
-                    Write("DependsOn ");
-                    WriteExpression(dependsOn);
+                    WriteExpression(dependsOn, useParens: false);
                     needSeparator = true;
                 }
+                Dedent();
+                WriteLine();
+                Write(")");
             }
 
             CloseBlock();
@@ -322,7 +330,7 @@ namespace PSArm.Serialization
 
         public object VisitStringValue(ArmStringLiteral stringValue)
         {
-            stringValue.Visit(_expressionWriter);
+            stringValue.RunVisit(_expressionWriter);
             return null;
         }
 
@@ -346,14 +354,13 @@ namespace PSArm.Serialization
             Write("[ArmVariable]");
             WriteLine();
             WriteVariable(variable.Name.CoerceToString());
-            Write(" = ");
             WriteDefaultValue(variable.Value);
             return null;
         }
 
         public object VisitVariableReference(ArmVariableReferenceExpression variableReference)
         {
-            variableReference.Visit(_expressionWriter);
+            variableReference.RunVisit(_expressionWriter);
             return null;
         }
 
@@ -377,7 +384,7 @@ namespace PSArm.Serialization
                         WriteLine(lineCount: 2);
                     }
 
-                    parameter.Value.Visit(this);
+                    parameter.Value.RunVisit(this);
                     needSeparator = true;
                 }
             }
@@ -392,7 +399,7 @@ namespace PSArm.Serialization
                         WriteLine(lineCount: 2);
                     }
 
-                    variable.Value.Visit(this);
+                    variable.Value.RunVisit(this);
                     needSeparator = true;
                 }
             }
@@ -412,11 +419,11 @@ namespace PSArm.Serialization
             }
 
             Write("[ValidateSet(");
-            allowedValues[0].Visit(_expressionWriter);
+            allowedValues[0].RunVisit(_expressionWriter);
             for (int i = 1; i < allowedValues.Count; i++)
             {
                 Write(", ");
-                allowedValues[i].Visit(_expressionWriter);
+                allowedValues[i].RunVisit(_expressionWriter);
             }
             Write(")]");
             WriteLine();
@@ -438,9 +445,9 @@ namespace PSArm.Serialization
             }
 
             Write(" = ");
-            _expressionWriter.EnterDefaultValue();
+            _expressionWriter.EnterParens();
             WriteExpression(defaultValue);
-            _expressionWriter.ExitDefaultValue();
+            _expressionWriter.ExitParens();
         }
 
         private void WriteResources(IReadOnlyList<ArmResource> resources, ref bool needSeparator)
@@ -457,7 +464,7 @@ namespace PSArm.Serialization
                     WriteLine(lineCount: 2);
                 }
 
-                resource.Visit(this);
+                resource.RunVisit(this);
                 needSeparator = true;
             }
         }
@@ -478,7 +485,7 @@ namespace PSArm.Serialization
                     WriteLine(lineCount: first ? 2 : 1);
                 }
 
-                output.Value.Visit(this);
+                output.Value.RunVisit(this);
                 needSeparator = true;
                 first = false;
             }
@@ -497,7 +504,7 @@ namespace PSArm.Serialization
 
                 WriteKeyword(key);
                 Write(" ");
-                element.Visit(this);
+                element.RunVisit(this);
 
                 needsSeparator = true;
             }
@@ -505,11 +512,11 @@ namespace PSArm.Serialization
 
         private void WriteExpression(IArmString value) => WriteExpression((ArmElement)value);
 
-        private void WriteExpression(ArmElement value)
+        private void WriteExpression(ArmElement value, bool useParens = true)
         {
-            _expressionWriter.EnterParens();
-            value.Visit(_expressionWriter);
-            _expressionWriter.ExitParens();
+            if (useParens) { _expressionWriter.EnterParens(); }
+            value.RunVisit(_expressionWriter);
+            if (useParens) { _expressionWriter.ExitParens(); }
         }
 
         private void WritePropertyInvocation(IArmString keyword, ArmElement value)
@@ -535,7 +542,7 @@ namespace PSArm.Serialization
 
             WriteKeyword(keyword);
             Write(" ");
-            value.Visit(this);
+            value.RunVisit(this);
         }
 
         private void WriteKeyword(IArmString keyword)

@@ -89,7 +89,7 @@ namespace PSArm.Templates.Primitives
             return GetEnumerator();
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitObject(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitObject(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => InstantiateIntoCopy(new ArmObject(), parameters);

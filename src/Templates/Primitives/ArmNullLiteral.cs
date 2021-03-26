@@ -17,6 +17,6 @@ namespace PSArm.Templates.Primitives
         {
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitNullValue(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitNullValue(this);
     }
 }

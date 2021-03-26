@@ -69,7 +69,7 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.Resources] = value;
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitTemplate(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitTemplate(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
         {
@@ -81,7 +81,20 @@ namespace PSArm.Templates
             }
 
             var template = (ArmTemplate)InstantiateIntoCopy(new ArmTemplate(TemplateName), localParameters);
-            template.Remove(ArmTemplateKeys.Parameters);
+
+            // Sift through any parameters declared here and remove any we instantiated
+            ArmObject<ArmParameter> templateParameters = template.Parameters;
+            foreach (IArmString localParameter in localParameters.Keys)
+            {
+                templateParameters.Remove(localParameter);
+            }
+
+            // If we instantiated all parameters, remove the parameter block
+            if (templateParameters.Count == 0)
+            {
+                template.Remove(ArmTemplateKeys.Parameters);
+            }
+
             return template;
         }
 

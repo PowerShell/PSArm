@@ -7,7 +7,6 @@ using PSArm.Templates.Visitors;
 using PSArm.Types;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace PSArm.Templates
 {
@@ -43,7 +42,7 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.AllowedValues] = value;
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitParameterDeclaration(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitParameterDeclaration(this);
 
         public ArmParameterReferenceExpression GetReference()
         {
@@ -54,6 +53,11 @@ namespace PSArm.Templates
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => InstantiateIntoCopy(new ArmParameter((IArmString)Name.Instantiate(parameters), (IArmString)Type.Instantiate(parameters)), parameters);
+
+        public override string ToString()
+        {
+            return GetReference().ToString();
+        }
     }
 
     public class ArmParameter<T> : ArmParameter

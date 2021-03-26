@@ -1,6 +1,7 @@
 
 // Copyright (c) Microsoft Corporation.
 
+using PSArm.Templates.Visitors;
 using PSArm.Types;
 using System.ComponentModel;
 
@@ -12,5 +13,9 @@ namespace PSArm.Templates.Primitives
         string ToExpressionString();
 
         string ToIdentifierString();
+
+        TResult RunVisit<TResult>(IArmVisitor<TResult> visitor);
+
+        VisitAction RunVisit(ArmTravsersingVisitor visitor);
     }
 }

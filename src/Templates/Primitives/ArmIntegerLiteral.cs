@@ -24,6 +24,6 @@ namespace PSArm.Templates.Primitives
             return Value.ToString();
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitIntegerValue(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitIntegerValue(this);
     }
 }

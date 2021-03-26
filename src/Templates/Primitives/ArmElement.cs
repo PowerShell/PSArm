@@ -18,7 +18,19 @@ namespace PSArm.Templates.Primitives
             return Visit(new ArmJsonBuildingVisitor());
         }
 
-        public abstract TResult Visit<TResult>(IArmVisitor<TResult> visitor);
+        public TResult RunVisit<TResult>(IArmVisitor<TResult> visitor)
+        {
+            return Visit(visitor);
+        }
+
+        public VisitAction RunVisit(ArmTravsersingVisitor visitor)
+        {
+            VisitAction result = Visit(visitor);
+            visitor.PostVisit(this);
+            return result;
+        }
+
+        protected abstract TResult Visit<TResult>(IArmVisitor<TResult> visitor);
 
         public abstract IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters);
 

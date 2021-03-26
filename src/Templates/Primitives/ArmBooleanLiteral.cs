@@ -26,7 +26,7 @@ namespace PSArm.Templates.Primitives
             return Value ? "true" : "false";
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitBooleanValue(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitBooleanValue(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => this;

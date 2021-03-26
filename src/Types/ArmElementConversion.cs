@@ -61,6 +61,10 @@ namespace PSArm.Types
                     armExpression = new ArmDoubleLiteral(Convert.ToDouble(value));
                     return true;
 
+                case TypeCode.Boolean:
+                    armExpression = Convert.ToBoolean(value) ? ArmBooleanLiteral.True : ArmBooleanLiteral.False;
+                    return true;
+
                 case TypeCode.DBNull:
                     armExpression = ArmNullLiteral.Value;
                     return true;

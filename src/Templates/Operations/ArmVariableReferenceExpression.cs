@@ -11,12 +11,17 @@ namespace PSArm.Templates.Operations
     {
         private static readonly ArmStringLiteral s_variableReferenceFunction = new ArmStringLiteral("variables");
 
+        internal ArmVariableReferenceExpression(IArmString variableName)
+            : base(s_variableReferenceFunction, variableName)
+        {
+        }
+
         public ArmVariableReferenceExpression(ArmVariable variable)
             : base(s_variableReferenceFunction, variable)
         {
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitVariableReference(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitVariableReference(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => this;

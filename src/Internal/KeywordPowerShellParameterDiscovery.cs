@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace PSArm.Internal
 {
-    internal static class KeywordParameterDiscovery
+    internal static class KeywordPowerShellParameterDiscovery
     {
         private static readonly IReadOnlyDictionary<Type, string> s_typeAccelerators = GetPSTypeAccelerators();
 

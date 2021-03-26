@@ -17,7 +17,7 @@ namespace PSArm.Serialization
             var arr = new JArray();
             foreach (ArmElement element in array)
             {
-                arr.Add(element.Visit(this));
+                arr.Add(element.RunVisit(this));
             }
             return arr;
         }
@@ -48,7 +48,7 @@ namespace PSArm.Serialization
                     continue;
                 }
 
-                jObj[entry.Key.ToExpressionString()] = entry.Value.Visit(this);
+                jObj[entry.Key.ToExpressionString()] = entry.Value.RunVisit(this);
             }
             return jObj;
         }
@@ -69,7 +69,7 @@ namespace PSArm.Serialization
 
         public JToken VisitTemplateResource(ArmTemplateResource templateResource) => VisitResource(templateResource);
 
-        public JToken VisitVariableDeclaration(ArmVariable variable) => variable.Value?.Visit(this);
+        public JToken VisitVariableDeclaration(ArmVariable variable) => variable.Value?.RunVisit(this);
 
         public JToken VisitVariableReference(ArmVariableReferenceExpression variableReference) => VisitArmString(variableReference);
 

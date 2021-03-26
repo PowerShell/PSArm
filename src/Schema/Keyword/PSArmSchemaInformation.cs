@@ -15,22 +15,22 @@ namespace PSArm.Schema.Keyword
             new Dictionary<string, DslKeywordSchema>(StringComparer.OrdinalIgnoreCase)
             {
                 { NewPSArmTemplateCommand.KeywordName, new StaticKeywordSchema(
-                    KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmTemplateCommand)),
+                    KeywordPowerShellParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmTemplateCommand)),
                     new Dictionary<string, DslKeywordSchema>(StringComparer.OrdinalIgnoreCase)
                     {
                         { NewPSArmResourceCommand.KeywordName, ResourceKeywordSchema.Value },
                         { NewPSArmOutputCommand.KeywordName, new OpenKeywordSchema(
-                            KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmOutputCommand)),
+                            KeywordPowerShellParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmOutputCommand)),
                             useParametersForCompletions: false) }
                     })},
             });
 
         public static DslKeywordSchema SkuSchema { get; } = new OpenKeywordSchema(
-            KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmSkuCommand)),
+            KeywordPowerShellParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmSkuCommand)),
             useParametersForCompletions: true);
 
         public static DslKeywordSchema DependsOnSchema { get; } = new OpenKeywordSchema(
-            KeywordParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmDependsOnCommand)),
+            KeywordPowerShellParameterDiscovery.GetKeywordParametersFromCmdletType(typeof(NewPSArmDependsOnCommand)),
             useParametersForCompletions: true);
     }
 }

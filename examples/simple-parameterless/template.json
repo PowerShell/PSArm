@@ -1,0 +1,80 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "psarm",
+      "version": "0.1.0.0"
+    }
+  },
+  "resources": [
+    {
+      "name": "Parameterless",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "name": "myVnet/my-subnet",
+              "apiVersion": "2019-11-01",
+              "type": "Microsoft.Network/virtualNetworks/subnets",
+              "properties": {
+                "addressPrefix": "10.0.0.0/24"
+              }
+            },
+            {
+              "name": "my-pip1",
+              "apiVersion": "2019-11-01",
+              "type": "Microsoft.Network/publicIPAddresses",
+              "location": "WestUS2",
+              "properties": {
+                "publicIPAllocationMethod": "Dynamic"
+              }
+            },
+            {
+              "name": "my-pip2",
+              "apiVersion": "2019-11-01",
+              "type": "Microsoft.Network/publicIPAddresses",
+              "location": "WestUS2",
+              "properties": {
+                "publicIPAllocationMethod": "Dynamic"
+              }
+            },
+            {
+              "name": "my-nic",
+              "apiVersion": "2019-11-01",
+              "type": "Microsoft.Network/networkInterfaces",
+              "location": "WestUS2",
+              "properties": {
+                "ipConfigurations": [
+                  {
+                    "name": "myConfig",
+                    "properties": {
+                      "privateIPAllocationMethod": "Dynamic",
+                      "subnet": {
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', 'my-nic-subnet')]"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "outputs": {
+            "nicResourceId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/networkInterfaces', 'my-nic')]"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

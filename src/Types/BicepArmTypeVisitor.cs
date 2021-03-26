@@ -4,7 +4,7 @@
 using Azure.Bicep.Types.Concrete;
 using System;
 
-namespace PSArm.Internal
+namespace PSArm.Types
 {
     internal abstract class BicepArmTypeVisitor<TResult>
     {

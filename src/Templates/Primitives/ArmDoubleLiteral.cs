@@ -20,7 +20,7 @@ namespace PSArm.Templates.Primitives
             return Value.ToString();
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitDoubleValue(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitDoubleValue(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => this;

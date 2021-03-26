@@ -24,12 +24,17 @@ namespace PSArm.Templates
 
         public ArmElement Value { get; }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitVariableDeclaration(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitVariableDeclaration(this);
 
         public ArmVariableReferenceExpression GetReference() => new ArmVariableReferenceExpression(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => this;
+
+        public override string ToString()
+        {
+            return GetReference().ToString();
+        }
 
         IArmString IArmReferenceable.ReferenceName => Name;
     }

@@ -3,7 +3,6 @@
 // All rights reserved.
 
 using PSArm.Templates;
-using PSArm.Templates.Operations;
 using System;
 using System.Collections.Generic;
 using System.Management.Automation;

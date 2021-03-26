@@ -45,7 +45,7 @@ namespace PSArm.Templates
             Metadata = new PSArmTopLevelTemplateMetadata();
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitNestedTemplate(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitNestedTemplate(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => InstantiateIntoCopy(new ArmNestedTemplate(), parameters);

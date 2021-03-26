@@ -28,7 +28,7 @@ namespace PSArm.Templates
             set => this[ArmTemplateKeys.Value] = (ArmElement)value;
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitOutput(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitOutput(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
             => InstantiateIntoCopy(new ArmOutput((IArmString)Name.Instantiate(parameters)), parameters);

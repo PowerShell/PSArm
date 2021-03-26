@@ -3,7 +3,9 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PSArm.Parameterization;
 using PSArm.Templates;
+using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using PSArm.Types;
 using System;
@@ -21,17 +23,11 @@ namespace PSArm.Serialization
 
         private static readonly ArmStringLiteral s_defaultSchema = new ArmStringLiteral("https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#");
 
-        private readonly Dictionary<string, ArmParameter> _parameters;
-
-        private readonly Dictionary<string, ArmVariable> _variables;
-
         private readonly ArmExpressionParser _armExpressionParser;
 
         public ArmParser()
         {
-            _parameters = new Dictionary<string, ArmParameter>(StringComparer.OrdinalIgnoreCase);
-            _variables = new Dictionary<string, ArmVariable>(StringComparer.OrdinalIgnoreCase);
-            _armExpressionParser = new ArmExpressionParser(_parameters, _variables);
+            _armExpressionParser = new ArmExpressionParser();
         }
 
         public ArmTemplate ParseString(string templateName, string str)
@@ -116,60 +112,89 @@ namespace PSArm.Serialization
 
         public ArmTemplate ParseJObject(string templateName, JObject templateObject)
         {
-            try
+            var template = new ArmTemplate(templateName);
+
+            if (templateObject.TryGetValue("$schema", out JToken schemaValue))
             {
-                var template = new ArmTemplate(templateName);
-
-                if (templateObject.TryGetValue("$schema", out JToken schemaValue))
-                {
-                    template.Schema = new ArmStringLiteral(CoerceJTokenToValue<string>(schemaValue));
-                }
-                else
-                {
-                    template.Schema = s_defaultSchema;
-                }
-
-                if (templateObject.TryGetValue("contentVersion", out JToken contentVersionValue))
-                {
-                    template.ContentVersion = new ArmStringLiteral(CoerceJTokenToValue<string>(contentVersionValue));
-                }
-                else
-                {
-                    template.ContentVersion = s_defaultVersion;
-                }
-
-                if (templateObject.TryGetValue("parameters", out JToken parametersValue))
-                {
-                    template.Parameters = ReadSubobject((JObject)parametersValue, new ArmObject<ArmParameter>(), ReadParameter);
-                }
-
-                if (templateObject.TryGetValue("variables", out JToken variablesValue))
-                {
-                    template.Variables = ReadSubobject((JObject)variablesValue, new ArmObject<ArmVariable>(), ReadVariable);
-                }
-
-                if (templateObject.TryGetValue("resources", out JToken resourcesValue))
-                {
-                    template.Resources = ReadArray((JArray)resourcesValue, new ArmArray<ArmResource>(), ReadResource);
-                }
-
-                if (templateObject.TryGetValue("outputs", out JToken outputsValue))
-                {
-                    template.Outputs = ReadSubobject((JObject)outputsValue, new ArmObject<ArmOutput>(), ReadOutput);
-                }
-
-                return template;
+                template.Schema = new ArmStringLiteral(CoerceJTokenToValue<string>(schemaValue));
             }
-            finally
+            else
             {
-                Reset();
+                template.Schema = s_defaultSchema;
             }
+
+            if (templateObject.TryGetValue("contentVersion", out JToken contentVersionValue))
+            {
+                template.ContentVersion = new ArmStringLiteral(CoerceJTokenToValue<string>(contentVersionValue));
+            }
+            else
+            {
+                template.ContentVersion = s_defaultVersion;
+            }
+
+            (ArmObject<ArmParameter> parameters, ArmObject<ArmVariable> variables) = ReadParametersAndVariables(templateObject);
+
+            if (parameters is not null)
+            {
+                template.Parameters = parameters;
+            }
+
+            if (variables is not null)
+            {
+                template.Variables = variables;
+            }
+
+            if (templateObject.TryGetValue("resources", out JToken resourcesValue))
+            {
+                template.Resources = ReadArray((JArray)resourcesValue, new ArmArray<ArmResource>(), ReadResource);
+            }
+
+            if (templateObject.TryGetValue("outputs", out JToken outputsValue))
+            {
+                template.Outputs = ReadSubobject((JObject)outputsValue, new ArmObject<ArmOutput>(), ReadOutput);
+            }
+
+            return template;
         }
 
-        public void Reset()
+        private (ArmObject<ArmParameter>, ArmObject<ArmVariable>) ReadParametersAndVariables(JObject templateObject)
         {
-            _parameters.Clear();
-            _variables.Clear();
+            ArmObject<ArmParameter> parameters = null;
+            ArmObject<ArmVariable> variables = null;
+
+            if (templateObject.TryGetValue("parameters", out JToken parametersValue))
+            {
+                parameters = ReadSubobject((JObject)parametersValue, new ArmObject<ArmParameter>(), ReadParameter);
+            }
+
+            if (templateObject.TryGetValue("variables", out JToken variablesValue))
+            {
+                variables = ReadSubobject((JObject)variablesValue, new ArmObject<ArmVariable>(), ReadVariable);
+            }
+
+            if (parameters is null && variables is null)
+            {
+                return (parameters, variables);
+            }
+
+            TemplateReferenceCollector.ReferenceCollectionResult result = new TemplateReferenceCollector()
+                .CollectReferences(
+                    ((IDictionary<IArmString, ArmVariable>)variables)?.Values,
+                    ((IDictionary<IArmString, ArmParameter>)parameters)?.Values);
+
+            if (parameters is not null)
+            {
+                parameters = new TemplateParserParameterConstructor<ArmParameter, ArmParameterReferenceExpression>(result.Parameters)
+                    .ConstructParameters();
+            }
+
+            if (variables is not null)
+            {
+                variables = new TemplateParserParameterConstructor<ArmVariable, ArmVariableReferenceExpression>(result.Variables)
+                    .ConstructParameters();
+            }
+
+            return (parameters, variables);
         }
 
         private TObject ReadSubobject<TObject, TValue>(JObject jObj, TObject armObj, Func<string, JToken, TValue> convert) where TObject : ArmObject where TValue : ArmElement
@@ -235,15 +260,12 @@ namespace PSArm.Serialization
                 parameter.AllowedValues = ReadArmArray((JArray)allowedValues);
             }
 
-            _parameters[parameterName] = parameter;
-
             return parameter;
         }
 
         private ArmVariable ReadVariable(string variableName, JToken variableObject)
         {
             var variable = new ArmVariable(new ArmStringLiteral(variableName), ReadValue(variableObject));
-            _variables[variableName] = variable;
             return variable;
         }
 

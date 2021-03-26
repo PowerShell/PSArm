@@ -45,10 +45,15 @@ namespace PSArm.Templates.Operations
             return sb.ToString();
         }
 
-        public override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitFunctionCall(this);
+        protected override TResult Visit<TResult>(IArmVisitor<TResult> visitor) => visitor.VisitFunctionCall(this);
 
         public override IArmElement Instantiate(IReadOnlyDictionary<IArmString, ArmElement> parameters)
         {
+            if (Arguments is null)
+            {
+                return this;
+            }
+
             var args = new ArmExpression[Arguments.Count];
             for (int i = 0; i < Arguments.Count; i++)
             {

@@ -1,5 +1,6 @@
 
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using PSArm.Commands.Template;
 using PSArm.Completion;

@@ -1,5 +1,6 @@
 ﻿
 # Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 # All rights reserved.
 
 param(
@@ -21,6 +22,7 @@ if (-not $PSHeader)
     $PSHeader = @'
 
 # Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 
 '@
@@ -33,6 +35,7 @@ if (-not $CSharpHeader)
     $CSharpHeader = @'
 
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 
 '@

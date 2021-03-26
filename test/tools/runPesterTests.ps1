@@ -1,5 +1,6 @@
 ﻿
 # Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 param(
     $PSArmPath = "$PSScriptRoot/../../out/PSArm",

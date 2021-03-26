@@ -1,5 +1,6 @@
 ﻿
 # Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 # All rights reserved.
 
 Set-Item function:\__OldTabExpansion2 (Get-Content -Raw Function:\TabExpansion2)

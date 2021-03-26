@@ -26,11 +26,6 @@ which is a standalone DSL for building ARM templates.
 PSArm is a PowerShell-embedded DSL exposed through a PowerShell module,
 however it uses Bicep's underlying schema backend to power its ARM resource generation and completions.
 
-## Confidential
-
-This project is currently an internal experiment subject to NDA terms.
-Please do not publicly disclose any information about it.
-
 ## Goals
 
 The primary goal of PSArm is to use the strengths of PowerShell
@@ -540,3 +535,16 @@ the `Azure.Bicep.Types.Az` NuGet package is now the best way to deal with ARM sc
   - There's an argument completer for the `Resource` keyword to complete the `-Type`, `-ApiVersion` and `-Namespace` parameters to list resources for which schemas are available
   - Most completions come from a from-scratch completer written to understand the hierarchical keyword context
     to provide keywords within each schema that work for particular contexts, in particular keywords that work with each resource.
+
+## Legal and Licensing
+
+PSArm is licensed under the [MIT license](LICENSE).
+
+## Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct][conduct-code].
+For more information see the [Code of Conduct FAQ][conduct-FAQ] or contact [opencode@microsoft.com][conduct-email] with any additional questions or comments.
+
+[conduct-code]: https://opensource.microsoft.com/codeofconduct/
+[conduct-FAQ]: https://opensource.microsoft.com/codeofconduct/faq/
+[conduct-email]: mailto:opencode@microsoft.com

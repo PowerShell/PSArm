@@ -244,6 +244,7 @@ namespace PSArm.Commands
 
             await template.ToJson().WriteToAsync(jsonWriter, cancellationToken).ConfigureAwait(false);
             await jsonWriter.FlushAsync(cancellationToken).ConfigureAwait(false);
+            await writer.WriteLineAsync().ConfigureAwait(false);
         }
 
         private async Task<ArmNestedTemplate> AddHashToTemplate(ArmNestedTemplate template, CancellationToken cancellationToken)

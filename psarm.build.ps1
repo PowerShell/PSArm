@@ -83,7 +83,7 @@ task CleanDependencies {
     $env:PSModulePath = $script:OldModulePath
 }
 
-task Build BuildModule,BuildHelp
+task Build InstallDependencies,BuildModule,BuildHelp,CleanDependencies
 
 task BuildModule {
     Push-Location $DotnetSrcDir
@@ -182,6 +182,6 @@ task TestPester InstallDependencies,{
     {
         $env:PSModulePath = $oldPSModulePath
     }
-}
+},CleanDependencies
 
 task . InstallDependencies,Build,Test,CleanDependencies

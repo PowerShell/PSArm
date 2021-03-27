@@ -21,7 +21,7 @@ steps:
     certificateId: 'CP-230012' # Authenticode certificate
     useMinimatch: true # Enable globbing
     pattern: |
-      PSArm/PSArm.dll
+      PSArm/{Desktop,Core}/PSArm.dll
       PSArm/*.{ps1,psm1,psd1,ps1xml}
 
 - template: EsrpSign.yml@ComplianceRepo
@@ -32,7 +32,7 @@ steps:
     certificateId: 'CP-231522' # Third-party certificate
     useMinimatch: true # This enables the use of globbing
     pattern: |
-      PSArm/Newtonsoft.Json.dll
+      PSArm/{Desktop,Core}/Newtonsoft.Json.dll
 
 - pwsh: |
     Import-Module '$(Build.SourcesDirectory)/PSArm/tools/release/ReleaseTools.psm1'

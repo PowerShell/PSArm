@@ -274,11 +274,28 @@ PSArm offers contextual completions on keywords and parameters:
 ## Concepts
 
 PSArm is a hierarchical, context-sensitive domain-specific language embedded within PowerShell.
-That means, you can write an ordinary PowerShell script and embed one or more PSArm blocks inside of it;
-you don't need a special separate file or a different file extension.
+The DSL tries to be as unmagical as possible;
+pretty much all the functionality is ordinary functions, with next to no AST rewriting
+(some has to be done with the `param` block, but that's it).
+That means you can write an ordinary PowerShell script and embed one or more PSArm blocks inside of it,
+or you can call out from your ARM block into another script.
+You can use the PSArm keywords in any script and they will work.
 
-The DSL is signalled by the `Arm` keyword (also available as `New-ArmTemplate`) followed by a scriptblock.
-From this point within the scriptblock, the DSL offers contextual functionality.
+ARM template definitions are written as scriptblock bodies to the `Arm` keyword,
+within which PSArm offers its DSL functionality, complete with contextual completions.
+
+The `Arm` keyword then constructs an object representation of an ARM template,
+which is output when the script is executed.
+So when `Publish-PSArmTemplate` is run on these scripts,
+it simply executes them and collects all the ARM objects they emit.
+
+`Publish-PSArmTemplate` only looks for scripts that end with the `.psarm.ps1` extension
+so that it can support being given directory paths.
+This means you can mix ordinary scripts and PSArm scripts in the same directory
+without `Publish-PSArmTemplate` accidentally executing those ordinary scripts.
+
+`Publish-PSArmTemplate` aggregates all the templates it collects into a nested template
+and writes that out as an ARM JSON file, ready for deployment.
 
 ### Variables and parameters
 
@@ -286,6 +303,16 @@ The `param` block can be used for specifying ARM parameters and variables.
 Variables are simply given a name (their PowerShell variable name) and value (as PowerShell parameter default value).
 Parameters require a type (given as a generic type argument), may optionally have a default value,
 and can also apply constraint attributes like `ValidateSet` to the ARM template.
+
+Parameters can be supplied at publication time using the `-Parameters` parameter of `Publish-PSArmTemplate`.
+These parameters will be supplied as parameters both to the `param` block of an `Arm` body
+and also to the `param` block of the `.psarm.ps1` script (if there is one).
+
+Any parameters that aren't provided at publication time will be left in the final template
+to be provided at deployment.
+This may be especially useful in the case of `securestring` parameters.
+It can also be useful for variable and parameter values that must be calculated at runtime,
+such as `deployment()` or `uniqueString()`.
 
 ### High-level ARM keywords
 

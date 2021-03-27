@@ -10,7 +10,7 @@ using System.Management.Automation;
 namespace PSArm.Commands
 {
     [OutputType(typeof(ArmTemplate))]
-    [Cmdlet(VerbsData.ConvertFrom, ModuleConstants.ModulePrefix + "JsonTemplate")]
+    [Cmdlet(VerbsData.ConvertFrom, "ArmTemplate")]
     public class ConvertFromArmTemplateCommand : PSCmdlet
     {
         private readonly ArmParser _parser;

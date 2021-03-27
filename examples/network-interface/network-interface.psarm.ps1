@@ -1,3 +1,6 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+
 # Specify the ARM template purely within PowerShell
 Arm {
     param(

@@ -182,6 +182,6 @@ task TestPester InstallDependencies,{
     {
         $env:PSModulePath = $oldPSModulePath
     }
-},CleanDependencies
+}
 
-task . InstallDependencies,Build,Test,CleanDependencies
+task . InstallDependencies,Build,Test

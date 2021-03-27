@@ -3,11 +3,13 @@
 
 using PSArm.Commands.Internal;
 using PSArm.Serialization;
+using PSArm.Templates;
 using System;
 using System.Management.Automation;
 
 namespace PSArm.Commands
 {
+    [OutputType(typeof(ArmTemplate))]
     [Cmdlet(VerbsData.ConvertFrom, ModuleConstants.ModulePrefix + "JsonTemplate")]
     public class ConvertFromArmTemplateCommand : PSCmdlet
     {

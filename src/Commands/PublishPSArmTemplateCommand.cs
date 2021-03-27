@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 
 namespace PSArm.Commands
 {
+    [OutputType(typeof(ArmNestedTemplate))]
     [Cmdlet(VerbsData.Publish, ModuleConstants.ModulePrefix + "Template")]
     public class PublishPSArmTemplateCommand : PSCmdlet
     {

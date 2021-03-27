@@ -9,6 +9,7 @@ using System.Management.Automation;
 
 namespace PSArm.Commands.Primitive
 {
+    [OutputType(typeof(ArmArray))]
     [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Array", DefaultParameterSetName = "Body")]
     public class NewPSArmArrayCommand : PSArmKeywordCommand

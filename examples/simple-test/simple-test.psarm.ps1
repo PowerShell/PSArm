@@ -38,7 +38,6 @@ param(
 )
 
 Arm {
-
     Resource $storageAccountName -Namespace 'Microsoft.Storage' -Type 'storageAccounts' -apiVersion '2019-06-01' -kind $kind -Location $location {
         ArmSku $accountType
         Properties {

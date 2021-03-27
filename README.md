@@ -251,13 +251,13 @@ Having to learn and write a new DSL is a pain and takes time,
 especially a complex hierarchical one like PSArm.
 So PSArm comes with two commands to help:
 
-- `ConvertFrom-PSArmJsonTemplate`, which takes in ARM JSON and converts to a PSArm in-memory object
+- `ConvertFrom-ArmTemplate`, which takes in ARM JSON and converts to a PSArm in-memory object
 - `ConvertTo-PSArm`, which takes a PSArm object and writes it out as PSArm PowerShell script
 
 A typical invocation looks like this:
 
 ```powershell
-ConvertFrom-PSArmJsonTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-windows/azuredeploy.json' |
+ConvertFrom-ArmTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-windows/azuredeploy.json' |
     ConvertTo-PSArm -OutFile ./windows-vm.psarm.ps1 -Force
 ```
 

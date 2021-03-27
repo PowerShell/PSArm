@@ -8,6 +8,7 @@ using System.Management.Automation;
 
 namespace PSArm.Commands.Template
 {
+    [OutputType(typeof(ArmEntry))]
     [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Sku")]
     public class NewPSArmSkuCommand : PSArmKeywordCommand

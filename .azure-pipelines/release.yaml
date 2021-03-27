@@ -33,6 +33,8 @@ stages:
     - Signing
     - Build
   condition: in(dependencies.Signing.result, 'Succeeded', 'Skipped')
+  variables:
+    signingSucceeded: eq(dependencies.Signing.result, 'Succeeded')
   jobs:
     - job: Compliance
       pool:
@@ -43,7 +45,7 @@ stages:
       steps:
         - template: templates/steps/releaseCompliance.yaml
           parameters:
-            ${{ if ne(dependencies.Signing.result, 'Succeeded') }}:
+            ${{ if ne(variables.signingSucceeded, true) }}:
               artifact: unsigned
 
   # TODO: Automate release publication by implementing the template steps

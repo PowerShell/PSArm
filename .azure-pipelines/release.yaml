@@ -42,7 +42,7 @@ stages:
       - group: ESRP
       steps:
         - template: templates/steps/releaseCompliance.yaml
-          inputs:
+          parameters:
             ${{ if ne(dependencies.Signing.result, 'Succeeded') }}:
               artifact: unsigned
 

@@ -15,7 +15,7 @@ stages:
 - template: templates/buildAndTest.yaml
 
 - stage: Signing
-  condition: variables.isManualBuild
+  condition: eq(variables.isManualBuild, true)
   dependsOn: Build
   jobs:
     - job: CodeSigning

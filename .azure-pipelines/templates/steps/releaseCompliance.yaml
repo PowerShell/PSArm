@@ -14,14 +14,14 @@ steps:
 
 - template: download.yaml
   parameters:
-    artifact: $(artifact)
+    artifact: ${{ parameters.artifact }}
 
 - template: logArtifacts.yaml
 
 - template: assembly-module-compliance.yml@ComplianceRepo
   parameters:
     # binskim
-    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/$(artifact)/PSArm/*.dll'
+    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/${{ parameters.artifact }}/PSArm/*.dll'
     AnalyzeSymPath: 'SRV*'
     # Component governance
     sourceScanPath: '$(Build.SourcesDirectory)/PSArm'

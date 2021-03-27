@@ -190,11 +190,11 @@ namespace PSArm.Serialization
             Write("Resource ");
             WriteExpression(resource.Name);
             string[] typeParts = resource.Type.CoerceToString().Split(s_armTypeSeparators, count: 2);
-            Write(" -Provider ");
+            Write($" -{nameof(NewPSArmResourceCommand.Namespace)} ");
             WriteString(typeParts[0]);
-            Write(" -Type ");
+            Write($" -{nameof(NewPSArmResourceCommand.Type)} ");
             WriteString(typeParts[1]);
-            Write(" -ApiVersion ");
+            Write($" -{nameof(NewPSArmResourceCommand.ApiVersion)} ");
             WriteExpression(resource.ApiVersion);
             foreach (KeyValuePair<ArmStringLiteral, string> defaultParameter in s_resourceDefaultParameters)
             {

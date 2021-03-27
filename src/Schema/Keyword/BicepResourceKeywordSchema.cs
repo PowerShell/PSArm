@@ -55,7 +55,7 @@ namespace PSArm.Schema.Keyword
         {
             IEnumerable<ResourceSchema> resources = ResourceIndex.SharedInstance.GetResourceSchemas();
 
-            if (parameterName.Is(nameof(NewPSArmResourceCommand.Provider)))
+            if (parameterName.Is(nameof(NewPSArmResourceCommand.Namespace)))
             {
                 FilterForName(ref resources, typeValue);
                 FilterForApiVersion(ref resources, apiVersionValue);
@@ -111,7 +111,7 @@ namespace PSArm.Schema.Keyword
 
         private static ArmResourceName GetResourceNameFromAst(CommandAst commandAst)
         {
-            string provider = null;
+            string @namespace = null;
             string type = null;
             string apiVersion = null;
 
@@ -121,15 +121,15 @@ namespace PSArm.Schema.Keyword
                 if (expectedParameter != ResourceKeywordParameter.None
                     && commandElement is CommandParameterAst parameterAst)
                 {
-                    if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Provider)))
+                    if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Namespace)))
                     {
                         if (parameterAst.Argument != null)
                         {
-                            provider = (parameterAst.Argument as StringConstantExpressionAst)?.Value;
+                            @namespace = (parameterAst.Argument as StringConstantExpressionAst)?.Value;
                         }
                         else
                         {
-                            expectedParameter = ResourceKeywordParameter.Provider;
+                            expectedParameter = ResourceKeywordParameter.Namespace;
                         }
 
                         continue;
@@ -166,8 +166,8 @@ namespace PSArm.Schema.Keyword
 
                 switch (expectedParameter)
                 {
-                    case ResourceKeywordParameter.Provider:
-                        provider = (commandElement as StringConstantExpressionAst)?.Value;
+                    case ResourceKeywordParameter.Namespace:
+                        @namespace = (commandElement as StringConstantExpressionAst)?.Value;
                         break;
 
                     case ResourceKeywordParameter.Type:
@@ -182,14 +182,14 @@ namespace PSArm.Schema.Keyword
                 expectedParameter = ResourceKeywordParameter.None;
             }
 
-            return new ArmResourceName(provider, type, apiVersion);
+            return new ArmResourceName(@namespace, type, apiVersion);
         }
 
         private enum ResourceKeywordParameter
         {
             None,
             Type,
-            Provider,
+            Namespace,
             ApiVersion,
         }
     }

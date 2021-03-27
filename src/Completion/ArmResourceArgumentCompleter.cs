@@ -51,11 +51,11 @@ namespace PSArm.Completion
 
         private ArmResourceName GetResourceNameFromParameters(IDictionary fakeBoundParameters)
         {
-            var provider = fakeBoundParameters[nameof(NewPSArmResourceCommand.Provider)] as string;
+            var @namespace = fakeBoundParameters[nameof(NewPSArmResourceCommand.Namespace)] as string;
             var type = fakeBoundParameters[nameof(NewPSArmResourceCommand.Type)] as string;
             var apiVersion = fakeBoundParameters[nameof(NewPSArmResourceCommand.ApiVersion)] as string;
 
-            return new ArmResourceName(provider, type, apiVersion);
+            return new ArmResourceName(@namespace, type, apiVersion);
         }
 
         private static IEnumerable<CompletionResult> GetCompletionResultsFromStrings(IEnumerable<string> stringValues)

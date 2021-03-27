@@ -75,7 +75,7 @@ Arm {
     $subnetRef = (resourceId 'Microsoft.Network/virtualNetworks/subnets' $virtualNetworkName $subnetName)
   )
 
-  Resource $networkInterfaceName -Provider 'Microsoft.Network' -Type 'networkInterfaces' -ApiVersion '2020-06-01' -Location $location {
+  Resource $networkInterfaceName -Namespace 'Microsoft.Network' -Type 'networkInterfaces' -ApiVersion '2020-06-01' -Location $location {
     Properties {
       IpConfigurations {
         name 'ipconfig1'
@@ -100,7 +100,7 @@ Arm {
       resourceId 'Microsoft.Network/publicIpAddresses/' $publicIpAddressName
     )
   }
-  Resource $networkSecurityGroupName -Provider 'Microsoft.Network' -Type 'networkSecurityGroups' -ApiVersion '2020-06-01' -Location $location {
+  Resource $networkSecurityGroupName -Namespace 'Microsoft.Network' -Type 'networkSecurityGroups' -ApiVersion '2020-06-01' -Location $location {
     Properties {
       SecurityRules {
         name 'SSH'
@@ -117,7 +117,7 @@ Arm {
       }
     }
   }
-  Resource $virtualNetworkName -Provider 'Microsoft.Network' -Type 'virtualNetworks' -ApiVersion '2020-06-01' -Location $location {
+  Resource $virtualNetworkName -Namespace 'Microsoft.Network' -Type 'virtualNetworks' -ApiVersion '2020-06-01' -Location $location {
     Properties {
       AddressSpace {
         AddressPrefixes $addressPrefix
@@ -132,7 +132,7 @@ Arm {
       }
     }
   }
-  Resource $publicIpAddressName -Provider 'Microsoft.Network' -Type 'publicIPAddresses' -ApiVersion '2020-06-01' -Location $location {
+  Resource $publicIpAddressName -Namespace 'Microsoft.Network' -Type 'publicIPAddresses' -ApiVersion '2020-06-01' -Location $location {
     ArmSku 'Basic' -Tier 'Regional'
     Properties {
       PublicIpAllocationMethod 'Dynamic'
@@ -143,7 +143,7 @@ Arm {
       IdleTimeoutInMinutes 4
     }
   }
-  Resource $VMName -Provider 'Microsoft.Compute' -Type 'virtualMachines' -ApiVersion '2020-06-01' -Location $location {
+  Resource $VMName -Namespace 'Microsoft.Compute' -Type 'virtualMachines' -ApiVersion '2020-06-01' -Location $location {
     Properties {
       HardwareProfile {
         VmSize $VmSize 

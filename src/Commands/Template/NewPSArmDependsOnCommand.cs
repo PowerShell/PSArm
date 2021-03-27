@@ -8,6 +8,7 @@ using System.Management.Automation;
 
 namespace PSArm.Commands.Template
 {
+    [OutputType(typeof(ArmEntry))]
     [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "DependsOn", DefaultParameterSetName = "Value")]
     public class NewPSArmDependsOnCommand : PSArmKeywordCommand

@@ -7,6 +7,7 @@ using System.Management.Automation;
 
 namespace PSArm.Commands.Primitive
 {
+    [OutputType(typeof(ArmElement))]
     [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Element", DefaultParameterSetName = "Value")]
     public class NewPSArmElementCommand : PSArmKeywordCommand

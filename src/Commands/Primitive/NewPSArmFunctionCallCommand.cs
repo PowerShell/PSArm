@@ -8,6 +8,7 @@ using System.Management.Automation;
 
 namespace PSArm.Commands.Primitive
 {
+    [OutputType(typeof(ArmFunctionCallExpression))]
     [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "FunctionCall")]
     public class NewPSArmFunctionCallCommand : Cmdlet

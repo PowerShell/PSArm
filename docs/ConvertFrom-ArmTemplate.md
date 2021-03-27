@@ -111,7 +111,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSArm.Templates.ArmTemplate
 ## NOTES
 
 ## RELATED LINKS

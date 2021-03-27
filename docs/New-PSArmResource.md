@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-PSArmResource
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Declare an ARM resource in PSArm.
 
 ## SYNTAX
 
@@ -18,21 +18,32 @@ New-PSArmResource [-Name] <IArmString> -ApiVersion <IArmString> -Provider <IArmS
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Resource` keyword declares ARM resources in PSArm,
+to combine into templates for deployment.
+It is intended to be used in the body of the `Arm` keyword.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Resource $storageAccountName -Provider 'Microsoft.Storage' -Type 'storageAccounts' -apiVersion '2019-06-01' -kind 'StorageV2' -Location 'WestUS2' {
+    ArmSku 'Standard_LRS'
+    Properties {
+        accessTier 'Hot'
+        minimumTLSVersion 'TLS1_2'
+        supportsHTTPSTrafficOnly 1
+        allowBlobPublicAccess 1
+        allowSharedKeyAccess 1
+    }
+}
 ```
 
-{{ Add example description here }}
+Declares a storage account resource in the PSArm DSL.
 
 ## PARAMETERS
 
 ### -ApiVersion
-{{ Fill ApiVersion Description }}
+The API version of the declared ARM resource.
 
 ```yaml
 Type: IArmString
@@ -47,7 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### -Body
-{{ Fill Body Description }}
+The definition of the ARM resource, given as a scriptblock in PSArm.
 
 ```yaml
 Type: ScriptBlock
@@ -62,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+The name of the resource.
 
 ```yaml
 Type: IArmString
@@ -76,8 +87,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Provider
-{{ Fill Provider Description }}
+### -Type
+The type of the resource being defined.
 
 ```yaml
 Type: IArmString
@@ -91,8 +102,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Type
-{{ Fill Type Description }}
+### -Provider
+{{ Fill Provider Description }}
 
 ```yaml
 Type: IArmString
@@ -115,7 +126,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSArm.Templates.Primitives.ArmEntry
 ## NOTES
 
 ## RELATED LINKS

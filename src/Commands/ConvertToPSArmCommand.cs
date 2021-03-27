@@ -10,6 +10,7 @@ using System.Management.Automation;
 
 namespace PSArm.Commands
 {
+    [OutputType(typeof(string))]
     [Cmdlet(VerbsData.ConvertTo, ModuleConstants.ModulePrefix)]
     public class ConvertToPSArmCommand : PSCmdlet
     {

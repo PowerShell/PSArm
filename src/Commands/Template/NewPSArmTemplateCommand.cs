@@ -13,6 +13,7 @@ using System.Management.Automation;
 
 namespace PSArm.Commands.Template
 {
+    [OutputType(typeof(ArmTemplate))]
     [Alias(KeywordName)]
     [Cmdlet(VerbsCommon.New, ModuleConstants.ModulePrefix + "Template")]
     public class NewPSArmTemplateCommand : PSArmKeywordCommand

@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-PSArmTemplate
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Define an Azure ARM template in script.
 
 ## SYNTAX
 
@@ -17,21 +17,33 @@ New-PSArmTemplate [-Name <String>] [-Body] <ScriptBlock> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Defines an Azure ARM template in the body scriptblock.
+This cmdlet is intended to be used in the form of the `Arm` keyword for more fluent reading.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Arm {
+    Resource $storageAccountName -Provider 'Microsoft.Storage' -Type 'storageAccounts' -apiVersion '2019-06-01' -kind 'StorageV2' -Location 'WestUS2' {
+        ArmSku 'Standard_LRS'
+        Properties {
+            accessTier 'Hot'
+            minimumTLSVersion 'TLS1_2'
+            supportsHTTPSTrafficOnly 1
+            allowBlobPublicAccess 1
+            allowSharedKeyAccess 1
+        }
+    }
+}
 ```
 
-{{ Add example description here }}
+Declares a very simple ARM template that will deploy a new storage account.
 
 ## PARAMETERS
 
 ### -Body
-{{ Fill Body Description }}
+The ARM template declaration in the PSArm DSL.
 
 ```yaml
 Type: ScriptBlock
@@ -46,7 +58,10 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+The name of the ARM template.
+If not provided, the name of the declaring file will be used.
+If multiple PSArm templates are declared in the same file,
+numbers will be added.
 
 ```yaml
 Type: String
@@ -69,7 +84,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSArm.Templates.ArmTemplate
 ## NOTES
 
 ## RELATED LINKS

@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# ConvertFrom-PSArmJsonTemplate
+# ConvertFrom-ArmTemplate
 
 ## SYNOPSIS
 Convert from an ARM JSON template to object form.
@@ -14,17 +14,17 @@ Convert from an ARM JSON template to object form.
 
 ### Path
 ```
-ConvertFrom-PSArmJsonTemplate [-Path] <String[]> [<CommonParameters>]
+ConvertFrom-ArmTemplate [-Path] <String[]> [<CommonParameters>]
 ```
 
 ### Uri
 ```
-ConvertFrom-PSArmJsonTemplate [-Uri] <Uri[]> [<CommonParameters>]
+ConvertFrom-ArmTemplate [-Uri] <Uri[]> [<CommonParameters>]
 ```
 
 ### Input
 ```
-ConvertFrom-PSArmJsonTemplate [-Input] <String[]> [<CommonParameters>]
+ConvertFrom-ArmTemplate [-Input] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,21 +36,21 @@ or written out either back to JSON or as a PSArm script using `ConvertTo-PSArmTe
 
 ### Example 1
 ```powershell
-PS C:\> $template = ConvertFrom-PSArmJsonTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
+PS C:\> $template = ConvertFrom-ArmTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json'
 ```
 
 Downloads the template at the given URL, parses it and deserializes it into an in-memory PSArm template object.
 
 ### Example 2
 ```powershell
-PS C:\> ConvertFrom-PSArmJsonTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json' | ConvertTo-PSArm -OutFile ./linux-vm.psarm.ps1
+PS C:\> ConvertFrom-ArmTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json' | ConvertTo-PSArm -OutFile ./linux-vm.psarm.ps1
 ```
 
 Downloads the template at the given URL, converts it from ARM JSON to a PSArm template object and then converts that to a PSArm script.
 
 ### Example 2
 ```powershell
-PS C:\> (ConvertFrom-PSArmJsonTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json').ToJsonString()
+PS C:\> (ConvertFrom-ArmTemplate -Uri 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vm-simple-linux/azuredeploy.json').ToJsonString()
 ```
 
 Downloads the template at the given URL, converts it from ARM JSON to a PSArm template object and then serializes it back to a JSON string.

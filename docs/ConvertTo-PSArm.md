@@ -20,13 +20,13 @@ ConvertTo-PSArm -InputTemplate <ArmTemplate[]> [-OutFile <String>] [-PassThru] [
 Converts a PSArm template object into a PSArm PowerShell script
 that, when executed, will generate that template.
 This is most useful for converting from ARM JSON templates
-after `ConvertFrom-PSArmJsonTemplate`.
+after `ConvertFrom-ArmTemplate`.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> ConvertFrom-PSArmJsonTemplate -Path ./examples/windows-vm/template.json | ConvertTo-PSArm -OutFile ./windows-vm.psarm.ps1
+PS C:\> ConvertFrom-ArmTemplate -Path ./examples/windows-vm/template.json | ConvertTo-PSArm -OutFile ./windows-vm.psarm.ps1
 ```
 
 Converts a JSON ARM template file to a PSArm script.

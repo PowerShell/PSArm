@@ -335,7 +335,7 @@ that specifically configures the `ipConfigurations` property.
 Whereas in `Microsoft.Network/publicIpAddresses`, `ipConfigurations` is meaningless,
 but `publicIPAllocationMethod` allows you to configure the IP allocation method.
 
-### ARM functions and expressions
+### ARM template functions and expressions
 
 The ARM template language has a template expression language embedded in JSON string values that it evaluates at deployment time,
 allowing parameterization and deduplication of templates.
@@ -343,13 +343,13 @@ allowing parameterization and deduplication of templates.
 In PSArm, ordinary PowerShell variables can be used, obviating the need for many ARM variable expressions,
 but there are still a number of cases where an ARM expression may be required:
 
-- A builtin ARM function that must be evaluated at deployment time, like `resourceGroup()` or `utcNow()`
+- A builtin ARM template function that must be evaluated at deployment time, like `resourceGroup()` or `utcNow()`
 - A variable is needed to be evaluated only once, such as using `uniqueString()` to provide a hash value reused everywhere in a template
 - The template is to be constructed with PowerShell, but parameterized for later deployment without PowerShell or without the PSArm module
 
 In these cases, it's still desirable to be able to write ARM expressions into a template,
 but writing these as strings in PSArm would be a cumbersome experience.
-Instead PSArm provides ARM builtin expression functions as its own keywords.
+Instead PSArm provides ARM builtin expression functions as PowerShell functions.
 These functions allow you to use PowerShell syntax to express function application and member access:
 
 - `(resourceGroup)` becomes `[resourceGroup()]`

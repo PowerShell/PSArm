@@ -36,13 +36,11 @@ but you can use it too to add custom entries to ARM templates.
 RawEntry 'key' 'value'
 ```
 
-Creates an entry that in a parent body will be rendered like:
+Creates an entry that in a parent body will be rendered into JSON like:
 
-```json
 {
     "key": "value"
 }
-```
 
 ### Example 2
 ```powershell
@@ -53,9 +51,8 @@ RawEntry 'object' {
 }
 ```
 
-Creates an entry that in a parent body will be rendered like:
+Creates an entry that in a parent body will be rendered into JSON like:
 
-```json
 {
     "object": {
         "one": "value1",
@@ -63,7 +60,6 @@ Creates an entry that in a parent body will be rendered like:
         "three": "value3"
     }
 }
-```
 
 ## PARAMETERS
 

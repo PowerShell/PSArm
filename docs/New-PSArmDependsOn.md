@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-PSArmDependsOn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Declares an ARM template dependency
 
 ## SYNTAX
 
@@ -23,36 +23,24 @@ New-PSArmDependsOn [-Body] <ScriptBlock> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Declares a dependency from the resource this is used in to the resources it refers to.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+DependsOn @(
+    resourceId 'Microsoft.Storage/storageAccounts' $storageAccountName
+    resourceId 'Microsoft.Network/networkInterfaces' $nicName
+)
 ```
 
-{{ Add example description here }}
+Adds an entry in the current resource that it depends on the two other resources referred to.
 
 ## PARAMETERS
 
-### -Body
-{{ Fill Body Description }}
-
-```yaml
-Type: ScriptBlock
-Parameter Sets: Body
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Value
-{{ Fill Value Description }}
+References to the resources depended on.
 
 ```yaml
 Type: IArmString[]
@@ -75,7 +63,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSArm.Templates.Primitives.ArmEntry
 ## NOTES
 
 ## RELATED LINKS

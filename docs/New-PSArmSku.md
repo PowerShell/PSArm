@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-PSArmSku
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Declare the SKU of the given resource
 
 ## SYNTAX
 
@@ -18,21 +18,22 @@ New-PSArmSku [-Name] <IArmString> [-Tier <IArmString>] [-Size <IArmString>] [-Fa
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `ArmSku` keyword specifies what SKU the given resource is.
+Not all `ArmSku` parameters will apply to every resource
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+ArmSku 'Basic' -Tier 'Regional'
 ```
 
-{{ Add example description here }}
+Declares the resource to have a SKU with name `Basic` and tier `Regional`
 
 ## PARAMETERS
 
 ### -Capacity
-{{ Fill Capacity Description }}
+The SKU capacity required
 
 ```yaml
 Type: IArmString
@@ -47,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -Family
-{{ Fill Family Description }}
+The SKU family required
 
 ```yaml
 Type: IArmString
@@ -62,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+The SKU name required
 
 ```yaml
 Type: IArmString
@@ -77,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -Size
-{{ Fill Size Description }}
+The SKU size required
 
 ```yaml
 Type: IArmString
@@ -92,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -Tier
-{{ Fill Tier Description }}
+The SKU tier required
 
 ```yaml
 Type: IArmString
@@ -115,7 +116,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSArm.Templates.PRimitives.ArmEntry
 ## NOTES
 
 ## RELATED LINKS

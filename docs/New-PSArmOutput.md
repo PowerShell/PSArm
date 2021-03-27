@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-PSArmOutput
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Declare outputs of the template
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ New-PSArmOutput [-Name] <IArmString> -Type <IArmString> -Value <IArmString> [<Co
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Declares any outputs of the ARM template. Best used as the `Output` keyword
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Output 'hostname' -Type 'string' -Value (reference $publicIPAddressName).dnsSettings.fqdn
 ```
 
-{{ Add example description here }}
+Declares the `hostname` output, which outputs the fully qualified domain name of the public IP address, which is a string.
 
 ## PARAMETERS
 
 ### -Name
-{{ Fill Name Description }}
+The name of the output
 
 ```yaml
 Type: IArmString
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
-{{ Fill Type Description }}
+The ARM type of the output
 
 ```yaml
 Type: IArmString
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{ Fill Value Description }}
+The reference expression for the output
 
 ```yaml
 Type: IArmString
@@ -84,7 +84,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSArm.Templates.Primitives.ArmEntry
 ## NOTES
 
 ## RELATED LINKS

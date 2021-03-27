@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-PSArmFunctionCall
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Low-level way to declare a function call in ARM
 
 ## SYNTAX
 
@@ -17,21 +17,22 @@ New-PSArmFunctionCall [-Name] <IArmString> [-Arguments <ArmExpression[]>] [<Comm
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+`New-PSArmFunctionCall`, better used as the `RawCall` keyword,
+specifies an ARM function call with the given name and arguments.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+RawCall concat prefix suffic
 ```
 
-{{ Add example description here }}
+Specifies the parameter call `[concat('prefix', 'suffix')]`.
 
 ## PARAMETERS
 
 ### -Arguments
-{{ Fill Arguments Description }}
+The arguments to the function call.
 
 ```yaml
 Type: ArmExpression[]
@@ -46,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+The name of the function being called.
 
 ```yaml
 Type: IArmString
@@ -69,7 +70,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Object
+### PSArm.Templates.Operations.ArmFunctionCallExpression
 ## NOTES
 
 ## RELATED LINKS

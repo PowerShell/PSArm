@@ -29,7 +29,9 @@ stages:
         - template: templates/steps/codeSigning.yaml
 
 - stage: Compliance
-  dependsOn: Signing
+  dependsOn:
+    - Signing
+    - Build
   condition: in(dependencies.Signing.result, 'Succeeded', 'Skipped')
   jobs:
     - job: Compliance
@@ -40,6 +42,9 @@ stages:
       - group: ESRP
       steps:
         - template: templates/steps/releaseCompliance.yaml
+          inputs:
+            ${{ if ne(dependencies.Signing.result, 'Succeeded') }}:
+              artifact: unsigned
 
   # TODO: Automate release publication by implementing the template steps
   # - stage: Publish

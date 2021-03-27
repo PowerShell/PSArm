@@ -1,6 +1,7 @@
 variables:
   # Avoid expensive initialization of dotnet cli, see: https://donovanbrown.com/post/Stop-wasting-time-during-NET-Core-builds
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  isManualBuild: eq(variables['Build.Reason'], 'Manual')
 
 resources:
   repositories:
@@ -14,6 +15,7 @@ stages:
 - template: templates/buildAndTest.yaml
 
 - stage: Signing
+  condition: eq(variables.isManualBuild, true)
   dependsOn: Build
   jobs:
     - job: CodeSigning
@@ -27,7 +29,12 @@ stages:
         - template: templates/steps/codeSigning.yaml
 
 - stage: Compliance
-  dependsOn: Signing
+  dependsOn:
+    - Signing
+    - Build
+  condition: in(dependencies.Signing.result, 'Succeeded', 'Skipped')
+  variables:
+    signingSucceeded: eq(dependencies.Signing.result, 'Succeeded')
   jobs:
     - job: Compliance
       pool:
@@ -37,6 +44,9 @@ stages:
       - group: ESRP
       steps:
         - template: templates/steps/releaseCompliance.yaml
+          parameters:
+            ${{ if ne(variables.signingSucceeded, true) }}:
+              artifact: unsigned
 
   # TODO: Automate release publication by implementing the template steps
   # - stage: Publish

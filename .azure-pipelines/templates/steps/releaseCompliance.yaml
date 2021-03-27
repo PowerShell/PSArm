@@ -1,3 +1,8 @@
+parameters:
+  - name: artifact
+    type: string
+    default: signed
+
 steps:
 
 # From https://github.com/PowerShell/Compliance
@@ -9,14 +14,14 @@ steps:
 
 - template: download.yaml
   parameters:
-    artifact: signed
+    artifact: ${{ parameters.artifact }}
 
 - template: logArtifacts.yaml
 
 - template: assembly-module-compliance.yml@ComplianceRepo
   parameters:
     # binskim
-    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/signed/PSArm/*.dll'
+    AnalyzeTarget: '$(Build.ArtifactStagingDirectory)/${{ parameters.artifact }}/PSArm/*.dll'
     AnalyzeSymPath: 'SRV*'
     # Component governance
     sourceScanPath: '$(Build.SourcesDirectory)/PSArm'

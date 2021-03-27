@@ -16,9 +16,9 @@ Arm {
     # Use existing PowerShell concepts to make ARM easier
     $PSDefaultParameterValues['Resource:Location'] = $rgLocation
 
-    # Resources types, rather than being <Provider>/<Type> have this broken into -Provider <Provider> -Type <Type>
-    # Completions are available for Provider and ApiVersion, and once these are specified, also for Type
-    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
+    # Resources types, rather than being <Namespace>/<Type> have this broken into -Namespace <Namespace> -Type <Type>
+    # Completions are available for Namespace and ApiVersion, and once these are specified, also for Type
+    Resource (Concat $vnetNamespace $namePrefix '-subnet') -Namespace Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
         Properties {
             # Each resource defines its properties as commands within its own body
             AddressPrefix 10.0.0.0/24
@@ -27,14 +27,14 @@ Arm {
 
     # Piping, looping and commands like ForEach-Object all work
     '-pip1','-pip2' | ForEach-Object {
-        Resource (Concat $namePrefix $_) -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type publicIpAddresses {
+        Resource (Concat $namePrefix $_) -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type publicIpAddresses {
             Properties {
                 PublicIPAllocationMethod Dynamic
             }
         }
     }
 
-    Resource (Concat $namePrefix '-nic') -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+    Resource (Concat $namePrefix '-nic') -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInterfaces {
         Properties {
             # IpConfigurations is an array property, but PSArm knows this
             # All occurences of array properties will be collected into an array when the template is published

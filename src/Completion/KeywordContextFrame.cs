@@ -94,7 +94,7 @@ namespace PSArm.Completion
                     {
                         expect = 2;
                     }
-                    else if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Provider)))
+                    else if (parameterAst.ParameterName.Is(nameof(NewPSArmResourceCommand.Namespace)))
                     {
                         expect = 3;
                     }

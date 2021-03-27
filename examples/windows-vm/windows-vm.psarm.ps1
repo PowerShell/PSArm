@@ -63,11 +63,11 @@ Arm {
     $subnetRef = (resourceId 'Microsoft.Network/virtualNetworks/subnets' $virtualNetworkName $subnetName)
   )
 
-  Resource $storageAccountName -Provider 'Microsoft.Storage' -Type 'storageAccounts' -ApiVersion '2019-06-01' -Location $location -Kind 'Storage' {
+  Resource $storageAccountName -Namespace 'Microsoft.Storage' -Type 'storageAccounts' -ApiVersion '2019-06-01' -Location $location -Kind 'Storage' {
     ArmSku 'Standard_LRS'
   }
 
-  Resource $publicIPName -Provider 'Microsoft.Network' -Type 'publicIPAddresses' -ApiVersion '2020-06-01' -Location $location {
+  Resource $publicIPName -Namespace 'Microsoft.Network' -Type 'publicIPAddresses' -ApiVersion '2020-06-01' -Location $location {
     ArmSku $publicIpSku
     properties {
       publicIPAllocationMethod $publicIPAllocationMethod
@@ -77,7 +77,7 @@ Arm {
     }
   }
 
-  Resource $networkSecurityGroupName -Provider 'Microsoft.Network' -Type 'networkSecurityGroups' -ApiVersion '2020-06-01' -Location $location {
+  Resource $networkSecurityGroupName -Namespace 'Microsoft.Network' -Type 'networkSecurityGroups' -ApiVersion '2020-06-01' -Location $location {
     properties {
       securityRules {
         name 'default-allow-3389'
@@ -95,7 +95,7 @@ Arm {
     }
   }
 
-  Resource $virtualNetworkName -Provider 'Microsoft.Network' -Type 'virtualNetworks' -ApiVersion '2020-06-01' -Location $location {
+  Resource $virtualNetworkName -Namespace 'Microsoft.Network' -Type 'virtualNetworks' -ApiVersion '2020-06-01' -Location $location {
     properties {
       addressSpace {
         addressPrefixes $addressPrefix
@@ -113,7 +113,7 @@ Arm {
     DependsOn (resourceId 'Microsoft.Network/networkSecurityGroups' $networkSecurityGroupName)
   }
 
-  Resource $nicName -Provider 'Microsoft.Network' -Type 'networkInterfaces' -ApiVersion '2020-06-01' -Location $location {
+  Resource $nicName -Namespace 'Microsoft.Network' -Type 'networkInterfaces' -ApiVersion '2020-06-01' -Location $location {
     properties {
       ipConfigurations {
         name 'ipconfig1'
@@ -134,7 +134,7 @@ Arm {
     )
   }
 
-  Resource $vmName -Provider 'Microsoft.Compute' -Type 'virtualMachines' -ApiVersion '2020-06-01' -Location $location {
+  Resource $vmName -Namespace 'Microsoft.Compute' -Type 'virtualMachines' -ApiVersion '2020-06-01' -Location $location {
     properties {
       hardwareProfile {
         vmSize $vmSize

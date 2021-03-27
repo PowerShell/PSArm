@@ -42,7 +42,7 @@ namespace PSArm.Commands.Template
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
         [Parameter(Mandatory = true)]
-        public IArmString Provider { get; set; }
+        public IArmString Namespace { get; set; }
 
         [ArgumentCompleter(typeof(ArmResourceArgumentCompleter))]
         [Parameter(Mandatory = true)]
@@ -55,7 +55,7 @@ namespace PSArm.Commands.Template
         {
             if (!TryGetResourceSchema(out ResourceSchema resourceSchema))
             {
-                var resourceId = $"{Provider}/{Type}@{ApiVersion}";
+                var resourceId = $"{Namespace}/{Type}@{ApiVersion}";
                 var exception = new KeyNotFoundException($"Unable to find resource '{resourceId}'");
                 this.ThrowTerminatingError(
                     exception,
@@ -152,10 +152,10 @@ namespace PSArm.Commands.Template
 
         private ArmElement ComposeResourceTypeElement()
         {
-            string provider = Provider.CoerceToString();
+            string @namespace = Namespace.CoerceToString();
             string type = Type.CoerceToString();
 
-            return new ArmStringLiteral($"{provider}/{type}");
+            return new ArmStringLiteral($"{@namespace}/{type}");
         }
 
         private bool TryGetResourceSchema(out ResourceSchema resourceSchema)
@@ -167,7 +167,7 @@ namespace PSArm.Commands.Template
             }
 
             if (ResourceIndex.SharedInstance.TryGetResourceSchema(
-                    Provider?.CoerceToString(),
+                    Namespace?.CoerceToString(),
                     Type?.CoerceToString(),
                     ApiVersion?.CoerceToString(),
                     out resourceSchema))

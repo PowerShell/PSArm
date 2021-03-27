@@ -9,13 +9,13 @@ using System.Management.Automation;
 namespace PSArm.Commands
 {
     [Cmdlet(VerbsData.ConvertFrom, ModuleConstants.ModulePrefix + "JsonTemplate")]
-    public class ConvertFromPSArmJsonTemplateCommand : PSCmdlet
+    public class ConvertFromArmTemplateCommand : PSCmdlet
     {
         private readonly ArmParser _parser;
 
         private int _templateCount;
 
-        public ConvertFromPSArmJsonTemplateCommand()
+        public ConvertFromArmTemplateCommand()
         {
             _parser = new ArmParser();
             _templateCount = 0;

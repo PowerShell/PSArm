@@ -17,13 +17,13 @@ Describe "PSArm completions" {
             ExpectedCompletions = @(
                 @{ Completion = '-Name'; ListItem = 'Name' }
                 @{ Completion = '-Type'; ListItem = 'Type' }
-                @{ Completion = '-Provider'; ListItem = 'Provider' }
+                @{ Completion = '-Namespace'; ListItem = 'Namespace' }
                 @{ Completion = '-Body'; ListItem = 'Body' }
                 @{ Completion = '-ApiVersion'; ListItem = 'ApiVersion' }
             )
         }
         @{
-            StringToComplete = 'Arm { Resource "banana" -Provider '
+            StringToComplete = 'Arm { Resource "banana" -Namespace '
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = 'Microsoft.Network' }
@@ -37,21 +37,21 @@ Describe "PSArm completions" {
             )
         }
         @{
-            StringToComplete = 'Arm { Resource "banana" -Provider Microsoft.Network -ApiVersion '
+            StringToComplete = 'Arm { Resource "banana" -Namespace Microsoft.Network -ApiVersion '
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = '2019-11-01' }
             )
         }
         @{
-            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Provider '
+            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Namespace '
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = 'Microsoft.Network' }
             )
         }
         @{
-            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type '
+            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type '
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = 'virtualRouters' }
@@ -60,7 +60,7 @@ Describe "PSArm completions" {
             )
         }
         @{
-            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInter'
+            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInter'
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = 'networkInterfaces' }
@@ -68,7 +68,7 @@ Describe "PSArm completions" {
             )
         }
         @{
-            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces/'
+            StringToComplete = 'Arm { Resource "banana" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInterfaces/'
             Type = 'ParameterValue'
             ExpectedCompletions = @(
                 @{ Completion = 'networkInterfaces/tapConfigurations' }
@@ -86,7 +86,7 @@ Describe "PSArm completions" {
         @{
             StringToComplete = '
                 Arm {
-                    Resource banana -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                    Resource banana -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInterfaces {
                         '
             Type = 'Command'
             ExpectedCompletions = @(
@@ -100,7 +100,7 @@ Describe "PSArm completions" {
         @{
             StringToComplete = '
                 Arm {
-                    Resource ''banana'' -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                    Resource ''banana'' -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInterfaces {
                         Properties {
                             '
             Type = 'Command'
@@ -114,7 +114,7 @@ Describe "PSArm completions" {
         @{
             StringToComplete = '
                 Arm {
-                    Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                    Resource "banana" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInterfaces {
                         properties {
                             IpConfigurations -'
             Type = 'ParameterName'
@@ -125,7 +125,7 @@ Describe "PSArm completions" {
         @{
             StringToComplete = '
                 Arm {
-                    Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                    Resource "banana" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInterfaces {
                         Properties {
                             ipConfigurations {
                                 properties {
@@ -138,7 +138,7 @@ Describe "PSArm completions" {
         @{
             StringToComplete = '
                 Arm {
-                    Resource "banana" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type networkInterfaces {
+                    Resource "banana" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type networkInterfaces {
                         Properties {
                             ipConfigurations {
                                 properties {

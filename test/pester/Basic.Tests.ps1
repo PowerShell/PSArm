@@ -16,7 +16,7 @@ Describe "Basic PSArm template elements" {
         @{
             CaseName = 'single resource'
             Template = Arm {
-                Resource "Example" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type virtualNetworks/subnets {
+                Resource "Example" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type virtualNetworks/subnets {
                     Properties {
                         AddressPrefix 10.0.0.0/24
                     }
@@ -42,7 +42,7 @@ Describe "Basic PSArm template elements" {
             CaseName = 'two resources'
             Template = Arm {
                 '-pip1','-pip2' | ForEach-Object {
-                    Resource -Location WestUS2 "ex$_" -ApiVersion 2019-11-01 -Provider Microsoft.Network -Type publicIPAddresses {
+                    Resource -Location WestUS2 "ex$_" -ApiVersion 2019-11-01 -Namespace Microsoft.Network -Type publicIPAddresses {
                         Properties {
                             PublicIPAllocationMethod Dynamic
                         }

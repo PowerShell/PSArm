@@ -8,21 +8,21 @@ $rgLocation = 'WestUS2'
 Arm {
     $PSDefaultParameterValues['Resource:Location'] = $rgLocation
 
-    Resource "${vnetNamespace}${namePrefix}-subnet" -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
+    Resource "${vnetNamespace}${namePrefix}-subnet" -Namespace Microsoft.Network -ApiVersion 2019-11-01 -Type virtualNetworks/subnets {
         properties {
             addressPrefix 10.0.0.0/24
         }
     }
 
     'pip1','pip2' | ForEach-Object {
-        Resource "$namePrefix-$_" -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type publicIPAddresses {
+        Resource "$namePrefix-$_" -Namespace Microsoft.Network -ApiVersion 2019-11-01 -Type publicIPAddresses {
             properties {
                 publicIPAllocationMethod Dynamic
             }
         }
     }
 
-    Resource "$namePrefix-nic"  -Provider Microsoft.Network -ApiVersion 2019-11-01 -Type networkInterfaces {
+    Resource "$namePrefix-nic"  -Namespace Microsoft.Network -ApiVersion 2019-11-01 -Type networkInterfaces {
         properties {
             ipConfigurations {
                 name 'myConfig'

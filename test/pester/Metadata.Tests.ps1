@@ -1,8 +1,16 @@
 Describe "Module and assembly metadata" {
     It "Should have matching module and assembly metadata" {
         $module = Get-Module 'PSArm'
-        $assembly = (Get-Command Publish-PSArmTemplate).ImplementingType.Assembly
+        $asmVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($module.Path)
 
-        $module.Version | Should -Be $assembly.GetName().Version
+        $moduleVersion = "$($module.Version)"
+
+        if ($module.PrivateData.PSData.Prerelease)
+        {
+            $prerelease = $module.PrivateData.PSData.Prerelease
+            $moduleVersion = "$moduleVersion-$prerelease"
+        }
+
+        $asmVersion.ProductVersion | Should -BeExactly $moduleVersion
     }
 }

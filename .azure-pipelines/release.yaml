@@ -1,6 +1,7 @@
 variables:
   # Avoid expensive initialization of dotnet cli, see: https://donovanbrown.com/post/Stop-wasting-time-during-NET-Core-builds
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  isManualBuild: $[eq(variables['Build.Reason'], 'Manual')]
 
 resources:
   repositories:
@@ -14,7 +15,7 @@ stages:
 - template: templates/buildAndTest.yaml
 
 - stage: Signing
-  condition: eq(variables['Build.Reason'], 'Manual')
+  condition: $(isManualBuild)
   dependsOn: Build
   jobs:
     - job: CodeSigning
@@ -29,6 +30,7 @@ stages:
 
 - stage: Compliance
   dependsOn: Signing
+  condition: in(dependencies.Signing.result, 'Succeeded', 'Skipped')
   jobs:
     - job: Compliance
       pool:

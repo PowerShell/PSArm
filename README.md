@@ -240,9 +240,10 @@ It performs the following tasks:
   - `-NoWriteFile` can be specified to prevent the file being written
 - `-Verbose` will give a good account of what `Publish-PSArmTemplate` is doing
 
-For now, `Publish-PSArmTemplate` only write out a JSON file rather than deploying the ARM template,
-since that functionality is provided by Azure PowerShell.
-However, we're always open to feedback there.
+`Publish-PSArmTemplate` will write a JSON file to disk only,
+and is not intended to deploy the resulting ARM template.
+Deployment functionality is already provided and maintained
+in Azure PowerShell commands and the `az` CLI.
 
 ## Conversion cmdlets
 

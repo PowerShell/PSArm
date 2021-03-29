@@ -21,8 +21,11 @@ Arm {
     [ArmParameter[int]]
     $httpsOnly,
 
+    [ArmParameter[string]]
+    $deploymentTime = (utcNow),
+
     [ArmVariable]
-    $deploymentTime = (utcNow)
+    $timePlus3 = (dateTimeAdd $deploymentTime 'PT3H')
   )
 
   Resource $StorageAccountName -Namespace Microsoft.Storage -Type storageAccounts -ApiVersion 2019-06-01 -Kind StorageV2 -Location $Location {
@@ -36,4 +39,5 @@ Arm {
   }
 
   Output 'deploymentTime' -Type string -Value $deploymentTime
+  Output 'timePlus3' -Type string -Value $timePlus3
 }

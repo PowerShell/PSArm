@@ -11,9 +11,17 @@ namespace PSArm.Parameterization
 {
     internal class PowerShellArmVariableConstructor : PowerShellArmTemplateParameterConstructor<ArmVariable>
     {
-        public PowerShellArmVariableConstructor(HashSet<string> parameterNames)
+        private readonly List<PSVariable> _parameterValues;
+
+        public PowerShellArmVariableConstructor(HashSet<string> parameterNames, List<PSVariable> parameterValues)
             : base(parameterNames)
         {
+            _parameterValues = parameterValues;
+        }
+
+        protected override List<PSVariable> CreateEvaluationState()
+        {
+            return _parameterValues;
         }
 
         protected override ArmVariable EvaluateParameter(List<PSVariable> variables, ParameterAst parameter)

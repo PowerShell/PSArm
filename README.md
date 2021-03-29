@@ -382,7 +382,7 @@ Publish-PSArmTemplate -TemplatePath ./storageAccount.psarm.ps1 -Parameters @{
 }
 ```
 
-Will generate this ARM template:
+Will generate an ARM template like this (the full output will be embedded in a nested template):
 
 ```json
 {
@@ -422,6 +422,23 @@ Will generate this ARM template:
   }
 }
 ```
+
+You can see:
+
+- `$StorageAccountName` and `$Location` work like ordinary PowerShell variables and were simply subtituted by value.
+  If `$StorageAccountName` weren't provided you would see the standard mandatory parameter prompt,
+  and `$Location` defaults to the value given.
+- `$accessTier` has a known value at publish time, so it's directly substitued into the template
+- `$httpsOnly` has no given value, so becomes a parameter of the published template
+- `$deploymentTime` is a variable, so always has its value embedded as a variable in the template
+  (it's assumed that if you've created an ARM variable, you deliberately want it in the template)
+
+  In general the advice is:
+
+  - Keep things as ordinary script parameters whenever you can
+  - Prefer ARM variables to ARM parameters for things that must be evaluated at deployment time
+  - Try not to make ARM variables and ARM parameters depend on each other
+  - Use ARM parameters for secure inputs
 
 ### High-level ARM keywords
 

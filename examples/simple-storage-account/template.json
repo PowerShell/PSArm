@@ -5,8 +5,7 @@
     "_generator": {
       "name": "psarm",
       "version": "0.1.0.0",
-      "psarm-psversion": "7.2.0-preview.4",
-      "templateHash": "2038739332677510984"
+      "psarm-psversion": "7.2.0-preview.4"
     }
   },
   "resources": [
@@ -25,10 +24,14 @@
           "parameters": {
             "httpsOnly": {
               "type": "int"
+            },
+            "deploymentTime": {
+              "type": "string",
+              "defaultValue": "[utcNow()]"
             }
           },
           "variables": {
-            "deploymentTime": "[utcNow()]"
+            "timePlus3": "[dateTimeAdd(parameters('deploymentTime'), 'PT3H')]"
           },
           "resources": [
             {
@@ -51,7 +54,11 @@
           "outputs": {
             "deploymentTime": {
               "type": "string",
-              "value": "[variables('deploymentTime')]"
+              "value": "[parameters('deploymentTime')]"
+            },
+            "timePlus3": {
+              "type": "string",
+              "value": "[variables('timePlus3')]"
             }
           }
         }

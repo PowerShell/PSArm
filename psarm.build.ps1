@@ -124,7 +124,6 @@ task BuildModule {
     Copy-Item -Path "$PSScriptRoot/LICENSE" -Destination "$OutDir/LICENSE.txt"
 
     # Create powershell-version-specific asset deployments
-
     foreach ($framework in $TargetFrameworks)
     {
         $fullBinDir = "$BinDir/$framework/publish"

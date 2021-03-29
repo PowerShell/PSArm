@@ -120,6 +120,9 @@ task BuildModule {
         Copy-Item -Recurse -Path $path -Destination $OutDir
     }
 
+    # Copy the license, which requires an extension change
+    Copy-Item -Path "$PSScriptRoot/LICENSE" -Destination "$OutDir/LICENSE.txt"
+
     # Create powershell-version-specific asset deployments
 
     foreach ($framework in $TargetFrameworks)

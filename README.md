@@ -496,7 +496,7 @@ The metadata in the template looks like this:
     "_generator": {
       "name": "psarm",
       "version": "0.1.0.0",
-      "psarm-psversion": "7.1.3"
+      "psarm-psversion": "7.1.3",
       "templateHash": "<hash>"
     }
   }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.1.0-alpha.1</Version>
+    <Version>0.1.0-alpha1</Version>
     <Company>Microsoft Corporation</Company>
     <Copyright>(c) Microsoft Corporation</Copyright>
 

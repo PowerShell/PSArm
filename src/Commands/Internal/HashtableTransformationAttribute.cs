@@ -16,7 +16,17 @@ namespace PSArm.Commands.Internal
                     return null;
 
                 case PSObject psObject:
-                    return TransformPSObject(psObject);
+                    switch (psObject.BaseObject)
+                    {
+                        case null:
+                            return TransformPSObject(psObject);
+
+                        case PSCustomObject _:
+                            return TransformPSObject(psObject);
+
+                        case object innerObject:
+                            return Transform(engineIntrinsics, innerObject);
+                    }
 
                 case Hashtable parameterHashtable:
                     return parameterHashtable;

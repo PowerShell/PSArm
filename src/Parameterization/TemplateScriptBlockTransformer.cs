@@ -44,8 +44,16 @@ namespace PSArm.Parameterization
             armParameters = new PowerShellArmParameterConstructor(parameterAsts, parametersWithAllowedValues)
                 .ConstructParameters(ast.ParamBlock);
 
+            // Construct the list of parameter values to supply for variables
+            var parameterVariables = new List<PSVariable>(armParameters.Count);
+            foreach (ArmParameter armParameter in armParameters.Values)
+            {
+                var psVar = new PSVariable(armParameter.Name.CoerceToString(), armParameter.GetReference());
+                parameterVariables.Add(psVar);
+            }
+
             // Now do variables
-            armVariables = new PowerShellArmVariableConstructor(variableAsts)
+            armVariables = new PowerShellArmVariableConstructor(variableAsts, parameterVariables)
                 .ConstructParameters(ast.ParamBlock);
 
             psArgsArray = BuildInvocationArgumentArray(argsIndex, armParameters, armVariables);

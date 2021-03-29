@@ -12,7 +12,7 @@ BeforeDiscovery {
 
         if (Test-Path -LiteralPath $templatePath)
         {
-            @{ Name = $_.Name; ExamplePath = $basePath }
+            @{ Name = $_.Name; ExamplePath = $basePath; UseHashtable = $_.Name -eq 'simple-storage-account' }
         }
     }
 }
@@ -23,14 +23,15 @@ BeforeAll {
 
 Describe "Full ARM template conversions using examples" {
     It "Example <Name>: PSArm script at <ScriptPath> evaluates equivalently to <TemplatePath>" -TestCases $testCases {
-        param([string]$Name, [string]$ExamplePath)
+        param([string]$Name, [string]$ExamplePath, [bool]$UseHashtable)
 
         $templatePath = Join-Path -Path $ExamplePath -ChildPath 'template.json'
         $parameterPath = Join-Path -Path $ExamplePath -ChildPath 'parameters.json'
 
         if (Test-Path $parameterPath)
         {
-            $parameters = Get-Content -Raw $parameterPath | ConvertFrom-Json
+            $jsonParams = if ($PSEdition -eq 'Core') { @{ AsHashtable = $UseHashtable } } else { @{} }
+            $parameters = Get-Content -Raw $parameterPath | ConvertFrom-Json @jsonParams
         }
 
         $armObject = Publish-PSArmTemplate -TemplatePath $ExamplePath -Parameters $parameters -NoWriteFile -NoHashTemplate -PassThru

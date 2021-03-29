@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation.
 
 using PSArm.Templates.Metadata;
+using PSArm.Templates.Operations;
 using PSArm.Templates.Primitives;
 using PSArm.Templates.Visitors;
 using System.Collections.Generic;
@@ -124,7 +125,10 @@ namespace PSArm.Templates
 
                 foreach (KeyValuePair<IArmString, ArmParameter> localParameter in (IReadOnlyDictionary<IArmString, ArmParameter>)Parameters)
                 {
-                    if (localParameter.Value.DefaultValue is not null)
+                    // If the parameter value is an ARM operation of some form,
+                    // we must leave it as a parameter so that it's evaluated properly
+                    if (localParameter.Value.DefaultValue is not null
+                        && localParameter.Value.DefaultValue is not ArmOperation)
                     {
                         parameters[localParameter.Key] = localParameter.Value.DefaultValue;
                     }

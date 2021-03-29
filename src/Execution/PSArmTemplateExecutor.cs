@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Management.Automation;
+using System.Management.Automation.Language;
 using System.Threading;
 
 namespace PSArm.Execution
@@ -122,7 +123,8 @@ namespace PSArm.Execution
 
             if (parameters is not null)
             {
-                _pwsh.AddParameters(parameters);
+                IDictionary scriptParameters = GetScriptParameters(scriptPath, parameters);
+                _pwsh.AddParameters(scriptParameters);
             }
 
             foreach (PSObject result in _pwsh.Invoke())
@@ -145,6 +147,29 @@ namespace PSArm.Execution
             }
 
             cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        private IDictionary GetScriptParameters(string scriptPath, IDictionary parameters)
+        {
+            Ast ast = Parser.ParseFile(scriptPath, out Token[] _, out ParseError[] _);
+            var paramAst = (ParamBlockAst)ast.Find((subAst) => subAst is ParamBlockAst, searchNestedScriptBlocks: false);
+
+            var outputParameters = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+            if (paramAst?.Parameters is not null)
+            {
+                // Ensure case-sensitive hashtable inputs still work
+                parameters = new Hashtable(parameters, StringComparer.OrdinalIgnoreCase);
+                foreach (ParameterAst parameter in paramAst.Parameters)
+                {
+                    string parameterName = parameter.Name.VariablePath.UserPath;
+                    if (parameters.Contains(parameterName))
+                    {
+                        outputParameters[parameterName] = parameters[parameterName];
+                    }
+                }
+            }
+
+            return outputParameters;
         }
     }
 }

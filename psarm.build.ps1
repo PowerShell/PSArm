@@ -1,5 +1,5 @@
 # Copyright (c) Microsoft Corporation.
-# All rights reserved.
+# Licensed under the MIT License.
 
 param(
     [ValidateSet('Debug', 'Release')]
@@ -119,8 +119,10 @@ task BuildModule {
         Copy-Item -Recurse -Path $path -Destination $OutDir
     }
 
-    # Create powershell-version-specific asset deployments
+    # Copy the license, which requires an extension change
+    Copy-Item -Path "$PSScriptRoot/LICENSE" -Destination "$OutDir/LICENSE.txt"
 
+    # Create powershell-version-specific asset deployments
     foreach ($framework in $TargetFrameworks)
     {
         $fullBinDir = "$BinDir/$framework/publish"

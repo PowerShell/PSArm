@@ -1,5 +1,6 @@
 ﻿
 // Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using System.Management.Automation.Host;
 using System.Net.Http;

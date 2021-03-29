@@ -1,5 +1,6 @@
 ﻿
 # Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
 $namePrefix = 'my'
 $vnetNamespace = 'myVnet/'

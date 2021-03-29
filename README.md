@@ -299,20 +299,129 @@ and writes that out as an ARM JSON file, ready for deployment.
 
 ### Variables and parameters
 
-The `param` block can be used for specifying ARM parameters and variables.
-Variables are simply given a name (their PowerShell variable name) and value (as PowerShell parameter default value).
-Parameters require a type (given as a generic type argument), may optionally have a default value,
-and can also apply constraint attributes like `ValidateSet` to the ARM template.
+PSArm scripts are ordinary PowerShell scripts,
+so when they are run (by `Publish-PSArmTemplate` for example) they are simply invoked like any other script.
+That means you can freely add a `param` block to your PSArm scripts to parameterize them,
+and then provide those parameters to `Publish-PSArmTemplate` through its `-Parameters` parameter.
 
-Parameters can be supplied at publication time using the `-Parameters` parameter of `Publish-PSArmTemplate`.
-These parameters will be supplied as parameters both to the `param` block of an `Arm` body
-and also to the `param` block of the `.psarm.ps1` script (if there is one).
+Note that the `-Parameters` parameter accepts a hashtable, but will also accept a PSObject,
+meaning you can do the following:
 
-Any parameters that aren't provided at publication time will be left in the final template
+```powershell
+$parameters = Get-Content ./parameters.json | ConvertFrom-Json
+Publish-PSArmTemplate ... -Parameters $parameters
+```
+
+Using ordinary PowerShell variables to create ARM scripts will work in many scenarios,
+but sometimes you do need an actual ARM variable or parameter, for example:
+
+- For secure parameters, like of type `securestring`, that you don't want to bake directly into an ARM template,
+- With functions that must be evaluated at deployment time, such as `[resourceGroup()]` or `[deployment()]`,
+- Or in cases where an expression needs to be evaluated only once, like `[uniqueString()]` or `[utcNow()]`
+
+In these cases, you can create ARM parameters and variables by adding a `param` block to the body of the `Arm` keyword itself.
+ARM parameters and variables are specified by type;
+`[ArmParameter[<type>]]` and `[ArmVariable]` respectively.
+Those parameters and variables then use their PowerShell variable name in their template.
+They also support PowerShell features like default values and the `ValidateSet` attribute.
+
+When `Publish-PSArmTemplate` instantiates an ARM template, it will try to use any of the values from the `-Parameters` parameter
+to also instantiate parameters to the `Arm` block (in addition to the `.psarm.ps1` script).
+Any parameters it doesn't have a value for will be left in the template and published as part of it,
 to be provided at deployment.
-This may be especially useful in the case of `securestring` parameters.
-It can also be useful for variable and parameter values that must be calculated at runtime,
-such as `deployment()` or `uniqueString()`.
+
+As a quick example, the following PSArm script:
+
+```powershell
+# storageAccount.psarm.ps1
+
+param(
+  [Parameter(Mandatory)]
+  [string]
+  $StorageAccountName,
+
+  [Parameter()]
+  [ValidateSet('WestUS2', 'CentralUS')]
+  [string]
+  $Location = 'WestUS2'
+)
+
+Arm {
+  param(
+    [ValidateSet('Hot', 'Cool', 'Archive')]
+    [ArmParameter[string]]
+    $accessTier = 'Hot',
+
+    [ArmParameter[int]]
+    $httpsOnly,
+
+    [ArmVariable]
+    $deploymentTime = (utcNow)
+  )
+
+  Resource $StorageAccountName -Namespace Microsoft.Storage -Type storageAccounts -ApiVersion 2019-06-01 -Kind StorageV2 -Location $Location {
+    ArmSku Standard_LRS
+    properties {
+      accessTier $accessTier
+      supportsHTTPSTrafficOnly $httpsOnly
+      allowBlobPublicAccess 1
+      allowSharedKeyAccess 1
+    }
+  }
+
+  Output 'deploymentTime' -Type string -Value $deploymentTime
+}
+```
+
+Published like this:
+
+```powershell
+Publish-PSArmTemplate -TemplatePath ./storageAccount.psarm.ps1 -Parameters @{
+  StorageAccountName = 'MyStorageAccount'
+  allowPublicAccess = 1
+}
+```
+
+Will generate this ARM template:
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "httpsOnly": {
+      "type": "int"
+    }
+  },
+  "variables": {
+    "deploymentTime": "[utcNow()]"
+  },
+  "resources": [
+    {
+      "name": "MyStorageAccount",
+      "apiVersion": "2019-06-01",
+      "type": "Microsoft.Storage/storageAccounts",
+      "kind": "StorageV2",
+      "location": "WestUS2",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "properties": {
+        "accessTier": "Hot",
+        "supportsHttpsTrafficOnly": "[parameters('httpsOnly')]",
+        "allowBlobPublicAccess": 1,
+        "allowSharedKeyAccess": 1
+      }
+    }
+  ],
+  "outputs": {
+    "deploymentTime": {
+      "type": "string",
+      "value": "[variables('deploymentTime')]"
+    }
+  }
+}
+```
 
 ### High-level ARM keywords
 
@@ -368,10 +477,21 @@ This will output the built module to `out/PSArm`, which can be imported with `Im
 Keep in mind that this is a binary module, so you'll likely want to start a new process before importing it
 so that you can easily rebuild and reimport as you make changes.
 
+To run the tests after your build, run:
+
+```powershell
+./build.ps1 -Test
+```
+
+PSArm is currently built with [Invoke-Build](https://github.com/nightroman/Invoke-Build),
+so more advanced build tasks are available through the `Invoke-Build` command.
+
 ## Schemas
 
 Template schema support in PSArm comes from the [bicep-types-az](https://github.com/Azure/bicep-types-az) project,
 which also powers Bicep.
+While an early prototype of PSArm did create and ship its own schemas,
+the `Azure.Bicep.Types.Az` NuGet package is now the best way to deal with ARM schemas in .NET.
 
 ## Implementation details
 

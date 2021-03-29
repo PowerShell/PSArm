@@ -1,0 +1,61 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "psarm",
+      "version": "0.1.0.0",
+      "psarm-psversion": "7.2.0-preview.4",
+      "templateHash": "2038739332677510984"
+    }
+  },
+  "resources": [
+    {
+      "name": "storage-account",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "httpsOnly": {
+              "type": "int"
+            }
+          },
+          "variables": {
+            "deploymentTime": "[utcNow()]"
+          },
+          "resources": [
+            {
+              "name": "MyStorageAccount",
+              "apiVersion": "2019-06-01",
+              "type": "Microsoft.Storage/storageAccounts",
+              "kind": "StorageV2",
+              "location": "WestUS2",
+              "sku": {
+                "name": "Standard_LRS"
+              },
+              "properties": {
+                "accessTier": "Hot",
+                "supportsHttpsTrafficOnly": "[parameters('httpsOnly')]",
+                "allowBlobPublicAccess": 1,
+                "allowSharedKeyAccess": 1
+              }
+            }
+          ],
+          "outputs": {
+            "deploymentTime": {
+              "type": "string",
+              "value": "[variables('deploymentTime')]"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

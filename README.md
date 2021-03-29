@@ -242,8 +242,8 @@ in Azure PowerShell commands and the `az` CLI.
 
 ## Conversion cmdlets
 
-Having to learn and write a new DSL is a pain and takes time,
-especially a complex hierarchical one like PSArm.
+Having to learn and write a new DSL takes time and effort,
+especially a with complex hierarchical one like PSArm.
 So PSArm comes with two commands to help:
 
 - `ConvertFrom-ArmTemplate`, which takes in ARM JSON and converts to a PSArm in-memory object

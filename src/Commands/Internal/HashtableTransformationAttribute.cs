@@ -21,8 +21,8 @@ namespace PSArm.Commands.Internal
                         case null:
                             return TransformPSObject(psObject);
 
-                        case PSObject innerPSObject:
-                            return TransformPSObject(innerPSObject);
+                        case PSCustomObject _:
+                            return TransformPSObject(psObject);
 
                         case object innerObject:
                             return Transform(engineIntrinsics, innerObject);

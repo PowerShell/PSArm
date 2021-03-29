@@ -154,9 +154,11 @@ namespace PSArm.Execution
             Ast ast = Parser.ParseFile(scriptPath, out Token[] _, out ParseError[] _);
             var paramAst = (ParamBlockAst)ast.Find((subAst) => subAst is ParamBlockAst, searchNestedScriptBlocks: false);
 
-            var outputParameters = new Dictionary<string, object>();
-            if (paramAst.Parameters is not null)
+            var outputParameters = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+            if (paramAst?.Parameters is not null)
             {
+                // Ensure case-sensitive hashtable inputs still work
+                parameters = new Hashtable(parameters, StringComparer.OrdinalIgnoreCase);
                 foreach (ParameterAst parameter in paramAst.Parameters)
                 {
                     string parameterName = parameter.Name.VariablePath.UserPath;

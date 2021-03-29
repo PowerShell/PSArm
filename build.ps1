@@ -1,6 +1,5 @@
 ﻿# Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-# All rights reserved.
 
 [CmdletBinding(DefaultParameterSetName = "Build")]
 param(

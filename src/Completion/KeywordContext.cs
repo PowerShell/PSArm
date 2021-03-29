@@ -1,7 +1,6 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-// All rights reserved.
 
 using System.Collections.Generic;
 using System.Management.Automation.Language;

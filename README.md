@@ -128,7 +128,7 @@ New-AzResourceGroupDeployment -ResourceGroupName MyResourceGroup -TemplateFile .
 
 This will create the following template:
 
-```json
+```jsonc
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -384,7 +384,7 @@ Publish-PSArmTemplate -TemplatePath ./storageAccount.psarm.ps1 -Parameters @{
 
 Will generate an ARM template like this (the full output will be embedded in a nested template):
 
-```json
+```jsonc
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",

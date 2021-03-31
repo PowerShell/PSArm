@@ -27,6 +27,7 @@ namespace PSArm.Commands
         }
 
         [ValidateNotNullOrEmpty]
+        [SupportsWildcards]
         [Parameter(ParameterSetName = "Path", Position = 0, Mandatory = true)]
         public string[] Path { get; set; }
 

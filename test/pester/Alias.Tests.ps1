@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 
 BeforeAll {
     Import-Module "$PSScriptRoot/../tools/TestHelper.psm1"

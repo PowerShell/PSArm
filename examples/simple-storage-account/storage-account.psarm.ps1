@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 param(
   [Parameter(Mandatory)]
   [string]

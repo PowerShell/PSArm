@@ -1,3 +1,7 @@
+﻿
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 Describe "Module and assembly metadata" {
     It "Should have matching module and assembly metadata" {
         $module = Get-Module 'PSArm'

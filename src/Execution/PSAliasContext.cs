@@ -39,6 +39,16 @@ namespace PSArm.Execution
 
         static PSAliasContext()
         {
+            // Our choices for alias manipulation are:
+            //  - Call the cmdlets for each alias (and lose scope info needed for restore)
+            //  - Use the provider for each alias (and lose scope info needed for restore)
+            //  - Use reflection to run internal engine methods
+            //  - Use reflection, but compile it to make it more efficient at the cost of readability
+            //
+            // Since we want to restore aliases exactly as we found them,
+            // and also may be running an arbitrary number of ARM templates in a session,
+            // we choose the last option.
+
             PropertyInfo ssInternalProperty = typeof(SessionState)
                 .GetProperty("Internal", BindingFlags.NonPublic | BindingFlags.Instance);
 
@@ -74,13 +84,11 @@ namespace PSArm.Execution
         {
             List<Dictionary<string, AliasInfo>> aliasTable = s_getAliasTable(sessionState);
 
-            var seenAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (Dictionary<string, AliasInfo> scope in aliasTable)
             {
                 foreach (string alias in scope.Keys)
                 {
-                    if (seenAliases.Add(alias)
-                        && !s_psArmAliases.Contains(alias))
+                    if (!s_psArmAliases.Contains(alias))
                     {
                         s_removeAlias(sessionState, alias);
                     }
@@ -92,18 +100,13 @@ namespace PSArm.Execution
 
         private static void RestoreOldScope(SessionState sessionState, List<Dictionary<string, AliasInfo>> aliasTable)
         {
-            var seenAllScopeAliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             // Traverse the alias table from highest scope to lowest
             aliasTable.Reverse();
             for (int i = 0; i < aliasTable.Count; i++)
             {
                 foreach (KeyValuePair<string, AliasInfo> alias in aliasTable[i])
                 {
-                    if ((alias.Value.Options & ScopedItemOptions.AllScope) == 0
-                        || seenAllScopeAliases.Add(alias.Key))
-                    {
-                        s_setAlias(sessionState, alias.Value, i.ToString());
-                    }
+                    s_setAlias(sessionState, alias.Value, i.ToString());
                 }
             }
         }
@@ -112,7 +115,12 @@ namespace PSArm.Execution
             Type ssInternalType,
             MethodInfo ssInternalGetter)
         {
+            // This field got renamed at some point since PS 5.1 -- for now we assume we're safe with the Framework/Core condition
+#if CoreCLR
             FieldInfo ssInternalCurrentScopeField = ssInternalType.GetField("_currentScope", BindingFlags.NonPublic | BindingFlags.Instance);
+#else
+            FieldInfo ssInternalCurrentScopeField = ssInternalType.GetField("currentScope", BindingFlags.NonPublic | BindingFlags.Instance);
+#endif
             Type scopeType = ssInternalCurrentScopeField.FieldType;
             ConstructorInfo scopeEnumeratorConstructor = ssInternalType.Assembly.GetType("System.Management.Automation.SessionStateScopeEnumerator")
                 .GetConstructor(
@@ -129,13 +137,15 @@ namespace PSArm.Execution
             MethodInfo aggregateMethod = typeof(PSAliasContext).GetMethod(
                 nameof(PSAliasContext.Aggregate),
                 BindingFlags.NonPublic | BindingFlags.Static).MakeGenericMethod(scopeType, typeof(Dictionary<string, AliasInfo>));
+            ConstructorInfo dictionaryConstructor = typeof(Dictionary<string, AliasInfo>)
+                .GetConstructor(new[] { typeof(Dictionary<string, AliasInfo>) });
 
             var ssParameter = Expression.Parameter(typeof(SessionState));
             var scopeParameter = Expression.Parameter(scopeType);
 
             // We want to generate code like:
             //
-            //   Aggregate(new ScopeEnumerator(SessionState.Internal._currentScope), (scope) => scope.GetAliases())
+            //   Aggregate(new ScopeEnumerator(SessionState.Internal._currentScope), (scope) => new Dictionary<string, AliasInfo>(scope.GetAliases()))
 
             return Expression.Lambda<Func<SessionState, List<Dictionary<string, AliasInfo>>>>(
                 Expression.Call(
@@ -148,9 +158,11 @@ namespace PSArm.Execution
                                 ssInternalGetter),
                             ssInternalCurrentScopeField)),
                     Expression.Lambda(
-                        Expression.Call(
-                            scopeParameter,
-                            scopeGetAliasesMethod),
+                        Expression.New(
+                            dictionaryConstructor,
+                            Expression.Call(
+                                scopeParameter,
+                                scopeGetAliasesMethod)),
                         scopeParameter)),
                 ssParameter).Compile();
         }

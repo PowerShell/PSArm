@@ -12,13 +12,13 @@ Describe "PSArm templates working with PS aliases" {
         $psArmScriptPath = "$PSScriptRoot/assets/aliastest.psarm.ps1"
         $expectedTemplatePath = "$PSScriptRoot/assets/aliastest-template.json"
 
-        $template = Publish-PSArmTemplate -Path $psArmScriptPath -OutFile -NoHashTemplate -NoWriteFile -PassThru
+        $template = Publish-PSArmTemplate -Path $psArmScriptPath -NoHashTemplate -NoWriteFile -PassThru
         $template.Metadata.GeneratorMetadata.Remove('psarm-psversion')
 
         $generatedJson = $template.ToJson()
         $referenceJson = Get-Content -Raw -LiteralPath $expectedTemplatePath | ConvertFrom-Json
 
-        (Get-Alias -Name addressPrefix -Scope Local).Definition | Should -BeExactly DoNothing
+        (Get-Alias -Name addressPrefix).Definition | Should -BeExactly DoNothing
         (Get-Alias -Name '%' -Scope Global).Definition | Should -BeExactly ForEach-Object
         Assert-StructurallyEqual -ComparisonObject $referenceJson -JsonObject $generatedJson
     }

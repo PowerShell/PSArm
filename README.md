@@ -456,6 +456,13 @@ that specifically configures the `ipConfigurations` property.
 Whereas in `Microsoft.Network/publicIpAddresses`, `ipConfigurations` is meaningless,
 but `publicIPAllocationMethod` allows you to configure the IP allocation method.
 
+#### NOTE
+
+Because ARM properties can have any name and are implemented as functions
+(which are masked by aliases),
+PowerShell aliases (except for ARM aliases) don't work in an `Arm` block.
+You are free to define your own aliases or restore normal ones however.
+
 ### ARM template functions and expressions
 
 The ARM template language has a template expression language embedded in JSON string values that it evaluates at deployment time,

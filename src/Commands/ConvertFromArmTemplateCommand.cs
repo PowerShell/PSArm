@@ -3,9 +3,11 @@
 // Licensed under the MIT License.
 
 using PSArm.Commands.Internal;
+using PSArm.Internal;
 using PSArm.Serialization;
 using PSArm.Templates;
 using System;
+using System.IO;
 using System.Management.Automation;
 
 namespace PSArm.Commands
@@ -49,9 +51,34 @@ namespace PSArm.Commands
                     return;
 
                 case "Path":
-                    foreach (string path in Path)
+                    foreach (string wildcardPath in Path)
                     {
-                        WriteObject(_parser.ParseFile(path));
+                        foreach (string path in GetResolvedProviderPathFromPSPath(wildcardPath, out ProviderInfo provider))
+                        {
+                            if (!provider.Name.Is("FileSystem"))
+                            {
+                                WriteError(
+                                    new ErrorRecord(
+                                        new IOException($"Cannot convert non-filesystem template path '{path}'"),
+                                        "BadProviderPath",
+                                        ErrorCategory.InvalidArgument,
+                                        path));
+                                continue;
+                            }
+
+                            if (!File.Exists(path))
+                            {
+                                WriteError(
+                                    new ErrorRecord(
+                                        new FileNotFoundException($"ARM template file '{path}' does not exist"),
+                                        "TemplateFileNotFound",
+                                        ErrorCategory.ResourceUnavailable,
+                                        path));
+                                continue;
+                            }
+
+                            WriteObject(_parser.ParseFile(path));
+                        }
                     }
                     return;
 

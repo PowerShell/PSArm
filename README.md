@@ -460,7 +460,7 @@ but `publicIPAllocationMethod` allows you to configure the IP allocation method.
 
 Because ARM properties can have any name and are implemented as functions
 (which are masked by aliases),
-PowerShell aliases (except for ARM aliases) don't work in an `Arm` block.
+PowerShell aliases (except for ARM aliases) are disabled in an `Arm` block.
 You are free to define your own aliases or restore normal ones however.
 
 ### ARM template functions and expressions

@@ -115,7 +115,7 @@ Run this with the following command:
 
 ```powershell
 # Run the template and publish it to a JSON file. By default this is ./template.json
-Publish-PSArmTemplate -Path ./network-interface.psarm.ps1 -Parameters @{ rgLocation = 'WestUS2' }
+Build-PSArmTemplate -Path ./network-interface.psarm.ps1 -Parameters @{ rgLocation = 'WestUS2' }
 
 # Deploy the template to a resource group using the Az.Resources command
 New-AzResourceGroupDeployment -ResourceGroupName MyResourceGroup -TemplateFile ./template.json
@@ -216,9 +216,9 @@ This will create the following template:
 
 For more in-depth examples, see the [examples](examples) directory.
 
-## `Publish-PSArmTemplate`
+## `Build-PSArmTemplate`
 
-The `Publish-PSArmTemplate` command is the key cmdlet for executing PSArm templates.
+The `Build-PSArmTemplate` command is the key cmdlet for executing PSArm templates.
 It performs the following tasks:
 
 - Collects PSArm template files from the `-Path` parameter, supporting either file paths or directory paths
@@ -233,9 +233,9 @@ It performs the following tasks:
   - If the file already exists this will fail unless `-Force` is used.
   - `-PassThru` can be specified to also get the full template object from the command
   - `-NoWriteFile` can be specified to prevent the file being written
-- `-Verbose` will give a good account of what `Publish-PSArmTemplate` is doing
+- `-Verbose` will give a good account of what `Build-PSArmTemplate` is doing
 
-`Publish-PSArmTemplate` will write a JSON file to disk only,
+`Build-PSArmTemplate` will write a JSON file to disk only,
 and is not intended to deploy the resulting ARM template.
 Deployment functionality is already provided and maintained
 in Azure PowerShell commands and the `az` CLI.
@@ -281,30 +281,30 @@ within which PSArm offers its DSL functionality, complete with contextual comple
 
 The `Arm` keyword then constructs an object representation of an ARM template,
 which is output when the script is executed.
-So when `Publish-PSArmTemplate` is run on these scripts,
+So when `Build-PSArmTemplate` is run on these scripts,
 it simply executes them and collects all the ARM objects they emit.
 
-`Publish-PSArmTemplate` only looks for scripts that end with the `.psarm.ps1` extension
+`Build-PSArmTemplate` only looks for scripts that end with the `.psarm.ps1` extension
 so that it can support being given directory paths.
 This means you can mix ordinary scripts and PSArm scripts in the same directory
-without `Publish-PSArmTemplate` accidentally executing those ordinary scripts.
+without `Build-PSArmTemplate` accidentally executing those ordinary scripts.
 
-`Publish-PSArmTemplate` aggregates all the templates it collects into a nested template
+`Build-PSArmTemplate` aggregates all the templates it collects into a nested template
 and writes that out as an ARM JSON file, ready for deployment.
 
 ### Variables and parameters
 
 PSArm scripts are ordinary PowerShell scripts,
-so when they are run (by `Publish-PSArmTemplate` for example) they are simply invoked like any other script.
+so when they are run (by `Build-PSArmTemplate` for example) they are simply invoked like any other script.
 That means you can freely add a `param` block to your PSArm scripts to parameterize them,
-and then provide those parameters to `Publish-PSArmTemplate` through its `-Parameters` parameter.
+and then provide those parameters to `Build-PSArmTemplate` through its `-Parameters` parameter.
 
 Note that the `-Parameters` parameter accepts a hashtable, but will also accept a PSObject,
 meaning you can do the following:
 
 ```powershell
 $parameters = Get-Content ./parameters.json | ConvertFrom-Json
-Publish-PSArmTemplate ... -Parameters $parameters
+Build-PSArmTemplate ... -Parameters $parameters
 ```
 
 Using ordinary PowerShell variables to create ARM scripts will work in many scenarios,
@@ -320,7 +320,7 @@ ARM parameters and variables are specified by type;
 Those parameters and variables then use their PowerShell variable name in their template.
 They also support PowerShell features like default values and the `ValidateSet` attribute.
 
-When `Publish-PSArmTemplate` instantiates an ARM template, it will try to use any of the values from the `-Parameters` parameter
+When `Build-PSArmTemplate` instantiates an ARM template, it will try to use any of the values from the `-Parameters` parameter
 to also instantiate parameters to the `Arm` block (in addition to the `.psarm.ps1` script).
 Any parameters it doesn't have a value for will be left in the template and published as part of it,
 to be provided at deployment.
@@ -371,7 +371,7 @@ Arm {
 Published like this:
 
 ```powershell
-Publish-PSArmTemplate -TemplatePath ./storageAccount.psarm.ps1 -Parameters @{
+Build-PSArmTemplate -TemplatePath ./storageAccount.psarm.ps1 -Parameters @{
   StorageAccountName = 'MyStorageAccount'
   allowPublicAccess = 1
 }

@@ -5,7 +5,7 @@
     <Company>Microsoft Corporation</Company>
     <Copyright>(c) Microsoft Corporation</Copyright>
 
-    <TargetFrameworks>net471;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net471</TargetFrameworks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 

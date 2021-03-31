@@ -27,8 +27,12 @@ using System.Threading.Tasks;
 namespace PSArm.Commands
 {
     [OutputType(typeof(ArmNestedTemplate))]
-    [Cmdlet(VerbsData.Publish, ModuleConstants.ModulePrefix + "Template")]
-    public class PublishPSArmTemplateCommand : PSCmdlet
+#if CoreCLR
+    [Cmdlet(VerbsLifecycle.Build, ModuleConstants.ModulePrefix + "Template")]
+#else
+    [Cmdlet("Build", ModuleConstants.ModulePrefix + "Template")]
+#endif
+    public class BuildPSArmTemplateCommand : PSCmdlet
     {
         private const string DefaultTemplateName = "template.json";
 
@@ -38,7 +42,7 @@ namespace PSArm.Commands
 
         private readonly CancellationTokenSource _cancellationSource;
 
-        public PublishPSArmTemplateCommand()
+        public BuildPSArmTemplateCommand()
         {
             _templateExecutorBuilder = new PSArmTemplateExecutor.Builder();
             _cancellationSource = new CancellationTokenSource();

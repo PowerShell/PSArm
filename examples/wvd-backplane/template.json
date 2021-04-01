@@ -1,0 +1,72 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "psarm",
+      "version": "0.1.0.0",
+      "psarm-psversion": "7.1.3",
+      "templateHash": "13701844625239267340"
+    }
+  },
+  "resources": [
+    {
+      "name": "wvd-backplane",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "name": "myFirstHostpool",
+              "apiVersion": "2019-12-10-preview",
+              "type": "Microsoft.DesktopVirtualization/hostPools",
+              "location": "eastus",
+              "properties": {
+                "friendlyName": "My Bicep created Host pool",
+                "hostPoolType": "pooled",
+                "loadBalancerType": "BreadthFirst",
+                "preferredAppGroupType": "Desktop"
+              }
+            },
+            {
+              "name": "myFirstAppGroup",
+              "apiVersion": "2019-12-10-preview",
+              "type": "Microsoft.DesktopVirtualization/applicationGroups",
+              "location": "eastus",
+              "properties": {
+                "friendlyName": "My Bicep created AppGroup",
+                "applicationGroupType": "Desktop",
+                "hostPoolArmPath": "[resourceId('Microsoft.DesktopVirtualization/hostPools', 'myFirstHostpool')]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.DesktopVirtualization/hostPools', 'myFirstHostpool')]"
+              ]
+            },
+            {
+              "name": "myFirstWorkspace",
+              "apiVersion": "2019-12-10-preview",
+              "type": "Microsoft.DesktopVirtualization/workspaces",
+              "location": "eastus",
+              "properties": {
+                "friendlyName": "My Bicep created Workspace",
+                "applicationGroupReferences": [
+                  "[resourceId('Microsoft.DesktopVirtualization/applicationGroups', 'myFirstAppGroup')]"
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.DesktopVirtualization/applicationGroups', 'myFirstAppGroup')]"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

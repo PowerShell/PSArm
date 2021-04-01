@@ -1,0 +1,5 @@
+{
+    "hostpoolName": "myFirstHostpool",
+    "appgroupName": "myFirstAppGroup",
+    "workspaceName": "myFirstWorkspace"
+}

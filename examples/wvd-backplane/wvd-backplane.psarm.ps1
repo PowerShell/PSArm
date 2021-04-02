@@ -1,12 +1,12 @@
 ﻿param(
   [string]
-  $hostpoolName,
+  $hostpoolName = 'myFirstHostpool',
 
   [string]
-  $appgroupName,
+  $appgroupName = 'myFirstAppGroup',
 
   [string]
-  $workspaceName
+  $workspaceName = 'myFirstWorkspace'
 )
 
 Arm {

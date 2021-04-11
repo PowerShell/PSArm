@@ -11,7 +11,7 @@ Describe "ARM conversion cmdlets" {
         $psarmScriptPath = Join-Path $TestDrive 'test-template.psarm.ps1'
 
         ConvertFrom-ArmTemplate -Path $templatePath | ConvertTo-PSArm -OutFile $psarmScriptPath -Force
-        $armObject = Publish-PSArmTemplate -TemplatePath $psarmScriptPath -NoWriteFile -NoHashTemplate -PassThru
+        $armObject = Build-PSArmTemplate -TemplatePath $psarmScriptPath -NoWriteFile -NoHashTemplate -PassThru
 
         $armTemplate = $armObject.Resources[0]['properties']['template']
 

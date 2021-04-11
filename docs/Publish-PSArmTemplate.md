@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Publish-PSArmTemplate
+# Build-PSArmTemplate
 
 ## SYNOPSIS
 Execute PSArm templates and write them as an ARM JSON template file.
@@ -13,17 +13,17 @@ Execute PSArm templates and write them as an ARM JSON template file.
 ## SYNTAX
 
 ```
-Publish-PSArmTemplate -TemplatePath <String[]> [-AzureToken <String>] [-Parameters <Hashtable>]
+Build-PSArmTemplate -TemplatePath <String[]> [-AzureToken <String>] [-Parameters <Hashtable>]
  [-OutFile <String>] [-PassThru] [-Force] [-NoWriteFile] [-NoHashTemplate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-`Publish-PSArmTemplate` is the primary cmdlet in the PSArm module,
+`Build-PSArmTemplate` is the primary cmdlet in the PSArm module,
 used to execute PSArm template files.
 It works similarly to `Invoke-Pester` or `Invoke-Build`,
 where files with a given prefix are found and executed.
 
-`Publish-PSArmTemplate` will execute PSArm scripts given to it,
+`Build-PSArmTemplate` will execute PSArm scripts given to it,
 aggregate them into a nested ARM template,
 add a hash value to that template,
 and then write the template out to a JSON file.
@@ -35,7 +35,7 @@ such as `New-AzResourceGroupDeployment`.
 
 ### Example 1
 ```powershell
-PS C:\> Publish-PSArmTemplate -TemplatePath ./examples/linux-vm -Parameters @{
+PS C:\> Build-PSArmTemplate -TemplatePath ./examples/linux-vm -Parameters @{
     AdminUsername = 'admin'
     AdminPasswordOrKey = 'verystrongpassword'
     AuthenticationType = 'password'
@@ -49,7 +49,7 @@ If the file already exists, this will fail.
 ### Example 1
 ```powershell
 PS C:\> $parameters = Get-Content -Raw -Path ./examples/windows-vm/parameters.json | ConvertFrom-Json
-PS C:\> Publish-PSArmTemplate -TemplatePath ./examples/windows-vm/windows-vm.psarm.ps1 -Parameters $parameters -OutFile windows-vm.json -Force
+PS C:\> Build-PSArmTemplate -TemplatePath ./examples/windows-vm/windows-vm.psarm.ps1 -Parameters $parameters -OutFile windows-vm.json -Force
 ```
 
 Execute the PSArm template at `./examples/windows-vm/windows-vm.psarm.ps1`
@@ -61,9 +61,9 @@ If the file already exists, this will overwrite it.
 
 ### -AzureToken
 An Azure token used to hash the generated template.
-By default, `Publish-PSArmTemplate` will try to use `Get-AzAccessToken` and `az accounts get-access-token`,
+By default, `Build-PSArmTemplate` will try to use `Get-AzAccessToken` and `az accounts get-access-token`,
 but supplying a value for this parameter will override that.
-If `Publish-PSArmTemplate` is unable to hash the template
+If `Build-PSArmTemplate` is unable to hash the template
 (because it can't get a token or because the token is invalid)
 and `-NoHashTemplate` isn't specified,
 the command will fail.

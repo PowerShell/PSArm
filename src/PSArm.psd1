@@ -79,7 +79,7 @@ CmdletsToExport = @(
     # Commandline cmdlets
     'ConvertTo-PSArm'
     'ConvertFrom-ArmTemplate'
-    'Publish-PSArmTemplate'
+    'Build-PSArmTemplate'
 
     # DSL cmdlets
     'New-PSArmTemplate'

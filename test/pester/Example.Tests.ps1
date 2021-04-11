@@ -35,7 +35,7 @@ Describe "Full ARM template conversions using examples" {
             $parameters = Get-Content -Raw $parameterPath | ConvertFrom-Json @jsonParams
         }
 
-        $armObject = Publish-PSArmTemplate -TemplatePath $ExamplePath -Parameters $parameters -NoWriteFile -NoHashTemplate -PassThru
+        $armObject = Build-PSArmTemplate -TemplatePath $ExamplePath -Parameters $parameters -NoWriteFile -NoHashTemplate -PassThru
 
         # Deal with PSVersion separately since otherwise tests run across powershell versions will fail
         $metadataPSVersion = $armObject.Metadata.GeneratorMetadata['psarm-psversion'].Value

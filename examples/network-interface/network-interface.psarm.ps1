@@ -1,9 +1,5 @@
 ﻿
 # Copyright (c) Microsoft Corporation.
-# Licensed under the MIT License.
-
-
-# Copyright (c) Microsoft Corporation.
 
 # Specify the ARM template purely within PowerShell
 Arm {

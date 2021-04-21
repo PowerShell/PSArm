@@ -260,6 +260,8 @@ These conversion cmdlets aren't perfect, and of course they can't replicate thin
 but they should help to make using PSArm much easier.
 If you hit a bug or an issue with the conversion cmdlets, definitely open an issue.
 
+*Note* We do not currently intend to create a direct bicep to psarm conversion cmdlet and instead reccomend that you use bicep to decompile to ARM and then the `ConvertFrom-ArmTemplate` cmdlet for this process.
+
 ## Completions
 
 PSArm offers contextual completions on keywords and parameters:

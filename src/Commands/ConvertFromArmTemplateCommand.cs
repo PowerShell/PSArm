@@ -6,6 +6,7 @@ using PSArm.Commands.Internal;
 using PSArm.Serialization;
 using PSArm.Templates;
 using System;
+using System.Collections.ObjectModel;
 using System.Management.Automation;
 
 namespace PSArm.Commands
@@ -49,9 +50,13 @@ namespace PSArm.Commands
                     return;
 
                 case "Path":
+                    ProviderInfo provider = null;
                     foreach (string path in Path)
                     {
-                        WriteObject(_parser.ParseFile(path));
+                        foreach (string resolvedPath in SessionState.Path.GetResolvedProviderPathFromPSPath(path, out provider))
+                        {
+                            WriteObject(_parser.ParseFile(resolvedPath));
+                        }
                     }
                     return;
 

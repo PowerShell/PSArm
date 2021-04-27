@@ -20,4 +20,14 @@ Describe "ARM conversion cmdlets" {
 
         Assert-StructurallyEqual -ComparisonObject $original -JsonObject $created
     }
+
+    It 'Can accept relative path' {
+        try {
+            Push-Location "$PSScriptRoot/assets"
+            ConvertFrom-ArmTemplate -Path ./roundtrip-template.json | Should -Not -BeNullOrEmpty
+        }
+        finally {
+            Pop-Location
+        }
+    }
 }
